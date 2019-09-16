@@ -58,6 +58,7 @@ import { SalutationComponent } from './StaffMaster/salutation/salutation.compone
 import { FeeTypeComponent } from './StaffMaster/fee-type/fee-type.component';
 import { ModeOfEnquiryComponent } from './StaffMaster/mode-of-enquiry/mode-of-enquiry.component';
 
+import * as moment from 'moment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -114,7 +115,11 @@ import { ModeOfEnquiryComponent } from './StaffMaster/mode-of-enquiry/mode-of-en
     FormsModule,    
     BrowserAnimationsModule, FileUploadModule
   ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},DynamicScriptLoaderService,RequestService],
+  providers: [
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    DynamicScriptLoaderService,
+    RequestService,
+    { provide: 'moment', useValue: moment }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

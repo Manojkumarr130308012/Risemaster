@@ -128,7 +128,8 @@ viewData() {
 // Edit Functione
 onEdit(institution) {
   this.Id = institution._id;
-  this.request.fetchInstitutionById(this.Id).subscribe((response) => {
+  console.log(this.Id);
+  this.request.fetchInstitutionById(this.Id).subscribe(response => {
     this.editInstitutiondata = response[0];
     console.log(response);
     this.institutionNameValue = this.editInstitutiondata.institution_name;
