@@ -107,6 +107,7 @@ export class InstitutionTypeComponent implements OnInit {
       swal("Updated Sucessfully");       
       
       this.viewData();
+      this.loadModal();
     }
     else if (response.status == 'error') {       
       this.setMessage(response.err);
