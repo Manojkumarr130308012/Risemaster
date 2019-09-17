@@ -281,11 +281,10 @@ export class RequestService {
     this.url = `${this.endPoint}/institution`;
     return this.http.get(this.url);
   }
-  fetchInstitutionById(id) {
+  public fetchInstitutionById(id) {
     this.url = `${this.endPoint}/institution/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
-
   //BoardOFEducation
   public getBoard() {
     this.url = `${this.endPoint}/boardOfEducation/`;
