@@ -9,14 +9,26 @@
                         <h2>
                             <strong>Board Of Education</strong>
                         </h2>
+<div class="noprint">
+    <button style = "margin-right: 10px" class="btn btn-border-radius bg-teal waves-effect" (click)="exportCSV()"> Export CSV</button>
+<button  style = "margin-right: 10px" class="btn btn-border-radius bg-pink waves-effect" (click)="exportPDF()">Export PDF</button>
+<button style = "margin-right: 10px" class="btn btn-border-radius bg-purple waves-effect" (click)="printTable()">Print</button>
+
+<div class="col-md-2">
+        <input style = "margin-left: 1000px" class="form-control" type="text" name="search" [(ngModel)]="filter" placeholder="serach">      
+    </div>
+</div>
                         <div class="header-dropdown m-r--5">
                             <!-- Add button -->
                                 <div class="btn-group m-l-15">
+                                        <div class="noprint">
                                         <button id="addRow" class="btn btn-info" data-toggle="modal"
                                         data-target="#addModal">
                                             Add New
                                             <i class="fa fa-plus" style="color: white"></i>  
                                         </button>
+                                        </div>
+                                        
                                         <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
                                         aria-labelledby="formModal" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
@@ -31,7 +43,7 @@
                                                 <div class="modal-body">
                                        <form [formGroup]="registerForm" >
                                        <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                            <div class="form-group">
                                                <label>Board</label> 
                                                <input type="text" value = "" formControlName="board" class="form-control" placeholder="Enter board"
@@ -52,25 +64,28 @@
                                        </div>
                                        </div>
                                        </div>
-                                       
-                                            <!-- Add button -->
+                                         <!-- Add button -->
                         </div>
                     </div>
                    <div class="body">
                             <div class="table-responsive">
+                                   
                                  <table id="tableExport" 
                                  class="display table table-hover table-checkable order-column m-t-20 width-per-100">
                                     <thead>
                                         <tr>
-                                            <th>S.No</th>
-                                            <th>Board Of Education</th>
-                                            <th >Action</th>
+                                            <th>S.No</th>                                           
+                                             <th (click)="sort('board')">Board Of Education
+                                            <i class="menu-icon ti-exchange-vertical noprint"></i>
+                                        </th>
+                                            <th class="noprint">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let board of boards?.response; let i=index">
+                                        <tr *ngFor="let board of boards?.response | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 5, currentPage: p }; let i=index">
                                             <td>{{i +1 }}</td> 
                                             <td>{{board?.board}}</td>
+                                            <div class="noprint">
                                             <td>
                                                 <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editModal">
                                                     <i class="material-icons" (click)="onEdit(board)">create</i>
@@ -80,8 +95,12 @@
                                                         (click) = "deleteBoard(board?._id)" >delete_forever</i>
                                                     </div>
                                                 </td>
+                                                </div>
                                         </tr>
                                     </tbody>
+                                    <div class="noprint">
+                                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                </div>
                                 </table>
                             </div>
                         </div> 
@@ -103,10 +122,10 @@
          <div class="modal-body">
              <form [formGroup]="editForm">
                  <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                      <div class="form-group">
                          <label>Board</label> 
-                         <input type="text" formControlName="board" class="form-control" placeholder="Enter board"
+                         <input type="text" formControlName="board" class="form-control" name= "board" placeholder="Enter board"
                              [ngClass]="{ 'is-invalid': submitted && f.board.errors }" />
                          <div *ngIf="submitted && f.board.errors" class="invalid-feedback">
                              <div *ngIf="f.board.errors.required">Board is required</div>

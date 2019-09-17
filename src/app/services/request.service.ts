@@ -315,6 +315,10 @@ export class RequestService {
     this.url = `${this.endPoint}/boardOfEducation/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
+  fetchBoards() {
+    this.url = `${this.endPoint}/boardOfEducation/`;
+    return this.http.get(this.url);
+  }
 
   //Admission Category
   public getAdmissionCategory() {

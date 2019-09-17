@@ -2,11 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestService } from '../../services/request.service';
 import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
-import { FormControl, Validators, FormGroup, FormBuilder} from '@angular/forms';
+import { Validators, FormGroup, FormBuilder} from '@angular/forms';
 
 declare const $: any;
 declare const swal: any;
+import * as moment from 'moment';
+import { Angular5Csv } from 'angular5-csv/dist/Angular5-csv';
+// import * as jsPDF from 'jspdf';
+declare let jsPDF: any ;
 
+interface Board {
+  _id: string;
+  board: string;
+}
+ 
 @Component({
   selector: 'app-board-of-education',
   templateUrl: './board-of-education.component.html',
@@ -20,10 +29,10 @@ export class BoardOfEducationComponent implements OnInit {
    editBoarddata;
    public boardValue: any;
    public IdValue: any;
-  boards;
+   private boards: any;
   editForm: FormGroup;
   message: any;
-
+  boards1: Board[] = [];
   constructor(private formBuilder: FormBuilder,
     private dynamicScriptLoader: DynamicScriptLoaderService,
     private request: RequestService,
@@ -36,6 +45,7 @@ export class BoardOfEducationComponent implements OnInit {
     this.editForm = this.formBuilder.group({
       board:['', Validators.required],
   });
+  this.fetchBoards();
 }
 // To display  Board
     viewData() {
@@ -121,19 +131,7 @@ export class BoardOfEducationComponent implements OnInit {
 
       }
 
-  async startScript() {
-    await this.dynamicScriptLoader.load('dataTables.buttons', 'buttons.flash', 'jszip', 'pdfmake', 'vfs_fonts', 'pdfmake', 'buttons.html5', 'buttons.print').then(data => {
-      this.loadData();
-    }).catch(error => console.log(error));
-  }
-  private loadData() {
-    $('#tableExport').DataTable({
-            dom: 'Bfrtip',
-            buttons: [
-              'copy', 'csv', 'excel', 'pdf', 'print'
-            ]
-          });
-        };
+
     private loadModal() {
       $('#addModal').modal('hide'); //or  $('#IDModal').modal('hide');
       $('#addModal').on('hidden.bs.modal', function () {
@@ -144,10 +142,85 @@ export class BoardOfEducationComponent implements OnInit {
         $(this).find('form').trigger('reset');
      })
     }
-  
+
+    //Print Table
+    printTable() {
+      window.print();
+    }
+    private fetchBoards() {
+      this.request.fetchBoards().subscribe((result: any) => {
+        this.boards1 = result.response;
+      });
+    }
+    exportCSV() {
+      const  options = {
+          fieldSeparator: ',',
+          quoteStrings: '"',
+          decimalseparator: '.',
+          showLabels: true,
+          showTitle: true,
+          title: 'Boards',
+          useBom: true,
+          noDownload: false,
+          headers: [
+            'Board'
+            
+          ],
+      };
+
+      const exportData: any = this.boards1.map(a => ({...a}));
+
+      exportData.map((value: any, key) => {
+        delete exportData[key]._id;
+        delete exportData[key].userId;
+        delete exportData[key].__v;
+      });
+      console.log(this.boards1);
+      const exportResult = new Angular5Csv(exportData, 'Boards' + moment().unix() + '.xls' , options);
+    }
+    //Export PDF
+    exportPDF() {
+      const columns = [
+        {title: 'Board of Education', dataKey: 'board'},
+      ];
+      const exportData: any = this.boards1.map(a => ({...a}));
+      
+      exportData.map((value: any, key) => {
+        delete exportData[key]._id;
+        delete exportData[key].userId;
+        delete exportData[key].__v;
+      });
+      
+      const doc = new jsPDF('p', 'pt');
+      doc.autoTable(columns, exportData, {
+        cellPadding: 10, // a number, array or object (see margin below)
+          theme: 'grid',
+          // fontSize: 9,
+          font: 'helvetica', // helvetica, times, courier
+          lineColor: 200,
+          lineWidth: 0,
+          fontStyle: 'normal', // normal, bold, italic, bolditalic
+          // overflow: 'linebreak', // visible, hidden, ellipsize or linebreak
+          fillColor: false, // false for transparent or a color as described below
+          textColor: 20,
+          halign: 'left', // left, center, right
+          valign: 'middle', // top, middle, bottom
+          columnWidth: 0 // 'auto', 'wrap' or a number
+      });
+      
+      doc.save('Boards' + moment().unix() + '.pdf');
+      }
   ngOnInit() {
     this.viewData();
-    this.startScript();
   }
+  key: string = 'name'; //set default
+  reverse: boolean = false;
+  sort(key){
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
+
+  //initializing p to one
+  p: number = 1;
 }
 
