@@ -1,370 +1,382 @@
 <section class="content">
     <div class="container-fluid">
-    <!-- Exportable Table -->
-    <div class="row clearfix">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="card">
-    <div class="header">
-    <h2>
-    <strong>Institution</strong>
-    </h2>
-    <div class="header-dropdown m-r--5">
-    <div class="btn-group m-l-15">
-    <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addModal">
-    Add New
-    <i class="fa fa-plus" style="color: white"></i>
-    </button>
+        <!-- Exportable Table -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            <strong>Institution</strong>
+                        </h2>
+                        <div class="header-dropdown m-r--5">
+                            <div class="btn-group m-l-15">
+                                <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addModal">
+                                    Add New
+                                    <i class="fa fa-plus" style="color: white"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table id="tableExport"
+                                class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Institution Name</th>
+                                        <th>Institution Code</th>
+                                        <th>Tagline</th>
+                                        <th>Address</th>
+                                        <th>Phone</th>
+                                        <th>Mobile </th>
+                                        <th>Website </th>
+                                        <th>Email</th>
+                                        <th>Principal</th>
+                                        <th>Administrative Officer</th>
+                                        <th>Logo</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let institution of institutions?.response; let i=index">
+                                        <td>{{i +1}}</td>
+                                        <td>{{institution?.institution_name}}</td>
+                                        <td>{{institution?.institution_code}}</td>
+                                        <td>{{institution?.tagline}}</td>
+                                        <td>{{institution?.address}}</td>
+                                        <td>{{institution?.phone}}</td>
+                                        <td>{{institution?.mobile}}</td>
+                                        <td>{{institution?.website}}</td>
+                                        <td>{{institution?.email}}</td>
+                                        <td>{{institution?.principal}}</td>
+                                        <td>{{institution?.ao}}</td>
+                                        <td><img src="http://localhost:3000/{{institution?.logoLocation}}" width="100px"></td>
+                                        
+                                        <td>
+                                            <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editModal">
+                                                <i class="material-icons" (click)="onEdit(institution)">create</i>
+                                            </div>
+
+                                            <div class="btn btn-tbl-delete">
+                                                <i class="material-icons"
+                                                    (click)="deleteInstitution(institution?._id)">delete_forever</i>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+            </div>
+            <!--Add Form Modal-->
+            <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
+            aria-labelledby="formModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="formModal">Add Details</h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                <form id="form_advanced_validation">
+                        <div class="row">
+                        <div class="col-md-6">
+                    <div class="form-group form-float">
+                        <label for="institution_name">Institution Name</label>
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="institution_name" 
+                             placeholder="Enter Institution Name" 
+                             [formControl]="institution_name" required />
+                        </div>
+                    </div>
+                   
+                   </div>
+                   <div class="col-md-6">
+                        <div class="form-group form-float">
+                                <label for="institution_code">Institution Code</label>
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="institution_code" 
+                                 placeholder="Enter Institution Code"
+                                 [formControl]="institution_code" required />
+                            </div>
+                        </div>
+                       
+                       </div>
+                   </div>
+                   <div class="row">
+                        <div class="col-md-6">
+                    <div class="form-group form-float">
+                        <label for="tagline">Tagline</label>
+                        <div class="form-line">
+                            <textarea type="text" class="form-control" name="tagline" 
+                             placeholder="Enter Tagline" 
+                             [formControl]="tagline" required ></textarea>
+                        </div>
+                    </div>
+                   
+                   </div>
+                   <div class="col-md-6">
+                        <div class="form-group form-float">
+                                <label for="address">Address</label>
+                            <div class="form-line">
+                                <textarea type="text" class="form-control" name="address" 
+                                 placeholder="Enter Address"
+                                 [formControl]="address"  required ></textarea>
+                            </div>
+                        </div>
+                       
+                       </div>
+                   </div>
+                   <div class="row">
+                        <div class="col-md-6">
+                    <div class="form-group form-float">
+                        <label for="phone">Phone</label>
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="phone" 
+                             placeholder="Enter Phone" 
+                             [formControl]="phone" required />
+                        </div>
+                    </div>
+                   
+                   </div>
+                   <div class="col-md-6">
+                        <div class="form-group form-float">
+                                <label for="mobile">Mobile</label>
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="mobile" 
+                                 placeholder="Enter mobile" 
+                                 [formControl]="mobile" required />
+                            </div>
+                        </div>
+                       
+                       </div>
+                   </div>
+                   <div class="row">
+                        <div class="col-md-6">
+                    <div class="form-group form-float">
+                    <label for="website">Website</label>
+                        <div class="form-line">
+                            <input type="url" class="form-control" name="website" 
+                             placeholder="Enter Website"
+                             [formControl]="website" required />
+                        </div>
+                    </div>
+                   
+                   </div>
+                   <div class="col-md-6">
+                        <div class="form-group form-float">
+                                <label for="email">Email</label>
+                            <div class="form-line">
+                                <input type="email" class="form-control" name="email" 
+                                 placeholder="Enter Email"
+                                 [formControl]="email" required />
+                            </div>
+                        </div>
+                       
+                       </div>
+                   </div>
+                   <div class="row">
+                        <div class="col-md-6">
+                    <div class="form-group form-float">
+                    <label for="principal">Principal</label>
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="principal" 
+                             placeholder="Enter Principal Name" 
+                             [formControl]="principal" required />
+                        </div>
+                    </div>
+                   
+                   </div>
+                   <div class="col-md-6">
+                        <div class="form-group form-float">
+                                <label for="ao">Administrative Officer</label>
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="ao" 
+                                 placeholder="Enter AO Name" 
+                                 [formControl]="ao" required />
+                            </div>
+                        </div>
+                       
+                       </div>
+                   </div>
+                   <div class="row">
+                        <div class="col-sm-12">
+                                <input type="file"  name="photo" ng2FileSelect [uploader]="uploader" />
+                                <button (click) ="submit()" >Upload  Image</button>
+                        </div>
+                    </div>
+                   <div class="modal-footer">
+                        <button type="submit" class="btn btn-info waves-effect" (click)="addinstitution()">Add</button>
+                            <span> {{message}}</span>
+                  <span> {{logoLocations}}</span>
+                        <button type="button" class="btn btn-danger waves-effect"
+                            data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    </div>
-    </div>
-    <div class="body">
-    <div class="table-responsive">
-    
-    
-    <table id="tableExport"
-    class="display table table-hover table-checkable order-column m-t-20 width-per-100">
-    <thead>
-    <tr>
-    <th>S.No</th>
-    <th>Institution Name</th>
-    <th>Institution Code</th>
-    <th>Tagline</th>
-    <th>Address</th>
-    <th>Phone</th>
-    <th>Mobile </th>
-    <th>Website </th>
-    <th>Email</th>
-    <th>Principal</th>
-    <th>Administrative Officer</th>
-    <th>Logo</th>
-    <th>Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let institution of institutions; let i=index">
-    <td>{{i +1 }}</td>
-    <td>{{institution?.institution_name}}</td>
-    <td>{{institution?.institution_code}}</td>
-    <td>{{institution?.tagline}}</td>
-    <td>{{institution?.address}}</td>
-    <td>{{institution?.phone}}</td>
-    <td>{{institution?.mobile}}</td>
-    <td>{{institution?.website}}</td>
-    <td>{{institution?.email}}</td>
-    <td>{{institution?.principal}}</td>
-    <td>{{institution?.ao}}</td>
-    <td><img src="http://localhost:3000/{{institution?.logoLocation}}" width="100px"></td>
-    
-    <td>
-    <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editModal">
-    <i class="material-icons" (click)="onEdit(institution)">create</i>
-    </div>
-    
-    <div class="btn btn-tbl-delete">
-    <i class="material-icons"
-    (click)="deleteInstitution(institution?._id)">delete_forever</i>
-    </div>
-    </td>
-    
-    </tr>
-    
-    </tbody>
-    
-    </table>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <!-- #END# Exportable Table -->
-    </div>
-    </section>
-    <!-- Add Form Modal -->
-    <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
-    aria-labelledby="formModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+</div>
+<!--Edit Form Modal-->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+aria-labelledby="formModal" aria-hidden="true">
+<div class="modal-dialog" role="document">
     <div class="modal-content">
-    <div class="modal-header">
-    <h5 class="modal-title" id="formModal">Add Details</h5>
-    <button type="button" class="close" data-dismiss="modal"
-    aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-    </button>
-    </div>
-    <div class="modal-body">
-    <form>
-    <div class="row">
-    <div class="col-md-6">
-    <label for="institution_name">Institution Name</label>
-    <div class="form-group">
-    <div class="form-line">
-    <input type="text" class="form-control" 
-    placeholder="Enter Institution Name" [formControl]="institution_name"/>
-    
-    </div>
-    </div>
-    </div>
-    <div class="col-md-6">
-    <label for="institution_code">Institution Code</label>
-    <div class="form-group">
-    <div class="form-line">
-    <input type="text" class="form-control" 
-    placeholder="Enter Institution Name" [formControl]="institution_code" />
-    
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="row">
-    <div class="col-md-6">
-    <label for="tagline">Tagline</label>
-    <div class="form-group">
-    <div class="form-line">
-    <textarea class="form-control" 
-    placeholder="Enter Tagline" [formControl]="tagline" ></textarea>
-    
-    </div>
-    </div>
-    </div>
-    <div class="col-md-6">
-    <label for="address">Address</label>
-    <div class="form-group">
-    <div class="form-line">
-    <textarea class="form-control" 
-    placeholder="Enter Address" [formControl]="address" ></textarea>
-    
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="row">
-    <div class="col-md-6">
-    <label for="phone">Phone</label>
-    <div class="form-group">
-    <div class="form-line">
-    <input type="text" class="form-control" 
-    placeholder="Enter Phone" [formControl]="phone" />
-    
-    </div>
-    </div>
-    </div>
-    <div class="col-md-6">
-    <label for="mobile">Mobile</label>
-    <div class="form-group">
-    <div class="form-line">
-    <input type="text" class="form-control" 
-    placeholder="Enter Mobile" [formControl]="mobile" />
-    
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="row">
-    <div class="col-md-6">
-    <label for="website">Website</label>
-    <div class="form-group">
-    <div class="form-line">
-    <input type="text" class="form-control" 
-    placeholder="Enter Website" [formControl]="website" />
-    
-    </div>
-    </div>
-    </div>
-    <div class="col-md-6">
-    <label for="email">Email</label>
-    <div class="form-group">
-    <div class="form-line">
-    <input type="text" class="form-control" 
-    placeholder="Enter Email" [formControl]="email" />
-    
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="row">
-    <div class="col-md-6">
-    <label for="principal">Principal </label>
-    <div class="form-group">
-    <div class="form-line">
-    <input type="text" class="form-control" 
-    placeholder="Enter Principal" [formControl]="principal" />
-    
-    </div>
-    </div>
-    </div>
-    <div class="col-md-6">
-    <label for="ao">Administrative Officer</label>
-    <div class="form-group">
-    <div class="form-line">
-    <input type="text" class="form-control" 
-    placeholder="Enter Administrative Officer" [formControl]="ao" />
-    
-    </div>
-    </div>
-    </div>
-    </div>
-    
-    <div class="row">
-    <div class="col-sm-12">
-    <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
-    <button (click) ="submit()" >Upload Image</button>
-    </div>
-    </div>
-    <br>
+        <div class="modal-header">
+            <h5 class="modal-title" id="formModal">Add Details</h5>
+            <button type="button" class="close" data-dismiss="modal"
+                aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+    <form id="form_advanced_validation" method="POST">
+            <div class="row">
+            <div class="col-md-6">
+        <div class="form-group form-float">
+            <label>Institution Name</label>
+            <div class="form-line">
+                <input type="text" class="form-control" name="institution_name" 
+                 placeholder="Enter Institution Name" 
+                 [formControl]="institution_name2" required />
+            </div>
+        </div>
+       
+       </div>
+       <div class="col-md-6">
+            <div class="form-group form-float">
+                    <label>Institution Code</label>
+                <div class="form-line">
+                    <input type="text" class="form-control" name="institution_code" 
+                     placeholder="Enter Institution Code"
+                     [formControl]="institution_code2" required />
+                </div>
+            </div>
+           
+           </div>
+       </div>
+       <div class="row">
+            <div class="col-md-6">
+        <div class="form-group form-float">
+            <label>Tagline</label>
+            <div class="form-line">
+                <textarea type="text" class="form-control" name="tagline" 
+                 placeholder="Enter Tagline" 
+                 [formControl]="tagline2" required ></textarea>
+            </div>
+        </div>
+       
+       </div>
+       <div class="col-md-6">
+            <div class="form-group form-float">
+                    <label>Address</label>
+                <div class="form-line">
+                    <textarea type="text" class="form-control" name="address" 
+                     placeholder="Enter Address"
+                     [formControl]="address2"  required ></textarea>
+                </div>
+            </div>
+           
+           </div>
+       </div>
+       <div class="row">
+            <div class="col-md-6">
+        <div class="form-group form-float">
+            <label>Phone</label>
+            <div class="form-line">
+                <input type="text" class="form-control" name="phone" 
+                 placeholder="Enter Phone" 
+                 [formControl]="phone2" required />
+            </div>
+        </div>
+       
+       </div>
+       <div class="col-md-6">
+            <div class="form-group form-float">
+                    <label>Mobile</label>
+                <div class="form-line">
+                    <input type="text" class="form-control" name="mobile" 
+                     placeholder="Enter mobile" 
+                     [formControl]="mobile2" required />
+                </div>
+            </div>
+           
+           </div>
+       </div>
+       <div class="row">
+            <div class="col-md-6">
+        <div class="form-group form-float">
+        <label>Website</label>
+            <div class="form-line">
+                <input type="url" class="form-control" name="website" 
+                 placeholder="Enter Website"
+                 [formControl]="website2" required />
+            </div>
+        </div>
+       
+       </div>
+       <div class="col-md-6">
+            <div class="form-group form-float">
+                    <label>Email</label>
+                <div class="form-line">
+                    <input type="email" class="form-control" name="email" 
+                     placeholder="Enter Email"
+                     [formControl]="email2" required />
+                </div>
+            </div>
+           
+           </div>
+       </div>
+       <div class="row">
+            <div class="col-md-6">
+        <div class="form-group form-float">
+        <label>Principal</label>
+            <div class="form-line">
+                <input type="text" class="form-control" name="principal" 
+                 placeholder="Enter Principal Name" 
+                 [formControl]="principal2" required />
+            </div>
+        </div>
+       
+       </div>
+       <div class="col-md-6">
+            <div class="form-group form-float">
+                    <label>Administrative Officer</label>
+                <div class="form-line">
+                    <input type="text" class="form-control" name="ao" 
+                     placeholder="Enter AO Name" 
+                     [formControl]="ao2" required />
+                </div>
+            </div>
+           
+           </div>
+       </div>
+       <div class="row">
+            <div class="col-sm-12">
+                    <input type="file"  name="photo" ng2FileSelect [uploader]="uploader" />
+                    <button (click) ="submit()" >Upload  Image</button>
+            </div>
+        </div>
+       <div class="modal-footer">
+            <button type="submit" class="btn btn-info waves-effect" (click)="updateInstitution()">Add</button>
+                <span> {{message}}</span>
+      <span> {{logoLocations}}</span>
+            <button type="button" class="btn btn-danger waves-effect"
+                data-dismiss="modal">Cancel</button>
+        </div>
     </form>
+</div>
+</div>
+</div>
+</div>
+</div>
     </div>
-    <div class="modal-footer">
-    <button type="button" class="btn btn-info waves-effect" (click)="addinstitution()"
-    data-dismiss="modal">Add</button>
-    <span> {{message}}</span>
-    <span> {{logoLocations}}</span>
-    <button type="button" class="btn btn-danger waves-effect"
-    data-dismiss="modal">Cancel</button>
-    </div>
-    </div>
-    </div>
-    </div>
-    <!-- #END# Add form Modal -->
-    <!-- Edit form Modal -->
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
-    aria-labelledby="formModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-    <div class="modal-content">
-    <div class="modal-header">
-    <h5 class="modal-title" id="formModal">Edit Details</h5>
-    <button type="button" class="close" data-dismiss="modal"
-    aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-    </button>
-    </div>
-    <div class="modal-body">
-    <form>
-    <div class="row">
-    <div class="col-md-6">
-    <label for="institution_name">Institution Name</label>
-    <div class="form-group">
-    <div class="form-line">
-    <input type="text" class="form-control" 
-    placeholder="Enter Institution Name" [formControl]="institution_name2" />
-    
-    </div>
-    </div>
-    </div>
-    <div class="col-md-6">
-    <label for="institution_code">Institution Code</label>
-    <div class="form-group">
-    <div class="form-line">
-    <input type="text" class="form-control" 
-    placeholder="Enter Institution Name" [formControl]="institution_code2" />
-    
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="row">
-    <div class="col-md-6">
-    <label for="tagline">Tagline</label>
-    <div class="form-group">
-    <div class="form-line">
-    <textarea class="form-control" 
-    placeholder="Enter Tagline" [formControl]="tagline2" ></textarea>
-    
-    </div>
-    </div>
-    </div>
-    <div class="col-md-6">
-    <label for="address">Address</label>
-    <div class="form-group">
-    <div class="form-line">
-    <textarea class="form-control" 
-    placeholder="Enter Address" [formControl]="address2" ></textarea>
-    
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="row">
-    <div class="col-md-6">
-    <label for="phone">Phone</label>
-    <div class="form-group">
-    <div class="form-line">
-    <input type="text" class="form-control" 
-    placeholder="Enter Phone" [formControl]="phone2" />
-    
-    </div>
-    </div>
-    </div>
-    <div class="col-md-6">
-    <label for="mobile">Mobile</label>
-    <div class="form-group">
-    <div class="form-line">
-    <input type="text" class="form-control" 
-    placeholder="Enter Mobile" [formControl]="mobile2" />
-    
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="row">
-    <div class="col-md-6">
-    <label for="website">Website</label>
-    <div class="form-group">
-    <div class="form-line">
-    <input type="text" class="form-control" 
-    placeholder="Enter Website" [formControl]="website2" />
-    
-    </div>
-    </div>
-    </div>
-    <div class="col-md-6">
-    <label for="email">Email</label>
-    <div class="form-group">
-    <div class="form-line">
-    <input type="text" class="form-control" 
-    placeholder="Enter Email" [formControl]="email2" />
-    
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="row">
-    <div class="col-md-6">
-    <label for="principal">Principal </label>
-    <div class="form-group">
-    <div class="form-line">
-    <input type="text" class="form-control" 
-    placeholder="Enter Principal" [formControl]="principal2" />
-    
-    </div>
-    </div>
-    </div>
-    <div class="col-md-6">
-    <label for="ao">Administrative Officer</label>
-    <div class="form-group">
-    <div class="form-line">
-    <input type="text" class="form-control" 
-    placeholder="Enter Administrative Officer" [formControl]="ao2" />
-    
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="row">
-    <div class="col-sm-12">
-    <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
-    <button (click) ="submit()" >Upload Image</button>
-    </div>
-    </div>
-    <br>
-    </form>
-    </div>
-    <div class="modal-footer">
-    <button type="button" class="btn btn-info waves-effect"
-    (click)="updateInstitution()" data-dismiss="modal">Update</button>
-    <button type="button" class="btn btn-danger waves-effect"
-    data-dismiss="modal">Cancel</button>
-    </div>
-    </div>
-    </div>
-    </div>
-    <!-- #END# Edit form Modal -->
+</div>
+</section>

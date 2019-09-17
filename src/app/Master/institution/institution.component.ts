@@ -23,7 +23,6 @@ export class InstitutionComponent implements OnInit {
   email:any;
   principal: any;
   ao:any;
-  // logo:any;
   institutions: any;
   institution_code2: any;
   institution_name2: any;
@@ -54,11 +53,13 @@ export class InstitutionComponent implements OnInit {
   logoLocation: any;
   logoLocationValue: any;
   logoLocation2: FormControl;
+  message: any;
   constructor(
     private dynamicScriptLoader: DynamicScriptLoaderService,
     private request: RequestService,
     private router: Router
   ) { 
+    this.viewData();
      // Add Form
      this.institution_name = new FormControl('', Validators.required);
      this.institution_code = new FormControl('', Validators.required);
@@ -90,7 +91,11 @@ export class InstitutionComponent implements OnInit {
   submit() {
     this.uploader.uploadAll();
       }
-
+      // Error Message 
+      public setMessage(message) {
+        return this.message = message;
+      }
+      
 // To add the data
 addinstitution() {
  const newInstitution = {
@@ -106,14 +111,20 @@ addinstitution() {
   ao: this.ao.value,
   logoLocation: this.getfileLoc
  };
- this.request.addInstitution(newInstitution).subscribe(res => {
-   console.log(res);
-   swal(" Added Successfully ");
-   this.viewData();
- }, (err) => {
-   console.log(err);
- });
-
+ this.request.addInstitution(newInstitution).subscribe((res: any) => {
+  if (res.status == 'error') {
+    this.setMessage(res.err);
+  }
+  else if (res.status == 'Success') {
+    
+    swal("Added Sucessfully");
+    this.viewData();
+    this.loadModal();
+  }
+  }, (error) => {
+    this.setMessage(error);
+  });
+    console.log(newInstitution);
 }
 // To display the data
 viewData() {
@@ -208,10 +219,35 @@ private loadData() {
     ]
   });
 }
+private loadModal() {
+  $('#addModal').modal('hide'); //or  $('#IDModal').modal('hide');
+  $('#addModal').on('hidden.bs.modal', function () {
+    $(this).find('form').trigger('reset');
+ })
+ $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
+  $('#editModal ').on('hidden.bs.modal', function () {
+    $(this).find('form').trigger('reset');
+ })
+}
   ngOnInit() {
-    this.startScript();
-    this.viewData();
-    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    //jQuery Validation
+  $(function () {         
+    $('#form_advanced_validation').validate({
+        
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+    });
+});
+this.startScript();
+//image Upload
+this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
 this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
          console.log('ImageUpload:uploaded:', item, status, response);
          const resPath = JSON.parse(response);
@@ -220,8 +256,4 @@ this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: 
         };
         
   }
-
- 
-  
 }
-
