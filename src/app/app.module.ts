@@ -61,7 +61,7 @@ import { ModeOfEnquiryComponent } from './StaffMaster/mode-of-enquiry/mode-of-en
 import * as moment from 'moment';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
-import { Ng2OrderModule } from 'ng2-order-pipe';
+import { OrderModule } from 'ngx-order-pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -122,7 +122,7 @@ import { Ng2OrderModule } from 'ng2-order-pipe';
     FileUploadModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
-    Ng2OrderModule
+    OrderModule
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},

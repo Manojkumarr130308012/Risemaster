@@ -75,7 +75,7 @@
                                     <thead>
                                         <tr>
                                             <th>S.No</th>                                           
-                                             <th (click)="sort('board')">Board Of Education
+                                             <th (click)="sort('board'); reverse">Board Of Education
                                             <i class="menu-icon ti-exchange-vertical noprint"></i>
                                         </th>
                                             <th class="noprint">Action</th>
@@ -83,7 +83,7 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let board of boards?.response | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 5, currentPage: p }; let i=index">
-                                            <td>{{i +1 }}</td> 
+                                            <td>{{(p - 1) * 5 + i +1 }}</td> 
                                             <td>{{board?.board}}</td>
                                             <div class="noprint">
                                             <td>
