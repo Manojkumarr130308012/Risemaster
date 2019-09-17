@@ -23,6 +23,7 @@ export class InstitutionComponent implements OnInit {
   email:any;
   principal: any;
   ao:any;
+  // logo:any;
   institutions: any;
   institution_code2: any;
   institution_name2: any;
@@ -59,7 +60,6 @@ export class InstitutionComponent implements OnInit {
     private request: RequestService,
     private router: Router
   ) { 
-    this.viewData();
      // Add Form
      this.institution_name = new FormControl('', Validators.required);
      this.institution_code = new FormControl('', Validators.required);
@@ -91,11 +91,10 @@ export class InstitutionComponent implements OnInit {
   submit() {
     this.uploader.uploadAll();
       }
-      // Error Message 
-      public setMessage(message) {
-        return this.message = message;
-      }
-      
+ // Error Message 
+ public setMessage(message) {
+  return this.message = message;
+}
 // To add the data
 addinstitution() {
  const newInstitution = {
@@ -230,7 +229,16 @@ private loadModal() {
  })
 }
   ngOnInit() {
-    //jQuery Validation
+    this.startScript();
+    this.viewData();
+    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+         console.log('ImageUpload:uploaded:', item, status, response);
+         const resPath = JSON.parse(response);
+         this.getfileLoc = resPath.result;
+         alert('File uploaded successfully');
+        };
+        //jQuery Validation
   $(function () {         
     $('#form_advanced_validation').validate({
         
@@ -245,15 +253,10 @@ private loadModal() {
         }
     });
 });
-this.startScript();
-//image Upload
-this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
-this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-         console.log('ImageUpload:uploaded:', item, status, response);
-         const resPath = JSON.parse(response);
-         this.getfileLoc = resPath.result;
-         alert('File uploaded successfully');
-        };
         
   }
+
+ 
+  
 }
+
