@@ -59,6 +59,9 @@ import { FeeTypeComponent } from './StaffMaster/fee-type/fee-type.component';
 import { ModeOfEnquiryComponent } from './StaffMaster/mode-of-enquiry/mode-of-enquiry.component';
 
 import * as moment from 'moment';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { Ng2OrderModule } from 'ng2-order-pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -105,6 +108,8 @@ import * as moment from 'moment';
     SalutationComponent,
     FeeTypeComponent,
     ModeOfEnquiryComponent
+
+   
   ],
   imports: [
     BrowserModule,
@@ -113,7 +118,11 @@ import * as moment from 'moment';
     ReactiveFormsModule,    
     HttpClientModule,
     FormsModule,    
-    BrowserAnimationsModule, FileUploadModule
+    BrowserAnimationsModule, 
+    FileUploadModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
+    Ng2OrderModule
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
