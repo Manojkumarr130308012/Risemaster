@@ -152,14 +152,14 @@ export class BoardOfEducationComponent implements OnInit {
         this.boards1 = result.response;
       });
     }
-    exportCSV() {
+    exportExcel() {
       const  options = {
           fieldSeparator: ',',
           quoteStrings: '"',
           decimalseparator: '.',
           showLabels: true,
           showTitle: true,
-          title: 'Boards',
+          title: 'Board of Education',
           useBom: true,
           noDownload: false,
           headers: [
