@@ -322,7 +322,7 @@ export class RequestService {
 
   //Admission Category
   public getAdmissionCategory() {
-    this.url = `${this.endPoint}/admissionCategory/`;
+    this.url = `${this.endPoint}/admissionCategory/aggregation`;
     return this.http.get(this.url);
   }
 

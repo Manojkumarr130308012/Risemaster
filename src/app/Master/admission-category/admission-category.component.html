@@ -41,8 +41,7 @@
                                                                 </div>
                                                              <option value="" disabled selected>Choose your institution</option>
                                                              <option *ngFor="let institution of institutions" [value]="institution._id">{{institution?.institution_name}}</option>     
-                                                         </select>
-                                                         {{selectedinstitution}}
+                                                         </select>                                                        
                                                        </div>
                                                     </div>
                                                    </div>   
@@ -74,20 +73,22 @@
                     </div>
                    <div class="body">
                             <div class="table-responsive">
+                              
                                  <table id="tableExport" 
                                  class="display table table-hover table-checkable order-column m-t-20 width-per-100">
                                     <thead>
                                         <tr>
-                                            <th>S.No</th>
+                                            <th>S.No</th>                                            
                                             <th>Institution</th>
                                             <th>Admission Category</th>
-                                            <th >Action</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let admissionCategory of admissionCategories?.response; let i=index">
-                                            <td>{{i +1 }}</td> 
-                                            <td>{{admissionCategory?.institution}}</td>
+                                        <tr *ngFor="let admissionCategory of admissionCategories; let i=index">
+                                            <td>{{i +1 }}</td>
+                                            
+                                            <td >{{admissionCategory.InstitutionDetails[0].institution_name}}</td>
                                             <td>{{admissionCategory?.admissionCategory}}</td>
                                             <td>
                                                 <div class="btn btn-tbl-edit" data-toggle="modal"
@@ -132,7 +133,7 @@
                              <div *ngIf="f.institution.errors.required">Institution is required</div>
                          </div>
                       <option value="" disabled selected>Choose your institution</option>
-                      <option *ngFor="let institution of institutions" [value]="institution.institution_name">{{institution?.institution_name}}</option>     
+                      <option *ngFor="let institution of institutions" [value]="institution._id">{{institution?.institution_name}}</option>     
                   </select>
                   {{selectedinstitution}}
                 </div>
