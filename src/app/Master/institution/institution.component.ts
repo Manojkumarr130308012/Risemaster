@@ -194,14 +194,20 @@ updateInstitution() {
     ao: this.ao2.value,
     logoLocation: this.getfileLoc
   };
-  this.request.updateInstitution(this.IdValue, edata).subscribe(response => {
-    if (response) {//check with response status and then alert
-      swal(" Updated Successfully ");
+  this.request.updateInstitution(this.IdValue, edata).subscribe((response: any) => {
+    if (response.status == 'Success') {
+      swal("Updated Sucessfully");       
+      
+      this.viewData();
+      this.loadModal();
     }
-    this.viewData();
-    this.router.navigate(['institution']);
+    else if (response.status == 'error') {       
+      this.setMessage(response.err);
+    }      
+   
   }, (err) => {
     console.log(err);
+    this.setMessage(err);
   });
 }
 
