@@ -245,7 +245,7 @@
         </button>
         </div>
         <div class="modal-body">
-            <form id="form_advanced_validation">
+            <form id="form_advanced_validation1">
                 <div class="row">
                 <div class="col-md-6">
             <div class="form-group form-float">
@@ -368,13 +368,12 @@
            </div>
            <div class="row">
                 <div class="col-sm-12">
-                        <input type="file"  name="photo" ng2FileSelect [uploader]="uploader" />
+                        <input type="file"  name="photo" ng2FileSelect [uploader]="uploader"  />
                         <button (click) ="submit()" >Upload  Image</button>
                 </div>
             </div>
            <div class="modal-footer">
                 <button type="submit" class="btn btn-info waves-effect" (click)="updateInstitution()">Update</button>
-                    <span> {{message}}</span>
           <span> {{logoLocations}}</span>
                 <button type="button" class="btn btn-danger waves-effect"
                     data-dismiss="modal">Cancel</button>

@@ -195,19 +195,17 @@ updateInstitution() {
     logoLocation: this.getfileLoc
   };
   this.request.updateInstitution(this.IdValue, edata).subscribe((response: any) => {
-    if (response.status == 'Success') {
-      swal("Updated Sucessfully");       
-      
+    if ((response.value == 'null') && (response.status == 'error')) {
+      this.setMessage(response.err);
+    }
+    else if (response.status == 'Success') { 
+      swal("update Sucessfully");
       this.viewData();
       this.loadModal();
     }
-    else if (response.status == 'error') {       
-      this.setMessage(response.err);
-    }      
    
-  }, (err) => {
-    console.log(err);
-    this.setMessage(err);
+  }, (error) => {
+    this.setMessage(error);
   });
 }
 
@@ -258,6 +256,20 @@ this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: 
             $(element).parents('.form-group').append(error);
         }
     });
+});
+$(function () {         
+  $('#form_advanced_validation1').validate({
+      
+      highlight: function (input) {
+          $(input).parents('.form-line').addClass('error');
+      },
+      unhighlight: function (input) {
+          $(input).parents('.form-line').removeClass('error');
+      },
+      errorPlacement: function (error, element) {
+          $(element).parents('.form-group').append(error);
+      }
+  });
 });
         
   }

@@ -33,13 +33,14 @@
                                             <div class="row">
                                                     <div class="col-md-12">
                                                        <div class="form-group">
+                                                           <label>Institution</label>
                                                             <select class="browser-default"  id="select" [(ngModel)]="selectedinstitution" 
                                                             formControlName="institution" value = " " class="form-control" placeholder="Enter institution"
                                                                 [ngClass]="{ 'is-invalid': submitted && f.institution.errors }" >
                                                                 <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">
                                                                     <div *ngIf="f.institution.errors.required">Institution is required</div>
                                                                 </div>
-                                                             <option value="" disabled selected>Choose your institution</option>
+                                                         <option value="" disabled selected>Choose your institution</option>
                                                              <option *ngFor="let institution of institutions" [value]="institution._id">{{institution?.institution_name}}</option>     
                                                          </select>                                                        
                                                        </div>
