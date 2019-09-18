@@ -62,6 +62,11 @@ import * as moment from 'moment';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { OrderModule } from 'ngx-order-pipe';
+
+//Candiadate Enquiry
+import { CandidateEnquiryComponent } from './Student/candidate-enquiry/candidate-enquiry.component';
+import { ArchwizardModule } from 'angular-archwizard';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -107,7 +112,10 @@ import { OrderModule } from 'ngx-order-pipe';
     PayTypeComponent,
     SalutationComponent,
     FeeTypeComponent,
-    ModeOfEnquiryComponent
+    ModeOfEnquiryComponent,
+
+    CandidateEnquiryComponent
+    
 
    
   ],
@@ -122,7 +130,8 @@ import { OrderModule } from 'ngx-order-pipe';
     FileUploadModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
-    OrderModule
+    OrderModule,
+    ArchwizardModule
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},

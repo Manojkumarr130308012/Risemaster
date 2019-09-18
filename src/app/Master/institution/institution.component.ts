@@ -195,7 +195,7 @@ updateInstitution() {
     logoLocation: this.getfileLoc
   };
   this.request.updateInstitution(this.IdValue, edata).subscribe((response: any) => {
-    if ((response.value == 'null') && (response.status == 'error')) {
+    if ((response == '') || (response.status == 'error')) {
       this.setMessage(response.err);
     }
     else if (response.status == 'Success') { 
@@ -203,7 +203,7 @@ updateInstitution() {
       this.viewData();
       this.loadModal();
     }
-   
+    
   }, (error) => {
     this.setMessage(error);
   });

@@ -40,6 +40,7 @@ import { PayTypeComponent } from './StaffMaster/pay-type/pay-type.component';
 import { SalutationComponent } from './StaffMaster/salutation/salutation.component';
 import { FeeTypeComponent } from './StaffMaster/fee-type/fee-type.component';
 import { ModeOfEnquiryComponent } from './StaffMaster/mode-of-enquiry/mode-of-enquiry.component';
+import { CandidateEnquiryComponent } from './Student/candidate-enquiry/candidate-enquiry.component';
 
 const routes: Routes = [
   //{ path: '', component: LoginComponent },
@@ -212,6 +213,12 @@ const routes: Routes = [
   path: 'mode-of-enquiry', 
   component: ModeOfEnquiryComponent 
   },
+
+  //Candidate Enquiry
+  { 
+    path: 'candidate-enquiry', 
+    component: CandidateEnquiryComponent 
+    },
 
 ];
 
