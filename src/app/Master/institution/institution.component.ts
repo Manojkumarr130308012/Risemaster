@@ -195,11 +195,10 @@ updateInstitution() {
     logoLocation: this.getfileLoc
   };
   this.request.updateInstitution(this.IdValue, edata).subscribe((response: any) => {
-    if (response.status == 'error') {
+    if ((response.value == 'null') && (response.status == 'error')) {
       this.setMessage(response.err);
     }
-    else if (response.status == 'Success') {
-      
+    else if (response.status == 'Success') { 
       swal("update Sucessfully");
       this.viewData();
       this.loadModal();
