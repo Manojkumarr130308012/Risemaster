@@ -670,7 +670,7 @@ fetchScholarshipCategoryById(id) {
 
 // Bank
 public getBank() {
-  this.url = `${this.endPoint}/bank`;
+  this.url = `${this.endPoint}/bank/aggregation`;
   return this.http.get(this.url);   
 }
 public addBank(newDegree: { }) {

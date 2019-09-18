@@ -40,7 +40,6 @@
                                          <option value="" disabled selected>Choose your institution</option>
                                          <option *ngFor="let institution of institutions" [value]="institution._id">{{institution?.institution_name}}</option>     
                                      </select>
-                                     {{selectedinstitution}}
                                    </div>
                                </div>
                                    <div class="col-md-6">
@@ -125,19 +124,18 @@
                                                 <form [formGroup]="editForm">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                    <label>Institution</label>
-                                                                <select class="browser-default"  id="select" [(ngModel)]="selectedinstitution" 
-                                                                formControlName="institution" value = " " class="form-control" placeholder="Enter institution"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.institution.errors }" >
-                                                                    <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">
-                                                                        <div *ngIf="f.institution.errors.required">Institution is required</div>
+                                                                <div class="form-group">
+                                                                        <label>Institution</label>
+                                                                         <select class="browser-default"  id="select" [(ngModel)]="selectedinstitution" 
+                                                                         formControlName="institution" value = " " class="form-control" placeholder="Enter institution"
+                                                                             [ngClass]="{ 'is-invalid': submitted && f.institution.errors }" >
+                                                                             <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">
+                                                                                 <div *ngIf="f.institution.errors.required">Institution is required</div>
+                                                                             </div>
+                                                                      <option value="" disabled selected>Choose your institution</option>
+                                                                          <option *ngFor="let institution of institutions" [value]="institution._id">{{institution?.institution_name}}</option>     
+                                                                      </select>                                                        
                                                                     </div>
-                                                                 <option value="" disabled selected>Choose your institution</option>
-                                                                 <option *ngFor="let institution of institutions" [value]="institution._id">{{institution?.institution_name}}</option>     
-                                                             </select>
-                                                             {{selectedinstitution}}
-                                                           </div>
                                                        </div>
                                                            <div class="col-md-6">
                                                            <div class="form-group">
@@ -227,9 +225,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let bank of banks?.response; let i=index">
+                                    <tr *ngFor="let bank of banks; let i=index">
                                         <td>{{i +1 }}</td>
-                                        <td>{{bank?.institution}}</td>
+                                        <td>{{bank.InstitutionDetails[0].institution_name}}</td>
                                         <td>{{bank?.accountName}}</td>
                                         <td>{{bank?.accountNumber}}</td>
                                         <td>{{bank?.branch}}</td>
