@@ -3,7 +3,6 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { RouterModule } from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -66,6 +65,7 @@ import { OrderModule } from 'ngx-order-pipe';
 //Candiadate Enquiry
 import { CandidateEnquiryComponent } from './Student/candidate-enquiry/candidate-enquiry.component';
 import { ArchwizardModule } from 'angular-archwizard';
+import { QualifiationTypeComponent } from './StudentMaster/qualifiation-type/qualifiation-type.component';
 
 @NgModule({
   declarations: [
@@ -114,7 +114,9 @@ import { ArchwizardModule } from 'angular-archwizard';
     FeeTypeComponent,
     ModeOfEnquiryComponent,
 
-    CandidateEnquiryComponent
+    CandidateEnquiryComponent,
+
+    QualifiationTypeComponent
     
 
    

@@ -55,6 +55,7 @@ export class InstitutionComponent implements OnInit {
   logoLocationValue: any;
   logoLocation2: FormControl;
   message: any;
+  edata: any;
   constructor(
     private dynamicScriptLoader: DynamicScriptLoaderService,
     private request: RequestService,
@@ -195,18 +196,19 @@ updateInstitution() {
     logoLocation: this.getfileLoc
   };
   this.request.updateInstitution(this.IdValue, edata).subscribe((response: any) => {
-    if ((response == '') || (response.status == 'error')) {
-      this.setMessage(response.err);
-    }
-    else if (response.status == 'Success') { 
+    if ((this.edata.value != '') ) { 
       swal("update Sucessfully");
       this.viewData();
       this.loadModal();
+    }
+    else  if ((this.edata.value == '')) {
+      this.setMessage(response.err);
     }
     
   }, (error) => {
     this.setMessage(error);
   });
+    
 }
 
 async startScript() {
