@@ -16,12 +16,17 @@ export class CourseTypeComponent implements OnInit {
   submitted = false;
    public Id: any;
    public courseType: any;
+   qualificationType: any;
+   maxMark: any;
    editCourseTypedata;
    public courseTypeValue: any;
+   public qualificationTypeValue: any;
+   public maxMarkValue: any;
    public IdValue: any;
    courseTypes;
   editForm: FormGroup;
   message: any;
+  qualificationtypes: any;
   constructor(private formBuilder: FormBuilder,
     private dynamicScriptLoader: DynamicScriptLoaderService,
     private request: RequestService,
@@ -29,10 +34,14 @@ export class CourseTypeComponent implements OnInit {
       //Add Form Group
       this.registerForm = this.formBuilder.group({
         courseType:['', Validators.required],
+        qualificationType:['', Validators.required],
+        maxMark:['', Validators.required],
     });
     //Edit Form Group
     this.editForm = this.formBuilder.group({
       courseType:['', Validators.required],
+      qualificationType:['', Validators.required],
+      maxMark:['', Validators.required],
   });
 }
 // To display  courseType
@@ -87,14 +96,26 @@ export class CourseTypeComponent implements OnInit {
       this.editCourseTypedata = response[0];
       // console.log(response);
       this.courseTypeValue = this.editCourseTypedata.courseType;
+      this.qualificationTypeValue = this.editCourseTypedata.qualificationType;
+      this.maxMarkValue = this.editCourseTypedata.maxMark;
       this.IdValue = this.editCourseTypedata._id;
 
       this.editForm = this.formBuilder.group({
         courseType:[this.courseTypeValue, Validators.required],
+        qualificationType:[this.qualificationTypeValue, Validators.required],
+        maxMark:[this.maxMarkValue, Validators.required],
     });
     // console.log(this.editForm.value);
     });
   }
+  loadQualificationType() {
+    this.request.getQualificationType().subscribe((response : any) => {
+    this.qualificationtypes = response;
+    console.log(response);
+    }, (error) => {
+    console.log(error);
+    });
+    }
   onEditSubmit() {
     this.submitted = true;
     // console.log(this.editForm.value);
@@ -147,6 +168,7 @@ export class CourseTypeComponent implements OnInit {
   ngOnInit() {
     this.viewData();
     this.startScript();
+    this.loadQualificationType();
   }
 }
 

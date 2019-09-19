@@ -33,7 +33,7 @@
                                        <div class="row">
                                         <div class="col-md-12">
                                            <div class="form-group">
-                                               <label>Course Type</label> 
+                                               <label>Qualification Type</label> 
                                                <input type="text" value = "" formControlName="qualificationType" class="form-control" placeholder="Enter QualificationType"
                                                    [ngClass]="{ 'is-invalid': submitted && f.qualificationType.errors }" />
                                                <div *ngIf="submitted && f.qualificationType.errors" class="invalid-feedback">
@@ -63,13 +63,13 @@
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
-                                            <th>Course Type</th>
+                                          <th>Qualification Type</th>
                                             <th >Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let qualificationType of qualificationTypes?.response; let i=index">
-                                            <td>{{i +1 }}</td> 
+                                            <td>{{i +1 }}</td>
                                             <td>{{qualificationType?.qualificationType}}</td>
                                             <td>
                                                 <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editModal">

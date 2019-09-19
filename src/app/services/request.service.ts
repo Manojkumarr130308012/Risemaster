@@ -459,7 +459,7 @@ fetchAddressTypeById(id) {
 
 // Course Type
 public getCourseType() {
-  this.url = `${this.endPoint}/courseType`;
+  this.url = `${this.endPoint}/courseType/aggregation`;
   return this.http.get(this.url);   
 }
 
@@ -484,6 +484,10 @@ fetchCourseType() {
 fetchCourseTypeById(id) {
   this.url = `${this.endPoint}/courseType/fetchdata?id=` + id;
   return this.http.get(this.url);
+}
+loadQualificationType() {
+  this.url = `${this.endPoint}/qualification-type`;
+      return this.http.get(this.url); 
 }
 
 // Degree
