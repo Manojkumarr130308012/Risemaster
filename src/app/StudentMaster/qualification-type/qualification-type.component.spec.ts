@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { QualifiationTypeComponent } from './qualifiation-type.component';
+import { QualificationTypeComponent } from './qualification-type.component';
 
-describe('QualifiationTypeComponent', () => {
-  let component: QualifiationTypeComponent;
-  let fixture: ComponentFixture<QualifiationTypeComponent>;
+describe('QualificationTypeComponent', () => {
+  let component: QualificationTypeComponent;
+  let fixture: ComponentFixture<QualificationTypeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ QualifiationTypeComponent ]
+      declarations: [ QualificationTypeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(QualifiationTypeComponent);
+    fixture = TestBed.createComponent(QualificationTypeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

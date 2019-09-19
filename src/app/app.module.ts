@@ -45,6 +45,7 @@ import { PaymentMethodComponent } from './StudentMaster/payment-method/payment-m
 import { MediumComponent } from './StudentMaster/medium/medium.component';
 import { ScholarshipCategoryComponent } from './StudentMaster/scholarship-category/scholarship-category.component';
 import { BankComponent } from './StudentMaster/bank/bank.component';
+import { QualificationTypeComponent } from './StudentMaster/qualification-type/qualification-type.component';
 
 //Staff Master
 import { GenderComponent } from './StaffMaster/gender/gender.component';
@@ -65,7 +66,7 @@ import { OrderModule } from 'ngx-order-pipe';
 //Candiadate Enquiry
 import { CandidateEnquiryComponent } from './Student/candidate-enquiry/candidate-enquiry.component';
 import { ArchwizardModule } from 'angular-archwizard';
-import { QualifiationTypeComponent } from './StudentMaster/qualifiation-type/qualifiation-type.component';
+
 
 @NgModule({
   declarations: [
@@ -102,6 +103,7 @@ import { QualifiationTypeComponent } from './StudentMaster/qualifiation-type/qua
     MediumComponent,
     ScholarshipCategoryComponent,
     BankComponent,
+    QualificationTypeComponent,
 
     //Staff Master
     GenderComponent,
@@ -116,7 +118,9 @@ import { QualifiationTypeComponent } from './StudentMaster/qualifiation-type/qua
 
     CandidateEnquiryComponent,
 
-    QualifiationTypeComponent
+    QualificationTypeComponent
+
+    
     
 
    
