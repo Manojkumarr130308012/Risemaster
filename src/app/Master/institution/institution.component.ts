@@ -53,7 +53,7 @@ export class InstitutionComponent implements OnInit {
   getfileLoc: any;
   logoLocation: any;
   logoLocationValue: any;
-  logoLocation2: FormControl;
+ // logoLocation2: FormControl;
   message: any;
   constructor(
     private dynamicScriptLoader: DynamicScriptLoaderService,
@@ -84,7 +84,7 @@ export class InstitutionComponent implements OnInit {
     this.email2 = new FormControl('', Validators.required);
     this.principal2 = new FormControl('', Validators.required);
     this.ao2 = new FormControl('', Validators.required);
-    this.logoLocation2 = new FormControl('', Validators.required);
+   // this.logoLocation2 = new FormControl('', Validators.required);
   }
 
   //to upload logo
@@ -155,6 +155,8 @@ onEdit(institution) {
     this.logoLocationValue = this.editInstitutiondata.logoLocation;
     this.IdValue = this.editInstitutiondata._id;
 
+    console.log(this.logoLocationValue);
+
     this.institution_name2 = new FormControl(this.institutionNameValue, [Validators.required]);
     this.institution_code2 = new FormControl(this.institutionCodeValue, [Validators.required]);
     this.tagline2 = new FormControl(this.taglineValue, [Validators.required]);
@@ -165,9 +167,8 @@ onEdit(institution) {
     this.email2 = new FormControl(this.emailValue, [Validators.required]);
     this.principal2 = new FormControl(this.principalValue, [Validators.required]);
     this.ao2 = new FormControl(this.aoValue, [Validators.required]);
-    this.logoLocation2 = new FormControl(this.logoLocationValue, [Validators.required]);
-
-
+  //  this.logoLocation2 = new FormControl(this.logoLocationValue, [Validators.required]);
+    
   });
 }
 
@@ -226,17 +227,23 @@ private loadModal() {
   $('#addModal').modal('hide'); //or  $('#IDModal').modal('hide');
   $('#addModal').on('hidden.bs.modal', function () {
     $(this).find('form').trigger('reset');
+    //$('#form_advanced_validation').trigger('reset');
+    var v =$('#form_advanced_validation').validate();
+    v.resetForm();
+   
  })
  $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
   $('#editModal ').on('hidden.bs.modal', function () {
-    $(this).find('form').trigger('reset');
+    $(this).find('form').trigger('reset');  
+    var v =$('#form_advanced_validation1').validate();
+    v.resetForm();
  })
 }
   ngOnInit() {
     this.startScript();
     this.viewData();
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
-this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
          console.log('ImageUpload:uploaded:', item, status, response);
          const resPath = JSON.parse(response);
          this.getfileLoc = resPath.result;
