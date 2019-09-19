@@ -3,7 +3,6 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { RouterModule } from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -46,6 +45,7 @@ import { PaymentMethodComponent } from './StudentMaster/payment-method/payment-m
 import { MediumComponent } from './StudentMaster/medium/medium.component';
 import { ScholarshipCategoryComponent } from './StudentMaster/scholarship-category/scholarship-category.component';
 import { BankComponent } from './StudentMaster/bank/bank.component';
+import { QualificationTypeComponent } from './StudentMaster/qualification-type/qualification-type.component';
 
 //Staff Master
 import { GenderComponent } from './StaffMaster/gender/gender.component';
@@ -66,6 +66,7 @@ import { OrderModule } from 'ngx-order-pipe';
 //Candiadate Enquiry
 import { CandidateEnquiryComponent } from './Student/candidate-enquiry/candidate-enquiry.component';
 import { ArchwizardModule } from 'angular-archwizard';
+
 
 @NgModule({
   declarations: [
@@ -102,6 +103,7 @@ import { ArchwizardModule } from 'angular-archwizard';
     MediumComponent,
     ScholarshipCategoryComponent,
     BankComponent,
+    QualificationTypeComponent,
 
     //Staff Master
     GenderComponent,
@@ -114,7 +116,11 @@ import { ArchwizardModule } from 'angular-archwizard';
     FeeTypeComponent,
     ModeOfEnquiryComponent,
 
-    CandidateEnquiryComponent
+    CandidateEnquiryComponent,
+
+    QualificationTypeComponent
+
+    
     
 
    

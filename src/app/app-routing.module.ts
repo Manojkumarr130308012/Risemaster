@@ -29,6 +29,7 @@ import { PaymentMethodComponent } from './StudentMaster/payment-method/payment-m
 import { ReferralTypeComponent } from './StudentMaster/referral-type/referral-type.component';
 import { ScholarshipCategoryComponent } from './StudentMaster/scholarship-category/scholarship-category.component';
 import { BankComponent } from './StudentMaster/bank/bank.component';
+import { QualificationTypeComponent } from './StudentMaster/qualification-type/qualification-type.component';
 
 //Staff Master
 import { GenderComponent } from './StaffMaster/gender/gender.component';
@@ -40,6 +41,8 @@ import { PayTypeComponent } from './StaffMaster/pay-type/pay-type.component';
 import { SalutationComponent } from './StaffMaster/salutation/salutation.component';
 import { FeeTypeComponent } from './StaffMaster/fee-type/fee-type.component';
 import { ModeOfEnquiryComponent } from './StaffMaster/mode-of-enquiry/mode-of-enquiry.component';
+
+
 import { CandidateEnquiryComponent } from './Student/candidate-enquiry/candidate-enquiry.component';
 
 const routes: Routes = [
@@ -167,6 +170,11 @@ const routes: Routes = [
  path: 'bank',
  component: BankComponent 
  },
+ { 
+  path: 'qualification-type',
+  component: QualificationTypeComponent 
+  
+  },
 
  // Staff Master
 { 

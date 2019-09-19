@@ -967,4 +967,33 @@ fetchBankById(id) {
       this.url = `${this.endPoint}/mode-of-enquiry/fetchdata?id=` + id;
       return this.http.get(this.url);
     }
+    // Qualification-Type
+    public getQualificationType() {
+      this.url = `${this.endPoint}/qualification-type`;
+      return this.http.get(this.url);   
+    }
+    
+    public addQualificationType(newModeOfEnquiry: { }) {
+      this.url = `${this.endPoint}/qualification-type/add`;   
+      return this.http.post(this.url, newModeOfEnquiry);
+    }
+    
+    public deleteQualificationType(id) {
+      this.url = `${this.endPoint}/qualification-type/delete?id=`+ id;
+      return this.http.delete(this.url);
+    }
+    
+    updateQualificationType(id, body) {
+      this.url = `${this.endPoint}/qualification-type/update?id=${id}`;
+      return this.http.put(this.url, body);
+    }
+    
+    fetchQualificationType() {
+      this.url = `${this.endPoint}/qualification-type/`;
+      return this.http.get(this.url); 
+    }
+    fetchQualificationTypeById(id) {
+      this.url = `${this.endPoint}/qualification-type/fetchdata?id=` + id;
+      return this.http.get(this.url);
+    }
 }
