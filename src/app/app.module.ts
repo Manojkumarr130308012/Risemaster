@@ -24,7 +24,7 @@ import { CasteComponent } from './Master/caste/caste.component';
 import { CommunityComponent } from './Master/community/community.component';
 import { NationalityComponent } from './Master/nationality/nationality.component';
 import { ReligionComponent } from './Master/religion/religion.component';
-import { FileuploadComponent } from './fileupload/fileupload.component';
+
 import {FileUploadModule} from 'ng2-file-upload';
 
 import { AdmissionTypeComponent } from './Master/admission-type/admission-type.component';
@@ -82,7 +82,7 @@ import { ArchwizardModule } from 'angular-archwizard';
     CommunityComponent,
     NationalityComponent,
     ReligionComponent,
-    FileuploadComponent,
+    
     AcademicYearComponent,
     UserDesignationComponent,
     AdmissionTypeComponent,

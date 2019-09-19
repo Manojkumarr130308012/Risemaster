@@ -197,15 +197,17 @@ updateInstitution() {
     logoLocation: this.getfileLoc
   };
   this.request.updateInstitution(this.IdValue, edata).subscribe((response: any) => {
-    if ((this.edata.value != '') ) { 
+    console.log(edata);
+    if (response.status == 'Success') 
+   { 
       swal("update Sucessfully");
       this.viewData();
       this.loadModal();
     }
-    else  if ((this.edata.value == '')) {
+    else if (response.status == 'error') { 
       this.setMessage(response.err);
-    }
-    
+      } 
+       
   }, (error) => {
     this.setMessage(error);
   });

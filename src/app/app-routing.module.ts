@@ -7,7 +7,7 @@ import { CasteComponent } from './Master/caste/caste.component';
 import { CommunityComponent } from './Master/community/community.component';
 import { NationalityComponent } from './Master/nationality/nationality.component';
 import { ReligionComponent } from './Master/religion/religion.component';
-import { FileuploadComponent } from './fileupload/fileupload.component';
+
 import { AcademicYearComponent } from './Master/academic-year/academic-year.component';
 import { UserDesignationComponent } from './Master/user-designation/user-designation.component';
 
@@ -66,10 +66,7 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent
   },
-  {
-    path: 'file',
-    component: FileuploadComponent
-  },
+  
 
   {
     path: 'nationality',
