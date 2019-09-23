@@ -243,11 +243,13 @@ export class VehicleMasterComponent implements OnInit {
     $('#addModal').modal('hide'); //or  $('#IDModal').modal('hide');
     $('#addModal').on('hidden.bs.modal', function () {
       $(this).find('form').trigger('reset');
+       $('#form_validation').trigger('reset');
     });
 
     $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
     $('#editModal').on('hidden.bs.modal', function () {
       $(this).find('form').trigger('reset');
+      $('#form_validation1').trigger('reset');
     });
   }
 

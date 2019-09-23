@@ -231,7 +231,7 @@ export class RequestService {
 
   // admission-type
   public getAdmissiontype() {
-    this.url = `${this.endPoint}/admission-type`;
+    this.url = `${this.endPoint}/admission-type/aggregation`;
     return this.http.get(this.url);
   }
 
@@ -356,7 +356,7 @@ export class RequestService {
 
   // course-category
   public getCoursecategory() {
-    this.url = `${this.endPoint}/course-category`;
+    this.url = `${this.endPoint}/course-category/aggregation`;
     return this.http.get(this.url);
   }
 
@@ -395,7 +395,7 @@ export class RequestService {
 
   // course-program
   public getCourseprogram() {
-    this.url = `${this.endPoint}/course-program`;
+    this.url = `${this.endPoint}/course-program/aggregation`;
     return this.http.get(this.url);
   }
 
@@ -880,7 +880,7 @@ fetchBankById(id) {
 
      // department
   public getDepartment() {
-    this.url = `${this.endPoint}/department`;
+    this.url = `${this.endPoint}/department/aggregation`;
     return this.http.get(this.url);   
   }
   
@@ -907,11 +907,7 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/department/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
-  loadDepartment() {
-    this.url = `${this.endPoint}/department/`;
-    return this.http.get(this.url); 
-    }
-
+  
      // fee-type
   public getFeetype() {
     this.url = `${this.endPoint}/fee-type`;

@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { RequestService } from '../../services/request.service';
 import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
 import { FileSelectDirective, FileUploader} from 'ng2-file-upload';
-const URL = 'http://localhost:5000/upload/upload';
-const url = 'http://localhost:5000/upload/fileupload';
+const URL = 'http://localhost:3000/driverFileUpload/upload';
+const url = 'http://localhost:3000/driverFileUpload/fileupload';
 declare const $: any;
 declare const M: any;
 declare const swal: any;
@@ -339,20 +339,20 @@ ngOnInit() {
   M.updateTextFields();
  this.viewData();
  this.loadModal();
- this. loadDriver();
+ this.loadDriver();
 
  this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
  this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
           console.log('ImageUpload:uploaded:', item, status, response);
           const resPath = JSON.parse(response);
-          this.getfileLoc = resPath.result;
+          this.getfileLoc = resPath.driverFileResult1;
          };
 
  this.uploader2.onAfterAddingFile = (file) => { file.withCredentials = false; };
  this.uploader2.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
           console.log('ImageUpload:uploaded:', item, status, response);
           const resPath = JSON.parse(response);
-          this.getfileLoc2 = resPath.result;
+          this.getfileLoc2 = resPath.driverFileResult2;
          };
 
 

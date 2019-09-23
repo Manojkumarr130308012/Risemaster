@@ -33,9 +33,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let admissiontype of admissiontypes?.response; let i=index">
+                                        <tr *ngFor="let admissiontype of admissiontypes; let i=index">
                                             <td>{{i +1 }}</td> 
-                                            <td>{{admissiontype?.institution}}</td>
+                                            <td>{{admissiontype?.InstitutionDetails[0].institution_name}}</td>
                                             <td>{{admissiontype?.admissiontype}}</td>
                                             <td>
                                                 <div class="btn btn-tbl-edit" data-toggle="modal"

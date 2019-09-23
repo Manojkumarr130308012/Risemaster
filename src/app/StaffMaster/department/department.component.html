@@ -33,9 +33,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let department of departments?.response; let i=index">
+                                        <tr *ngFor="let department of departments; let i=index">
                                             <td>{{i +1 }}</td> 
-                                            <td>{{department?.institution}}</td>
+                                            <td>{{department?.InstitutionDetails[0].institution_name}}</td>
                                             <td>{{department?.department}}</td>
                                             <td>
                                                 <div class="btn btn-tbl-edit" data-toggle="modal"
@@ -74,20 +74,22 @@
          </div>
          <div class="modal-body">
                 <form [formGroup]="registerForm" (ngSubmit)="onAddSubmit()">
-                        <div class="row clearfix">
-                                <div class="col-md-12">
-                                    <label>Institution</label>
-                                    <select  id="select" [(ngModel)]="selectedinstitution" class="browser-default form-control" formControlName="institution" 
-                                    [ngClass]="{ 'is-invalid': submitted && f.institution.errors }" placeholder="Choose your institution">
-                                    <option disabled selected>Choose your institution</option>
-                                    <option  *ngFor="let institution of institutions" [value]="institution.institution_name">{{institution.institution_name}}</option>
-                                    </select>
-                                    {{selectedinstitution}}
+                    <div class="row">
+                        <div class="col-md-12">
+                           <div class="form-group">
+                               <label>Institution</label>
+                                <select class="browser-default"  id="select" [(ngModel)]="selectedinstitution" 
+                                formControlName="institution" value = " " class="form-control" placeholder="Enter institution"
+                                    [ngClass]="{ 'is-invalid': submitted && f.institution.errors }" >
                                     <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">
                                         <div *ngIf="f.institution.errors.required">Institution is required</div>
                                     </div>
-                                       </div>
-                              </div>   
+                             <option value="" disabled selected>Choose your institution</option>
+                                 <option *ngFor="let institution of institutions" [value]="institution._id">{{institution?.institution_name}}</option>     
+                             </select>                                                        
+                           </div>
+                        </div>
+                       </div>   
                               <br>
 
                     <div class="form-group">
@@ -128,7 +130,7 @@
                                     <select  id="select" [(ngModel)]="selectedinstitution" class="browser-default form-control" formControlName="institution"
                                     [ngClass]="{ 'is-invalid': submitted && f.institution.errors }">
                                     <option disabled selected>Choose your institution</option>
-                                    <option  *ngFor="let institution of institutions" [value]="institution.institution_name">{{institution.institution_name}}</option>
+                                    <option  *ngFor="let institution of institutions" [value]="institution._id">{{institution.institution_name}}</option>
                                     </select>
                                     {{selectedinstitution}}
                                     <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">

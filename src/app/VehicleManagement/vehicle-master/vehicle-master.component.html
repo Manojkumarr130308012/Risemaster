@@ -99,7 +99,7 @@
              </button>
          </div>
          <div class="modal-body">
-                <form [formGroup]="registerForm" (ngSubmit)="onAddSubmit()">
+                <form [formGroup]="registerForm" id="form_validation" (ngSubmit)="onAddSubmit()">
                         <div class="row">
                                 <div class="col-md-12">
                                    <div class="form-group">
@@ -295,7 +295,7 @@
              </button>
          </div>
          <div class="modal-body">
-                <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
+                <form [formGroup]="editForm" id="form_validation1" (ngSubmit)="onEditSubmit()">
                     <div class="row">
                         <div class="col-md-12">
                            <div class="form-group">
