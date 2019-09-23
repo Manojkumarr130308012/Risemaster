@@ -1000,4 +1000,132 @@ fetchBankById(id) {
       this.url = `${this.endPoint}/qualification-type/fetchdata?id=` + id;
       return this.http.get(this.url);
     }
+
+     // driver
+  public getDriver() {
+    this.url = `${this.endPoint}/driver/aggregation`;
+    return this.http.get(this.url);   
+  }
+  
+  public addDriver(newDriver: { }) {
+    this.url = `${this.endPoint}/driver/add`;   
+    return this.http.post(this.url, newDriver);
+  }
+  
+  public deleteDriver(id) {
+    this.url = `${this.endPoint}/driver/delete?id=`+ id;
+    return this.http.delete(this.url);
+  }
+  
+  updateDriver(id, body) {
+    this.url = `${this.endPoint}/driver/update?id=${id}`;
+    return this.http.put(this.url, body);
+  }
+  
+  fetchDriver() {
+    this.url = `${this.endPoint}/driver/`;
+    return this.http.get(this.url); 
+  }
+  fetchDriverBy(id) {
+    this.url = `${this.endPoint}/driver/fetchdata?id=` + id;
+    return this.http.get(this.url);
+  }
+  loadDriver() {
+    this.url = `${this.endPoint}/vehicle/`;
+    return this.http.get(this.url); 
+  }
+
+   // Vehicle
+   public getVehicle() {
+    this.url = `${this.endPoint}/vehicle/aggregation`;
+    return this.http.get(this.url);   
+  }
+  
+  public addVehicle(newVehicle: { }) {
+    this.url = `${this.endPoint}/vehicle/add`;   
+    return this.http.post(this.url, newVehicle);
+  }
+  
+  public deleteVehicle(id) {
+    this.url = `${this.endPoint}/vehicle/delete?id=`+ id;
+    return this.http.delete(this.url);
+  }
+  
+  updateVehicle(id, body) {
+    this.url = `${this.endPoint}/vehicle/update?id=${id}`;
+    return this.http.put(this.url, body);
+  }
+  
+  fetchVehicle() {
+    this.url = `${this.endPoint}/vehicle/`;
+    return this.http.get(this.url); 
+  }
+  fetchVehicleBy(id) {
+    this.url = `${this.endPoint}/vehicle/fetchdata?id=` + id;
+    return this.http.get(this.url);
+  }
+  loadVehicle() {
+    this.url = `${this.endPoint}/institution/`;
+    return this.http.get(this.url); 
+    }
+
+    // vehicle expenses
+    public getExpense() {
+      this.url = `${this.endPoint}/vehicle-expenses`;
+      return this.http.get(this.url);   
+    }
+    
+    public addExpense(newExpense: { expense: any; }) {
+      this.url = `${this.endPoint}/vehicle-expenses/add`;   
+      return this.http.post(this.url, newExpense);
+    }
+    
+    public deleteExpense(id) {
+      this.url = `${this.endPoint}/vehicle-expenses/delete?id=`+ id;
+      return this.http.delete(this.url);
+    }
+    
+    updateExpense(id, body) {
+      this.url = `${this.endPoint}/vehicle-expenses/update?id=${id}`;
+      return this.http.put(this.url, body);
+    }
+    
+    fetchExpense() {
+      this.url = `${this.endPoint}/vehicle-expenses/`;
+      return this.http.get(this.url); 
+    }
+    fetchExpenseBy(id) {
+      this.url = `${this.endPoint}/vehicle-expenses/fetchdata?id=` + id;
+      return this.http.get(this.url);
+    }
+  
+  // Filling Stations
+  public getStation() {
+    this.url = `${this.endPoint}/filling-stations`;
+    return this.http.get(this.url);   
+  }
+  
+  public addStation(newStation: { }) {
+    this.url = `${this.endPoint}/filling-stations/add`;   
+    return this.http.post(this.url, newStation);
+  }
+  
+  public deleteStation(id) {
+    this.url = `${this.endPoint}/filling-stations/delete?id=`+ id;
+    return this.http.delete(this.url);
+  }
+  
+  updateStation(id, body) {
+    this.url = `${this.endPoint}/filling-stations/update?id=${id}`;
+    return this.http.put(this.url, body);
+  }
+  
+  fetchStation() {
+    this.url = `${this.endPoint}/filling-stations/`;
+    return this.http.get(this.url); 
+  }
+  fetchStationBy(id) {
+    this.url = `${this.endPoint}/filling-stations/fetchdata?id=` + id;
+    return this.http.get(this.url);
+  }
 }
