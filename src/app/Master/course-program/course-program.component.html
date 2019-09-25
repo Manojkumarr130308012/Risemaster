@@ -33,9 +33,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let courseprogram of courseprograms?.response; let i=index">
+                                    <tr *ngFor="let courseprogram of courseprograms; let i=index">
                                         <td>{{i +1 }}</td>
-                                        <td>{{courseprogram?.institution}}</td>
+                                        <td>{{courseprogram?.InstitutionDetails[0].institution_name}}</td>
                                         <td>{{courseprogram?.coursecategory}}</td>
                                         <td>{{courseprogram?.courseprogram}}</td>
                                         <td>
@@ -78,7 +78,7 @@
                                 formControlName="institution"  (change)="onInstitutionChange($event.target.value)"
                                 [ngClass]="{ 'is-invalid': submitted && f.institution.errors }">
                                 <option  disabled selected>Choose your institution</option>
-                                <option  *ngFor="let institution of institutions" [value]="institution.institution_name">{{institution.institution_name}}</option>
+                                <option  *ngFor="let institution of institutions" [value]="institution._id">{{institution.institution_name}}</option>
                                 </select>
                                         
                                 <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">
@@ -143,7 +143,7 @@
                                 [ngClass]="{ 'is-invalid': submitted && f.courseprogram.errors }">
                                 <option disabled selected>Choose your institution</option>
                                 <option *ngFor="let institution of institutions"
-                                    [value]="institution.institution_name">
+                                    [value]="institution._id">
                                     {{institution.institution_name}}</option>
                                 </select>
                                 <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">

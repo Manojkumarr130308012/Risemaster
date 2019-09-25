@@ -7,7 +7,7 @@ import { CasteComponent } from './Master/caste/caste.component';
 import { CommunityComponent } from './Master/community/community.component';
 import { NationalityComponent } from './Master/nationality/nationality.component';
 import { ReligionComponent } from './Master/religion/religion.component';
-import { FileuploadComponent } from './fileupload/fileupload.component';
+
 import { AcademicYearComponent } from './Master/academic-year/academic-year.component';
 import { UserDesignationComponent } from './Master/user-designation/user-designation.component';
 
@@ -45,6 +45,12 @@ import { ModeOfEnquiryComponent } from './StaffMaster/mode-of-enquiry/mode-of-en
 
 import { CandidateEnquiryComponent } from './Student/candidate-enquiry/candidate-enquiry.component';
 
+import { VehicleMasterComponent } from './VehicleManagement/vehicle-master/vehicle-master.component';
+import { DriverMasterComponent } from './VehicleManagement/driver-master/driver-master.component';
+import { FillingStationsComponent } from './VehicleManagement/filling-stations/filling-stations.component';
+import { VehicleExpensesComponent } from './VehicleManagement/vehicle-expenses/vehicle-expenses.component';
+
+
 const routes: Routes = [
   //{ path: '', component: LoginComponent },
   {
@@ -66,10 +72,7 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent
   },
-  {
-    path: 'file',
-    component: FileuploadComponent
-  },
+  
 
   {
     path: 'nationality',
@@ -227,6 +230,19 @@ const routes: Routes = [
     path: 'candidate-enquiry', 
     component: CandidateEnquiryComponent 
     },
+
+    //  Vehicle Management
+  { path: 'vehicle', 
+  component: VehicleMasterComponent },
+
+  { path: 'driver', 
+  component: DriverMasterComponent },
+
+  { path: 'vehicle-expenses', 
+  component: VehicleExpensesComponent },
+
+  { path: 'filling-stations', 
+  component: FillingStationsComponent },
 
 ];
 

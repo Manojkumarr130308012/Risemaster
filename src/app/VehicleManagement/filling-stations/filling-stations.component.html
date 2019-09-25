@@ -6,7 +6,7 @@
                 <div class="card">
                     <div class="header">       
                         <h2>
-                            <strong>Department</strong>
+                            <strong>Filling Stations</strong>
                         </h2>
                         <div class="header-dropdown m-r--5">
                             <!-- Add button -->
@@ -27,25 +27,27 @@
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
-                                            <th>Institution</th>
-                                            <th>Department</th>
+                                            <th>Name</th>
+                                            <th>Address</th>
+                                            <th>Contact No</th>
                                             <th >Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let department of departments; let i=index">
+                                        <tr *ngFor="let station of stations?.response; let i=index">
                                             <td>{{i +1 }}</td> 
-                                            <td>{{department?.InstitutionDetails[0].institution_name}}</td>
-                                            <td>{{department?.department}}</td>
+                                            <td>{{station?.name}}</td>
+                                            <td>{{station?.address}}</td>
+                                            <td>{{station?.contactNo}}</td>
                                             <td>
                                                 <div class="btn btn-tbl-edit" data-toggle="modal"
                                                 data-target="#editModal">
                                                         <i class="material-icons" 
-                                                        (click)="onEdit(department) ">create</i>
+                                                        (click)="onEdit(station) ">create</i>
                                                 </div>
                                                     <div class="btn btn-tbl-delete">
                                                         <i class="material-icons" 
-                                                        (click) = "deleteDepartment(department?._id)" >delete</i>
+                                                        (click) = "deleteStation(station?._id)" >delete</i>
                                                     </div>
                                                 </td>
                                         </tr>
@@ -74,32 +76,30 @@
          </div>
          <div class="modal-body">
                 <form [formGroup]="registerForm" (ngSubmit)="onAddSubmit()">
-                    <div class="row">
-                        <div class="col-md-12">
-                           <div class="form-group">
-                               <label>Institution</label>
-                                <select class="browser-default"  id="select" [(ngModel)]="selectedinstitution" 
-                                formControlName="institution" value = " " class="form-control" placeholder="Enter institution"
-                                    [ngClass]="{ 'is-invalid': submitted && f.institution.errors }" >
-                                    <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">
-                                        <div *ngIf="f.institution.errors.required">Institution is required</div>
-                                    </div>
-                             <option value="" disabled selected>Choose your institution</option>
-                                 <option *ngFor="let institution of institutions" [value]="institution._id">{{institution?.institution_name}}</option>     
-                             </select>                                                        
-                           </div>
-                        </div>
-                       </div>   
-                              <br>
-
                     <div class="form-group">
-                            <label>Department</label> 
-                            <input type="text" formControlName="department" class="form-control" placeholder="Enter department"
-                                [ngClass]="{ 'is-invalid': submitted && f.department.errors }" />
-                            <div *ngIf="submitted && f.department.errors" class="invalid-feedback">
-                                <div *ngIf="f.department.errors.required">Department is required</div>
+                            <label>Name</label> 
+                            <input type="text" value=" " formControlName="name" class="form-control" placeholder="Enter Name"
+                                [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                <div *ngIf="f.name.errors.required">Name is required</div>
                             </div>
                         </div>
+                        <div class="form-group">
+                                <label>Address</label> 
+                                <textarea type="text" value=" " formControlName="address" class="form-control" placeholder="Enter Address"
+                                    [ngClass]="{ 'is-invalid': submitted && f.address.errors }" ></textarea>
+                                <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                                    <div *ngIf="f.address.errors.required">Address is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    <label>Contact No</label> 
+                                    <input type="text" value=" " formControlName="contactNo" class="form-control" placeholder="Enter Contact No"
+                                        [ngClass]="{ 'is-invalid': submitted && f.contactNo.errors }" />
+                                    <div *ngIf="submitted && f.contactNo.errors" class="invalid-feedback">
+                                        <div *ngIf="f.contactNo.errors.required">Contact No is required</div>
+                                    </div>
+                                </div>
          <div class="modal-footer">
                 <button type="submit" class="btn btn-default"  >Add</button >
              <button type="button" class="btn btn-danger waves-effect"
@@ -124,32 +124,32 @@
          </div>
          <div class="modal-body">
                 <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
-                        <div class="row clearfix">
-                                <div class="col-md-12">
-                                    <label>Institution</label>
-                                    <select  id="select" [(ngModel)]="selectedinstitution" class="browser-default form-control" formControlName="institution"
-                                    [ngClass]="{ 'is-invalid': submitted && f.institution.errors }">
-                                    <option disabled selected>Choose your institution</option>
-                                    <option  *ngFor="let institution of institutions" [value]="institution._id">{{institution.institution_name}}</option>
-                                    </select>
-                                    {{selectedinstitution}}
-                                    <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">
-                                        <div *ngIf="f.institution.errors.required">Institution is required</div>
-                                    </div>
-                                       </div>
-                              </div>   
-                              <br>
-
-                    <div class="form-group">
-                            <label>Department</label> 
-                            <input type="text" formControlName="department" class="form-control" placeholder="Enter department"
-                                [ngClass]="{ 'is-invalid': submitted && f.department.errors }" />
-                            <div *ngIf="submitted && f.department.errors" class="invalid-feedback">
-                                <div *ngIf="f.department.errors.required">Department is required</div>
+                        <div class="form-group">
+                                <label>Name</label> 
+                                <textarea type="text" value=" " formControlName="name" class="form-control" placeholder="Enter Name"
+                                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }" ></textarea>
+                                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                    <div *ngIf="f.name.errors.required">Name is required</div>
+                                </div>
                             </div>
-                        </div>
+                            <div class="form-group">
+                                    <label>Address</label> 
+                                    <input type="text" value=" " formControlName="address" class="form-control" placeholder="Enter Address"
+                                        [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
+                                    <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                                        <div *ngIf="f.address.errors.required">Address is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                        <label>Contact No</label> 
+                                        <input type="text" value=" " formControlName="contactNo" class="form-control" placeholder="Enter Contact No"
+                                            [ngClass]="{ 'is-invalid': submitted && f.contactNo.errors }" />
+                                        <div *ngIf="submitted && f.contactNo.errors" class="invalid-feedback">
+                                            <div *ngIf="f.contactNo.errors.required">Contact No is required</div>
+                                        </div>
+                                    </div>
          <div class="modal-footer">
-                <button type="submit" class="btn btn-default">Update</button >
+                <button type="submit" class="btn btn-default"  >Update</button >
              <button type="button" class="btn btn-danger waves-effect"
                  data-dismiss="modal">Cancel</button>
          </div>

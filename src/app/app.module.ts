@@ -24,7 +24,7 @@ import { CasteComponent } from './Master/caste/caste.component';
 import { CommunityComponent } from './Master/community/community.component';
 import { NationalityComponent } from './Master/nationality/nationality.component';
 import { ReligionComponent } from './Master/religion/religion.component';
-import { FileuploadComponent } from './fileupload/fileupload.component';
+
 import {FileUploadModule} from 'ng2-file-upload';
 
 import { AdmissionTypeComponent } from './Master/admission-type/admission-type.component';
@@ -66,6 +66,10 @@ import { OrderModule } from 'ngx-order-pipe';
 //Candiadate Enquiry
 import { CandidateEnquiryComponent } from './Student/candidate-enquiry/candidate-enquiry.component';
 import { ArchwizardModule } from 'angular-archwizard';
+import { VehicleMasterComponent } from './VehicleManagement/vehicle-master/vehicle-master.component';
+import { DriverMasterComponent } from './VehicleManagement/driver-master/driver-master.component';
+import { FillingStationsComponent } from './VehicleManagement/filling-stations/filling-stations.component';
+import { VehicleExpensesComponent } from './VehicleManagement/vehicle-expenses/vehicle-expenses.component';
 
 
 @NgModule({
@@ -82,7 +86,7 @@ import { ArchwizardModule } from 'angular-archwizard';
     CommunityComponent,
     NationalityComponent,
     ReligionComponent,
-    FileuploadComponent,
+    
     AcademicYearComponent,
     UserDesignationComponent,
     AdmissionTypeComponent,
@@ -118,7 +122,15 @@ import { ArchwizardModule } from 'angular-archwizard';
 
     CandidateEnquiryComponent,
 
-    QualificationTypeComponent
+    QualificationTypeComponent,
+
+    VehicleMasterComponent,
+
+    DriverMasterComponent,
+
+    FillingStationsComponent,
+
+    VehicleExpensesComponent
 
     
     

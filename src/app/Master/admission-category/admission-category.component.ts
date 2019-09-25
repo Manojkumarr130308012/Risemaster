@@ -123,7 +123,6 @@ return;
 this.request.updateAdmissionCategory(this.IdValue, this.editForm.value).subscribe((response: any) => {
 if (response.status == 'Success') {
 swal("Updated Sucessfully"); 
-
 this.viewData();
 this.loadModal();
 }
