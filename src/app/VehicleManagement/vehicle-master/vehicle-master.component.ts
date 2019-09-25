@@ -107,7 +107,7 @@ export class VehicleMasterComponent implements OnInit {
   // Bind institution data
   loadInstitution() {
     this.request.getInstitution().subscribe((response: any) => {
-      console.log(response);
+    //  console.log(response);
       this.institutions = response;
     }, (error) => {
       console.log(error);
@@ -133,14 +133,14 @@ export class VehicleMasterComponent implements OnInit {
     }, (error) => {
       this.setMessage(error);
     });
-    console.log(this.registerForm.value);
+   // console.log(this.registerForm.value);
   }
 
   // To display vehicle
   viewData() {
     this.request.getVehicle().subscribe((response) => {
       this.vehicles = response;
-      console.log(this.vehicles);
+     // console.log(this.vehicles);
     }, (error) => {
       console.log(error);
     });
@@ -149,21 +149,21 @@ export class VehicleMasterComponent implements OnInit {
   // To delete vehicle
   deleteVehicle(id: any) {
     this.request.deleteVehicle(id).subscribe(res => {
-      console.log(id);
+     // console.log(id);
       this.viewData();
       console.log('Deleted');
-      this.router.navigate(['vehicle']);
+     // this.router.navigate(['vehicle']);
     });
   }
 
   open(vehicle) {
     this.Id=vehicle._id;
     this.vehicleNo=vehicle.vehicleNo;
-    console.log(this.Id);
-    console.log(this.vehicleNo);
+  //  console.log(this.Id);
+   // console.log(this.vehicleNo);
     this.router.navigate(['stage-details'], {
        queryParams: {  
-           edit: true,      
+          // edit: true,      
            id: vehicle._id,
          }
         });
@@ -174,7 +174,7 @@ export class VehicleMasterComponent implements OnInit {
     this.Id = vehicle._id;
     this.request.fetchVehicleBy(this.Id).subscribe((response) => {
       this.editVehicle = response[0];
-      console.log(response);
+     // console.log(response);
       this.institutionValue = this.editVehicle.institution;
       this.vehicleNoValue = this.editVehicle.vehicleNo;
       this.vanNoValue = this.editVehicle.vanNo;
@@ -210,12 +210,12 @@ export class VehicleMasterComponent implements OnInit {
         notes: [this.notesValue, Validators.required]
 
       });
-      console.log(this.editForm.value);
+    //  console.log(this.editForm.value);
     });
   }
   onEditSubmit() {
     this.submitted = true;
-    console.log(this.editForm.value);
+  //  console.log(this.editForm.value);
     if (this.editForm.invalid) {
       return;
     }
