@@ -66,10 +66,13 @@ import { OrderModule } from 'ngx-order-pipe';
 //Candiadate Enquiry
 import { CandidateEnquiryComponent } from './Student/candidate-enquiry/candidate-enquiry.component';
 import { ArchwizardModule } from 'angular-archwizard';
+
+// Vehicle Management
 import { VehicleMasterComponent } from './VehicleManagement/vehicle-master/vehicle-master.component';
 import { DriverMasterComponent } from './VehicleManagement/driver-master/driver-master.component';
 import { FillingStationsComponent } from './VehicleManagement/filling-stations/filling-stations.component';
 import { VehicleExpensesComponent } from './VehicleManagement/vehicle-expenses/vehicle-expenses.component';
+import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-details.component';
 
 
 @NgModule({
@@ -124,13 +127,12 @@ import { VehicleExpensesComponent } from './VehicleManagement/vehicle-expenses/v
 
     QualificationTypeComponent,
 
+    // Vehicle Management
     VehicleMasterComponent,
-
     DriverMasterComponent,
-
     FillingStationsComponent,
-
-    VehicleExpensesComponent
+    VehicleExpensesComponent,
+    StageDetailsComponent
 
     
     

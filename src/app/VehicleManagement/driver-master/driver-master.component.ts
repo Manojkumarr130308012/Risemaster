@@ -150,7 +150,7 @@ filesubmit() {
             }
 
   // Bind vehicle data
-  loadDriver()  {
+  loadVehicle()  {
     this.request.getVehicle().subscribe((response : any) => {
       console.log(response);
     this.vehicles = response;
@@ -339,7 +339,7 @@ ngOnInit() {
   M.updateTextFields();
  this.viewData();
  this.loadModal();
- this.loadDriver();
+ this.loadVehicle();
 
  this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
  this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {

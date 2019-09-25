@@ -42,6 +42,7 @@
                                                 <th >Smoke Test</th>
                                                 <th >Service KMS</th>
                                                 <th >Notes</th>
+                                                <th>Stage</th>
                                                 <th >Action</th>
                                         </tr>
                                     </thead>
@@ -63,6 +64,12 @@
                                         <td>{{vehicle?.smokeTest}}</td>
                                         <td>{{vehicle?.serviceKMS}}</td>
                                         <td>{{vehicle?.notes}}</td>
+                                        <td>
+
+                                            <button type="button" (click)="open(vehicle)"
+                                                class="btn btn-default">View</button>
+
+                                        </td>
                                             <td>
                                                 <div class="btn btn-tbl-edit" data-toggle="modal"
                                                 data-target="#editModal">

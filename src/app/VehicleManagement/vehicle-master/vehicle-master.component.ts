@@ -105,7 +105,7 @@ export class VehicleMasterComponent implements OnInit {
   }
 
   // Bind institution data
-  loadVehicle() {
+  loadInstitution() {
     this.request.getInstitution().subscribe((response: any) => {
       console.log(response);
       this.institutions = response;
@@ -155,6 +155,19 @@ export class VehicleMasterComponent implements OnInit {
       this.router.navigate(['vehicle']);
     });
   }
+
+  open(vehicle) {
+    this.Id=vehicle._id;
+    this.vehicleNo=vehicle.vehicleNo;
+    console.log(this.Id);
+    console.log(this.vehicleNo);
+    this.router.navigate(['stage-details'], {
+       queryParams: {  
+           edit: true,      
+           id: vehicle._id,
+         }
+        });
+}
 
   // To edit vehicle
   onEdit(vehicle) {
@@ -258,6 +271,6 @@ export class VehicleMasterComponent implements OnInit {
     M.updateTextFields();
     this.viewData();
     this.loadModal();
-    this.loadVehicle();
+    this.loadInstitution();
   }
 }
