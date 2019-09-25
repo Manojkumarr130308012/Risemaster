@@ -109,7 +109,7 @@ export class VehicleExpensesComponent implements OnInit {
       return;
     }
     this.request.updateExpense(this.IdValue, this.editForm.value).subscribe((res: any) => {
-      if (res.status == 'Success') {
+      if (res.status == 'success') {
         swal("Updated Sucessfully");
         this.loadModal();
         this.viewData();
