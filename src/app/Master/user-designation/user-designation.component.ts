@@ -95,7 +95,7 @@ export class UserDesignationComponent implements OnInit {
       if (response.status == 'error') {
         this.setMessage(response.err);
       }
-      else if (response.status == 'Success') {
+      else if (response.status == 'success') {
         
         swal("Added Sucessfully");
         this.viewDesignation();
@@ -123,7 +123,7 @@ export class UserDesignationComponent implements OnInit {
 
     this.request.updateDesignation(id, editedDesignation).subscribe((response : any) => {
 
-      if (response.status == 'Success') {
+      if (response.status == 'success') {
         swal("Updated Sucessfully");     
         
         this.viewDesignation();
@@ -156,7 +156,7 @@ export class UserDesignationComponent implements OnInit {
   Ondelete(Id) {
    // console.log(Id);
     this.request.deleteDesignation(Id).subscribe((response) => {
-      console.log('Success');// set alert
+      console.log('success');// set alert
       this.viewDesignation();
     });
   }

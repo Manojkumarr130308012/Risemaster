@@ -77,7 +77,7 @@ export class StageDetailsComponent implements OnInit {
       IdValue: vehId,
  };
    this.request.addStageDetails(newStage).subscribe((res: any) => {
-     if (res.status == 'Success') {
+     if (res.status == 'success') {
        swal("Added Sucessfully");
      this.loadModal();
      this.viewData();
@@ -152,7 +152,7 @@ export class StageDetailsComponent implements OnInit {
       fees: this.fees2.value,
     };
   this.request.updateStage(this.IdValue, edata).subscribe((res : any) => {
-    if (res.status == 'Success') {
+    if (res.status == 'success') {
       swal("Updated Sucessfully");     
       this.viewData();
       this.loadModal();

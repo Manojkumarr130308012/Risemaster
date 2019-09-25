@@ -52,7 +52,7 @@ export class VehicleExpensesComponent implements OnInit {
     }
     this.registerForm.value;
     this.request.addExpense(this.registerForm.value).subscribe((res: any) => {
-      if (res.status == 'Success') {
+      if (res.status == 'success') {
         swal("Added Sucessfully");
         this.loadModal();
         this.viewData();

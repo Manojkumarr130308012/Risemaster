@@ -55,7 +55,7 @@ export class CommunityComponent implements OnInit {
     }
   this.registerForm.value;
 this.request.addCommunity(this.registerForm.value).subscribe((res: any) => {
-  if (res.status == 'Success') {
+  if (res.status == 'success') {
     swal("Added Sucessfully");
   this.loadModal();
   this.viewData();
@@ -112,7 +112,7 @@ onEditSubmit() {
       return;
     }
 this.request.updateCommunity(this.IdValue,this.editForm.value).subscribe((res : any) => {
-  if (res.status == 'Success') {
+  if (res.status == 'success') {
     swal("Updated Sucessfully");     
     this.loadModal();
     this.viewData();

@@ -55,7 +55,7 @@ export class ReligionComponent implements OnInit {
       }
     this.registerForm.value;
   this.request.addReligion(this.registerForm.value).subscribe((res: any) => {
-    if (res.status == 'Success') {
+    if (res.status == 'success') {
       swal("Added Sucessfully");
     this.loadModal();
     this.viewData();
@@ -112,7 +112,7 @@ onEditSubmit() {
       return;
     }
 this.request.updateReligion(this.IdValue,this.editForm.value).subscribe((res : any) => {
-  if (res.status == 'Success') {
+  if (res.status == 'success') {
     swal("Updated Sucessfully");     
     this.loadModal();
     this.viewData();

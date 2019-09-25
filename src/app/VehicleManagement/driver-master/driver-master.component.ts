@@ -183,7 +183,7 @@ filesubmit() {
    };
   
   this.request.addDriver(newDriver).subscribe((res: any) => {
-    if (res.status == 'Success') {
+    if (res.status == 'success') {
       swal("Added Sucessfully");
     this.loadModal();
     this.viewData();
@@ -288,7 +288,7 @@ filesubmit() {
 
     };
   this.request.updateDriver(this.IdValue, edata).subscribe((res : any) => {
-    if (res.status == 'Success') {
+    if (res.status == 'success') {
       swal("Updated Sucessfully");     
       this.loadModal();
       this.viewData();
