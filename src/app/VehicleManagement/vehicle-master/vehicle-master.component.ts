@@ -120,7 +120,7 @@ export class VehicleMasterComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-    this.registerForm.value;
+   
     this.request.addVehicle(this.registerForm.value).subscribe((res: any) => {
       if (res.status == 'Success') {
         swal("Added Sucessfully");

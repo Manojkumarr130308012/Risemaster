@@ -1037,7 +1037,7 @@ fetchBankById(id) {
     return this.http.get(this.url);   
   }
   
-  public addVehicle(newVehicle: { }) {
+  public addVehicle(newVehicle) {
     this.url = `${this.endPoint}/vehicle/add`;   
     return this.http.post(this.url, newVehicle);
   }
