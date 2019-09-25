@@ -73,7 +73,7 @@
              </button>
          </div>
          <div class="modal-body">
-                <form [formGroup]="registerForm" (ngSubmit)="onAddSubmit()">
+                <form [formGroup]="registerForm"  (ngSubmit)="onAddSubmit()">
                         <div class="row clearfix">
                                 <div class="col-md-12">
                                     <label>Institution</label>
@@ -82,7 +82,7 @@
                                     <option disabled selected>Choose your institution</option>
                                     <option  *ngFor="let institution of institutions" [value]="institution._id">{{institution.institution_name}}</option>
                                     </select>
-                                    {{selectedinstitution}}
+                                  
                                     <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">
                                         <div *ngIf="f.institution.errors.required">Institution is required</div>
                                     </div>
@@ -99,7 +99,7 @@
                             </div>
                         </div>
          <div class="modal-footer">
-                <button type="submit" class="btn btn-default"  >Add</button >
+                <button type="submit" class="btn btn-default">Add</button >
              <button type="button" class="btn btn-danger waves-effect"
                  data-dismiss="modal">Cancel</button>
          </div>
@@ -130,7 +130,7 @@
                                     <option disabled selected>Choose your institution</option>
                                     <option  *ngFor="let institution of institutions" [value]="institution._id">{{institution.institution_name}}</option>
                                     </select>
-                                    {{selectedinstitution}}
+                                    
                                     <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">
                                         <div *ngIf="f.institution.errors.required">Institution is required</div>
                                     </div>
