@@ -1000,4 +1000,130 @@ fetchBankById(id) {
       this.url = `${this.endPoint}/qualification-type/fetchdata?id=` + id;
       return this.http.get(this.url);
     }
+     // CandiadateEnquiry - BasicDetails
+     public getBasicDetails() {
+      this.url = `${this.endPoint}/ce-basicdetails/aggregation`;
+      return this.http.get(this.url);   
+    }
+    
+    public addBasicDetails(newModeOfEnquiry: { }) {
+      this.url = `${this.endPoint}/ce-basicdetails/add`;   
+      return this.http.post(this.url, newModeOfEnquiry);
+    }
+    
+    public deleteBasicDetails(id) {
+      this.url = `${this.endPoint}/ce-basicdetails/delete?id=`+ id;
+      return this.http.delete(this.url);
+    }
+    
+    updateBasicDetails(id, body) {
+      this.url = `${this.endPoint}/ce-basicdetails/update?id=${id}`;
+      return this.http.put(this.url, body);
+    }
+    
+    fetchBasicDetails() {
+      this.url = `${this.endPoint}/ce-basicdetails/`;
+      return this.http.get(this.url); 
+    }
+    fetchBasicDetailsById(id) {
+      this.url = `${this.endPoint}/ce-basicdetails/fetchdata?id=` + id;
+      return this.http.get(this.url);
+    }
+     // CandiadateEnquiry - AddressDetails
+     public getAddressDetails() {
+      this.url = `${this.endPoint}/ce-addressdetails/aggregation`;
+      return this.http.get(this.url);   
+    }
+    
+    public addAddressDetails(newadressdetails: { }) {
+      this.url = `${this.endPoint}/ce-addressdetails/add`;   
+      return this.http.post(this.url, newadressdetails);
+    }
+    
+    public deleteAddressDetails(id) {
+      this.url = `${this.endPoint}/ce-addressdetails/delete?id=`+ id;
+      return this.http.delete(this.url);
+    }
+    
+    updateAddressDetails(id, body) {
+      this.url = `${this.endPoint}/ce-addressdetails/update?id=${id}`;
+      return this.http.put(this.url, body);
+    }
+    
+    fetchAddressDetails() {
+      this.url = `${this.endPoint}/ce-addressdetails/`;
+      return this.http.get(this.url); 
+    }
+    fetchAddressDetailsById(id) {
+      this.url = `${this.endPoint}/ce-addressdetails/fetchdata?id=` + id;
+      return this.http.get(this.url);
+    }
+    loadAddressType() {
+      this.url = `${this.endPoint}/addressType/`;
+      return this.http.get(this.url);
+    }
+
+       // CandiadateEnquiry - PaymentDetails
+    public getPaymentDetails() {
+      this.url = `${this.endPoint}/ce-paymentdetails/aggregation`;
+      return this.http.get(this.url);   
+    }
+    
+    public addPaymentDetails(newadressdetails: { }) {
+      this.url = `${this.endPoint}/ce-paymentdetails/add`;   
+      return this.http.post(this.url, newadressdetails);
+    }
+    
+    public deletePaymentDetails(id) {
+      this.url = `${this.endPoint}/ce-paymentdetails/delete?id=`+ id;
+      return this.http.delete(this.url);
+    }
+    
+    updatePaymentDetails(id, body) {
+      this.url = `${this.endPoint}/ce-paymentdetails/update?id=${id}`;
+      return this.http.put(this.url, body);
+    }
+    
+    fetchPaymentDetails() {
+      this.url = `${this.endPoint}/ce-paymentdetails/`;
+      return this.http.get(this.url); 
+    }
+    fetchPaymentDetailsById(id) {
+      this.url = `${this.endPoint}/ce-paymentdetails/fetchdata?id=` + id;
+      return this.http.get(this.url);
+    }
+    loadPaymentMethod() {
+      this.url = `${this.endPoint}/ce-paymentdetails/`;
+      return this.http.get(this.url);
+    }
+
+    // CandiadateEnquiry - Followups
+    public getFollowups() {
+      this.url = `${this.endPoint}/ce-followups`;
+      return this.http.get(this.url);   
+    }
+    
+    public addFollowups(newadressdetails: { }) {
+      this.url = `${this.endPoint}/ce-followups/add`;   
+      return this.http.post(this.url, newadressdetails);
+    }
+    
+    public deleteFollowups(id) {
+      this.url = `${this.endPoint}/ce-followups/delete?id=`+ id;
+      return this.http.delete(this.url);
+    }
+    
+    updateFollowups(id, body) {
+      this.url = `${this.endPoint}/ce-followups/update?id=${id}`;
+      return this.http.put(this.url, body);
+    }
+    
+    fetchFollowups() {
+      this.url = `${this.endPoint}/ce-followups/`;
+      return this.http.get(this.url); 
+    }
+    fetchFollowupsById(id) {
+      this.url = `${this.endPoint}/ce-followups/fetchdata?id=` + id;
+      return this.http.get(this.url);
+    }
 }
