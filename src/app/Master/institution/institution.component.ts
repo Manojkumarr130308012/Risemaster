@@ -156,7 +156,7 @@ export class InstitutionComponent implements OnInit {
       this.logoLocationValue = this.editInstitutiondata.logoLocation;
       this.IdValue = this.editInstitutiondata._id;
 
-      console.log(this.logoLocationValue);
+      // console.log(this.logoLocationValue);
 
       this.institution_name2 = new FormControl(this.institutionNameValue, [Validators.required]);
       this.institution_code2 = new FormControl(this.institutionCodeValue, [Validators.required]);
