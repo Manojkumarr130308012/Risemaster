@@ -1,0 +1,1822 @@
+<section class="content">
+    <div class="container-fluid">
+        <!-- Basic Example | Horizontal Layout -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            <strong>Candidate Enquiry</strong> </h2>
+                    </div>
+                    <div class="body">
+                        <aw-wizard #wizard [navBarLayout]="'large-empty-symbols'">
+                            <aw-wizard-step [stepTitle]="'Basic Details'">
+                                <ng-template awWizardStepSymbol><i class="fa fa-clipboard"></i></ng-template>
+                                <div class="centered-content">
+                                    <div>
+                                        <form id="form_advanced_validation">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-line input-field form-group">
+                                                          <input type="text" class="form-control" name="firstName" id="firstName"
+                                                          [formControl]="firstName" required />
+                                                         <label class="form-label">FirstName</label>
+                                                
+                                                     </div>
+                                                  </div>
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-5">
+                                                        <img style="margin:0 auto" src="{{getfileLoc}}"
+                                                        width="100px">
+                                                    <div class="col-sm-12">
+                                                        <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+                                                        <button (click)="submit()">Upload Image</button>
+                                                     
+                                                        <!-- <span> {{getfileLoc}}</span> -->
+                                                    </div>
+                                                    </div>
+                                                 </div>
+                                                 <div class="row">
+                                                        <div class="col-md-5">
+                                                            <div class="form-line input-field form-group">
+                                                              <input type="text" class="form-control" name="lastName" id="lastName"
+                                                              [formControl]="lastName" required />
+                                                             <label class="form-label">LastName(Initial)</label>
+                                                    
+                                                         </div>
+                                                      </div>
+                                                        <div class="col-md-1"></div>
+                                                        <div class="col-md-5">
+                                                        <!--//-->
+                                                        </div>
+                                                     </div>
+                                                <div class="row">
+                                                     <div class="col-md-5">
+                                                         <div class="form-line input-field form-group">
+                                                             <input type="date" class="form-control" name="dob" id="dob"
+                                                             [formControl]="dob" required />
+                                                          <label class="form-label">Date of Birth</label>
+                                                        
+                                                         </div>
+                                                     </div>
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-5">
+                                                            <!--//-->
+                                                     </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group">
+                                                                <label>Gender</label>
+                                                                <select class="browser-default"  id="select" [(ngModel)]="selectedgender" 
+                                                                [formControl]="gender" class="form-control">
+                                                             <option value="" disabled selected>Choose your Gender</option>
+                                                                 <option *ngFor="let gender of genders?.response" [value]="gender._id">{{gender?.gender}}</option>     
+                                                             </select>  
+                                                     </div>
+                                                  </div>
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-line input-field form-group">
+                                                            <input type="text" class="form-control" name="regNo12th" id="regNo12th"
+                                                            [formControl]="regNo12th" required />
+                                                           <label class="form-label">12th RegisterNo</label>
+                                                  
+                                                       </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-line input-field form-group">
+                                                            <input type="text" class="form-control" name="mark12th" id="mark12th"
+                                                            [formControl]="mark12th" required />
+                                                           <label class="form-label">12th Mark</label>
+                                                       </div>
+                                                    </div>
+                                                 </div>
+                                                 <div class="row">
+                                                     <div class="col-md-5">
+                                                          <div class="form-line input-field form-group">
+                                                              <input type="text" class="form-control" name="aadharNo" id="aadharNo"
+                                                              [formControl]="aadharNo" required />
+                                                                  <label class="form-label">Aadhar Number</label>
+                                                            
+                                                             </div>
+                                                         </div>
+                                                        <div class="col-md-1"></div>
+                                                        <div class="col-md-5">
+                                                                <div class="form-group">
+                                                                        <label>Institution</label>
+                                                                        <select class="browser-default"  id="select" [(ngModel)]="selectedinstitution" 
+                                                                        [formControl]="institution" class="form-control">
+                                                                     <option value="" disabled selected>Choose your Institution</option>
+                                                                     <option *ngFor="let institution of institutions" [value]="institution._id">{{institution?.institution_name}}</option>     
+                                                                     </select>
+                                                                   </div>
+                                                         </div>
+                                                 </div>
+                                                <div class="row">
+                                                     <div class="col-md-5">
+                                                             <div class="form-line input-field form-group">
+                                                              <input type="text" class="form-control" name="fFirstName" id="fFirstName"
+                                                              [formControl]="fFirstName" required />
+                                                                <label class="form-label">Father's First Name</label>
+                                                                
+                                                             </div>
+                                                     </div>
+                                                     <div class="col-md-1"></div>
+                                                     <div class="col-md-5">
+                                                        <div class="form-group">
+                                                            <label>Board Of Education</label>
+                                                            <select class="browser-default"  id="select" [(ngModel)]="selectedboard"  
+                                                            [formControl]="board" class="form-control">
+                                                         <option value="" disabled selected>Choose your Board</option>
+                                                         <option *ngFor="let  board of boards?.response" [value]="board._id">{{board?.board}}</option>     
+                                                         </select>
+                                                       </div>
+                                                     </div>
+                                                 </div>
+                                                <div class="row">
+                                                     <div class="col-md-5">
+                                                         <div class="form-line input-field form-group">
+                                                             <input type="text" class="form-control" name="fLastName" id="fLastName"
+                                                             [formControl]="fLastName" required />
+                                                             <label class="form-label">Father's Last Name</label>
+                                                                    
+                                                         </div>
+                                                        </div>
+                                                     <div class="col-md-1"></div>
+                                                     <div class="col-md-5">
+                                                        <div class="form-line input-field form-group">
+                                                            <input type="text" class="form-control" name="applicatonNo" id="applicatonNo"
+                                                            [formControl]="applicatonNo" required />
+                                                                <label class="form-label">Application Number</label>
+                                                         </div>
+                                                    </div>
+                                                 </div>
+                                                 <div class="row">
+                                                      <div class="col-md-5">
+                                                          <div class="form-line input-field form-group">
+                                                              <input type="text" class="form-control" name="fMobileNumber" id="fMobileNumber"
+                                                              [formControl]="fMobileNumber" required />
+                                                             <label class="form-label">Father's Mobile Number</label>
+                                                                        
+                                                              </div>
+                                                         </div>
+                                                         <div class="col-md-1"></div>
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                            <label>Admission Type</label>
+                                                                    <select class="browser-default"  id="select" [(ngModel)]="selectedadmissiontype"  
+                                                                    [formControl]="admissionType" class="form-control">
+                                                                 <option *ngFor="let admissiontype of admissiontypes" [value]="admissiontype._id">{{admissiontype?.admissiontype}}</option>     
+                                                                 </select>
+                                                             </div>
+                                                             
+                                                     </div>
+                                                 </div>
+                                                 <div class="row">
+                                                    <div class="col-md-5">
+                                                      <div class="form-line input-field form-group">
+                                                        <input type="text" class="form-control" name="sMobileNumber" id="sMobileNumber"
+                                                        [formControl]="sMobileNumber" required />
+                                                        <label class="form-label">Student's Mobile Number</label>
+                                                                            
+                                                         </div>
+                                                         </div>
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-5">
+                                                        <div class="form-line input-field form-group">
+                                                            <input type="text" class="form-control" name="admissionCategory" id="admissionCategory"
+                                                            [formControl]="admissionCategory" required />
+                                                            <label class="form-label">Admission Category</label>              
+                                                         </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                          <div class="form-group">
+                                                                  <label>Reference Type</label>
+                                                                  <select class="browser-default"  id="select" [(ngModel)]="selectedreferenceType"  
+                                                                  [formControl]="referenceType" class="form-control">
+                                                               <option value="" disabled selected>Choose your referenceType</option>
+                                                               <option *ngFor="let  referralType of referralTypes?.response" [value]="referralType._id">{{referralType?.referralType}}</option>     
+                                                               </select>
+                                                              </div>
+                                                         </div>
+                                                          <div class="col-md-1"></div>
+                                                          <div class="col-md-5">
+                                                            <div class="form-line input-field form-group">
+                                                                <input type="text" class="form-control" name="remark" id="remark"
+                                                                [formControl]="remark" required />
+                                                                <label class="form-label">Remark</label>              
+                                                             </div>
+                                                          </div>
+                                                     </div>
+                                                    <div class="row">
+                                                          <div class="col-md-5">
+                                                                <div class="form-line input-field form-group">
+                                                                     <input type="text" class="form-control" name="referenceBy" id="referenceBy"
+                                                                     [formControl]="referenceBy" required />
+                                                                       <label class="form-label">Reference By</label>
+                                                                 </div>
+                                                             </div>
+                                                              <div class="col-md-1"></div>
+                                                               <div class="col-md-5">
+                                                                <div class="form-group"> 
+                                                                      <label>Scholarship Category</label>
+                                                                      <select class="browser-default"  id="select" [(ngModel)]="selectedscholarshipCategory"  
+                                                                      [formControl]="scholarshipCategory" class="form-control">
+                                                                   <option value="" disabled selected>Choose your scholarshipCategory</option>
+                                                                   <option *ngFor="let scholarshipCategory of scholarshipCategories?.response" [value]="scholarshipCategory._id">{{scholarshipCategory?.scholarshipCategory}}</option>     
+                                                                   </select>
+                                                                </div>
+                                                            </div>
+                                                     </div>
+                                                     <div class="row">
+                                                        <div class="col-md-5">
+                                                          <div class="form-line input-field form-group">
+                                                                 <input type="text" class="form-control" name="email" id="email"
+                                                                 [formControl]="email" required />
+                                                                  <label class="form-label">Email Id</label>
+                                                              </div>
+                                                         </div>
+                                                          <div class="col-md-1"></div>
+                                                          <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                  <label>Course Category</label>
+                                                                  <select class="browser-default"  id="select" [(ngModel)]="selectedcourseCategory"  
+                                                                  [formControl]="courseCategory" class="form-control">
+                                                               <option value="" disabled selected>Choose your CourseCategory</option>
+                                                               <option *ngFor="let coursecategory of coursecategories" [value]="coursecategory._id">{{coursecategory?.coursecategory}}</option>     
+                                                               </select>
+                                                            </div>
+                                                          </div>
+                                                     </div>
+                                                     <div class="row">
+                                                        <div class="col-md-5">
+                                                          <div class="form-group">
+                                                                 <label>Nationality</label>
+                                                                  <select class="browser-default"  id="select" [(ngModel)]="selectednationality"  
+                                                                  [formControl]="nationality" class="form-control">
+                                                               <option value="" disabled selected>Choose your nationality</option>
+                                                               <option *ngFor="let nationality of nationalities?.response" [value]="nationality._id">{{nationality?.nationality}}</option>     
+                                                               </select>
+                                                              </div>
+                                                         </div>
+                                                          <div class="col-md-1"></div>
+                                                          <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                  <label>Course/Program</label>
+                                                                      <select class="browser-default"  id="select" [(ngModel)]="selectedcourseProgram"  
+                                                                      [formControl]="courseProgram" class="form-control">
+                                                                   <option value="" disabled selected>Choose your courseProgram</option>
+                                                                   <option *ngFor="let courseprogram of courseprograms" [value]="courseprogram._id">{{courseprogram?.courseprogram}}</option>     
+                                                                   </select>
+                                                            </div>
+                                                          </div>
+                                                     </div>
+                                                     <div class="row">
+                                                        <div class="col-md-5">
+                                                          <div class="form-group">
+                                                             <label>Religion</label>
+                                                                  <select class="browser-default"  id="select" [(ngModel)]="selectedreligion"  
+                                                                  [formControl]="religion" class="form-control">
+                                                               <option value="" disabled selected>Choose your Religion</option>
+                                                               <option *ngFor="let religion of religions?.response" [value]="religion._id">{{religion?.religion}}</option>     
+                                                               </select>
+                                                              </div>
+                                                         </div>
+                                                          <div class="col-md-1"></div>
+                                                          <div class="col-md-5">
+                                                            <table id="tableExport"
+                                                            class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th>Course/Program</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr
+                                                                    *ngFor="let basicdetail of basicdetails?.response; let i=index">
+                                                                    <td>{{ i +1 }} </td>
+                                                                    <td>{{basicdetail?.CourseProgram[0].CourseProgram}}</td>
+                                                                    <div class="noprint">
+                                                                        <td>
+                                                                          <div class="btn btn-tbl-delete">
+                                                                                <i class="material-icons"
+                                                                                    (click)="deleteBasicDetails(basicdetail?._id)">delete_forever</i>
+                                                                            </div>
+                                                                        </td>
+                                                                    </div>
+                                                                </tr>
+                                                            </tbody>
+    
+                                                        </table>
+                                                          </div>
+                                                     </div>
+                                                     <div class="row">
+                                                        <div class="col-md-5">
+                                                          <div class="form-group">
+                                                                 <label>Community</label>
+                                                                  <select class="browser-default"  id="select" [(ngModel)]="selectedcommunity"  
+                                                                  [formControl]="community" class="form-control">
+                                                               <option value="" disabled selected>Choose your community</option>
+                                                               <option *ngFor="let community of communities?.response" [value]="community._id">{{community?.community}}</option>     
+                                                               </select>
+                                                              </div>
+                                                         </div>
+                                                          <div class="col-md-1"></div>
+                                                          <div class="col-md-5">
+                                                      <!--//-->
+                                                          </div>
+                                                     </div>
+                                                     <div class="row">
+                                                        <div class="col-md-5">
+                                                          <div class="form-group">
+                                                                <label>Caste</label>
+                                                                  <select class="browser-default"  id="select" [(ngModel)]="selectedcaste"  
+                                                                  [formControl]="caste" class="form-control">
+                                                               <option value="" disabled selected>Choose your caste</option>
+                                                               <option *ngFor="let caste of castes?.response" [value]="caste._id">{{caste?.caste}}</option>     
+                                                               </select>
+                                                              </div>
+                                                         </div>
+                                                          <div class="col-md-1"></div>
+                                                          <div class="col-md-5">
+                                                      <!--//-->
+                                                          </div>
+                                                     </div>
+                                                     <h5>Parent Details</h5>
+                                                     <div class="row">
+                                                            <div class="col-md-5">
+                                                                <div class="form-line input-field form-group">
+                                                                  <input type="text" class="form-control" name="fEmail" id="fEmail"
+                                                                  [formControl]="fEmail" required />
+                                                                 <label class="form-label">Father's Email</label>
+                                                        
+                                                             </div>
+                                                          </div>
+                                                            <div class="col-md-1"></div>
+                                                            <div class="col-md-5">
+                                                                <div class="form-line input-field form-group">
+                                                                    <input type="text" class="form-control" name="mName" id="mName"
+                                                                    [formControl]="mName" required />
+                                                                   <label class="form-label">Mother's Name</label>
+                                                          
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                         <div class="row">
+                                                                <div class="col-md-5">
+                                                                    <div class="form-line input-field form-group">
+                                                                      <input type="text" class="form-control" name="fOccupation" id="fOccupation"
+                                                                      [formControl]="fOccupation" required />
+                                                                     <label class="form-label">Father's Occupation</label>
+                                                            
+                                                                 </div>
+                                                              </div>
+                                                                <div class="col-md-1"></div>
+                                                                <div class="col-md-5">
+                                                                    <div class="form-line input-field form-group">
+                                                                        <input type="text" class="form-control" name="mEmail" id="mEmail"
+                                                                        [formControl]="mEmail" required />
+                                                                       <label class="form-label">Mother's Email</label>
+                                                              
+                                                                   </div>
+                                                                </div>
+                                                             </div>
+                                                             <div class="row">
+                                                                    <div class="col-md-5">
+                                                                        <div class="form-line input-field form-group">
+                                                                          <input type="text" class="form-control" name="fAnnualIncome" id="fAnnualIncome"
+                                                                          [formControl]="fAnnualIncome" required />
+                                                                         <label class="form-label">Father's Annual Income</label>
+                                                                
+                                                                     </div>
+                                                                  </div>
+                                                                    <div class="col-md-1"></div>
+                                                                    <div class="col-md-5">
+                                                                        <div class="form-line input-field form-group">
+                                                                            <input type="text" class="form-control" name="mOccupation" id="mOccupation"
+                                                                            [formControl]="mOccupation" required />
+                                                                           <label class="form-label">Mother's Occupation</label>
+                                                                  
+                                                                       </div>
+                                                                    </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                    <div class="col-md-5">
+                                                                        <div class="form-line input-field form-group">
+                                                                          <input type="text" class="form-control" name="pPanNumber" id="pPanNumber"
+                                                                          [formControl]="pPanNumber" required />
+                                                                         <label class="form-label">Parent PAN Number</label>
+                                                                
+                                                                     </div>
+                                                                  </div>
+                                                                    <div class="col-md-1"></div>
+                                                                    <div class="col-md-5">
+                                                                        <div class="form-line input-field form-group">
+                                                                            <input type="text" class="form-control" name="mMobileNo" id="mMobileNo"
+                                                                            [formControl]="mMobileNo" required />
+                                                                           <label class="form-label">Mother's Mobile Number</label>
+                                                                  
+                                                                       </div>
+                                                                    </div>
+                                                           
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-md-5">
+                                                                        <div class="form-line input-field form-group">
+                                                                          <input type="text" class="form-control" name="pAadharNumber" id="pAadharNumber"
+                                                                          [formControl]="pAadharNumber" required />
+                                                                         <label class="form-label">Parent Aadhar Number</label>
+                                                                
+                                                                     </div>
+                                                                  </div>
+                                                                <div class="col-md-1"></div>
+                                                                <div class="col-md-5">
+                                                                    <div class="form-line input-field form-group">
+                                                                        <input type="text" class="form-control" name="mAnnualIncome" id="mAnnualIncome"
+                                                                        [formControl]="mAnnualIncome" required />
+                                                                       <label class="form-label">Mother's Annual Income</label>
+                                                              
+                                                                   </div>
+                                                                </div>
+                                                        </div>
+                                                            <div class="row">
+                                                                    <div class="col-md-5">
+                                                                        <div class="form-line input-field form-group">
+                                                                          <input type="text" class="form-control" name="motherTongue" id="motherTongue"
+                                                                          [formControl]="motherTongue" required />
+                                                                         <label class="form-label">Mother Tongue</label>
+                                                                
+                                                                     </div>
+                                                                  </div>
+                                                                    <div class="col-md-1"></div>
+                                                                    <div class="col-md-5">
+                                                                            <div class="form-line input-field form-group">
+                                                                              <input type="text" class="form-control" name="relativeName" id="relativeName"
+                                                                              [formControl]="relativeName" required />
+                                                                             <label class="form-label">Name of the Relative stdying in this Institution </label>
+                                                                    
+                                                                         </div>
+                                                                      </div>
+                                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="text-right">
+                                            <button type="submit" class="btn btn-info" (click)="addbasicdetails()">Save</button>
+                                            <span> {{message}}</span>
+                                        <button class="btn btn-warning" awNextStep>Continue</button>
+                                    </div>
+                                </div>
+                            </aw-wizard-step>
+                            <aw-wizard-step [stepTitle]="'General Information'">
+                                    <ng-template awWizardStepSymbol><i class="fa fa-home"></i></ng-template>
+                                    <div class="centered-content">
+                                        <div>
+                                                <form [formGroup]="addressformgroup" >
+                                                        <h5>Address Details</h5>
+                                                         <div class="row">
+                                                                 <div class="col-md-5">
+                                                                     <div class="form-group">
+                                                                            <label>Address Type</label>
+                                                                            <select class="browser-default"  id="select" [(ngModel)]="selectedaddresstype" 
+                                                                            formControlName="addresstype" value = " " class="form-control" placeholder="Enter addresstype "
+                                                                                [ngClass]="{ 'is-invalid': submitted && f.addresstype.errors }" >
+                                                                                <div *ngIf="submitted && f.addresstype.errors" class="invalid-feedback">
+                                                                                    <div *ngIf="f.addresstype.errors.required">AddressType is required</div>
+                                                                                </div>
+                                                                         <option value="" disabled selected>Choose your AddressType</option>
+                                                                             <option *ngFor="let addressType of addressTypes?.response" [value]="addressType._id">{{addressType?.addressType}}</option>     
+                                                                         </select>  
+                                                             
+                                                                  </div>
+                                                               </div>
+                                                                 <div class="col-md-1"></div>
+                                                                 <div class="col-md-5">
+                                                                     <div class="form-line input-field">
+                                                                         <input type="text" class="form-control" name="flatNo" id="flatNo"
+                                                                         formControlName="flatNo">
+                                                                        <label class="form-label">Flat/Door/BlockNo.</label>
+                                                               
+                                                                    </div>
+                                                                 </div>
+                                                              </div>
+                                                              <div class="row">
+                                                                     <div class="col-md-5">
+                                                                         <div class="form-line input-field">
+                                                                           <input type="text" class="form-control" name="streetLane" id="streetLane"
+                                                                           formControlName="streetLane">
+                                                                          <label class="form-label">Street/Lane</label>
+                                                                 
+                                                                      </div>
+                                                                   </div>
+                                                                     <div class="col-md-1"></div>
+                                                                     <div class="col-md-5">
+                                                                         <div class="form-line input-field">
+                                                                             <input type="text" class="form-control" name="area" id="area"
+                                                                             formControlName="area">
+                                                                            <label class="form-label">Area/Locality</label>
+                                                                   
+                                                                        </div>
+                                                                     </div>
+                                                                  </div>
+                                                                  <div class="row">
+                                                                         <div class="col-md-5">
+                                                                             <div class="form-line input-field">
+                                                                               <input type="text" class="form-control" name="city" id="city"
+                                                                               formControlName="city">
+                                                                              <label class="form-label">City</label>
+                                                                     
+                                                                          </div>
+                                                                       </div>
+                                                                         <div class="col-md-1"></div>
+                                                                         <div class="col-md-5">
+                                                                             <div class="form-line input-field">
+                                                                                 <input type="text" class="form-control" name="district" id="district"
+                                                                                 formControlName="district">
+                                                                                <label class="form-label">District</label>
+                                                                       
+                                                                            </div>
+                                                                         </div>
+                                                                 </div>
+                                                                 <div class="row">
+                                                                         <div class="col-md-5">
+                                                                             <div class="form-line input-field">
+                                                                               <input type="text" class="form-control" name="pincode" id="pincode"
+                                                                               formControlName="pincode">
+                                                                              <label class="form-label">Pincode</label>
+                                                                     
+                                                                          </div>
+                                                                       </div>
+                                                                         <div class="col-md-1"></div>
+                                                                         <div class="col-md-5">
+                                                                             <div class="form-line input-field">
+                                                                                 <input type="text" class="form-control" name="state" id="state"
+                                                                                 formControlName="state">
+                                                                                <label class="form-label">State</label>
+                                                                       
+                                                                            </div>
+                                                                         </div>
+                                                                 </div>
+                                                                 <div class="row">
+                                                                         <div class="col-md-5">
+                                                                             <div class="form-line input-field">
+                                                                               <input type="text" class="form-control" name="country" id="country"
+                                                                               formControlName="country">
+                                                                              <label class="form-label">Country</label>
+                                                                     
+                                                                          </div>
+                                                                       </div>
+                                                                         <div class="col-md-1"></div>
+                                                                         <div class="col-md-5">
+                                                                                 <button style="float: right;" type="submit"  class="btn btn-warning">Clear</button >
+                                                                                     <button style="margin-right:2%; float: right;" type="button"  class="btn btn-info waves-effect" (click)="addaddressdetails()">Add</button>
+                                                                         </div>
+                                                                 </div>
+                                                             </form>
+                                                                 <div class="row">
+                                                                         <div class="col-md-12">
+                                                                                 <table id="tableExport"
+                                                                                 class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                                                                 <thead>
+                                                                                     <tr>
+                                                                                         <th>#</th>
+                                                                                         <th>Address Type</th>
+                                                                                         <th>Address</th>
+                                                                                         <th>Action</th>
+                                                                                     </tr>
+                                                                                 </thead>
+                                                                                 <tbody>
+                                                                                     <tr
+                                                                                         *ngFor="let addressdetail of addressdetails; let i=index">
+                                                                                         <td>{{ i +1 }} </td>
+                                                                                         <td>{{addressdetail.AddressTypeDetails[0].addressType}}</td>
+                                                                                         <td>{{addressdetail?.flatNo}},
+                                                                                                {{addressdetail?.streetLane}},
+                                                                                                {{addressdetail?.area}},
+                                                                                                {{addressdetail?.city}},
+                                                                                                {{addressdetail?.district}},
+                                                                                                {{addressdetail?.pincode}},
+                                                                                                {{addressdetail?.state}},
+                                                                                                {{addressdetail?.country}}
+                                                                                         </td>
+                                                                                         <div class="noprint">
+                                                                                             <td>
+                                                                                                 <div class="btn btn-tbl-edit" data-toggle="modal"
+                                                                                                     data-target="#editModaladdress">
+                                                                                                     <i class="material-icons" (click)="onEditAddress(addressdetail)">create</i>
+                                                                                                 </div>
+                                                                                                 <div class="btn btn-tbl-delete">
+                                                                                                     <i class="material-icons"
+                                                                                                         (click)="deleteAddressDetails(addressdetail?._id)">delete_forever</i>
+                                                                                                 </div>
+                                                                                             </td>
+                                                                                         </div>
+                                                                                     </tr>
+                                                                                 </tbody>
+                         
+                                                                             </table>
+                                                                       </div>
+                                                                 </div>
+                                        </div>
+    
+                                        <div class="text-right">
+                                            <button class="btn-hover btn-border-radius color-10"
+                                                awPreviousStep>Back</button>
+                                            <button class="btn-hover btn-border-radius color-8" awNextStep>Next</button>
+                                        </div>
+    
+                                    </div>
+                                </aw-wizard-step> 
+                                <aw-wizard-step [stepTitle]="'Qualification Details'">
+                                    <ng-template awWizardStepSymbol><i class="fa fa-book-open"></i></ng-template>
+                                    <div class="centered-content">
+                                        <div>
+                                                <div class="col-md-6">
+                                                        <div class="form-group ">
+                                                               <label>Qualification Type</label>
+                                                               <select class="browser-default"  id="select" [(ngModel)]="selectedqualificationtype" 
+                                                               [formControl]="qualificationtype" class="form-control"  (change)="onQualificationType($event.target.value)">
+                                                                 
+                                                            <option value="" disabled selected>Choose your Address Type</option>
+                                                                <option *ngFor="let qualificationType of qualificationTypes?.response" [value]="qualificationType._id">{{qualificationType?.qualificationType}}</option>     
+                                                            </select> 
+                                                    </div>
+                                                  </div>
+                                                  <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+                                                      
+                                                        <div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
+                                                            <div class="panel panel-primary">
+                                                                <div class="panel-heading" role="tab" id="headingOne_1">
+                                                                    <h4 class="panel-title">
+                                                                        <a role="button" data-toggle="collapse" data-parent="#accordion_1"
+                                                                            href="#collapseOne_1" aria-expanded="true"
+                                                                            aria-controls="collapseOne_1">
+                                                                           SSLC Equivalent
+                                                                        </a>
+                                                                    </h4>
+                                                                </div>
+                                                                <div id="collapseOne_1" class="panel-collapse collapse in show" role="tabpanel"
+                                                                    aria-labelledby="headingOne_1">
+                                                                    <div class="panel-body">
+                                                                            <form [formGroup]="sslcformgroup" >
+                                                                                     <div class="row">
+                                                                                             <div class="col-md-3">
+                                                                                                <div class="form-group">
+                                                                                                    <label>Course Type</label>
+                                                                                                    <select id="select" [(ngModel)]="selectedsslccourseType"  
+                                                                                                    formControlName="sslccourseType" class="form-control browser-default" >
+                                                                                                 <option value="" disabled selected>Choose your CourseType</option>
+                                                                                                 <option *ngFor="let courseType of coursetypes" [value]="courseType._id">{{courseType?.courseType}}</option>     
+                                                                                                 </select>
+                                                                                                </div>
+                                                                                               </div>
+                                                                                             <div class="col-md-3">
+                                                                                                <div class="form-group">
+                                                                                                   <label>Institution Type</label>
+                                                                                                   <select id="select" [(ngModel)]="selectedsslcinstitutionType"  
+                                                                                                   formControlName="sslcinstitutionType" class="form-control browser-default">
+                                                                                                <option value="" disabled selected>Choose your institutionType</option>
+                                                                                                <option *ngFor="let institutionType of institutionTypes?.response" [value]="institutionType._id">{{institutionType?.institutionType}}</option>     
+                                                                                                </select>
+                                                                                               </div>
+                                                                                             </div>
+                                                                                             <div class="col-md-3">
+                                                                                                <div class="form-line input-field">
+                                                                                                    <input type="text" class="form-control" name="sslcschoolCollege" id="sslcschoolCollege"
+                                                                                                    formControlName="sslcschoolCollege">
+                                                                                                   <label class="form-label">School/College</label>
+                                                                                               </div> 
+                                                                                             </div>
+                                                                                             <div class="col-md-3">
+                                                                                                    <div class="form-group">
+                                                                                                           <label> Medium</label>
+                                                                                                           <select class="browser-default"  id="select" [(ngModel)]="selectedsslcmedium"  
+                                                                                                           formControlName="sslcmedium" class="form-control">
+                                                                                                        <option value="" disabled selected>Choose your medium</option>
+                                                                                                        <option *ngFor="let medium of media?.response" [value]="medium._id">{{medium?.medium}}</option>     
+                                                                                                        </select>
+                                                                                                       </div> 
+                                                                                                 </div>
+                                                                                          </div>
+                                                                                          <div class="row">
+                                                                                                 <div class="col-md-3">
+                                                                                                        <div class="form-line input-field">
+                                                                                                                <input type="text" class="form-control" name="sslccity" id="sslccity"
+                                                                                                                formControlName="sslccity">
+                                                                                                               <label class="form-label">City</label>
+                                                                                                      
+                                                                                                           </div>   
+                                                                                               </div>
+                                                                                                 <div class="col-md-3">
+                                                                                                        <div class="form-line input-field">
+                                                                                                                <input type="text" class="form-control" name="sslctaluk" id="sslctaluk"
+                                                                                                                formControlName="sslctaluk">
+                                                                                                               <label class="form-label">Taluk</label>
+                                                                                                           </div>   
+                                                                                                 </div>
+                                                                                                 <div class="col-md-3">
+                                                                                                        <div class="form-line input-field">
+                                                                                                                <input type="text" class="form-control" name="sslcdistrict" id="sslcdistrict"
+                                                                                                                formControlName="sslcdistrict">
+                                                                                                               <label class="form-label">District</label>
+                                                                                                           </div> 
+                                                                                                 </div>
+                                                                                                 <div class="col-md-3">
+                                                                                                        <div class="form-line input-field">
+                                                                                                                <input type="text" class="form-control" name="sslcstate" id="sslcstate"
+                                                                                                                formControlName="sslcstate">
+                                                                                                               <label class="form-label">State</label>
+                                                                                                      
+                                                                                                           </div>  
+                                                                                               </div>
+                                                                                              </div>
+                                                                                              <div class="row">
+                                                                                                     <div class="col-md-4">
+                                                                                                            <div class="form-line input-field">
+                                                                                                                    <input type="text" class="form-control" name="sslccountry" id="sslccountry"
+                                                                                                                    formControlName="sslccountry">
+                                                                                                                   <label class="form-label">Country</label>
+                                                                                                          
+                                                                                                               </div> 
+                                                                                                     </div>
+                                                                                                     <div class="col-md-4">
+                                                                                                            <div class="form-line input-field">
+                                                                                                                    <input type="text" class="form-control" name="sslcyearOfPassing" id="sslcyearOfPassing"
+                                                                                                                    formControlName="sslcyearOfPassing">
+                                                                                                                   <label class="form-label">Year Of Passing</label>
+        
+                                                                                                               </div>      
+                                                                                                     </div>
+                                                                                                     <div class="col-md-4">
+                                                                                                            <div class="form-line input-field">
+                                                                                                                <input type="text" class="form-control" name="sslcorganisationType" id="sslcorganisationType"
+                                                                                                                formControlName="sslcorganisationType">
+                                                                                                               <label class="form-label">Organisation Type</label>
+                                                                                                      
+                                                                                                           </div>
+                                                                                                         </div>
+                                                                                             </div>
+                                                                                             
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-3">
+                                                                                                <div class="form-line input-field">
+                                                                                                    <input type="text" class="form-control" name="sslcmarkObtained" id="sslcmarkObtained"
+                                                                                                    formControlName="sslcmarkObtained">
+                                                                                                   <label class="form-label">MarksObtained</label>
+                                                                                          
+                                                                                               </div>
+                                                                                          </div>
+                                                                                            <div class="col-md-2">
+                                                                                                <div class="form-group">
+                                                                                                   <label> Max.Marks</label>
+                                                                                                   <select class="browser-default"  id="select" [(ngModel)]="selectedsslcmaxMark"  
+                                                                                                   formControlName="sslcmaxMark" class="form-control">
+                                                                                                <option value="" disabled selected>Choose your Max.Mark</option>
+                                                                                                <option *ngFor="let courseType of coursetypes" [value]="courseType._id">{{courseType?.maxMark}}</option>     
+                                                                                                </select>
+                                                                                               </div>
+                                                                                            </div>
+                                                                                            <div class="col-md-4">
+                                                                                                <div class="form-line input-field">
+                                                                                                    <input type="text" class="form-control" name="sslcpercentage" id="sslcpercentage"
+                                                                                                    formControlName="sslcpercentage">
+                                                                                                   <label class="form-label">Percentage</label>
+                                                                                          
+                                                                                               </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                             <div class="row">
+                                                                                                     <div class="col-md-9">
+                                                                                                        
+                                                                                                     </div>
+                                                                                                     <div class="col-md-3">
+                                                                                                             <button style="float: right;" type="submit"  class="btn btn-warning">Clear</button >
+                                                                                                                 <button style="margin-right:2%; float: right;" type="button"  class="btn btn-info waves-effect" (click)="addsslcdetails()">Add</button>
+                                                                                                     </div>
+                                                                                             </div>
+                                                                                         </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="panel panel-primary">
+                                                                <div class="panel-heading" role="tab" id="headingTwo_1">
+                                                                    <h4 class="panel-title">
+                                                                        <a class="collapsed" role="button" data-toggle="collapse"
+                                                                            data-parent="#accordion_1" href="#collapseTwo_1"
+                                                                            aria-expanded="false" aria-controls="collapseTwo_1">
+                                                                            HSC Equivalent
+                                                                        </a>
+                                                                    </h4>
+                                                                </div>
+                                                                <div id="collapseTwo_1" class="panel-collapse collapse" role="tabpanel"
+                                                                    aria-labelledby="headingTwo_1">
+                                                                    <div class="panel-body">
+                                                                        <form [formGroup]="hscformgroup" >
+                                                                            <div class="row">
+                                                                                    <div class="col-md-3">
+                                                                                        <div class="form-group">
+                                                                                            <label>Course Type</label>
+                                                                                            <select class="browser-default"  id="select" [(ngModel)]="selectedhsccourseType"  
+                                                                                            formControlName="hsccourseType" class="form-control">
+                                                                                         <option value="" disabled selected>Choose your CourseType</option>
+                                                                                         <option *ngFor="let courseType of coursetypes" [value]="courseType._id">{{courseType?.courseType}}</option>     
+                                                                                         </select>
+                                                                                        </div>
+                                                                                       </div>
+                                                                                     <div class="col-md-3">
+                                                                                        <div class="form-group">
+                                                                                           <label>Institution Type</label>
+                                                                                           <select class="browser-default"  id="select" [(ngModel)]="selectedhscinstitutionType"  
+                                                                                           formControlName="hscinstitutionType" class="form-control">
+                                                                                        <option value="" disabled selected>Choose your institutionType</option>
+                                                                                        <option *ngFor="let institutionType of institutionTypes?.response" [value]="institutionType._id">{{institutionType?.institutionType}}</option>     
+                                                                                        </select>
+                                                                                       </div>
+                                                                                     </div>
+                                                                                    <div class="col-md-3">
+                                                                                       <div class="form-line input-field">
+                                                                                           <input type="text" class="form-control" name="hscschoolCollege" id="hscschoolCollege"
+                                                                                           formControlName="hscschoolCollege">
+                                                                                          <label class="form-label">School/College</label>
+                                                                                      </div> 
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                           <div class="form-group">
+                                                                                            <label> Medium</label>
+                                                                                            <select class="browser-default"  id="select" [(ngModel)]="selectedhscmedium"  
+                                                                                            formControlName="hscmedium" class="form-control">
+                                                                                         <option value="" disabled selected>Choose your medium</option>
+                                                                                         <option *ngFor="let medium of media?.response" [value]="medium._id">{{medium?.medium}}</option>     
+                                                                                         </select>
+                                                                                        </div> 
+                                                                                         </div>
+                                                                                 </div>
+                                                                                 <div class="row">
+                                                                                        <div class="col-md-3">
+                                                                                                <div class="form-line input-field">
+                                                                                                        <input type="text" class="form-control" name="hsccity" id="hsccity"
+                                                                                                        formControlName="hsccity">
+                                                                                                       <label class="form-label">City</label>
+                                                                                                   </div> 
+                                                                                      </div>
+                                                                                       
+                                                                                        <div class="col-md-3">
+                                                                                                <div class="form-line input-field">
+                                                                                                        <input type="text" class="form-control" name="hsctaluk" id="hsctaluk"
+                                                                                                        formControlName="hsctaluk">
+                                                                                                       <label class="form-label">Taluk</label>
+                                                                                              
+                                                                                                </div> 
+                                                                                        </div>
+                                                                                        <div class="col-md-3">
+                                                                                                <div class="form-line input-field">
+                                                                                                    <input type="text" class="form-control" name="hscdistrict" id="hscdistrict"
+                                                                                                    formControlName="hscdistrict">
+                                                                                                   <label class="form-label">District</label>
+                                                                                          
+                                                                                               </div>  
+                                                                                             </div>
+                                                                                             <div class="col-md-3">
+                                                                                                <div class="form-line input-field">
+                                                                                                    <input type="text" class="form-control" name="hscstate" id="hscstate"
+                                                                                                    formControlName="hscstate">
+                                                                                                   <label class="form-label">State</label>
+                                                                                          
+                                                                                               </div>    
+                                                                                             </div>
+                                                                                     </div>
+                                                                                    <div class="row">
+                                                                                            <div class="col-md-4">
+                                                                                               <div class="form-line input-field">
+                                                                                                   <input type="text" class="form-control" name="hsccountry" id="hsccountry"
+                                                                                                   formControlName="hsccountry">
+                                                                                                  <label class="form-label">Country</label>
+                                                                                         
+                                                                                              </div>   
+                                                                                          </div>
+                                                                                            <div class="col-md-4">
+                                                                                               <div class="form-line input-field">
+                                                                                                   <input type="text" class="form-control" name="hscyearOfPassing" id="hscyearOfPassing"
+                                                                                                   formControlName="hscyearOfPassing">
+                                                                                                  <label class="form-label">Year Of Passing</label>
+                                                                                         
+                                                                                              </div>
+                                                                                            </div>
+                                                                                            <div class="col-md-4">
+                                                                                               <div class="form-line input-field">
+                                                                                                   <input type="text" class="form-control" name="hscorganisationType" id="hscorganisationType"
+                                                                                                   formControlName="hscorganisationType">
+                                                                                                  <label class="form-label">Organisation Type</label>
+                                                                                         
+                                                                                              </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                               <div class="row">
+                                                                                   <div class="col-md-3">
+                                                                                       <div class="form-line input-field">
+                                                                                           <input type="text" class="form-control" name="hscmarkObtained" id="hscmarkObtained"
+                                                                                           formControlName="hscmarkObtained">
+                                                                                          <label class="form-label">MarksObtained</label>
+                                                                                 
+                                                                                      </div>
+                                                                                 </div>
+                                                                                   <div class="col-md-2">
+                                                                                       <div class="form-line input-field">
+                                                                                           <input type="text" class="form-control" name="hscmaxMark" id="hscmaxMark"
+                                                                                           formControlName="hscmaxMark">
+                                                                                          <label class="form-label">Max.Marks</label>
+                                                                                 
+                                                                                      </div>
+                                                                                   </div>
+                                                                                   <div class="col-md-4">
+                                                                                       <div class="form-line input-field">
+                                                                                           <input type="text" class="form-control" name="hscpercentage" id="hscpercentage"
+                                                                                           formControlName="hscpercentage">
+                                                                                          <label class="form-label">Percentage</label>
+                                                                                 
+                                                                                      </div>
+                                                                                   </div>
+                                                                           </div>
+                                                                                    <div class="row">
+                                                                                            <div class="col-md-9">
+                                                                                            </div>
+                                                                                            <div class="col-md-3">
+                                                                                                    <button style="float: right;" type="submit"  class="btn btn-warning">Clear</button >
+                                                                                                        <button style="margin-right:2%; float: right;" type="button"  class="btn btn-info waves-effect" (click)="addhscdetails()">Add</button>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="panel panel-primary">
+                                                                <div class="panel-heading" role="tab" id="headingThree_1">
+                                                                    <h4 class="panel-title">
+                                                                        <a class="collapsed" role="button" data-toggle="collapse"
+                                                                            data-parent="#accordion_1" href="#collapseThree_1"
+                                                                            aria-expanded="false" aria-controls="collapseThree_1">
+                                                                            Diploma Equivalent
+                                                                        </a>
+                                                                    </h4>
+                                                                </div>
+                                                                <div id="collapseThree_1" class="panel-collapse collapse" role="tabpanel"
+                                                                    aria-labelledby="headingThree_1">
+                                                                    <div class="panel-body">
+                                                                        <form [formGroup]="diplomaformgroup" >
+                                                                            <div class="row">
+                                                                                    <div class="col-md-3">
+                                                                                        <div class="form-group">
+                                                                                            <label>Course Type</label>
+                                                                                            <select class="browser-default"  id="select" [(ngModel)]="selecteddiplomacourseType"  
+                                                                                            formControlName="diplomacourseType" class="form-control">
+                                                                                         <option value="" disabled selected>Choose your CourseType</option>
+                                                                                         <option *ngFor="let courseType of coursetypes" [value]="courseType._id">{{courseType?.courseType}}</option>     
+                                                                                         </select>
+                                                                                        </div>
+                                                                                       </div>
+                                                                                     <div class="col-md-3">
+                                                                                        <div class="form-group">
+                                                                                           <label>Institution Type</label>
+                                                                                           <select class="browser-default"  id="select" [(ngModel)]="selecteddiplomainstitutionType"  
+                                                                                           formControlName="diplomainstitutionType" class="form-control">
+                                                                                        <option value="" disabled selected>Choose your institutionType</option>
+                                                                                        <option *ngFor="let institutionType of institutionTypes?.response" [value]="institutionType._id">{{institutionType?.institutionType}}</option>     
+                                                                                        </select>
+                                                                                       </div>
+                                                                                     </div>
+                                                                                    <div class="col-md-3">
+                                                                                       <div class="form-line input-field">
+                                                                                           <input type="text" class="form-control" name="diplomaschoolCollege" id="diplomaschoolCollege"
+                                                                                           formControlName="diplomaschoolCollege">
+                                                                                          <label class="form-label">School/College</label>
+                                                                                      </div> 
+                                                                                    </div>
+                                                                                     <div class="col-md-3">
+                                                                                          <div class="form-group">
+                                                                                            <label> Medium</label>
+                                                                                            <select class="browser-default"  id="select" [(ngModel)]="selecteddiplomamedium"  
+                                                                                            formControlName="diplomamedium" class="form-control">
+                                                                                         <option value="" disabled selected>Choose your medium</option>
+                                                                                         <option *ngFor="let medium of media?.response" [value]="medium._id">{{medium?.medium}}</option>     
+                                                                                         </select>
+                                                                                        </div> 
+                                                                                        </div>
+                                                                                 </div>
+                                                                                 <div class="row">   
+                                                                                        <div class="col-md-3">
+                                                                                           <div class="form-line input-field">
+                                                                                               <input type="text" class="form-control" name="diplomacity" id="diplomacity"
+                                                                                               formControlName="diplomacity">
+                                                                                              <label class="form-label">City</label>                                                                                          </div>  
+                                                                                        </div>
+                                                                                        <div class="col-md-3">
+                                                                                                <div class="form-line input-field">
+                                                                                                    <input type="text" class="form-control" name="diplomataluk" id="diplomataluk"
+                                                                                                    formControlName="diplomataluk">
+                                                                                                   <label class="form-label">Taluk</label>
+                                                                                          
+                                                                                               </div> 
+                                                                                           </div>
+                                                                                             <div class="col-md-3">
+                                                                                                <div class="form-line input-field">
+                                                                                                    <input type="text" class="form-control" name="diplomadistrict" id="diplomadistrict"
+                                                                                                    formControlName="diplomadistrict">
+                                                                                                   <label class="form-label">District</label>
+                                                                                          
+                                                                                               </div>  
+                                                                                             </div>
+                                                                                             <div class="col-md-3">
+                                                                                                    <div class="form-line input-field">
+                                                                                                        <input type="text" class="form-control" name="diplomastate" id="diplomastate"
+                                                                                                        formControlName="diplomastate">
+                                                                                                       <label class="form-label">State</label>
+                                                                                              
+                                                                                                   </div>    
+                                                                                                 </div>
+                                                                                     </div>
+                                                                                    <div class="row">
+                                                                                            <div class="col-md-4">
+                                                                                               <div class="form-line input-field">
+                                                                                                   <input type="text" class="form-control" name="diplomacountry" id="diplomacountry"
+                                                                                                   formControlName="diplomacountry">
+                                                                                                  <label class="form-label">Country</label>
+                                                                                         
+                                                                                              </div>   
+                                                                                          </div>
+                                                                                            <div class="col-md-4">
+                                                                                               <div class="form-line input-field">
+                                                                                                   <input type="text" class="form-control" name="diplomayearOfPassing" id="diplomayearOfPassing"
+                                                                                                   formControlName="diplomayearOfPassing">
+                                                                                                  <label class="form-label">Year Of Passing</label>
+                                                                                         
+                                                                                              </div>
+                                                                                            </div>
+                                                                                            <div class="col-md-4">
+                                                                                               <div class="form-line input-field">
+                                                                                                   <input type="text" class="form-control" name="diplomaorganisationType" id="diplomaorganisationType"
+                                                                                                   formControlName="diplomaorganisationType">
+                                                                                                  <label class="form-label">Organisation Type</label>
+                                                                                         
+                                                                                              </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                               <div class="row">
+                                                                                   <div class="col-md-3">
+                                                                                       <div class="form-line input-field">
+                                                                                           <input type="text" class="form-control" name="diplomamarkObtained" id="diplomamarkObtained"
+                                                                                           formControlName="diplomamarkObtained">
+                                                                                          <label class="form-label">MarksObtained</label>
+                                                                                 
+                                                                                      </div>
+                                                                                 </div>
+                                                                                   <div class="col-md-2">
+                                                                                       <div class="form-line input-field">
+                                                                                           <input type="text" class="form-control" name="diplomamaxMark" id="diplomamaxMark"
+                                                                                           formControlName="diplomamaxMark">
+                                                                                          <label class="form-label">Max.Marks</label>
+                                                                                 
+                                                                                      </div>
+                                                                                   </div>
+                                                                                   <div class="col-md-4">
+                                                                                       <div class="form-line input-field">
+                                                                                           <input type="text" class="form-control" name="diplomapercentage" id="diplomapercentage"
+                                                                                           formControlName="diplomapercentage">
+                                                                                          <label class="form-label">Percentage</label>
+                                                                                 
+                                                                                      </div>
+                                                                                   </div>
+                                                                           </div>
+                                                                                    <div class="row">
+                                                                                            <div class="col-md-9"></div>
+                                                                                            <div class="col-md-3">
+                                                                                                    <button style="float: right;" type="submit"  class="btn btn-warning">Clear</button >
+                                                                                                        <button style="margin-right:2%; float: right;" type="button"  class="btn btn-info waves-effect" (click)="adddiplomadetails()">Add</button>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="panel panel-primary">
+                                                                <div class="panel-heading" role="tab" id="headingFour_1">
+                                                                    <h4 class="panel-title">
+                                                                        <a class="collapsed" role="button" data-toggle="collapse"
+                                                                            data-parent="#accordion_1" href="#collapseFour_1"
+                                                                            aria-expanded="false" aria-controls="collapseFour_1">
+                                                                            Degree Equivalent
+                                                                        </a>
+                                                                    </h4>
+                                                                </div>
+                                                                <div id="collapseFour_1" class="panel-collapse collapse" role="tabpanel"
+                                                                    aria-labelledby="headingFour_1">
+                                                                    <div class="panel-body">
+                                                                        <form [formGroup]="degreeformgroup" >
+                                                                            <div class="row">
+                                                                                    <div class="col-md-3">
+                                                                                        <div class="form-group">
+                                                                                            <label>Course Type</label>
+                                                                                            <select class="browser-default"  id="select" [(ngModel)]="selecteddegreecourseType"  
+                                                                                            formControlName="degreecourseType" class="form-control">
+                                                                                         <option value="" disabled selected>Choose your CourseType</option>
+                                                                                         <option *ngFor="let courseType of coursetypes" [value]="courseType._id">{{courseType?.courseType}}</option>     
+                                                                                         </select>
+                                                                                        </div>
+                                                                                       </div>
+                                                                                     <div class="col-md-3">
+                                                                                        <div class="form-group">
+                                                                                           <label>Institution Type</label>
+                                                                                           <select class="browser-default"  id="select" [(ngModel)]="selecteddegreeinstitutionType"  
+                                                                                           formControlName="degreeinstitutionType" class="form-control">
+                                                                                        <option value="" disabled selected>Choose your institutionType</option>
+                                                                                        <option *ngFor="let institutionType of institutionTypes?.response" [value]="institutionType._id">{{institutionType?.institutionType}}</option>     
+                                                                                        </select>
+                                                                                       </div>
+                                                                                     </div>
+                                                                                    <div class="col-md-3">
+                                                                                       <div class="form-line input-field">
+                                                                                           <input type="text" class="form-control" name="degreeschoolCollege" id="degreeschoolCollege"
+                                                                                           formControlName="degreeschoolCollege">
+                                                                                          <label class="form-label">School/College</label>
+                                                                                      </div> 
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                       <div class="form-group">
+                                                                                        <label> Medium</label>
+                                                                                        <select class="browser-default"  id="select" [(ngModel)]="selecteddegreemedium"  
+                                                                                        formControlName="degreemedium" class="form-control">
+                                                                                     <option value="" disabled selected>Choose your medium</option>
+                                                                                     <option *ngFor="let medium of media?.response" [value]="medium._id">{{medium?.medium}}</option>     
+                                                                                     </select>
+                                                                                    </div> 
+                                                                                     </div>
+                                                                                 </div>
+                                                                                 <div class="row">
+                                                                                        <div class="col-md-3">
+                                                                                            <div class="form-line input-field">
+                                                                                                <input type="text" class="form-control" name="degreetaluk" id="degreetaluk"
+                                                                                                formControlName="degreetaluk">
+                                                                                               <label class="form-label">Taluk</label>
+                                                                                      
+                                                                                           </div> 
+                                                                                      </div>
+                                                                                        <div class="col-md-3">
+                                                                                            <div class="form-line input-field">
+                                                                                                <input type="text" class="form-control" name="degreecity" id="degreecity"
+                                                                                                formControlName="degreecity">
+                                                                                               <label class="form-label">City</label>
+                                                                                      
+                                                                                           </div>  
+                                                                                        </div>
+                                                                                        <div class="col-md-3">
+                                                                                            <div class="form-line input-field">
+                                                                                                <input type="text" class="form-control" name="degreedistrict" id="degreedistrict"
+                                                                                                formControlName="degreedistrict">
+                                                                                               <label class="form-label">District</label>
+                                                                                      
+                                                                                           </div>      
+                                                                                        </div>
+                                                                                        <div class="col-md-3">
+                                                                                            <div class="form-line input-field">
+                                                                                                <input type="text" class="form-control" name="degreestate" id="degreestate"
+                                                                                                formControlName="degreestate">
+                                                                                               <label class="form-label">State</label>
+                                                                                           </div>      
+                                                                                        </div>
+                                                                                     </div>
+                                                                                     <div class="row">
+                                                                                            <div class="col-md-4">
+                                                                                                <div class="form-line input-field">
+                                                                                                    <input type="text" class="form-control" name="degreecountry" id="degreecountry"
+                                                                                                    formControlName="degreecountry">
+                                                                                                   <label class="form-label">Country</label>
+                                                                                               </div>       
+                                                                                          </div>
+                                                                                          <div class="col-md-4">
+                                                                                            <div class="form-line input-field">
+                                                                                                <input type="text" class="form-control" name="degreeyearOfPassing" id="degreeyearOfPassing"
+                                                                                                formControlName="degreeyearOfPassing">
+                                                                                               <label class="form-label">Year Of Passing</label>
+                                                                                           </div>     
+                                                                                        </div>
+                                                                                        <div class="col-md-4">
+                                                                                            <div class="form-line input-field">
+                                                                                                <input type="text" class="form-control" name="degreeorganisationType" id="degreeorganisationType"
+                                                                                                formControlName="degreeorganisationType">
+                                                                                               <label class="form-label">Organisation Type</label>
+                                                                                           </div>       
+                                                                                        </div>
+                                                                                           
+                                                                                    </div>
+                                                                               <div class="row">
+                                                                                   <div class="col-md-2">
+                                                                                       <div class="form-line input-field">
+                                                                                           <input type="text" class="form-control" name="degreemarkObtained" id="degreemarkObtained"
+                                                                                           formControlName="degreemarkObtained">
+                                                                                          <label class="form-label">MarksObtained</label>
+                                                                                 
+                                                                                      </div>
+                                                                                 </div>
+                                                                                   <div class="col-md-2">
+                                                                                       <div class="form-line input-field">
+                                                                                           <input type="text" class="form-control" name="degreemaxMark" id="degreemaxMark"
+                                                                                           formControlName="degreemaxMark">
+                                                                                          <label class="form-label">Max.Marks</label>
+                                                                                 
+                                                                                      </div>
+                                                                                   </div>
+                                                                                   <div class="col-md-2">
+                                                                                       <div class="form-line input-field">
+                                                                                           <input type="text" class="form-control" name="degreepercentage" id="degreepercentage"
+                                                                                           formControlName="degreepercentage">
+                                                                                          <label class="form-label">Percentage</label>
+                                                                                 
+                                                                                      </div>
+                                                                                   </div>
+                                                                                  
+                                                                           </div>
+                                                                           <div class="row">
+                                                                                <div class="col-md-9"></div>
+                                                                           <div class="col-md-3 text-right">
+                                                                            <button style="float: right;" type="submit"  class="btn btn-warning">Clear</button >
+                                                                                <button style="margin-right:2%; float: right;" type="button"  class="btn btn-info waves-effect" (click)="adddegreedetails()">Add</button>
+                                                                            </div>
+                                                                    </div>
+                                                                                    
+                                                                                           
+                                                                                   
+                                                                                </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                    
+                                                        </div>
+                                                    </div>
+                                        </div>
+                                        <div class="text-right">
+                                                <button class="btn-hover btn-border-radius color-10"
+                                                    awPreviousStep>Back</button>
+                                                <button class="btn-hover btn-border-radius color-8" awNextStep>Next</button>
+                                            </div>
+    
+                                    </div>
+                                </aw-wizard-step>
+                                <aw-wizard-step [stepTitle]="'Payment Details'">
+                                        <ng-template awWizardStepSymbol><i class="fa fa-hand-holding-usd"></i></ng-template>
+                                        <div class="centered-content">
+                                                <div>
+                                                        <form [formGroup]="registerForm" >
+                                                                <h5>Payment Details</h5>
+                                                                 <div class="row">
+                                                                         <div class="col-md-4">
+                                                                             <div class="form-line input-field">
+                                                                               <input type="date" class="form-control" name="paymentDate" id="paymentDate"
+                                                                               formControlName ="paymentDate">
+                                                                              <label class="form-label">PaymentDate</label>
+                                                                     
+                                                                          </div>
+                                                                        </div>
+                                                                         <div class="col-md-4">
+                                                                             <div class="form-line input-field">
+                                                                                <div class="form-group">
+                                                                                    <label>Payment Method</label>
+                                                                                     <select class="browser-default"  id="select" [(ngModel)]="selectedpaymentmethod" 
+                                                                                     formControlName="paymentmethod" value = " " class="form-control" placeholder="Enter Payment Method"
+                                                                                         [ngClass]="{ 'is-invalid': submitted && f.paymentmethod.errors }" >
+                                                                                         <div *ngIf="submitted && f.paymentmethod.errors" class="invalid-feedback">
+                                                                                             <div *ngIf="f.paymentmethod.errors.required">Payment Method is required</div>
+                                                                                         </div>
+                                                                                  <option value="" disabled selected>Choose your PaymentMethod</option>
+                                                                                      <option *ngFor="let paymentMethod of paymentMethods?.response" [value]="paymentMethod._id">{{paymentMethod?.paymentMethod}}</option>     
+                                                                                  </select>                                                        
+                                                                                </div>
+                                                                            </div>
+                                                                         </div>
+                                                                         <div class="col-md-4">
+                                                                                <div class="form-line input-field">
+                                                                                  <input type="text" class="form-control" name="bank" id="bank"
+                                                                                  formControlName ="bank">
+                                                                                 <label class="form-label">Bank</label>
+                                                                        
+                                                                             </div>
+                                                                          </div>
+                                                                      </div>
+                                                                      <div class="row">
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-line input-field">
+                                                                                  <input type="date" class="form-control" name="chequeDDDate" id="chequeDDDate"
+                                                                                  formControlName ="chequeDDDate">
+                                                                                 <label class="form-label">Cheque/DD Date</label>
+                                                                        
+                                                                             </div>
+                                                                           </div>
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-line input-field">
+                                                                                    <input type="text" class="form-control" name="chequeDDNumber" id="chequeDDNumber"
+                                                                                    formControlName ="chequeDDNumber">
+                                                                                   <label class="form-label">Cheque / DD Number</label>
+                                                                          
+                                                                               </div>
+                                                                            </div>
+                                                                            <div class="col-md-4">
+                                                                                   <div class="form-line input-field">
+                                                                                     <input type="text" class="form-control" name="advanceFeeType" id="advanceFeeType"
+                                                                                     formControlName ="advanceFeeType">
+                                                                                    <label class="form-label">Advance Fee Type</label>
+                                                                           
+                                                                                </div>
+                                                                             </div>
+                                                                         </div>
+                                                                         <div class="row">
+                                                                                 <div class="col-md-4">
+                                                                                     <div class="form-line input-field">
+                                                                                       <input type="text" class="form-control" name="amount" id="amount"
+                                                                                       formControlName ="amount">
+                                                                                      <label class="form-label">Amount</label>
+                                                                             
+                                                                                  </div>
+                                                                               </div>
+                                                                                 <div class="col-md-1"></div>
+                                                                                 <div class="col-md-5">
+                                                                                         <button style="float: right;" type="submit"  class="btn btn-warning">Clear</button >
+                                                                                             <button style="margin-right:2%; float: right;" type="button"  class="btn btn-info waves-effect" (click)="addpaymentdetails()">Add</button>
+                                                                                 </div>
+                                                                         </div>
+                                                                     </form>
+                                                                         <div class="row">
+                                                                                 <div class="col-md-12">
+                                                                                         <table id="tableExport"
+                                                                                         class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                                                                         <thead>
+                                                                                             <tr>
+                                                                                                 <th>#</th>
+                                                                                                 <th>Payment Date</th>
+                                                                                                 <th>Payment Method</th>
+                                                                                                 <th>Bank </th>
+                                                                                                 <th>Cheque / DD Date</th>
+                                                                                                 <th>Cheque / DD Number</th>
+                                                                                                 <th> Advance Fee Type</th>
+                                                                                                 <th> Amount</th>
+                                                                                                 <th>Action</th>
+                                                                                             </tr>
+                                                                                         </thead>
+                                                                                         <tbody>
+                                                                                             <tr
+                                                                                                 *ngFor="let paymentdetail of paymentdetails; let i=index">
+                                                                                                 <td>{{ i +1 }} </td>
+                                                                                                 <td>{{paymentdetail?.paymentDate}}</td>
+                                                                                                 <td>{{paymentdetail.paymentMethodDetails[0].paymentMethod}}</td>
+                                                                                                 <td>{{paymentdetail?.bank}}</td>
+                                                                                                 <td>{{paymentdetail?.chequeDDDate}}</td>
+                                                                                                 <td>{{paymentdetail?.chequeDDNumber}}</td>
+                                                                                                 <td>{{paymentdetail?.advanceFeeType}}</td>
+                                                                                                 <td>{{paymentdetail?.amount}}</td>
+                                                                                                 <div class="noprint">
+                                                                                                     <td>
+                                                                                                         <div class="btn btn-tbl-edit" data-toggle="modal"
+                                                                                                             data-target="#editModal">
+                                                                                                             <i class="material-icons" (click)="onEdit(paymentdetail)">create</i>
+                                                                                                         </div>
+                                                                                                         <div class="btn btn-tbl-delete">
+                                                                                                             <i class="material-icons"
+                                                                                                                 (click)="deletePaymentDetails(paymentdetail?._id)">delete_forever</i>
+                                                                                                         </div>
+                                                                                                     </td>
+                                                                                                 </div>
+                                                                                             </tr>
+                                                                                         </tbody>
+                                 
+                                                                                     </table>
+                                                                               </div>
+                                                                         </div>
+                                                </div>
+             
+        
+                                            <div class="text-right">
+                                                    <button class="btn-hover btn-border-radius color-10"
+                                                        awPreviousStep>Back</button>
+                                                    <button class="btn-hover btn-border-radius color-8" awNextStep>Next</button>
+                                                </div>
+        
+                                        </div>
+                                    </aw-wizard-step>
+                                    <aw-wizard-step [stepTitle]="'FollowUps'">
+                                            <ng-template awWizardStepSymbol><i class="fa fa-file"></i></ng-template>
+                                            <div class="centered-content">
+                                                <div class="text-right">
+                                                    <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addModalfollowups">
+                                                        Add Enquiry Details
+                                                    </button>
+                                                </div>
+                                                <div class="modal fade" id="addModalfollowups" tabindex="-1" role="dialog"
+                                                aria-labelledby="formModal" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="formModal">Add Details</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                               <form [formGroup]="followupsaddform">
+                                               <div class="row">
+                                                <div class="col-md-6">
+                                                   <div class="form-group">
+                                                       <label>DateOfEnquiry</label> 
+                                                       <input type="date" value = "" formControlName="dateOfEnquiry" class="form-control" placeholder="Enter dateOfEnquiry"
+                                                           [ngClass]="{ 'is-invalid': submitted && f.dateOfEnquiry.errors }" />
+                                                       <div *ngIf="submitted && f.dateOfEnquiry.errors" class="invalid-feedback">
+                                                           <div *ngIf="f.dateOfEnquiry.errors.required">DateOfEnquiry is required</div>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                                   <div class="col-md-6">
+                                                   <div class="form-group">
+                                                       <label>ModeOfEnquiry</label>
+                                                       <input type="text" value = "" formControlName="modeOfEnquiry" class="form-control" placeholder="Enter ModeOfEnquiry"
+                                                           [ngClass]="{ 'is-invalid': submitted && f.modeOfEnquiry.errors }" />
+                                                       <div *ngIf="submitted && f.modeOfEnquiry.errors" class="invalid-feedback">
+                                                           <div *ngIf="f.modeOfEnquiry.errors.required"> ModeOfEnquiry is required</div>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                               </div>
+                                               <div class="row">
+                                                       <div class="col-md-6">
+                                                   <div class="form-group">
+                                                       <label>Description</label>
+                                                       <input type="text" value = "" formControlName="description" class="form-control"  placeholder="Enter Description"
+                                                           [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
+                                                       <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                                                           <div *ngIf="f.description.errors.required">Description is required</div>
+                                                       </div>
+                                                   </div>
+                                                       </div>
+                                                       <div class="col-md-6">
+                                                   <div class="form-group">
+                                                       <label>NextEnquiryDate</label>
+                                                       <input type="date" value = "" formControlName="nextEnquiryDate" class="form-control" placeholder="Enter nextEnquiryDate"
+                                                           [ngClass]="{ 'is-invalid': submitted && f.nextEnquiryDate.errors }" />
+                                                       <div *ngIf="submitted && f.nextEnquiryDate.errors" class="invalid-feedback">
+                                                           <div *ngIf="f.nextEnquiryDate.errors.required">NextEnquiryDate is required</div>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                                   </div>
+                                                   <div class="form-group">
+                                                           <label>NextEnquiryTime</label>
+                                                           <input type ="time" 
+                                                           formControlName="nextEnquiryTime" value = " " class="form-control" placeholder="Enter NextEnquiryTime"
+                                                               [ngClass]="{ 'is-invalid': submitted && f.nextEnquiryTime.errors }" >
+                                                               <div *ngIf="submitted && f.nextEnquiryTime.errors" class="invalid-feedback">
+                                                                   <div *ngIf="f.nextEnquiryTime.errors.required">NextEnquiryTime is required</div>
+                                                               </div>
+                                                       </div>
+                                                   <div class="modal-footer">
+                                                       <button type="submit" class="btn btn-default" (click)= "addFollowups()" >Add</button >
+                                                           <button type="button" class="btn btn-danger waves-effect"
+                                                               data-dismiss="modal">Cancel</button>
+                                                       </div>
+                                               </form>
+                                               </div>
+                                               </div>
+                                               </div>
+                                               </div>
+                                            <!-- Edit form -->
+                                            <div class="modal fade" id="editModalfollowups" tabindex="-1" role="dialog"
+                                            aria-labelledby="formModal" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="formModal">Edit Details</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form [formGroup]="followupseditform">
+                                                            <div class="row">
+                                                             <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label>DateOfEnquiry</label> 
+                                                                    <input type="date" formControlName="dateOfEnquiry" class="form-control" placeholder="Enter dateOfEnquiry"
+                                                                        [ngClass]="{ 'is-invalid': submitted && f.dateOfEnquiry.errors }" />
+                                                                    <div *ngIf="submitted && f.dateOfEnquiry.errors" class="invalid-feedback">
+                                                                        <div *ngIf="f.dateOfEnquiry.errors.required">DateOfEnquiry is required</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                                <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label>ModeOfEnquiry</label>
+                                                                    <input type="text" formControlName="modeOfEnquiry" class="form-control" placeholder="Enter ModeOfEnquiry"
+                                                                        [ngClass]="{ 'is-invalid': submitted && f.modeOfEnquiry.errors }" />
+                                                                    <div *ngIf="submitted && f.modeOfEnquiry.errors" class="invalid-feedback">
+                                                                        <div *ngIf="f.modeOfEnquiry.errors.required"> ModeOfEnquiry is required</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                    <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label>Description</label>
+                                                                    <input type="text" formControlName="description" class="form-control"  placeholder="Enter Description"
+                                                                        [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
+                                                                    <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                                                                        <div *ngIf="f.description.errors.required">Description is required</div>
+                                                                    </div>
+                                                                </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label>NextEnquiryDate</label>
+                                                                    <input type="date" formControlName="nextEnquiryDate" class="form-control" placeholder="Enter nextEnquiryDate"
+                                                                        [ngClass]="{ 'is-invalid': submitted && f.nextEnquiryDate.errors }" />
+                                                                    <div *ngIf="submitted && f.nextEnquiryDate.errors" class="invalid-feedback">
+                                                                        <div *ngIf="f.nextEnquiryDate.errors.required">NextEnquiryDate is required</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                        <label>NextEnquiryTime</label>
+                                                                        <input type ="time" 
+                                                                        formControlName="nextEnquiryTime" class="form-control" placeholder="Enter NextEnquiryTime"
+                                                                            [ngClass]="{ 'is-invalid': submitted && f.nextEnquiryTime.errors }" >
+                                                                            <div *ngIf="submitted && f.nextEnquiryTime.errors" class="invalid-feedback">
+                                                                                <div *ngIf="f.nextEnquiryTime.errors.required">NextEnquiryTime is required</div>
+                                                                            </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-default"
+                                                                            (click)="onEditSubmitfollowups()" >Update</button>
+                                                                        <button type="button" class="btn btn-danger waves-effect"
+                                                                            data-dismiss="modal">Cancel</button>
+                                                                    </div>
+                                                            </form>
+                                                    </div>
+                                                  
+                                                </div>
+                                            </div>
+                                        </div>
+                                                
+            
+                                            </div>
+                                            <table id="tableExport"
+                                            class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Date Of Enquiry</th>
+                                                    <th>Mode Of Enquiry</th>
+                                                    <th>Description</th>
+                                                    <th>NextEnquiryDate</th>
+                                                    <th>nextEnquiryTime</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr
+                                                    *ngFor="let followup of followups?.response; let i=index">
+                                                    <td>{{ i +1 }} </td>
+                                                    <td>{{followup?.dateOfEnquiry}}</td>
+                                                    <td>{{followup?.modeOfEnquiry}}</td>
+                                                    <td>{{followup?.description}}</td>
+                                                    <td>{{followup?.nextEnquiryDate}}</td>
+                                                    <td>{{followup?.nextEnquiryTime}}</td>
+                                                    <div class="noprint">
+                                                        <td>
+                                                            <div class="btn btn-tbl-edit" data-toggle="modal"
+                                                                data-target="#editModalfollowups">
+                                                                <i class="material-icons" (click)="onEditfollowups(followup)">create</i>
+                                                            </div>
+                                                            <div class="btn btn-tbl-delete">
+                                                                <i class="material-icons"
+                                                                    (click)="deleteFollowups(followup?._id)">delete_forever</i>
+                                                            </div>
+                                                        </td>
+                                                    </div>
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+                                        <div class="text-right">
+                                            <button class="btn-hover btn-border-radius color-10"
+                                                awPreviousStep>Back</button>
+                                            <button class="btn-hover btn-border-radius color-8" awNextStep>Next</button>
+                                        </div>
+                                        </aw-wizard-step>
+                            </aw-wizard>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit form - PaymentDetails-->
+ <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+ aria-labelledby="formModal" aria-hidden="true">
+ <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h5 class="modal-title" id="formModal">Edit Details</h5>
+             <button type="button" class="close" data-dismiss="modal"
+                 aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+         </div>
+         <div class="modal-body">
+<form [formGroup]="editForm">
+                <h5>Payment Details</h5>
+                 <div class="row">
+
+                         <div class="col-md-6">
+                                <label>PaymentDate</label>
+                             <div class="form-group ">
+                               <input type="date" class="form-control" name="paymentDate" id="paymentDate"
+                               formControlName="paymentDate">
+                          </div>
+                        </div>
+                         <div class="col-md-6">
+                                <label>Payment Method</label>
+                                <select class="browser-default"  id="select" [(ngModel)]="selectedpaymentmethod" 
+                                formControlName="paymentmethod" value = " " class="form-control" placeholder="Enter Payment Method"
+                                    [ngClass]="{ 'is-invalid': submitted && f.paymentmethod.errors }" >
+                                    <div *ngIf="submitted && f.paymentmethod.errors" class="invalid-feedback">
+                                        <div *ngIf="f.paymentmethod.errors.required">Payment Method is required</div>
+                                    </div>
+                             <option value="" disabled selected>Choose your PaymentMethod</option>
+                                 <option *ngFor="let paymentMethod of paymentMethods?.response" [value]="paymentMethod._id">{{paymentMethod?.paymentMethod}}</option>     
+                             </select>  
+                         </div>
+                        </div>
+                         
+                     
+                      <div class="row">
+                            <div class="col-md-6">
+                                    <label class="form-label">Bank</label>
+                                    <div class="form-group ">
+                                      <input type="text" class="form-control" name="bank" id="bank"
+                                      formControlName="bank">                               </div>
+                              </div>
+                            <div class="col-md-6">
+                                    <label class="form-label">Cheque/DD Date</label>
+                                <div class="form-group ">
+                                  <input type="date" class="form-control" name="chequeDDDate" id="chequeDDDate"
+                                  formControlName="chequeDDDate">                    
+                             </div>
+                           </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                    <label class="form-label">Cheque / DD Number</label>
+                                <div class="form-group ">
+                                    <input type="text" class="form-control" name="chequeDDNumber" id="chequeDDNumber"
+                                    formControlName="chequeDDNumber">
+                            </div>
+                            </div>
+                            <div class="col-md-6">
+                                    <label class="form-label">Advance Fee Type</label>
+                                   <div class="form-group ">
+                                     <input type="text" class="form-control" name="advanceFeeType" id="advanceFeeType"
+                                     formControlName="advanceFeeType">
+                               </div>
+                             </div>
+                         </div>
+                         <div class="row">
+                                 <div class="col-md-6">
+                                        <label class="form-label">Amount</label>
+                                     <div class="form-group ">
+                                       <input type="text" class="form-control" name="amount" id="amount"
+                                       formControlName="amount">                    
+                                  </div>
+                               </div>                   
+</div>
+    <div class="modal-footer">
+        <button type="submit"   class="btn btn-default"  (click)="onEditSubmit()">Update</button >
+            <button type="button" class="btn btn-danger waves-effect"
+                data-dismiss="modal">Cancel</button>
+        </div>
+</form>
+</div>
+</div>
+</div>
+</div>
+ <!-- Edit form - AddressDetails-->
+ <div class="modal fade" id="editModaladdress" tabindex="-1" role="dialog"
+ aria-labelledby="formModal" aria-hidden="true">
+ <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h5 class="modal-title" id="formModal">Edit Details</h5>
+             <button type="button" class="close" data-dismiss="modal"
+                 aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+         </div>
+         <div class="modal-body">
+                <form [formGroup]="addressEditformgroup">
+                        <h5>Address Details</h5>
+                         <div class="row">
+                                 <div class="col-md-6">
+                                     <div class="form-group ">
+                                            <label>Payment Method</label>
+                                            <select class="browser-default"  id="select" [(ngModel)]="selectedaddresstype" 
+                                            formControlName="addresstype" value = " " class="form-control" placeholder="Enter addresstype "
+                                                [ngClass]="{ 'is-invalid': submitted && f.addresstype.errors }" >
+                                                <div *ngIf="submitted && f.addresstype.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.addresstype.errors.required">AddressType is required</div>
+                                                </div>
+                                         <option value="" disabled selected>Choose your Address Type</option>
+                                             <option *ngFor="let addressType of addressTypes?.response" [value]="addressType._id">{{addressType?.addressType}}</option>     
+                                         </select> 
+                                 </div>
+                               </div>
+                                
+                                 <div class="col-md-6">
+                                        <label >Flat/Door/BlockNo.</label>
+                                     <div class="form-group">
+                                         <input type="text" class="form-control" name="flatNo" id="flatNo"
+                                         formControlName="flatNo">                             
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="row">
+                                     <div class="col-md-6">
+                                            <label >Street/Lane</label>
+                                         <div class="form-group">
+                                           <input type="text" class="form-control" name="streetLane" id="streetLane"
+                                           formControlName="streetLane">                             
+                                      </div>
+                                   </div>
+                                   
+                                     <div class="col-md-6">
+                                            <label>Area/Locality</label>
+                                         <div class="form-group">
+                                             <input type="text" class="form-control" name="area" id="area"
+                                             formControlName="area">                               
+                                        </div>
+                                     </div>
+                                  </div>
+                                  <div class="row">
+                                         <div class="col-md-6">
+                                                <label>City</label>
+                                             <div class="form-group">
+                                               <input type="text" class="form-control" name="city" id="city"
+                                               formControlName="city">                                   
+                                          </div>
+                                       </div>
+                                       
+                                         <div class="col-md-6">
+                                                <label>District</label>
+                                             <div class="form-group">
+                                                 <input type="text" class="form-control" name="district" id="district"
+                                                 formControlName="district">
+                                           </div>
+                                         </div>
+                                 </div>
+                                 <div class="row">
+                                         <div class="col-md-6">
+                                                <label>Pincode</label>
+                                             <div class="form-group">
+                                               <input type="text" class="form-control" name="pincode" id="pincode"
+                                               formControlName="pincode">
+                                             </div>
+                                        </div>
+                                      
+                                         <div class="col-md-6">
+                                                <label>State</label>
+                                             <div class="form-group">
+                                                 <input type="text" class="form-control" name="state" id="state"
+                                                 formControlName="state">
+                                                
+                                       
+                                            </div>
+                                         </div>
+                                 </div>
+                                 <div class="row">
+                                         <div class="col-md-6">
+                                                <label>Country</label>
+                                             <div class="form-group">
+                                               <input type="text" class="form-control" name="country" id="country"
+                                               formControlName="country">                                   
+                                          </div>
+                                       </div>
+                                 </div>
+                                 <div class="modal-footer">
+                                        <button type="submit"   class="btn btn-default"  (click)="onEditAdressSubmit()">Update</button >
+                                            <button type="button" class="btn btn-danger waves-effect"
+                                                data-dismiss="modal">Cancel</button>
+                                        </div>
+                             </form>
+</div>
+</div>
+</div>
+</div>
