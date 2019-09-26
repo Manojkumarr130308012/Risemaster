@@ -1120,8 +1120,7 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/filling-stations/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
-<<<<<<< HEAD
-  
+
      // CandiadateEnquiry - BasicDetails
      public getBasicDetails() {
       this.url = `${this.endPoint}/ce-basicdetails/aggregation`;
@@ -1290,7 +1289,7 @@ fetchBankById(id) {
       this.url = `${this.endPoint}/ce-qd-degreedetails/add`;   
       return this.http.post(this.url, newssldetails);
     }
-=======
+
 
   // stage-details
   public getStage() {
@@ -1326,5 +1325,5 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/stage-details/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
->>>>>>> ee6756af74671aeefa8c0913d94ca8ee78ccfee1
+
 }
