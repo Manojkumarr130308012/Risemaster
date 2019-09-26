@@ -93,7 +93,7 @@ export class CourseProgramComponent implements OnInit {
     }
     this.registerForm.value;
     this.request.addCourseprogram(this.registerForm.value).subscribe((res: any) => {
-      if (res.status == 'Success') {
+      if (res.status == 'success') {
         swal("Added Sucessfully");
       this.loadModal();
       this.viewData();
@@ -155,7 +155,7 @@ export class CourseProgramComponent implements OnInit {
       return;
     }
     this.request.updateCourseprogram(this.IdValue, this.editForm.value).subscribe((res : any) => {
-      if (res.status == 'Success') {
+      if (res.status == 'success') {
         swal("Updated Sucessfully");     
         this.loadModal();
         this.viewData();

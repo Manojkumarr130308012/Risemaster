@@ -30,18 +30,19 @@
                                                 <th>Institution</th>
                                                 <th>Vehicle No</th>
                                                 <th >Van No</th>
-                                                <th >Engine No</th>
-                                                <th >Chasis No</th>
+                                                <!-- <th >Engine No</th>
+                                                <th >Chasis No</th> -->
                                                 <th >Ownership</th>
-                                                <th >Vehicle value</th>
+                                                <!-- <th >Vehicle value</th> -->
                                                 <th >Model</th>
-                                                <th >Make</th>
-                                                <th >Type</th>
+                                                <!-- <th >Make</th>
+                                                <th >Type</th> -->
                                                 <th >Insurance</th>
-                                                <th >FC</th>
-                                                <th >Smoke Test</th>
+                                                <!-- <th >FC</th> -->
+                                                <!-- <th >Smoke Test</th> -->
                                                 <th >Service KMS</th>
-                                                <th >Notes</th>
+                                                <!-- <th >Notes</th> -->
+                                                <th>Stage</th>
                                                 <th >Action</th>
                                         </tr>
                                     </thead>
@@ -51,18 +52,24 @@
                                         <td>{{vehicle.InstitutionDetails[0].institution_name}}</td>
                                         <td>{{vehicle?.vehicleNo}}</td>
                                         <td>{{vehicle?.vanNo}}</td>
-                                        <td>{{vehicle?.engineNo}}</td>
-                                        <td>{{vehicle?.chasisNo}}</td>
+                                        <!-- <td>{{vehicle?.engineNo}}</td>
+                                        <td>{{vehicle?.chasisNo}}</td> -->
                                         <td>{{vehicle?.ownership}}</td>
-                                        <td>{{vehicle?.vehicleValue}}</td>
+                                        <!-- <td>{{vehicle?.vehicleValue}}</td> -->
                                         <td>{{vehicle?.model}}</td>
-                                        <td>{{vehicle?.make}}</td>
-                                        <td>{{vehicle?.type}}</td>
+                                        <!-- <td>{{vehicle?.make}}</td>
+                                        <td>{{vehicle?.type}}</td> -->
                                         <td>{{vehicle?.insurance}}</td>
-                                        <td>{{vehicle?.fc}}</td>
-                                        <td>{{vehicle?.smokeTest}}</td>
+                                        <!-- <td>{{vehicle?.fc}}</td> -->
+                                        <!-- <td>{{vehicle?.smokeTest}}</td> -->
                                         <td>{{vehicle?.serviceKMS}}</td>
-                                        <td>{{vehicle?.notes}}</td>
+                                        <!-- <td>{{vehicle?.notes}}</td> -->
+                                        <td>
+
+                                            <button type="button" (click)="open(vehicle)"
+                                                class="btn btn-default">View</button>
+
+                                        </td>
                                             <td>
                                                 <div class="btn btn-tbl-edit" data-toggle="modal"
                                                 data-target="#editModal">

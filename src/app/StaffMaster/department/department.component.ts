@@ -68,7 +68,7 @@ constructor(
     }
   this.registerForm.value;
   this.request.addDepartment(this.registerForm.value).subscribe((res: any) => {
-    if (res.status == 'Success') {
+    if (res.status == 'success') {
       swal("Added Sucessfully");
     this.loadModal();
     this.viewData();
@@ -126,7 +126,7 @@ constructor(
         return;
       }
   this.request.updateDepartment(this.IdValue,this.editForm.value).subscribe((res : any) => {
-    if (res.status == 'Success') {
+    if (res.status == 'success') {
       swal("Updated Sucessfully");     
       this.loadModal();
       this.viewData();

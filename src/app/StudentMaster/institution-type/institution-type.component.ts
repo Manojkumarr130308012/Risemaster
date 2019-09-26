@@ -60,7 +60,7 @@ export class InstitutionTypeComponent implements OnInit {
       if (res.status == 'error') {
         this.setMessage(res.err);
       }
-      else if (res.status == 'Success') {
+      else if (res.status == 'success') {
         
         swal("Added Sucessfully");
         this.viewData();
@@ -103,7 +103,7 @@ export class InstitutionTypeComponent implements OnInit {
     }
   
   this.request.updateInstitutionType(this.IdValue, this.editForm.value).subscribe((response: any) => {
-    if (response.status == 'Success') {
+    if (response.status == 'success') {
       swal("Updated Sucessfully");       
       
       this.viewData();

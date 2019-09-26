@@ -61,7 +61,7 @@ export class PaymentMethodComponent implements OnInit {
       if (res.status == 'error') {
         this.setMessage(res.err);
       }
-      else if (res.status == 'Success') {
+      else if (res.status == 'success') {
         
         swal("Added Sucessfully");
         this.viewData();
@@ -104,7 +104,7 @@ export class PaymentMethodComponent implements OnInit {
     }
   
   this.request.updatePaymentMethod(this.IdValue, this.editForm.value).subscribe((response: any) => {
-    if (response.status == 'Success') {
+    if (response.status == 'success') {
       swal("Updated Sucessfully");       
       
       this.viewData();
