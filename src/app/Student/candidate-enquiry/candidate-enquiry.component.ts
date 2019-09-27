@@ -471,7 +471,7 @@ addbasicdetails() {
 // convenience getter for easy access to form fields
 get f() { return this.addressformgroup.controls; }
 addaddressdetails() {
-  this.submitted = true;
+  // this.submitted = true;
   if (this.addressformgroup.invalid) {
     return;
     }
@@ -631,7 +631,7 @@ onEdit(paymentdetail) {
   });
   }
   onEditSubmit() {
-    this.submitted = true;
+    // this.submitted = true;
     console.log(this.editForm.value);
     if (this.editForm.invalid) {
     return;
@@ -676,7 +676,7 @@ onEdit(paymentdetail) {
   });
   }
   onEditAdressSubmit() {
-    this.submitted = true;
+    // this.submitted = true;
     console.log(this.addressEditformgroup.value);
     if (this.addressEditformgroup.invalid) {
     return;
