@@ -4,6 +4,7 @@ import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader
 import { RequestService } from '../../services/request.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FileUploader } from 'ng2-file-upload';
+import { CourseCategoryComponent } from '../../Master/course-category/course-category.component';
 const URL = 'http://localhost:3000/uploadStudentPhoto/upload';
 declare const $: any;
 declare const swal: any;
@@ -35,7 +36,7 @@ referenceBy: any;
 applicatonNo: any;
 admissionType: any;
 admissionCategory: any;
-courseCategory: any;
+coursecategory: any;
 courseProgram: any;
 scholarshipCategory: any;
 remark: any;
@@ -215,6 +216,7 @@ getfileLoc: any;
   degreemaxMark: any;
   degreepercentage: any;
   degreeorganisationType: any;
+  cecourseprograms: any;
   
   
   constructor(
@@ -244,7 +246,7 @@ getfileLoc: any;
      this.applicatonNo = new FormControl('', Validators.required);
      this.admissionType = new FormControl('', Validators.required);
      this.admissionCategory = new FormControl('', Validators.required);
-     this.courseCategory = new FormControl('', Validators.required);
+     this.coursecategory = new FormControl('', Validators.required);
      this.courseProgram = new FormControl('', Validators.required);
      this.scholarshipCategory = new FormControl('', Validators.required);
      this.remark = new FormControl('', Validators.required);
@@ -265,6 +267,10 @@ getfileLoc: any;
      this.pAadharNumber = new FormControl('', Validators.required);
      this.relativeName = new FormControl('', Validators.required);
      this.sPhoto = new FormControl('', Validators.required);
+
+     //
+    //  this.courseProgram = new FormControl('', Validators.required);
+     //
 
   //add Form Group - addressDetails
 this.addressformgroup = this.formBuilder.group({
@@ -434,7 +440,7 @@ addbasicdetails() {
   applicatonNo: this.applicatonNo.value,
   admissionType: this.admissionType.value,
   admissionCategory: this.admissionCategory.value,
-  courseCategory: this.courseCategory.value,
+  coursecategory: this.coursecategory.value,
   courseProgram: this.courseProgram.value,
   scholarshipCategory: this.scholarshipCategory.value,
   remark: this.remark.value,
@@ -779,14 +785,14 @@ loadPaymentMethod() {
       console.log(error);
       });
       }
-      loadInstitution() {
-        this.request.getInstitution().subscribe((response : any) => {
-        this.institutions = response;
-        console.log(response);
-        }, (error) => {
-        console.log(error);
-        });
-        }
+      // loadInstitution() {
+      //   this.request.getInstitution().subscribe((response : any) => {
+      //   this.institutions = response;
+      //   console.log(response);
+      //   }, (error) => {
+      //   console.log(error);
+      //   });
+      //   }
         loadBoard() {
           this.request.getBoard().subscribe((response : any) => {
           this.boards = response;
@@ -819,14 +825,14 @@ loadPaymentMethod() {
             console.log(error);
             });
             }
-            loadCourseCategory() {
-            this.request.getCoursecategory().subscribe((response : any) => {
-            this.coursecategories = response;
-            console.log(response);
-            }, (error) => {
-            console.log(error);
-            });
-             }
+            // loadCourseCategory() {
+            // this.request.getCoursecategory().subscribe((response : any) => {
+            // this.coursecategories = response;
+            // console.log(response);
+            // }, (error) => {
+            // console.log(error);
+            // });
+            //  }
             loadCourseProgram() {
             this.request.getCourseprogram().subscribe((response : any) => {
             this.courseprograms = response;
@@ -902,25 +908,89 @@ loadPaymentMethod() {
       $(this).find('form').trigger('reset');
       })
       }
+      ///////////////////////////////////////////////////////////////////////////////////
+// Bind institution data
+loadInstitution() {
+  this.request.getInstitution().subscribe((response: any) => {
+    console.log(response);
+    this.institutions = response;
+  }, (error) => {
+    console.log(error);
+  });
+}
+// Bind coursecategory data
+onInstitutionChange(Institution: string) {
+  console.log('institution',Institution)
+  //this.loadCourseCategory(Institution);
+   if (Institution) {
+     this.request.getCoursecategorybyIns(Institution).subscribe((response: any) => {
+       console.log(response);
+       this.coursecategories = response;
+     }, (error) => {
+       console.log(error);
+     });
 
+   } else 
 
- // Bind coursecategory data
- onQualificationType(QualificationType: string) {
-    console.log('qualificationType',QualificationType)
-    //this.loadCourseCategory(Institution);
-     if (QualificationType) {
-       this.request.getCoursetypebyQua(QualificationType).subscribe((response: any) => {
-         console.log(response);
-         this.coursetypes = response;
-       }, (error) => {
-         console.log(error);
-       });
+     this.coursecategories = null;
+  }
+   ///////////////////////////////////////////////////////////////////////////////////
+  addCEcourseProgram()
+  {
+    const newcoursePro = {
+      courseProgram: this.courseProgram.value,
+    };
+    this.request.addCEcourseProgram(newcoursePro).subscribe((res: any) => {
+     console.log(newcoursePro);
+     this.viewCEcourseProgram();
+    //  this.courseProgram.value="";
+     });
+  }
+  //To delete the basicdetails data
+  deleteCEcourseProgram(id: any) {
+    console.log(id);
+  this.request.deleteCEcourseProgram(id).subscribe(res => {
+  swal(" Deleted Successfully "); 
+  this.viewCEcourseProgram();
+  });
+  }
+  viewCEcourseProgram() {
+    this.request.getCEcourseProgram().subscribe((response) => {
+      this.cecourseprograms = response;
+      console.log(this.cecourseprograms);
+    }, (error) => {
+      console.log(error);
+    });
+   }
+    ///////////////////////////////////////////////////////////////////////////////////
+     ///////////////////////////////////////////////////////////////////////////////////
+// Bind institution data
+loadCourseCategory() {
+  this.request.getCoursecategory().subscribe((response: any) => {
+    console.log(response);
+    this.coursecategories = response;
+  }, (error) => {
+    console.log(error);
+  });
+}
+// Bind coursecategory data
+onCourseCategoryChange(CourseCategory: string) {
+  console.log('courseCategory',CourseCategory)
+  //this.loadCourseCategory(Institution);
+   if (CourseCategory) {
+     this.request.getCoursecategorybycourPro(CourseCategory).subscribe((response: any) => {
+       console.log(response);
+       this.courseprograms = response;
+     }, (error) => {
+       console.log(error);
+     });
 
-     } else 
+   } else 
 
-       this.coursetypes = null;
-    }
-
+     this.courseprograms = null;
+  }
+  
+    ///////////////////////////////////////////////////////////////////////////////////
   ngOnInit() {
     this.viewData();
     this.viewAddressData();
@@ -954,6 +1024,6 @@ loadPaymentMethod() {
       const resPath = JSON.parse(response);
       this.getfileLoc = resPath.result;
     };
-
+this.viewCEcourseProgram();
   }
 }
