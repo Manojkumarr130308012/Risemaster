@@ -422,9 +422,8 @@ export class RequestService {
     this.url = `${this.endPoint}/course-program/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
-
-  loadCourseprogram() {
-    this.url = `${this.endPoint}/course-category`;
+  public getCoursecategorybycourPro(coursecategory) {
+    this.url = `${this.endPoint}/course-program/fetchByCouCate/?coursecategory=` + coursecategory;
     return this.http.get(this.url);
   }
 // Address Type
@@ -1124,6 +1123,40 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/filling-stations/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
+  // stage-details
+  public getStage() {
+    this.url = `${this.endPoint}/stage-details/`;
+    return this.http.get(this.url);   
+  }
+
+  public getStagebyId(IdValue) {
+    this.url = `${this.endPoint}/stage-details/fetchbyVehicleId?IdValue=` + IdValue;
+    return this.http.get(this.url);
+  }
+  
+  public addStageDetails(newStage) {
+    this.url = `${this.endPoint}/stage-details/add`;   
+    return this.http.post(this.url, newStage);
+  }
+  
+  public deleteStage(id) {
+    this.url = `${this.endPoint}/stage-details/delete?id=`+ id;
+    return this.http.delete(this.url);
+  }
+  
+  updateStage(id, body) {
+    this.url = `${this.endPoint}/stage-details/update?id=${id}`;
+    return this.http.put(this.url, body);
+  }
+  
+  fetchStage() {
+    this.url = `${this.endPoint}/stage-details/`;
+    return this.http.get(this.url); 
+  }
+  fetchStageBy(id) {
+    this.url = `${this.endPoint}/stage-details/fetchdata?id=` + id;
+    return this.http.get(this.url);
+  }
   
      // CandiadateEnquiry - BasicDetails
      public getBasicDetails() {
@@ -1293,4 +1326,19 @@ fetchBankById(id) {
       this.url = `${this.endPoint}/ce-qd-degreedetails/add`;   
       return this.http.post(this.url, newssldetails);
     }
+    //
+    public addCEcourseProgram(newcoursePro: { }) {
+      this.url = `${this.endPoint}/addCEcourseProgram/add`;   
+      return this.http.post(this.url, newcoursePro);
+    }
+    public getCEcourseProgram() {
+      this.url = `${this.endPoint}/addCEcourseProgram/`;
+      return this.http.get(this.url);   
+    }
+    public deleteCEcourseProgram(id: string) {
+      this.url = `${this.endPoint}/addCEcourseProgram/delete?id=`+ id;
+      return this.http.delete(this.url);
+    }
+     
+    //
 }

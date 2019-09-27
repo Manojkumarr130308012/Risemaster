@@ -103,13 +103,18 @@
                                                          </div>
                                                         <div class="col-md-1"></div>
                                                         <div class="col-md-5">
-                                                                <div class="form-group">
-                                                                        <label>Institution</label>
-                                                                        <select class="browser-default"  id="select" [(ngModel)]="selectedinstitution" 
-                                                                        [formControl]="institution" class="form-control">
-                                                                     <option value="" disabled selected>Choose your Institution</option>
-                                                                     <option *ngFor="let institution of institutions" [value]="institution._id">{{institution?.institution_name}}</option>     
-                                                                     </select>
+                                                                <div class="form-group"> 
+                                                                        <label  for="select">Institution</label>
+                                                                        <select  id="select" [(ngModel)]="selectedinstitution" class="browser-default form-control" 
+                                                                        [formControl]="institution"  (change)="onInstitutionChange($event.target.value)"
+                                                                            [ngClass]="{ 'is-invalid': submitted && f.institution.errors }">
+                                                                            <option  disabled selected>Choose your institution</option>
+                                                                            <option  *ngFor="let institution of institutions" [value]="institution._id">{{institution.institution_name}}</option>
+                                                                            </select>        
+                                                                            <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">
+                                                                                <div *ngIf="f.institution.errors.required">Institution is required</div>
+                                                                            </div>
+                                                                    
                                                                    </div>
                                                          </div>
                                                  </div>
@@ -241,15 +246,21 @@
                                                          </div>
                                                           <div class="col-md-1"></div>
                                                           <div class="col-md-5">
-                                                            <div class="form-group">
-                                                                  <label>Course Category</label>
-                                                                  <select class="browser-default"  id="select" [(ngModel)]="selectedcourseCategory"  
-                                                                  [formControl]="courseCategory" class="form-control">
-                                                               <option value="" disabled selected>Choose your CourseCategory</option>
-                                                               <option *ngFor="let coursecategory of coursecategories" [value]="coursecategory._id">{{coursecategory?.coursecategory}}</option>     
-                                                               </select>
+                                                            <div class="form-group"> 
+                                                               <label for="select">Course Category</label>
+                                                               <select id="select" [(ngModel)]="selectedcoursecategory"
+                                                                   class="browser-default form-control" [formControl]="coursecategory"
+                                                                   [ngClass]="{ 'is-invalid': submitted && f.coursecategory.errors }" (change)="onCourseCategoryChange($event.target.value)">
+                                                                   <option disabled selected>Choose your course-category</option>
+                                                                   <option *ngFor="let coursecategory of coursecategories?.response"
+                                                                       [value]="coursecategory.coursecategory">{{coursecategory?.coursecategory}}</option>
+                                                                   </select>
+                                                                   <div *ngIf="submitted && f.coursecategory.errors" class="invalid-feedback">
+                                                                       <div *ngIf="f.coursecategory.errors.required">Course-category is required</div>
+                                                                   </div>
                                                             </div>
                                                           </div>
+                                                          <!--(change)="onCourseCategoryChange($event.target.value)"-->
                                                      </div>
                                                      <div class="row">
                                                         <div class="col-md-5">
@@ -263,16 +274,31 @@
                                                               </div>
                                                          </div>
                                                           <div class="col-md-1"></div>
-                                                          <div class="col-md-5">
+                                                          <div class="col-md-3">
                                                             <div class="form-group">
-                                                                  <label>Course/Program</label>
+                                                                  <!-- <label>Course/Program</label>
                                                                       <select class="browser-default"  id="select" [(ngModel)]="selectedcourseProgram"  
                                                                       [formControl]="courseProgram" class="form-control">
                                                                    <option value="" disabled selected>Choose your courseProgram</option>
                                                                    <option *ngFor="let courseprogram of courseprograms" [value]="courseprogram._id">{{courseprogram?.courseprogram}}</option>     
+                                                                   </select> -->
+                                                                   <label for="select">Course/Program</label>
+                                                               <select id="select" [(ngModel)]="selectedcourseProgram"
+                                                                   class="browser-default form-control" [formControl]="courseProgram"
+                                                                   [ngClass]="{ 'is-invalid': submitted && f.courseprogram.errors }" >
+                                                                   <option disabled selected>Choose your courseProgram</option>
+                                                                   <option *ngFor="let courseprogram of courseprograms?.response"
+                                                                   [value]="courseprogram.courseprogram">{{courseprogram?.courseprogram}}</option>
                                                                    </select>
+                                                                   <div *ngIf="submitted && f.courseprogram.errors" class="invalid-feedback">
+                                                                       <div *ngIf="f.courseprogram.errors.required">courseprogram is required</div>
+                                                                   </div>
                                                             </div>
+                                                            
                                                           </div>
+                                                          <div class="col-md-2">
+                                                            <button type="submit" class="btn btn-info" (click)="addCEcourseProgram()">Add</button>
+                                                        </div>
                                                      </div>
                                                      <div class="row">
                                                         <div class="col-md-5">
@@ -298,14 +324,14 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr
-                                                                    *ngFor="let basicdetail of basicdetails?.response; let i=index">
+                                                                    *ngFor="let courseProgram of cecourseprograms?.response; let i=index">
                                                                     <td>{{ i +1 }} </td>
-                                                                    <td>{{basicdetail?.courseProgramDetails[0].courseProgram}}</td>
+                                                                    <td>{{courseProgram?.courseProgram}}</td>
                                                                     <div class="noprint">
                                                                         <td>
                                                                           <div class="btn btn-tbl-delete">
                                                                                 <i class="material-icons"
-                                                                                    (click)="deleteBasicDetails(basicdetail?._id)">delete_forever</i>
+                                                                                    (click)="deleteCEcourseProgram(courseProgram?._id)">delete_forever</i>
                                                                             </div>
                                                                         </td>
                                                                     </div>
@@ -466,6 +492,9 @@
 
                                         </form>
                                     </div>
+                                    <!--//-->
+                                    <!--END - BasicDetails-->
+                                     <!--//-->
                                     <div class="text-right">
                                             <button type="submit" class="btn btn-info" (click)="addbasicdetails()">Save</button>
                                             <span> {{message}}</span>
@@ -640,9 +669,9 @@
                                                         <div class="form-group ">
                                                                <label>Qualification Type</label>
                                                                <select class="browser-default"  id="select" [(ngModel)]="selectedqualificationtype" 
-                                                               [formControl]="qualificationtype" class="form-control"  (change)="onQualificationType($event.target.value)">
+                                                               [formControl]="qualificationtype" class="form-control">
                                                                  
-                                                            <option value="" disabled selected>Choose your Address Type</option>
+                                                            <option value="" disabled selected>Choose your Qualification Type</option>
                                                                 <option *ngFor="let qualificationType of qualificationTypes?.response" [value]="qualificationType._id">{{qualificationType?.qualificationType}}</option>     
                                                             </select> 
                                                     </div>
@@ -830,12 +859,13 @@
                                                                                        </div>
                                                                                      <div class="col-md-3">
                                                                                         <div class="form-group">
-                                                                                           <label>Institution Type</label>
+                                                                                           <!-- <label>Institution Type</label>
                                                                                            <select class="browser-default"  id="select" [(ngModel)]="selectedhscinstitutionType"  
                                                                                            formControlName="hscinstitutionType" class="form-control">
                                                                                         <option value="" disabled selected>Choose your institutionType</option>
                                                                                         <option *ngFor="let institutionType of institutionTypes?.response" [value]="institutionType._id">{{institutionType?.institutionType}}</option>     
-                                                                                        </select>
+                                                                                        </select> -->
+                                                                                        
                                                                                        </div>
                                                                                      </div>
                                                                                     <div class="col-md-3">
