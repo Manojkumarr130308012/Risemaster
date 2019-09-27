@@ -348,6 +348,10 @@ export class RequestService {
     this.url = `${this.endPoint}/admissionCategory/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
+  loadInstitution() {
+    this.url = `${this.endPoint}/institution/`;
+    return this.http.get(this.url);
+  }
 
 
   // course-category
@@ -535,10 +539,6 @@ fetchInstitutionType() {
 }
 fetchInstitutionTypeById(id) {
   this.url = `${this.endPoint}/institutionType/fetchdata?id=` + id;
-  return this.http.get(this.url);
-}
-loadInstitution() {
-  this.url = `${this.endPoint}/institution/`;
   return this.http.get(this.url);
 }
 
@@ -1026,7 +1026,7 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/driver/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
-  loadVehicle() {
+  loadDriver() {
     this.url = `${this.endPoint}/vehicle/`;
     return this.http.get(this.url); 
   }
@@ -1060,6 +1060,10 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/vehicle/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
+  loadVehicle() {
+    this.url = `${this.endPoint}/institution/`;
+    return this.http.get(this.url); 
+    }
 
     // vehicle expenses
     public getExpense() {
@@ -1120,7 +1124,7 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/filling-stations/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
-
+  
      // CandiadateEnquiry - BasicDetails
      public getBasicDetails() {
       this.url = `${this.endPoint}/ce-basicdetails/aggregation`;
@@ -1289,41 +1293,4 @@ fetchBankById(id) {
       this.url = `${this.endPoint}/ce-qd-degreedetails/add`;   
       return this.http.post(this.url, newssldetails);
     }
-
-
-  // stage-details
-  public getStage() {
-    this.url = `${this.endPoint}/stage-details/`;
-    return this.http.get(this.url);   
-  }
-
-  public getStagebyId(IdValue) {
-    this.url = `${this.endPoint}/stage-details/fetchbyVehicleId?IdValue=` + IdValue;
-    return this.http.get(this.url);
-  }
-  
-  public addStageDetails(newStage) {
-    this.url = `${this.endPoint}/stage-details/add`;   
-    return this.http.post(this.url, newStage);
-  }
-  
-  public deleteStage(id) {
-    this.url = `${this.endPoint}/stage-details/delete?id=`+ id;
-    return this.http.delete(this.url);
-  }
-  
-  updateStage(id, body) {
-    this.url = `${this.endPoint}/stage-details/update?id=${id}`;
-    return this.http.put(this.url, body);
-  }
-  
-  fetchStage() {
-    this.url = `${this.endPoint}/stage-details/`;
-    return this.http.get(this.url); 
-  }
-  fetchStageBy(id) {
-    this.url = `${this.endPoint}/stage-details/fetchdata?id=` + id;
-    return this.http.get(this.url);
-  }
-
 }

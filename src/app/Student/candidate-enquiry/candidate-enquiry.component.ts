@@ -14,9 +14,7 @@ declare const swal: any;
   styleUrls: ['./candidate-enquiry.component.scss']
 })
 export class CandidateEnquiryComponent implements OnInit {
-
-CeId: any;
-public edit = false;
+  
   //Basic Details
 firstName: any;
 lastName: any;
@@ -225,10 +223,7 @@ getfileLoc: any;
     private router: Router,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute) { 
-    this.route.queryParams.subscribe((params: any) => {
-      this.edit = params.edit;
-      this.CeId = params.id;
-    });
+    
      // Add Form - BasicDetail
      this.firstName = new FormControl('', Validators.required);
      this.lastName = new FormControl('', Validators.required);
