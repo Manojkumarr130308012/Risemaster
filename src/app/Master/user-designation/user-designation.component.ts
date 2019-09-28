@@ -1,11 +1,5 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { Router } from '@angular/router';
-//import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-
-import { RequestService } from '../../services/request.service';
-import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
-import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
-
 
 declare const $: any;
 declare const swal: any;
@@ -48,11 +42,7 @@ export class UserDesignationComponent implements OnInit {
     return this.message = message;
   }
 
-  ngOnInit() {
-    this.viewDesignation(); 
-    this.startScript();   
-
-  }
+ 
 
   onEdit(Id){
    
@@ -73,16 +63,7 @@ export class UserDesignationComponent implements OnInit {
     }).catch(error => console.log(error));
   }
 
-  private loadData() {
-    $('#tableExport').DataTable({
-      dom: 'Bfrtip',
-      buttons: [
-        'copy', 'csv', 'excel', 'pdf', 'print'
-      ]
-    });
-  }
-
-
+  
   addDesignation() {
     
     const newDesignation = {
