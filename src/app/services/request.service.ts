@@ -348,6 +348,10 @@ export class RequestService {
     this.url = `${this.endPoint}/admissionCategory/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
+  loadInstitution() {
+    this.url = `${this.endPoint}/institution/`;
+    return this.http.get(this.url);
+  }
 
 
   // course-category
@@ -418,9 +422,8 @@ export class RequestService {
     this.url = `${this.endPoint}/course-program/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
-
-  loadCourseprogram() {
-    this.url = `${this.endPoint}/course-category`;
+  public getCoursecategorybycourPro(coursecategory) {
+    this.url = `${this.endPoint}/course-program/fetchByCouCate/?coursecategory=` + coursecategory;
     return this.http.get(this.url);
   }
 // Address Type
@@ -481,8 +484,8 @@ fetchCourseTypeById(id) {
   this.url = `${this.endPoint}/courseType/fetchdata?id=` + id;
   return this.http.get(this.url);
 }
-loadQualificationType() {
-  this.url = `${this.endPoint}/qualification-type`;
+getCoursetypebyQua(QualificationType) {
+  this.url = `${this.endPoint}/courseType/fetchbyQua?qualificationType=` + QualificationType;
       return this.http.get(this.url); 
 }
 
@@ -535,10 +538,6 @@ fetchInstitutionType() {
 }
 fetchInstitutionTypeById(id) {
   this.url = `${this.endPoint}/institutionType/fetchdata?id=` + id;
-  return this.http.get(this.url);
-}
-loadInstitution() {
-  this.url = `${this.endPoint}/institution/`;
   return this.http.get(this.url);
 }
 
@@ -1026,7 +1025,7 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/driver/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
-  loadVehicle() {
+  loadDriver() {
     this.url = `${this.endPoint}/vehicle/`;
     return this.http.get(this.url); 
   }
@@ -1060,6 +1059,10 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/vehicle/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
+  loadVehicle() {
+    this.url = `${this.endPoint}/institution/`;
+    return this.http.get(this.url); 
+    }
 
     // vehicle expenses
     public getExpense() {
@@ -1120,7 +1123,6 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/filling-stations/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
-
   // stage-details
   public getStage() {
     this.url = `${this.endPoint}/stage-details/`;
@@ -1155,4 +1157,188 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/stage-details/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
+  
+     // CandiadateEnquiry - BasicDetails
+     public getBasicDetails() {
+      this.url = `${this.endPoint}/ce-basicdetails/aggregation`;
+      return this.http.get(this.url);   
+    }
+    
+    public addBasicDetails(newModeOfEnquiry: { }) {
+      this.url = `${this.endPoint}/ce-basicdetails/add`;   
+      return this.http.post(this.url, newModeOfEnquiry);
+    }
+    
+    public deleteBasicDetails(id) {
+      this.url = `${this.endPoint}/ce-basicdetails/delete?id=`+ id;
+      return this.http.delete(this.url);
+    }
+    
+    updateBasicDetails(id, body) {
+      this.url = `${this.endPoint}/ce-basicdetails/update?id=${id}`;
+      return this.http.put(this.url, body);
+    }
+    
+    fetchBasicDetails() {
+      this.url = `${this.endPoint}/ce-basicdetails/`;
+      return this.http.get(this.url); 
+    }
+    fetchBasicDetailsById(id) {
+      this.url = `${this.endPoint}/ce-basicdetails/fetchdata?id=` + id;
+      return this.http.get(this.url);
+    }
+     // CandiadateEnquiry - AddressDetails
+     public getAddressDetails() {
+      this.url = `${this.endPoint}/ce-addressdetails/aggregation`;
+      return this.http.get(this.url);   
+    }
+    
+    public addAddressDetails(newadressdetails: { }) {
+      this.url = `${this.endPoint}/ce-addressdetails/add`;   
+      return this.http.post(this.url, newadressdetails);
+    }
+    
+    public deleteAddressDetails(id) {
+      this.url = `${this.endPoint}/ce-addressdetails/delete?id=`+ id;
+      return this.http.delete(this.url);
+    }
+    
+    updateAddressDetails(id, body) {
+      this.url = `${this.endPoint}/ce-addressdetails/update?id=${id}`;
+      return this.http.put(this.url, body);
+    }
+    
+    fetchAddressDetails() {
+      this.url = `${this.endPoint}/ce-addressdetails/`;
+      return this.http.get(this.url); 
+    }
+    fetchAddressDetailsById(id) {
+      this.url = `${this.endPoint}/ce-addressdetails/fetchdata?id=` + id;
+      return this.http.get(this.url);
+    }
+    loadAddressType() {
+      this.url = `${this.endPoint}/addressType/`;
+      return this.http.get(this.url);
+    }
+
+       // CandiadateEnquiry - PaymentDetails
+    public getPaymentDetails() {
+      this.url = `${this.endPoint}/ce-paymentdetails/aggregation`;
+      return this.http.get(this.url);   
+    }
+    
+    public addPaymentDetails(newpaymentdetails: { }) {
+      this.url = `${this.endPoint}/ce-paymentdetails/add`;   
+      return this.http.post(this.url, newpaymentdetails);
+    }
+    
+    public deletePaymentDetails(id) {
+      this.url = `${this.endPoint}/ce-paymentdetails/delete?id=`+ id;
+      return this.http.delete(this.url);
+    }
+    
+    updatePaymentDetails(id, body) {
+      this.url = `${this.endPoint}/ce-paymentdetails/update?id=${id}`;
+      return this.http.put(this.url, body);
+    }
+    
+    fetchPaymentDetails() {
+      this.url = `${this.endPoint}/ce-paymentdetails/`;
+      return this.http.get(this.url); 
+    }
+    fetchPaymentDetailsById(id) {
+      this.url = `${this.endPoint}/ce-paymentdetails/fetchdata?id=` + id;
+      return this.http.get(this.url);
+    }
+    loadPaymentMethod() {
+      this.url = `${this.endPoint}/ce-paymentdetails/`;
+      return this.http.get(this.url);
+    }
+
+    // CandiadateEnquiry - Followups
+    public getFollowups() {
+      this.url = `${this.endPoint}/ce-followups`;
+      return this.http.get(this.url);   
+    }
+    
+    public addFollowups(newfollowups: { }) {
+      this.url = `${this.endPoint}/ce-followups/add`;   
+      return this.http.post(this.url, newfollowups);
+    }
+    
+    public deleteFollowups(id) {
+      this.url = `${this.endPoint}/ce-followups/delete?id=`+ id;
+      return this.http.delete(this.url);
+    }
+    
+    updateFollowups(id, body) {
+      this.url = `${this.endPoint}/ce-followups/update?id=${id}`;
+      return this.http.put(this.url, body);
+    }
+    
+    fetchFollowups() {
+      this.url = `${this.endPoint}/ce-followups/`;
+      return this.http.get(this.url); 
+    }
+    fetchFollowupsById(id) {
+      this.url = `${this.endPoint}/ce-followups/fetchdata?id=` + id;
+      return this.http.get(this.url);
+    }
+
+    // CandiadateEnquiry - Qualification Details
+    // SSLC Details
+    public getSSLCDetails() {
+      this.url = `${this.endPoint}/ce-qd-sslcdetails`;
+      return this.http.get(this.url);   
+    }
+    
+    public addSSLCDetails(newssldetails: { }) {
+      this.url = `${this.endPoint}/ce-qd-sslcdetails/add`;   
+      return this.http.post(this.url, newssldetails);
+    }
+    // HSC Details
+    public getHSCDetails() {
+      this.url = `${this.endPoint}/ce-qd-hscdetails`;
+      return this.http.get(this.url);   
+    }
+    
+    public addHSCDetails(newssldetails: { }) {
+      this.url = `${this.endPoint}/ce-qd-hscdetails/add`;   
+      return this.http.post(this.url, newssldetails);
+    }
+    // Diploma Details
+    public getDiplomaDetails() {
+      this.url = `${this.endPoint}/ce-qd-diplomadetails`;
+      return this.http.get(this.url);   
+    }
+    
+    public addDiplomaDetails(newssldetails: { }) {
+      this.url = `${this.endPoint}/ce-qd-diplomadetails/add`;   
+      return this.http.post(this.url, newssldetails);
+    }
+    // Degree Details
+    public getDegreeDetails() {
+      this.url = `${this.endPoint}/ce-qd-degreedetails`;
+      return this.http.get(this.url);   
+    }
+    
+    public addDegreeDetails(newssldetails: { }) {
+      this.url = `${this.endPoint}/ce-qd-degreedetails/add`;   
+      return this.http.post(this.url, newssldetails);
+    }
+    //
+    public addCEcourseProgram(newcoursePro: { }) {
+      this.url = `${this.endPoint}/addCEcourseProgram/add`;   
+      return this.http.post(this.url, newcoursePro);
+    }
+    public getCEcourseProgram() {
+      this.url = `${this.endPoint}/addCEcourseProgram/`;
+      return this.http.get(this.url);   
+    }
+    public deleteCEcourseProgram(id: string) {
+      this.url = `${this.endPoint}/addCEcourseProgram/delete?id=`+ id;
+      return this.http.delete(this.url);
+    }
+     
+    //
 }
