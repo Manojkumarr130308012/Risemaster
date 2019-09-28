@@ -10,139 +10,14 @@
 
                         <div class="header-dropdown m-r--5">
                             <div class="btn-group m-l-15">
-                                <button id="addRow" class="btn btn-info" data-toggle="modal"
-                                    data-target="#addModal">
+                                <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addModal">
 
                                     <i class="fa fa-plus" style="color: white"></i>
                                 </button>
                                 <!-- <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#exampleModal">Modal
                                         With Form</button> -->
-                                <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
-                                    aria-labelledby="formModal" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content" >
-                                            <div class="modal-header">
-                                                <h5 class="modal-title"  id="formModal">Add Designation</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <!-- <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="input-group">
-                                                                <div class="form-line">
 
-                                                                    <input [formControl]="designationId" type="text"
-                                                                        class="form-control"
-                                                                        placeholder="Designation Id">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div> -->
-                                                     <div class="row">
-                                                            <div class="col-md-12">                                                                   
-                                                                    <div class="form-group">                                                                      
-                                                                        <div class="form-line">
-                                                                                <input  [formControl]="designationName"  type="text"
-                                                                                class="form-control"
-                                                                                placeholder="Designation Name" required />                                                                                
-                                                                        </div>
-                                                                    </div>
-                                                                    
-                                                        </div>
-                                                    </div>
-                                                 <!--   <div class="form-group" style="margin-bottom:-10px">
-                                                        <label>Designation Name</label>
-                                                        <input type="text" id="designationName"
-                                                                    [formControl]="designationName"
-                                                                    placeholder="Enter Designation Name"
-                                                                    class="form-control">
-                                                                   
-                                                    </div>-->
-
-                                                   
-                                                    <br>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer form-group">
-                                                <button type="button" class="btn btn-info waves-effect"
-                                                (click) = "addDesignation()"  data-dismiss="modal">Add</button>
-                                              
-                                                <button type="button" class="btn btn-danger waves-effect"
-                                                    data-dismiss="modal">Cancel</button>
-
-                                                    <span> {{ message }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="modal fade" id="updateModal" tabindex="-1" role="dialog"
-                                    aria-labelledby="formModal" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content" >
-                                            <div class="modal-header">
-                                                <h5 class="modal-title"  id="formModal">Update Designation</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <!-- <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="input-group">
-                                                                <div class="form-line">
-
-                                                                    <input [formControl]="designationId2" type="text"
-                                                                        class="form-control"
-                                                                        placeholder="Designation Id">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div> -->
-                                                    <!-- <div class="row">
-                                                            <div class="col-md-12">                                                                   
-                                                                    <div class="input-group">                                                                      
-                                                                        <div class="form-line input-field">
-                                                                                <input  type="text" id="designationName" [formControl]="designationName" class="form-control">
-                                                                                <label class="form-label">Enter Designation Name</label>
-                                                                        </div>
-                                                                    </div>
-                                                        </div>
-                                                    </div> -->
-                                                   
-
-                                                    <div class="form-group" style="margin-bottom:-10px">
-                                                            <label>Designation Name</label>
-                                                            <input type="text" id="designationName2"
-                                                                        [formControl]="designationName2"
-                                                                        placeholder="Enter Designation Name"
-                                                                        class="form-control" required/>
-                                                                       
-                                                        </div>
-                                                    <br>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                               
-                                                <button type="button" class="btn btn-info waves-effect"
-                                                (click) = "updateDesignationData()"  data-dismiss="modal">Update</button>
-                                                <button type="button" class="btn btn-danger waves-effect"
-                                                    >Cancel</button>
-
-                                                    <span> {{ message }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
@@ -153,18 +28,20 @@
                                 class="display table table-hover table-checkable order-column m-t-20 width-per-100">
                                 <thead>
                                     <tr>
-                                        <!-- <th>Designation Id</th> -->
+                                        <th>Designation Id</th>
                                         <th>Designation Name</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let designation of designations?.response">
-                                        <!-- <td>{{designation?.designationId}}</td> -->
+                                        <td>{{designation?.designationId}}</td>
                                         <td>{{designation?.designationName}}</td>
                                         <td style="display:none">{{designation?._id}}</td>
                                         <td>
-                                            <button data-toggle="modal" (click)="onEdit(designation._id)" data-target="#updateModal" class="btn bg-amber btn-circle waves-effect waves-circle waves-float fa fa-edit"></button>
+                                            <button data-toggle="modal" (click)="onEdit(designation._id)"
+                                                data-target="#updateModal"
+                                                class="btn bg-amber btn-circle waves-effect waves-circle waves-float fa fa-edit"></button>
                                             <button
                                                 class="btn btn-danger btn-circle waves-effect waves-circle waves-float  fa fa-trash"
                                                 (click)="Ondelete(designation?._id)"></button>
@@ -183,3 +60,109 @@
         <!-- #END# Exportable Table -->
     </div>
 </section>
+
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="formModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="formModal">Add Designation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form_advanced_validation">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group form-float">
+                                <label for="designationId">Designation Id</label>
+                                <div class="form-line">
+                                    <input [formControl]="designationId" name="designationId" type="text"
+                                        class="form-control" placeholder="Designation Id" required />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group form-float">
+                                <label for="designationName">Designation Name</label>
+                                <div class="form-line">
+                                    <input [formControl]="designationName" name="designationName" type="text"
+                                        class="form-control" placeholder="Designation Name" required />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-info waves-effect" (click)="addDesignation()">Add</button>
+
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                        <span> {{ message }}</span>
+
+                    </div>
+
+
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="formModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="formModal">Update Designation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form_advanced_validation1">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group form-float">
+                                <label for="designationId2">Designation Id</label>
+                                <div class="form-line">
+
+                                    <input [formControl]="designationId2" name="designationId2" type="text"
+                                        class="form-control" placeholder="Designation Id" required />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group form-float">
+                                <label for="designationName2">Designation Name</label>
+                                <div class="form-line">
+                                    <input type="text" name="designationName2" [formControl]="designationName2"
+                                        placeholder="Enter Designation Name" class="form-control" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="modal-footer">
+
+                        <button type="submit" class="btn btn-info waves-effect"
+                            (click)="updateDesignationData()">Update</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+
+                        <span> {{ message }}</span>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

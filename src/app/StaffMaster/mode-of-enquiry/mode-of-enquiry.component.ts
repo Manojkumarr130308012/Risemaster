@@ -60,7 +60,7 @@ export class ModeOfEnquiryComponent implements OnInit {
     this.viewData();
     }
     else if (res.status == 'error') {
-      this.setMessage(res.err);
+      this.setMessage(res.error);
     }
   }, (error) => {
     this.setMessage(error);
@@ -117,12 +117,12 @@ this.request.updateModeofenquiry(this.IdValue,this.editForm.value).subscribe((re
       this.viewData();
     }
     else if (res.status == 'error') {       
-      this.setMessage(res.err);
+      this.setMessage(res.error);
     }      
    
-  }, (err) => {
-    console.log(err);
-    this.setMessage(err);
+  }, (error) => {
+    console.log(error);
+    this.setMessage(error);
   });
 }
 

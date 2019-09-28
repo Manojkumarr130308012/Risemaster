@@ -73,7 +73,7 @@ this.request.addCoursecategory(this.registerForm.value).subscribe((res: any) => 
   this.viewData();
   }
   else if (res.status == 'error') {
-    this.setMessage(res.err);
+    this.setMessage(res.error);
   }
 }, (error) => {
   this.setMessage(error);
@@ -132,12 +132,12 @@ console.log(this.registerForm.value);
       this.viewData();
     }
     else if (res.status == 'error') {       
-      this.setMessage(res.err);
+      this.setMessage(res.error);
     }      
    
-  }, (err) => {
-    console.log(err);
-    this.setMessage(err);
+  }, (error) => {
+    console.log(error);
+    this.setMessage(error);
   });
 }
      

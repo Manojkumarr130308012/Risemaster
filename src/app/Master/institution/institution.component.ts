@@ -113,7 +113,7 @@ export class InstitutionComponent implements OnInit {
     };
     this.request.addInstitution(newInstitution).subscribe((res: any) => {
       if (res.status == 'error') {
-        this.setMessage(res.err);
+        this.setMessage(res.error);
       }
       else if (res.status == 'success') {
 
@@ -205,7 +205,7 @@ export class InstitutionComponent implements OnInit {
         this.loadModal();
       }
       else if (response.status == 'error') {
-        this.setMessage(response.err);
+        this.setMessage(response.error);
       }
 
     }, (error) => {

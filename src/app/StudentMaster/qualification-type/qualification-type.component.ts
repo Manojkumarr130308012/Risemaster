@@ -58,7 +58,7 @@ export class QualificationTypeComponent implements OnInit {
       }
      this.request.addQualificationType(this.registerForm.value).subscribe((res: any) => {
       if (res.status == 'error') {
-        this.setMessage(res.err);
+        this.setMessage(res.error);
       }
       else if (res.status == 'success') {
         
@@ -111,12 +111,12 @@ export class QualificationTypeComponent implements OnInit {
       this.loadModal();
     }
     else if (response.status == 'error') {       
-      this.setMessage(response.err);
+      this.setMessage(response.error);
     }      
    
-  }, (err) => {
-    console.log(err);
-    this.setMessage(err);
+  }, (error) => {
+    console.log(error);
+    this.setMessage(error);
   });
 
       }

@@ -73,7 +73,7 @@ import { DriverMasterComponent } from './VehicleManagement/driver-master/driver-
 import { FillingStationsComponent } from './VehicleManagement/filling-stations/filling-stations.component';
 import { VehicleExpensesComponent } from './VehicleManagement/vehicle-expenses/vehicle-expenses.component';
 import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-details.component';
-
+import {  MatSnackBarModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -151,7 +151,7 @@ import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-d
     Ng2SearchPipeModule,
     NgxPaginationModule,
     OrderModule,
-    ArchwizardModule
+    ArchwizardModule,  MatSnackBarModule,
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
