@@ -62,7 +62,7 @@ export class CourseProgramComponent implements OnInit {
     this.request.getInstitution().subscribe((response: any) => {
       console.log(response);
       this.institutions = response;
-      this.coursecategories = response;
+     // this.coursecategories = response;
     }, (error) => {
       console.log(error);
     });
@@ -99,7 +99,7 @@ export class CourseProgramComponent implements OnInit {
       this.viewData();
       }
       else if (res.status == 'error') {
-        this.setMessage(res.err);
+        this.setMessage(res.error);
       }
     }, (error) => {
       this.setMessage(error);
@@ -161,12 +161,12 @@ export class CourseProgramComponent implements OnInit {
         this.viewData();
       }
       else if (res.status == 'error') {       
-        this.setMessage(res.err);
+        this.setMessage(res.error);
       }      
      
-    }, (err) => {
-      console.log(err);
-      this.setMessage(err);
+    }, (error) => {
+      console.log(error);
+      this.setMessage(error);
     });
   }
 

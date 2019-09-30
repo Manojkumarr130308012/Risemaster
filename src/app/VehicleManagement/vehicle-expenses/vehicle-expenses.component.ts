@@ -58,7 +58,7 @@ export class VehicleExpensesComponent implements OnInit {
         this.viewData();
       }
       else if (res.status == 'error') {
-        this.setMessage(res.err);
+        this.setMessage(res.error);
       }
     }, (error) => {
       this.setMessage(error);
@@ -115,12 +115,12 @@ export class VehicleExpensesComponent implements OnInit {
         this.viewData();
       }
       else if (res.status == 'error') {
-        this.setMessage(res.err);
+        this.setMessage(res.error);
       }
 
-    }, (err) => {
-      console.log(err);
-      this.setMessage(err);
+    }, (error) => {
+      console.log(error);
+      this.setMessage(error);
     });
   }
 

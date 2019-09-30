@@ -61,7 +61,7 @@ export class ReligionComponent implements OnInit {
     this.viewData();
     }
     else if (res.status == 'error') {
-      this.setMessage(res.err);
+      this.setMessage(res.error);
     }
   }, (error) => {
     this.setMessage(error);
@@ -81,12 +81,10 @@ export class ReligionComponent implements OnInit {
 
   // To deleted religion
   deleteReligion(id: any) {
-    this.request.deleteReligion(id).subscribe(res => {
-      console.log(id);
-      this.viewData();
-    console.log('Deleted');
-   
-    this.router.navigate(['religion']);
+    this.request.deleteReligion(id).subscribe(res => {         
+    swal("Deleted Sucessfully");
+    this.viewData();
+    
     });
   }
 
@@ -118,12 +116,12 @@ this.request.updateReligion(this.IdValue,this.editForm.value).subscribe((res : a
     this.viewData();
   }
   else if (res.status == 'error') {       
-    this.setMessage(res.err);
+    this.setMessage(res.error);
   }      
  
-}, (err) => {
-  console.log(err);
-  this.setMessage(err);
+}, (error) => {
+  console.log(error);
+  this.setMessage(error);
 });
 }
 

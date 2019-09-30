@@ -64,6 +64,7 @@ export class AdmissionTypeComponent implements OnInit {
 
   onAddSubmit() {
     this.submitted = true;
+ 
     if (this.registerForm.invalid) {
       return;
     }
@@ -74,7 +75,7 @@ export class AdmissionTypeComponent implements OnInit {
         this.viewData();
       }
       else if (res.status == 'error') {
-        this.setMessage(res.err);
+        this.setMessage(res.error);
       }
     }, (error) => {
       this.setMessage(error);
@@ -132,12 +133,12 @@ export class AdmissionTypeComponent implements OnInit {
         this.viewData();
       }
       else if (res.status == 'error') {
-        this.setMessage(res.err);
+        this.setMessage(res.error);
       }
 
-    }, (err) => {
-      console.log(err);
-      this.setMessage(err);
+    }, (error) => {
+      console.log(error);
+      this.setMessage(error);
     });
   }
 
@@ -161,12 +162,18 @@ export class AdmissionTypeComponent implements OnInit {
   private loadModal() {
     $('#addModal').modal('hide'); //or  $('#IDModal').modal('hide');
     $('#addModal').on('hidden.bs.modal', function () {
-      $(this).find('form').trigger('reset');
+      $(this).find('form').trigger('reset'); 
+    // $("#add").get(0).reset();
+    //    var vali =$("#add").validate();
+    // vali.restForm();
     });
+   
+   
 
     $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
     $('#editModal').on('hidden.bs.modal', function () {
       $(this).find('form').trigger('reset');
+     // $('.invalid-feedback').removeClass('error');
     });
   }
 
