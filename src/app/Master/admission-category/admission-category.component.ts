@@ -27,6 +27,8 @@ registerForm: FormGroup;
 editForm: FormGroup;
 getData: any;
 message: any;
+institution2: any;
+admissionCategory2: any;
 constructor(private formBuilder: FormBuilder,
 private dynamicScriptLoader: DynamicScriptLoaderService,
 private request: RequestService,
@@ -38,8 +40,8 @@ admissionCategory: ['', Validators.required]
 });
 //Edit Form Group
 this.editForm = this.formBuilder.group({
-institution:['', Validators.required],
-admissionCategory: ['', Validators.required]
+institution2:['', Validators.required],
+admissionCategory2: ['', Validators.required]
 });
 }
 // To display the data

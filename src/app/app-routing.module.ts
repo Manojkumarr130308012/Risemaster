@@ -43,7 +43,7 @@ import { FeeTypeComponent } from './StaffMaster/fee-type/fee-type.component';
 import { ModeOfEnquiryComponent } from './StaffMaster/mode-of-enquiry/mode-of-enquiry.component';
 
 
-import { CandidateEnquiryComponent } from './Student/candidate-enquiry/candidate-enquiry.component';
+// import { CandidateEnquiryComponent } from './Student/candidate-enquiry/candidate-enquiry.component';
 
 // Vehicle Management
 import { VehicleMasterComponent } from './VehicleManagement/vehicle-master/vehicle-master.component';
@@ -51,6 +51,19 @@ import { DriverMasterComponent } from './VehicleManagement/driver-master/driver-
 import { FillingStationsComponent } from './VehicleManagement/filling-stations/filling-stations.component';
 import { VehicleExpensesComponent } from './VehicleManagement/vehicle-expenses/vehicle-expenses.component';
 import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-details.component';
+
+
+
+
+// CandiadteEnquiry
+import { CEmainPageComponent } from './Student/cemain-page/cemain-page.component';
+import { CEbasicDetailsComponent } from './Student/cebasic-details/cebasic-details.component';
+import { CEaddressDetailsComponent } from './Student/ceaddress-details/ceaddress-details.component';
+import { CEpaymentDetailsComponent } from './Student/cepayment-details/cepayment-details.component';
+import { CEfollowupsComponent } from './Student/cefollowups/cefollowups.component';
+import { CEqualificationDetailsComponent } from './Student/cequalification-details/cequalification-details.component';
+import { CEtabpageComponent } from './Student/cetabpage/cetabpage.component';
+
 
 const routes: Routes = [
   //{ path: '', component: LoginComponent },
@@ -227,10 +240,10 @@ const routes: Routes = [
   },
 
   //Candidate Enquiry
-  { 
-    path: 'candidate-enquiry', 
-    component: CandidateEnquiryComponent 
-    },
+  // { 
+  //   path: 'candidate-enquiry', 
+  //   component: CandidateEnquiryComponent 
+  //   },
 
     //  Vehicle Management
   { path: 'vehicle', 
@@ -247,7 +260,22 @@ const routes: Routes = [
 
   { path: 'stage-details', 
   component: StageDetailsComponent },
-
+////////////////////////////////////////////////////////////
+  { path: 'CEMain', 
+  component: CEmainPageComponent },
+  { path: 'enquiry', 
+  component: CEtabpageComponent },
+  { path: 'CEBasicDetails', 
+  component: CEbasicDetailsComponent },
+  { path: 'CEAddressDetails', 
+  component: CEaddressDetailsComponent },
+  { path: 'CEPaymentDetails', 
+  component: CEpaymentDetailsComponent },
+  { path: 'CEFollowups', 
+  component: CEfollowupsComponent },
+  { path: 'CEQualificationDetails', 
+  component: CEqualificationDetailsComponent },
+ 
 ];
 
 @NgModule({

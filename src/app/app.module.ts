@@ -64,7 +64,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { OrderModule } from 'ngx-order-pipe';
 
 //Candiadate Enquiry
-import { CandidateEnquiryComponent } from './Student/candidate-enquiry/candidate-enquiry.component';
+// import { CandidateEnquiryComponent } from './Student/candidate-enquiry/candidate-enquiry.component';
 import { ArchwizardModule } from 'angular-archwizard';
 
 // Vehicle Management
@@ -73,6 +73,13 @@ import { DriverMasterComponent } from './VehicleManagement/driver-master/driver-
 import { FillingStationsComponent } from './VehicleManagement/filling-stations/filling-stations.component';
 import { VehicleExpensesComponent } from './VehicleManagement/vehicle-expenses/vehicle-expenses.component';
 import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-details.component';
+import { CEmainPageComponent } from './Student/cemain-page/cemain-page.component';
+import { CEbasicDetailsComponent } from './Student/cebasic-details/cebasic-details.component';
+import { CEaddressDetailsComponent } from './Student/ceaddress-details/ceaddress-details.component';
+import { CEpaymentDetailsComponent } from './Student/cepayment-details/cepayment-details.component';
+import { CEfollowupsComponent } from './Student/cefollowups/cefollowups.component';
+import { CEqualificationDetailsComponent } from './Student/cequalification-details/cequalification-details.component';
+import { CEtabpageComponent } from './Student/cetabpage/cetabpage.component';
 
 
 @NgModule({
@@ -123,7 +130,7 @@ import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-d
     FeeTypeComponent,
     ModeOfEnquiryComponent,
 
-    CandidateEnquiryComponent,
+    
 
     QualificationTypeComponent,
 
@@ -132,8 +139,16 @@ import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-d
     DriverMasterComponent,
     FillingStationsComponent,
     VehicleExpensesComponent,
-    StageDetailsComponent
-
+    StageDetailsComponent,
+    //////////////////////////
+    CEbasicDetailsComponent,
+    CEaddressDetailsComponent,
+    CEpaymentDetailsComponent,
+    CEfollowupsComponent,
+    CEmainPageComponent,
+    CEqualificationDetailsComponent,
+    CEtabpageComponent
+/////////////////////////////////////////////
     
     
 
