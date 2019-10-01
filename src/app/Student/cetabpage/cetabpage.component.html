@@ -1,0 +1,512 @@
+
+<section class="content">
+        <div class="container-fluid">
+         
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <div class="header-dropdown m-r--5">
+                                
+                        </div>
+                       <div class="body">
+                           <aw-wizard #wizard [navBarLayout]="'large-empty-symbols'">
+                            <aw-wizard-step [stepTitle]="'Step 1'">
+                                <ng-template awWizardStepSymbol><i class="fa fa-search"></i></ng-template>
+                                <div class="centered-content">
+                                    <div>
+                                        <!--Start Basic-->
+
+
+                                        <form id="form_advanced_validation">
+                                                <h3><Strong>Basic Details</Strong></h3>
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group form-float">
+                                                            <label for="firstName">First Name</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="firstName"
+                                                                    placeholder="Enter First Name" [formControl]="firstName"
+                                                                    required />
+                                                            </div>
+                                                        </div>
+                            
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-5">
+                                                            <label for="sphoto">Student Photo</label>
+                                                            <img style="margin:0 auto" src="{{getfileLoc}}"
+                                                            width="100px">
+                                                        <div class="col-sm-12">
+                                                            <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+                                                            <button (click)="submit()">Upload Image</button>
+                                                         
+                                                            <!-- <span> {{getfileLoc}}</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group form-float">
+                                                            <label for="lastName">Last Name</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="lastName"
+                                                                    placeholder="Enter Last Name" [formControl]="lastName"
+                                                                    required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-5">
+                                                       <!--////////-->
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group form-float">
+                                                            <label for="dob">Date Of Birth</label>
+                                                            <div class="form-line">
+                                                                <input type="date" class="form-control" name="dob" placeholder="Enter DateOfBirth"
+                                                                    [formControl]="dob" required />
+                                                            </div>
+                                                        </div>
+                            
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group form-float">
+                                                            <label for="regNo12th">12th RegisterNumber</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="regNo12th" placeholder="Enter 12th RegisterNumber"
+                                                                    [formControl]="regNo12th" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group form-float">
+                                                            <label for="mark12th">12th Mark</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="mark12th" placeholder="Enter 12th Mark"
+                                                                    [formControl]="mark12th" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group form-float">
+                                                            <label for="gender">Gender</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="gender" placeholder="Enter Gender"
+                                                                    [formControl]="gender" required />
+                                                            </div>
+                                                        </div>
+                            
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-5">
+                                                        <div class="form-group form-float">
+                                                            <label for="institution">Institution</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="institution" placeholder="Enter Institution"
+                                                                    [formControl]="institution" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group form-float">
+                                                            <label for="aadharNo">Aadhar Number</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="aadharNo" placeholder="Enter AadharNumber"
+                                                                    [formControl]="aadharNo" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-5">
+                                                        <div class="form-group form-float">
+                                                            <label for="board">Board Of Education</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="board" placeholder="Enter Board Of Education"
+                                                                    [formControl]="board" required />
+                                                            </div>
+                                                        </div>
+                            
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group form-float">
+                                                            <label for="fFirstName">Father's FirstName</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="fFirstName" placeholder="Enter Father's FirstName"
+                                                                    [formControl]="fFirstName" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group form-float">
+                                                            <label for="fLastName">Father's LastName</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="fLastName" placeholder="Enter Father's LastName"
+                                                                    [formControl]="fLastName" required />
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-5">
+                                                        <div class="form-group form-float">
+                                                            <label for="applicatonNo">Application Number</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="applicatonNo" placeholder="Enter Application Number"
+                                                                    [formControl]="applicatonNo" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>  
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group form-float">
+                                                            <label for="sMobileNumber">Student MobileNumber</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="sMobileNumber" placeholder="Enter Student Mobile Number"
+                                                                    [formControl]="sMobileNumber" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-5">
+                                                        <div class="form-group form-float">
+                                                            <label for="admissionCategory">Admission Category</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="admissionCategory" placeholder="Enter AdmissionCategory"
+                                                                    [formControl]="admissionCategory" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group form-float">
+                                                            <label for="referenceType">Reference Type</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="referenceType" placeholder="Enter Reference Type"
+                                                                    [formControl]="referenceType" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-5">
+                                                        <div class="form-group form-float">
+                                                            <label for="remark">Remark</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="remark" placeholder="Enter Remark"
+                                                                    [formControl]="remark" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group form-float">
+                                                            <label for="referenceBy">Reference By</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="referenceBy" placeholder="Enter Reference By"
+                                                                    [formControl]="referenceBy" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-5">
+                                                        <div class="form-group form-float">
+                                                            <label for="scholarshipCategory">ScholarshipCategory</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="scholarshipCategory" placeholder="Enter ScholarshipCategory"
+                                                                    [formControl]="scholarshipCategory" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group form-float">
+                                                            <label for="email">Email Id</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="email" placeholder="Enter Email Id"
+                                                                    [formControl]="email" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-5">
+                                                        <div class="form-group form-float">
+                                                            <label for="coursecategory">Course Category</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="coursecategory" placeholder="Enter CourseCategory"
+                                                                    [formControl]="coursecategory" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group form-float">
+                                                            <label for="nationality">Nationality</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="nationality" placeholder="Enter Nationality"
+                                                                    [formControl]="nationality" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-5">
+                                                        <div class="form-group form-float">
+                                                            <label for="courseProgram">Course/Program</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="courseProgram" placeholder="Enter Course/Program"
+                                                                    [formControl]="courseProgram" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group form-float">
+                                                            <label for="religion">Religion</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="religion" placeholder="Enter Religion"
+                                                                    [formControl]="religion" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-5">
+                                                        <!---////////-->
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group form-float">
+                                                            <label for="community">Community</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="community" placeholder="Enter Community"
+                                                                    [formControl]="community" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-5">
+                                                            <div class="form-group form-float">
+                                                                    <label for="admissionType">Admission Type</label>
+                                                                    <div class="form-line">
+                                                                        <input type="text" class="form-control" name="admissionType" placeholder="Enter AdmissionType"
+                                                                            [formControl]="admissionType" required />
+                                                                    </div>
+                                                                </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group form-float">
+                                                            <label for="caste">Caste</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="caste" placeholder="Enter Caste"
+                                                                    [formControl]="caste" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-5">
+                                                            <div class="form-group form-float">
+                                                                    <label for="fMobileNumber">Father's MobileNumber</label>
+                                                                    <div class="form-line">
+                                                                        <input type="text" class="form-control" name="fMobileNumber" placeholder="Enter Father's MobileNumber"
+                                                                            [formControl]="fMobileNumber" required />
+                                                                    </div>
+                                                                </div>
+                                                    </div>
+                                                </div>
+                                                <h3><Strong>Parent Details</Strong></h3>
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group form-float">
+                                                            <label for="fEmail">Father's EmailID</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="fEmail" placeholder="Enter Father's EmailId"
+                                                                    [formControl]="fEmail" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-5">
+                                                            <div class="form-group form-float">
+                                                                    <label for="mName">Mothers's Name</label>
+                                                                    <div class="form-line">
+                                                                        <input type="text" class="form-control" name="mName" placeholder="Enter Mother's Name"
+                                                                            [formControl]="mName" required />
+                                                                    </div>
+                                                                </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                        <div class="col-md-5">
+                                                            <div class="form-group form-float">
+                                                                <label for="fOccupation">Father's Occupation</label>
+                                                                <div class="form-line">
+                                                                    <input type="text" class="form-control" name="fOccupation" placeholder="Enter Father's Occupation"
+                                                                        [formControl]="fOccupation" required />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1"></div>
+                                                        <div class="col-md-5">
+                                                                <div class="form-group form-float">
+                                                                        <label for="mEmail">Mothers's EmailID</label>
+                                                                        <div class="form-line">
+                                                                            <input type="email" class="form-control" name="mEmail" placeholder="Enter Mother's EmailId"
+                                                                                [formControl]="mEmail" required />
+                                                                        </div>
+                                                                    </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                            <div class="col-md-5">
+                                                                <div class="form-group form-float">
+                                                                    <label for="fAnnualIncome">Father's AnnualIncome</label>
+                                                                    <div class="form-line">
+                                                                        <input type="text" class="form-control" name="fAnnualIncome" placeholder="Enter Father's AnnualIncome"
+                                                                            [formControl]="fAnnualIncome" required />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-1"></div>
+                                                            <div class="col-md-5">
+                                                                    <div class="form-group form-float">
+                                                                            <label for="mOccupation">Mothers's Occupation</label>
+                                                                            <div class="form-line">
+                                                                                <input type="text" class="form-control" name="mOccupation" placeholder="Enter Mother's Occupation"
+                                                                                    [formControl]="mOccupation" required />
+                                                                            </div>
+                                                                        </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-md-5">
+                                                                    <div class="form-group form-float">
+                                                                        <label for="pPanNumber">Parent PAN Number</label>
+                                                                        <div class="form-line">
+                                                                            <input type="text" class="form-control" name="pPanNumber" placeholder="Enter Parent PAN Number"
+                                                                                [formControl]="pPanNumber" required />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-1"></div>
+                                                                <div class="col-md-5">
+                                                                        <div class="form-group form-float">
+                                                                                <label for="mMobileNo">Mothers's MobileNumber</label>
+                                                                                <div class="form-line">
+                                                                                    <input type="text" class="form-control" name="mMobileNo" placeholder="Enter Mother's MobileNumber"
+                                                                                        [formControl]="mMobileNo" required />
+                                                                                </div>
+                                                                            </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                    <div class="col-md-5">
+                                                                        <div class="form-group form-float">
+                                                                            <label for="pAadharNumber">Parent AadharNumber</label>
+                                                                            <div class="form-line">
+                                                                                <input type="text" class="form-control" name="pAadharNumber" placeholder="Enter Parent AadharNumber"
+                                                                                    [formControl]="pAadharNumber" required />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-1"></div>
+                                                                    <div class="col-md-5">
+                                                                            <div class="form-group form-float">
+                                                                                    <label for="mAnnualIncome">Mothers's AnnualIncome</label>
+                                                                                    <div class="form-line">
+                                                                                        <input type="text" class="form-control" name="mAnnualIncome" placeholder="Enter Mother's AnnualIncome"
+                                                                                            [formControl]="mAnnualIncome" required />
+                                                                                    </div>
+                                                                                </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                        <div class="col-md-5">
+                                                                            <div class="form-group form-float">
+                                                                                <label for="motherTongue">Mother Tongue</label>
+                                                                                <div class="form-line">
+                                                                                    <input type="text" class="form-control" name="motherTongue" placeholder="Enter Parent AadharNumber"
+                                                                                        [formControl]="motherTongue" required />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-1"></div>
+                                                                        <div class="col-md-5">
+                                                                                <div class="form-group form-float">
+                                                                                        <label for="relativeName">Name of the Relative Studing in This Institution</label>
+                                                                                        <div class="form-line">
+                                                                                            <input type="text" class="form-control" name="relativeName" placeholder="Enter Relative Name"
+                                                                                                [formControl]="relativeName" required />
+                                                                                        </div>
+                                                                                    </div>
+                                                                        </div>
+                                                                    </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-info waves-effect" (click)="addbasicdetails()">Add</button>
+                                                    <span> {{message}}</span>
+                                                    
+                                                   
+                                                </div>
+                                            </form> 
+                                        
+                                    </div>
+                                    <div class="text-right">
+                                        <button class="btn-hover btn-border-radius color-8" (click)="onNext(basicdetail)" awNextStep>Next</button>
+                                    </div>
+                                </div>
+                            </aw-wizard-step>
+                            <aw-wizard-step [stepTitle]="'Step 2'">
+                                <ng-template awWizardStepSymbol><i class="fa fa-upload"></i></ng-template>
+                                <div class="centered-content">
+                                    <div>
+                                        <form>
+                                            
+                                        </form>
+                                    </div>
+
+                                    <div class="text-right">
+                                        <button class="btn-hover btn-border-radius color-10"
+                                            awPreviousStep>Back</button>
+                                        <button class="btn-hover btn-border-radius color-8" awNextStep>Next</button>
+                                    </div>
+
+                                </div>
+                            </aw-wizard-step>
+                            <aw-wizard-step [stepTitle]="'Step 3'">
+                                <ng-template awWizardStepSymbol><i class="fa fa-file"></i></ng-template>
+                                <div class="centered-content">
+                                    <div>
+                                        <form action="#">
+                                            
+                                        </form>
+                                    </div>
+
+                                    <div class="text-right">
+                                        <button class="btn-hover btn-border-radius color-10"
+                                            awPreviousStep>Back</button>
+                                        <button class="btn-hover btn-border-radius color-5">Finish</button>
+                                    </div>
+
+                                </div>
+                            </aw-wizard-step>
+                        </aw-wizard>
+
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+     
