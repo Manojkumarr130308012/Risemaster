@@ -69,12 +69,6 @@ import { DriverMasterComponent } from './VehicleManagement/driver-master/driver-
 import { FillingStationsComponent } from './VehicleManagement/filling-stations/filling-stations.component';
 import { VehicleExpensesComponent } from './VehicleManagement/vehicle-expenses/vehicle-expenses.component';
 import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-details.component';
-<<<<<<< HEAD
-=======
-
-
-//candidate Enquiry
->>>>>>> f4c4208994895be9aec66ce78c6614f60c93aa27
 import { CEmainPageComponent } from './Student/cemain-page/cemain-page.component';
 import { CEbasicDetailsComponent } from './Student/cebasic-details/cebasic-details.component';
 import { CEaddressDetailsComponent } from './Student/ceaddress-details/ceaddress-details.component';
