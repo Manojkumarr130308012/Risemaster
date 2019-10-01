@@ -73,7 +73,6 @@ import { DriverMasterComponent } from './VehicleManagement/driver-master/driver-
 import { FillingStationsComponent } from './VehicleManagement/filling-stations/filling-stations.component';
 import { VehicleExpensesComponent } from './VehicleManagement/vehicle-expenses/vehicle-expenses.component';
 import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-details.component';
-<<<<<<< HEAD
 import { CEmainPageComponent } from './Student/cemain-page/cemain-page.component';
 import { CEbasicDetailsComponent } from './Student/cebasic-details/cebasic-details.component';
 import { CEaddressDetailsComponent } from './Student/ceaddress-details/ceaddress-details.component';
@@ -82,9 +81,7 @@ import { CEfollowupsComponent } from './Student/cefollowups/cefollowups.componen
 import { CEqualificationDetailsComponent } from './Student/cequalification-details/cequalification-details.component';
 import { CEtabpageComponent } from './Student/cetabpage/cetabpage.component';
 
-=======
 import {  MatSnackBarModule} from '@angular/material';
->>>>>>> ec2fb58f348de3194423b7f045c1e89d240b6f43
 
 @NgModule({
   declarations: [
