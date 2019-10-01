@@ -52,6 +52,10 @@ import { FillingStationsComponent } from './VehicleManagement/filling-stations/f
 import { VehicleExpensesComponent } from './VehicleManagement/vehicle-expenses/vehicle-expenses.component';
 import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-details.component';
 
+// Staff Management
+import { StaffProfileComponent } from './StaffManagement/staff-profile/staff-profile.component';
+import { StaffDetailsComponent } from './StaffManagement/staff-details/staff-details.component';
+
 const routes: Routes = [
   //{ path: '', component: LoginComponent },
   {
@@ -247,6 +251,13 @@ const routes: Routes = [
 
   { path: 'stage-details', 
   component: StageDetailsComponent },
+
+  // Staff Management
+  { path: 'staff-profile', 
+  component: StaffProfileComponent },
+
+  { path: 'staff-details', 
+  component: StaffDetailsComponent },
 
 ];
 

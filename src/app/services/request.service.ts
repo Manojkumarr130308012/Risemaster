@@ -1155,4 +1155,46 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/stage-details/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
+
+  // staff profile
+  public getStaffProfile() {
+    this.url = `${this.endPoint}/staff-profile`;
+    return this.http.get(this.url);   
+  }
+  // public getStaffprofile() {
+  //   this.url = `${this.endPoint}/staff-profile/aggregation`;
+  //   return this.http.get(this.url);   
+  // }
+  
+  public addSaffProfile(newStaffProfile) {
+    this.url = `${this.endPoint}/staff-profile/add`;   
+    return this.http.post(this.url, newStaffProfile);
+  }
+  
+  fetchSaffProfile() {
+    this.url = `${this.endPoint}/staff-profile/`;
+    return this.http.get(this.url); 
+  }
+  
+
+  // staff details
+  public getStaffDetails() {
+    this.url = `${this.endPoint}/staff-profile/`;
+    return this.http.get(this.url);   
+  }
+
+  public getStaffProfilebyIdValue(id) {
+    this.url = `${this.endPoint}/staff-profile/fetchbyStaffProfileId?id=` + id;
+    return this.http.get(this.url);
+  }
+
+  updateStaffProfile(id, body) {
+    this.url = `${this.endPoint}/staff-profile/update?id=${id}`;
+    return this.http.put(this.url, body);
+  }
+
+  fetchSaffProfileBy(id) {
+    this.url = `${this.endPoint}/staff-profile/fetchdata?id=` + id;
+    return this.http.get(this.url);
+  }
 }

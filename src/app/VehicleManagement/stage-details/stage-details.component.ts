@@ -80,7 +80,7 @@ export class StageDetailsComponent implements OnInit {
      if (res.status == 'Success') {
        swal("Added Sucessfully");
      this.loadModal();
-     this.viewData();
+     this.viewStageDetails(this.IdValue);
      }
      else if (res.status == 'error') {
        this.setMessage(res.err);
@@ -91,18 +91,18 @@ export class StageDetailsComponent implements OnInit {
    }
  
   // To display stage details
-  viewData() {
-   this.request.getStage().subscribe((response) => {
-     this.viewStageDetails(this.IdValue);
-     this.stages = response;
-     console.log(this.stages);
-   }, (error) => {
-     console.log(error);
-   });
- }
+//   viewData() {
+//    this.request.getStage().subscribe((response) => {
+//      this.viewStageDetails(this.IdValue);
+//      this.stages = response;
+//      console.log(this.stages);
+//    }, (error) => {
+//      console.log(error);
+//    });
+//  }
  
  viewStageDetails(IdValue : string) {
-   console.log('IdValue',IdValue)
+  //  console.log('IdValue',IdValue)
    if (IdValue){
    this.request.getStagebyId(IdValue).subscribe((response) => {
       console.log(response);
@@ -120,7 +120,7 @@ export class StageDetailsComponent implements OnInit {
   deleteStage(id: any) {
     this.request.deleteStage(id).subscribe(res => {
       console.log(id);
-      this.viewData();
+      this.viewStageDetails(this.IdValue);
     console.log('Deleted');
     });
   }
@@ -154,7 +154,7 @@ export class StageDetailsComponent implements OnInit {
   this.request.updateStage(this.IdValue, edata).subscribe((res : any) => {
     if (res.status == 'Success') {
       swal("Updated Sucessfully");     
-      this.viewData();
+      this.viewStageDetails(this.IdValue);
       this.loadModal();
     }
     else if (res.status == 'error') {       
@@ -186,7 +186,8 @@ export class StageDetailsComponent implements OnInit {
   
   ngOnInit() {
     M.updateTextFields();
-   this.viewData();
+  //  this.viewData();
+  this.viewStageDetails(this.IdValue);
    this.loadModal();
   
    //jQuery Validation

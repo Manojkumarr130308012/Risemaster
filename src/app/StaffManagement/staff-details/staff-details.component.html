@@ -1,0 +1,335 @@
+<section class="content">
+        <div class="container-fluid">
+            <!-- Table Start-->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">       
+                            <h2>
+                                <strong>Staff Profile</strong>
+                            </h2>
+                        
+                            </div>
+                           
+                            <div class = "body" *ngFor="let staffprofile of staffprofiles; let i=index">
+                                    <!-- <div class="col-md-3">
+                                            <img src="http://localhost:3000/{{staffprofile?.photoLocation}}" width="100px">
+                                    </div> -->
+                                    
+                                <div class = "row">
+                                        <div class="col-md-3">
+                                        <h6> Name :</h6> {{staffprofile?.lastName}}
+                                        </div>
+                                        <div class="col-md-3">
+                                        <h6> Code :</h6> {{staffprofile?.staffCode}}
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h6>  Staff Type :</h6> {{staffprofile?.stafftype}}
+                                        </div>
+                                       
+                                </div>
+                                <div class = "row">
+                                        <div class="col-md-3">
+                                            <h6>  Employee Code :</h6> {{staffprofile?.employeeCode}}
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h6>  Staff Role :</h6> {{staffprofile?.staffrole}}
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h6> Date of Birth :</h6> {{staffprofile?.dob}}
+                                        </div>
+                                </div>
+                                <div class = "row">
+                                        <div class="col-md-3">
+                                            <h6>  Gender :</h6> {{staffprofile?.gender}}
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h6>   Designation :</h6> {{staffprofile?.designation}}
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h6>  Date of Joining :</h6> {{staffprofile?.doj}}
+                                        </div>
+                                </div>
+                                <div class = "row">
+                                        <div class="col-md-3">
+                                            <h6> Marital Status :</h6> {{staffprofile?.maritalstatus}}
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h6>  Blood Group :</h6> {{staffprofile?.bloodgroup}}
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h6> Mobile Number :</h6> {{staffprofile?.mobileNo}}
+                                        </div>
+                                </div>
+                                <!-- <div class="modal-footer">
+                                        <button class="btn btn-tbl-edit" data-toggle="modal"
+                                                data-target="#editModal" (click)="onEdit(staffprofile) ">create</button>  
+                                    </div> -->
+                                    <div>
+                                            <button class="btn btn-tbl-edit" data-toggle="modal"
+                                            data-target="#editModal" (click)="onEdit(staffprofile) ">Edit</button>
+                                    </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div> 
+                
+                <!-- Table End -->
+            </div>
+        </section>
+ <!-- Edit Form -->
+ <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+     aria-labelledby="formModal" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h5 class="modal-title" id="formModal">Add Details</h5>
+                 <button type="button" class="close" data-dismiss="modal"
+                     aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                 </button>
+             </div>
+             <div class="modal-body">
+                    <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                  <label>Staff code</label> 
+                                  <input type="text" formControlName="staffCode" class="form-control" placeholder="Enter Staff code"
+                                      [ngClass]="{ 'is-invalid': submitted && f.staffCode.errors }" />
+                                  <div *ngIf="submitted && f.staffCode.errors" class="invalid-feedback">
+                                      <div *ngIf="f.staffCode.errors.required">Staff code is required</div>
+                                  </div>
+                              </div>
+                              </div>
+                                   </div>   
+                                  <br>
+    
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Staff Type</label>
+                                                 <select class="browser-default"  id="select" [(ngModel)]="selectedstafftype" 
+                                                 formControlName="stafftype" value = " " class="form-control" placeholder="Enter Staff Type"
+                                                     [ngClass]="{ 'is-invalid': submitted && f.stafftype.errors }" >
+                                                     <div *ngIf="submitted && f.stafftype.errors" class="invalid-feedback">
+                                                         <div *ngIf="f.stafftype.errors.required">Staff Type is required</div>
+                                                     </div>
+                                              <option  disabled selected>Choose your Staff Type</option>
+                                                  <option *ngFor="let stafftype of stafftypes?.response" [value]="stafftype._id">{{stafftype?.stafftype}}</option>     
+                                              </select>                                                        
+                                            </div>
+                                         </div>
+                                         <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Staff Role</label>
+                                                 <select class="browser-default"  id="select" [(ngModel)]="selectedstaffrole" 
+                                                 formControlName="staffrole" value = " " class="form-control" placeholder="Enter Staff Role"
+                                                     [ngClass]="{ 'is-invalid': submitted && f.staffrole.errors }" >
+                                                     <div *ngIf="submitted && f.staffrole.errors" class="invalid-feedback">
+                                                         <div *ngIf="f.staffrole.errors.required">Staff Role is required</div>
+                                                     </div>
+                                              <option  disabled selected>Choose your Staff Role</option>
+                                                  <option *ngFor="let staffrole of staffroles?.response" [value]="staffrole._id">{{staffrole?.staffrole}}</option>     
+                                              </select>                                                        
+                                            </div>
+                                         </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Salutation</label>
+                                             <select class="browser-default"  id="select" [(ngModel)]="selectedSalutation" 
+                                             formControlName="salutation" value = " " class="form-control" placeholder="Enter Salutation"
+                                                 [ngClass]="{ 'is-invalid': submitted && f.salutation.errors }" >
+                                                 <div *ngIf="submitted && f.salutation.errors" class="invalid-feedback">
+                                                     <div *ngIf="f.salutation.errors.required">Salutation is required</div>
+                                                 </div>
+                                          <option  disabled selected>Choose your Salutation</option>
+                                              <option *ngFor="let salutation of salutations?.response" [value]="salutation._id">{{salutation?.salutation}}</option>     
+                                          </select>                                                        
+                                        </div>
+                                     </div>
+                            <div class="col-md-6">
+                            <div class="form-group">
+                                <label>First Name</label> 
+                                <input type="text" formControlName="firstName" class="form-control" placeholder="Enter First Name"
+                                    [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                                </div>
+                            </div>
+                                  </div>
+                                  </div>
+                                  <div class="row">
+                                        <div class="col-md-6">
+                                  <div class="form-group">
+                                <label>Last name</label> 
+                                <input type="text" formControlName="lastName" class="form-control" placeholder="Enter Last name"
+                                    [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                                <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.lastName.errors.required">Last name is required</div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Designation</label> 
+                                <input type="text" formControlName="designation" class="form-control" placeholder="Enter Designation"
+                                    [ngClass]="{ 'is-invalid': submitted && f.designation.errors }" />
+                                <div *ngIf="submitted && f.designation.errors" class="invalid-feedback">
+                                    <div *ngIf="f.designation.errors.required">Designation is required</div>
+                                </div>
+                            </div>
+                                  </div>
+                                  </div>
+                                  <div class="row">
+                                        <div class="col-md-6">
+                                  <div class="form-group">
+                                <label>Date of Joining</label> 
+                                <input type="date" formControlName="doj" class="form-control" placeholder="Enter Date of Joining"
+                                    [ngClass]="{ 'is-invalid': submitted && f.doj.errors }" />
+                                <div *ngIf="submitted && f.doj.errors" class="invalid-feedback">
+                                    <div *ngIf="f.doj.errors.required">Date of Joining is required</div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Gender</label>
+                                     <select class="browser-default"  id="select" [(ngModel)]="selectedGender" 
+                                     formControlName="gender" value = " " class="form-control" placeholder="Enter Gender"
+                                         [ngClass]="{ 'is-invalid': submitted && f.gender.errors }" >
+                                         <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                                             <div *ngIf="f.gender.errors.required">Gender is required</div>
+                                         </div>
+                                  <option  disabled selected>Choose your Gender</option>
+                                      <option *ngFor="let gender of genders?.response" [value]="gender._id">{{gender?.gender}}</option>     
+                                  </select>                                                        
+                                </div>
+                             </div>
+                                  </div>
+                                  <div class="row">
+                                        <div class="col-md-6">
+                                  <div class="form-group">
+                                <label>Date of Birth</label> 
+                                <input type="date" formControlName="dob" class="form-control" placeholder="Enter Date of Birth"
+                                    [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" />
+                                <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
+                                    <div *ngIf="f.dob.errors.required">Date of Birth is required</div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Employee Code</label> 
+                                <input type="text" formControlName="employeeCode" class="form-control" placeholder="Enter Employee Code"
+                                    [ngClass]="{ 'is-invalid': submitted && f.employeeCode.errors }" />
+                                <div *ngIf="submitted && f.employeeCode.errors" class="invalid-feedback">
+                                    <div *ngIf="f.employeeCode.errors.required">Employee Code is required</div>
+                                </div>
+                            </div>
+                                  </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Pay Type</label>
+                                             <select class="browser-default"  id="select" [(ngModel)]="selectedPayType" 
+                                             formControlName="paytype" value = " " class="form-control" placeholder="Enter Pay Type"
+                                                 [ngClass]="{ 'is-invalid': submitted && f.paytype.errors }" >
+                                                 <div *ngIf="submitted && f.paytype.errors" class="invalid-feedback">
+                                                     <div *ngIf="f.paytype.errors.required">Pay Type is required</div>
+                                                 </div>
+                                          <option  disabled selected>Choose your Pay Type</option>
+                                              <option *ngFor="let paytype of paytypes?.response" [value]="paytype._id">{{paytype?.paytype}}</option>     
+                                          </select>                                                        
+                                        </div>
+                                     </div>
+                            <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Email Id</label> 
+                                <input type="email" formControlName="emailId" class="form-control" placeholder="Enter Email Id"
+                                    [ngClass]="{ 'is-invalid': submitted && f.emailId.errors }" />
+                                <div *ngIf="submitted && f.emailId.errors" class="invalid-feedback">
+                                    <div *ngIf="f.emailId.errors.required">Email Id is required</div>
+                                </div>
+                            </div>
+                                  </div>
+                                  </div>
+                                  <div class="row">
+                                        <div class="col-md-6">
+                                  <div class="form-group">
+                                <label>Mobile Number</label> 
+                                <input type="text" formControlName="mobileNo" class="form-control" placeholder="Enter Mobile Number"
+                                    [ngClass]="{ 'is-invalid': submitted && f.mobileNo.errors }" />
+                                <div *ngIf="submitted && f.mobileNo.errors" class="invalid-feedback">
+                                    <div *ngIf="f.mobileNo.errors.required">Mobile Number is required</div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Emergency Mobile Number</label> 
+                                <input type="text" formControlName="emergencyNo" class="form-control" placeholder="Enter Emergency Mobile Number"
+                                    [ngClass]="{ 'is-invalid': submitted && f.emergencyNo.errors }" />
+                                <div *ngIf="submitted && f.emergencyNo.errors" class="invalid-feedback">
+                                    <div *ngIf="f.emergencyNo.errors.required">Emergency Mobile Number is required</div>
+                                </div>
+                            </div>
+                                  </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Marital Status</label>
+                                             <select class="browser-default"  id="select" [(ngModel)]="selectedMaritalStatus" 
+                                             formControlName="maritalstatus" value = " " class="form-control" placeholder="Enter Marital Status"
+                                                 [ngClass]="{ 'is-invalid': submitted && f.maritalstatus.errors }" >
+                                                 <div *ngIf="submitted && f.maritalstatus.errors" class="invalid-feedback">
+                                                     <div *ngIf="f.maritalstatus.errors.required">Marital Status is required</div>
+                                                 </div>
+                                          <option  disabled selected>Choose your Marital Status</option>
+                                              <option *ngFor="let maritalstatus of maritalstatuses?.response" [value]="maritalstatus._id">{{maritalstatus?.maritalstatus}}</option>     
+                                          </select>                                                        
+                                        </div>
+                                     </div>
+                                     <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Blood Group</label>
+                                             <select class="browser-default"  id="select" [(ngModel)]="selectedBloodGroup" 
+                                             formControlName="bloodgroup" value = " " class="form-control" placeholder="Enter Blood Group"
+                                                 [ngClass]="{ 'is-invalid': submitted && f.bloodgroup.errors }" >
+                                                 <div *ngIf="submitted && f.bloodgroup.errors" class="invalid-feedback">
+                                                     <div *ngIf="f.bloodgroup.errors.required">Blood Group is required</div>
+                                                 </div>
+                                          <option  disabled selected>Choose your Blood Group</option>
+                                              <option *ngFor="let bloodgroup of bloodgroups?.response" [value]="bloodgroup._id">{{bloodgroup?.bloodgroup}}</option>     
+                                          </select>                                                        
+                                        </div>
+                                     </div>
+                              </div>
+                              <div class="row">
+                                    <div class="col-sm-12">
+                                        <h6>Photo</h6>
+                                        <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+                                        <div class="progress">
+                                            <div class="progress-bar width-per-45" [ngStyle]="{'width':uploader.progress+'%'}">
+                                            </div>
+                                        </div>
+                                        <div class="row" *ngIf="uploader?.queue?.length > 0">
+                                            <button type="button" (click)="photosubmit()">Upload</button></div>
+                                    </div>
+                                </div>
+             <div class="modal-footer">
+                    <button type="submit" class="btn btn-default"  >Update</button >
+                        <span> {{message}}</span>
+                        <!-- <span> {{photoLocation}}</span> -->
+                 <button type="button" class="btn btn-danger waves-effect"
+                     data-dismiss="modal">Cancel</button>
+             </div>
+            </form>
+         </div>
+     </div>
+    </div>
+    </div>

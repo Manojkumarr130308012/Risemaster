@@ -74,6 +74,10 @@ import { FillingStationsComponent } from './VehicleManagement/filling-stations/f
 import { VehicleExpensesComponent } from './VehicleManagement/vehicle-expenses/vehicle-expenses.component';
 import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-details.component';
 
+// Staff Management
+import { StaffProfileComponent } from './StaffManagement/staff-profile/staff-profile.component';
+import { StaffDetailsComponent } from './StaffManagement/staff-details/staff-details.component';
+
 
 @NgModule({
   declarations: [
@@ -132,7 +136,9 @@ import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-d
     DriverMasterComponent,
     FillingStationsComponent,
     VehicleExpensesComponent,
-    StageDetailsComponent
+    StageDetailsComponent,
+    StaffProfileComponent,
+    StaffDetailsComponent
 
     
     
