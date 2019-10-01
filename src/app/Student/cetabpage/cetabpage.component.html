@@ -465,17 +465,163 @@
                                         
                                     </div>
                                     <div class="text-right">
-                                        <button class="btn-hover btn-border-radius color-8" (click)="onNext(basicdetail)" awNextStep>Next</button>
+                                        <button class="btn-hover btn-border-radius color-8" awNextStep>Next</button>
                                     </div>
                                 </div>
                             </aw-wizard-step>
+ <!--//////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
                             <aw-wizard-step [stepTitle]="'Step 2'">
                                 <ng-template awWizardStepSymbol><i class="fa fa-upload"></i></ng-template>
                                 <div class="centered-content">
                                     <div>
-                                        <form>
-                                            
-                                        </form>
+                                        <form [formGroup]="addressAddForm" >
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                   <div class="form-group">
+                                                       <label>Address Type</label> 
+                                                       <select class="browser-default"  id="select" [(ngModel)]="selectedaddresstype" 
+                                                              formControlName="addresstype" value = " " class="form-control" placeholder="Enter addresstype " 
+                                                              [ngClass]="{ 'is-invalid': submitted && f.addresstype.errors }" >  
+                                                     <option value="" disabled selected>Choose your AddressType</option>
+                                                     <option *ngFor="let addressType of addressTypes?.response" [value]="addressType._id">{{addressType?.addressType}}</option>     
+                                                     </select>
+                                                    <div *ngIf="submitted && f.addresstype.errors" class="invalid-feedback">
+                                                  <div *ngIf="f.addresstype.errors.required">AddressType is required</div>
+                                                    </div>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Flat/Door/BlockNo.</label> 
+                                                        <input type="text" value = "" formControlName="flatNo" class="form-control" placeholder="Enter AddressType"
+                                                            [ngClass]="{ 'is-invalid': submitted && f.flatNo.errors }" />
+                                                        <div *ngIf="submitted && f.flatNo.errors" class="invalid-feedback">
+                                                            <div *ngIf="f.flatNo.errors.required">flatNo is required</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                     <div class="form-group">
+                                                       <label>Street/Lane</label> 
+                                                       <input type="text" value = "" formControlName="streetLane" class="form-control" placeholder="Enter AddressType"
+                                                           [ngClass]="{ 'is-invalid': submitted && f.streetLane.errors }" />
+                                                       <div *ngIf="submitted && f.streetLane.errors" class="invalid-feedback">
+                                                           <div *ngIf="f.streetLane.errors.required">Street/Lane is required</div>
+                                                       </div>
+                                                   </div>
+                                                </div>
+                                               </div>
+                                               <div class="row">
+                                                <div class="col-md-4">
+                                                   <div class="form-group">
+                                                       <label>Area/Locality</label> 
+                                                       <input type="text" value = "" formControlName="area" class="form-control" placeholder="Enter AddressType"
+                                                           [ngClass]="{ 'is-invalid': submitted && f.area.errors }" />
+                                                       <div *ngIf="submitted && f.area.errors" class="invalid-feedback">
+                                                           <div *ngIf="f.area.errors.required">Area/Locality is required</div>
+                                                       </div>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>City</label> 
+                                                        <input type="text" value = "" formControlName="city" class="form-control" placeholder="Enter AddressType"
+                                                            [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
+                                                        <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                                                            <div *ngIf="f.city.errors.required">City is required</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                     <div class="form-group">
+                                                       <label>District</label> 
+                                                       <input type="text" value = "" formControlName="district" class="form-control" placeholder="Enter AddressType"
+                                                           [ngClass]="{ 'is-invalid': submitted && f.district.errors }" />
+                                                       <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
+                                                           <div *ngIf="f.district.errors.required">District is required</div>
+                                                       </div>
+                                                   </div>
+                                                </div>
+                                               </div>
+                                               <div class="row">
+                                                <div class="col-md-4">
+                                                   <div class="form-group">
+                                                       <label>Pincode</label> 
+                                                       <input type="text" value = "" formControlName="pincode" class="form-control" placeholder="Enter AddressType"
+                                                           [ngClass]="{ 'is-invalid': submitted && f.pincode.errors }" />
+                                                       <div *ngIf="submitted && f.pincode.errors" class="invalid-feedback">
+                                                           <div *ngIf="f.pincode.errors.required">Pincode is required</div>
+                                                       </div>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>State</label> 
+                                                        <input type="text" value = "" formControlName="state" class="form-control" placeholder="Enter AddressType"
+                                                            [ngClass]="{ 'is-invalid': submitted && f.state.errors }" />
+                                                        <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                                                            <div *ngIf="f.state.errors.required">State is required</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                     <div class="form-group">
+                                                       <label>Country</label> 
+                                                       <input type="text" value = "" formControlName="country" class="form-control" placeholder="Enter AddressType"
+                                                           [ngClass]="{ 'is-invalid': submitted && f.country.errors }" />
+                                                       <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+                                                           <div *ngIf="f.country.errors.required">Country is required</div>
+                                                       </div>
+                                                   </div>
+                                                </div>
+                                               </div>
+                                               <button type="submit" (click)="addaddressdetails()" class="btn btn-default"  >Add</button >
+                                               
+                                            </form>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                        <table id="tableExport"
+                                                        class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Address Type</th>
+                                                                <th>Address</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let addressdetail of addressdetails; let i=index">
+                                                                <td>{{ i +1 }} </td>
+                                                                <td>{{addressdetail.AddressTypeDetails[0].addressType}}</td>
+                                                                <td>{{addressdetail?.flatNo}},
+                                                                       {{addressdetail?.streetLane}},
+                                                                       {{addressdetail?.area}},
+                                                                       {{addressdetail?.city}},
+                                                                       {{addressdetail?.district}},
+                                                                       {{addressdetail?.pincode}},
+                                                                       {{addressdetail?.state}},
+                                                                       {{addressdetail?.country}}
+                                                                </td>
+                                                                <div class="noprint">
+                                                                    <td>
+                                                                        <div class="btn btn-tbl-edit" data-toggle="modal"
+                                                                            data-target="#editModaladdress">
+                                                                            <i class="material-icons" (click)="onEditAddress(addressdetail)">create</i>
+                                                                        </div>
+
+                                                                        <div class="btn btn-tbl-delete">
+                                                                            <i class="material-icons"
+                                                                                (click)="deleteAddressDetails(addressdetail?._id)">delete_forever</i>
+                                                                        </div>
+                                                                    </td>
+                                                                </div>
+                                                            </tr>
+                                                        </tbody>
+
+                                                    </table>
+                                              </div>
+                                        </div>
                                     </div>
 
                                     <div class="text-right">

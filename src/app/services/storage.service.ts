@@ -16,8 +16,8 @@ constructor() { }
     }
   }
 
-  set(userData) {
-    localStorage.setItem('userData', JSON.stringify(userData));
+  set(response) {
+    localStorage.setItem('currentUser', JSON.stringify(response));
   }
 
   clear() {

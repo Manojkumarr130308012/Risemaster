@@ -4,7 +4,6 @@ import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader
 import { RequestService } from '../../services/request.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FileUploader } from 'ng2-file-upload';
-import { StorageService } from 'src/app/services/storage.service';
 
 const URL = 'http://localhost:3000/uploadStudentPhoto/upload';
 declare const $: any;
@@ -15,7 +14,7 @@ declare const swal: any;
   styleUrls: ['./cetabpage.component.scss']
 })
 export class CEtabpageComponent implements OnInit {
-  
+  submitted = false;
 //Basic Details
 firstName: any;
 lastName: any;
@@ -61,15 +60,50 @@ sPhoto: any;
 getfileLoc: any;
  message: any;
  basicdetails: any;
+  //Address Details
+ addresstype: any;
+ flatNo:any;
+ streetLane:any;
+ area:any;
+ city:any;
+ district:any;
+ pincode:any;
+ state:any;
+ country:any;
+  addressdetails: any;
+  editaddressDetailsdata: any;
+  addressTypeValue: any;
+  flatNoValue: any;
+  streetLaneValue: any;
+  areaValue: any;
+  cityValue: any;
+  districtValue: any;
+  pincodeValue: any;
+  stateValue: any;
+  countryValue: any;
+  addressAddForm: any;
+  IdValue: any;
   Id: any;
-  ceID: any;
-  response: any;
+  addressEditForm: any;
+  addresstype2: any;
+  flatNo2: any;
+  area2: any;
+  city2: any;
+  phone2: any;
+  district2: any;
+  pincode2: any;
+  state2: any;
+  country2: any;
+  streetLane2: any;
+  addressTypes: any;
+
+
   constructor(private dynamicScriptLoader: DynamicScriptLoaderService,
     private request: RequestService,
     private router: Router,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private storage: StorageService,) { 
+   ) { 
       // Add Form - BasicDetail
      
      this.firstName = new FormControl('', Validators.required);
@@ -112,6 +146,33 @@ this.pPanNumber = new FormControl('', Validators.required);
 this.pAadharNumber = new FormControl('', Validators.required);
 this.relativeName = new FormControl('', Validators.required);
 this.sPhoto = new FormControl('', Validators.required);
+
+
+//add Form Group - addressDetails
+this.addressAddForm = this.formBuilder.group({
+  addresstype:['', Validators.required],
+  flatNo: ['', Validators.required],
+  streetLane: ['', Validators.required],
+  area: ['', Validators.required],
+  city: ['', Validators.required],
+  district: ['', Validators.required],
+  pincode: ['', Validators.required], 
+  state: ['', Validators.required], 
+  country: ['', Validators.required], 
+  });
+   //Edit Form Group - addressDetails
+  this.addressEditForm = this.formBuilder.group({
+    addresstype2:['', Validators.required],
+    flatNo2: ['', Validators.required],
+    streetLane2: ['', Validators.required],
+    area2: ['', Validators.required],
+    city2: ['', Validators.required],
+    district2: ['', Validators.required],
+    pincode2: ['', Validators.required], 
+    state2: ['', Validators.required], 
+    country2: ['', Validators.required], 
+    });
+
     }
     //to upload logo
   submit() {
@@ -170,14 +231,14 @@ addbasicdetails() {
    
     if (response.status == 'error') {
       this.setMessage(response.err);
-      this.storage.clear();
+      
     }
     else if (response.status == 'success') {
      
       swal("Added Sucessfully");
       this.viewData();
-      this.storage.set(response.data);
-      this.router.navigate(['CEMain']);
+      localStorage.setItem('currentUser', JSON.stringify(response));
+      
     }
   }, (error) => {
     this.setMessage(error);
@@ -194,12 +255,98 @@ viewData() {
     console.log(error);
   });
  }
-//  onNext(basicdetail) {
-//   this.Id=basicdetail._id;
-//   console.log(this.Id);
-//  }
+// convenience getter for easy access to form fields
+get f() { return this.addressAddForm.controls; }
+addaddressdetails() {
+  this.submitted = true;
+  if (this.addressAddForm.invalid) {
+    return;
+    }
+
+  this.request.addAddressDetails(this.addressAddForm.value).subscribe((res: any) => {
+   console.log(this.addressAddForm.value);
+   this.viewAddressData();
+   });
+    
+ }
+ loadAddressType() {
+  this.request.getAddressType().subscribe((response : any) => {
+  this.addressTypes = response;
+  console.log(response);
+  }, (error) => {
+  console.log(error);
+  });
+  }
+ viewAddressData() {
+  this.request.getAddressDetails().subscribe((response) => {
+    this.addressdetails = response;
+    console.log(this.addressdetails);
+  }, (error) => {
+    console.log(error);
+  });
+ }
+  //Edit Function -addressDetails
+  onEditAddress(addressdetail) {
+    this.Id = addressdetail._id;
+    this.request.fetchAddressDetailsById(this.Id).subscribe((response) => {
+    this.editaddressDetailsdata = response[0];
+    console.log(response);
+    this.addressTypeValue = this.editaddressDetailsdata.addresstype;
+    this.flatNoValue = this.editaddressDetailsdata.flatNo;
+    this.streetLaneValue = this.editaddressDetailsdata.streetLane;
+    this.areaValue = this.editaddressDetailsdata.area;
+    this.cityValue = this.editaddressDetailsdata.city;
+    this.districtValue = this.editaddressDetailsdata.district;
+    this.pincodeValue = this.editaddressDetailsdata.pincode;
+    this.stateValue = this.editaddressDetailsdata.state;
+    this.countryValue = this.editaddressDetailsdata.country;
+    this.IdValue = this.editaddressDetailsdata._id;
+    
+    this.addressEditForm = this.formBuilder.group({
+      addresstype2:[this.addressTypeValue, Validators.required],
+      flatNo2: [this.flatNoValue, Validators.required],
+      streetLane2: [this.streetLaneValue, Validators.required],
+    area2: [this.areaValue, Validators.required],
+    city2: [this.cityValue, Validators.required],
+    district2: [this.districtValue, Validators.required],
+    pincode2: [this.pincodeValue, Validators.required],
+    state2: [this.stateValue, Validators.required],
+    country2: [this.countryValue, Validators.required]
+    });
+    console.log(this.addressEditForm.value);
+    });
+    }
+    onEditAdressSubmit() {
+      // this.submitted = true;
+      console.log(this.addressEditForm.value);
+      const edata = {
+        addresstype: this.addresstype2.value,
+        flatNo: this.flatNo2.value,
+        area: this.area2.value,
+        city: this.city2.value,
+        streetLane: this.streetLane2.value,
+        district: this.district2.value,
+        pincode: this.pincode2.value,
+        state: this.state2.value,
+        country: this.country2.value, 
+      };
+      this.request.updateAddressDetails(this.IdValue, edata).subscribe((response: any) => {
+        console.log(response);
+      this.viewAddressData();
+      // this.loadModal();
+      });
+      }
+       //To delete the addressdetails data
+deleteAddressDetails(id: any) {
+  this.request.deleteAddressDetails(id).subscribe(res => {
+  swal(" Deleted Successfully "); 
+  this.viewAddressData();
+  });
+  }
   ngOnInit() {
     this.viewData();
+    this.viewAddressData();
+    this.loadAddressType();
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       console.log('ImageUpload:uploaded:', item, status, response);
