@@ -55,13 +55,13 @@ export class ReligionComponent implements OnInit {
       }
     this.registerForm.value;
   this.request.addReligion(this.registerForm.value).subscribe((res: any) => {
-    if (res.status == 'Success') {
+    if (res.status == 'success') {
       swal("Added Sucessfully");
     this.loadModal();
     this.viewData();
     }
     else if (res.status == 'error') {
-      this.setMessage(res.err);
+      this.setMessage(res.error);
     }
   }, (error) => {
     this.setMessage(error);
@@ -81,12 +81,10 @@ export class ReligionComponent implements OnInit {
 
   // To deleted religion
   deleteReligion(id: any) {
-    this.request.deleteReligion(id).subscribe(res => {
-      console.log(id);
-      this.viewData();
-    console.log('Deleted');
-   
-    this.router.navigate(['religion']);
+    this.request.deleteReligion(id).subscribe(res => {         
+    swal("Deleted Sucessfully");
+    this.viewData();
+    
     });
   }
 
@@ -112,18 +110,18 @@ onEditSubmit() {
       return;
     }
 this.request.updateReligion(this.IdValue,this.editForm.value).subscribe((res : any) => {
-  if (res.status == 'Success') {
+  if (res.status == 'success') {
     swal("Updated Sucessfully");     
     this.loadModal();
     this.viewData();
   }
   else if (res.status == 'error') {       
-    this.setMessage(res.err);
+    this.setMessage(res.error);
   }      
  
-}, (err) => {
-  console.log(err);
-  this.setMessage(err);
+}, (error) => {
+  console.log(error);
+  this.setMessage(error);
 });
 }
 

@@ -348,6 +348,10 @@ export class RequestService {
     this.url = `${this.endPoint}/admissionCategory/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
+  loadInstitution() {
+    this.url = `${this.endPoint}/institution/`;
+    return this.http.get(this.url);
+  }
 
 
   // course-category
@@ -418,9 +422,8 @@ export class RequestService {
     this.url = `${this.endPoint}/course-program/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
-
-  loadCourseprogram() {
-    this.url = `${this.endPoint}/course-category`;
+  public getCoursecategorybycourPro(coursecategory) {
+    this.url = `${this.endPoint}/course-program/fetchByCouCate/?coursecategory=` + coursecategory;
     return this.http.get(this.url);
   }
 // Address Type
@@ -481,8 +484,8 @@ fetchCourseTypeById(id) {
   this.url = `${this.endPoint}/courseType/fetchdata?id=` + id;
   return this.http.get(this.url);
 }
-loadQualificationType() {
-  this.url = `${this.endPoint}/qualification-type`;
+getCoursetypebyQua(QualificationType) {
+  this.url = `${this.endPoint}/courseType/fetchbyQua?qualificationType=` + QualificationType;
       return this.http.get(this.url); 
 }
 
@@ -535,10 +538,6 @@ fetchInstitutionType() {
 }
 fetchInstitutionTypeById(id) {
   this.url = `${this.endPoint}/institutionType/fetchdata?id=` + id;
-  return this.http.get(this.url);
-}
-loadInstitution() {
-  this.url = `${this.endPoint}/institution/`;
   return this.http.get(this.url);
 }
 
@@ -893,6 +892,11 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/department/delete?id=`+ id;
     return this.http.delete(this.url);
   }
+
+  public getDetartmentbyIns(institution) {
+    this.url = `${this.endPoint}/department/fetchbyIns/?institution=` + institution;
+    return this.http.get(this.url);
+  }
   
   updateDepartment(id, body) {
     this.url = `${this.endPoint}/department/update?id=${id}`;
@@ -997,6 +1001,36 @@ fetchBankById(id) {
       return this.http.get(this.url);
     }
 
+    // CandiadateEnquiry - BasicDetails
+    public getBasicDetails() {
+      this.url = `${this.endPoint}/ce-basicdetails/`;
+      return this.http.get(this.url);   
+    }
+    
+    public addBasicDetails(newCandidateDetails) {
+      this.url = `${this.endPoint}/ce-basicdetails/add`;   
+      return this.http.post(this.url, newCandidateDetails);
+    }
+    
+    public deleteBasicDetails(id) {
+      this.url = `${this.endPoint}/ce-basicdetails/delete?id=`+ id;
+      return this.http.delete(this.url);
+    }
+    
+    updateBasicDetails(id, body) {
+      this.url = `${this.endPoint}/ce-basicdetails/update?id=${id}`;
+      return this.http.put(this.url, body);
+    }
+    
+    fetchBasicDetails() {
+      this.url = `${this.endPoint}/ce-basicdetails/`;
+      return this.http.get(this.url); 
+    }
+    fetchBasicDetailsById(id) {
+      this.url = `${this.endPoint}/ce-basicdetails/fetchdata?id=` + id;
+      return this.http.get(this.url);
+    }
+
      // driver
   public getDriver() {
     this.url = `${this.endPoint}/driver/aggregation`;
@@ -1026,7 +1060,7 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/driver/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
-  loadVehicle() {
+  loadDriver() {
     this.url = `${this.endPoint}/vehicle/`;
     return this.http.get(this.url); 
   }
@@ -1060,6 +1094,10 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/vehicle/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
+  loadVehicle() {
+    this.url = `${this.endPoint}/institution/`;
+    return this.http.get(this.url); 
+    }
 
     // vehicle expenses
     public getExpense() {
@@ -1120,7 +1158,6 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/filling-stations/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
-
   // stage-details
   public getStage() {
     this.url = `${this.endPoint}/stage-details/`;
@@ -1158,14 +1195,15 @@ fetchBankById(id) {
 
   // staff profile
   public getStaffProfile() {
-    this.url = `${this.endPoint}/staff-profile`;
+    this.url = `${this.endPoint}/staff-profile/aggregation`;
     return this.http.get(this.url);   
   }
-  // public getStaffprofile() {
-  //   this.url = `${this.endPoint}/staff-profile/aggregation`;
-  //   return this.http.get(this.url);   
-  // }
   
+  public getStaffProfileByDep(department) {
+    this.url = `${this.endPoint}/staff-profile/fetchbyDepartment?department=` + department;
+    return this.http.get(this.url);   
+  }
+
   public addSaffProfile(newStaffProfile) {
     this.url = `${this.endPoint}/staff-profile/add`;   
     return this.http.post(this.url, newStaffProfile);
@@ -1179,7 +1217,7 @@ fetchBankById(id) {
 
   // staff details
   public getStaffDetails() {
-    this.url = `${this.endPoint}/staff-profile/`;
+    this.url = `${this.endPoint}/staff-profile/aggregation`;
     return this.http.get(this.url);   
   }
 

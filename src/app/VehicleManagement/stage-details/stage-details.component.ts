@@ -16,6 +16,8 @@ export class StageDetailsComponent implements OnInit {
 
   public stage: any;
   private stages: any;
+
+
   public stageName: any;
   public busStop: any;
   public KMS: any;
@@ -28,48 +30,48 @@ export class StageDetailsComponent implements OnInit {
 
   Id: any;
   IdValue: any;
+  stageId: any;
   editStage: any;
   stageNameValue: any;
   busStopValue: any;
   KMSValue: any;
   feesValue: any;
-  
-  public edit = false;
+
+  // public edit = false;
   public message: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private request: RequestService,
     private router: Router,
-    private route: ActivatedRoute) 
-    {
+    private route: ActivatedRoute) {
     this.route.queryParams.subscribe((params: any) => {
-      this.edit = params.edit;
+      // this.edit = params.edit;
       this.IdValue = params.id;
-     });
+    });
 
-     // Add Form
-     this.stageName = new FormControl('', Validators.required);
-     this.busStop = new FormControl('', Validators.required);
-     this.KMS= new FormControl('', Validators.required);
-     this.fees= new FormControl('', Validators.required);
+    // Add Form
+    this.stageName = new FormControl('', Validators.required);
+    this.busStop = new FormControl('', Validators.required);
+    this.KMS = new FormControl('', Validators.required);
+    this.fees = new FormControl('', Validators.required);
 
-   // Edit Form
-     this.stageName2 = new FormControl('', Validators.required);
-     this.busStop2 = new FormControl('', Validators.required);
-     this.KMS2= new FormControl('', Validators.required);
-     this.fees2= new FormControl('', Validators.required);
-}
-     
-     public setMessage(message) {
-      return this.message = message;
-    }
+    // Edit Form
+    this.stageName2 = new FormControl('', Validators.required);
+    this.busStop2 = new FormControl('', Validators.required);
+    this.KMS2 = new FormControl('', Validators.required);
+    this.fees2 = new FormControl('', Validators.required);
+  }
 
-    //Add form validation and function
-   addstage() {
+  public setMessage(message) {
+    return this.message = message;
+  }
+
+  //Add form validation and function
+  addstage() {
     let vehId = this.IdValue;
-    console.log('veh', vehId);
-     const newStage = {
+    //console.log('veh', vehId);
+    const newStage = {
       stageName: this.stageName.value,
       busStop: this.busStop.value,
       KMS: this.KMS.value,
@@ -110,11 +112,11 @@ export class StageDetailsComponent implements OnInit {
       }, (error) => {
         console.log(error);
       });
- 
-    } else 
- 
+
+    } else
+
       this.stages = null;
-   }
+  }
 
   // To delete stage-details
   deleteStage(id: any) {
@@ -126,22 +128,22 @@ export class StageDetailsComponent implements OnInit {
   }
 
   // To edit stage-details
-  onEdit(stage){
-    this.Id=stage._id;
-    this.request.fetchStageBy(this.Id).subscribe((response) => {     
-      this.editStage=response[0];     
-      console.log(response);
-          this.stageNameValue=this.editStage.stageName;
-          this.busStopValue=this.editStage.busStop;
-          this.KMSValue=this.editStage.KMS;
-          this.feesValue=this.editStage.fees;
-          this.IdValue=this.editStage._id;
-      
-      
-          this.stageName2 = new FormControl(this.stageNameValue, [Validators.required]);
-          this.busStop2 = new FormControl(this.busStopValue, [Validators.required]);
-          this.KMS2 = new FormControl(this.KMSValue, [Validators.required]);
-          this.fees2 = new FormControl(this.feesValue, [Validators.required]);
+  onEdit(stage) {
+    this.Id = stage._id;
+    this.request.fetchStageBy(this.Id).subscribe((response) => {
+      this.editStage = response[0];
+      // console.log(response);
+      this.stageNameValue = this.editStage.stageName;
+      this.busStopValue = this.editStage.busStop;
+      this.KMSValue = this.editStage.KMS;
+      this.feesValue = this.editStage.fees;
+      this.stageId = this.editStage._id;
+
+
+      this.stageName2 = new FormControl(this.stageNameValue, [Validators.required]);
+      this.busStop2 = new FormControl(this.busStopValue, [Validators.required]);
+      this.KMS2 = new FormControl(this.KMSValue, [Validators.required]);
+      this.fees2 = new FormControl(this.feesValue, [Validators.required]);
     });
   }
   updateStageDetails() {
@@ -172,18 +174,18 @@ export class StageDetailsComponent implements OnInit {
     $('#addModal').on('hidden.bs.modal', function () {
       $(this).find('form').trigger('reset');
       //$('#form_advanced_validation').trigger('reset');
-      var v =$('#form_advanced_validation1').validate();
+      var v = $('#form_advanced_validation1').validate();
       v.resetForm();
-     
-   })
-   $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
+
+    })
+    $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
     $('#editModal ').on('hidden.bs.modal', function () {
-      $(this).find('form').trigger('reset');  
-      var v =$('#form_advanced_validation2').validate();
+      $(this).find('form').trigger('reset');
+      var v = $('#form_advanced_validation2').validate();
       v.resetForm();
-   })
+    })
   }
-  
+
   ngOnInit() {
     M.updateTextFields();
   //  this.viewData();
@@ -222,3 +224,4 @@ export class StageDetailsComponent implements OnInit {
            
      }
   }
+

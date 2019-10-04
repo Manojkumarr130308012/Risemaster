@@ -43,7 +43,7 @@ import { FeeTypeComponent } from './StaffMaster/fee-type/fee-type.component';
 import { ModeOfEnquiryComponent } from './StaffMaster/mode-of-enquiry/mode-of-enquiry.component';
 
 
-import { CandidateEnquiryComponent } from './Student/candidate-enquiry/candidate-enquiry.component';
+// import { CandidateEnquiryComponent } from './Student/candidate-enquiry/candidate-enquiry.component';
 
 // Vehicle Management
 import { VehicleMasterComponent } from './VehicleManagement/vehicle-master/vehicle-master.component';
@@ -231,10 +231,10 @@ const routes: Routes = [
   },
 
   //Candidate Enquiry
-  { 
-    path: 'candidate-enquiry', 
-    component: CandidateEnquiryComponent 
-    },
+  // { 
+  //   path: 'candidate-enquiry', 
+  //   component: CandidateEnquiryComponent 
+  //   },
 
     //  Vehicle Management
   { path: 'vehicle', 

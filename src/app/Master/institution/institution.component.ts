@@ -113,9 +113,9 @@ export class InstitutionComponent implements OnInit {
     };
     this.request.addInstitution(newInstitution).subscribe((res: any) => {
       if (res.status == 'error') {
-        this.setMessage(res.err);
+        this.setMessage(res.error);
       }
-      else if (res.status == 'Success') {
+      else if (res.status == 'success') {
 
         swal("Added Sucessfully");
         this.viewData();
@@ -156,7 +156,7 @@ export class InstitutionComponent implements OnInit {
       this.logoLocationValue = this.editInstitutiondata.logoLocation;
       this.IdValue = this.editInstitutiondata._id;
 
-      console.log(this.logoLocationValue);
+      // console.log(this.logoLocationValue);
 
       this.institution_name2 = new FormControl(this.institutionNameValue, [Validators.required]);
       this.institution_code2 = new FormControl(this.institutionCodeValue, [Validators.required]);
@@ -199,13 +199,13 @@ export class InstitutionComponent implements OnInit {
 
     this.request.updateInstitution(this.IdValue, edata).subscribe((response: any) => {
       console.log(edata);
-      if (response.status == 'Success') {
+      if (response.status == 'success') {
         swal("update Sucessfully");
         this.viewData();
         this.loadModal();
       }
       else if (response.status == 'error') {
-        this.setMessage(response.err);
+        this.setMessage(response.error);
       }
 
     }, (error) => {
@@ -252,7 +252,6 @@ export class InstitutionComponent implements OnInit {
       console.log('ImageUpload:uploaded:', item, status, response);
       const resPath = JSON.parse(response);
       this.getfileLoc = resPath.result;
-      alert('File uploaded successfully');
     };
     //jQuery Validation
     $(function () {

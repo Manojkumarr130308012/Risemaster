@@ -26,9 +26,9 @@
                                         <th>S.No</th>
                                         <th>Name</th>
                                         <th>Vehicle No</th>
-                                        <th>Father's No</th>
-                                        <th>Date of Birth</th>
-                                        <th>Joining Year</th>
+                                        <!-- <th>Father's No</th>
+                                        <th>Date of Birth</th> -->
+                                        <!-- <th>Joining Year</th> -->
                                         <th>Personal Contact No</th>
                                         <th>Address</th>
                                         <th>Driving License No</th>
@@ -38,10 +38,10 @@
                                         <th>Home Contact No</th>
                                         <th>License DOI Date</th>
                                         <th>License Expiry Date</th>
-                                        <th>Reference Person Name</th>
-                                        <th>Reference Person Contact No</th>
+                                        <!-- <th>Reference Person Name</th>
+                                        <th>Reference Person Contact No</th> -->
                                         <th>Photo</th>
-                                        <th>Address Proof</th>
+                                        <!-- <th>Address Proof</th> -->
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -50,9 +50,8 @@
                                         <td>{{i +1 }}</td>
                                         <td>{{driver?.name}}</td>
                                         <td>{{driver?.VehicleDetails[0].vehicleNo}}</td>
-                                        <td>{{driver?.fathersName}}</td>
-                                        <td>{{driver?.dob}}</td>
-                                        <td>{{driver?.joiningYear}}</td>
+                                        <!-- <td>{{driver?.fathersName}}</td>
+                                        <td>{{driver?.dob}}</td> -->
                                         <td>{{driver?.personalContactNo}}</td>
                                         <td>{{driver?.address}}</td>
                                         <td>{{driver?.drivingLicenseNo}}</td>
@@ -62,11 +61,11 @@
                                         <td>{{driver?.homeContactNo}}</td>
                                         <td>{{driver?.licenseDOIDate}}</td>
                                         <td>{{driver?.licenseExpDate}}</td>
-                                        <td>{{driver?.referencePersonName}}</td>
-                                        <td>{{driver?.referencePersonContactNo}}</td>
-                                        <td><img src="http://localhost:3000/{{driver?.photoLocation}}" width="100px">
+                                        <!-- <td>{{driver?.referencePersonName}}</td>
+                                        <td>{{driver?.referencePersonContactNo}}</td> -->
+                                        <td><img src="{{driver?.photoLocation}}" width="100px">
                                         </td>
-                                        <td>{{driver?.fileLocation}}</td>
+                                        <!-- <td>{{driver?.fileLocation}}</td> -->
                                         <td>
                                             <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editModal">
                                                 <i class="material-icons" (click)="onEdit(driver) ">create</i>
@@ -101,14 +100,14 @@
                 <form id="form_advanced_validation">
                     <div class="row">
                         <div class="col-md-6">
-                                <div class="form-group form-float">
-                                    <label for="name">Name</label>
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" name="name" placeholder="Enter Name"
-                                            [formControl]="name" required />
-                                    </div>
+                            <div class="form-group form-float">
+                                <label for="name">Name</label>
+                                <div class="form-line">
+                                    <input type="text" class="form-control" name="name" placeholder="Enter Name"
+                                        [formControl]="name" required />
                                 </div>
                             </div>
+                        </div>
 
 
                         <div class="col-md-6">
@@ -267,8 +266,10 @@
                     </div>
 
                     <div class="row">
+
                         <div class="col-sm-12">
                             <h6>Photo</h6>
+                            <img style="margin:0 auto" src="{{getfileLoc}}" width="100px">
                             <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
                             <div class="progress">
                                 <div class="progress-bar width-per-45" [ngStyle]="{'width':uploader.progress+'%'}">
@@ -280,8 +281,10 @@
                     </div>
                     <br>
                     <div class="row">
+
                         <div class="col-sm-12">
                             <h6>Address Proof</h6>
+                            <img style="margin:0 auto" src="{{getfileLoc2}}" width="100px">
                             <input type="file" name="file" ng2FileSelect [uploader]="uploader2" />
                             <div class="progress">
                                 <div class="progress-bar width-per-45" role="progressbar" aria-valuenow="60"
@@ -296,8 +299,7 @@
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-info waves-effect" (click)="adddriver()">Add</button>
                         <span> {{message}}</span>
-                        <span> {{photoLocations}}</span>
-                        <span> {{fileLocations}}</span>
+
                         <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
@@ -343,7 +345,7 @@
                                         <option *ngFor="let vehicle of vehicles" [value]="vehicle._id">
                                             {{vehicle?.vehicleNo}}</option>
                                     </select>
-                                    
+
 
                                 </div>
                             </div>
@@ -488,8 +490,10 @@
                         </div>
                     </div>
                     <div class="row">
+
                         <div class="col-sm-12">
                             <h6>Photo</h6>
+                            <img style="margin:0 auto" src="{{photoLocationValue}}" width="100px">
                             <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
                             <div class="progress">
                                 <div class="progress-bar width-per-45" [ngStyle]="{'width':uploader.progress+'%'}">
@@ -501,8 +505,10 @@
                     </div>
                     <br>
                     <div class="row">
+
                         <div class="col-sm-12">
                             <h6>Address Proof</h6>
+                            <img style="margin:0 auto" src="{{fileLocationValue}}" width="100px">
                             <input type="file" name="file" ng2FileSelect [uploader]="uploader2" />
                             <div class="progress">
                                 <div class="progress-bar width-per-45" role="progressbar" aria-valuenow="60"
@@ -516,8 +522,7 @@
                     <br>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-info waves-effect" (click)="updateDriver()">Update</button>
-                        <span> {{photoLocations}}</span>
-                        <span> {{fileLocations}}</span>
+
                         <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>

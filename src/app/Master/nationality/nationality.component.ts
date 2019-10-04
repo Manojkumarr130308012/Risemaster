@@ -55,13 +55,13 @@ export class NationalityComponent implements OnInit {
       }
     this.registerForm.value;
   this.request.addNationality(this.registerForm.value).subscribe((res: any) => {
-    if (res.status == 'Success') {
+    if (res.status == 'success') {
       swal("Added Sucessfully");
     this.loadModal();
     this.viewData();
     }
     else if (res.status == 'error') {
-      this.setMessage(res.err);
+      this.setMessage(res.error);
     }
   }, (error) => {
     this.setMessage(error);
@@ -112,18 +112,18 @@ onEditSubmit() {
       return;
     }
 this.request.updateNationality(this.IdValue,this.editForm.value).subscribe((res : any) => {
-    if (res.status == 'Success') {
+    if (res.status == 'success') {
       swal("Updated Sucessfully");     
       this.loadModal();
       this.viewData();
     }
     else if (res.status == 'error') {       
-      this.setMessage(res.err);
+      this.setMessage(res.error);
     }      
    
-  }, (err) => {
-    console.log(err);
-    this.setMessage(err);
+  }, (error) => {
+    console.log(error);
+    this.setMessage(error);
   });
 }
 

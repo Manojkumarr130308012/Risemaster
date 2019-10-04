@@ -58,9 +58,9 @@ export class InstitutionTypeComponent implements OnInit {
       }
      this.request.addInstitutionType(this.registerForm.value).subscribe((res: any)  => {
       if (res.status == 'error') {
-        this.setMessage(res.err);
+        this.setMessage(res.error);
       }
-      else if (res.status == 'Success') {
+      else if (res.status == 'success') {
         
         swal("Added Sucessfully");
         this.viewData();
@@ -103,19 +103,19 @@ export class InstitutionTypeComponent implements OnInit {
     }
   
   this.request.updateInstitutionType(this.IdValue, this.editForm.value).subscribe((response: any) => {
-    if (response.status == 'Success') {
+    if (response.status == 'success') {
       swal("Updated Sucessfully");       
       
       this.viewData();
       this.loadModal();
     }
     else if (response.status == 'error') {       
-      this.setMessage(response.err);
+      this.setMessage(response.error);
     }      
    
-  }, (err) => {
-    console.log(err);
-    this.setMessage(err);
+  }, (error) => {
+    console.log(error);
+    this.setMessage(error);
   });
 
       }

@@ -128,23 +128,23 @@
              <div class="col-md-12">
                 <div class="form-group">
                      <select class="browser-default"  id="select" [(ngModel)]="selectedinstitution" 
-                     formControlName="institution" class="form-control"
-                         [ngClass]="{ 'is-invalid': submitted && f.institution.errors }" >
-                         <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">
-                             <div *ngIf="f.institution.errors.required">Institution is required</div>
+                     formControlName="institution2" class="form-control"
+                         [ngClass]="{ 'is-invalid': submitted && f.institution2.errors }" >
+                         <div *ngIf="submitted && f.institution2.errors" class="invalid-feedback">
+                             <div *ngIf="f.institution2.errors.required">Institution is required</div>
                          </div>
                       <option value="" disabled selected>Choose your institution</option>
                       <option *ngFor="let institution of institutions" [value]="institution._id">{{institution?.institution_name}}</option>     
                   </select>
-                  {{selectedinstitution}}
+                  
                 </div>
             </div> 
     <div class="form-group">
         <label>Admission Category</label> 
-        <input type="text" value = "" formControlName="admissionCategory" class="form-control" placeholder="Enter admissionCategory"
-            [ngClass]="{ 'is-invalid': submitted && f.admissionCategory.errors }" />
-        <div *ngIf="submitted && f.admissionCategory.errors" class="invalid-feedback">
-            <div *ngIf="f.admissionCategory.errors.required">AdmissionCategory is required</div>
+        <input type="text" value = "" formControlName="admissionCategory2" class="form-control" placeholder="Enter admissionCategory"
+            [ngClass]="{ 'is-invalid': submitted && f.admissionCategory2.errors }" />
+        <div *ngIf="submitted && f.admissionCategory2.errors" class="invalid-feedback">
+            <div *ngIf="f.admissionCategory2.errors.required">AdmissionCategory is required</div>
         </div>
     </div>
 </div>

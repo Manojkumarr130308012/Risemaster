@@ -33,63 +33,64 @@ export class AdmissionTypeComponent implements OnInit {
     private dynamicScriptLoader: DynamicScriptLoaderService,
     private request: RequestService,
     private router: Router
-   ) {
-      // Add Form
-      this.registerForm = this.formBuilder.group({
-        institution:['', Validators.required],
-        admissiontype:['', Validators.required]
-     });
-      // Edit Form
-     this.editForm = this.formBuilder.group({
-      institution:['', Validators.required],
-      admissiontype:['', Validators.required]
-   });
-     }
+  ) {
+    // Add Form
+    this.registerForm = this.formBuilder.group({
+      institution: ['', Validators.required],
+      admissiontype: ['', Validators.required]
+    });
+    // Edit Form
+    this.editForm = this.formBuilder.group({
+      institution: ['', Validators.required],
+      admissiontype: ['', Validators.required]
+    });
+  }
 
-     public setMessage(message) {
-      return this.message = message;
-    }
+  public setMessage(message) {
+    return this.message = message;
+  }
 
   // Bind institution data
-    loadAdmissiontype()  {
-    this.request.getInstitution().subscribe((response : any) => {
+  loadAdmissiontype() {
+    this.request.getInstitution().subscribe((response: any) => {
       console.log(response);
-    this.institutions = response;
+      this.institutions = response;
     }, (error) => {
       console.log(error);
     });
   }
 
-   //Add form validation and function
+  //Add form validation and function
 
   onAddSubmit() {
     this.submitted = true;
+ 
     if (this.registerForm.invalid) {
-        return;
+      return;
+    }
+    this.request.addAdmissiontype(this.registerForm.value).subscribe((res: any) => {
+      if (res.status == 'success') {
+        swal("Added Sucessfully");
+        this.loadModal();
+        this.viewData();
       }
-  this.request.addAdmissiontype(this.registerForm.value).subscribe((res: any) => {
-    if (res.status == 'Success') {
-      swal("Added Sucessfully");
-    this.loadModal();
-    this.viewData();
-    }
-    else if (res.status == 'error') {
-      this.setMessage(res.err);
-    }
-  }, (error) => {
-    this.setMessage(error);
-  });
-  console.log(this.registerForm.value);
+      else if (res.status == 'error') {
+        this.setMessage(res.error);
+      }
+    }, (error) => {
+      this.setMessage(error);
+    });
+    console.log(this.registerForm.value);
   }
-  
- // To display admission type
+
+  // To display admission type
   viewData() {
-  this.request.getAdmissiontype().subscribe((response) => {
-    this.admissiontypes = response;
-    console.log(this.admissiontypes);
-  }, (error) => {
-    console.log(error);
-  });
+    this.request.getAdmissiontype().subscribe((response) => {
+      this.admissiontypes = response;
+      console.log(this.admissiontypes);
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   // To delete admission type
@@ -97,24 +98,24 @@ export class AdmissionTypeComponent implements OnInit {
     this.request.deleteAdmissiontype(id).subscribe(res => {
       console.log(id);
       this.viewData();
-    console.log('Deleted');
-   this.router.navigate(['admission-type']);
+      console.log('Deleted');
+      this.router.navigate(['admission-type']);
     });
   }
 
   // To edit admission type
-  onEdit(admissiontype){
-    this.Id=admissiontype._id;
-    this.request.fetchAdmissiontypeBy(this.Id).subscribe((response) => {     
-      this.editAdmissiontype=response[0];     
+  onEdit(admissiontype) {
+    this.Id = admissiontype._id;
+    this.request.fetchAdmissiontypeBy(this.Id).subscribe((response) => {
+      this.editAdmissiontype = response[0];
       console.log(response);
-          this.institutionValue=this.editAdmissiontype.institution;
-          this.admissiontypeValue=this.editAdmissiontype.admissiontype;
-          this.IdValue=this.editAdmissiontype._id;
-      
+      this.institutionValue = this.editAdmissiontype.institution;
+      this.admissiontypeValue = this.editAdmissiontype.admissiontype;
+      this.IdValue = this.editAdmissiontype._id;
+
       this.editForm = this.formBuilder.group({
-          institution:[this.institutionValue, Validators.required],
-          admissiontype:[this.admissiontypeValue, Validators.required]
+        institution: [this.institutionValue, Validators.required],
+        admissiontype: [this.admissiontypeValue, Validators.required]
       });
       console.log(this.editForm.value);
     });
@@ -123,27 +124,27 @@ export class AdmissionTypeComponent implements OnInit {
     this.submitted = true;
     console.log(this.editForm.value);
     if (this.editForm.invalid) {
-        return;
-      }
-  this.request.updateAdmissiontype(this.IdValue,this.editForm.value).subscribe((res : any) => {
-    if (res.status == 'Success') {
-      swal("Updated Sucessfully");     
-      this.loadModal();
-      this.viewData();
+      return;
     }
-    else if (res.status == 'error') {       
-      this.setMessage(res.err);
-    }      
-   
-  }, (err) => {
-    console.log(err);
-    this.setMessage(err);
-  });
-}
+    this.request.updateAdmissiontype(this.IdValue, this.editForm.value).subscribe((res: any) => {
+      if (res.status == 'success') {
+        swal("Updated Sucessfully");
+        this.loadModal();
+        this.viewData();
+      }
+      else if (res.status == 'error') {
+        this.setMessage(res.error);
+      }
 
-// convenience getter for easy access to form fields
-get f() { return this.registerForm.controls; }
-      
+    }, (error) => {
+      console.log(error);
+      this.setMessage(error);
+    });
+  }
+
+  // convenience getter for easy access to form fields
+  get f() { return this.registerForm.controls; }
+
   async startScript() {
     await this.dynamicScriptLoader.load('dataTables.buttons', 'buttons.flash', 'jszip', 'pdfmake', 'vfs_fonts', 'pdfmake', 'buttons.html5', 'buttons.print', 'form.min').then(data => {
       this.loadData();
@@ -156,25 +157,31 @@ get f() { return this.registerForm.controls; }
         'copy', 'csv', 'excel', 'pdf', 'print'
       ]
     });
-}
+  }
 
-private loadModal(){
-  $('#addModal').modal('hide'); //or  $('#IDModal').modal('hide');
-  $('#addModal').on('hidden.bs.modal', function () {
-  $(this).find('form').trigger('reset');
- });
+  private loadModal() {
+    $('#addModal').modal('hide'); //or  $('#IDModal').modal('hide');
+    $('#addModal').on('hidden.bs.modal', function () {
+      $(this).find('form').trigger('reset'); 
+    // $("#add").get(0).reset();
+    //    var vali =$("#add").validate();
+    // vali.restForm();
+    });
+   
+   
 
- $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
- $('#editModal').on('hidden.bs.modal', function () {
- $(this).find('form').trigger('reset');
-});
-}
+    $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
+    $('#editModal').on('hidden.bs.modal', function () {
+      $(this).find('form').trigger('reset');
+     // $('.invalid-feedback').removeClass('error');
+    });
+  }
 
-ngOnInit() {
-  this.startScript();
-  M.updateTextFields();
- this.viewData();
- this.loadModal();
- this. loadAdmissiontype();
-}
+  ngOnInit() {
+    this.startScript();
+    M.updateTextFields();
+    this.viewData();
+    this.loadModal();
+    this.loadAdmissiontype();
+  }
 }

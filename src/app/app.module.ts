@@ -64,7 +64,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { OrderModule } from 'ngx-order-pipe';
 
 //Candiadate Enquiry
-import { CandidateEnquiryComponent } from './Student/candidate-enquiry/candidate-enquiry.component';
+// import { CandidateEnquiryComponent } from './Student/candidate-enquiry/candidate-enquiry.component';
 import { ArchwizardModule } from 'angular-archwizard';
 
 // Vehicle Management
@@ -74,9 +74,18 @@ import { FillingStationsComponent } from './VehicleManagement/filling-stations/f
 import { VehicleExpensesComponent } from './VehicleManagement/vehicle-expenses/vehicle-expenses.component';
 import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-details.component';
 
+
 // Staff Management
 import { StaffProfileComponent } from './StaffManagement/staff-profile/staff-profile.component';
 import { StaffDetailsComponent } from './StaffManagement/staff-details/staff-details.component';
+
+import { CEmainPageComponent } from './Student/cemain-page/cemain-page.component';
+import { CEbasicDetailsComponent } from './Student/cebasic-details/cebasic-details.component';
+import { CEaddressDetailsComponent } from './Student/ceaddress-details/ceaddress-details.component';
+import { CEpaymentDetailsComponent } from './Student/cepayment-details/cepayment-details.component';
+import { CEfollowupsComponent } from './Student/cefollowups/cefollowups.component';
+import { CEqualificationDetailsComponent } from './Student/cequalification-details/cequalification-details.component';
+import { CEtabpageComponent } from './Student/cetabpage/cetabpage.component';
 
 
 @NgModule({
@@ -127,7 +136,7 @@ import { StaffDetailsComponent } from './StaffManagement/staff-details/staff-det
     FeeTypeComponent,
     ModeOfEnquiryComponent,
 
-    CandidateEnquiryComponent,
+    
 
     QualificationTypeComponent,
 
