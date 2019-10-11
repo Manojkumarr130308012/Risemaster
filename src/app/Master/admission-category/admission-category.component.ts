@@ -72,10 +72,10 @@ export class AdmissionCategoryComponent implements OnInit {
             }
             else if (res.status == 'success') {
                 swal("Added Sucessfully");
+               // this.onAddReset();
                 this.viewData();
                 this.loadModal();
-                //  this.registerForm.reset();
-                // this.resetForm();
+               
             }
         }, (error) => {
             this.setMessage(error);
@@ -130,12 +130,12 @@ export class AdmissionCategoryComponent implements OnInit {
 
         this.request.updateAdmissionCategory(this.IdValue, edata).subscribe((response: any) => {
             if (response.status == 'success') {
-                swal("Updated Sucessfully");
+                swal("Updated Sucessfully");             
                 //  console.log('cat res', response);
+              //  this.onEditReset();
                 this.viewData();
                 this.loadModal();
-                // this.editForm.reset();
-                //this.resetForm();
+                               
             }
             else if (response.status == 'error') {
                 this.setMessage(response.error);
@@ -148,9 +148,16 @@ export class AdmissionCategoryComponent implements OnInit {
 
     }
 
-    resetForm() {
+    onAddReset() {
+        this.submitted = false;
         this.registerForm.reset();
-    }
+      }
+      onEditReset() {
+        this.submitted = false;
+        this.editForm.reset();
+      }
+
+
 
     async startScript() {
         await this.dynamicScriptLoader.load('dataTables.buttons', 'buttons.flash', 'jszip', 'pdfmake', 'vfs_fonts', 'pdfmake', 'buttons.html5', 'buttons.print').then(data => {
