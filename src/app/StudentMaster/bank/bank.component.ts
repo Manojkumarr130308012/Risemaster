@@ -111,7 +111,7 @@ public setMessage(message) {
     this.Id = bank._id;
     this.request.fetchBankById(this.Id).subscribe((response) => {
       this.editBankdata = response[0];
-       console.log(response);
+       console.log(this.editBankdata);
       this.InstitutionValue = this.editBankdata.institution;
       this.accountNameValue = this.editBankdata.accountName;
       this.accountNumberValue = this.editBankdata.accountNumber;

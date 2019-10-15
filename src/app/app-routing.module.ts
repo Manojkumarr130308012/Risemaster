@@ -229,13 +229,7 @@ const routes: Routes = [
   path: 'mode-of-enquiry', 
   component: ModeOfEnquiryComponent 
   },
-
-  //Candidate Enquiry
-  // { 
-  //   path: 'candidate-enquiry', 
-  //   component: CandidateEnquiryComponent 
-  //   },
-
+ 
     //  Vehicle Management
   { path: 'vehicle', 
   component: VehicleMasterComponent },

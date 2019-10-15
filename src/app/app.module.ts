@@ -63,16 +63,13 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { OrderModule } from 'ngx-order-pipe';
 
-//Candiadate Enquiry
-// import { CandidateEnquiryComponent } from './Student/candidate-enquiry/candidate-enquiry.component';
-import { ArchwizardModule } from 'angular-archwizard';
-
 // Vehicle Management
 import { VehicleMasterComponent } from './VehicleManagement/vehicle-master/vehicle-master.component';
 import { DriverMasterComponent } from './VehicleManagement/driver-master/driver-master.component';
 import { FillingStationsComponent } from './VehicleManagement/filling-stations/filling-stations.component';
 import { VehicleExpensesComponent } from './VehicleManagement/vehicle-expenses/vehicle-expenses.component';
 import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-details.component';
+import { VehicleTransactionComponent } from './VehicleManagement/vehicle-transaction/vehicle-transaction.component';
 
 
 // Staff Management
@@ -86,6 +83,7 @@ import { CEpaymentDetailsComponent } from './Student/cepayment-details/cepayment
 import { CEfollowupsComponent } from './Student/cefollowups/cefollowups.component';
 import { CEqualificationDetailsComponent } from './Student/cequalification-details/cequalification-details.component';
 import { CEtabpageComponent } from './Student/cetabpage/cetabpage.component';
+import { ArchwizardModule } from 'angular-archwizard';
 
 
 @NgModule({
@@ -147,12 +145,9 @@ import { CEtabpageComponent } from './Student/cetabpage/cetabpage.component';
     VehicleExpensesComponent,
     StageDetailsComponent,
     StaffProfileComponent,
-    StaffDetailsComponent
+    StaffDetailsComponent,
+    VehicleTransactionComponent
 
-    
-    
-
-   
   ],
   imports: [
     BrowserModule,

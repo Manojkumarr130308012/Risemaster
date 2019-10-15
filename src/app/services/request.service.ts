@@ -1031,6 +1031,40 @@ fetchBankById(id) {
       return this.http.get(this.url);
     }
 
+    // CandiadateEnquiry - AddressDetails
+    public getAddressDetails() {
+      this.url = `${this.endPoint}/ce-addressdetails/aggregation`;
+      return this.http.get(this.url);   
+    }
+    
+    public addAddressDetails(newadressdetails: { }) {
+      this.url = `${this.endPoint}/ce-addressdetails/add`;   
+      return this.http.post(this.url, newadressdetails);
+    }
+    
+    public deleteAddressDetails(id) {
+      this.url = `${this.endPoint}/ce-addressdetails/delete?id=`+ id;
+      return this.http.delete(this.url);
+    }
+    
+    updateAddressDetails(id, body) {
+      this.url = `${this.endPoint}/ce-addressdetails/update?id=${id}`;
+      return this.http.put(this.url, body);
+    }
+    
+    fetchAddressDetails() {
+      this.url = `${this.endPoint}/ce-addressdetails/`;
+      return this.http.get(this.url); 
+    }
+    fetchAddressDetailsById(id) {
+      this.url = `${this.endPoint}/ce-addressdetails/fetchdata?id=` + id;
+      return this.http.get(this.url);
+    }
+    loadAddressType() {
+      this.url = `${this.endPoint}/addressType/`;
+      return this.http.get(this.url);
+    }
+
      // driver
   public getDriver() {
     this.url = `${this.endPoint}/driver/aggregation`;
@@ -1158,6 +1192,7 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/filling-stations/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
+
   // stage-details
   public getStage() {
     this.url = `${this.endPoint}/stage-details/`;
@@ -1233,6 +1268,175 @@ fetchBankById(id) {
 
   fetchSaffProfileBy(id) {
     this.url = `${this.endPoint}/staff-profile/fetchdata?id=` + id;
+    return this.http.get(this.url);
+  }
+
+  // staff contact
+
+  public getStaffContactById(id) {
+    this.url = `${this.endPoint}/staffContact/fetchcontact?id=` + id;
+    return this.http.get(this.url);   
+  }
+  
+  public addStaffContact(newstaffContact) {
+    this.url = `${this.endPoint}/staffContact/add`;   
+    return this.http.post(this.url,newstaffContact);
+  }
+  
+  public deleteStaffContact(id) {
+    this.url = `${this.endPoint}/staffContact/delete?id=`+ id;
+    return this.http.delete(this.url);
+  }
+  
+  updateStaffContact(id, body) {
+    this.url = `${this.endPoint}/staffContact/update?id=${id}`;
+    return this.http.put(this.url, body);
+  }
+  
+  fetchStaffContact() {
+    this.url = `${this.endPoint}/staffContact`;
+    return this.http.get(this.url); 
+  }
+  fetchStaffContactById(id) {
+    this.url = `${this.endPoint}/staffContact/fetchdata?id=` + id;
+    return this.http.get(this.url);
+  }
+
+  // staff identity
+
+  public getStaffIdentityById(id) {
+    this.url = `${this.endPoint}/staffIdentity/fetchidentity?id=` + id;
+    return this.http.get(this.url);   
+  }
+  
+  public addStaffIdentity(newstaffIdentity) {
+    this.url = `${this.endPoint}/staffIdentity/add`;   
+    return this.http.post(this.url,newstaffIdentity);
+  }
+  
+  public deleteStaffIdentity(id) {
+    this.url = `${this.endPoint}/staffIdentity/delete?id=`+ id;
+    return this.http.delete(this.url);
+  }
+  
+  updateStaffIdentity(id, body) {
+    this.url = `${this.endPoint}/staffIdentity/update?id=${id}`;
+    return this.http.put(this.url, body);
+  }
+  
+  fetchStaffIdentity() {
+    this.url = `${this.endPoint}/staffIdentity`;
+    return this.http.get(this.url); 
+  }
+  fetchStaffIdentityById(id) {
+    this.url = `${this.endPoint}/staffIdentity/fetchdata?id=` + id;
+    return this.http.get(this.url);
+  }
+
+  // Work Profile
+  fetchStaffWorkProfileById(id) {
+    this.url = `${this.endPoint}/staff-profile/fetchdata?id=` + id;
+    return this.http.get(this.url);
+  }
+  updateStaffWorkProfile(id, body) {
+    this.url = `${this.endPoint}/staff-profile/update?id=${id}`;
+    return this.http.put(this.url, body);
+  }
+  public getStaffWorkprofilebyIdValue(id) {
+    this.url = `${this.endPoint}/staff-profile/fetchbyStaffProfileId?id=` + id;
+    return this.http.get(this.url);
+  }
+
+  // staff experience
+
+  public getStaffExperienceById(id) {
+    this.url = `${this.endPoint}/staffExperience/fetchexperience?id=` + id;
+    return this.http.get(this.url);   
+  }
+  
+  public addStaffExperience(newstaffExperience) {
+    this.url = `${this.endPoint}/staffExperience/add`;   
+    return this.http.post(this.url,newstaffExperience);
+  }
+  
+  public deleteStaffExperience(id) {
+    this.url = `${this.endPoint}/staffExperience/delete?id=`+ id;
+    return this.http.delete(this.url);
+  }
+  
+  updateStaffExperience(id, body) {
+    this.url = `${this.endPoint}/staffExperience/update?id=${id}`;
+    return this.http.put(this.url, body);
+  }
+  
+  fetchStaffExperience() {
+    this.url = `${this.endPoint}/staffExperience`;
+    return this.http.get(this.url); 
+  }
+  fetchStaffExperienceById(id) {
+    this.url = `${this.endPoint}/staffExperience/fetchdata?id=` + id;
+    return this.http.get(this.url);
+  }
+
+  // staff education
+
+  public getStaffEducationById(id) {
+    this.url = `${this.endPoint}/staffEducation/fetcheducation?id=` + id;
+    return this.http.get(this.url);   
+  }
+  
+  public addStaffEducation(newstaffEducation) {
+    this.url = `${this.endPoint}/staffEducation/add`;   
+    return this.http.post(this.url,newstaffEducation);
+  }
+  
+  public deleteStaffEducation(id) {
+    this.url = `${this.endPoint}/staffEducation/delete?id=`+ id;
+    return this.http.delete(this.url);
+  }
+  
+  updateStaffEducation(id, body) {
+    this.url = `${this.endPoint}/staffEducation/update?id=${id}`;
+    return this.http.put(this.url, body);
+  }
+  
+  fetchStaffEducation() {
+    this.url = `${this.endPoint}/staffEducation`;
+    return this.http.get(this.url); 
+  }
+  fetchStaffEducationById(id) {
+    this.url = `${this.endPoint}/staffEducation/fetchdata?id=` + id;
+    return this.http.get(this.url);
+  }
+
+  // staff course
+
+  public getStaffCourseById(id) {
+    this.url = `${this.endPoint}/staffCourse/fetchcourse?id=` + id;
+    return this.http.get(this.url);   
+  }
+  
+  public addStaffCourse(newstaffCourse) {
+    this.url = `${this.endPoint}/staffCourse/add`;   
+    return this.http.post(this.url,newstaffCourse);
+  }
+  
+  public deleteStaffCourse(id) {
+    this.url = `${this.endPoint}/staffCourse/delete?id=`+ id;
+    return this.http.delete(this.url);
+  }
+  
+  updateStaffCourse(id, body) {
+    this.url = `${this.endPoint}/staffCourse/update?id=${id}`;
+    return this.http.put(this.url, body);
+  }
+  
+  fetchStaffCourse() {
+    this.url = `${this.endPoint}/staffCourse`;
+    return this.http.get(this.url); 
+  }
+  fetchStaffCourseById(id) {
+    this.url = `${this.endPoint}/staffCourse/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
 }
