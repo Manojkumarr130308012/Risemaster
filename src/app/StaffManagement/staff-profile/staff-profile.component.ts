@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { Router } from '@angular/router';
 import { RequestService } from '../../services/request.service';
 import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
-import { FileSelectDirective, FileUploader} from 'ng2-file-upload';
-const URL = 'http://localhost:3000/driverFileUpload/upload';
+import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
+const URL = 'http://localhost:3000/staffFileUpload/upload';
 declare const $: any;
 declare const M: any;
 declare const swal: any;
@@ -16,9 +16,6 @@ declare const swal: any;
 })
 export class StaffProfileComponent implements OnInit {
 
-  registerForm: FormGroup;
-  editForm: FormGroup;
-  submitted = false;
   public staffprofile: any;
   public staffprofiles: any;
   public staffCode: any;
@@ -40,14 +37,16 @@ export class StaffProfileComponent implements OnInit {
   public bloodgroup: any;
 
   photoValue: any;
-  public uploader: FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
+  public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'photo' });
   getfileLoc: any;
   photoLocation: any;
   photoLocationValue: any;
+  photoLocation2: FormControl;
 
   public institution: any;
   institutionValue: any;
   institutions;
+  departments;
   public message: string;
   Id: any;
   stafftypes;
@@ -57,6 +56,7 @@ export class StaffProfileComponent implements OnInit {
   paytypes;
   maritalstatuses;
   bloodgroups;
+  department: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -65,35 +65,34 @@ export class StaffProfileComponent implements OnInit {
     private router: Router
   ) {
     // Add Form
-    this.registerForm = this.formBuilder.group({
-      staffCode:['', Validators.required],
-      stafftype:['', Validators.required],
-      staffrole:['', Validators.required],
-      salutation:['', Validators.required],
-      firstName:['', Validators.required],
-      lastName:['', Validators.required],
-      designation:['', Validators.required],
-      doj:['', Validators.required],
-      gender:['', Validators.required],
-      dob:['', Validators.required],
-      employeeCode:['', Validators.required],
-      paytype:['', Validators.required],
-      emailId:['', Validators.required],
-      mobileNo:['', Validators.required],
-      emergencyNo:['', Validators.required],
-      maritalstatus:['', Validators.required],
-      bloodgroup:['', Validators.required],
-    });
+    this.department= new FormControl('', Validators.required);
+    this.staffCode = new FormControl('', Validators.required);
+    this.stafftype= new FormControl('', Validators.required);
+    this.staffrole= new FormControl('', Validators.required);
+    this.salutation= new FormControl('', Validators.required);
+    this.firstName= new FormControl('', Validators.required);
+    this.lastName= new FormControl('', Validators.required);
+    this.designation= new FormControl('', Validators.required);
+    this.doj= new FormControl('', Validators.required);
+    this.gender= new FormControl('', Validators.required);
+    this.dob= new FormControl('', Validators.required);
+    this.employeeCode= new FormControl('', Validators.required);
+    this.paytype= new FormControl('', Validators.required);
+    this.emailId= new FormControl('', Validators.required);
+    this.mobileNo= new FormControl('', Validators.required);
+    this.emergencyNo= new FormControl('', Validators.required);
+    this.maritalstatus= new FormControl('', Validators.required);
+    this.bloodgroup= new FormControl('', Validators.required);
+    this.photoLocation= new FormControl('', Validators.required);
+    
   }
-
   public setMessage(message) {
     return this.message = message;
   }
 
-
   photosubmit() {
     this.uploader.uploadAll();
-      }
+  }
 
   // Bind institution data
   loadInstitution()  {
@@ -103,6 +102,69 @@ export class StaffProfileComponent implements OnInit {
     }, (error) => {
       console.log(error);
     });
+  }
+
+  // Bind departments data
+  loadDepartment()  {
+    this.request.getDepartment().subscribe((response : any) => {
+      console.log(response);
+    this.departments = response;
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  // Filter departments data
+  onInstitutionChange(Institution: string) {
+    console.log('institution',Institution)
+     if (Institution) {
+       this.request.getDetartmentbyIns(Institution).subscribe((response: any) => {
+         console.log(response);
+         this.departments = response;
+       }, (error) => {
+         console.log(error);
+       });
+     } else 
+         this.departments = null;
+    }
+
+    onDepartmentChange(department : string) {
+      if (department){
+        console.log(department);
+      this.request.getStaffProfileByDep(department).subscribe((response) => {
+         console.log('depres',response);
+        this.staffprofiles = response;
+        console.log(this.staffprofiles);
+      }, (error) => {
+        console.log(error);
+      });
+      } else
+      this.staffprofiles = null;
+    }
+
+    // To display staff
+viewData() {
+  this.request.getStaffProfile().subscribe((response) => {
+    // this.viewStaffProfile(this.department);
+    this.staffprofiles = response;
+    console.log(this.staffprofiles);
+  }, (error) => {
+    console.log(error);
+  });
+  }
+
+  viewDepartment(department : string) {
+    if (department){
+      console.log(department);
+    this.request.getStaffProfileByDep(department).subscribe((response) => {
+       console.log('depres',response);
+      this.staffprofiles = response;
+      console.log(this.staffprofiles);
+    }, (error) => {
+      console.log(error);
+    });
+    } else
+    this.staffprofiles = null;
   }
 
   // Bind staff type data
@@ -174,17 +236,37 @@ export class StaffProfileComponent implements OnInit {
   }
 
    //Add form validation and function
-   onAddSubmit() {
-    this.submitted = true;
-    if (this.registerForm.invalid) {
-        return;
-    }
-  this.registerForm.value;
-this.request.addSaffProfile(this.registerForm.value).subscribe((res: any) => {
-  if (res.status == 'Success') {
+   addStaffprofile() {
+    const newStaffprofile = {
+      department: this.department.value,
+      staffCode: this.staffCode.value,
+      stafftype: this.stafftype.value,
+      staffrole: this.staffrole.value,
+      salutation: this.salutation.value,
+      firstName: this.firstName.value,
+      lastName: this.lastName.value,
+      designation: this.designation.value,
+      doj: this.doj.value,
+      gender: this.gender.value,
+      dob: this.dob.value,
+      employeeCode: this.employeeCode.value,
+      paytype: this.paytype.value,
+      emailId: this.emailId.value,
+      mobileNo: this.mobileNo.value,
+      emergencyNo: this.emergencyNo.value,
+      maritalstatus: this.maritalstatus.value,
+      bloodgroup: this.bloodgroup.value,
+      photoLocation: this.getfileLoc,
+    };
+
+    
+this.request.addSaffProfile(newStaffprofile).subscribe((res: any) => {
+  if (res.status == 'success') {
     swal("Added Sucessfully");
+    this.getfileLoc="";
   this.loadModal();
   this.viewData();
+  // this.viewDepartment(this.department);
   }
   else if (res.status == 'error') {
     this.setMessage(res.err);
@@ -192,7 +274,7 @@ this.request.addSaffProfile(this.registerForm.value).subscribe((res: any) => {
 }, (error) => {
   this.setMessage(error);
 });
-console.log(this.registerForm.value);
+console.log(newStaffprofile);
 }
 
 open(staffprofile) {
@@ -206,38 +288,37 @@ open(staffprofile) {
       });
 }
 
-// To display station
-viewData() {
-  this.request.getStaffProfile().subscribe((response) => {
-    console.log('profile',response);
-    this.staffprofiles = response;
-    console.log(this.staffprofiles);
-  }, (error) => {
-    console.log(error);
-  });
-  }
 
-  // convenience getter for easy access to form fields
-get f() { return this.registerForm.controls; }
 
-loadModal(){
-
+private loadModal() {
   $('#addModal').modal('hide'); //or  $('#IDModal').modal('hide');
   $('#addModal').on('hidden.bs.modal', function () {
-  $(this).find('form').trigger('reset');
- });
+    $(this).find('form').trigger('reset');
+    //$('#form_advanced_validation').trigger('reset');
+    var v = $('#form_advanced_validation').validate();
+    v.resetForm();
+    $('.progress .progress-bar').css('width', 0);
+    $('.progress .progress-bar').html('');
 
- $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
- $('#editModal').on('hidden.bs.modal', function () {
- $(this).find('form').trigger('reset');
-});
+  })
+  $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
+  $('#editModal ').on('hidden.bs.modal', function () {
+    $(this).find('form').trigger('reset');
+    var v = $('#form_advanced_validation1').validate();
+    v.resetForm();
+    $('.progress .progress-bar').css('width', 0);
+    $('.progress .progress-bar').html('');
+  })
 }
 
   ngOnInit() {
     M.updateTextFields();
     this.loadModal();
     this.loadInstitution();
+    this.loadDepartment();
     this.viewData();
+    // this.viewDepartment(this.department);
+    // this.onDepartmentChange(this.department);
     this.loadStaffType();
     this.loadStaffRole();
     this.loadSalutation();
@@ -247,12 +328,28 @@ loadModal(){
     this.loadBloodgroup();
 
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
- this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-          console.log('ImageUpload:uploaded:', item, status, response);
-          const resPath = JSON.parse(response);
-          this.getfileLoc = resPath.driverFileResult1;
-         };
-  }
+    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+      console.log('ImageUpload:uploaded:', item, status, response);
+      const resPath = JSON.parse(response);
+      this.getfileLoc = resPath.staffFileResult;
+    };
 
+  //jQuery Validation
+  $(function () {
+    $('#form_advanced_validation').validate({
+
+      highlight: function (input) {
+        $(input).parents('.form-line').addClass('error');
+      },
+      unhighlight: function (input) {
+        $(input).parents('.form-line').removeClass('error');
+      },
+      errorPlacement: function (error, element) {
+        $(element).parents('.form-group').append(error);
+      }
+    });
+  });
+
+}
 }
 

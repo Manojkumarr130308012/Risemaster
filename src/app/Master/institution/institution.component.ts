@@ -251,7 +251,7 @@ export class InstitutionComponent implements OnInit {
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       console.log('ImageUpload:uploaded:', item, status, response);
       const resPath = JSON.parse(response);
-      this.getfileLoc = resPath.result;
+      //this.getfileLoc = resPath.result;
     };
     //jQuery Validation
     $(function () {

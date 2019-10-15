@@ -28,15 +28,15 @@
                                             <label  for="institution">Institution</label>
                                             <select  id="select" [(ngModel)]="selectedinstitution" class="browser-default form-control" 
                                                 (change)="onInstitutionChange($event.target.value)">
-                                                <option  disabled selected>Choose your institution</option>
+                                                <option>Choose your institution</option>
                                                 <option  *ngFor="let institution of institutions" [value]="institution._id">{{institution.institution_name}}</option>
                                                 </select>        
                                         </div>
                                         <div class="col-md-3">
                                             <label for="department">Department</label>
-                                            <select id="select" [(ngModel)]="selecteddepartment" class="browser-default form-control"
+                                            <select id="select" [(ngModel)]="selectedDepartment" class="browser-default form-control"
                                             (change)="onDepartmentChange($event.target.value)">
-                                                <option disabled selected>Choose your Department</option>
+                                                <option>Choose your Department</option>
                                                 <option *ngFor="let department of departments?.response"
                                                     [value]="department._id">{{department?.department}}</option>
                                                 </select>
@@ -114,9 +114,8 @@
                                                 <label for="department">Choose Department</label>
                                                 <div class="form-line">
                                                     <select id="select" name="department" [(ngModel)]="selecteddepartment"
-                                                        class="browser-default form-control" [formControl]="department"
-                                                        placeholder="Choose your Department" required>
-                                                        <option disabled selected>Choose your Department</option>
+                                                        class="browser-default form-control" [formControl]="department" required>
+                                                        <option>Choose your Department</option>
                                                         <option *ngFor="let department of departments?.response" [value]="department._id">
                                                             {{department?.department}}</option>
                                                     </select>
@@ -140,9 +139,8 @@
                                             <label for="stafftype">Choose Staff Type</label>
                                             <div class="form-line">
                                                 <select id="select" name="stafftype" [(ngModel)]="selectedstafftype"
-                                                    class="browser-default form-control" [formControl]="stafftype"
-                                                    placeholder="Choose your Staff Type" required>
-                                                    <option disabled selected>Choose your Staff Type</option>
+                                                    class="browser-default form-control" [formControl]="stafftype" required>
+                                                    <option>Choose your Staff Type</option>
                                                     <option *ngFor="let stafftype of stafftypes?.response" [value]="stafftype._id">
                                                         {{stafftype?.stafftype}}</option>
                                                 </select>
@@ -154,9 +152,8 @@
                                                 <label for="staffrole">Choose Staff Role</label>
                                                 <div class="form-line">
                                                     <select id="select" name="staffrole" [(ngModel)]="selectedstaffrole"
-                                                        class="browser-default form-control" [formControl]="staffrole"
-                                                        placeholder="Choose your Staff Role" required>
-                                                        <option disabled selected>Choose your Staff Role</option>
+                                                        class="browser-default form-control" [formControl]="staffrole" required>
+                                                        <option>Choose your Staff Role</option>
                                                         <option *ngFor="let staffrole of staffroles?.response" [value]="staffrole._id">
                                                             {{staffrole?.staffrole}}</option>
                                                     </select>
@@ -165,31 +162,44 @@
                                         </div>
                                   </div>
                                   <div class="row">
+                                        <div class="col-md-6">
+                                                <div class="form-group form-float">
+                                                    <label for="gender">Choose Gender</label>
+                                                    <div class="form-line">
+                                                        <select id="select" name="gender" [(ngModel)]="selectedgender"
+                                                            class="browser-default form-control" [formControl]="gender" required>
+                                                            <option>Choose your Gender</option>
+                                                            <option *ngFor="let gender of genders?.response" [value]="gender._id">
+                                                                {{gender?.gender}}</option>
+                                                        </select>
+                                                        </div>
+                                                </div>
+                                              </div>
                                     <div class="col-md-6">
                                         <div class="form-group form-float">
                                             <label for="salutation">Choose Salutation</label>
                                             <div class="form-line">
                                                 <select id="select" name="salutation" [(ngModel)]="selectedsalutation"
-                                                    class="browser-default form-control" [formControl]="salutation"
-                                                    placeholder="Choose your Salutation" required>
-                                                    <option disabled selected>Choose your Salutation</option>
+                                                    class="browser-default form-control" [formControl]="salutation" required>
+                                                    <option>Choose your Salutation</option>
                                                     <option *ngFor="let salutation of salutations?.response" [value]="salutation._id">
                                                         {{salutation?.salutation}}</option>
                                                 </select>
                                                 </div>
                                         </div>
                                       </div>
-                                      <div class="col-md-6">
-                                            <div class="form-group form-float">
-                                                <label for="firstName">First Name</label>
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control" name="firstName" placeholder="Enter First Name"
-                                                        [formControl]="firstName" required />
-                                                        </div>
-                                            </div>
-                                        </div>
+                                      
                                   </div>
                                   <div class="row">
+                                        <div class="col-md-6">
+                                                <div class="form-group form-float">
+                                                    <label for="firstName">First Name</label>
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" name="firstName" placeholder="Enter First Name"
+                                                            [formControl]="firstName" required />
+                                                            </div>
+                                                </div>
+                                            </div>
                                     <div class="col-md-6">
                                         <div class="form-group form-float">
                                             <label for="lastName">Last Name</label>
@@ -200,18 +210,19 @@
                                         </div>
                                     </div>
                             
-                                <div class="col-md-6">
-                                    <div class="form-group form-float">
-                                        <label for="designation">Designation</label>
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="designation" placeholder="Enter Designation"
-                                                [formControl]="designation" required />
-                                                </div>
-                                    </div>
-                                </div>
+                                
                                   </div>
                                   
                                   <div class="row">
+                                        <div class="col-md-6">
+                                                <div class="form-group form-float">
+                                                    <label for="designation">Designation</label>
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" name="designation" placeholder="Enter Designation"
+                                                            [formControl]="designation" required />
+                                                            </div>
+                                                </div>
+                                            </div>
                                     <div class="col-md-6">
                                         <div class="form-group form-float">
                                             <label for="doj">Date of Joining</label>
@@ -221,20 +232,7 @@
                                                     </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group form-float">
-                                            <label for="gender">Choose Gender</label>
-                                            <div class="form-line">
-                                                <select id="select" name="gender" [(ngModel)]="selectedgender"
-                                                    class="browser-default form-control" [formControl]="gender"
-                                                    placeholder="Choose your Gender" required>
-                                                    <option disabled selected>Choose your Gender</option>
-                                                    <option *ngFor="let gender of genders?.response" [value]="gender._id">
-                                                        {{gender?.gender}}</option>
-                                                </select>
-                                                </div>
-                                        </div>
-                                      </div>
+                                    
                                   </div>
                                   <div class="row">
                                     <div class="col-md-6">
@@ -262,9 +260,8 @@
                                             <label for="paytype">Choose Pay Type</label>
                                             <div class="form-line">
                                                 <select id="select" name="paytype" [(ngModel)]="selectedpaytype"
-                                                    class="browser-default form-control" [formControl]="paytype"
-                                                    placeholder="Choose your Pay Type" required>
-                                                    <option disabled selected>Choose your Pay Type</option>
+                                                    class="browser-default form-control" [formControl]="paytype" required>
+                                                    <option>Choose your Pay Type</option>
                                                     <option *ngFor="let paytype of paytypes?.response" [value]="paytype._id">
                                                         {{paytype?.paytype}}</option>
                                                 </select>
@@ -307,9 +304,8 @@
                                             <label for="maritalstatus">Choose Marital Status</label>
                                             <div class="form-line">
                                                 <select id="select" name="maritalstatus" [(ngModel)]="selectedmaritalstatus"
-                                                    class="browser-default form-control" [formControl]="maritalstatus"
-                                                    placeholder="Choose your Marital Status" required>
-                                                    <option disabled selected>Choose your Marital Status</option>
+                                                    class="browser-default form-control" [formControl]="maritalstatus" required>
+                                                    <option>Choose your Marital Status</option>
                                                     <option *ngFor="let maritalstatus of maritalstatuses?.response" [value]="maritalstatus._id">
                                                         {{maritalstatus?.maritalstatus}}</option>
                                                 </select>
@@ -321,9 +317,8 @@
                                             <label for="bloodgroup">Choose Blood Group</label>
                                             <div class="form-line">
                                                 <select id="select" name="bloodgroup" [(ngModel)]="selectedbloodgroup"
-                                                    class="browser-default form-control" [formControl]="bloodgroup"
-                                                    placeholder="Choose your Blood Group" required>
-                                                    <option disabled selected>Choose your Blood Group</option>
+                                                    class="browser-default form-control" [formControl]="bloodgroup" required>
+                                                    <option>Choose your Blood Group</option>
                                                     <option *ngFor="let bloodgroup of bloodgroups?.response" [value]="bloodgroup._id">
                                                         {{bloodgroup?.bloodgroup}}</option>
                                                 </select>

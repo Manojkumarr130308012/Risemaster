@@ -184,6 +184,8 @@ export class DriverMasterComponent implements OnInit {
     this.request.addDriver(newDriver).subscribe((res: any) => {
       if (res.status == 'success') {
         swal("Added Sucessfully");
+        this.getfileLoc2="";
+        this.getfileLoc="";
         this.loadModal();
         this.viewData();
       }
@@ -260,8 +262,8 @@ export class DriverMasterComponent implements OnInit {
       this.licenseExpDate2 = new FormControl(this.licenseExpDateValue, [Validators.required]);
       this.referencePersonName2 = new FormControl(this.referencePersonNameValue, [Validators.required]);
       this.referencePersonContactNo2 = new FormControl(this.referencePersonContactNoValue, [Validators.required]);
-      // this.photoLocation2 = new FormControl(this.photoLocationValue, [Validators.required]);
-      // this.fileLocation2 = new FormControl(this.fileLocationValue, [Validators.required]);
+//this.photoLocation2 = new FormControl(this.photoLocationValue, [Validators.required]);
+     //this.fileLocation2 = new FormControl(this.fileLocationValue, [Validators.required]);
     });
   }
   updateDriver() {
@@ -289,6 +291,8 @@ export class DriverMasterComponent implements OnInit {
     this.request.updateDriver(this.IdValue, edata).subscribe((res: any) => {
       if (res.status == 'success') {
         swal("Updated Successfully");
+        this.getfileLoc2="";
+        this.getfileLoc="";
         this.loadModal();
         this.viewData();
       }
@@ -324,12 +328,17 @@ export class DriverMasterComponent implements OnInit {
       var v = $('#form_advanced_validation').validate();
       v.resetForm();
 
+      $('.progress .progress-bar').css('width', 0);
+        $('.progress .progress-bar').html('');
+
     })
     $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
     $('#editModal ').on('hidden.bs.modal', function () {
       $(this).find('form').trigger('reset');
       var v = $('#form_advanced_validation1').validate();
       v.resetForm();
+      $('.progress .progress-bar').css('width', 0);
+        $('.progress .progress-bar').html('');
     })
   }
 
@@ -344,14 +353,14 @@ export class DriverMasterComponent implements OnInit {
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       console.log('ImageUpload:uploaded:', item, status, response);
       const resPath = JSON.parse(response);
-      this.getfileLoc = resPath.driverFileResult1;
+    this.getfileLoc = resPath.driverFileResult1;
     };
 
     this.uploader2.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader2.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       console.log('ImageUpload:uploaded:', item, status, response);
       const resPath = JSON.parse(response);
-      this.getfileLoc2 = resPath.driverFileResult2;
+     this.getfileLoc2 = resPath.driverFileResult2;
     };
 
 
