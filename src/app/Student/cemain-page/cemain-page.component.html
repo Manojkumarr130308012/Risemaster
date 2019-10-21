@@ -12,7 +12,7 @@
                             <div class="header-dropdown m-r--5">
                                 <!-- Add button -->
                                     <div class="btn-group m-l-15">
-                                            <button  class="btn btn-info" (click)="openNew()">Add New</button>
+                                            <button *ngIf="!isUpdate" class="btn btn-info" (click)="openNew()">Add New</button>
                                           
                             </div>
                         </div>
@@ -23,6 +23,7 @@
                                     class="display table table-hover table-checkable order-column m-t-20 width-per-100">
                                        <thead>
                                            <tr>
+                                               <th>#</th>
                                                <th>Enquiry Date</th>                                            
                                                <th>App No.</th>
                                                <th>Name</th>
@@ -32,25 +33,29 @@
                                                <th>Candidate Mobile</th>
                                                <th>Advance Amount</th>
                                                <th>Remark</th>
+                                               <th>Institution</th>
+                                               <th>Mother Tongue</th>
                                                <th>Action</th>
                                            </tr>
                                        </thead>
                                        <tbody>
-                                           <tr *ngFor="let basicdetail of ce_basicdetails?.response; let i=index">
-                                               <td>{{i +1}}</td>
-                                               <td></td>
+                                           <tr *ngFor="let basicdetail of ce_basicdetails; let i=index">
+                                               <td>{{i+1}}</td>
+                                               <td *ngFor="let followup of followups?.response">{{followup?.dateOfEnquiry}}</td>
+                                               <td>{{basicdetail?.applicatonNo}}</td>
                                                <td>{{basicdetail?.firstName}} {{basicdetail?.lastName}}</td>
                                                <td>{{basicdetail?.regNo12th}}</td>
                                                <td>{{basicdetail?.mark12th}}</td>
-                                               <td>{{basicdetail?.fMobileNumber}}</td>
-                                               <td>{{basicdetail?.sMobileNumber}}</td>
-                                               <td></td>
-                                               <td></td>
+                                               <td>{{basicdetail?.fMobileNumber}}</td> 
+                                               <td>{{basicdetail?.sMobileNumber}}</td>  
+                                               <td *ngFor="let paymentdetail of paymentdetails">{{paymentdetail?.amount}}</td>
+                                               <td>{{basicdetail?.remark}}</td>
+                                               <td>{{basicdetail.InstitutionDetails[0].institution_name}}</td>
+                                               <td>{{basicdetail.motherTongue[0].motherTongue}}</td>
                                                <td>
-                                                   <div class="btn btn-tbl-edit" data-toggle="modal"
-                                                   data-target="#editModal">
+                                                   <div *ngIf="isUpdate" class="btn btn-tbl-edit">
                                                            <i class="material-icons" 
-                                                           (click)="onEdit(admissionCategory)">create</i>
+                                                           (click)="onEdit(basicdetail)">create</i>
                                                    </div>
                                                        <div class="btn btn-tbl-delete">
                                                            <i class="material-icons" 
