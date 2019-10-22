@@ -1439,7 +1439,6 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/staffCourse/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
-<<<<<<< HEAD
 
   // Expenses Entry
 
@@ -1506,6 +1505,4 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/fuel-entry/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
-=======
->>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
 }

@@ -177,8 +177,4 @@ ngOnInit() {
  this.loadModal();
  this. loadDepartment();
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
 }

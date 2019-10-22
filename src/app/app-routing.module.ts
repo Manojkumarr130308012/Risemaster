@@ -1,10 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-<<<<<<< HEAD
-import { LoginComponent } from './login/login.component';
-=======
-
->>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
 
 import { BloodgroupComponent } from './Master/bloodgroup/bloodgroup.component';
 import { CasteComponent } from './Master/caste/caste.component';
@@ -55,12 +50,9 @@ import { DriverMasterComponent } from './VehicleManagement/driver-master/driver-
 import { FillingStationsComponent } from './VehicleManagement/filling-stations/filling-stations.component';
 import { VehicleExpensesComponent } from './VehicleManagement/vehicle-expenses/vehicle-expenses.component';
 import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-details.component';
-<<<<<<< HEAD
 import { FuelEntryComponent } from './VehicleManagement/Vehicle Transaction/fuel-entry/fuel-entry.component';
 import { ExpensesEntryComponent } from './VehicleManagement/Vehicle Transaction/expenses-entry/expenses-entry.component';
 import { VehicleTransactionComponent } from './VehicleManagement/vehicle-transaction/vehicle-transaction.component';
-=======
->>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
 
 // Staff Management
 import { StaffProfileComponent } from './StaffManagement/staff-profile/staff-profile.component';
@@ -80,14 +72,6 @@ const routes: Routes = [
 
   {
     path: '',
-<<<<<<< HEAD
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
-  {
-    path: 'login',
-    component: LoginComponent
-=======
     redirectTo: 'auth',
     pathMatch: 'full'
   },
@@ -95,7 +79,6 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
->>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
   },
   
 
@@ -266,8 +249,6 @@ const routes: Routes = [
   { path: 'stage-details', 
   component: StageDetailsComponent },
 
-<<<<<<< HEAD
-<<<<<<< HEAD
   { path: 'fuel-entry', 
   component: FuelEntryComponent },
 
@@ -277,10 +258,7 @@ const routes: Routes = [
   { path: 'vehicle-transaction', 
   component: VehicleTransactionComponent },
 
-=======
->>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
-=======
->>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
+
   // Staff Management
   { path: 'staff-profile', 
   component: StaffProfileComponent },

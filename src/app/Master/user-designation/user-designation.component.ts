@@ -5,10 +5,6 @@ import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader
 import { RequestService } from '../../services/request.service';
 import { Router } from '@angular/router';
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
 declare const $: any;
 declare const swal: any;
 
@@ -36,14 +32,7 @@ export class UserDesignationComponent implements OnInit {
   public IdValue: any;
 
   constructor(private request: RequestService, private router: Router, private dynamicScriptLoader: DynamicScriptLoaderService, public snackBar: MatSnackBar,) {
-<<<<<<< HEAD
-    this.designationId = new FormControl('', Validators.required);
-    this.designationId2 = new FormControl('', Validators.required);
-    this.designationName = new FormControl('', Validators.required);
-    this.designationName2 = new FormControl('', Validators.required);
-=======
    
->>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
   }
 
   public setMessage(message) {
@@ -101,13 +90,7 @@ export class UserDesignationComponent implements OnInit {
      // this.message ="";
 
     }, (error) => {
-<<<<<<< HEAD
-      this.snackBar.open('Task Updated successfully.', 'OK', {
-        duration: 3000,
-      });
-=======
      
->>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
       this.snackBar.open(error.message, 'OK', {
         duration: 10000,});
       this.setMessage(error);
@@ -191,14 +174,11 @@ export class UserDesignationComponent implements OnInit {
 
     this.startScript();
     this.viewDesignation();
-<<<<<<< HEAD
-=======
 
     this.designationId = new FormControl('', Validators.required);
     this.designationId2 = new FormControl('', Validators.required);
     this.designationName = new FormControl('', Validators.required);
     this.designationName2 = new FormControl('', Validators.required);
->>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
     
 
     //jQuery Validation
