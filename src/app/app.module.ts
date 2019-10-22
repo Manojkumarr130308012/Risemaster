@@ -69,7 +69,8 @@ import { DriverMasterComponent } from './VehicleManagement/driver-master/driver-
 import { FillingStationsComponent } from './VehicleManagement/filling-stations/filling-stations.component';
 import { VehicleExpensesComponent } from './VehicleManagement/vehicle-expenses/vehicle-expenses.component';
 import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-details.component';
-<<<<<<< HEAD
+import { ExpensesEntryComponent } from './VehicleManagement/Vehicle Transaction/expenses-entry/expenses-entry.component';
+import { FuelEntryComponent } from './VehicleManagement/Vehicle Transaction/fuel-entry/fuel-entry.component';
 import { VehicleTransactionComponent } from './VehicleManagement/vehicle-transaction/vehicle-transaction.component';
 
 
@@ -77,8 +78,6 @@ import { VehicleTransactionComponent } from './VehicleManagement/vehicle-transac
 import { StaffProfileComponent } from './StaffManagement/staff-profile/staff-profile.component';
 import { StaffDetailsComponent } from './StaffManagement/staff-details/staff-details.component';
 
-=======
->>>>>>> 64a32d8e25b670d56ceeb6a1eb886f4e21d1b6a4
 import { CEmainPageComponent } from './Student/cemain-page/cemain-page.component';
 import { CEbasicDetailsComponent } from './Student/cebasic-details/cebasic-details.component';
 import { CEaddressDetailsComponent } from './Student/ceaddress-details/ceaddress-details.component';
@@ -149,7 +148,9 @@ import { ArchwizardModule } from 'angular-archwizard';
     StageDetailsComponent,
     StaffProfileComponent,
     StaffDetailsComponent,
-    VehicleTransactionComponent
+    VehicleTransactionComponent,
+    ExpensesEntryComponent,
+    FuelEntryComponent
 
   ],
   imports: [

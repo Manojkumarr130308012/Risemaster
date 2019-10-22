@@ -51,6 +51,9 @@ import { DriverMasterComponent } from './VehicleManagement/driver-master/driver-
 import { FillingStationsComponent } from './VehicleManagement/filling-stations/filling-stations.component';
 import { VehicleExpensesComponent } from './VehicleManagement/vehicle-expenses/vehicle-expenses.component';
 import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-details.component';
+import { FuelEntryComponent } from './VehicleManagement/Vehicle Transaction/fuel-entry/fuel-entry.component';
+import { ExpensesEntryComponent } from './VehicleManagement/Vehicle Transaction/expenses-entry/expenses-entry.component';
+import { VehicleTransactionComponent } from './VehicleManagement/vehicle-transaction/vehicle-transaction.component';
 
 // Staff Management
 import { StaffProfileComponent } from './StaffManagement/staff-profile/staff-profile.component';
@@ -245,6 +248,15 @@ const routes: Routes = [
 
   { path: 'stage-details', 
   component: StageDetailsComponent },
+
+  { path: 'fuel-entry', 
+  component: FuelEntryComponent },
+
+  { path: 'expenses-entry', 
+  component: ExpensesEntryComponent },
+
+  { path: 'vehicle-transaction', 
+  component: VehicleTransactionComponent },
 
   // Staff Management
   { path: 'staff-profile', 

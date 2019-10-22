@@ -1439,4 +1439,70 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/staffCourse/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
+
+  // Expenses Entry
+
+  public getExpensesEntry() {
+    this.url = `${this.endPoint}/expenses-entry/aggregation`;
+    return this.http.get(this.url);   
+  }
+  
+  public addExpensesEntry(newExpenses) {
+    this.url = `${this.endPoint}/expenses-entry/add`;   
+    return this.http.post(this.url,newExpenses);
+  }
+  
+  public deleteExpensesEntry(id) {
+    this.url = `${this.endPoint}/expenses-entry/delete?id=`+ id;
+    return this.http.delete(this.url);
+  }
+  
+  updateExpensesEntry(id, body) {
+    this.url = `${this.endPoint}/expenses-entry/update?id=${id}`;
+    return this.http.put(this.url, body);
+  }
+  
+  fetchExpensesEntry() {
+    this.url = `${this.endPoint}/expenses-entry`;
+    return this.http.get(this.url); 
+  }
+  fetchExpensesEntryById(id) {
+    this.url = `${this.endPoint}/expenses-entry/fetchdata?id=` + id;
+    return this.http.get(this.url);
+  }
+  public getExpensesbyDate(date) {
+    this.url = `${this.endPoint}/expenses-entry/fetchbyDate/?date=` + date;
+    return this.http.get(this.url);
+  }
+
+  // Fuel Entry
+
+  public getFuelEntry() {
+    this.url = `${this.endPoint}/fuel-entry/aggregation`;
+    return this.http.get(this.url);   
+  }
+  
+  public addFuelEntry(newFuel) {
+    this.url = `${this.endPoint}/fuel-entry/add`;   
+    return this.http.post(this.url,newFuel);
+  }
+  
+  public deleteFuelEntry(id) {
+    this.url = `${this.endPoint}/fuel-entry/delete?id=`+ id;
+    return this.http.delete(this.url);
+  }
+  
+  updateFuelEntry(id, body) {
+    this.url = `${this.endPoint}/fuel-entry/update?id=${id}`;
+    return this.http.put(this.url, body);
+  }
+  
+  fetchFuelEntry() {
+    this.url = `${this.endPoint}/fuel-entry`;
+    return this.http.get(this.url); 
+  }
+  fetchFuelEntryById(id) {
+    this.url = `${this.endPoint}/fuel-entry/fetchdata?id=` + id;
+    return this.http.get(this.url);
+  }
 }
