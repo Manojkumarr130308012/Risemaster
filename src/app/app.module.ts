@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {   MatSnackBarModule} from '@angular/material';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from "./app-routing.module";
@@ -16,11 +17,6 @@ import { DynamicScriptLoaderService } from "./services/dynamic-script-loader.ser
 
 import { RequestService } from './../app/services/request.service';
 import { HttpClientModule } from '@angular/common/http';
-<<<<<<< HEAD
-import { LoginComponent } from './login/login.component';
-=======
-
->>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
 import { AcademicYearComponent } from './Master/academic-year/academic-year.component';
 import { UserDesignationComponent } from './Master/user-designation/user-designation.component';
 import { BloodgroupComponent } from './Master/bloodgroup/bloodgroup.component';
@@ -73,14 +69,10 @@ import { DriverMasterComponent } from './VehicleManagement/driver-master/driver-
 import { FillingStationsComponent } from './VehicleManagement/filling-stations/filling-stations.component';
 import { VehicleExpensesComponent } from './VehicleManagement/vehicle-expenses/vehicle-expenses.component';
 import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-details.component';
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 import { ExpensesEntryComponent } from './VehicleManagement/Vehicle Transaction/expenses-entry/expenses-entry.component';
 import { FuelEntryComponent } from './VehicleManagement/Vehicle Transaction/fuel-entry/fuel-entry.component';
-=======
->>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
-=======
->>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
+
 import { VehicleTransactionComponent } from './VehicleManagement/vehicle-transaction/vehicle-transaction.component';
 
 
@@ -98,14 +90,7 @@ import { CEtabpageComponent } from './Student/cetabpage/cetabpage.component';
 import { ArchwizardModule } from 'angular-archwizard';
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
-=======
-
->>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
 @NgModule({
   declarations: [
     AppComponent,
@@ -113,15 +98,6 @@ import { ArchwizardModule } from 'angular-archwizard';
     PageLoaderComponent,
     RightSidebarComponent,
     SidebarComponent,
-<<<<<<< HEAD
-<<<<<<< HEAD
-    LoginComponent,
-=======
-    
->>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
-=======
-    
->>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
    
     BloodgroupComponent,
     CasteComponent,
@@ -174,17 +150,15 @@ import { ArchwizardModule } from 'angular-archwizard';
     StageDetailsComponent,
     StaffProfileComponent,
     StaffDetailsComponent,
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     VehicleTransactionComponent,
     ExpensesEntryComponent,
-    FuelEntryComponent
-=======
-    VehicleTransactionComponent
->>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
-=======
-    VehicleTransactionComponent
->>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
+    FuelEntryComponent,
+
+    VehicleTransactionComponent,
+
+    VehicleTransactionComponent,
+
 
   ],
   imports: [
@@ -199,7 +173,8 @@ import { ArchwizardModule } from 'angular-archwizard';
     Ng2SearchPipeModule,
     NgxPaginationModule,
     OrderModule,
-    ArchwizardModule
+    ArchwizardModule,
+    MatSnackBarModule
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},

@@ -33,20 +33,6 @@ export class AppComponent {
       if (routerEvent instanceof NavigationEnd) {
         this.showLoadingIndicatior = false;
       }
-<<<<<<< HEAD
-      _router.events.forEach((event) => {
-        if (event instanceof NavigationStart) {
-          if (event['url'] == '/login') {
-            this.showHead = false;
-            this.showSide = false;
-          } else {
-            // console.log("NU")
-            this.showHead = true;
-            this.showSide = true;
-          }
-        }
-      });
-=======
      /*  _router.events.forEach((event) => {
         if (event instanceof NavigationStart) {
            if (event['url'] == '/login') {
@@ -59,7 +45,6 @@ export class AppComponent {
            }
          }
        });*/
->>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
 
       window.scrollTo(0, 0);
     });

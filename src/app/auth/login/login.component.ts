@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   login() {
 console.log('login');
-    this.router.navigate(['user-designation']);
+    this.router.navigate(['gender']);
   }
 
   async startScript() {
