@@ -16,7 +16,11 @@ import { DynamicScriptLoaderService } from "./services/dynamic-script-loader.ser
 
 import { RequestService } from './../app/services/request.service';
 import { HttpClientModule } from '@angular/common/http';
+<<<<<<< HEAD
 import { LoginComponent } from './login/login.component';
+=======
+
+>>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
 import { AcademicYearComponent } from './Master/academic-year/academic-year.component';
 import { UserDesignationComponent } from './Master/user-designation/user-designation.component';
 import { BloodgroupComponent } from './Master/bloodgroup/bloodgroup.component';
@@ -70,8 +74,11 @@ import { FillingStationsComponent } from './VehicleManagement/filling-stations/f
 import { VehicleExpensesComponent } from './VehicleManagement/vehicle-expenses/vehicle-expenses.component';
 import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-details.component';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { ExpensesEntryComponent } from './VehicleManagement/Vehicle Transaction/expenses-entry/expenses-entry.component';
 import { FuelEntryComponent } from './VehicleManagement/Vehicle Transaction/fuel-entry/fuel-entry.component';
+=======
+>>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
 =======
 >>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
 import { VehicleTransactionComponent } from './VehicleManagement/vehicle-transaction/vehicle-transaction.component';
@@ -92,6 +99,10 @@ import { ArchwizardModule } from 'angular-archwizard';
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
 =======
 
 >>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
@@ -103,7 +114,11 @@ import { ArchwizardModule } from 'angular-archwizard';
     RightSidebarComponent,
     SidebarComponent,
 <<<<<<< HEAD
+<<<<<<< HEAD
     LoginComponent,
+=======
+    
+>>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
 =======
     
 >>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
@@ -160,9 +175,13 @@ import { ArchwizardModule } from 'angular-archwizard';
     StaffProfileComponent,
     StaffDetailsComponent,
 <<<<<<< HEAD
+<<<<<<< HEAD
     VehicleTransactionComponent,
     ExpensesEntryComponent,
     FuelEntryComponent
+=======
+    VehicleTransactionComponent
+>>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
 =======
     VehicleTransactionComponent
 >>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769

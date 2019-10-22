@@ -53,7 +53,11 @@ export class AdmissionTypeComponent implements OnInit {
   // Bind institution data
   loadAdmissiontype() {
     this.request.getInstitution().subscribe((response: any) => {
+<<<<<<< HEAD
       console.log(response);
+=======
+     // console.log(response);
+>>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
       this.institutions = response;
     }, (error) => {
       console.log(error);
@@ -87,7 +91,11 @@ export class AdmissionTypeComponent implements OnInit {
   viewData() {
     this.request.getAdmissiontype().subscribe((response) => {
       this.admissiontypes = response;
+<<<<<<< HEAD
       console.log(this.admissiontypes);
+=======
+      console.log('admission',this.admissiontypes);
+>>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
     }, (error) => {
       console.log(error);
     });
@@ -150,8 +158,28 @@ export class AdmissionTypeComponent implements OnInit {
       this.loadData();
     }).catch(error => console.log(error));
   }
+<<<<<<< HEAD
   private loadData() {
     $('#tableExport').DataTable({
+=======
+
+  private loadData() {
+    console.log('this.admissiontypes',this.admissiontypes);
+    var i=1;
+    var t = $('#tableExport').DataTable({
+       data: this.admissiontypes,
+      columns: [             
+         { "render": function (data, type, full, meta) { return i++;}},
+       { data: 'InstitutionDetails[0].institution_name' },
+       { data: 'admissiontype' },
+       {
+        data: null,
+        "defaultContent": "<div class='btn btn-tbl-edit' data-toggle='modal' data-target='#editModal'> <i class='material-icons' (click)='onEdit(admissiontype)'>create</i></div> <div class='btn btn-tbl-delete'><i class='material-icons' (click)='deleteAdmissiontype(admissiontype?._id)'>delete</i></div>",
+        "targets": -1
+      }
+      ],
+
+>>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
       dom: 'Bfrtip',
       buttons: [
         'copy', 'csv', 'excel', 'pdf', 'print'
@@ -177,10 +205,21 @@ export class AdmissionTypeComponent implements OnInit {
   }
 
   ngOnInit() {
+<<<<<<< HEAD
     this.startScript();
     M.updateTextFields();
     this.viewData();
     this.loadModal();
     this.loadAdmissiontype();
+=======
+   
+    M.updateTextFields();
+    this.viewData();      
+    this.startScript();
+    this.loadAdmissiontype();    
+    this.loadModal();
+   
+  
+>>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
   }
 }

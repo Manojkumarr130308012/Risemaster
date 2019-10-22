@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RequestService } from '../../services/request.service';
@@ -6,6 +7,8 @@ import { ActivatedRoute } from '@angular/router';
 declare const $: any;
 declare const M: any;
 declare const swal: any;
+=======
+>>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
 
 @Component({
   selector: 'app-vehicle-transaction',
@@ -14,6 +17,7 @@ declare const swal: any;
 })
 export class VehicleTransactionComponent implements OnInit {
 
+<<<<<<< HEAD
   // Expenses
   addExpensesForm: FormGroup;
   editExpensesForm: FormGroup;
@@ -337,6 +341,11 @@ loadFuelModal(){
  this.loadFuelModal();
  this.loadStation();
  this.loadDriver();
+=======
+  constructor() { }
+
+  ngOnInit() {
+>>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
   }
 
 }
