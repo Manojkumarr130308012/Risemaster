@@ -249,6 +249,7 @@ const routes: Routes = [
   { path: 'stage-details', 
   component: StageDetailsComponent },
 
+<<<<<<< HEAD
   { path: 'fuel-entry', 
   component: FuelEntryComponent },
 
@@ -258,6 +259,8 @@ const routes: Routes = [
   { path: 'vehicle-transaction', 
   component: VehicleTransactionComponent },
 
+=======
+>>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
   // Staff Management
   { path: 'staff-profile', 
   component: StaffProfileComponent },

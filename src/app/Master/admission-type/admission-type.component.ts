@@ -158,7 +158,6 @@ export class AdmissionTypeComponent implements OnInit {
       ]
     });
   }
-
   private loadModal() {
     $('#addModal').modal('hide'); //or  $('#IDModal').modal('hide');
     $('#addModal').on('hidden.bs.modal', function () {

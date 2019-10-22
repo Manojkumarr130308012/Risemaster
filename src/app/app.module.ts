@@ -69,8 +69,11 @@ import { DriverMasterComponent } from './VehicleManagement/driver-master/driver-
 import { FillingStationsComponent } from './VehicleManagement/filling-stations/filling-stations.component';
 import { VehicleExpensesComponent } from './VehicleManagement/vehicle-expenses/vehicle-expenses.component';
 import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-details.component';
+<<<<<<< HEAD
 import { ExpensesEntryComponent } from './VehicleManagement/Vehicle Transaction/expenses-entry/expenses-entry.component';
 import { FuelEntryComponent } from './VehicleManagement/Vehicle Transaction/fuel-entry/fuel-entry.component';
+=======
+>>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
 import { VehicleTransactionComponent } from './VehicleManagement/vehicle-transaction/vehicle-transaction.component';
 
 
@@ -88,6 +91,10 @@ import { CEtabpageComponent } from './Student/cetabpage/cetabpage.component';
 import { ArchwizardModule } from 'angular-archwizard';
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,7 +102,11 @@ import { ArchwizardModule } from 'angular-archwizard';
     PageLoaderComponent,
     RightSidebarComponent,
     SidebarComponent,
+<<<<<<< HEAD
     LoginComponent,
+=======
+    
+>>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
    
     BloodgroupComponent,
     CasteComponent,
@@ -148,9 +159,13 @@ import { ArchwizardModule } from 'angular-archwizard';
     StageDetailsComponent,
     StaffProfileComponent,
     StaffDetailsComponent,
+<<<<<<< HEAD
     VehicleTransactionComponent,
     ExpensesEntryComponent,
     FuelEntryComponent
+=======
+    VehicleTransactionComponent
+>>>>>>> 89c8633d8afc02111da64d0c99a0ce467075b769
 
   ],
   imports: [
