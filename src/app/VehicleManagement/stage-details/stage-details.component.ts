@@ -77,37 +77,38 @@ export class StageDetailsComponent implements OnInit {
       KMS: this.KMS.value,
       fees: this.fees.value,
       IdValue: vehId,
-    };
-    this.request.addStageDetails(newStage).subscribe((res: any) => {
-      if (res.status == 'success') {
-        swal("Added Sucessfully");
-        this.loadModal();
-        this.viewStageDetails(this.IdValue);
-      }
-      else if (res.status == 'error') {
-        this.setMessage(res.error);
-      }
-    }, (error) => {
-      this.setMessage(error);
-    });
-  }
-
+ };
+   this.request.addStageDetails(newStage).subscribe((res: any) => {
+     if (res.status == 'Success') {
+       swal("Added Sucessfully");
+     this.loadModal();
+     this.viewStageDetails(this.IdValue);
+     }
+     else if (res.status == 'error') {
+       this.setMessage(res.err);
+     }
+   }, (error) => {
+     this.setMessage(error);
+   });
+   }
+ 
   // To display stage details
-  //   viewData() {
-  //    this.request.getStage().subscribe((response) => {     
-  //      this.stages = response;
-  //      console.log(this.stages);
-  //    }, (error) => {
-  //      console.log(error);
-  //    });
-  //  }
-
-  viewStageDetails(IdValue: string) {
-    // console.log('IdValue',IdValue)
-    if (IdValue) {
-      this.request.getStagebyId(IdValue).subscribe((response) => {
-        // console.log(response);
-        this.stages = response;
+//   viewData() {
+//    this.request.getStage().subscribe((response) => {
+//      this.viewStageDetails(this.IdValue);
+//      this.stages = response;
+//      console.log(this.stages);
+//    }, (error) => {
+//      console.log(error);
+//    });
+//  }
+ 
+ viewStageDetails(IdValue : string) {
+  //  console.log('IdValue',IdValue)
+   if (IdValue){
+   this.request.getStagebyId(IdValue).subscribe((response) => {
+      console.log(response);
+      this.stages = response;
       }, (error) => {
         console.log(error);
       });
@@ -120,9 +121,9 @@ export class StageDetailsComponent implements OnInit {
   // To delete stage-details
   deleteStage(id: any) {
     this.request.deleteStage(id).subscribe(res => {
-      //console.log(id);
+      console.log(id);
       this.viewStageDetails(this.IdValue);
-      //console.log('Deleted');
+    console.log('Deleted');
     });
   }
 
@@ -152,22 +153,21 @@ export class StageDetailsComponent implements OnInit {
       KMS: this.KMS2.value,
       fees: this.fees2.value,
     };
-    this.request.updateStage(this.stageId, edata).subscribe((res: any) => {
-      if (res.status == 'success') {
-        swal("Updated Sucessfully");
-        this.viewStageDetails(this.IdValue);
-        this.loadModal();
-
-      }
-      else if (res.status == 'error') {
-        this.setMessage(res.error);
-      }
-
-    }, (error) => {
-      console.log(error);
-      this.setMessage(error);
-    });
-  }
+  this.request.updateStage(this.IdValue, edata).subscribe((res : any) => {
+    if (res.status == 'Success') {
+      swal("Updated Sucessfully");     
+      this.viewStageDetails(this.IdValue);
+      this.loadModal();
+    }
+    else if (res.status == 'error') {       
+      this.setMessage(res.err);
+    }      
+   
+  }, (err) => {
+    console.log(err);
+    this.setMessage(err);
+  });
+}
 
   private loadModal() {
     $('#addModal').modal('hide'); //or  $('#IDModal').modal('hide');
@@ -188,38 +188,40 @@ export class StageDetailsComponent implements OnInit {
 
   ngOnInit() {
     M.updateTextFields();
-    //this.viewData();
-    this.loadModal();
-    this.viewStageDetails(this.IdValue);
-    //jQuery Validation
-    $(function () {
-      $('#form_advanced_validation1').validate({
-
-        highlight: function (input) {
-          $(input).parents('.form-line').addClass('error');
-        },
-        unhighlight: function (input) {
-          $(input).parents('.form-line').removeClass('error');
-        },
-        errorPlacement: function (error, element) {
-          $(element).parents('.form-group').append(error);
-        }
-      });
-    });
-    $(function () {
-      $('#form_advanced_validation2').validate({
-
-        highlight: function (input) {
-          $(input).parents('.form-line').addClass('error');
-        },
-        unhighlight: function (input) {
-          $(input).parents('.form-line').removeClass('error');
-        },
-        errorPlacement: function (error, element) {
-          $(element).parents('.form-group').append(error);
-        }
-      });
-    });
-
+  //  this.viewData();
+  this.viewStageDetails(this.IdValue);
+   this.loadModal();
+  
+   //jQuery Validation
+     $(function () {         
+       $('#form_advanced_validation1').validate({
+           
+           highlight: function (input) {
+               $(input).parents('.form-line').addClass('error');
+           },
+           unhighlight: function (input) {
+               $(input).parents('.form-line').removeClass('error');
+           },
+           errorPlacement: function (error, element) {
+               $(element).parents('.form-group').append(error);
+           }
+       });
+   });
+   $(function () {         
+     $('#form_advanced_validation2').validate({
+         
+         highlight: function (input) {
+             $(input).parents('.form-line').addClass('error');
+         },
+         unhighlight: function (input) {
+             $(input).parents('.form-line').removeClass('error');
+         },
+         errorPlacement: function (error, element) {
+             $(element).parents('.form-group').append(error);
+         }
+     });
+   });
+           
+     }
   }
-}
+

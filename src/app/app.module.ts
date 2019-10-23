@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {   MatSnackBarModule} from '@angular/material';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from "./app-routing.module";
@@ -16,7 +17,6 @@ import { DynamicScriptLoaderService } from "./services/dynamic-script-loader.ser
 
 import { RequestService } from './../app/services/request.service';
 import { HttpClientModule } from '@angular/common/http';
-import { LoginComponent } from './login/login.component';
 import { AcademicYearComponent } from './Master/academic-year/academic-year.component';
 import { UserDesignationComponent } from './Master/user-designation/user-designation.component';
 import { BloodgroupComponent } from './Master/bloodgroup/bloodgroup.component';
@@ -70,8 +70,16 @@ import { FillingStationsComponent } from './VehicleManagement/filling-stations/f
 import { VehicleExpensesComponent } from './VehicleManagement/vehicle-expenses/vehicle-expenses.component';
 import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-details.component';
 
+import { ExpensesEntryComponent } from './VehicleManagement/Vehicle Transaction/expenses-entry/expenses-entry.component';
+import { FuelEntryComponent } from './VehicleManagement/Vehicle Transaction/fuel-entry/fuel-entry.component';
 
-//candidate Enquiry
+import { VehicleTransactionComponent } from './VehicleManagement/vehicle-transaction/vehicle-transaction.component';
+
+
+// Staff Management
+import { StaffProfileComponent } from './StaffManagement/staff-profile/staff-profile.component';
+import { StaffDetailsComponent } from './StaffManagement/staff-details/staff-details.component';
+
 import { CEmainPageComponent } from './Student/cemain-page/cemain-page.component';
 import { CEbasicDetailsComponent } from './Student/cebasic-details/cebasic-details.component';
 import { CEaddressDetailsComponent } from './Student/ceaddress-details/ceaddress-details.component';
@@ -80,8 +88,6 @@ import { CEfollowupsComponent } from './Student/cefollowups/cefollowups.componen
 import { CEqualificationDetailsComponent } from './Student/cequalification-details/cequalification-details.component';
 import { CEtabpageComponent } from './Student/cetabpage/cetabpage.component';
 import { ArchwizardModule } from 'angular-archwizard';
-
-import {  MatSnackBarModule} from '@angular/material';
 
 
 
@@ -92,7 +98,6 @@ import {  MatSnackBarModule} from '@angular/material';
     PageLoaderComponent,
     RightSidebarComponent,
     SidebarComponent,
-    LoginComponent,
    
     BloodgroupComponent,
     CasteComponent,
@@ -143,16 +148,18 @@ import {  MatSnackBarModule} from '@angular/material';
     FillingStationsComponent,
     VehicleExpensesComponent,
     StageDetailsComponent,
-    //////////////////////////
-    CEbasicDetailsComponent,
-    CEaddressDetailsComponent,
-    CEpaymentDetailsComponent,
-    CEfollowupsComponent,
-    CEmainPageComponent,
-    CEqualificationDetailsComponent,
-    CEtabpageComponent
-   /////////////////////////////////
-    
+    StaffProfileComponent,
+    StaffDetailsComponent,
+
+    VehicleTransactionComponent,
+    ExpensesEntryComponent,
+    FuelEntryComponent,
+
+    VehicleTransactionComponent,
+
+    VehicleTransactionComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -166,7 +173,8 @@ import {  MatSnackBarModule} from '@angular/material';
     Ng2SearchPipeModule,
     NgxPaginationModule,
     OrderModule,
-    ArchwizardModule,  MatSnackBarModule,
+    ArchwizardModule,
+    MatSnackBarModule
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},

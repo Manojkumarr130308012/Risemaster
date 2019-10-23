@@ -1,85 +1,96 @@
-
 <section class="content">
     <div class="container-fluid">
         <!-- Table Start-->
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
-                    <div class="header">       
+                    <div class="header">
                         <h2>
                             <strong>Admission Category</strong>
                         </h2>
                         <div class="header-dropdown m-r--5">
                             <!-- Add button -->
-                                <div class="btn-group m-l-15">
-                                        <button id="addRow" class="btn btn-info" data-toggle="modal"
-                                        data-target="#addModal">
-                                            Add New
-                                            <i class="fa fa-plus" style="color: white"></i>  
-                                        </button>
-                                        <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
-                                        aria-labelledby="formModal" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="formModal">Add Details</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                       <form [formGroup]="registerForm" >
-                                            <div class="row">
-                                                    <div class="col-md-12">
-                                                       <div class="form-group">
-                                                           <label>Institution</label>
-                                                            <select class="browser-default"  id="select" [(ngModel)]="selectedinstitution" 
-                                                            formControlName="institution" value = " " class="form-control" placeholder="Enter institution"
-                                                                [ngClass]="{ 'is-invalid': submitted && f.institution.errors }" >
-                                                                <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">
-                                                                    <div *ngIf="f.institution.errors.required">Institution is required</div>
-                                                                </div>
-                                                         <option value="" disabled selected>Choose your institution</option>
-                                                             <option *ngFor="let institution of institutions" [value]="institution._id">{{institution?.institution_name}}</option>     
-                                                         </select>                                                        
-                                                       </div>
+                            <div class="btn-group m-l-15">
+                                <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addModal">
+                                    Add New
+                                    <i class="fa fa-plus" style="color: white"></i>
+                                </button>
+                                <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
+                                    aria-labelledby="formModal" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="formModal">Add Details</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form [formGroup]="registerForm">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Institution</label>
+                                                                <select class="browser-default" id="select"
+                                                                    [(ngModel)]="selectedinstitution"
+                                                                    formControlName="institution" value=" "
+                                                                    class="form-control" placeholder="Enter institution"
+                                                                    [ngClass]="{ 'is-invalid': submitted && f.institution.errors }">
+                                                                    <div *ngIf="submitted && f.institution.errors"
+                                                                        class="invalid-feedback">
+                                                                        <div *ngIf="f.institution.errors.required">
+                                                                            Institution is required</div>
+                                                                    </div>
+                                                                    <option value="" disabled selected>Choose your
+                                                                        institution</option>
+                                                                    <option *ngFor="let institution of institutions"
+                                                                        [value]="institution._id">
+                                                                        {{institution?.institution_name}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                   </div>   
-                                        <div class="row">
-                                        <div class="col-md-12">
-                                           <div class="form-group">
-                                               <label>Admission Category</label> 
-                                               <input type="text" value = "" formControlName="admissionCategory" class="form-control" placeholder="Enter admissionCategory"
-                                                   [ngClass]="{ 'is-invalid': submitted && f.admissionCategory.errors }" />
-                                               <div *ngIf="submitted && f.admissionCategory.errors" class="invalid-feedback">
-                                                   <div *ngIf="f.admissionCategory.errors.required">AdmissionCategory is required</div>
-                                               </div>
-                                           </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Admission Category</label>
+                                                                <input type="text" value=""
+                                                                    formControlName="admissionCategory"
+                                                                    class="form-control"
+                                                                    placeholder="Enter admissionCategory"
+                                                                    [ngClass]="{ 'is-invalid': submitted && f.admissionCategory.errors }" />
+                                                                <div *ngIf="submitted && f.admissionCategory.errors"
+                                                                    class="invalid-feedback">
+                                                                    <div *ngIf="f.admissionCategory.errors.required">
+                                                                        AdmissionCategory is required</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" (click)="onAddSubmit()"
+                                                            class="btn btn-default">Add</button>
+                                                        <button type="button" class="btn btn-danger waves-effect"
+                                                            data-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
-                                       </div>
-                                           <div class="modal-footer">
-                                               <button type="button" (click)="onAddSubmit()" class="btn btn-default"  >Add</button >
-                                                   <button type="button" class="btn btn-danger waves-effect"
-                                                       data-dismiss="modal">Cancel</button>
-                                               </div>
-                                       </form>
-                                       </div>
-                                       </div>
-                                       </div>
-                                       </div>
-                                       
-                                            <!-- Add button -->
+                                    </div>
+                                </div>
+
+                                <!-- Add button -->
+                            </div>
                         </div>
-                    </div>
-                   <div class="body">
+                        <div class="body">
                             <div class="table-responsive">
-                              
-                                 <table id="tableExport" 
-                                 class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+
+                                <table id="tableExport"
+                                    class="display table table-hover table-checkable order-column m-t-20 width-per-100">
                                     <thead>
                                         <tr>
-                                            <th>S.No</th>                                            
+                                            <th>S.No</th>
                                             <th>Institution</th>
                                             <th>Admission Category</th>
                                             <th>Action</th>
@@ -88,73 +99,77 @@
                                     <tbody>
                                         <tr *ngFor="let admissionCategory of admissionCategories; let i=index">
                                             <td>{{i +1 }}</td>
-                                            
-                                            <td >{{admissionCategory.InstitutionDetails[0].institution_name}}</td>
+
+                                            <td>{{admissionCategory.InstitutionDetails[0].institution_name}}</td>
                                             <td>{{admissionCategory?.admissionCategory}}</td>
                                             <td>
                                                 <div class="btn btn-tbl-edit" data-toggle="modal"
-                                                data-target="#editModal">
-                                                        <i class="material-icons" 
-                                                        (click)="onEdit(admissionCategory)">create</i>
+                                                    data-target="#editModal">
+                                                    <i class="material-icons"
+                                                        (click)="onEdit(admissionCategory?._id)">create</i>
                                                 </div>
-                                                    <div class="btn btn-tbl-delete">
-                                                        <i class="material-icons" 
-                                                        (click) = "deleteAdmissionCategory(admissionCategory?._id)" >delete</i>
-                                                    </div>
-                                                </td>
+                                                <div class="btn btn-tbl-delete">
+                                                    <i class="material-icons"
+                                                        (click)="deleteAdmissionCategory(admissionCategory?._id)">delete</i>
+                                                </div>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
- <!-- Edit form -->
- <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
- aria-labelledby="formModal" aria-hidden="true">
- <div class="modal-dialog" role="document">
-     <div class="modal-content">
-         <div class="modal-header">
-             <h5 class="modal-title" id="formModal">Add Details</h5>
-             <button type="button" class="close" data-dismiss="modal"
-                 aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-             </button>
-         </div>
-         <div class="modal-body">
-<form [formGroup]="editForm"  (ngSubmit) = "onEditSubmit()">
-     <div class="row">
-             <div class="col-md-12">
-                <div class="form-group">
-                     <select class="browser-default"  id="select" [(ngModel)]="selectedinstitution" 
-                     formControlName="institution2" class="form-control"
-                         [ngClass]="{ 'is-invalid': submitted && f.institution2.errors }" >
-                         <div *ngIf="submitted && f.institution2.errors" class="invalid-feedback">
-                             <div *ngIf="f.institution2.errors.required">Institution is required</div>
-                         </div>
-                      <option value="" disabled selected>Choose your institution</option>
-                      <option *ngFor="let institution of institutions" [value]="institution._id">{{institution?.institution_name}}</option>     
-                  </select>
-                  
+            <!-- Edit form -->
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="formModal"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="formModal">Edit Details</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
+                                <div class="row">
+
+                                    <div class="form-group">
+                                        <label>Institution</label>
+                                        <select class="browser-default" id="select2" [(ngModel)]="selectedinstitution2"
+                                            formControlName="institution2" class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted && f2.institution2.errors }">
+                                            <div *ngIf="submitted && f2.institution2.errors" class="invalid-feedback">
+                                                <div *ngIf="f2.institution2.errors.required">Institution is required
+                                                </div>
+                                            </div>
+                                            <option value="" disabled selected>Choose your institution</option>
+                                            <option *ngFor="let institution of institutions" [value]="institution._id">
+                                                {{institution?.institution_name}}</option>
+                                        </select>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Admission Category</label>
+                                        <input type="text" value="" formControlName="admissionCategory2"
+                                            class="form-control" placeholder="Enter admissionCategory"
+                                            [ngClass]="{ 'is-invalid': submitted && f2.admissionCategory2.errors }" />
+                                        <div *ngIf="submitted && f2.admissionCategory2.errors" class="invalid-feedback">
+                                            <div *ngIf="f2.admissionCategory2.errors.required">AdmissionCategory is
+                                                required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-default">Update</button>
+                                    <button type="button" class="btn btn-danger waves-effect"
+                                        data-dismiss="modal">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-            </div> 
-    <div class="form-group">
-        <label>Admission Category</label> 
-        <input type="text" value = "" formControlName="admissionCategory2" class="form-control" placeholder="Enter admissionCategory"
-            [ngClass]="{ 'is-invalid': submitted && f.admissionCategory2.errors }" />
-        <div *ngIf="submitted && f.admissionCategory2.errors" class="invalid-feedback">
-            <div *ngIf="f.admissionCategory2.errors.required">AdmissionCategory is required</div>
-        </div>
-    </div>
-</div>
-    <div class="modal-footer">
-        <button type="submit"   class="btn btn-default"  >Update</button >
-            <button type="button" class="btn btn-danger waves-effect"
-                data-dismiss="modal">Cancel</button>
-        </div>
-</form>
-</div>
-</div>
-</div>
-</div>
+            </div>

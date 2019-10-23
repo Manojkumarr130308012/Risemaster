@@ -1,7 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { RequestService } from './../services/request.service';
-import { DynamicScriptLoaderService } from '../services/dynamic-script-loader.service';
+
 import { Router } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
 
@@ -19,16 +18,13 @@ export class LoginComponent implements OnInit {
   public email = new FormControl('', Validators.email);
   public password = new FormControl('', Validators.required);
 
-  constructor(
-    private request: RequestService,
-    private router: Router,private dynamicScriptLoader: DynamicScriptLoaderService
-  ) {
+  constructor(private router: Router) {
 
   }
 
   login() {
-
-    this.router.navigate(['dashboard']);
+console.log('login');
+    this.router.navigate(['gender']);
   }
 
   async startScript() {

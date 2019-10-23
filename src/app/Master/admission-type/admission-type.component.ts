@@ -53,7 +53,7 @@ export class AdmissionTypeComponent implements OnInit {
   // Bind institution data
   loadAdmissiontype() {
     this.request.getInstitution().subscribe((response: any) => {
-      console.log(response);
+     // console.log(response);
       this.institutions = response;
     }, (error) => {
       console.log(error);
@@ -87,7 +87,7 @@ export class AdmissionTypeComponent implements OnInit {
   viewData() {
     this.request.getAdmissiontype().subscribe((response) => {
       this.admissiontypes = response;
-      console.log(this.admissiontypes);
+      console.log('admission',this.admissiontypes);
     }, (error) => {
       console.log(error);
     });
@@ -150,15 +150,29 @@ export class AdmissionTypeComponent implements OnInit {
       this.loadData();
     }).catch(error => console.log(error));
   }
+
   private loadData() {
-    $('#tableExport').DataTable({
+    console.log('this.admissiontypes',this.admissiontypes);
+    var i=1;
+    var t = $('#tableExport').DataTable({
+       data: this.admissiontypes,
+      columns: [             
+         { "render": function (data, type, full, meta) { return i++;}},
+       { data: 'InstitutionDetails[0].institution_name' },
+       { data: 'admissiontype' },
+       {
+        data: null,
+        "defaultContent": "<div class='btn btn-tbl-edit' data-toggle='modal' data-target='#editModal'> <i class='material-icons' (click)='onEdit(admissiontype)'>create</i></div> <div class='btn btn-tbl-delete'><i class='material-icons' (click)='deleteAdmissiontype(admissiontype?._id)'>delete</i></div>",
+        "targets": -1
+      }
+      ],
+
       dom: 'Bfrtip',
       buttons: [
         'copy', 'csv', 'excel', 'pdf', 'print'
       ]
     });
   }
-
   private loadModal() {
     $('#addModal').modal('hide'); //or  $('#IDModal').modal('hide');
     $('#addModal').on('hidden.bs.modal', function () {
@@ -178,10 +192,13 @@ export class AdmissionTypeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.startScript();
+   
     M.updateTextFields();
-    this.viewData();
+    this.viewData();      
+    this.startScript();
+    this.loadAdmissiontype();    
     this.loadModal();
-    this.loadAdmissiontype();
+   
+  
   }
 }

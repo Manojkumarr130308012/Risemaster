@@ -5,6 +5,7 @@ import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader
 import { RequestService } from '../../services/request.service';
 import { Router } from '@angular/router';
 
+
 declare const $: any;
 declare const swal: any;
 
@@ -32,10 +33,7 @@ export class UserDesignationComponent implements OnInit {
   public IdValue: any;
 
   constructor(private request: RequestService, private router: Router, private dynamicScriptLoader: DynamicScriptLoaderService, public snackBar: MatSnackBar,) {
-    this.designationId = new FormControl('', Validators.required);
-    this.designationId2 = new FormControl('', Validators.required);
-    this.designationName = new FormControl('', Validators.required);
-    this.designationName2 = new FormControl('', Validators.required);
+
   }
 
   public setMessage(message) {
@@ -93,9 +91,7 @@ export class UserDesignationComponent implements OnInit {
      // this.message ="";
 
     }, (error) => {
-      this.snackBar.open('Task Updated successfully.', 'OK', {
-        duration: 3000,
-      });
+
       this.snackBar.open(error.message, 'OK', {
         duration: 10000,});
       this.setMessage(error);
@@ -123,7 +119,7 @@ export class UserDesignationComponent implements OnInit {
         this.setMessage(response.error);
       }
 
-      
+
 
     }, (error) => {
       console.log(error);
@@ -137,7 +133,7 @@ export class UserDesignationComponent implements OnInit {
     this.request.getDesignation().subscribe((response: any) => {     
       localStorage.setItem('storeDesignation', JSON.stringify(response));
       this.designations = response;
-     
+
     }, (error) => {
       console.log(error);
     });
@@ -159,7 +155,7 @@ export class UserDesignationComponent implements OnInit {
     });
   }
   private loadModal() {
-    
+
     $('#addModal').modal('hide'); 
     $('#addModal').on('hidden.bs.modal', function () {
       $(this).find('form').trigger('reset');
@@ -179,7 +175,12 @@ export class UserDesignationComponent implements OnInit {
 
     this.startScript();
     this.viewDesignation();
-    
+
+    this.designationId = new FormControl('', Validators.required);
+    this.designationId2 = new FormControl('', Validators.required);
+    this.designationName = new FormControl('', Validators.required);
+    this.designationName2 = new FormControl('', Validators.required);
+
 
     //jQuery Validation
     $(function () {

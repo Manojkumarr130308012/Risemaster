@@ -33,18 +33,18 @@ export class AppComponent {
       if (routerEvent instanceof NavigationEnd) {
         this.showLoadingIndicatior = false;
       }
-      _router.events.forEach((event) => {
+     /*  _router.events.forEach((event) => {
         if (event instanceof NavigationStart) {
-          if (event['url'] == '/login') {
-            this.showHead = false;
-            this.showSide = false;
-          } else {
-            // console.log("NU")
-            this.showHead = true;
-            this.showSide = true;
-          }
-        }
-      });
+           if (event['url'] == '/login') {
+             this.showHead = false;
+             this.showSide = false;
+           } else {
+              console.log("NU")
+             this.showHead = true;
+             this.showSide = true;
+           }
+         }
+       });*/
 
       window.scrollTo(0, 0);
     });

@@ -1,8 +1,7 @@
-<div class="noprint">
+
 <div *ngIf="showLoadingIndicatior" class="page-loader-wrapper">
   <app-page-loader></app-page-loader>
 </div>
-<app-header *ngIf="!_router.url.includes('/login')"></app-header>
-<app-sidebar *ngIf="!_router.url.includes('/login')"></app-sidebar>
-</div>
+<app-header *ngIf="!_router.url.includes('/auth')"></app-header>
+<app-sidebar *ngIf="!_router.url.includes('/auth')"></app-sidebar>
 <router-outlet></router-outlet>

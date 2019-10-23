@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
 
 import { BloodgroupComponent } from './Master/bloodgroup/bloodgroup.component';
 import { CasteComponent } from './Master/caste/caste.component';
@@ -51,19 +50,13 @@ import { DriverMasterComponent } from './VehicleManagement/driver-master/driver-
 import { FillingStationsComponent } from './VehicleManagement/filling-stations/filling-stations.component';
 import { VehicleExpensesComponent } from './VehicleManagement/vehicle-expenses/vehicle-expenses.component';
 import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-details.component';
+import { FuelEntryComponent } from './VehicleManagement/Vehicle Transaction/fuel-entry/fuel-entry.component';
+import { ExpensesEntryComponent } from './VehicleManagement/Vehicle Transaction/expenses-entry/expenses-entry.component';
+import { VehicleTransactionComponent } from './VehicleManagement/vehicle-transaction/vehicle-transaction.component';
 
-
-
-
-// CandiadteEnquiry
-import { CEmainPageComponent } from './Student/cemain-page/cemain-page.component';
-import { CEbasicDetailsComponent } from './Student/cebasic-details/cebasic-details.component';
-import { CEaddressDetailsComponent } from './Student/ceaddress-details/ceaddress-details.component';
-import { CEpaymentDetailsComponent } from './Student/cepayment-details/cepayment-details.component';
-import { CEfollowupsComponent } from './Student/cefollowups/cefollowups.component';
-import { CEqualificationDetailsComponent } from './Student/cequalification-details/cequalification-details.component';
-import { CEtabpageComponent } from './Student/cetabpage/cetabpage.component';
-
+// Staff Management
+import { StaffProfileComponent } from './StaffManagement/staff-profile/staff-profile.component';
+import { StaffDetailsComponent } from './StaffManagement/staff-details/staff-details.component';
 
 const routes: Routes = [
   //{ path: '', component: LoginComponent },
@@ -79,12 +72,13 @@ const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'auth',
     pathMatch: 'full'
   },
+  
   {
-    path: 'login',
-    component: LoginComponent
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   
 
@@ -254,22 +248,24 @@ const routes: Routes = [
 
   { path: 'stage-details', 
   component: StageDetailsComponent },
-////////////////////////////////////////////////////////////
-  { path: 'CEMain', 
-  component: CEmainPageComponent },
-  { path: 'enquiry', 
-  component: CEtabpageComponent },
-  { path: 'CEBasicDetails', 
-  component: CEbasicDetailsComponent },
-  { path: 'CEAddressDetails', 
-  component: CEaddressDetailsComponent },
-  { path: 'CEPaymentDetails', 
-  component: CEpaymentDetailsComponent },
-  { path: 'CEFollowups', 
-  component: CEfollowupsComponent },
-  { path: 'CEQualificationDetails', 
-  component: CEqualificationDetailsComponent },
- 
+
+  { path: 'fuel-entry', 
+  component: FuelEntryComponent },
+
+  { path: 'expenses-entry', 
+  component: ExpensesEntryComponent },
+
+  { path: 'vehicle-transaction', 
+  component: VehicleTransactionComponent },
+
+
+  // Staff Management
+  { path: 'staff-profile', 
+  component: StaffProfileComponent },
+
+  { path: 'staff-details', 
+  component: StaffDetailsComponent },
+
 ];
 
 @NgModule({

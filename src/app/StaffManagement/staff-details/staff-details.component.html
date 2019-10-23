@@ -1,0 +1,1896 @@
+<section class="content">
+    <div class="container-fluid">
+        <!-- Table Start-->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            <strong>Staff Profile</strong>
+                        </h2>
+                    </div>
+
+                    <div class="body" *ngFor="let staffprofile of staffprofiles; let i=index">
+                        <div class="col-md-3">
+                            <img src="{{staffprofile?.photoLocation}}" width="100px">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h6> Name :</h6> {{staffprofile?.lastName}}
+                            </div>
+                            <div class="col-md-3">
+                                <h6> Code :</h6> {{staffprofile?.staffCode}}
+                            </div>
+                            <div class="col-md-3">
+                                <h6> Staff Type :</h6> {{staffprofile.StaffTypeDetails[0].stafftype}}
+                            </div>
+                            <div class="col-md-3">
+                                <h6> Employee Code :</h6> {{staffprofile?.employeeCode}}
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h6> Staff Role :</h6> {{staffprofile.StaffRoleDetails[0].staffrole}}
+                            </div>
+                            <div class="col-md-3">
+                                <h6> Date of Birth :</h6> {{staffprofile?.dob}}
+                            </div>
+                            <div class="col-md-3">
+                                <h6> Gender :</h6> {{staffprofile.GenderDetails[0].gender}}
+                            </div>
+                            <div class="col-md-3">
+                                <h6> Designation :</h6> {{staffprofile?.designation}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h6>Date of Joining :</h6> {{staffprofile?.doj}}
+                            </div>
+                            <div class="col-md-3">
+                                <h6> Marital Status :</h6> {{staffprofile.MaritalStatusDetails[0].maritalstatus}}
+                            </div>
+                            <div class="col-md-3">
+                                <h6> Blood Group :</h6> {{staffprofile.BloodGroupDetails[0].bloodgroup}}
+                            </div>
+                            <div class="col-md-3">
+                                <h6> Mobile Number :</h6> {{staffprofile?.mobileNo}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <button type="button" class="btn btn-danger waves-effect"
+                                    routerLink="/staff-profile">Back</button>
+                            </div>
+                            <div class="col-md-1">
+                                <button type="button" class="btn btn-info waves-effect" data-toggle="modal"
+                                    data-target="#editModal" (click)="onEdit(staffprofile)">Edit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Tabs Start-->
+                <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="card">
+                            <div class="body">
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation">
+                                        <a href="#contact_with_icon_title" data-toggle="tab" class="active show">
+                                            <i class="material-icons">phone</i> Contact
+                                        </a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#identity_with_icon_title" data-toggle="tab">
+                                            <i class="material-icons">face</i> Identity
+                                        </a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#workProfile_with_icon_title" data-toggle="tab">
+                                            <i class="material-icons">work</i> Work Profile
+                                        </a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#professionalProfile_with_icon_title" data-toggle="tab">
+                                            <i class="material-icons">work</i> Professional Profile
+                                        </a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#publicationAchievements_with_icon_title" data-toggle="tab">
+                                            <i class="material-icons">work</i> Publication/Achievements
+                                        </a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#academicProfile_with_icon_title" data-toggle="tab">
+                                            <i class="material-icons">work</i> Academic Profile
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade in active show"
+                                        id="contact_with_icon_title">
+                                        <div class="header">
+                                            <h2>
+                                                <strong>Contact Details</strong>
+                                            </h2>
+                                            <div class="header-dropdown m-r--5">
+                                                <!-- Add button -->
+                                                <div class="btn-group m-l-15">
+                                                    <button id="addRow" class="btn btn-info" data-toggle="modal"
+                                                        data-target="#addcontactModal">
+                                                        Add New
+                                                        <i class="fa fa-plus" style="color: white"></i>
+                                                    </button>
+                                                </div>
+                                                <!-- Add button -->
+                                            </div>
+                                        </div>
+                                        <div class="body">
+                                            <div class="table-responsive">
+                                                <table id="tableExport"
+                                                    class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S.No</th>
+                                                            <th>Address Type</th>
+                                                            <th>Address1</th>
+                                                            <th>Address2</th>
+                                                            <th>City</th>
+                                                            <th>District</th>
+                                                            <th>State</th>
+                                                            <th>Country</th>
+                                                            <th>Pin</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let staffcontact of staffcontacts; let i=index">
+                                                            <td>{{i +1 }}</td>
+                                                            <td>{{staffcontact.AddressTypeDetails[0].addressType}}</td>
+                                                            <td>{{staffcontact?.address1}}</td>
+                                                            <td>{{staffcontact?.address2}}</td>
+                                                            <td>{{staffcontact?.city}}</td>
+                                                            <td>{{staffcontact?.district}}</td>
+                                                            <td>{{staffcontact?.state}}</td>
+                                                            <td>{{staffcontact?.country}}</td>
+                                                            <td>{{staffcontact?.pin}}</td>
+                                                            <td>
+                                                                <div class="btn btn-tbl-edit" data-toggle="modal"
+                                                                    data-target="#editcontactModal">
+                                                                    <i class="material-icons"
+                                                                        (click)="onEditContact(staffcontact?._id) ">create</i>
+                                                                </div>
+                                                                <div class="btn btn-tbl-delete">
+                                                                    <i class="material-icons"
+                                                                        (click)="deleteStaffContact(staffcontact?._id)">delete</i>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="identity_with_icon_title">
+                                        <div class="header">
+                                            <h2>
+                                                <strong>Identity Details</strong>
+                                            </h2>
+                                            <div class="header-dropdown m-r--5">
+                                                <!-- Add button -->
+                                                <div class="btn-group m-l-15">
+                                                    <button id="addRow" class="btn btn-info" data-toggle="modal"
+                                                        data-target="#addidentityModal">
+                                                        Add New
+                                                        <i class="fa fa-plus" style="color: white"></i>
+                                                    </button>
+                                                </div>
+                                                <!-- Add button -->
+                                            </div>
+                                        </div>
+                                        <div class="body">
+                                            <div class="table-responsive">
+                                                <table id="tableExport"
+                                                    class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S.No</th>
+                                                            <th>Identity Type</th>
+                                                            <th>Identity Value</th>
+                                                            <th>Issue Authority</th>
+                                                            <th>Valid From</th>
+                                                            <th>Valid To</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let staffidentity of staffidentities; let i=index">
+                                                            <td>{{i +1 }}</td>
+                                                            <td>{{staffidentity?.identityType}}</td>
+                                                            <td>{{staffidentity?.identityValue}}</td>
+                                                            <td>{{staffidentity?.issueAuthority}}</td>
+                                                            <td>{{staffidentity?.validFrom}}</td>
+                                                            <td>{{staffidentity?.validTo}}</td>
+                                                            <td>
+                                                                <div class="btn btn-tbl-edit" data-toggle="modal"
+                                                                    data-target="#editidentityModal">
+                                                                    <i class="material-icons"
+                                                                        (click)="onEditIdentity(staffidentity?._id) ">create</i>
+                                                                </div>
+                                                                <div class="btn btn-tbl-delete">
+                                                                    <i class="material-icons"
+                                                                        (click)="deleteStaffIdentity(staffidentity?._id)">delete</i>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="workProfile_with_icon_title">
+                                        <div class="header">
+                                            <h2>
+                                                <strong>Institute Identical Details</strong>
+                                            </h2>
+                                            <div class="header-dropdown m-r--5">
+                                                <!-- Add button -->
+                                                <div class="btn-group m-l-15">
+                                                    <button id="addRow1" class="btn btn-info" data-toggle="modal"
+                                                        data-target="#editworkprofileModal" (click)="onEditWorkProfile(staffprofile)">Edit</button>
+                                                </div>
+                                                <!-- Add button -->
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="body" *ngFor="let staffprofile of staffprofiles; let i=index">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <h6> Code :</h6> {{staffprofile?.staffCode}}
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <h6> Staff Type :</h6>
+                                                    {{staffprofile.StaffTypeDetails[0].stafftype}}
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <h6> Employee Code :</h6> {{staffprofile?.employeeCode}}
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <h6> Designation :</h6> {{staffprofile?.designation}}
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <h6> Staff Role :</h6>
+                                                    {{staffprofile.StaffRoleDetails[0].staffrole}}
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+
+                                                <div class="col-md-2">
+                                                    <h6> Abbrevation :</h6> {{staffprofile?.abbrevation}}
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <h6>Date of Joining :</h6> {{staffprofile?.doj}}
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <h6> Date of Relieving :</h6> {{staffprofile?.dor}}
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <h6> Reason :</h6> {{staffprofile?.reason}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="professionalProfile_with_icon_title">
+                                        <h4>Professional Profile Details</h4>
+                                        <div>
+                                        <div class="header">
+                                            <h5>Experience</h5>
+                                            <div class="header-dropdown m-r--5">
+                                                <!-- Add button -->
+                                                <div class="btn-group m-l-15">
+                                                    <button id="addRow" class="btn btn-info" data-toggle="modal"
+                                                        data-target="#addExperienceModal">
+                                                        Add New
+                                                        <i class="fa fa-plus" style="color: white"></i>
+                                                    </button>
+                                                </div>
+                                                <!-- Add button -->
+                                            </div>
+                                        </div>
+                                        <div class="body">
+                                            <div class="table-responsive">
+                                                <table id="tableExport"
+                                                    class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S.No</th>
+                                                            <th>Organization</th>
+                                                            <th>Designation</th>
+                                                            <th>Nature Of Experience</th>
+                                                            <th>Place</th>
+                                                            <th>From Date</th>
+                                                            <th>To Date</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let experience of experiences; let i=index">
+                                                            <td>{{i +1 }}</td>
+                                                            <td>{{experience?.organization}}</td>
+                                                            <td>{{experience?.expDesignation}}</td>
+                                                            <td>{{experience?.natureOfExperience}}</td>
+                                                            <td>{{experience?.place}}</td>
+                                                            <td>{{experience?.fromDate}}</td>
+                                                            <td>{{experience?.toDate}}</td>
+                                                            
+                                                            <td>
+                                                                <div class="btn btn-tbl-edit" data-toggle="modal"
+                                                                    data-target="#editExperienceModal">
+                                                                    <i class="material-icons"
+                                                                        (click)="onEditExperience(experience?._id) ">create</i>
+                                                                </div>
+                                                                <div class="btn btn-tbl-delete">
+                                                                    <i class="material-icons"
+                                                                        (click)="deleteStaffExperience(experience?._id)">delete</i>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                            <div class="header">
+                                                <h5> Education</h5>
+                                                <div class="header-dropdown m-r--5">
+                                                    <!-- Add button -->
+                                                    <div class="btn-group m-l-15">
+                                                        <button id="addRow" class="btn btn-info" data-toggle="modal"
+                                                            data-target="#addEducationModal">
+                                                            Add New
+                                                            <i class="fa fa-plus" style="color: white"></i>
+                                                        </button>
+                                                    </div>
+                                                    <!-- Add button -->
+                                                </div>
+                                            </div>
+                                            <div class="body">
+                                                <div class="table-responsive">
+                                                    <table id="tableExport"
+                                                        class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>S.No</th>
+                                                                <th>Degree</th>
+                                                                <th>Specialization</th>
+                                                                <th>Institution Type</th>
+                                                                <th>Institution Name</th>
+                                                                <th>Year Of Passing</th>
+                                                                <th>Mode Of Study</th>
+                                                                <th>Percentage/Grade</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let education of educations; let i=index">
+                                                                <td>{{i +1 }}</td>
+                                                                <td>{{education?.degree}}</td>
+                                                                <td>{{education?.specialization}}</td>
+                                                                <td>{{education?.institutionType}}</td>
+                                                                <td>{{education?.institutionName}}</td>
+                                                                <td>{{education?.eyop}}</td>
+                                                                <td>{{education?.modeOfStudy}}</td>
+                                                                <td>{{education?.epercentage}}</td>
+                                                                <td>
+                                                                    <div class="btn btn-tbl-edit" data-toggle="modal"
+                                                                        data-target="#editEducationModal">
+                                                                        <i class="material-icons"
+                                                                            (click)="onEditEducation(education?._id) ">create</i>
+                                                                    </div>
+                                                                    <div class="btn btn-tbl-delete">
+                                                                        <i class="material-icons"
+                                                                            (click)="deleteStaffEducation(education?._id)">delete</i>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                                <div class="header">
+                                                    <h5> Additional Courses</h5>
+                                                    <div class="header-dropdown m-r--5">
+                                                        <!-- Add button -->
+                                                        <div class="btn-group m-l-15">
+                                                            <button id="addRow" class="btn btn-info" data-toggle="modal"
+                                                                data-target="#addCourseModal">
+                                                                Add New
+                                                                <i class="fa fa-plus" style="color: white"></i>
+                                                            </button>
+                                                        </div>
+                                                        <!-- Add button -->
+                                                    </div>
+                                                </div>
+                                                <div class="body">
+                                                    <div class="table-responsive">
+                                                        <table id="tableExport"
+                                                            class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>S.No</th>
+                                                                    <th>Course Type</th>
+                                                                    <th>Institution Type</th>
+                                                                    <th>Institution Name</th>
+                                                                    <th>Mode Of Course</th>
+                                                                    <th>Duration Of Course</th>
+                                                                    <th>UOM</th>
+                                                                    <th>Year Of Passing</th>
+                                                                    <th>Percentage/Grade</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let course of courses; let i=index">
+                                                                    <td>{{i +1 }}</td>
+                                                                    <td>{{course?.courseType}}</td>
+                                                                    <td>{{course?.cInstitutionType}}</td>
+                                                                    <td>{{course?.cInstitutionName}}</td>
+                                                                    <td>{{course?.modeOfCourse}}</td>
+                                                                    <td>{{course?.durationOfCourse}}</td>
+                                                                    <td>{{course?.uom}}</td>
+                                                                    <td>{{course?.cyop}}</td>
+                                                                    <td>{{course?.cpercentage}}</td>
+                                                                    <td>
+                                                                        <div class="btn btn-tbl-edit" data-toggle="modal"
+                                                                            data-target="#editCourseModal">
+                                                                            <i class="material-icons"
+                                                                                (click)="onEditCourse(course?._id) ">create</i>
+                                                                        </div>
+                                                                        <div class="btn btn-tbl-delete">
+                                                                            <i class="material-icons"
+                                                                                (click)="deleteStaffCourse(course?._id)">delete</i>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        <div role="tabpanel" class="tab-pane fade"
+                                            id="publicationAchievements_with_icon_title">
+                                            <b>Publication/Achievements Content</b>
+
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade" id="academicProfile_with_icon_title">
+                                            <b>Academic Profile Content</b>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Tabs End-->
+                </div>
+            </div>
+
+            <!-- Table End -->
+        </div>
+</section>
+<!-- Edit Form -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="formModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="formModal">Edit Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form_advanced_validation1">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group form-float">
+                                <label for="staffCode">Staff Code</label>
+                                <input type="text" class="form-control" name="staffCode" placeholder="Enter Staff Code"
+                                    [formControl]="staffCode2" required />
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group form-float">
+                                <label for="stafftype">Choose Staff Type</label>
+                                <select id="select" name="stafftype" [(ngModel)]="selectedstafftype"
+                                    class="browser-default form-control" [formControl]="stafftype2"
+                                    placeholder="Choose your Staff Type" required>
+                                    <option disabled selected>Choose your Staff Type</option>
+                                    <option *ngFor="let stafftype of stafftypes?.response" [value]="stafftype._id">
+                                        {{stafftype?.stafftype}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-float">
+                                <label for="staffrole">Choose Staff Role</label>
+                                <select id="select" name="staffrole" [(ngModel)]="selectedstaffrole"
+                                    class="browser-default form-control" [formControl]="staffrole2"
+                                    placeholder="Choose your Staff Role" required>
+                                    <option disabled selected>Choose your Staff Role</option>
+                                    <option *ngFor="let staffrole of staffroles?.response" [value]="staffrole._id">
+                                        {{staffrole?.staffrole}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <label for="gender">Choose Gender</label>
+                                        <select id="select" name="gender" [(ngModel)]="selectedgender"
+                                            class="browser-default form-control" [formControl]="gender2"
+                                            placeholder="Choose your Gender" required>
+                                            <option disabled selected>Choose your Gender</option>
+                                            <option *ngFor="let gender of genders?.response" [value]="gender._id">
+                                                {{gender?.gender}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-float">
+                                <label for="salutation">Choose Salutation</label>
+                                <select id="select" name="salutation" [(ngModel)]="selectedsalutation"
+                                    class="browser-default form-control" [formControl]="salutation2"
+                                    placeholder="Choose your Salutation" required>
+                                    <option disabled selected>Choose your Salutation</option>
+                                    <option *ngFor="let salutation of salutations?.response" [value]="salutation._id">
+                                        {{salutation?.salutation}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                            <div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <label for="firstName">First Name</label>
+                                        <input type="text" class="form-control" name="firstName" placeholder="Enter First Name"
+                                            [formControl]="firstName2" required />
+                                    </div>
+                                </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-float">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" class="form-control" name="lastName" placeholder="Enter Last Name"
+                                    [formControl]="lastName2" required />
+                            </div>
+                        </div>
+
+                        
+                    </div>
+
+                    <div class="row">
+                            <div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <label for="designation">Designation</label>
+                                        <input type="text" class="form-control" name="designation"
+                                            placeholder="Enter Designation" [formControl]="designation2" required />
+                                    </div>
+                                </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-float">
+                                <label for="doj">Date of Joining</label>
+                                <input type="date" class="form-control" name="doj" placeholder="Enter Date of Joining"
+                                    [formControl]="doj2" required />
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group form-float">
+                                <label for="dob">Date of Birth</label>
+                                <input type="date" class="form-control" name="dob" placeholder="Enter Date of Birth"
+                                    [formControl]="dob2" required />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-float">
+                                <label for="employeeCode">Employee Code</label>
+                                <input type="text" class="form-control" name="employeeCode"
+                                    placeholder="Enter Employee Code" [formControl]="employeeCode2" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group form-float">
+                                <label for="paytype">Choose Pay Type</label>
+                                <select id="select" name="paytype" [(ngModel)]="selectedpaytype"
+                                    class="browser-default form-control" [formControl]="paytype2"
+                                    placeholder="Choose your Pay Type" required>
+                                    <option disabled selected>Choose your Pay Type</option>
+                                    <option *ngFor="let paytype of paytypes?.response" [value]="paytype._id">
+                                        {{paytype?.paytype}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-float">
+                                <label for="emailId">Email Id</label>
+                                <input type="text" class="form-control" name="emailId" placeholder="Enter Email Id"
+                                    [formControl]="emailId2" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group form-float">
+                                <label for="mobileNo">Mobile Number</label>
+                                <input type="text" class="form-control" name="mobileNo"
+                                    placeholder="Enter Mobile Number" [formControl]="mobileNo2" required />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-float">
+                                <label for="emergencyNo">Emergency Mobile Number</label>
+                                <input type="text" class="form-control" name="emergencyNo"
+                                    placeholder="Enter Emergency Mobile Number" [formControl]="emergencyNo2" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group form-float">
+                                <label for="maritalstatus">Choose Marital Status</label>
+                                <select id="select" name="maritalstatus" [(ngModel)]="selectedmaritalstatus"
+                                    class="browser-default form-control" [formControl]="maritalstatus2"
+                                    placeholder="Choose your Marital Status" required>
+                                    <option disabled selected>Choose your Marital Status</option>
+                                    <option *ngFor="let maritalstatus of maritalstatuses?.response"
+                                        [value]="maritalstatus._id">
+                                        {{maritalstatus?.maritalstatus}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-float">
+                                <label for="bloodgroup">Choose Blood Group</label>
+                                <select id="select" name="bloodgroup" [(ngModel)]="selectedbloodgroup"
+                                    class="browser-default form-control" [formControl]="bloodgroup2"
+                                    placeholder="Choose your Blood Group" required>
+                                    <option disabled selected>Choose your Blood Group</option>
+                                    <option *ngFor="let bloodgroup of bloodgroups?.response" [value]="bloodgroup._id">
+                                        {{bloodgroup?.bloodgroup}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-sm-12">
+                            <h6>Photo</h6>
+                            <img style="margin:0 auto" src="{{getfileLoc}}" width="100px">
+                            <img style="margin:0 auto" src="{{photoLocationValue}}" width="100px"><br><br>
+                            <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+                            <div class="progress">
+                                <div class="progress-bar width-per-45" [ngStyle]="{'width':uploader.progress+'%'}">
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="uploader?.queue?.length > 0">
+                                <button type="button" (click)="photosubmit()">Upload</button></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-info waves-effect"
+                            (click)="updateStaffProfile()">Update</button>
+
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit Form -->
+<!-- Add Contact Form-->
+<div class="modal fade" id="addcontactModal" tabindex="-1" role="dialog" aria-labelledby="contact1formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contact1formModal">Add Contact</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addContactForm" (ngSubmit)="onAddContact()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Address Type</label>
+                                <select class="browser-default" id="select" formControlName="addressType"
+                                    class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.addressType.errors }">
+                                    <option>Choose your Address Type</option>
+                                    <option *ngFor="let addressType of addresstypes?.response"
+                                        [value]="addressType._id">{{addressType?.addressType}}</option>
+                                </select>
+                                <div *ngIf="submitted && f.addressType.errors" class="invalid-feedback">
+                                    <div *ngIf="f.addressType.errors.required">Address Type is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Address 1</label>
+                                <input type="text" value="" formControlName="address1" class="form-control"
+                                    placeholder="Enter Address"
+                                    [ngClass]="{ 'is-invalid': submitted && f.address1.errors }" />
+                                <div *ngIf="submitted && f.address1.errors" class="invalid-feedback">
+                                    <div *ngIf="f.address1.errors.required">Address is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Address 2</label>
+                                <input type="text" value="" formControlName="address2" class="form-control"
+                                    placeholder="Enter Address"
+                                    [ngClass]="{ 'is-invalid': submitted && f.address2.errors }" />
+                                <div *ngIf="submitted && f.address2.errors" class="invalid-feedback">
+                                    <div *ngIf="f.address2.errors.required">Address is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>City</label>
+                                <input type="text" value="" formControlName="city" class="form-control"
+                                    placeholder="Enter City" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
+                                <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                                    <div *ngIf="f.city.errors.required">City is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>District</label>
+                                <input type="text" value="" formControlName="district" class="form-control"
+                                    placeholder="Enter District"
+                                    [ngClass]="{ 'is-invalid': submitted && f.district.errors }" />
+                                <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
+                                    <div *ngIf="f.district.errors.required">District is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>State</label>
+                                <input type="text" value="" formControlName="state" class="form-control"
+                                    placeholder="Enter State"
+                                    [ngClass]="{ 'is-invalid': submitted && f.state.errors }" />
+                                <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                                    <div *ngIf="f.state.errors.required">State is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input type="text" value="" formControlName="country" class="form-control"
+                                    placeholder="Enter Country"
+                                    [ngClass]="{ 'is-invalid': submitted && f.country.errors }" />
+                                <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+                                    <div *ngIf="f.country.errors.required">Country is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Pin</label>
+                                <input type="text" value="" formControlName="pin" class="form-control"
+                                    placeholder="Enter Pin" [ngClass]="{ 'is-invalid': submitted && f.pin.errors }" />
+                                <div *ngIf="submitted && f.pin.errors" class="invalid-feedback">
+                                    <div *ngIf="f.pin.errors.required">Pin is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Add</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Contact Form-->
+<!-- Edit Contact Form-->
+<div class="modal fade" id="editcontactModal" tabindex="-1" role="dialog" aria-labelledby="contact2formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contact2formModal">Edit Contact</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="editContactForm" (ngSubmit)="onEditContactSubmit()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Address Type</label>
+                                <select class="browser-default" id="select" formControlName="addressType"
+                                    class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f2.addressType.errors }">
+                                    <div *ngIf="submitted && f2.addressType.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.addressType.errors.required">Address Type is required</div>
+                                    </div>
+                                    <option value="">Choose your Address Type</option>
+                                    <option *ngFor="let addressType of addresstypes?.response"
+                                        [value]="addressType._id">{{addressType?.addressType}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Address 1</label>
+                                <input type="text" value="" formControlName="address1" class="form-control"
+                                    placeholder="Enter Address"
+                                    [ngClass]="{ 'is-invalid': submitted && f2.address1.errors }" />
+                                <div *ngIf="submitted && f2.address1.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.address1.errors.required">Address is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Address 2</label>
+                                <input type="text" value="" formControlName="address2" class="form-control"
+                                    placeholder="Enter Address"
+                                    [ngClass]="{ 'is-invalid': submitted && f2.address2.errors }" />
+                                <div *ngIf="submitted && f2.address2.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.address2.errors.required">Address is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>City</label>
+                                <input type="text" value="" formControlName="city" class="form-control"
+                                    placeholder="Enter City"
+                                    [ngClass]="{ 'is-invalid': submitted && f2.city.errors }" />
+                                <div *ngIf="submitted && f2.city.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.city.errors.required">City is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>District</label>
+                                <input type="text" value="" formControlName="district" class="form-control"
+                                    placeholder="Enter District"
+                                    [ngClass]="{ 'is-invalid': submitted && f2.district.errors }" />
+                                <div *ngIf="submitted && f2.district.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.district.errors.required">District is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>State</label>
+                                <input type="text" value="" formControlName="state" class="form-control"
+                                    placeholder="Enter State"
+                                    [ngClass]="{ 'is-invalid': submitted && f2.state.errors }" />
+                                <div *ngIf="submitted && f2.state.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.state.errors.required">State is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input type="text" value="" formControlName="country" class="form-control"
+                                    placeholder="Enter Country"
+                                    [ngClass]="{ 'is-invalid': submitted && f2.country.errors }" />
+                                <div *ngIf="submitted && f2.country.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.country.errors.required">Country is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Pin</label>
+                                <input type="text" value="" formControlName="pin" class="form-control"
+                                    placeholder="Enter Pin" [ngClass]="{ 'is-invalid': submitted && f2.pin.errors }" />
+                                <div *ngIf="submitted && f2.pin.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.pin.errors.required">Pin is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Update</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit Contact Form-->
+<!-- Add Identity Form-->
+<div class="modal fade" id="addidentityModal" tabindex="-1" role="dialog" aria-labelledby="identity1formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="identity1formModal">Add Identity</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addIdentityForm" (ngSubmit)="onAddIdentity()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Identity Type</label>
+                                <input type="text" value="" formControlName="identityType" class="form-control"
+                                    placeholder="Enter Identity Type"
+                                    [ngClass]="{ 'is-invalid': submitted && s.identityType.errors }" />
+                                <div *ngIf="submitted && s.identityType.errors" class="invalid-feedback">
+                                    <div *ngIf="s.identityType.errors.required">Identity Type is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Identity Value</label>
+                                <input type="text" value="" formControlName="identityValue" class="form-control"
+                                    placeholder="Enter Identity Value"
+                                    [ngClass]="{ 'is-invalid': submitted && s.identityValue.errors }" />
+                                <div *ngIf="submitted && s.identityValue.errors" class="invalid-feedback">
+                                    <div *ngIf="s.identityValue.errors.required">Identity Value is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Issue Authority</label>
+                                <input type="text" value="" formControlName="issueAuthority" class="form-control"
+                                    placeholder="Enter Issue Authority"
+                                    [ngClass]="{ 'is-invalid': submitted && s.issueAuthority.errors }" />
+                                <div *ngIf="submitted && s.issueAuthority.errors" class="invalid-feedback">
+                                    <div *ngIf="s.issueAuthority.errors.required">Issue Authority is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Valid From</label>
+                                <input type="date" value="" formControlName="validFrom" class="form-control"
+                                    placeholder="Enter Valid From"
+                                    [ngClass]="{ 'is-invalid': submitted && s.validFrom.errors }" />
+                                <div *ngIf="submitted && s.validFrom.errors" class="invalid-feedback">
+                                    <div *ngIf="s.validFrom.errors.required">Valid From is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Valid To</label>
+                                <input type="date" value="" formControlName="validTo" class="form-control"
+                                    placeholder="Enter Valid To"
+                                    [ngClass]="{ 'is-invalid': submitted && s.validTo.errors }" />
+                                <div *ngIf="submitted && s.validTo.errors" class="invalid-feedback">
+                                    <div *ngIf="s.validTo.errors.required">Valid To is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Add</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Identity Form-->
+<!-- Edit Identity Form-->
+<div class="modal fade" id="editidentityModal" tabindex="-1" role="dialog" aria-labelledby="identity2formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="identity2formModal">Edit Identity</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="editIdentityForm" (ngSubmit)="onEditIdentitySubmit()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Identity Type</label>
+                                <input type="text" value="" formControlName="identityType" class="form-control"
+                                    placeholder="Enter Identity Type"
+                                    [ngClass]="{ 'is-invalid': submitted && s2.identityType.errors }" />
+                                <div *ngIf="submitted && s2.identityType.errors" class="invalid-feedback">
+                                    <div *ngIf="s2.identityType.errors.required">Identity Type is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Identity Value</label>
+                                <input type="text" value="" formControlName="identityValue" class="form-control"
+                                    placeholder="Enter Identity Value"
+                                    [ngClass]="{ 'is-invalid': submitted && s2.identityValue.errors }" />
+                                <div *ngIf="submitted && s2.identityValue.errors" class="invalid-feedback">
+                                    <div *ngIf="s2.identityValue.errors.required">Identity Value is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Issue Authority</label>
+                                <input type="text" value="" formControlName="issueAuthority" class="form-control"
+                                    placeholder="Enter Issue Authority"
+                                    [ngClass]="{ 'is-invalid': submitted && s2.issueAuthority.errors }" />
+                                <div *ngIf="submitted && s2.issueAuthority.errors" class="invalid-feedback">
+                                    <div *ngIf="s2.issueAuthority.errors.required">Issue Authority is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Valid From</label>
+                                <input type="date" value="" formControlName="validFrom" class="form-control"
+                                    placeholder="Enter Valid From"
+                                    [ngClass]="{ 'is-invalid': submitted && s2.validFrom.errors }" />
+                                <div *ngIf="submitted && s2.validFrom.errors" class="invalid-feedback">
+                                    <div *ngIf="s2.validFrom.errors.required">Valid From is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Valid To</label>
+                                <input type="date" value="" formControlName="validTo" class="form-control"
+                                    placeholder="Enter Valid To"
+                                    [ngClass]="{ 'is-invalid': submitted && s2.validTo.errors }" />
+                                <div *ngIf="submitted && s2.validTo.errors" class="invalid-feedback">
+                                    <div *ngIf="s2.validTo.errors.required">Valid To is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Update</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit Identity Form-->
+
+<!-- Edit Work Profile Form-->
+<div class="modal fade" id="editworkprofileModal" tabindex="-1" role="dialog" aria-labelledby="workprofileformModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="workprofileformModal">Edit Work Profile</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="editWorkProfileForm" (ngSubmit)="onEditWorkProfileSubmit()">
+                        <div class="row">
+                                <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Staff Code</label>
+                                            <input type="text" value="" formControlName="staffCode" class="form-control"
+                                                placeholder="Enter Staff Code"
+                                                [ngClass]="{ 'is-invalid': submitted && w.staffCode.errors }" />
+                                            <div *ngIf="submitted && w.staffCode.errors" class="invalid-feedback">
+                                                <div *ngIf="w.staffCode.errors.required">Staff Code is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Employee Code</label>
+                                                <input type="text" value="" formControlName="employeeCode" class="form-control"
+                                                    placeholder="Enter Employee Code"
+                                                    [ngClass]="{ 'is-invalid': submitted && w.employeeCode.errors }" />
+                                                <div *ngIf="submitted && w.employeeCode.errors" class="invalid-feedback">
+                                                    <div *ngIf="w.employeeCode.errors.required">Employee Code is required</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Staff Type</label>
+                                        <select class="browser-default" id="select" formControlName="stafftype"
+                                            class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted && w.stafftype.errors }">
+                                            <option>Choose your Staff Type</option>
+                                            <option *ngFor="let stafftype of stafftypes?.response"
+                                                [value]="stafftype._id">{{stafftype?.stafftype}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && w.stafftype.errors" class="invalid-feedback">
+                                                <div *ngIf="w.stafftype.errors.required">Staff Type is required</div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Staff Role</label>
+                                            <select class="browser-default" id="select" formControlName="staffrole"
+                                                class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && w.staffrole.errors }">
+                                                <option>Choose your Staff Role</option>
+                                                <option *ngFor="let staffrole of staffroles?.response"
+                                                    [value]="staffrole._id">{{staffrole?.staffrole}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && w.staffrole.errors" class="invalid-feedback">
+                                                    <div *ngIf="w.staffrole.errors.required">Staff Role is required</div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Designation</label>
+                                                        <input type="text" value="" formControlName="designation" class="form-control"
+                                                            placeholder="Enter Designation"
+                                                            [ngClass]="{ 'is-invalid': submitted && w.designation.errors }" />
+                                                        <div *ngIf="submitted && w.designation.errors" class="invalid-feedback">
+                                                            <div *ngIf="w.designation.errors.required">Designation is required</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Abbrevation</label>
+                                                            <input type="text" value="" formControlName="abbrevation" class="form-control"
+                                                                placeholder="Enter Abbrevation" />
+                                                            
+                                                        </div>
+                                                    </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Date Of Joining</label>
+                                                        <input type="date" value="" formControlName="doj" class="form-control"
+                                                            placeholder="Enter Date Of Joining"
+                                                            [ngClass]="{ 'is-invalid': submitted && w.doj.errors }" />
+                                                        <div *ngIf="submitted && w.doj.errors" class="invalid-feedback">
+                                                            <div *ngIf="w.doj.errors.required">Date Of Joining is required</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Date Of Relieving</label>
+                                                            <input type="date" value="" formControlName="dor" class="form-control"
+                                                                placeholder="Enter Date Of Relieving"/>
+                                                        </div>
+                                                    </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Reason</label>
+                                                        <input type="text" value="" formControlName="reason" class="form-control"
+                                                            placeholder="Enter Reason" />
+                                                        
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-default">Update</button>
+                                                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+<!-- Edit Work Profile Form-->
+<!-- Add Experience Form-->
+<div class="modal fade" id="addExperienceModal" tabindex="-1" role="dialog" aria-labelledby="experience1formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="experience1formModal">Add Experience</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addExperienceForm" (ngSubmit)="onAddExperience()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Organization</label>
+                                <input type="text" value="" formControlName="organization" class="form-control"
+                                    placeholder="Enter Organization"
+                                    [ngClass]="{ 'is-invalid': submitted && e.organization.errors }" />
+                                <div *ngIf="submitted && e.organization.errors" class="invalid-feedback">
+                                    <div *ngIf="e.organization.errors.required">Organization is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Designation</label>
+                                <input type="text" value="" formControlName="expDesignation" class="form-control"
+                                    placeholder="Enter Designation"
+                                    [ngClass]="{ 'is-invalid': submitted && e.expDesignation.errors }" />
+                                <div *ngIf="submitted && e.expDesignation.errors" class="invalid-feedback">
+                                    <div *ngIf="e.expDesignation.errors.required">Designation is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Nature Of Experience</label>
+                                <input type="text" value="" formControlName="natureOfExperience" class="form-control"
+                                    placeholder="Enter Nature Of Experience"
+                                    [ngClass]="{ 'is-invalid': submitted && e.natureOfExperience.errors }" />
+                                <div *ngIf="submitted && e.natureOfExperience.errors" class="invalid-feedback">
+                                    <div *ngIf="e.natureOfExperience.errors.required">Nature Of Experience is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Place</label>
+                                <input type="text" value="" formControlName="place" class="form-control"
+                                    placeholder="Enter Place"
+                                    [ngClass]="{ 'is-invalid': submitted && e.place.errors }" />
+                                <div *ngIf="submitted && e.place.errors" class="invalid-feedback">
+                                    <div *ngIf="e.place.errors.required">Place is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>From Date</label>
+                                <input type="date" value="" formControlName="fromDate" class="form-control"
+                                    placeholder="Enter From Date"
+                                    [ngClass]="{ 'is-invalid': submitted && e.fromDate.errors }" />
+                                <div *ngIf="submitted && e.fromDate.errors" class="invalid-feedback">
+                                    <div *ngIf="e.fromDate.errors.required">From Date is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>To Date</label>
+                                <input type="date" value="" formControlName="toDate" class="form-control"
+                                    placeholder="Enter To Date"
+                                    [ngClass]="{ 'is-invalid': submitted && e.toDate.errors }" />
+                                <div *ngIf="submitted && e.toDate.errors" class="invalid-feedback">
+                                    <div *ngIf="e.toDate.errors.required">To Date is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Add</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Experience Form-->
+<!-- Edit Experience Form-->
+<div class="modal fade" id="editExperienceModal" tabindex="-1" role="dialog" aria-labelledby="experience2formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="experience2formModal">Edit Experience</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="editExperienceForm" (ngSubmit)="onEditExperienceSubmit()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Organization</label>
+                                <input type="text" value="" formControlName="organization" class="form-control"
+                                    placeholder="Enter Organization"
+                                    [ngClass]="{ 'is-invalid': submitted && e2.organization.errors }" />
+                                <div *ngIf="submitted && e2.organization.errors" class="invalid-feedback">
+                                    <div *ngIf="e2.organization.errors.required">Organization is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Designation</label>
+                                <input type="text" value="" formControlName="expDesignation" class="form-control"
+                                    placeholder="Enter Designation"
+                                    [ngClass]="{ 'is-invalid': submitted && e2.expDesignation.errors }" />
+                                <div *ngIf="submitted && e2.expDesignation.errors" class="invalid-feedback">
+                                    <div *ngIf="e2.expDesignation.errors.required">Designation is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Nature Of Experience</label>
+                                <input type="text" value="" formControlName="natureOfExperience" class="form-control"
+                                    placeholder="Enter Nature Of Experience"
+                                    [ngClass]="{ 'is-invalid': submitted && e2.natureOfExperience.errors }" />
+                                <div *ngIf="submitted && e2.natureOfExperience.errors" class="invalid-feedback">
+                                    <div *ngIf="e2.natureOfExperience.errors.required">Nature Of Experience is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Place</label>
+                                <input type="text" value="" formControlName="place" class="form-control"
+                                    placeholder="Enter Place"
+                                    [ngClass]="{ 'is-invalid': submitted && e2.place.errors }" />
+                                <div *ngIf="submitted && e2.place.errors" class="invalid-feedback">
+                                    <div *ngIf="e2.place.errors.required">Place is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>From Date</label>
+                                <input type="date" value="" formControlName="fromDate" class="form-control"
+                                    placeholder="Enter From Date"
+                                    [ngClass]="{ 'is-invalid': submitted && e2.fromDate.errors }" />
+                                <div *ngIf="submitted && e2.fromDate.errors" class="invalid-feedback">
+                                    <div *ngIf="e2.fromDate.errors.required">From Date is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>To Date</label>
+                                <input type="date" value="" formControlName="toDate" class="form-control"
+                                    placeholder="Enter To Date"
+                                    [ngClass]="{ 'is-invalid': submitted && e2.toDate.errors }" />
+                                <div *ngIf="submitted && e2.toDate.errors" class="invalid-feedback">
+                                    <div *ngIf="e2.toDate.errors.required">To Date is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Update</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit Experience Form-->
+<!-- Add Education Form-->
+<div class="modal fade" id="addEducationModal" tabindex="-1" role="dialog" aria-labelledby="education1formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="education1formModal">Add Education</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addEducationForm" (ngSubmit)="onAddEducation()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Degree</label>
+                                <input type="text" value="" formControlName="degree" class="form-control"
+                                    placeholder="Enter Degree"
+                                    [ngClass]="{ 'is-invalid': submitted && e3.degree.errors }" />
+                                <div *ngIf="submitted && e3.degree.errors" class="invalid-feedback">
+                                    <div *ngIf="e3.degree.errors.required">Degree is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Specialization</label>
+                                <input type="text" value="" formControlName="specialization" class="form-control"
+                                    placeholder="Enter Specialization"
+                                    [ngClass]="{ 'is-invalid': submitted && e3.specialization.errors }" />
+                                <div *ngIf="submitted && e3.specialization.errors" class="invalid-feedback">
+                                    <div *ngIf="e3.specialization.errors.required">Specialization is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Institution Type</label>
+                                <input type="text" value="" formControlName="institutionType" class="form-control"
+                                    placeholder="Enter Institution Type"
+                                    [ngClass]="{ 'is-invalid': submitted && e3.institutionType.errors }" />
+                                <div *ngIf="submitted && e3.institutionType.errors" class="invalid-feedback">
+                                    <div *ngIf="e3.institutionType.errors.required">Institution Type is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Institution Name</label>
+                                <input type="text" value="" formControlName="institutionName" class="form-control"
+                                    placeholder="Enter Institution Name"
+                                    [ngClass]="{ 'is-invalid': submitted && e3.institutionName.errors }" />
+                                <div *ngIf="submitted && e3.institutionName.errors" class="invalid-feedback">
+                                    <div *ngIf="e3.institutionName.errors.required">Institution Name is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Year Of Passing</label>
+                                <input type="date" value="" formControlName="eyop" class="form-control"
+                                    placeholder="Enter Year Of Passing"
+                                    [ngClass]="{ 'is-invalid': submitted && e3.eyop.errors }" />
+                                <div *ngIf="submitted && e3.eyop.errors" class="invalid-feedback">
+                                    <div *ngIf="e3.eyop.errors.required">Year Of Passing is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Mode Of Study</label>
+                                <input type="text" value="" formControlName="modeOfStudy" class="form-control"
+                                    placeholder="Enter Mode Of Study"
+                                    [ngClass]="{ 'is-invalid': submitted && e3.modeOfStudy.errors }" />
+                                <div *ngIf="submitted && e3.modeOfStudy.errors" class="invalid-feedback">
+                                    <div *ngIf="e3.modeOfStudy.errors.required">Mode Of Study is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Percentage/Grade</label>
+                                <input type="text" value="" formControlName="epercentage" class="form-control"
+                                    placeholder="Enter Percentage/Grade"
+                                    [ngClass]="{ 'is-invalid': submitted && e3.epercentage.errors }" />
+                                <div *ngIf="submitted && e3.epercentage.errors" class="invalid-feedback">
+                                    <div *ngIf="e3.epercentage.errors.required">Percentage/Grade is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Add</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Education Form-->
+<!-- Edit Education Form-->
+<div class="modal fade" id="editEducationModal" tabindex="-1" role="dialog" aria-labelledby="education2formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="education2formModal">Add Education</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="editEducationForm" (ngSubmit)="onEditEducationSubmit()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Degree</label>
+                                <input type="text" value="" formControlName="degree" class="form-control"
+                                    placeholder="Enter Degree"
+                                    [ngClass]="{ 'is-invalid': submitted && e4.degree.errors }" />
+                                <div *ngIf="submitted && e4.degree.errors" class="invalid-feedback">
+                                    <div *ngIf="e4.degree.errors.required">Degree is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Specialization</label>
+                                <input type="text" value="" formControlName="specialization" class="form-control"
+                                    placeholder="Enter Specialization"
+                                    [ngClass]="{ 'is-invalid': submitted && e4.specialization.errors }" />
+                                <div *ngIf="submitted && e4.specialization.errors" class="invalid-feedback">
+                                    <div *ngIf="e4.specialization.errors.required">Specialization is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Institution Type</label>
+                                <input type="text" value="" formControlName="institutionType" class="form-control"
+                                    placeholder="Enter Institution Type"
+                                    [ngClass]="{ 'is-invalid': submitted && e4.institutionType.errors }" />
+                                <div *ngIf="submitted && e4.institutionType.errors" class="invalid-feedback">
+                                    <div *ngIf="e4.institutionType.errors.required">Institution Type is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Institution Name</label>
+                                <input type="text" value="" formControlName="institutionName" class="form-control"
+                                    placeholder="Enter Institution Name"
+                                    [ngClass]="{ 'is-invalid': submitted && e4.institutionName.errors }" />
+                                <div *ngIf="submitted && e4.institutionName.errors" class="invalid-feedback">
+                                    <div *ngIf="e4.institutionName.errors.required">Institution Name is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Year Of Passing</label>
+                                <input type="date" value="" formControlName="eyop" class="form-control"
+                                    placeholder="Enter Year Of Passing"
+                                    [ngClass]="{ 'is-invalid': submitted && e4.eyop.errors }" />
+                                <div *ngIf="submitted && e4.eyop.errors" class="invalid-feedback">
+                                    <div *ngIf="e4.eyop.errors.required">Year Of Passing is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Mode Of Study</label>
+                                <input type="text" value="" formControlName="modeOfStudy" class="form-control"
+                                    placeholder="Enter Mode Of Study"
+                                    [ngClass]="{ 'is-invalid': submitted && e4.modeOfStudy.errors }" />
+                                <div *ngIf="submitted && e4.modeOfStudy.errors" class="invalid-feedback">
+                                    <div *ngIf="e4.modeOfStudy.errors.required">Mode Of Study is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Percentage/Grade</label>
+                                <input type="text" value="" formControlName="epercentage" class="form-control"
+                                    placeholder="Enter Percentage/Grade"
+                                    [ngClass]="{ 'is-invalid': submitted && e4.epercentage.errors }" />
+                                <div *ngIf="submitted && e4.epercentage.errors" class="invalid-feedback">
+                                    <div *ngIf="e4.epercentage.errors.required">Percentage/Grade is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Update</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit Education Form-->
+<!-- Add Course Form-->
+<div class="modal fade" id="addCourseModal" tabindex="-1" role="dialog" aria-labelledby="course1formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="course1formModal">Add Course</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addCourseForm" (ngSubmit)="onAddCourse()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Course Type</label>
+                                <input type="text" value="" formControlName="courseType" class="form-control"
+                                    placeholder="Enter Course Type"
+                                    [ngClass]="{ 'is-invalid': submitted && c.courseType.errors }" />
+                                <div *ngIf="submitted && c.courseType.errors" class="invalid-feedback">
+                                    <div *ngIf="c.courseType.errors.required">Course Type is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Institution Type</label>
+                                <input type="text" value="" formControlName="cInstitutionType" class="form-control"
+                                    placeholder="Enter Institution Type"
+                                    [ngClass]="{ 'is-invalid': submitted && c.cInstitutionType.errors }" />
+                                <div *ngIf="submitted && c.cInstitutionType.errors" class="invalid-feedback">
+                                    <div *ngIf="c.cInstitutionType.errors.required">Institution Type is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Institution Name</label>
+                                <input type="text" value="" formControlName="cInstitutionName" class="form-control"
+                                    placeholder="Enter Institution Name"
+                                    [ngClass]="{ 'is-invalid': submitted && c.cInstitutionName.errors }" />
+                                <div *ngIf="submitted && c.cInstitutionName.errors" class="invalid-feedback">
+                                    <div *ngIf="c.cInstitutionName.errors.required">Institution Name is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Mode Of Course</label>
+                                <input type="text" value="" formControlName="modeOfCourse" class="form-control"
+                                    placeholder="Enter Mode Of Course"
+                                    [ngClass]="{ 'is-invalid': submitted && c.modeOfCourse.errors }" />
+                                <div *ngIf="submitted && c.modeOfCourse.errors" class="invalid-feedback">
+                                    <div *ngIf="c.modeOfCourse.errors.required">Mode Of Course is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Duration Of Course</label>
+                                <input type="text" value="" formControlName="durationOfCourse" class="form-control"
+                                    placeholder="Enter Duration Of Course"
+                                    [ngClass]="{ 'is-invalid': submitted && c.durationOfCourse.errors }" />
+                                <div *ngIf="submitted && c.durationOfCourse.errors" class="invalid-feedback">
+                                    <div *ngIf="c.durationOfCourse.errors.required">Duration Of Course is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>UOM</label>
+                                <input type="text" value="" formControlName="uom" class="form-control"
+                                    placeholder="Enter UOM" [ngClass]="{ 'is-invalid': submitted && c.uom.errors }" />
+                                <div *ngIf="submitted && c.uom.errors" class="invalid-feedback">
+                                    <div *ngIf="c.uom.errors.required">UOM is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Year Of Passing</label>
+                                <input type="text" value="" formControlName="cyop" class="form-control"
+                                    placeholder="Enter Year Of Passing"
+                                    [ngClass]="{ 'is-invalid': submitted && c.cyop.errors }" />
+                                <div *ngIf="submitted && c.cyop.errors" class="invalid-feedback">
+                                    <div *ngIf="c.cyop.errors.required">Year Of Passing is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Percentage/Grade</label>
+                                <input type="text" value="" formControlName="cpercentage" class="form-control"
+                                    placeholder="Enter Percentage/Grade"
+                                    [ngClass]="{ 'is-invalid': submitted && c.cpercentage.errors }" />
+                                <div *ngIf="submitted && c.cpercentage.errors" class="invalid-feedback">
+                                    <div *ngIf="c.cpercentage.errors.required">Percentage/Grade is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Add</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Course Form-->
+<!-- Edit Course Form-->
+<div class="modal fade" id="editCourseModal" tabindex="-1" role="dialog" aria-labelledby="course2formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="course2formModal">Edit Course</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="editCourseForm" (ngSubmit)="onEditCourseSubmit()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Course Type</label>
+                                <input type="text" value="" formControlName="courseType" class="form-control"
+                                    placeholder="Enter Course Type"
+                                    [ngClass]="{ 'is-invalid': submitted && c2.courseType.errors }" />
+                                <div *ngIf="submitted && c2.courseType.errors" class="invalid-feedback">
+                                    <div *ngIf="c2.courseType.errors.required">Course Type is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Institution Type</label>
+                                <input type="text" value="" formControlName="cInstitutionType" class="form-control"
+                                    placeholder="Enter Institution Type"
+                                    [ngClass]="{ 'is-invalid': submitted && c2.cInstitutionType.errors }" />
+                                <div *ngIf="submitted && c2.cInstitutionType.errors" class="invalid-feedback">
+                                    <div *ngIf="c2.cInstitutionType.errors.required">Institution Type is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Institution Name</label>
+                                <input type="text" value="" formControlName="cInstitutionName" class="form-control"
+                                    placeholder="Enter Institution Name"
+                                    [ngClass]="{ 'is-invalid': submitted && c2.cInstitutionName.errors }" />
+                                <div *ngIf="submitted && c2.cInstitutionName.errors" class="invalid-feedback">
+                                    <div *ngIf="c2.cInstitutionName.errors.required">Institution Name is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Mode Of Course</label>
+                                <input type="text" value="" formControlName="modeOfCourse" class="form-control"
+                                    placeholder="Enter Mode Of Course"
+                                    [ngClass]="{ 'is-invalid': submitted && c2.modeOfCourse.errors }" />
+                                <div *ngIf="submitted && c2.modeOfCourse.errors" class="invalid-feedback">
+                                    <div *ngIf="c2.modeOfCourse.errors.required">Mode Of Course is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Duration Of Course</label>
+                                <input type="text" value="" formControlName="durationOfCourse" class="form-control"
+                                    placeholder="Enter Duration Of Course"
+                                    [ngClass]="{ 'is-invalid': submitted && c2.durationOfCourse.errors }" />
+                                <div *ngIf="submitted && c2.durationOfCourse.errors" class="invalid-feedback">
+                                    <div *ngIf="c2.durationOfCourse.errors.required">Duration Of Course is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>UOM</label>
+                                <input type="text" value="" formControlName="uom" class="form-control"
+                                    placeholder="Enter UOM" [ngClass]="{ 'is-invalid': submitted && c2.uom.errors }" />
+                                <div *ngIf="submitted && c2.uom.errors" class="invalid-feedback">
+                                    <div *ngIf="c2.uom.errors.required">UOM is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Year Of Passing</label>
+                                <input type="text" value="" formControlName="cyop" class="form-control"
+                                    placeholder="Enter Year Of Passing"
+                                    [ngClass]="{ 'is-invalid': submitted && c2.cyop.errors }" />
+                                <div *ngIf="submitted && c2.cyop.errors" class="invalid-feedback">
+                                    <div *ngIf="c2.cyop.errors.required">Year Of Passing is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Percentage/Grade</label>
+                                <input type="text" value="" formControlName="cpercentage" class="form-control"
+                                    placeholder="Enter Percentage/Grade"
+                                    [ngClass]="{ 'is-invalid': submitted && c2.cpercentage.errors }" />
+                                <div *ngIf="submitted && c2.cpercentage.errors" class="invalid-feedback">
+                                    <div *ngIf="c2.cpercentage.errors.required">Percentage/Grade is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Update</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit Course Form-->
