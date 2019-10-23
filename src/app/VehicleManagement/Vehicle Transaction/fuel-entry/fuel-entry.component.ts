@@ -48,6 +48,7 @@ export class FuelEntryComponent implements OnInit {
   fuels: any;
   drivers;
   stations;
+  openKMs:{};
 
   public message: string;
   Id: any;
@@ -95,11 +96,11 @@ this.editFuelForm = this.formBuilder.group({
 //     console.log('changed', this.closeKM, event);
 // }
 
-textChanged(event) {        
+/*textChanged(event) {        
   console.log('changed', this.closeKM, this.openKM);
   this.closeKM=this.openKM; 
   setTimeout(() => console.log(this.closeKM), 0);                          
-}
+}*/
 
   // Bind vehicle no data
   loadVehicle() {
@@ -131,14 +132,52 @@ textChanged(event) {
     });
   }
 
+  onVehicleChange(VehicleNo: string) {
+    console.log('Vehicle',VehicleNo)
+    //this.loadCourseCategory(Institution);
+    
+     if (VehicleNo) {
+       this.request.getRecentOpeningKms(VehicleNo).subscribe((response: any) => {
+         console.log('VehicleNo',response[0].closeKM);
+         this.openKM = response[0].closeKM;
+         }, (error) => {
+         console.log(error);
+       });
+
+     } else 
+
+       this.openKM = null;
+    }
+
+
+    
+    onVehicleChangeforFuelReport(VehicleNo: string) {
+    console.log('Vehicle',VehicleNo)
+    //this.loadCourseCategory(Institution);
+    
+     if (VehicleNo) {
+       this.request.getvehicleFuelReport(VehicleNo).subscribe((response: any) => {
+         console.log('FuelReport',response);
+         this.fuels = response;
+         }, (error) => {
+         console.log(error);
+       });
+
+     } else 
+
+       this.openKM = null;
+    }
+
+ 
+
  //Add form validation and function
 onAddFuel() {
   this.submitted = true;
   if (this.addFuelForm.invalid) {
       return;
   }
-  const runKM = this.addFuelForm.get('openKM').value - this.addFuelForm.get('closeKM').value;
-  const amount = this.addFuelForm.get('quantity').value * this.addFuelForm.get('quantity').value;
+  const runKM = this.addFuelForm.get('closeKM').value - this.addFuelForm.get('openKM').value;
+  const amount = this.addFuelForm.get('quantity').value * this.addFuelForm.get('rate').value;
   const mileage = runKM / this.addFuelForm.get('quantity').value;
   let newFuel = {
     fuelVehicleNo : this.addFuelForm.get('fuelVehicleNo').value,
@@ -148,7 +187,7 @@ onAddFuel() {
     runningKM : runKM,
     isFill : this.addFuelForm.get('isFill').value,
     quantity : this.addFuelForm.get('quantity').value,
-    rate : this.addFuelForm.get('quantity').value,
+    rate : this.addFuelForm.get('rate').value,
     fuelAmount : amount,
     stationName : this.addFuelForm.get('stationName').value,
     mileage : mileage,
@@ -270,7 +309,7 @@ loadFuelModal(){
  this.loadFuelModal();
  this.loadStation();
  this.loadDriver();
- this.textChanged(event);
+ //this.textChanged(event);
   }
 
 }

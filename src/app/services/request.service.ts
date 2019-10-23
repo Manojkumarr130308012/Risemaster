@@ -1481,6 +1481,16 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/fuel-entry/aggregation`;
     return this.http.get(this.url);   
   }
+
+  public getvehicleFuelReport(VehicleNo) {
+    this.url = `${this.endPoint}/fuel-entry/aggregation`;
+    return this.http.get(this.url);   
+  }
+
+  public getRecentOpeningKms(VehicleNo) {
+    this.url = `${this.endPoint}/fuel-entry/fetchbyVehicle/?vehicleno=` + VehicleNo;
+    return this.http.get(this.url);
+  }
   
   public addFuelEntry(newFuel) {
     this.url = `${this.endPoint}/fuel-entry/add`;   
