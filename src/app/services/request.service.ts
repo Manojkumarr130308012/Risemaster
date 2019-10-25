@@ -1471,7 +1471,7 @@ fetchBankById(id) {
     return this.http.get(this.url);
   }
   public getExpensesbyDate(date) {
-    this.url = `${this.endPoint}/expenses-entry/fetchbyDate/?date=` + date;
+    this.url = `${this.endPoint}/expenses-entry/fetchbyDate?date=` + date;
     return this.http.get(this.url);
   }
 
@@ -1483,12 +1483,12 @@ fetchBankById(id) {
   }
 
   public getvehicleFuelReport(VehicleNo) {
-    this.url = `${this.endPoint}/fuel-entry/aggregation`;
+    this.url = `${this.endPoint}/fuel-entry/fetchFuelReportbyVehicle?fuelVehicleNo=` + VehicleNo;
     return this.http.get(this.url);   
   }
 
   public getRecentOpeningKms(VehicleNo) {
-    this.url = `${this.endPoint}/fuel-entry/fetchbyVehicle/?vehicleno=` + VehicleNo;
+    this.url = `${this.endPoint}/fuel-entry/fetchOpenKMSbyVehicle?vehicleno=` + VehicleNo;
     return this.http.get(this.url);
   }
   
@@ -1496,7 +1496,17 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/fuel-entry/add`;   
     return this.http.post(this.url,newFuel);
   }
-  
+  public fetchFuelReport(VehicleNo) {
+    this.url = `${this.endPoint}/fuel-entry/fetchOpenKMSbyVehicle?vehicleno=` + VehicleNo;
+    return this.http.get(this.url);
+  }
+
+  public fetchFuelReportbyDate(FuelReportdate) {
+    console.log('service',FuelReportdate);
+    this.url = `${this.endPoint}/fuel-entry/fetchFuelReportbyDate`;
+    return this.http.post(this.url,FuelReportdate);
+  }  
+    
   public deleteFuelEntry(id) {
     this.url = `${this.endPoint}/fuel-entry/delete?id=`+ id;
     return this.http.delete(this.url);

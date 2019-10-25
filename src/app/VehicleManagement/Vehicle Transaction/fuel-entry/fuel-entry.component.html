@@ -8,42 +8,68 @@
                         <h2>
                             <strong>Fuel Entry</strong>
                         </h2>
-                    <div class="header-dropdown m-r--5">
-                        <!-- Add button -->
-                        <div class="btn-group m-l-15">
-                            <button id="addRow" class="btn btn-info" data-toggle="modal"
-                                data-target="#addFuelModal">
-                                Add New
-                                <i class="fa fa-plus" style="color: white"></i>
-                            </button>
+                        <div class="header-dropdown m-r--5">
+                            <!-- Add button -->
+                            <div class="btn-group m-l-15">
+                                <button id="addRow" class="btn btn-info" data-toggle="modal"
+                                    data-target="#addFuelModal">
+                                    Add New
+                                    <i class="fa fa-plus" style="color: white"></i>
+                                </button>
+                            </div>
+                            <!-- Add button -->
                         </div>
-                        <!-- Add button -->
                     </div>
-                </div>
 
-                <div class="modal-body">
-                    <div class="body">
-                        <div class="row clearfix">
-                          
-                            <div class="col-md-3">
-                                <label for="vehiclefuelReport">Choose Vehicle</label>
-                                <select id="select" [(ngModel)]="selectedVehicleforFuelReport" class="browser-default form-control"
-                                (change)="onVehicleChangeforFuelReport($event.target.value)">
-                                    <option>Choose Vehicle</option>
-                                    <option *ngFor="let department of departments?.response"
-                                        [value]="department._id">{{department?.department}}</option>
+                    <div class="modal-body">
+                        <div class="body">
+                            <div class="row clearfix">
+
+                                <div class="col-md-3">
+                                    <label for="vehiclefuelReport">Choose Vehicle</label>
+
+                                    <select id="select" [(ngModel)]="selectedVehicleforFuelReport"
+                                        [formControl]="fuelReportVehicleNo" name="fuelReportVehicleNo"
+                                        class="browser-default form-control"
+                                        (change)="onVehicleChangeforFuelReport($event.target.value)">
+                                        <option>Choose Vehicle</option>
+                                        <option *ngFor="let vehicle of vehicles" [value]="vehicle._id">
+                                            {{vehicle?.vehicleNo}}</option>
                                     </select>
-                            </div> 
-                                 <div class="col-lg-3 header-dropdown m-r--5">
+
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label>From Date</label>
+                                    <input type="date" name="FRFromDate" id="FRFromDate" [formControl]="FRFromDate"
+                                        class="form-control" placeholder="Enter From Date" />
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label>To Date</label>
+
+                                    <input type="date" name="FRToDate" id="FRToDate" [formControl]="FRToDate"
+                                        class="form-control" placeholder="Enter To Date" />
+                                </div>
+
+                                <!-- <div class="col-lg-3 header-dropdown m-r--5">
                                         <div class="form-line input-field">
                                             <input class="form-control" type="text" name="search" [(ngModel)]="filter"
                                                 placeholder="Search">
                                         </div>
-                                    </div>
+                                    </div> -->
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-default"
+                                        (click)="filterFuelReport()">Filter</button>
+                                    <button style="margin-right:1%;" class="btn btn-border-radius bg-green waves-effect"
+                                        (click)="exportExcel()">Export to Excel</button>
                                 </div>
+
                             </div>
-                </div>
-    
+
+                        </div>
+                    </div>
+
                     <div class="body">
                         <div class="table-responsive">
                             <table id="tableExport"
@@ -83,18 +109,16 @@
                                         <td>{{fuel?.mileage}}</td>
                                         <td>{{fuel?.billNo}}</td>
                                         <td>{{fuel.DriverDetails[0].name}}</td>
-                                    <td>
-                                        <div class="btn btn-tbl-edit" data-toggle="modal"
-                                            data-target="#editFuelModal">
-                                            <i class="material-icons"
-                                                (click)="onEditFuel(fuel?._id) ">create</i>
-                                        </div>
-                                        <div class="btn btn-tbl-delete">
-                                            <i class="material-icons"
-                                                (click)="deleteFuel(fuel?._id)">delete</i>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        <td>
+                                            <div class="btn btn-tbl-edit" data-toggle="modal"
+                                                data-target="#editFuelModal">
+                                                <i class="material-icons" (click)="onEditFuel(fuel?._id) ">create</i>
+                                            </div>
+                                            <div class="btn btn-tbl-delete">
+                                                <i class="material-icons" (click)="deleteFuel(fuel?._id)">delete</i>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -124,8 +148,9 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Vehicle</label>
-                                <select id="select"  [(ngModel)]="selectedfuelVehicleNo"
-                                    class="browser-default form-control" formControlName="fuelVehicleNo"  (change)="onVehicleChange($event.target.value)"
+                                <select id="select" [(ngModel)]="selectedfuelVehicleNo"
+                                    class="browser-default form-control" formControlName="fuelVehicleNo"
+                                    (change)="onVehicleChange($event.target.value)"
                                     [ngClass]="{ 'is-invalid': submitted && s.fuelVehicleNo.errors }">
                                     <option>Choose your Vehicle No</option>
                                     <option *ngFor="let vehicle of vehicles" [value]="vehicle._id">
@@ -140,7 +165,8 @@
                             <div class="form-group">
                                 <label>Date</label>
                                 <input type="date" formControlName="fuelDate" class="form-control"
-                                    placeholder="Enter Date" [ngClass]="{ 'is-invalid': submitted && s.fuelDate.errors }" />
+                                    placeholder="Enter Date"
+                                    [ngClass]="{ 'is-invalid': submitted && s.fuelDate.errors }" />
                                 <div *ngIf="submitted && s.fuelDate.errors" class="invalid-feedback">
                                     <div *ngIf="s.fuelDate.errors.required">Date is required</div>
                                 </div>
@@ -151,12 +177,12 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Opening KM</label>
-                                
-                                    <input type="text" id="openKM" formControlName="openKM" class="form-control"
-                                    placeholder="Enter Opening KM"  [ngClass]="{ 'is-invalid': submitted && s.openKM.errors }" 
-                                    [ngModel]="openKM"/>
-                               
-                              
+
+                                <input type="text" id="openKM" formControlName="openKM" class="form-control"
+                                    placeholder="Enter Opening KM"
+                                    [ngClass]="{ 'is-invalid': submitted && s.openKM.errors }" [ngModel]="openKM" />
+
+
                                 <div *ngIf="submitted && s.openKM.errors" class="invalid-feedback">
                                     <div *ngIf="s.openKM.errors.required">Opening KM is required</div>
                                 </div>
@@ -165,7 +191,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Closing KM</label>
-                                <input type="text"  formControlName="closeKM" class="form-control"
+                                <input type="text" formControlName="closeKM" class="form-control"
                                     placeholder="Enter Closing KM"
                                     [ngClass]="{ 'is-invalid': submitted && s.closeKM.errors }" />
                                 <div *ngIf="submitted && s.closeKM.errors" class="invalid-feedback">
@@ -178,9 +204,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Tank Fill?</label>
-                                <select id="select" name="isFill" 
-                                    class="browser-default form-control" formControlName="isFill"
-                                    [ngClass]="{ 'is-invalid': submitted && s.isFill.errors }">
+                                <select id="select" name="isFill" class="browser-default form-control"
+                                    formControlName="isFill" [ngClass]="{ 'is-invalid': submitted && s.isFill.errors }">
                                     <option>Choose your Tank Fill</option>
                                     <option> Yes </option>
                                     <option> No </option>
@@ -207,41 +232,40 @@
                             <div class="form-group">
                                 <label>Rate</label>
                                 <input type="text" value="" formControlName="rate" class="form-control"
-                                    placeholder="Enter Rate"
-                                    [ngClass]="{ 'is-invalid': submitted && s.rate.errors }" />
+                                    placeholder="Enter Rate" [ngClass]="{ 'is-invalid': submitted && s.rate.errors }" />
                                 <div *ngIf="submitted && s.rate.errors" class="invalid-feedback">
                                     <div *ngIf="s.rate.errors.required">Rate is required</div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Bill No</label>
-                                    <input type="text" value="" formControlName="billNo" class="form-control"
-                                        placeholder="Enter Bill No"
-                                        [ngClass]="{ 'is-invalid': submitted && s.billNo.errors }" />
-                                    <div *ngIf="submitted && s.billNo.errors" class="invalid-feedback">
-                                        <div *ngIf="s.billNo.errors.required">Bill No is required</div>
-                                    </div>
+                            <div class="form-group">
+                                <label>Bill No</label>
+                                <input type="text" value="" formControlName="billNo" class="form-control"
+                                    placeholder="Enter Bill No"
+                                    [ngClass]="{ 'is-invalid': submitted && s.billNo.errors }" />
+                                <div *ngIf="submitted && s.billNo.errors" class="invalid-feedback">
+                                    <div *ngIf="s.billNo.errors.required">Bill No is required</div>
                                 </div>
                             </div>
+                        </div>
                     </div>
                     <div class="row">
-                            <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Filling Station</label>
-                                        <select id="select" name="stationName" [(ngModel)]="selectedstationName"
-                                            class="browser-default form-control" formControlName="stationName"
-                                            [ngClass]="{ 'is-invalid': submitted && s.stationName.errors }">
-                                            <option>Choose your Filling Station</option>
-                                            <option *ngFor="let station of stations?.response" [value]="station._id">
-                                                {{station?.name}}</option>
-                                        </select>
-                                        <div *ngIf="submitted && s.stationName.errors" class="invalid-feedback">
-                                            <div *ngIf="s.stationName.errors.required">Filling Station is required</div>
-                                        </div>
-                                    </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Filling Station</label>
+                                <select id="select" name="stationName" [(ngModel)]="selectedstationName"
+                                    class="browser-default form-control" formControlName="stationName"
+                                    [ngClass]="{ 'is-invalid': submitted && s.stationName.errors }">
+                                    <option>Choose your Filling Station</option>
+                                    <option *ngFor="let station of stations?.response" [value]="station._id">
+                                        {{station?.name}}</option>
+                                </select>
+                                <div *ngIf="submitted && s.stationName.errors" class="invalid-feedback">
+                                    <div *ngIf="s.stationName.errors.required">Filling Station is required</div>
                                 </div>
+                            </div>
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Driver</label>
@@ -301,7 +325,8 @@
                             <div class="form-group">
                                 <label>Date</label>
                                 <input type="date" value="" formControlName="fuelDate" class="form-control"
-                                    placeholder="Enter Date" [ngClass]="{ 'is-invalid': submitted && s2.fuelDate.errors }" />
+                                    placeholder="Enter Date"
+                                    [ngClass]="{ 'is-invalid': submitted && s2.fuelDate.errors }" />
                                 <div *ngIf="submitted && s2.fuelDate.errors" class="invalid-feedback">
                                     <div *ngIf="s2.fuelDate.errors.required">Date is required</div>
                                 </div>
@@ -313,7 +338,8 @@
                             <div class="form-group">
                                 <label>Opening KM</label>
                                 <input type="text" value="" formControlName="openKM" class="form-control"
-                                    placeholder="Enter Opening KM" [ngClass]="{ 'is-invalid': submitted && s2.openKM.errors }" />
+                                    placeholder="Enter Opening KM"
+                                    [ngClass]="{ 'is-invalid': submitted && s2.openKM.errors }" />
                                 <div *ngIf="submitted && s2.openKM.errors" class="invalid-feedback">
                                     <div *ngIf="s2.openKM.errors.required">Opening KM is required</div>
                                 </div>
@@ -335,8 +361,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Tank Fill?</label>
-                                <select id="select" name="isFill" 
-                                    class="browser-default form-control" formControlName="isFill"
+                                <select id="select" name="isFill" class="browser-default form-control"
+                                    formControlName="isFill"
                                     [ngClass]="{ 'is-invalid': submitted && s2.isFill.errors }">
                                     <option>Choose your Tank Fill</option>
                                     <option> Yes </option>
@@ -372,33 +398,33 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Bill No</label>
-                                    <input type="text" value="" formControlName="billNo" class="form-control"
-                                        placeholder="Enter Bill No"
-                                        [ngClass]="{ 'is-invalid': submitted && s2.billNo.errors }" />
-                                    <div *ngIf="submitted && s2.billNo.errors" class="invalid-feedback">
-                                        <div *ngIf="s2.billNo.errors.required">Bill No is required</div>
-                                    </div>
+                            <div class="form-group">
+                                <label>Bill No</label>
+                                <input type="text" value="" formControlName="billNo" class="form-control"
+                                    placeholder="Enter Bill No"
+                                    [ngClass]="{ 'is-invalid': submitted && s2.billNo.errors }" />
+                                <div *ngIf="submitted && s2.billNo.errors" class="invalid-feedback">
+                                    <div *ngIf="s2.billNo.errors.required">Bill No is required</div>
                                 </div>
                             </div>
+                        </div>
                     </div>
                     <div class="row">
-                            <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Filling Station</label>
-                                        <select id="select" name="stationName" [(ngModel)]="selectedstationName"
-                                            class="browser-default form-control" formControlName="stationName"
-                                            [ngClass]="{ 'is-invalid': submitted && s2.stationName.errors }">
-                                            <option>Choose your Filling Station</option>
-                                            <option *ngFor="let station of stations?.response" [value]="station._id">
-                                                {{station?.name}}</option>
-                                        </select>
-                                        <div *ngIf="submitted && s2.stationName.errors" class="invalid-feedback">
-                                            <div *ngIf="s2.stationName.errors.required">Filling Station is required</div>
-                                        </div>
-                                    </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Filling Station</label>
+                                <select id="select" name="stationName" [(ngModel)]="selectedstationName"
+                                    class="browser-default form-control" formControlName="stationName"
+                                    [ngClass]="{ 'is-invalid': submitted && s2.stationName.errors }">
+                                    <option>Choose your Filling Station</option>
+                                    <option *ngFor="let station of stations?.response" [value]="station._id">
+                                        {{station?.name}}</option>
+                                </select>
+                                <div *ngIf="submitted && s2.stationName.errors" class="invalid-feedback">
+                                    <div *ngIf="s2.stationName.errors.required">Filling Station is required</div>
                                 </div>
+                            </div>
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Driver</label>
