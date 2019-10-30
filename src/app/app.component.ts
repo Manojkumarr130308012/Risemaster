@@ -16,8 +16,8 @@ import { PlatformLocation } from "@angular/common";
 export class AppComponent {
   currentUrl: string;
   showLoadingIndicatior = true;
-  showHead: boolean = true;
-  showSide: boolean = true;
+  //showHead: boolean = true;
+  //showSide: boolean = true;
 
   constructor(public _router: Router, location: PlatformLocation) {
     this._router.events.subscribe((routerEvent: Event) => {

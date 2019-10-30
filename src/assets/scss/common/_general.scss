@@ -76,7 +76,7 @@ img {
 
 section {
   &.content {
-    margin: 88px 18px 0 280px;
+    margin: 40px -8px 0 253px;
     @include transition(0.5s);
     &::before {
       content: "";

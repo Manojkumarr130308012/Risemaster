@@ -1,10 +1,11 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {   MatSnackBarModule} from '@angular/material';
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./layout/header/header.component";
@@ -17,6 +18,16 @@ import { DynamicScriptLoaderService } from "./services/dynamic-script-loader.ser
 
 import { RequestService } from './../app/services/request.service';
 import { HttpClientModule } from '@angular/common/http';
+import {FileUploadModule} from 'ng2-file-upload';
+
+
+import * as moment from 'moment';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { OrderModule } from 'ngx-order-pipe';
+
+import { ArchwizardModule } from 'angular-archwizard';
+
 import { AcademicYearComponent } from './Master/academic-year/academic-year.component';
 import { UserDesignationComponent } from './Master/user-designation/user-designation.component';
 import { BloodgroupComponent } from './Master/bloodgroup/bloodgroup.component';
@@ -25,7 +36,7 @@ import { CommunityComponent } from './Master/community/community.component';
 import { NationalityComponent } from './Master/nationality/nationality.component';
 import { ReligionComponent } from './Master/religion/religion.component';
 
-import {FileUploadModule} from 'ng2-file-upload';
+
 
 import { AdmissionTypeComponent } from './Master/admission-type/admission-type.component';
 import { InstitutionComponent } from './Master/institution/institution.component';
@@ -58,10 +69,6 @@ import { SalutationComponent } from './StaffMaster/salutation/salutation.compone
 import { FeeTypeComponent } from './StaffMaster/fee-type/fee-type.component';
 import { ModeOfEnquiryComponent } from './StaffMaster/mode-of-enquiry/mode-of-enquiry.component';
 
-import * as moment from 'moment';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import {NgxPaginationModule} from 'ngx-pagination';
-import { OrderModule } from 'ngx-order-pipe';
 
 // Vehicle Management
 import { VehicleMasterComponent } from './VehicleManagement/vehicle-master/vehicle-master.component';
@@ -87,7 +94,7 @@ import { CEpaymentDetailsComponent } from './Student/cepayment-details/cepayment
 import { CEfollowupsComponent } from './Student/cefollowups/cefollowups.component';
 import { CEqualificationDetailsComponent } from './Student/cequalification-details/cequalification-details.component';
 import { CEtabpageComponent } from './Student/cetabpage/cetabpage.component';
-import { ArchwizardModule } from 'angular-archwizard';
+
 
 
 
@@ -96,8 +103,9 @@ import { ArchwizardModule } from 'angular-archwizard';
     AppComponent,
     HeaderComponent,
     PageLoaderComponent,
-    RightSidebarComponent,
     SidebarComponent,
+    RightSidebarComponent,
+   
    
     BloodgroupComponent,
     CasteComponent,
@@ -111,7 +119,7 @@ import { ArchwizardModule } from 'angular-archwizard';
     InstitutionComponent,
     AdmissionCategoryComponent,
     BoardOfEducationComponent, 
-    CourseProgramComponent, 
+   CourseProgramComponent, 
     CourseCategoryComponent,
   
     //Student Master
@@ -163,12 +171,12 @@ import { ArchwizardModule } from 'angular-archwizard';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,    
     HttpClientModule,
     FormsModule,    
-    BrowserAnimationsModule, 
     FileUploadModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,

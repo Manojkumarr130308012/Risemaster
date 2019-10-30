@@ -140,6 +140,7 @@ export class FuelEntryComponent implements OnInit {
     if (VehicleNo) {
       this.request.getRecentOpeningKms(VehicleNo).subscribe((response: any) => {
         console.log('VehicleNo', response[0].closeKM);
+        console.log('res',response);
       let closeKM= response[0].closeKM;
         if(closeKM == "")
         {
@@ -192,9 +193,9 @@ export class FuelEntryComponent implements OnInit {
 
   filterFuelReport() {
 
-    console.log(this.fuelReportVehicleNo.value);
-    console.log(this.FRFromDate.value);
-    console.log(this.FRToDate.value);
+   // console.log(this.fuelReportVehicleNo.value);
+   // console.log(this.FRFromDate.value);
+    //console.log(this.FRToDate.value);
 
 
     const FuelReportdate = {
@@ -202,14 +203,23 @@ export class FuelEntryComponent implements OnInit {
       fuelDate: this.FRFromDate.value,
       fuelDate2: this.FRToDate.value
     };
-    console.log('FuelReportdate', FuelReportdate);
+    //console.log('FuelReportdate', FuelReportdate);
 
     this.request.fetchFuelReportbyDate(FuelReportdate).subscribe((response) => {
       console.log(response);
       this.fuels = response;
     })
   }
-
+ // To display Fuel
+ viewFuelData() {
+  this.request.getFuelEntry().subscribe((response) => {
+    console.log('fuel', response);
+    this.fuels = response;
+   // console.log(this.fuels);
+  }, (error) => {
+    console.log(error);
+  });
+}
 
   exportExcel() {
     const options = {
@@ -222,7 +232,21 @@ export class FuelEntryComponent implements OnInit {
       useBom: true,
       noDownload: false,
       headers: [
-        'Fuel'
+        'S.No',
+        'Van NO',
+        'Date',
+        'Open KM',
+        'Close KM',
+        'Running KM',
+        'Is Fill',
+        'Quantity',
+        'Rate',
+        'Amount',
+        'Filling Station',
+        'Mileage',
+        'Bill No',
+        'Driver',
+        'Action'
 
       ],
     };
@@ -279,16 +303,7 @@ export class FuelEntryComponent implements OnInit {
     console.log(newFuel);
   }
 
-  // To display Fuel
-  viewFuelData() {
-    this.request.getFuelEntry().subscribe((response) => {
-      console.log('fuel', response);
-      this.fuels = response;
-      console.log(this.fuels);
-    }, (error) => {
-      console.log(error);
-    });
-  }
+ 
 
   // To edit fuel
   onEditFuel(id: any) {

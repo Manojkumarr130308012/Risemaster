@@ -19,7 +19,7 @@ export class AdmissionTypeComponent implements OnInit {
   submitted = false;
   public admissiontype: any;
   public institution: any;
-  private admissiontypes: any;
+  public admissiontypes: any;
   Id: any;
   IdValue: any;
   editAdmissiontype: any;
@@ -72,7 +72,7 @@ export class AdmissionTypeComponent implements OnInit {
       if (res.status == 'success') {
         swal("Added Sucessfully");
         this.loadModal();
-        this.viewData();
+        this.loadData();
       }
       else if (res.status == 'error') {
         this.setMessage(res.error);
@@ -83,30 +83,25 @@ export class AdmissionTypeComponent implements OnInit {
     console.log(this.registerForm.value);
   }
 
-  // To display admission type
-  viewData() {
-    this.request.getAdmissiontype().subscribe((response) => {
-      this.admissiontypes = response;
-      console.log('admission',this.admissiontypes);
-    }, (error) => {
-      console.log(error);
-    });
-  }
+
 
   // To delete admission type
   deleteAdmissiontype(id: any) {
+    alert("hi");
+    console.log(id);
     this.request.deleteAdmissiontype(id).subscribe(res => {
       console.log(id);
-      this.viewData();
+      this.loadData();
       console.log('Deleted');
       this.router.navigate(['admission-type']);
     });
   }
 
   // To edit admission type
-  onEdit(admissiontype) {
-    this.Id = admissiontype._id;
-    this.request.fetchAdmissiontypeBy(this.Id).subscribe((response) => {
+  onEdit(id) {
+    console.log('admissiontype_id',id);   
+    
+    this.request.fetchAdmissiontypeBy(id).subscribe((response) => {
       this.editAdmissiontype = response[0];
       console.log(response);
       this.institutionValue = this.editAdmissiontype.institution;
@@ -130,7 +125,7 @@ export class AdmissionTypeComponent implements OnInit {
       if (res.status == 'success') {
         swal("Updated Sucessfully");
         this.loadModal();
-        this.viewData();
+        this.loadData();
       }
       else if (res.status == 'error') {
         this.setMessage(res.error);
@@ -145,24 +140,39 @@ export class AdmissionTypeComponent implements OnInit {
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
 
+    // To display admission type
+   /* viewData() {
+      this.request.getAdmissiontype().subscribe((response) => {
+        this.admissiontypes = response;
+        console.log('admission',this.admissiontypes);
+      }, (error) => {
+        console.log(error);
+      });
+    }*/
+
   async startScript() {
-    await this.dynamicScriptLoader.load('dataTables.buttons', 'buttons.flash', 'jszip', 'pdfmake', 'vfs_fonts', 'pdfmake', 'buttons.html5', 'buttons.print', 'form.min').then(data => {
+    await this.dynamicScriptLoader.load('dataTables.buttons', 'buttons.flash', 'jszip',  'vfs_fonts', 'pdfmake', 'buttons.html5', 'buttons.print').then(data => {
       this.loadData();
     }).catch(error => console.log(error));
   }
 
   private loadData() {
-    console.log('this.admissiontypes',this.admissiontypes);
+    this.request.getAdmissiontype().subscribe((response) => {     
+   
+   console.log('response',response);
     var i=1;
+    var id = '5d8c62e3e851032c189f6931';
     var t = $('#tableExport').DataTable({
-       data: this.admissiontypes,
+       data: response,
       columns: [             
          { "render": function (data, type, full, meta) { return i++;}},
        { data: 'InstitutionDetails[0].institution_name' },
        { data: 'admissiontype' },
+       { data: '_id' },
        {
         data: null,
-        "defaultContent": "<div class='btn btn-tbl-edit' data-toggle='modal' data-target='#editModal'> <i class='material-icons' (click)='onEdit(admissiontype)'>create</i></div> <div class='btn btn-tbl-delete'><i class='material-icons' (click)='deleteAdmissiontype(admissiontype?._id)'>delete</i></div>",
+      "defaultContent": "<div class='btn btn-tbl-edit' data-toggle='modal' data-target='#editModal'> <i class='material-icons' (click)='onEdit(data[0])'>create</i></div> <div class='btn btn-tbl-delete'><i class='material-icons' onclick='deleteAdmissiontype('5d8c62e3e851032c189f6931)'>delete</i></div>",
+       // "defaultContent": "<button>Click</button>",
         "targets": -1
       }
       ],
@@ -172,7 +182,23 @@ export class AdmissionTypeComponent implements OnInit {
         'copy', 'csv', 'excel', 'pdf', 'print'
       ]
     });
+
+    $('#tableExport').on( 'click','button',function(){
+      
+      var uid = t.row($(this).parents('tr')).data();
+      console.log(uid);
+    } );
+
+  }, (error) => {
+    console.log(error);
+  });
+  
   }
+
+  
+
+  
+
   private loadModal() {
     $('#addModal').modal('hide'); //or  $('#IDModal').modal('hide');
     $('#addModal').on('hidden.bs.modal', function () {
@@ -180,8 +206,7 @@ export class AdmissionTypeComponent implements OnInit {
     // $("#add").get(0).reset();
     //    var vali =$("#add").validate();
     // vali.restForm();
-    });
-   
+    });  
    
 
     $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
@@ -194,11 +219,14 @@ export class AdmissionTypeComponent implements OnInit {
   ngOnInit() {
    
     M.updateTextFields();
-    this.viewData();      
+  //  this.viewData();      
     this.startScript();
     this.loadAdmissiontype();    
-    this.loadModal();
+    this.loadModal();  
    
   
   }
 }
+
+
+

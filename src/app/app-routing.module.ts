@@ -64,11 +64,13 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
   },
-
+ 
+  
   {
-    path: 'user-designation',
-    component: UserDesignationComponent
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
+  
 
   {
     path: '',
@@ -76,11 +78,10 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   
-  {
-    path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+ {
+    path: 'user-designation',
+    component: UserDesignationComponent
   },
-  
 
   {
     path: 'nationality',

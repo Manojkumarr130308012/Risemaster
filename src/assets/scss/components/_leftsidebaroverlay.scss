@@ -209,8 +209,8 @@
         display: block;
         overflow: hidden;
         line-height: 2rem;
-        padding: 9px 9px 9px 18px;
-        margin: 8px 0px 0px 0px;
+        padding: 4px 4px 2px 13px;
+        margin: 6px 0px 0px 0px;
 
         &:hover,
         &:active,
@@ -248,8 +248,8 @@
         li {
           a {
             padding-left: 50px;
-            padding-top: 7px;
-            padding-bottom: 7px;
+            padding-top: 2px;
+            padding-bottom: 2px;
 
             &:before {
               //content: '\e315';
