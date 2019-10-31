@@ -57,6 +57,9 @@ import { VehicleTransactionComponent } from './VehicleManagement/vehicle-transac
 // Staff Management
 import { StaffProfileComponent } from './StaffManagement/staff-profile/staff-profile.component';
 import { StaffDetailsComponent } from './StaffManagement/staff-details/staff-details.component';
+import { CEmainPageComponent } from './Student/cemain-page/cemain-page.component';
+import { CEtabpageComponent } from './Student/cetabpage/cetabpage.component';
+import { CeEditTabpageComponent } from './Student/ce-edit-tabpage/ce-edit-tabpage.component';
 
 const routes: Routes = [
   //{ path: '', component: LoginComponent },
@@ -267,6 +270,13 @@ const routes: Routes = [
   { path: 'staff-details', 
   component: StaffDetailsComponent },
 
+  
+  { path: 'candidateEnquiry', 
+  component: CEmainPageComponent },
+  { path: 'addCandidate', 
+  component: CEtabpageComponent },
+  { path: 'editCandidate', 
+  component: CeEditTabpageComponent },
 ];
 
 @NgModule({

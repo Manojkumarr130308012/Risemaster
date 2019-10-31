@@ -88,12 +88,8 @@ import { StaffProfileComponent } from './StaffManagement/staff-profile/staff-pro
 import { StaffDetailsComponent } from './StaffManagement/staff-details/staff-details.component';
 
 import { CEmainPageComponent } from './Student/cemain-page/cemain-page.component';
-import { CEbasicDetailsComponent } from './Student/cebasic-details/cebasic-details.component';
-import { CEaddressDetailsComponent } from './Student/ceaddress-details/ceaddress-details.component';
-import { CEpaymentDetailsComponent } from './Student/cepayment-details/cepayment-details.component';
-import { CEfollowupsComponent } from './Student/cefollowups/cefollowups.component';
-import { CEqualificationDetailsComponent } from './Student/cequalification-details/cequalification-details.component';
 import { CEtabpageComponent } from './Student/cetabpage/cetabpage.component';
+import { CeEditTabpageComponent } from './Student/ce-edit-tabpage/ce-edit-tabpage.component';
 
 
 
@@ -163,20 +159,21 @@ import { CEtabpageComponent } from './Student/cetabpage/cetabpage.component';
     ExpensesEntryComponent,
     FuelEntryComponent,
 
-    VehicleTransactionComponent,
-
-    VehicleTransactionComponent,
-
+//Candidate Enquiry
+CEmainPageComponent,
+CEtabpageComponent,
+CeTabpageComponent,
+CeEditTabpageComponent
 
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,    
     HttpClientModule,
     FormsModule,    
+    BrowserAnimationsModule, 
     FileUploadModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
