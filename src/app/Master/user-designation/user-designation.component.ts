@@ -32,7 +32,7 @@ export class UserDesignationComponent implements OnInit {
   public designationNameValue: any;
   public IdValue: any;
 
-  constructor(private request: RequestService, private router: Router, private dynamicScriptLoader: DynamicScriptLoaderService, public snackBar: MatSnackBar,) {
+  constructor(private request: RequestService, private router: Router, private dynamicScriptLoader: DynamicScriptLoaderService, public snackBar: MatSnackBar, ) {
 
   }
 
@@ -43,13 +43,13 @@ export class UserDesignationComponent implements OnInit {
 
 
   onEdit(Id) {
-    this.message="";
+    this.message = "";
     this.request.fetchDesignation(Id).subscribe((response) => {
       this.editDesignationdata = response[0];
-     // console.log(response[0]);
+      // console.log(response[0]);
 
-     // this.designationNameValue = this.editDesignationdata.designationName;
-     // this.designationIdValue = this.editDesignationdata.designationId;
+      // this.designationNameValue = this.editDesignationdata.designationName;
+      // this.designationIdValue = this.editDesignationdata.designationId;
       this.IdValue = this.editDesignationdata._id;
       this.designationName2 = new FormControl(this.editDesignationdata.designationName, [Validators.required]);
       this.designationId2 = new FormControl(this.editDesignationdata.designationId, [Validators.required]);
@@ -75,9 +75,10 @@ export class UserDesignationComponent implements OnInit {
     this.request.addNewDesignation(newDesignation).subscribe((response: any) => {
       if (response.status == 'error') {
         this.setMessage(response.error);
-        swal(response.error);       
-          this.snackBar.open(response.error, 'OK', {
-            duration: 3000});
+        swal(response.error);
+        this.snackBar.open(response.error, 'OK', {
+          duration: 3000
+        });
       }
       else if (response.status == 'success') {
 
@@ -86,14 +87,15 @@ export class UserDesignationComponent implements OnInit {
         this.loadModal();
       }
 
-     // this.designationId.value="";
-     // this.designationName.value="";
-     // this.message ="";
+      // this.designationId.value="";
+      // this.designationName.value="";
+      // this.message ="";
 
     }, (error) => {
 
       this.snackBar.open(error.message, 'OK', {
-        duration: 10000,});
+        duration: 10000,
+      });
       this.setMessage(error);
     });
 
@@ -102,35 +104,35 @@ export class UserDesignationComponent implements OnInit {
 
   updateDesignationData() {
 
+    if (this.designationId2.value != "" && this.designationName2.value != "") {
+      const editedDesignation = {
+        designationId: this.designationId2.value,
+        designationName: this.designationName2.value
+      };
+     
+      this.request.updateDesignation(this.IdValue, editedDesignation).subscribe((response: any) => {
 
-    const editedDesignation = {
-      designationId: this.designationId2.value,
-      designationName: this.designationName2.value
-    };
-
-    this.request.updateDesignation(this.IdValue, editedDesignation).subscribe((response: any) => {
-
-      if (response.status == 'success') {
-        swal("Updated Sucessfully");
-        this.loadModal();
-        this.viewDesignation();
-      }
-      else if (response.status == 'error') {
-        this.setMessage(response.error);
-      }
-
-
-
-    }, (error) => {
-      console.log(error);
-      this.setMessage(error);
-    });
+        if (response.status == 'success') {
+          swal("Updated Sucessfully");
+          this.loadModal();
+          this.viewDesignation();
+        }
+        else if (response.status == 'error') {
+          this.setMessage(response.error);
+        }
 
 
+
+      }, (error) => {
+        console.log(error);
+        this.setMessage(error);
+      });
+
+    }
   }
 
   viewDesignation() {
-    this.request.getDesignation().subscribe((response: any) => {     
+    this.request.getDesignation().subscribe((response: any) => {
       localStorage.setItem('storeDesignation', JSON.stringify(response));
       this.designations = response;
 
@@ -139,9 +141,9 @@ export class UserDesignationComponent implements OnInit {
     });
   }
 
-  Ondelete(Id) {    
+  Ondelete(Id) {
     this.request.deleteDesignation(Id).subscribe((response) => {
-      swal("Deleted Sucessfully");    
+      swal("Deleted Sucessfully");
       this.viewDesignation();
     });
   }
@@ -156,11 +158,11 @@ export class UserDesignationComponent implements OnInit {
   }
   private loadModal() {
 
-    $('#addModal').modal('hide'); 
+    $('#addModal').modal('hide');
     $('#addModal').on('hidden.bs.modal', function () {
       $(this).find('form').trigger('reset');
-     // $('#form_advanced_validation1').trigger('reset');
-     var v = $('#form_advanced_validation').validate();
+      // $('#form_advanced_validation1').trigger('reset');
+      var v = $('#form_advanced_validation').validate();
       v.resetForm();
 
     })
@@ -177,9 +179,10 @@ export class UserDesignationComponent implements OnInit {
     this.viewDesignation();
 
     this.designationId = new FormControl('', Validators.required);
-    this.designationId2 = new FormControl('', Validators.required);
+    
     this.designationName = new FormControl('', Validators.required);
     this.designationName2 = new FormControl('', Validators.required);
+    this.designationId2 = new FormControl('', Validators.required);
 
 
     //jQuery Validation
