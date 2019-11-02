@@ -4,7 +4,7 @@
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
-                    <div class="header">       
+                    <div class="header">
                         <h2>
                             <strong>Course Category</strong>
                         </h2>
@@ -14,7 +14,7 @@
                                         <button id="addRow" class="btn btn-info" data-toggle="modal"
                                         data-target="#addModal">
                                             Add New
-                                            <i class="fa fa-plus" style="color: white"></i>  
+                                            <i class="fa fa-plus" style="color: white"></i>
                                         </button>
                                 </div>
                              <!-- Add button -->
@@ -22,7 +22,7 @@
                     </div>
                    <div class="body">
                             <div class="table-responsive">
-                                 <table id="tableExport" 
+                                 <table id="tableExport"
                                  class="display table table-hover table-checkable order-column m-t-20 width-per-100">
                                     <thead>
                                         <tr>
@@ -34,17 +34,17 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let coursecategory of coursecategories; let i=index">
-                                            <td>{{i +1 }}</td> 
+                                            <td>{{i +1 }}</td>
                                             <td>{{coursecategory?.InstitutionDetails[0].institution_name}}</td>
                                             <td>{{coursecategory?.coursecategory}}</td>
                                             <td>
                                                 <div class="btn btn-tbl-edit" data-toggle="modal"
                                                 data-target="#editModal">
-                                                        <i class="material-icons" 
+                                                        <i class="material-icons"
                                                         (click)="onEdit(coursecategory) ">create</i>
                                                 </div>
                                                     <div class="btn btn-tbl-delete">
-                                                        <i class="material-icons" 
+                                                        <i class="material-icons"
                                                         (click) = "deleteCoursecategory(coursecategory?._id)" >delete</i>
                                                     </div>
                                                 </td>
@@ -52,11 +52,11 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
-        
+
         <!-- Table End -->
     </div>
 </section>
@@ -82,16 +82,16 @@
                                     <option disabled selected>Choose your institution</option>
                                     <option  *ngFor="let institution of institutions" [value]="institution._id">{{institution.institution_name}}</option>
                                     </select>
-                                    
+
                                     <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">
                                         <div *ngIf="f.institution.errors.required">Institution is required</div>
                                     </div>
                                        </div>
-                              </div>   
+                              </div>
                               <br>
 
                     <div class="form-group">
-                            <label>Course Category</label> 
+                            <label>Course Category</label>
                             <input type="text" value=" " formControlName="coursecategory" class="form-control" placeholder="Enter Course-category"
                                 [ngClass]="{ 'is-invalid': submitted && f.coursecategory.errors }" />
                             <div *ngIf="submitted && f.coursecategory.errors" class="invalid-feedback">
@@ -125,25 +125,25 @@
                         <div class="row clearfix">
                                 <div class="col-md-12">
                                     <label>Institution</label>
-                                    <select  id="select" [(ngModel)]="selectedinstitution" class="browser-default form-control" formControlName="institution"
-                                    [ngClass]="{ 'is-invalid': submitted && f.institution.errors }" >
+                                    <select  id="select2" [(ngModel)]="selectedinstitution2" class="browser-default form-control" formControlName="institution2"
+                                    [ngClass]="{ 'is-invalid': submitted && f2.institution2.errors }" >
                                     <option disabled selected>Choose your institution</option>
                                     <option  *ngFor="let institution of institutions" [value]="institution._id">{{institution.institution_name}}</option>
                                     </select>
-                                   
-                                    <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">
-                                        <div *ngIf="f.institution.errors.required">Institution is required</div>
+
+                                    <div *ngIf="submitted && f2.institution2.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.institution2.errors.required">Institution is required</div>
                                     </div>
                                        </div>
-                              </div>   
+                              </div>
                               <br>
 
                     <div class="form-group">
-                            <label>Course Category</label> 
-                            <input type="text" value=" " formControlName="coursecategory" class="form-control" placeholder="Enter Course-category"
-                                [ngClass]="{ 'is-invalid': submitted && f.coursecategory.errors }" />
-                            <div *ngIf="submitted && f.coursecategory.errors" class="invalid-feedback">
-                                <div *ngIf="f.coursecategory.errors.required">Course-category is required</div>
+                            <label>Course Category</label>
+                            <input type="text" value=" " formControlName="coursecategory2" class="form-control" placeholder="Enter Course-category"
+                                [ngClass]="{ 'is-invalid': submitted && f2.coursecategory2.errors }" />
+                            <div *ngIf="submitted && f2.coursecategory2.errors" class="invalid-feedback">
+                                <div *ngIf="f2.coursecategory2.errors.required">Course-category is required</div>
                             </div>
                         </div>
          <div class="modal-footer">

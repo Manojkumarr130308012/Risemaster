@@ -5,7 +5,7 @@
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
-                    <div class="header">       
+                    <div class="header">
                         <h2>
                             <strong>Payment Method</strong>
                         </h2>
@@ -15,7 +15,7 @@
                                         <button id="addRow" class="btn btn-info" data-toggle="modal"
                                         data-target="#addModal">
                                             Add New
-                                            <i class="fa fa-plus" style="color: white"></i>  
+                                            <i class="fa fa-plus" style="color: white"></i>
                                         </button>
                                         <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
                                         aria-labelledby="formModal" aria-hidden="true">
@@ -33,7 +33,7 @@
                                        <div class="row">
                                         <div class="col-md-12">
                                            <div class="form-group">
-                                               <label>Payment Method</label> 
+                                               <label>Payment Method</label>
                                                <input type="text" value = "" formControlName="paymentMethod" class="form-control" placeholder="Enter paymentMethod"
                                                    [ngClass]="{ 'is-invalid': submitted && f.paymentMethod.errors }" />
                                                <div *ngIf="submitted && f.paymentMethod.errors" class="invalid-feedback">
@@ -52,13 +52,13 @@
                                        </div>
                                        </div>
                                        </div>
-                                       
+
                                             <!-- Add button -->
                         </div>
                     </div>
                    <div class="body">
                             <div class="table-responsive">
-                                 <table id="tableExport" 
+                                 <table id="tableExport"
                                  class="display table table-hover table-checkable order-column m-t-20 width-per-100">
                                     <thead>
                                         <tr>
@@ -69,14 +69,14 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let paymentMethod of paymentMethods?.response; let i=index">
-                                            <td>{{i +1 }}</td> 
+                                            <td>{{i +1 }}</td>
                                             <td>{{paymentMethod?.paymentMethod}}</td>
                                             <td>
                                                 <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editModal">
                                                     <i class="material-icons" (click)="onEdit(paymentMethod)">create</i>
                                                 </div>
                                                     <div class="btn btn-tbl-delete">
-                                                        <i class="material-icons" 
+                                                        <i class="material-icons"
                                                         (click) = "deletePaymentMethod(paymentMethod?._id)" >delete_forever</i>
                                                     </div>
                                                 </td>
@@ -84,7 +84,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -105,11 +105,11 @@
                  <div class="row">
                   <div class="col-md-12">
                      <div class="form-group">
-                         <label>Payment Method</label> 
-                         <input type="text" formControlName="paymentMethod" class="form-control" placeholder="Enter paymentMethod"
-                             [ngClass]="{ 'is-invalid': submitted && f.paymentMethod.errors }" />
-                         <div *ngIf="submitted && f.paymentMethod.errors" class="invalid-feedback">
-                             <div *ngIf="f.paymentMethod.errors.required">PaymentMethod is required</div>
+                         <label>Payment Method</label>
+                         <input type="text" formControlName="paymentMethod2" class="form-control" placeholder="Enter paymentMethod"
+                             [ngClass]="{ 'is-invalid': submitted && f2.paymentMethod2.errors }" />
+                         <div *ngIf="submitted && f2.paymentMethod2.errors" class="invalid-feedback">
+                             <div *ngIf="f2.paymentMethod2.errors.required">PaymentMethod is required</div>
                          </div>
                      </div>
                  </div>

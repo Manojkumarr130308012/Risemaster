@@ -1,260 +1,271 @@
 <section class="content">
-    <div class="container-fluid">
-        <!-- Exportable Table -->
-        <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="card">
-                    <div class="header">
-                        <h2>
-                            <strong>Bank</strong>
-                        </h2>
-                        <div class="header-dropdown m-r--5">
-                            <div class="btn-group m-l-15">
-                                <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addModal">
-                                    Add New
-                                    <i class="fa fa-plus" style="color: white"></i>
-                                </button>
-                                <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
-                                aria-labelledby="formModal" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="formModal">Add Bank Details</h5>
-                                            <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                               <form [formGroup]="registerForm" (ngSubmit) = "onAddSubmit()"  >
-                               <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Institution</label>
-                                        <select class="browser-default"  id="select" [(ngModel)]="selectedinstitution" 
-                                        formControlName="institution" value = " " class="form-control" placeholder="Enter institution"
-                                            [ngClass]="{ 'is-invalid': submitted && f.institution.errors }" >
-                                            <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">
-                                                <div *ngIf="f.institution.errors.required">Institution is required</div>
-                                            </div>
-                                         <option value="" disabled selected>Choose your institution</option>
-                                         <option *ngFor="let institution of institutions" [value]="institution._id">{{institution?.institution_name}}</option>     
-                                     </select>
-                                   </div>
-                               </div>
-                                   <div class="col-md-6">
-                                   <div class="form-group">
-                                       <label>Account Name</label>
-                                       <input type="text" value = "" formControlName="accountName" class="form-control" placeholder="Enter accountName"
-                                           [ngClass]="{ 'is-invalid': submitted && f.accountName.errors }" />
-                                       <div *ngIf="submitted && f.accountName.errors" class="invalid-feedback">
-                                           <div *ngIf="f.accountName.errors.required">Account Name is required</div>
-                                       </div>
-                                   </div>
-                               </div>
-                               </div>
-                               <div class="row">
-                                       <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Account Number</label>
-                                            <input type="text" value = "" formControlName="accountNumber" class="form-control" placeholder="Enter accountNumber"
-                                                [ngClass]="{ 'is-invalid': submitted && f.accountNumber.errors }" />
-                                            <div *ngIf="submitted && f.accountNumber.errors" class="invalid-feedback">
-                                                <div *ngIf="f.accountNumber.errors.required">Account Number is required</div>
-                                            </div>
-                                        </div>
-                                       </div>
-                                       <div class="col-md-6">
-                                   <div class="form-group">
-                                       <label>Branch</label>
-                                       <input type="text" value = "" formControlName="branch" class="form-control" placeholder="Enter branch"
-                                           [ngClass]="{ 'is-invalid': submitted && f.branch.errors }" />
-                                       <div *ngIf="submitted && f.branch.errors" class="invalid-feedback">
-                                           <div *ngIf="f.branch.errors.required">Branch is required</div>
-                                       </div>
-                                   </div>
-                               </div>
-                                   </div>
-                                   <div class="row">
-                                    <div class="col-md-6">
-                                     <div class="form-group">
-                                         <label>IFSC Code</label>
-                                         <input type="text" value = "" formControlName="IFSCCode" class="form-control" placeholder="Enter IFSCCode"
-                                             [ngClass]="{ 'is-invalid': submitted && f.IFSCCode.errors }" />
-                                         <div *ngIf="submitted && f.IFSCCode.errors" class="invalid-feedback">
-                                             <div *ngIf="f.IFSCCode.errors.required">IFSCCode is required</div>
-                                         </div>
-                                     </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>MICR Code</label>
-                                    <input type="text" value = "" formControlName="MICRCode" class="form-control" placeholder="Enter MICRCode"
-                                        [ngClass]="{ 'is-invalid': submitted && f.MICRCode.errors }" />
-                                    <div *ngIf="submitted && f.MICRCode.errors" class="invalid-feedback">
-                                        <div *ngIf="f.MICRCode.errors.required">MICRCode is required</div>
-                                    </div>
+  <div class="container-fluid">
+    <!-- Exportable Table -->
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="header">
+            <h2>
+              <strong>Bank</strong>
+            </h2>
+            <div class="header-dropdown m-r--5">
+              <div class="btn-group m-l-15">
+                <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addModal">
+                  Add New
+                  <i class="fa fa-plus" style="color: white"></i>
+                </button>
+                <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="formModal"
+                  aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="formModal">Add Bank Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form [formGroup]="registerForm" (ngSubmit)="onAddSubmit()">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Institution</label>
+                                <select class="browser-default" id="select" [(ngModel)]="selectedinstitution"
+                                  formControlName="institution" value=" " class="form-control"
+                                  placeholder="Enter institution"
+                                  [ngClass]="{ 'is-invalid': submitted && f.institution.errors }">
+
+                                  <option disabled selected>Choose your institution</option>
+                                  <option *ngFor="let institution of institutions" [value]="institution._id">
+                                    {{institution?.institution_name}}</option>
+                                </select>
+                                <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">
+                                  <div *ngIf="f.institution.errors.required">Institution is required</div>
                                 </div>
+                              </div>
                             </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Account Name</label>
+                                <input type="text" formControlName="accountName" class="form-control"
+                                  placeholder="Enter accountName"
+                                  [ngClass]="{ 'is-invalid': submitted && f.accountName.errors }" />
+                                <div *ngIf="submitted && f.accountName.errors" class="invalid-feedback">
+                                  <div *ngIf="f.accountName.errors.required">Account Name is required</div>
                                 </div>
-                                 
-                                   <div class="modal-footer">
-                                       <button type="submit" class="btn btn-default"  >Add</button >
-                                           <button type="button" class="btn btn-danger waves-effect"
-                                               data-dismiss="modal">Cancel</button>
-                                       </div>
-                               </form>
-                               </div>
-                               </div>
-                               </div>
-                               </div>
-                                <!-- Edit form -->
-                                <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
-                                    aria-labelledby="formModal" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="formModal">Edit Bank Details</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form [formGroup]="editForm">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                        <label>Institution</label>
-                                                                         <select class="browser-default"  id="select" [(ngModel)]="selectedinstitution" 
-                                                                         formControlName="institution" value = " " class="form-control" placeholder="Enter institution"
-                                                                             [ngClass]="{ 'is-invalid': submitted && f.institution.errors }" >
-                                                                             <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">
-                                                                                 <div *ngIf="f.institution.errors.required">Institution is required</div>
-                                                                             </div>
-                                                                      <option value="" disabled selected>Choose your institution</option>
-                                                                          <option *ngFor="let institution of institutions" [value]="institution._id">{{institution?.institution_name}}</option>     
-                                                                      </select>                                                        
-                                                                    </div>
-                                                       </div>
-                                                           <div class="col-md-6">
-                                                           <div class="form-group">
-                                                               <label>Account Name</label>
-                                                               <input type="text" value = "" formControlName="accountName" class="form-control" placeholder="Enter accountName"
-                                                                   [ngClass]="{ 'is-invalid': submitted && f.accountName.errors }" />
-                                                               <div *ngIf="submitted && f.accountName.errors" class="invalid-feedback">
-                                                                   <div *ngIf="f.accountName.errors.required">Account Name is required</div>
-                                                               </div>
-                                                           </div>
-                                                       </div>
-                                                       </div>
-                                                       <div class="row">
-                                                               <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label>Account Number</label>
-                                                                    <input type="text" value = "" formControlName="accountNumber" class="form-control" placeholder="Enter accountNumber"
-                                                                        [ngClass]="{ 'is-invalid': submitted && f.accountNumber.errors }" />
-                                                                    <div *ngIf="submitted && f.accountNumber.errors" class="invalid-feedback">
-                                                                        <div *ngIf="f.accountNumber.errors.required">Account Number is required</div>
-                                                                    </div>
-                                                                </div>
-                                                               </div>
-                                                               <div class="col-md-6">
-                                                           <div class="form-group">
-                                                               <label>Branch</label>
-                                                               <input type="text" value = "" formControlName="branch" class="form-control" placeholder="Enter branch"
-                                                                   [ngClass]="{ 'is-invalid': submitted && f.branch.errors }" />
-                                                               <div *ngIf="submitted && f.branch.errors" class="invalid-feedback">
-                                                                   <div *ngIf="f.branch.errors.required">Branch is required</div>
-                                                               </div>
-                                                           </div>
-                                                       </div>
-                                                           </div>
-                                                           <div class="row">
-                                                            <div class="col-md-6">
-                                                             <div class="form-group">
-                                                                 <label>IFSC Code</label>
-                                                                 <input type="text" value = "" formControlName="IFSCCode" class="form-control" placeholder="Enter IFSCCode"
-                                                                     [ngClass]="{ 'is-invalid': submitted && f.IFSCCode.errors }" />
-                                                                 <div *ngIf="submitted && f.IFSCCode.errors" class="invalid-feedback">
-                                                                     <div *ngIf="f.IFSCCode.errors.required">IFSCCode is required</div>
-                                                                 </div>
-                                                             </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>MICR Code</label>
-                                                            <input type="text" value = "" formControlName="MICRCode" class="form-control" placeholder="Enter MICRCode"
-                                                                [ngClass]="{ 'is-invalid': submitted && f.MICRCode.errors }" />
-                                                            <div *ngIf="submitted && f.MICRCode.errors" class="invalid-feedback">
-                                                                <div *ngIf="f.MICRCode.errors.required">MICRCode is required</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                        </div>
-                                                    </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default"
-                                                    (click)="onEditSubmit()" >Update</button>
-                                                <button type="button" class="btn btn-danger waves-effect"
-                                                    data-dismiss="modal">Cancel</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                              </div>
                             </div>
-                        </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Account Number</label>
+                                <input type="text" formControlName="accountNumber" class="form-control"
+                                  placeholder="Enter accountNumber"
+                                  [ngClass]="{ 'is-invalid': submitted && f.accountNumber.errors }" />
+                                <div *ngIf="submitted && f.accountNumber.errors" class="invalid-feedback">
+                                  <div *ngIf="f.accountNumber.errors.required">Account Number is required</div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Branch</label>
+                                <input type="text" formControlName="branch" class="form-control"
+                                  placeholder="Enter branch"
+                                  [ngClass]="{ 'is-invalid': submitted && f.branch.errors }" />
+                                <div *ngIf="submitted && f.branch.errors" class="invalid-feedback">
+                                  <div *ngIf="f.branch.errors.required">Branch is required</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>IFSC Code</label>
+                                <input type="text" formControlName="IFSCCode" class="form-control"
+                                  placeholder="Enter IFSCCode"
+                                  [ngClass]="{ 'is-invalid': submitted && f.IFSCCode.errors }" />
+                                <div *ngIf="submitted && f.IFSCCode.errors" class="invalid-feedback">
+                                  <div *ngIf="f.IFSCCode.errors.required">IFSCCode is required</div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>MICR Code</label>
+                                <input type="text" formControlName="MICRCode" class="form-control"
+                                  placeholder="Enter MICRCode"
+                                  [ngClass]="{ 'is-invalid': submitted && f.MICRCode.errors }" />
+                                <div *ngIf="submitted && f.MICRCode.errors" class="invalid-feedback">
+                                  <div *ngIf="f.MICRCode.errors.required">MICRCode is required</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="modal-footer">
+                            <button type="submit" class="btn btn-default">Add</button>
+                            <button type="button" class="btn btn-danger waves-effect"
+                              data-dismiss="modal">Cancel</button>
+                          </div>
+                        </form>
+                      </div>
                     </div>
-                    <div class="body">
-                        <div class="table-responsive">
-
-
-                            <table id="tableExport"
-                                class="display table table-hover table-checkable order-column m-t-20 width-per-100">
-                                <thead>
-                                    <tr>
-                                        <th>S.No</th>
-                                        <th>Institution</th>
-                                        <th>Account Name</th>
-                                        <th>Account Number</th>
-                                        <th>Branch</th>
-                                        <th>IFSCCode</th>
-                                        <th>MICRCode</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let bank of banks; let i=index">
-                                        <td>{{i +1 }}</td>
-                                        <td>{{bank.InstitutionDetails[0].institution_name}}</td>
-                                        <td>{{bank?.accountName}}</td>
-                                        <td>{{bank?.accountNumber}}</td>
-                                        <td>{{bank?.branch}}</td>
-                                        <td>{{bank?.IFSCCode}}</td>
-                                        <td>{{bank?.MICRCode}}</td>
-                                        
-                                        <td>
-                                            <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editModal">
-                                                <i class="material-icons" (click)="onEdit(bank) ">create</i>
-                                            </div>
-
-                                            <div class="btn btn-tbl-delete">
-                                                <i class="material-icons"
-                                                    (click)="deleteBank(bank?._id)">delete_forever</i>
-                                            </div>
-                                        </td>
-
-                                    </tr>
-
-                                </tbody>
-
-                            </table>
-                        </div>
-                    </div>
+                  </div>
                 </div>
+                <!-- Edit form -->
+                <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="formModal"
+                  aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="formModal">Edit Bank Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form [formGroup]="editForm">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Institution</label>
+                                <select class="browser-default" id="select2" [(ngModel)]="selectedinstitution2"
+                                  formControlName="institution2" value=" " class="form-control"
+                                  placeholder="Enter institution"
+                                  [ngClass]="{ 'is-invalid': submitted && f2.institution2.errors }">
+
+                                  <option disabled selected>Choose your institution</option>
+                                  <option *ngFor="let institution of institutions" [value]="institution._id">
+                                    {{institution?.institution_name}}</option>
+                                </select>
+                                <div *ngIf="submitted && f2.institution2.errors" class="invalid-feedback">
+                                  <div *ngIf="f2.institution2.errors.required">Institution is required</div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Account Name</label>
+                                <input type="text" formControlName="accountName2" class="form-control"
+                                  placeholder="Enter accountName"
+                                  [ngClass]="{ 'is-invalid': submitted && f2.accountName2.errors }" />
+                                <div *ngIf="submitted && f2.accountName2.errors" class="invalid-feedback">
+                                  <div *ngIf="f2.accountName2.errors.required">Account Name is required</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Account Number</label>
+                                <input type="text" formControlName="accountNumber2" class="form-control"
+                                  placeholder="Enter accountNumber"
+                                  [ngClass]="{ 'is-invalid': submitted && f2.accountNumber2.errors }" />
+                                <div *ngIf="submitted && f2.accountNumber2.errors" class="invalid-feedback">
+                                  <div *ngIf="f2.accountNumber2.errors.required">Account Number is required</div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Branch</label>
+                                <input type="text" formControlName="branch2" class="form-control"
+                                  placeholder="Enter branch"
+                                  [ngClass]="{ 'is-invalid': submitted && f2.branch2.errors }" />
+                                <div *ngIf="submitted && f2.branch2.errors" class="invalid-feedback">
+                                  <div *ngIf="f2.branch2.errors.required">Branch is required</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>IFSC Code</label>
+                                <input type="text" formControlName="IFSCCode2" class="form-control"
+                                  placeholder="Enter IFSCCode"
+                                  [ngClass]="{ 'is-invalid': submitted && f2.IFSCCode2.errors }" />
+                                <div *ngIf="submitted && f2.IFSCCode2.errors" class="invalid-feedback">
+                                  <div *ngIf="f2.IFSCCode2.errors.required">IFSCCode is required</div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>MICR Code</label>
+                                <input type="text" formControlName="MICRCode2" class="form-control"
+                                  placeholder="Enter MICRCode"
+                                  [ngClass]="{ 'is-invalid': submitted && f2.MICRCode2.errors }" />
+                                <div *ngIf="submitted && f2.MICRCode2.errors" class="invalid-feedback">
+                                  <div *ngIf="f2.MICRCode2.errors.required">MICRCode is required</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="onEditSubmit()">Update</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+          <div class="body">
+            <div class="table-responsive">
+
+
+              <table id="tableExport"
+                class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                <thead>
+                  <tr>
+                    <th>S.No</th>
+                    <th>Institution</th>
+                    <th>Account Name</th>
+                    <th>Account Number</th>
+                    <th>Branch</th>
+                    <th>IFSCCode</th>
+                    <th>MICRCode</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let bank of banks; let i=index">
+                    <td>{{i +1 }}</td>
+                    <td>{{bank.InstitutionDetails[0].institution_name}}</td>
+                    <td>{{bank?.accountName}}</td>
+                    <td>{{bank?.accountNumber}}</td>
+                    <td>{{bank?.branch}}</td>
+                    <td>{{bank?.IFSCCode}}</td>
+                    <td>{{bank?.MICRCode}}</td>
+
+                    <td>
+                      <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editModal">
+                        <i class="material-icons" (click)="onEdit(bank) ">create</i>
+                      </div>
+
+                      <div class="btn btn-tbl-delete">
+                        <i class="material-icons" (click)="deleteBank(bank?._id)">delete_forever</i>
+                      </div>
+                    </td>
+
+                  </tr>
+
+                </tbody>
+
+              </table>
+            </div>
+          </div>
         </div>
-        <!-- #END# Exportable Table -->
+      </div>
     </div>
+    <!-- #END# Exportable Table -->
+  </div>
 </section>

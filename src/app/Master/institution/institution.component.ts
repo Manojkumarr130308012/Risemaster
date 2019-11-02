@@ -88,11 +88,11 @@ export class InstitutionComponent implements OnInit {
     // this.logoLocation2 = new FormControl('', Validators.required);
   }
 
-  //to upload logo
+  // to upload logo
   submit() {
     this.uploader.uploadAll();
   }
-  // Error Message 
+  // Error Message
   public setMessage(message) {
     return this.message = message;
   }
@@ -114,10 +114,9 @@ export class InstitutionComponent implements OnInit {
     this.request.addInstitution(newInstitution).subscribe((res: any) => {
       if (res.status == 'error') {
         this.setMessage(res.error);
-      }
-      else if (res.status == 'success') {
+      } else if (res.status == 'success') {
 
-        swal("Added Sucessfully");
+        swal('Added Sucessfully');
         this.viewData();
         this.loadModal();
       }
@@ -173,16 +172,20 @@ export class InstitutionComponent implements OnInit {
     });
   }
 
-  //To delete the data
+  // To delete the data
   deleteInstitution(id: any) {
     this.request.deleteInstitution(id).subscribe(res => {
-      swal(" Deleted Successfully ");
+      swal(' Deleted Successfully ');
       this.viewData();
     });
   }
 
   // To update the data
   updateInstitution() {
+
+    if (this.institution_name2.value != '' && this.institution_code2.value != '' && this.tagline2.value !='' &&
+    this.address2.value !="" && this.phone2.value != '' && this.mobile2.value!='' && this.website2.value!='' &&
+    this.email2.value !='' &&  this.principal2.value!='' && this.ao2.value !='') {
     const edata = {
       institution_name: this.institution_name2.value,
       institution_code: this.institution_code2.value,
@@ -197,20 +200,21 @@ export class InstitutionComponent implements OnInit {
       logoLocation: this.getfileLoc
     };
 
+
     this.request.updateInstitution(this.IdValue, edata).subscribe((response: any) => {
       console.log(edata);
       if (response.status == 'success') {
-        swal("update Sucessfully");
+        swal('update Sucessfully');
         this.viewData();
         this.loadModal();
-      }
-      else if (response.status == 'error') {
+      } else if (response.status == 'error') {
         this.setMessage(response.error);
       }
 
     }, (error) => {
       this.setMessage(error);
     });
+  }
 
   }
 
@@ -229,55 +233,55 @@ export class InstitutionComponent implements OnInit {
     });
   }
   private loadModal() {
-    $('#addModal').modal('hide'); //or  $('#IDModal').modal('hide');
-    $('#addModal').on('hidden.bs.modal', function () {
+    $('#addModal').modal('hide'); // or  $('#IDModal').modal('hide');
+    $('#addModal').on('hidden.bs.modal', function() {
       $(this).find('form').trigger('reset');
-      //$('#form_advanced_validation').trigger('reset');
-      var v = $('#form_advanced_validation').validate();
+      // $('#form_advanced_validation').trigger('reset');
+      let v = $('#form_advanced_validation').validate();
       v.resetForm();
 
-    })
-    $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
-    $('#editModal ').on('hidden.bs.modal', function () {
+    });
+    $('#editModal').modal('hide'); // or  $('#IDModal').modal('hide');
+    $('#editModal ').on('hidden.bs.modal', function() {
       $(this).find('form').trigger('reset');
-      var v = $('#form_advanced_validation1').validate();
+      let v = $('#form_advanced_validation1').validate();
       v.resetForm();
-    })
+    });
   }
-  ngOnInit() {
+ngOnInit() {
     this.startScript();
     this.viewData();
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       console.log('ImageUpload:uploaded:', item, status, response);
       const resPath = JSON.parse(response);
-      //this.getfileLoc = resPath.result;
+      // this.getfileLoc = resPath.result;
     };
-    //jQuery Validation
-    $(function () {
+    // jQuery Validation
+    $(function() {
       $('#form_advanced_validation').validate({
 
-        highlight: function (input) {
+        highlight (input) {
           $(input).parents('.form-line').addClass('error');
         },
-        unhighlight: function (input) {
+        unhighlight (input) {
           $(input).parents('.form-line').removeClass('error');
         },
-        errorPlacement: function (error, element) {
+        errorPlacement (error, element) {
           $(element).parents('.form-group').append(error);
         }
       });
     });
-    $(function () {
+    $(function() {
       $('#form_advanced_validation1').validate({
 
-        highlight: function (input) {
+        highlight (input) {
           $(input).parents('.form-line').addClass('error');
         },
-        unhighlight: function (input) {
+        unhighlight (input) {
           $(input).parents('.form-line').removeClass('error');
         },
-        errorPlacement: function (error, element) {
+        errorPlacement (error, element) {
           $(element).parents('.form-group').append(error);
         }
       });

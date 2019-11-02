@@ -1,20 +1,20 @@
-import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {   MatSnackBarModule} from '@angular/material';
 
 
-import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent } from "./app.component";
-import { HeaderComponent } from "./layout/header/header.component";
-import { PageLoaderComponent } from "./layout/page-loader/page-loader.component";
-import { SidebarComponent } from "./layout/sidebar/sidebar.component";
-import { RightSidebarComponent } from "./layout/right-sidebar/right-sidebar.component";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { PageLoaderComponent } from './layout/page-loader/page-loader.component';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { RightSidebarComponent } from './layout/right-sidebar/right-sidebar.component';
 
-import { LocationStrategy, HashLocationStrategy } from "@angular/common";
-import { DynamicScriptLoaderService } from "./services/dynamic-script-loader.service";
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { DynamicScriptLoaderService } from './services/dynamic-script-loader.service';
 
 import { RequestService } from './../app/services/request.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -45,7 +45,7 @@ import { BoardOfEducationComponent } from './Master/board-of-education/board-of-
 import { CourseProgramComponent } from './Master/course-program/course-program.component';
 import { CourseCategoryComponent } from './Master/course-category/course-category.component';
 
-//Student Master
+// Student Master
 import { DegreeComponent } from './StudentMaster/degree/degree.component';
 import { MotherTongueComponent } from './StudentMaster/mother-tongue/mother-tongue.component';
 import { ReferralTypeComponent } from './StudentMaster/referral-type/referral-type.component';
@@ -58,7 +58,7 @@ import { ScholarshipCategoryComponent } from './StudentMaster/scholarship-catego
 import { BankComponent } from './StudentMaster/bank/bank.component';
 import { QualificationTypeComponent } from './StudentMaster/qualification-type/qualification-type.component';
 
-//Staff Master
+// Staff Master
 import { GenderComponent } from './StaffMaster/gender/gender.component';
 import { MaritalStatusComponent } from './StaffMaster/marital-status/marital-status.component';
 import { DepartmentComponent } from './StaffMaster/department/department.component';
@@ -101,24 +101,23 @@ import { CeEditTabpageComponent } from './Student/ce-edit-tabpage/ce-edit-tabpag
     PageLoaderComponent,
     SidebarComponent,
     RightSidebarComponent,
-   
-   
+
     BloodgroupComponent,
     CasteComponent,
     CommunityComponent,
     NationalityComponent,
     ReligionComponent,
-    
+
     AcademicYearComponent,
     UserDesignationComponent,
     AdmissionTypeComponent,
     InstitutionComponent,
     AdmissionCategoryComponent,
-    BoardOfEducationComponent, 
-   CourseProgramComponent, 
+    BoardOfEducationComponent,
+   CourseProgramComponent,
     CourseCategoryComponent,
-  
-    //Student Master
+
+    // Student Master
 	  DegreeComponent,
     MotherTongueComponent,
     ReferralTypeComponent,
@@ -131,7 +130,7 @@ import { CeEditTabpageComponent } from './Student/ce-edit-tabpage/ce-edit-tabpag
     BankComponent,
     QualificationTypeComponent,
 
-    //Staff Master
+    // Staff Master
     GenderComponent,
     MaritalStatusComponent,
     DepartmentComponent,
@@ -142,7 +141,7 @@ import { CeEditTabpageComponent } from './Student/ce-edit-tabpage/ce-edit-tabpag
     FeeTypeComponent,
     ModeOfEnquiryComponent,
 
-    
+
 
     QualificationTypeComponent,
 
@@ -159,10 +158,9 @@ import { CeEditTabpageComponent } from './Student/ce-edit-tabpage/ce-edit-tabpag
     ExpensesEntryComponent,
     FuelEntryComponent,
 
-//Candidate Enquiry
+// Candidate Enquiry
 CEmainPageComponent,
 CEtabpageComponent,
-CeTabpageComponent,
 CeEditTabpageComponent
 
   ],
@@ -170,10 +168,10 @@ CeEditTabpageComponent
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    ReactiveFormsModule,    
+    ReactiveFormsModule,
     HttpClientModule,
-    FormsModule,    
-    BrowserAnimationsModule, 
+    FormsModule,
+    BrowserAnimationsModule,
     FileUploadModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,

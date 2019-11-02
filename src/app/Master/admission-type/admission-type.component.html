@@ -29,7 +29,7 @@
                                         <th>Institution</th>
                                         <th>Admission Type</th>
                                         <th>ID</th>
-                                        <th>Action</th> 
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <!-- <tbody>
@@ -45,7 +45,7 @@
                                                 <i class="material-icons"
                                                     (click)="deleteAdmissiontype(admissiontype?._id)">delete</i>
                                             </div>
-                                        </td> 
+                                        </td>
                                     </tr>
                                 </tbody>  -->
                             </table>
@@ -123,15 +123,15 @@
                         <div class="col-md-12">
                             <label>Institution</label>
                             <select id="select" [(ngModel)]="selectedinstitution" class="browser-default form-control"
-                                formControlName="institution"
-                                [ngClass]="{ 'is-invalid': submitted && f.institution.errors }">
+                                formControlName="institution2"
+                                [ngClass]="{ 'is-invalid': submitted && f2.institution2.errors }">
                                 <option disabled selected>Choose your institution</option>
                                 <option *ngFor="let institution of institutions" [value]="institution._id">
                                     {{institution.institution_name}}</option>
                             </select>
 
-                            <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">
-                                <div *ngIf="f.institution.errors.required">Institution is required</div>
+                            <div *ngIf="submitted && f2.institution2.errors" class="invalid-feedback">
+                                <div *ngIf="f2.institution2.errors.required">Institution is required</div>
                             </div>
                         </div>
                     </div>
@@ -139,11 +139,11 @@
 
                     <div class="form-group">
                         <label>Admission Type</label>
-                        <input type="text" formControlName="admissiontype" class="form-control"
+                        <input type="text" formControlName="admissiontype2" class="form-control"
                             placeholder="Enter admission-type"
-                            [ngClass]="{ 'is-invalid': submitted && f.admissiontype.errors }" />
-                        <div *ngIf="submitted && f.admissiontype.errors" class="invalid-feedback">
-                            <div *ngIf="f.admissiontype.errors.required">Admission-type is required</div>
+                            [ngClass]="{ 'is-invalid': submitted && f2.admissiontype2.errors }" />
+                        <div *ngIf="submitted && f2.admissiontype2.errors" class="invalid-feedback">
+                            <div *ngIf="f2.admissiontype2.errors.required">Admission-type is required</div>
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -18,6 +18,7 @@ export class CommunityComponent implements OnInit {
   editForm: FormGroup;
   submitted = false;
   public community: any;
+
   private communities: any;
   Id: any;
   IdValue: any;
@@ -31,7 +32,7 @@ export class CommunityComponent implements OnInit {
     private dynamicScriptLoader: DynamicScriptLoaderService,
     private request: RequestService,
     private router: Router,
-    private activeRoute:  ActivatedRoute) 
+    private activeRoute:  ActivatedRoute)
     {
        // Add Form
       this.registerForm = this.formBuilder.group({
@@ -39,10 +40,10 @@ export class CommunityComponent implements OnInit {
     });
     // Edit Form
     this.editForm = this.formBuilder.group({
-      community:['', Validators.required]
+      community2:['', Validators.required]
     });
      }
-     
+
      public setMessage(message) {
       return this.message = message;
     }
@@ -85,7 +86,7 @@ console.log(this.registerForm.value);
       console.log(id);
       this.viewData();
     console.log('Deleted');
-   
+
     this.router.navigate(['community']);
     });
   }
@@ -93,14 +94,14 @@ console.log(this.registerForm.value);
   // To edit community
   onEdit(community){
     this.Id=community._id;
-    this.request.fetchCommunityBy(this.Id).subscribe((response) => {      
-      this.editCommunity=response[0];     
+    this.request.fetchCommunityBy(this.Id).subscribe((response) => {
+      this.editCommunity=response[0];
       console.log(response);
-      this.communityValue=this.editCommunity.community; 
+      this.communityValue=this.editCommunity.community;
       this.IdValue=this.editCommunity._id;
-      
+
       this.editForm = this.formBuilder.group({
-        community:[this.communityValue, Validators.required]
+        community2:[this.communityValue, Validators.required]
     });
     console.log(this.editForm.value);
   });
@@ -111,16 +112,21 @@ onEditSubmit() {
   if (this.editForm.invalid) {
       return;
     }
-this.request.updateCommunity(this.IdValue,this.editForm.value).subscribe((res : any) => {
+
+    const edata = {
+      community: this.editForm.get('community2').value,
+
+  }
+this.request.updateCommunity(this.IdValue,edata).subscribe((res : any) => {
   if (res.status == 'success') {
-    swal("Updated Sucessfully");     
+    swal("Updated Sucessfully");
     this.loadModal();
     this.viewData();
   }
-  else if (res.status == 'error') {       
+  else if (res.status == 'error') {
     this.setMessage(res.error);
-  }      
- 
+  }
+
 }, (error) => {
   console.log(error);
   this.setMessage(error);
@@ -129,6 +135,8 @@ this.request.updateCommunity(this.IdValue,this.editForm.value).subscribe((res : 
 
 // convenience getter for easy access to form fields
 get f() { return this.registerForm.controls; }
+get f2() { return this.editForm.controls; }
+
 
 async startScript() {
     await this.dynamicScriptLoader.load('dataTables.buttons', 'buttons.flash', 'jszip', 'pdfmake', 'vfs_fonts', 'pdfmake', 'buttons.html5', 'buttons.print', 'form.min').then(data => {
@@ -150,7 +158,7 @@ async startScript() {
     $('#addModal').on('hidden.bs.modal', function () {
     $(this).find('form').trigger('reset');
    });
-  
+
    $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
    $('#editModal').on('hidden.bs.modal', function () {
    $(this).find('form').trigger('reset');

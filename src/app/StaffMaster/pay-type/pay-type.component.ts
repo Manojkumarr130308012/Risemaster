@@ -18,6 +18,7 @@ export class PayTypeComponent implements OnInit {
   editForm: FormGroup;
   submitted = false;
   public paytype: any;
+  public paytype2: any;
   private paytypes: any;
   Id: any;
   IdValue: any;
@@ -30,7 +31,7 @@ export class PayTypeComponent implements OnInit {
     private dynamicScriptLoader: DynamicScriptLoaderService,
     private request: RequestService,
     private router: Router,
-    private activeRoute:  ActivatedRoute) 
+    private activeRoute:  ActivatedRoute)
     {
        // Add Form
       this.registerForm = this.formBuilder.group({
@@ -38,10 +39,10 @@ export class PayTypeComponent implements OnInit {
     });
     // Edit Form
     this.editForm = this.formBuilder.group({
-      paytype:['', Validators.required]
+      paytype2:['', Validators.required]
     });
      }
-     
+
      public setMessage(message) {
       return this.message = message;
     }
@@ -84,7 +85,7 @@ export class PayTypeComponent implements OnInit {
       console.log(id);
       this.viewData();
     console.log('Deleted');
-   
+
     this.router.navigate(['pay-type']);
     });
   }
@@ -92,14 +93,14 @@ export class PayTypeComponent implements OnInit {
   // To edit paytype
   onEdit(paytype){
     this.Id=paytype._id;
-    this.request.fetchPaytypeBy(this.Id).subscribe((response) => {     
-      this.editPaytype=response[0];     
+    this.request.fetchPaytypeBy(this.Id).subscribe((response) => {
+      this.editPaytype=response[0];
       console.log(response);
-      this.paytypeValue=this.editPaytype.paytype; 
+      this.paytypeValue=this.editPaytype.paytype;
       this.IdValue=this.editPaytype._id;
 
       this.editForm = this.formBuilder.group({
-        paytype:[this.paytypeValue, Validators.required]
+        paytype2:[this.paytypeValue, Validators.required]
     });
     console.log(this.editForm.value);
   });
@@ -110,16 +111,21 @@ onEditSubmit() {
   if (this.editForm.invalid) {
       return;
     }
-this.request.updatePaytype(this.IdValue,this.editForm.value).subscribe((res : any) => {
+
+    const edata = {
+      paytype: this.editForm.get("paytype2").value
+    };
+
+this.request.updatePaytype(this.IdValue,edata).subscribe((res : any) => {
   if (res.status == 'success') {
-    swal("Updated Sucessfully");     
+    swal("Updated Sucessfully");
     this.loadModal();
     this.viewData();
   }
-  else if (res.status == 'error') {       
+  else if (res.status == 'error') {
     this.setMessage(res.error);
-  }      
- 
+  }
+
 }, (error) => {
   console.log(error);
   this.setMessage(error);
@@ -128,7 +134,10 @@ this.request.updatePaytype(this.IdValue,this.editForm.value).subscribe((res : an
 
 // convenience getter for easy access to form fields
 get f() { return this.registerForm.controls; }
-      
+get f2() {
+  return this.editForm.controls;
+}
+
   async startScript() {
     await this.dynamicScriptLoader.load('dataTables.buttons', 'buttons.flash', 'jszip', 'pdfmake', 'vfs_fonts', 'pdfmake', 'buttons.html5', 'buttons.print', 'form.min').then(data => {
       this.loadData();
@@ -149,7 +158,7 @@ get f() { return this.registerForm.controls; }
     $('#addModal').on('hidden.bs.modal', function () {
     $(this).find('form').trigger('reset');
    });
-  
+
    $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
    $('#editModal').on('hidden.bs.modal', function () {
    $(this).find('form').trigger('reset');

@@ -19,6 +19,8 @@ export class AdmissionTypeComponent implements OnInit {
   submitted = false;
   public admissiontype: any;
   public institution: any;
+  public admissiontype2: any;
+  public institution2: any;
   public admissiontypes: any;
   Id: any;
   IdValue: any;
@@ -41,8 +43,8 @@ export class AdmissionTypeComponent implements OnInit {
     });
     // Edit Form
     this.editForm = this.formBuilder.group({
-      institution: ['', Validators.required],
-      admissiontype: ['', Validators.required]
+      institution2: ['', Validators.required],
+      admissiontype2: ['', Validators.required]
     });
   }
 
@@ -64,7 +66,7 @@ export class AdmissionTypeComponent implements OnInit {
 
   onAddSubmit() {
     this.submitted = true;
- 
+
     if (this.registerForm.invalid) {
       return;
     }
@@ -99,8 +101,8 @@ export class AdmissionTypeComponent implements OnInit {
 
   // To edit admission type
   onEdit(id) {
-    console.log('admissiontype_id',id);   
-    
+    console.log('admissiontype_id',id);
+
     this.request.fetchAdmissiontypeBy(id).subscribe((response) => {
       this.editAdmissiontype = response[0];
       console.log(response);
@@ -109,8 +111,8 @@ export class AdmissionTypeComponent implements OnInit {
       this.IdValue = this.editAdmissiontype._id;
 
       this.editForm = this.formBuilder.group({
-        institution: [this.institutionValue, Validators.required],
-        admissiontype: [this.admissiontypeValue, Validators.required]
+        institution2: [this.institutionValue, Validators.required],
+        admissiontype2: [this.admissiontypeValue, Validators.required]
       });
       console.log(this.editForm.value);
     });
@@ -139,6 +141,7 @@ export class AdmissionTypeComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
+  get f2() { return this.editForm.controls; }
 
     // To display admission type
    /* viewData() {
@@ -157,14 +160,14 @@ export class AdmissionTypeComponent implements OnInit {
   }
 
   private loadData() {
-    this.request.getAdmissiontype().subscribe((response) => {     
-   
+    this.request.getAdmissiontype().subscribe((response) => {
+
    console.log('response',response);
     var i=1;
     var id = '5d8c62e3e851032c189f6931';
     var t = $('#tableExport').DataTable({
        data: response,
-      columns: [             
+      columns: [
          { "render": function (data, type, full, meta) { return i++;}},
        { data: 'InstitutionDetails[0].institution_name' },
        { data: 'admissiontype' },
@@ -184,7 +187,7 @@ export class AdmissionTypeComponent implements OnInit {
     });
 
     $('#tableExport').on( 'click','button',function(){
-      
+
       var uid = t.row($(this).parents('tr')).data();
       console.log(uid);
     } );
@@ -192,22 +195,22 @@ export class AdmissionTypeComponent implements OnInit {
   }, (error) => {
     console.log(error);
   });
-  
+
   }
 
-  
 
-  
+
+
 
   private loadModal() {
     $('#addModal').modal('hide'); //or  $('#IDModal').modal('hide');
     $('#addModal').on('hidden.bs.modal', function () {
-      $(this).find('form').trigger('reset'); 
+      $(this).find('form').trigger('reset');
     // $("#add").get(0).reset();
     //    var vali =$("#add").validate();
     // vali.restForm();
-    });  
-   
+    });
+
 
     $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
     $('#editModal').on('hidden.bs.modal', function () {
@@ -217,14 +220,14 @@ export class AdmissionTypeComponent implements OnInit {
   }
 
   ngOnInit() {
-   
+
     M.updateTextFields();
-  //  this.viewData();      
+  //  this.viewData();
     this.startScript();
-    this.loadAdmissiontype();    
-    this.loadModal();  
-   
-  
+    this.loadAdmissiontype();
+    this.loadModal();
+
+
   }
 }
 

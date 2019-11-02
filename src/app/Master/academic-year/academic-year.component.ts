@@ -17,11 +17,19 @@ export class AcademicYearComponent implements OnInit {
 
   registerForm: FormGroup;
   submitted = false;
+
   year: FormControl;
   short_code: FormControl;
   start_date: FormControl;
   end_date: FormControl;
   status: FormControl;
+
+  year2: FormControl;
+  short_code2: FormControl;
+  start_date2: FormControl;
+  end_date2: FormControl;
+  status2: FormControl;
+
   private academicyears: any;
   editForm: FormGroup;
   Id: any;
@@ -34,9 +42,9 @@ export class AcademicYearComponent implements OnInit {
   IdValue: any;
   message: any;
   constructor(private formBuilder: FormBuilder,
-    private dynamicScriptLoader: DynamicScriptLoaderService,
-    private request: RequestService,
-    private router: Router) {
+              private dynamicScriptLoader: DynamicScriptLoaderService,
+              private request: RequestService,
+              private router: Router) {
       //Add Form Group
       this.registerForm = this.formBuilder.group({
         year:['', Validators.required],
@@ -46,12 +54,12 @@ export class AcademicYearComponent implements OnInit {
         status: ['', Validators.required]
     });
     //Edit Form Group
-    this.editForm = this.formBuilder.group({
-      year:['', Validators.required],
-      short_code: ['', Validators.required],
-      start_date: ['', Validators.required],
-      end_date: ['', Validators.required],
-      status: ['', Validators.required]
+      this.editForm = this.formBuilder.group({
+      year2:['', Validators.required],
+      short_code2: ['', Validators.required],
+      start_date2: ['', Validators.required],
+      end_date2: ['', Validators.required],
+      status2: ['', Validators.required]
   });
 }
 // To display Academic Year
@@ -68,18 +76,19 @@ export class AcademicYearComponent implements OnInit {
       }
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
+  get f2() { return this.editForm.controls; }
   //Add form validation and function
   onAddSubmit() {
       this.submitted = true;
       if (this.registerForm.invalid) {
           return;
       }
-     this.request.addAcademicYear(this.registerForm.value).subscribe((res: any) => {
+      this.request.addAcademicYear(this.registerForm.value).subscribe((res: any) => {
       if (res.status == 'error') {
         this.setMessage(res.error);
       }
       else if (res.status == 'success') {
-        
+
         swal("Added Sucessfully");
         this.viewData();
         this.loadModal();
@@ -87,17 +96,17 @@ export class AcademicYearComponent implements OnInit {
       }, (error) => {
         this.setMessage(error);
       });
-        console.log(this.registerForm.value);
+      console.log(this.registerForm.value);
   }
-  
+
   //To delete the data
   deleteAcademicYear(id: any) {
     this.request.deleteAcademicYear(id).subscribe(res => {
-      swal(" Deleted Successfully "); 
+      swal(" Deleted Successfully ");
       this.viewData();
     });
   }
-  
+
 //Edit Function
   onEdit(academicyear) {
     this.Id = academicyear._id;
@@ -112,11 +121,11 @@ export class AcademicYearComponent implements OnInit {
       this.IdValue = this.editAcademicyeardata._id;
 
       this.editForm = this.formBuilder.group({
-        year:[this.yearValue, Validators.required],
-        short_code: [this.shortCodeValue, Validators.required],
-        start_date: [this.startDateValue, Validators.required],
-        end_date: [this.endDateValue, Validators.required],
-        status: [this.statusValue, Validators.required]
+        year2:[this.yearValue, Validators.required],
+        short_code2: [this.shortCodeValue, Validators.required],
+        start_date2: [this.startDateValue, Validators.required],
+        end_date2: [this.endDateValue, Validators.required],
+        status2: [this.statusValue, Validators.required]
     });
     // console.log(this.editForm.value);
     });
@@ -127,18 +136,27 @@ export class AcademicYearComponent implements OnInit {
     if (this.editForm.invalid) {
         return;
     }
-  
-  this.request.updateAcademicYear(this.IdValue, this.editForm.value).subscribe((response: any) => {
+
+    const edata = {
+      year: this.editForm.get('year2').value,
+      short_code: this.editForm.get('short_code2').value,
+      start_date: this.editForm.get('start_date2').value,
+      end_date: this.editForm.get('end_date2').value,
+      status: this.editForm.get('status2').value
+
+  }
+
+    this.request.updateAcademicYear(this.IdValue, edata).subscribe((response: any) => {
     if (response.status == 'success') {
-      swal("Updated Sucessfully");       
-      
+      swal("Updated Sucessfully");
+
       this.viewData();
       this.loadModal();
     }
-    else if (response.status == 'error') {       
+    else if (response.status == 'error') {
       this.setMessage(response.error);
-    }      
-   
+    }
+
   }, (error) => {
     console.log(error);
     this.setMessage(error);
@@ -163,12 +181,12 @@ export class AcademicYearComponent implements OnInit {
       $('#addModal').on('hidden.bs.modal', function () {
         $(this).find('form').trigger('reset');
      })
-     $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
+      $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
       $('#editModal ').on('hidden.bs.modal', function () {
         $(this).find('form').trigger('reset');
      })
     }
-  
+
   ngOnInit() {
     this.viewData();
     this.startScript();

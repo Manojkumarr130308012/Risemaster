@@ -18,6 +18,11 @@ export class CourseTypeComponent implements OnInit {
    public courseType: any;
    qualificationType: any;
    maxMark: any;
+
+   public courseType2: any;
+   qualificationType2: any;
+   maxMark2: any;
+
    editCourseTypedata;
    public courseTypeValue: any;
    public qualificationTypeValue: any;
@@ -39,9 +44,9 @@ export class CourseTypeComponent implements OnInit {
     });
     //Edit Form Group
     this.editForm = this.formBuilder.group({
-      courseType:['', Validators.required],
-      qualificationType:['', Validators.required],
-      maxMark:['', Validators.required],
+      courseType2:['', Validators.required],
+      qualificationType2:['', Validators.required],
+      maxMark2:['', Validators.required],
   });
 }
 // To display  courseType
@@ -58,6 +63,7 @@ export class CourseTypeComponent implements OnInit {
       }
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
+  get f2() { return this.editForm.controls; }
   //Add form validation and function
   onAddSubmit() {
       this.submitted = true;
@@ -69,7 +75,7 @@ export class CourseTypeComponent implements OnInit {
         this.setMessage(res.error);
       }
       else if (res.status == 'success') {
-        
+
         swal("Added Sucessfully");
         this.viewData();
         this.loadModal();
@@ -80,15 +86,15 @@ export class CourseTypeComponent implements OnInit {
         console.log(this.registerForm.value);
   }
 
-  
+
   //To delete the data
   deleteCourseType(id: any) {
     this.request.deleteCourseType(id).subscribe(res => {
-      swal(" Deleted Successfully "); 
+      swal(" Deleted Successfully ");
       this.viewData();
     });
   }
-  
+
 //Edit Function
   onEdit(courseType) {
     this.Id = courseType._id;
@@ -101,9 +107,9 @@ export class CourseTypeComponent implements OnInit {
       this.IdValue = this.editCourseTypedata._id;
 
       this.editForm = this.formBuilder.group({
-        courseType:[this.courseTypeValue, Validators.required],
-        qualificationType:[this.qualificationTypeValue, Validators.required],
-        maxMark:[this.maxMarkValue, Validators.required],
+        courseType2:[this.courseTypeValue, Validators.required],
+        qualificationType2:[this.qualificationTypeValue, Validators.required],
+        maxMark2:[this.maxMarkValue, Validators.required],
     });
     // console.log(this.editForm.value);
     });
@@ -122,18 +128,23 @@ export class CourseTypeComponent implements OnInit {
     if (this.editForm.invalid) {
         return;
     }
-  
-  this.request.updateCourseType(this.IdValue, this.editForm.value).subscribe((response: any) => {
+    const edata = {
+      courseType: this.editForm.get('courseType2').value,
+      qualificationType: this.editForm.get('qualificationType2').value,
+      maxMark: this.editForm.get('maxMark2').value
+  }
+
+  this.request.updateCourseType(this.IdValue, edata).subscribe((response: any) => {
     if (response.status == 'success') {
-      swal("Updated Sucessfully");       
-      
+      swal("Updated Sucessfully");
+
       this.viewData();
       this.loadModal();
     }
-    else if (response.status == 'error') {       
+    else if (response.status == 'error') {
       this.setMessage(response.error);
-    }      
-   
+    }
+
   }, (error) => {
     console.log(error);
     this.setMessage(error);
@@ -164,7 +175,7 @@ export class CourseTypeComponent implements OnInit {
         $(this).find('form').trigger('reset');
      })
     }
-  
+
   ngOnInit() {
     this.viewData();
     this.startScript();

@@ -12,11 +12,12 @@ declare const swal: any;
 })
 export class MediumComponent implements OnInit {
 
-  
+
   registerForm: FormGroup;
   submitted = false;
    public Id: any;
    public medium: any;
+   public medium2: any;
    editMediumdata;
    public mediumValue: any;
    public IdValue: any;
@@ -33,7 +34,7 @@ export class MediumComponent implements OnInit {
     });
     //Edit Form Group
     this.editForm = this.formBuilder.group({
-      medium:['', Validators.required],
+      medium2:['', Validators.required],
   });
 }
 // To display  medium
@@ -50,6 +51,7 @@ export class MediumComponent implements OnInit {
       }
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
+  get f2() { return this.editForm.controls; }
   //Add form validation and function
   onAddSubmit() {
       this.submitted = true;
@@ -61,7 +63,7 @@ export class MediumComponent implements OnInit {
         this.setMessage(res.error);
       }
       else if (res.status == 'success') {
-        
+
         swal("Added Sucessfully");
         this.viewData();
         this.loadModal();
@@ -72,15 +74,15 @@ export class MediumComponent implements OnInit {
         console.log(this.registerForm.value);
   }
 
-  
+
   //To delete the data
   deleteMedium(id: any) {
     this.request.deleteMedium(id).subscribe(res => {
-      swal(" Deleted Successfully "); 
+      swal(" Deleted Successfully ");
       this.viewData();
     });
   }
-  
+
 //Edit Function
   onEdit(medium) {
     this.Id = medium._id;
@@ -91,7 +93,7 @@ export class MediumComponent implements OnInit {
       this.IdValue = this.editMediumdata._id;
 
       this.editForm = this.formBuilder.group({
-        medium:[this.mediumValue, Validators.required],
+        medium2:[this.mediumValue, Validators.required],
     });
     // console.log(this.editForm.value);
     });
@@ -102,18 +104,23 @@ export class MediumComponent implements OnInit {
     if (this.editForm.invalid) {
         return;
     }
-  
-  this.request.updateMedium(this.IdValue, this.editForm.value).subscribe((response: any) => {
+    const edata = {
+      medium: this.editForm.get('medium2').value
+
+  }
+
+
+  this.request.updateMedium(this.IdValue, edata).subscribe((response: any) => {
     if (response.status == 'success') {
-      swal("Updated Sucessfully");       
-      
+      swal("Updated Sucessfully");
+
       this.viewData();
       this.loadModal();
     }
-    else if (response.status == 'error') {       
+    else if (response.status == 'error') {
       this.setMessage(response.error);
-    }      
-   
+    }
+
   }, (error) => {
     console.log(error);
     this.setMessage(error);
@@ -144,7 +151,7 @@ export class MediumComponent implements OnInit {
         $(this).find('form').trigger('reset');
      })
     }
-  
+
   ngOnInit() {
     this.viewData();
     this.startScript();

@@ -19,6 +19,8 @@ export class DepartmentComponent implements OnInit {
   submitted = false;
   public department: any;
   public institution: any;
+  public department2: any;
+  public institution2: any;
   private departments: any;
   Id: any;
   IdValue: any;
@@ -27,7 +29,7 @@ export class DepartmentComponent implements OnInit {
   institutionValue: any;
   institutions;
   public message: string;
-  
+
 constructor(
     private formBuilder: FormBuilder,
     private dynamicScriptLoader: DynamicScriptLoaderService,
@@ -41,11 +43,11 @@ constructor(
      });
       // Edit Form
      this.editForm = this.formBuilder.group({
-      institution:['', Validators.required],
-      department:['', Validators.required]
+      institution2:['', Validators.required],
+      department2:['', Validators.required]
    });
      }
-     
+
      public setMessage(message) {
       return this.message = message;
     }
@@ -105,16 +107,16 @@ constructor(
   // To edit department
   onEdit(department){
     this.Id=department._id;
-    this.request.fetchDepartmentBy(this.Id).subscribe((response) => {     
-      this.editDepartment=response[0];     
+    this.request.fetchDepartmentBy(this.Id).subscribe((response) => {
+      this.editDepartment=response[0];
       console.log(response);
           this.institutionValue=this.editDepartment.institution;
           this.departmentValue=this.editDepartment.department;
           this.IdValue=this.editDepartment._id;
-      
+
       this.editForm = this.formBuilder.group({
-          institution:[this.institutionValue, Validators.required],
-          department:[this.departmentValue, Validators.required]
+          institution2:[this.institutionValue, Validators.required],
+          department2:[this.departmentValue, Validators.required]
       });
       console.log(this.editForm.value);
     });
@@ -125,16 +127,20 @@ constructor(
     if (this.editForm.invalid) {
         return;
       }
-  this.request.updateDepartment(this.IdValue,this.editForm.value).subscribe((res : any) => {
+      const edata = {
+        institution: this.editForm.get("institution2").value,
+        department: this.editForm.get("department2").value
+      };
+  this.request.updateDepartment(this.IdValue,edata).subscribe((res : any) => {
     if (res.status == 'success') {
-      swal("Updated Sucessfully");     
+      swal("Updated Sucessfully");
       this.loadModal();
       this.viewData();
     }
-    else if (res.status == 'error') {       
+    else if (res.status == 'error') {
       this.setMessage(res.error);
-    }      
-   
+    }
+
   }, (error) => {
     console.log(error);
     this.setMessage(error);
@@ -143,7 +149,11 @@ constructor(
 
 // convenience getter for easy access to form fields
 get f() { return this.registerForm.controls; }
-      
+
+get f2() {
+  return this.editForm.controls;
+}
+
   async startScript() {
     await this.dynamicScriptLoader.load('dataTables.buttons', 'buttons.flash', 'jszip', 'pdfmake', 'vfs_fonts', 'pdfmake', 'buttons.html5', 'buttons.print', 'form.min').then(data => {
       this.loadData();

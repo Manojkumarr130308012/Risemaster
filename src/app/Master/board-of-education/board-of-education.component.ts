@@ -15,7 +15,7 @@ interface Board {
   _id: string;
   board: string;
 }
- 
+
 @Component({
   selector: 'app-board-of-education',
   templateUrl: './board-of-education.component.html',
@@ -26,6 +26,7 @@ export class BoardOfEducationComponent implements OnInit {
   submitted = false;
    public Id: any;
    public board: any;
+   public board2: any;
    editBoarddata;
    public boardValue: any;
    public IdValue: any;
@@ -33,6 +34,7 @@ export class BoardOfEducationComponent implements OnInit {
   editForm: FormGroup;
   message: any;
   boards1: Board[] = [];
+
   constructor(private formBuilder: FormBuilder,
     private dynamicScriptLoader: DynamicScriptLoaderService,
     private request: RequestService,
@@ -41,9 +43,10 @@ export class BoardOfEducationComponent implements OnInit {
       this.registerForm = this.formBuilder.group({
         board:['', Validators.required],
     });
+
     //Edit Form Group
     this.editForm = this.formBuilder.group({
-      board:['', Validators.required],
+      board2:['', Validators.required],
   });
   this.fetchBoards();
 }
@@ -59,39 +62,41 @@ export class BoardOfEducationComponent implements OnInit {
       public setMessage(message) {
         return this.message = message;
       }
-      
+
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
+  get f2() { return this.editForm.controls; }
+
   //Add form validation and function
   onAddSubmit() {
       this.submitted = true;
       if (this.registerForm.invalid) {
           return;
       }
-     this.request.addBoard(this.registerForm.value).subscribe((res: any) => {
+      this.request.addBoard(this.registerForm.value).subscribe((res: any) => {
       if (res.status == 'error') {
-        this.setMessage(res.error);
+        swal(res.error);
       }
       else if (res.status == 'success') {
-        
+
         swal("Added Sucessfully");
         this.viewData();
         this.loadModal();
       }
       }, (error) => {
-        this.setMessage(error);
+        swal(error);
       });
         console.log(this.registerForm.value);
   }
-  
+
   //To delete the data
   deleteBoard(id: any) {
     this.request.deleteBoard(id).subscribe(res => {
-      swal(" Deleted Successfully "); 
+      swal(" Deleted Successfully ");
       this.viewData();
     });
   }
-  
+
 //Edit Function
   onEdit(board) {
     this.Id = board._id;
@@ -102,7 +107,7 @@ export class BoardOfEducationComponent implements OnInit {
       this.IdValue = this.editBoarddata._id;
 
       this.editForm = this.formBuilder.group({
-        board:[this.boardValue, Validators.required],
+        board2:[this.boardValue, Validators.required],
     });
     // console.log(this.editForm.value);
     });
@@ -113,21 +118,26 @@ export class BoardOfEducationComponent implements OnInit {
     if (this.editForm.invalid) {
         return;
     }
-  
-  this.request.updateBoard(this.IdValue, this.editForm.value).subscribe((response: any) => {
+
+    const edata = {
+      board: this.editForm.get('board2').value,
+
+  }
+
+    this.request.updateBoard(this.IdValue, edata).subscribe((response: any) => {
     if (response.status == 'success') {
-      swal("Updated Sucessfully");       
-      
+      swal("Updated Sucessfully");
+
       this.viewData();
       this.loadModal();
     }
-    else if (response.status == 'error') {       
-      this.setMessage(response.error);
-    }      
-   
+    else if (response.status == 'error') {
+      swal(response.error);
+    }
+
   }, (error) => {
     console.log(error);
-    this.setMessage(error);
+    swal(error);
   });
 
       }
@@ -165,7 +175,7 @@ export class BoardOfEducationComponent implements OnInit {
           noDownload: false,
           headers: [
             'Board'
-            
+
           ],
       };
 
@@ -185,13 +195,13 @@ export class BoardOfEducationComponent implements OnInit {
         {title: 'Board of Education', dataKey: 'board'},
       ];
       const exportData: any = this.boards1.map(a => ({...a}));
-      
+
       exportData.map((value: any, key) => {
         delete exportData[key]._id;
         delete exportData[key].userId;
         delete exportData[key].__v;
       });
-      
+
       const doc = new jsPDF('p', 'pt');
       doc.autoTable(columns, exportData, {
         cellPadding: 10, // a number, array or object (see margin below)
@@ -208,7 +218,7 @@ export class BoardOfEducationComponent implements OnInit {
           valign: 'middle', // top, middle, bottom
           columnWidth: 0 // 'auto', 'wrap' or a number
       });
-      
+
       doc.save('Boards' + moment().unix() + '.pdf');
       }
   ngOnInit() {

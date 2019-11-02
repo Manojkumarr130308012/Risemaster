@@ -13,13 +13,18 @@ declare const swal: any;
   styleUrls: ['./course-program.component.scss']
 })
 export class CourseProgramComponent implements OnInit {
-   
+
   registerForm: FormGroup;
   editForm: FormGroup;
   submitted = false;
   public coursecategory: any;
   public courseprogram: any;
   public institution: any;
+
+  public coursecategory2: any;
+  public courseprogram2: any;
+  public institution2: any;
+
   private courseprograms: any;
   Id: any;
   IdValue: any;
@@ -30,7 +35,7 @@ export class CourseProgramComponent implements OnInit {
   institution_name: any;
   id: any;
   institutions;
-  coursecategories:{};
+  coursecategories: {};
   public message: string;
 
   constructor(
@@ -47,12 +52,12 @@ export class CourseProgramComponent implements OnInit {
     });
     // Edit Form
     this.editForm = this.formBuilder.group({
-      institution: ['', Validators.required],
-      coursecategory: ['', Validators.required],
-      courseprogram: ['', Validators.required]
+      institution2: ['', Validators.required],
+      coursecategory2: ['', Validators.required],
+      courseprogram2: ['', Validators.required]
     });
   }
-  
+
   public setMessage(message) {
     return this.message = message;
   }
@@ -69,9 +74,9 @@ export class CourseProgramComponent implements OnInit {
   }
   // Bind coursecategory data
   onInstitutionChange(Institution: string) {
-    console.log('institution',Institution)
-    //this.loadCourseCategory(Institution);
-     if (Institution) {
+    console.log('institution', Institution);
+    // this.loadCourseCategory(Institution);
+    if (Institution) {
        this.request.getCoursecategorybyIns(Institution).subscribe((response: any) => {
          console.log(response);
          this.coursecategories = response;
@@ -79,13 +84,13 @@ export class CourseProgramComponent implements OnInit {
          console.log(error);
        });
 
-     } else 
+     } else
 
        this.coursecategories = null;
     }
-  
 
- //Add form validation and function
+
+ // Add form validation and function
   onAddSubmit() {
     this.submitted = true;
     if (this.registerForm.invalid) {
@@ -94,11 +99,10 @@ export class CourseProgramComponent implements OnInit {
     this.registerForm.value;
     this.request.addCourseprogram(this.registerForm.value).subscribe((res: any) => {
       if (res.status == 'success') {
-        swal("Added Sucessfully");
-      this.loadModal();
-      this.viewData();
-      }
-      else if (res.status == 'error') {
+        swal('Added Sucessfully');
+        this.loadModal();
+        this.viewData();
+      } else if (res.status == 'error') {
         this.setMessage(res.error);
       }
     }, (error) => {
@@ -141,9 +145,9 @@ export class CourseProgramComponent implements OnInit {
       this.IdValue = this.editCourseprogram._id;
 
       this.editForm = this.formBuilder.group({
-        institution: [this.institutionValue, Validators.required],
-        coursecategory: [this.coursecategoryValue, Validators.required],
-        courseprogram: [this.courseprogramValue, Validators.required]
+        institution2: [this.institutionValue, Validators.required],
+        coursecategory2: [this.coursecategoryValue, Validators.required],
+        courseprogram2: [this.courseprogramValue, Validators.required]
       });
       console.log(this.editForm.value);
     });
@@ -154,16 +158,22 @@ export class CourseProgramComponent implements OnInit {
     if (this.editForm.invalid) {
       return;
     }
-    this.request.updateCourseprogram(this.IdValue, this.editForm.value).subscribe((res : any) => {
+    const edata = {
+      coursecategory: this.editForm.get("coursecategory2").value,
+      institution: this.editForm.get("institution2").value,
+      courseprogram: this.editForm.get("courseprogram2").value,
+
+    };
+
+    this.request.updateCourseprogram(this.IdValue, edata).subscribe((res: any) => {
       if (res.status == 'success') {
-        swal("Updated Sucessfully");     
+        swal('Updated Sucessfully');
         this.loadModal();
         this.viewData();
-      }
-      else if (res.status == 'error') {       
+      } else if (res.status == 'error') {
         this.setMessage(res.error);
-      }      
-     
+      }
+
     }, (error) => {
       console.log(error);
       this.setMessage(error);
@@ -172,6 +182,8 @@ export class CourseProgramComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
+  get f2() { return this.editForm.controls; }
+
 
   async startScript() {
     await this.dynamicScriptLoader.load('dataTables.buttons', 'buttons.flash', 'jszip', 'pdfmake', 'vfs_fonts', 'pdfmake', 'buttons.html5', 'buttons.print', 'form.min').then(data => {
@@ -189,13 +201,13 @@ export class CourseProgramComponent implements OnInit {
 
   loadModal() {
 
-    $('#addModal').modal('hide'); //or  $('#IDModal').modal('hide');
-    $('#addModal').on('hidden.bs.modal', function () {
+    $('#addModal').modal('hide'); // or  $('#IDModal').modal('hide');
+    $('#addModal').on('hidden.bs.modal', function() {
       $(this).find('form').trigger('reset');
     });
 
-    $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
-    $('#editModal').on('hidden.bs.modal', function () {
+    $('#editModal').modal('hide'); // or  $('#IDModal').modal('hide');
+    $('#editModal').on('hidden.bs.modal', function() {
       $(this).find('form').trigger('reset');
     });
   }

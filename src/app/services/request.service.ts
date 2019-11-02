@@ -250,7 +250,7 @@ export class RequestService {
     return this.http.put(this.url, body);
   }
 
-  
+
   fetchAdmissiontypeBy(id) {
     this.url = `${this.endPoint}/admission-type/fetchdata?id=` + id;
     return this.http.get(this.url);
@@ -429,11 +429,11 @@ export class RequestService {
 // Address Type
 public getAddressType() {
   this.url = `${this.endPoint}/addressType`;
-  return this.http.get(this.url);   
+  return this.http.get(this.url);
 }
 
 public addAddressType(newAddressType:any) {
-  this.url = `${this.endPoint}/addressType/add`;   
+  this.url = `${this.endPoint}/addressType/add`;
   return this.http.post(this.url,newAddressType);
 }
 
@@ -449,7 +449,7 @@ updateAddressType(id, body) {
 
 fetchAddressType() {
   this.url = `${this.endPoint}/addressType`;
-  return this.http.get(this.url); 
+  return this.http.get(this.url);
 }
 fetchAddressTypeById(id) {
   this.url = `${this.endPoint}/addressType/fetchdata?id=` + id;
@@ -459,11 +459,11 @@ fetchAddressTypeById(id) {
 // Course Type
 public getCourseType() {
   this.url = `${this.endPoint}/courseType/aggregation`;
-  return this.http.get(this.url);   
+  return this.http.get(this.url);
 }
 
 public addCourseType(newCourseType:any) {
-  this.url = `${this.endPoint}/courseType/add`;   
+  this.url = `${this.endPoint}/courseType/add`;
   return this.http.post(this.url,newCourseType);
 }
 
@@ -478,7 +478,7 @@ updateCourseType(id, body) {
 }
 fetchCourseType() {
   this.url = `${this.endPoint}/courseType`;
-  return this.http.get(this.url); 
+  return this.http.get(this.url);
 }
 fetchCourseTypeById(id) {
   this.url = `${this.endPoint}/courseType/fetchdata?id=` + id;
@@ -486,16 +486,16 @@ fetchCourseTypeById(id) {
 }
 getCoursetypebyQua(QualificationType) {
   this.url = `${this.endPoint}/courseType/fetchbyQua?qualificationType=` + QualificationType;
-      return this.http.get(this.url); 
+      return this.http.get(this.url);
 }
 
 // Degree
 public getDegree() {
   this.url = `${this.endPoint}/degree`;
-  return this.http.get(this.url);   
+  return this.http.get(this.url);
 }
 public addDegree(newDegree: { }) {
-  this.url = `${this.endPoint}/degree/add`;   
+  this.url = `${this.endPoint}/degree/add`;
   return this.http.post(this.url, newDegree);
 }
 public deleteDegree(id) {
@@ -508,7 +508,7 @@ updateDegree(id, body) {
 }
 fetchDegree() {
   this.url = `${this.endPoint}/degree`;
-  return this.http.get(this.url); 
+  return this.http.get(this.url);
 }
 fetchDegreeById(id) {
   this.url = `${this.endPoint}/degree/fetchdata?id=` + id;
@@ -518,10 +518,10 @@ fetchDegreeById(id) {
 // InstitutionType
 public getInstitutionType() {
   this.url = `${this.endPoint}/institutionType`;
-  return this.http.get(this.url);   
+  return this.http.get(this.url);
 }
 public addInstitutionType(newInstitution: { }) {
-  this.url = `${this.endPoint}/institutionType/add`;   
+  this.url = `${this.endPoint}/institutionType/add`;
   return this.http.post(this.url, newInstitution);
 }
 public deleteInstitutionType(id) {
@@ -534,7 +534,7 @@ updateInstitutionType(id, body) {
 }
 fetchInstitutionType() {
   this.url = `${this.endPoint}/institutionType`;
-  return this.http.get(this.url); 
+  return this.http.get(this.url);
 }
 fetchInstitutionTypeById(id) {
   this.url = `${this.endPoint}/institutionType/fetchdata?id=` + id;
@@ -544,10 +544,10 @@ fetchInstitutionTypeById(id) {
 // Medium
 public getMedium() {
   this.url = `${this.endPoint}/medium`;
-  return this.http.get(this.url);   
+  return this.http.get(this.url);
 }
 public addMedium(newMedium: { }) {
-  this.url = `${this.endPoint}/medium/add`;   
+  this.url = `${this.endPoint}/medium/add`;
   return this.http.post(this.url, newMedium);
 }
 public deleteMedium(id) {
@@ -560,7 +560,7 @@ updateMedium(id, body) {
 }
 fetchMedium() {
   this.url = `${this.endPoint}/medium`;
-  return this.http.get(this.url); 
+  return this.http.get(this.url);
 }
 fetchMediumById(id) {
   this.url = `${this.endPoint}/medium/fetchdata?id=` + id;
@@ -570,10 +570,10 @@ fetchMediumById(id) {
 // MotherTongue
 public getMotherTongue() {
   this.url = `${this.endPoint}/motherTongue`;
-  return this.http.get(this.url);   
+  return this.http.get(this.url);
 }
 public addMotherTongue(newMedium: { }) {
-  this.url = `${this.endPoint}/motherTongue/add`;   
+  this.url = `${this.endPoint}/motherTongue/add`;
   return this.http.post(this.url, newMedium);
 }
 public deleteMotherTongue(id) {
@@ -586,7 +586,7 @@ updateMotherTongue(id, body) {
 }
 fetchMotherTongue() {
   this.url = `${this.endPoint}/motherTongue`;
-  return this.http.get(this.url); 
+  return this.http.get(this.url);
 }
 fetchMotherTongueById(id) {
   this.url = `${this.endPoint}/motherTongue/fetchdata?id=` + id;
@@ -596,10 +596,10 @@ fetchMotherTongueById(id) {
 // PaymentMethod
 public getPaymentMethod() {
   this.url = `${this.endPoint}/paymentMethod`;
-  return this.http.get(this.url);   
+  return this.http.get(this.url);
 }
 public addPaymentMethod(newMedium: { }) {
-  this.url = `${this.endPoint}/paymentMethod/add`;   
+  this.url = `${this.endPoint}/paymentMethod/add`;
   return this.http.post(this.url, newMedium);
 }
 public deletePaymentMethod(id) {
@@ -612,7 +612,7 @@ updatePaymentMethod(id, body) {
 }
 fetchPaymentMethod() {
   this.url = `${this.endPoint}/paymentMethod`;
-  return this.http.get(this.url); 
+  return this.http.get(this.url);
 }
 fetchPaymentMethodById(id) {
   this.url = `${this.endPoint}/paymentMethod/fetchdata?id=` + id;
@@ -622,10 +622,10 @@ fetchPaymentMethodById(id) {
 // ReferralType
 public getReferralType() {
   this.url = `${this.endPoint}/referralType`;
-  return this.http.get(this.url);   
+  return this.http.get(this.url);
 }
 public addReferralType(newMedium: { }) {
-  this.url = `${this.endPoint}/referralType/add`;   
+  this.url = `${this.endPoint}/referralType/add`;
   return this.http.post(this.url, newMedium);
 }
 public deleteReferralType(id) {
@@ -638,7 +638,7 @@ updateReferralType(id, body) {
 }
 fetchReferralType() {
   this.url = `${this.endPoint}/referralType`;
-  return this.http.get(this.url); 
+  return this.http.get(this.url);
 }
 fetchReferralTypeById(id) {
   this.url = `${this.endPoint}/referralType/fetchdata?id=` + id;
@@ -648,10 +648,10 @@ fetchReferralTypeById(id) {
 // ScholarshipCategory
 public getScholarshipCategory() {
   this.url = `${this.endPoint}/scholarshipCategory`;
-  return this.http.get(this.url);   
+  return this.http.get(this.url);
 }
 public addScholarshipCategory(newMedium: { }) {
-  this.url = `${this.endPoint}/scholarshipCategory/add`;   
+  this.url = `${this.endPoint}/scholarshipCategory/add`;
   return this.http.post(this.url, newMedium);
 }
 public deleteScholarshipCategory(id) {
@@ -664,7 +664,7 @@ updateScholarshipCategory(id, body) {
 }
 fetchScholarshipCategory() {
   this.url = `${this.endPoint}/scholarshipCategory`;
-  return this.http.get(this.url); 
+  return this.http.get(this.url);
 }
 fetchScholarshipCategoryById(id) {
   this.url = `${this.endPoint}/scholarshipCategory/fetchdata?id=` + id;
@@ -674,10 +674,10 @@ fetchScholarshipCategoryById(id) {
 // Bank
 public getBank() {
   this.url = `${this.endPoint}/bank/aggregation`;
-  return this.http.get(this.url);   
+  return this.http.get(this.url);
 }
 public addBank(newDegree: { }) {
-  this.url = `${this.endPoint}/bank/add`;   
+  this.url = `${this.endPoint}/bank/add`;
   return this.http.post(this.url, newDegree);
 }
 public deleteBank(id) {
@@ -690,7 +690,7 @@ updateBank(id, body) {
 }
 fetchBank() {
   this.url = `${this.endPoint}/bank`;
-  return this.http.get(this.url); 
+  return this.http.get(this.url);
 }
 fetchBankById(id) {
   this.url = `${this.endPoint}/bank/fetchdata?id=` + id;
@@ -700,27 +700,27 @@ fetchBankById(id) {
 // staff-type
   public getStafftype() {
     this.url = `${this.endPoint}/staff-type`;
-    return this.http.get(this.url);   
+    return this.http.get(this.url);
   }
-  
+
   public addStafftype(newStaffType: { }) {
-    this.url = `${this.endPoint}/staff-type/add`;   
+    this.url = `${this.endPoint}/staff-type/add`;
     return this.http.post(this.url, newStaffType);
   }
-  
+
   public deleteStafftype(id) {
     this.url = `${this.endPoint}/staff-type/delete?id=`+ id;
     return this.http.delete(this.url);
   }
-  
+
   updateStafftype(id, body) {
     this.url = `${this.endPoint}/staff-type/update?id=${id}`;
     return this.http.put(this.url, body);
   }
-  
+
   fetchStafftype() {
     this.url = `${this.endPoint}/staff-type/`;
-    return this.http.get(this.url); 
+    return this.http.get(this.url);
   }
   fetchStafftypeBy(id) {
     this.url = `${this.endPoint}/staff-type/fetchdata?id=` + id;
@@ -730,27 +730,27 @@ fetchBankById(id) {
 // staff-role
   public getStaffrole() {
     this.url = `${this.endPoint}/staff-role`;
-    return this.http.get(this.url);   
+    return this.http.get(this.url);
   }
-  
+
   public addStaffrole(newStaffRole: { }) {
-    this.url = `${this.endPoint}/staff-role/add`;   
+    this.url = `${this.endPoint}/staff-role/add`;
     return this.http.post(this.url, newStaffRole);
   }
-  
+
   public deleteStaffrole(id) {
     this.url = `${this.endPoint}/staff-role/delete?id=`+ id;
     return this.http.delete(this.url);
   }
-  
+
   updateStaffrole(id, body) {
     this.url = `${this.endPoint}/staff-role/update?id=${id}`;
     return this.http.put(this.url, body);
   }
-  
+
   fetchStaffrole() {
     this.url = `${this.endPoint}/staff-role/`;
-    return this.http.get(this.url); 
+    return this.http.get(this.url);
   }
   fetchStaffroleBy(id) {
     this.url = `${this.endPoint}/staff-role/fetchdata?id=` + id;
@@ -760,27 +760,27 @@ fetchBankById(id) {
   // pay-type
   public getPaytype() {
     this.url = `${this.endPoint}/pay-type`;
-    return this.http.get(this.url);   
+    return this.http.get(this.url);
   }
-  
+
   public addPaytype(newPayType: { }) {
-    this.url = `${this.endPoint}/pay-type/add`;   
+    this.url = `${this.endPoint}/pay-type/add`;
     return this.http.post(this.url, newPayType);
   }
-  
+
   public deletePaytype(id) {
     this.url = `${this.endPoint}/pay-type/delete?id=`+ id;
     return this.http.delete(this.url);
   }
-  
+
   updatePaytype(id, body) {
     this.url = `${this.endPoint}/pay-type/update?id=${id}`;
     return this.http.put(this.url, body);
   }
-  
+
   fetchPaytype() {
     this.url = `${this.endPoint}/pay-type/`;
-    return this.http.get(this.url); 
+    return this.http.get(this.url);
   }
   fetchPaytypeBy(id) {
     this.url = `${this.endPoint}/pay-type/fetchdata?id=` + id;
@@ -790,27 +790,27 @@ fetchBankById(id) {
   // salutation
   public getSalutation() {
     this.url = `${this.endPoint}/salutation`;
-    return this.http.get(this.url);   
+    return this.http.get(this.url);
   }
-  
+
   public addSalutation(newSalutation: { salutation: any; }) {
-    this.url = `${this.endPoint}/salutation/add`;   
+    this.url = `${this.endPoint}/salutation/add`;
     return this.http.post(this.url, newSalutation);
   }
-  
+
   public deleteSalutation(id) {
     this.url = `${this.endPoint}/salutation/delete?id=`+ id;
     return this.http.delete(this.url);
   }
-  
+
   updateSalutation(id, body) {
     this.url = `${this.endPoint}/salutation/update?id=${id}`;
     return this.http.put(this.url, body);
   }
-  
+
   fetchSalutation() {
     this.url = `${this.endPoint}/salutation/`;
-    return this.http.get(this.url); 
+    return this.http.get(this.url);
   }
   fetchSalutationBy(id) {
     this.url = `${this.endPoint}/salutation/fetchdata?id=` + id;
@@ -820,27 +820,27 @@ fetchBankById(id) {
   // gender
   public getGender() {
     this.url = `${this.endPoint}/gender`;
-    return this.http.get(this.url);   
+    return this.http.get(this.url);
   }
-  
+
   public addGender(newGender: { gender: any; }) {
-    this.url = `${this.endPoint}/gender/add`;   
+    this.url = `${this.endPoint}/gender/add`;
     return this.http.post(this.url, newGender);
   }
-  
+
   public deleteGender(id) {
     this.url = `${this.endPoint}/gender/delete?id=`+ id;
     return this.http.delete(this.url);
   }
-  
+
   updateGender(id, body) {
     this.url = `${this.endPoint}/gender/update?id=${id}`;
     return this.http.put(this.url, body);
   }
-  
+
   fetchGender() {
     this.url = `${this.endPoint}/gender/`;
-    return this.http.get(this.url); 
+    return this.http.get(this.url);
   }
   fetchGenderBy(id) {
     this.url = `${this.endPoint}/gender/fetchdata?id=` + id;
@@ -850,27 +850,27 @@ fetchBankById(id) {
     // marital-status
     public getMaritalstatus() {
       this.url = `${this.endPoint}/marital-status`;
-      return this.http.get(this.url);   
+      return this.http.get(this.url);
     }
-    
+
     public addMaritalstatus(newMaritalstatus: { maritalstatus: any; }) {
-      this.url = `${this.endPoint}/marital-status/add`;   
+      this.url = `${this.endPoint}/marital-status/add`;
       return this.http.post(this.url, newMaritalstatus);
     }
-    
+
     public deleteMaritalstatus(id) {
       this.url = `${this.endPoint}/marital-status/delete?id=`+ id;
       return this.http.delete(this.url);
     }
-    
+
     updateMaritalstatus(id, body) {
       this.url = `${this.endPoint}/marital-status/update?id=${id}`;
       return this.http.put(this.url, body);
     }
-    
+
     fetchMaritalstatus() {
       this.url = `${this.endPoint}/marital-status/`;
-      return this.http.get(this.url); 
+      return this.http.get(this.url);
     }
     fetchMaritalstatusBy(id) {
       this.url = `${this.endPoint}/marital-status/fetchdata?id=` + id;
@@ -880,14 +880,14 @@ fetchBankById(id) {
      // department
   public getDepartment() {
     this.url = `${this.endPoint}/department/aggregation`;
-    return this.http.get(this.url);   
+    return this.http.get(this.url);
   }
-  
+
   public addDepartment(newDepartment: { institution: any; department: any; }) {
-    this.url = `${this.endPoint}/department/add`;   
+    this.url = `${this.endPoint}/department/add`;
     return this.http.post(this.url, newDepartment);
   }
-  
+
   public deleteDepartment(id) {
     this.url = `${this.endPoint}/department/delete?id=`+ id;
     return this.http.delete(this.url);
@@ -897,45 +897,45 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/department/fetchbyIns/?institution=` + institution;
     return this.http.get(this.url);
   }
-  
+
   updateDepartment(id, body) {
     this.url = `${this.endPoint}/department/update?id=${id}`;
     return this.http.put(this.url, body);
   }
-  
+
   fetchDepartment() {
     this.url = `${this.endPoint}/department/`;
-    return this.http.get(this.url); 
+    return this.http.get(this.url);
   }
   fetchDepartmentBy(id) {
     this.url = `${this.endPoint}/department/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
-  
+
      // fee-type
   public getFeetype() {
     this.url = `${this.endPoint}/fee-type`;
-    return this.http.get(this.url);   
+    return this.http.get(this.url);
   }
-  
+
   public addFeetype(newFeeType: { }) {
-    this.url = `${this.endPoint}/fee-type/add`;   
+    this.url = `${this.endPoint}/fee-type/add`;
     return this.http.post(this.url, newFeeType);
   }
-  
+
   public deleteFeetype(id) {
     this.url = `${this.endPoint}/fee-type/delete?id=`+ id;
     return this.http.delete(this.url);
   }
-  
+
   updateFeetype(id, body) {
     this.url = `${this.endPoint}/fee-type/update?id=${id}`;
     return this.http.put(this.url, body);
   }
-  
+
   fetchFeetype() {
     this.url = `${this.endPoint}/fee-type/`;
-    return this.http.get(this.url); 
+    return this.http.get(this.url);
   }
   fetchFeetypeBy(id) {
     this.url = `${this.endPoint}/fee-type/fetchdata?id=` + id;
@@ -945,27 +945,27 @@ fetchBankById(id) {
      // mode-of-enquiry
      public getModeofenquiry() {
       this.url = `${this.endPoint}/mode-of-enquiry`;
-      return this.http.get(this.url);   
+      return this.http.get(this.url);
     }
-    
+
     public addModeofenquiry(newModeOfEnquiry: { }) {
-      this.url = `${this.endPoint}/mode-of-enquiry/add`;   
+      this.url = `${this.endPoint}/mode-of-enquiry/add`;
       return this.http.post(this.url, newModeOfEnquiry);
     }
-    
+
     public deleteModeofenquiry(id) {
       this.url = `${this.endPoint}/mode-of-enquiry/delete?id=`+ id;
       return this.http.delete(this.url);
     }
-    
+
     updateModeofenquiry(id, body) {
       this.url = `${this.endPoint}/mode-of-enquiry/update?id=${id}`;
       return this.http.put(this.url, body);
     }
-    
+
     fetchModeofenquiry() {
       this.url = `${this.endPoint}/mode-of-enquiry/`;
-      return this.http.get(this.url); 
+      return this.http.get(this.url);
     }
     fetchModeofenquiryBy(id) {
       this.url = `${this.endPoint}/mode-of-enquiry/fetchdata?id=` + id;
@@ -974,121 +974,56 @@ fetchBankById(id) {
     // Qualification-Type
     public getQualificationType() {
       this.url = `${this.endPoint}/qualification-type`;
-      return this.http.get(this.url);   
+      return this.http.get(this.url);
     }
-    
+
     public addQualificationType(newModeOfEnquiry: { }) {
-      this.url = `${this.endPoint}/qualification-type/add`;   
+      this.url = `${this.endPoint}/qualification-type/add`;
       return this.http.post(this.url, newModeOfEnquiry);
     }
-    
+
     public deleteQualificationType(id) {
       this.url = `${this.endPoint}/qualification-type/delete?id=`+ id;
       return this.http.delete(this.url);
     }
-    
+
     updateQualificationType(id, body) {
       this.url = `${this.endPoint}/qualification-type/update?id=${id}`;
       return this.http.put(this.url, body);
     }
-    
+
     fetchQualificationType() {
       this.url = `${this.endPoint}/qualification-type/`;
-      return this.http.get(this.url); 
+      return this.http.get(this.url);
     }
     fetchQualificationTypeById(id) {
       this.url = `${this.endPoint}/qualification-type/fetchdata?id=` + id;
       return this.http.get(this.url);
     }
-
-    // CandiadateEnquiry - BasicDetails
-    public getBasicDetails() {
-      this.url = `${this.endPoint}/ce-basicdetails/`;
-      return this.http.get(this.url);   
-    }
-    
-    public addBasicDetails(newCandidateDetails) {
-      this.url = `${this.endPoint}/ce-basicdetails/add`;   
-      return this.http.post(this.url, newCandidateDetails);
-    }
-    
-    public deleteBasicDetails(id) {
-      this.url = `${this.endPoint}/ce-basicdetails/delete?id=`+ id;
-      return this.http.delete(this.url);
-    }
-    
-    updateBasicDetails(id, body) {
-      this.url = `${this.endPoint}/ce-basicdetails/update?id=${id}`;
-      return this.http.put(this.url, body);
-    }
-    
-    fetchBasicDetails() {
-      this.url = `${this.endPoint}/ce-basicdetails/`;
-      return this.http.get(this.url); 
-    }
-    fetchBasicDetailsById(id) {
-      this.url = `${this.endPoint}/ce-basicdetails/fetchdata?id=` + id;
-      return this.http.get(this.url);
-    }
-
-    // CandiadateEnquiry - AddressDetails
-    public getAddressDetails() {
-      this.url = `${this.endPoint}/ce-addressdetails/aggregation`;
-      return this.http.get(this.url);   
-    }
-    
-    public addAddressDetails(newadressdetails: { }) {
-      this.url = `${this.endPoint}/ce-addressdetails/add`;   
-      return this.http.post(this.url, newadressdetails);
-    }
-    
-    public deleteAddressDetails(id) {
-      this.url = `${this.endPoint}/ce-addressdetails/delete?id=`+ id;
-      return this.http.delete(this.url);
-    }
-    
-    updateAddressDetails(id, body) {
-      this.url = `${this.endPoint}/ce-addressdetails/update?id=${id}`;
-      return this.http.put(this.url, body);
-    }
-    
-    fetchAddressDetails() {
-      this.url = `${this.endPoint}/ce-addressdetails/`;
-      return this.http.get(this.url); 
-    }
-    fetchAddressDetailsById(id) {
-      this.url = `${this.endPoint}/ce-addressdetails/fetchdata?id=` + id;
-      return this.http.get(this.url);
-    }
-    loadAddressType() {
-      this.url = `${this.endPoint}/addressType/`;
-      return this.http.get(this.url);
-    }
-
      // driver
   public getDriver() {
     this.url = `${this.endPoint}/driver/aggregation`;
-    return this.http.get(this.url);   
+    return this.http.get(this.url);
   }
-  
+
   public addDriver(newDriver: { }) {
-    this.url = `${this.endPoint}/driver/add`;   
+    this.url = `${this.endPoint}/driver/add`;
     return this.http.post(this.url, newDriver);
   }
-  
+
   public deleteDriver(id) {
     this.url = `${this.endPoint}/driver/delete?id=`+ id;
     return this.http.delete(this.url);
   }
-  
+
   updateDriver(id, body) {
     this.url = `${this.endPoint}/driver/update?id=${id}`;
     return this.http.put(this.url, body);
   }
-  
+
   fetchDriver() {
     this.url = `${this.endPoint}/driver/`;
-    return this.http.get(this.url); 
+    return this.http.get(this.url);
   }
   fetchDriverBy(id) {
     this.url = `${this.endPoint}/driver/fetchdata?id=` + id;
@@ -1096,33 +1031,33 @@ fetchBankById(id) {
   }
   loadDriver() {
     this.url = `${this.endPoint}/vehicle/`;
-    return this.http.get(this.url); 
+    return this.http.get(this.url);
   }
 
    // Vehicle
    public getVehicle() {
     this.url = `${this.endPoint}/vehicle/aggregation`;
-    return this.http.get(this.url);   
+    return this.http.get(this.url);
   }
-  
+
   public addVehicle(newVehicle) {
-    this.url = `${this.endPoint}/vehicle/add`;   
+    this.url = `${this.endPoint}/vehicle/add`;
     return this.http.post(this.url, newVehicle);
   }
-  
+
   public deleteVehicle(id) {
     this.url = `${this.endPoint}/vehicle/delete?id=`+ id;
     return this.http.delete(this.url);
   }
-  
+
   updateVehicle(id, body) {
     this.url = `${this.endPoint}/vehicle/update?id=${id}`;
     return this.http.put(this.url, body);
   }
-  
+
   fetchVehicle() {
     this.url = `${this.endPoint}/vehicle/`;
-    return this.http.get(this.url); 
+    return this.http.get(this.url);
   }
   fetchVehicleBy(id) {
     this.url = `${this.endPoint}/vehicle/fetchdata?id=` + id;
@@ -1130,63 +1065,63 @@ fetchBankById(id) {
   }
   loadVehicle() {
     this.url = `${this.endPoint}/institution/`;
-    return this.http.get(this.url); 
+    return this.http.get(this.url);
     }
 
     // vehicle expenses
     public getExpense() {
       this.url = `${this.endPoint}/vehicle-expenses`;
-      return this.http.get(this.url);   
+      return this.http.get(this.url);
     }
-    
+
     public addExpense(newExpense: { expense: any; }) {
-      this.url = `${this.endPoint}/vehicle-expenses/add`;   
+      this.url = `${this.endPoint}/vehicle-expenses/add`;
       return this.http.post(this.url, newExpense);
     }
-    
+
     public deleteExpense(id) {
       this.url = `${this.endPoint}/vehicle-expenses/delete?id=`+ id;
       return this.http.delete(this.url);
     }
-    
+
     updateExpense(id, body) {
       this.url = `${this.endPoint}/vehicle-expenses/update?id=${id}`;
       return this.http.put(this.url, body);
     }
-    
+
     fetchExpense() {
       this.url = `${this.endPoint}/vehicle-expenses/`;
-      return this.http.get(this.url); 
+      return this.http.get(this.url);
     }
     fetchExpenseBy(id) {
       this.url = `${this.endPoint}/vehicle-expenses/fetchdata?id=` + id;
       return this.http.get(this.url);
     }
-  
+
   // Filling Stations
   public getStation() {
     this.url = `${this.endPoint}/filling-stations`;
-    return this.http.get(this.url);   
+    return this.http.get(this.url);
   }
-  
+
   public addStation(newStation: { }) {
-    this.url = `${this.endPoint}/filling-stations/add`;   
+    this.url = `${this.endPoint}/filling-stations/add`;
     return this.http.post(this.url, newStation);
   }
-  
+
   public deleteStation(id) {
     this.url = `${this.endPoint}/filling-stations/delete?id=`+ id;
     return this.http.delete(this.url);
   }
-  
+
   updateStation(id, body) {
     this.url = `${this.endPoint}/filling-stations/update?id=${id}`;
     return this.http.put(this.url, body);
   }
-  
+
   fetchStation() {
     this.url = `${this.endPoint}/filling-stations/`;
-    return this.http.get(this.url); 
+    return this.http.get(this.url);
   }
   fetchStationBy(id) {
     this.url = `${this.endPoint}/filling-stations/fetchdata?id=` + id;
@@ -1196,32 +1131,32 @@ fetchBankById(id) {
   // stage-details
   public getStage() {
     this.url = `${this.endPoint}/stage-details/`;
-    return this.http.get(this.url);   
+    return this.http.get(this.url);
   }
 
   public getStagebyId(IdValue) {
     this.url = `${this.endPoint}/stage-details/fetchbyVehicleId?IdValue=` + IdValue;
     return this.http.get(this.url);
   }
-  
+
   public addStageDetails(newStage) {
-    this.url = `${this.endPoint}/stage-details/add`;   
+    this.url = `${this.endPoint}/stage-details/add`;
     return this.http.post(this.url, newStage);
   }
-  
+
   public deleteStage(id) {
     this.url = `${this.endPoint}/stage-details/delete?id=`+ id;
     return this.http.delete(this.url);
   }
-  
+
   updateStage(id, body) {
     this.url = `${this.endPoint}/stage-details/update?id=${id}`;
     return this.http.put(this.url, body);
   }
-  
+
   fetchStage() {
     this.url = `${this.endPoint}/stage-details/`;
-    return this.http.get(this.url); 
+    return this.http.get(this.url);
   }
   fetchStageBy(id) {
     this.url = `${this.endPoint}/stage-details/fetchdata?id=` + id;
@@ -1231,29 +1166,29 @@ fetchBankById(id) {
   // staff profile
   public getStaffProfile() {
     this.url = `${this.endPoint}/staff-profile/aggregation`;
-    return this.http.get(this.url);   
+    return this.http.get(this.url);
   }
-  
+
   public getStaffProfileByDep(department) {
     this.url = `${this.endPoint}/staff-profile/fetchbyDepartment?department=` + department;
-    return this.http.get(this.url);   
+    return this.http.get(this.url);
   }
 
   public addSaffProfile(newStaffProfile) {
-    this.url = `${this.endPoint}/staff-profile/add`;   
+    this.url = `${this.endPoint}/staff-profile/add`;
     return this.http.post(this.url, newStaffProfile);
   }
-  
+
   fetchSaffProfile() {
     this.url = `${this.endPoint}/staff-profile/`;
-    return this.http.get(this.url); 
+    return this.http.get(this.url);
   }
-  
+
 
   // staff details
   public getStaffDetails() {
     this.url = `${this.endPoint}/staff-profile/aggregation`;
-    return this.http.get(this.url);   
+    return this.http.get(this.url);
   }
 
   public getStaffProfilebyIdValue(id) {
@@ -1275,27 +1210,27 @@ fetchBankById(id) {
 
   public getStaffContactById(id) {
     this.url = `${this.endPoint}/staffContact/fetchcontact?id=` + id;
-    return this.http.get(this.url);   
+    return this.http.get(this.url);
   }
-  
+
   public addStaffContact(newstaffContact) {
-    this.url = `${this.endPoint}/staffContact/add`;   
+    this.url = `${this.endPoint}/staffContact/add`;
     return this.http.post(this.url,newstaffContact);
   }
-  
+
   public deleteStaffContact(id) {
     this.url = `${this.endPoint}/staffContact/delete?id=`+ id;
     return this.http.delete(this.url);
   }
-  
+
   updateStaffContact(id, body) {
     this.url = `${this.endPoint}/staffContact/update?id=${id}`;
     return this.http.put(this.url, body);
   }
-  
+
   fetchStaffContact() {
     this.url = `${this.endPoint}/staffContact`;
-    return this.http.get(this.url); 
+    return this.http.get(this.url);
   }
   fetchStaffContactById(id) {
     this.url = `${this.endPoint}/staffContact/fetchdata?id=` + id;
@@ -1306,27 +1241,27 @@ fetchBankById(id) {
 
   public getStaffIdentityById(id) {
     this.url = `${this.endPoint}/staffIdentity/fetchidentity?id=` + id;
-    return this.http.get(this.url);   
+    return this.http.get(this.url);
   }
-  
+
   public addStaffIdentity(newstaffIdentity) {
-    this.url = `${this.endPoint}/staffIdentity/add`;   
+    this.url = `${this.endPoint}/staffIdentity/add`;
     return this.http.post(this.url,newstaffIdentity);
   }
-  
+
   public deleteStaffIdentity(id) {
     this.url = `${this.endPoint}/staffIdentity/delete?id=`+ id;
     return this.http.delete(this.url);
   }
-  
+
   updateStaffIdentity(id, body) {
     this.url = `${this.endPoint}/staffIdentity/update?id=${id}`;
     return this.http.put(this.url, body);
   }
-  
+
   fetchStaffIdentity() {
     this.url = `${this.endPoint}/staffIdentity`;
-    return this.http.get(this.url); 
+    return this.http.get(this.url);
   }
   fetchStaffIdentityById(id) {
     this.url = `${this.endPoint}/staffIdentity/fetchdata?id=` + id;
@@ -1351,27 +1286,27 @@ fetchBankById(id) {
 
   public getStaffExperienceById(id) {
     this.url = `${this.endPoint}/staffExperience/fetchexperience?id=` + id;
-    return this.http.get(this.url);   
+    return this.http.get(this.url);
   }
-  
+
   public addStaffExperience(newstaffExperience) {
-    this.url = `${this.endPoint}/staffExperience/add`;   
+    this.url = `${this.endPoint}/staffExperience/add`;
     return this.http.post(this.url,newstaffExperience);
   }
-  
+
   public deleteStaffExperience(id) {
     this.url = `${this.endPoint}/staffExperience/delete?id=`+ id;
     return this.http.delete(this.url);
   }
-  
+
   updateStaffExperience(id, body) {
     this.url = `${this.endPoint}/staffExperience/update?id=${id}`;
     return this.http.put(this.url, body);
   }
-  
+
   fetchStaffExperience() {
     this.url = `${this.endPoint}/staffExperience`;
-    return this.http.get(this.url); 
+    return this.http.get(this.url);
   }
   fetchStaffExperienceById(id) {
     this.url = `${this.endPoint}/staffExperience/fetchdata?id=` + id;
@@ -1382,27 +1317,27 @@ fetchBankById(id) {
 
   public getStaffEducationById(id) {
     this.url = `${this.endPoint}/staffEducation/fetcheducation?id=` + id;
-    return this.http.get(this.url);   
+    return this.http.get(this.url);
   }
-  
+
   public addStaffEducation(newstaffEducation) {
-    this.url = `${this.endPoint}/staffEducation/add`;   
+    this.url = `${this.endPoint}/staffEducation/add`;
     return this.http.post(this.url,newstaffEducation);
   }
-  
+
   public deleteStaffEducation(id) {
     this.url = `${this.endPoint}/staffEducation/delete?id=`+ id;
     return this.http.delete(this.url);
   }
-  
+
   updateStaffEducation(id, body) {
     this.url = `${this.endPoint}/staffEducation/update?id=${id}`;
     return this.http.put(this.url, body);
   }
-  
+
   fetchStaffEducation() {
     this.url = `${this.endPoint}/staffEducation`;
-    return this.http.get(this.url); 
+    return this.http.get(this.url);
   }
   fetchStaffEducationById(id) {
     this.url = `${this.endPoint}/staffEducation/fetchdata?id=` + id;
@@ -1413,27 +1348,27 @@ fetchBankById(id) {
 
   public getStaffCourseById(id) {
     this.url = `${this.endPoint}/staffCourse/fetchcourse?id=` + id;
-    return this.http.get(this.url);   
+    return this.http.get(this.url);
   }
-  
+
   public addStaffCourse(newstaffCourse) {
-    this.url = `${this.endPoint}/staffCourse/add`;   
+    this.url = `${this.endPoint}/staffCourse/add`;
     return this.http.post(this.url,newstaffCourse);
   }
-  
+
   public deleteStaffCourse(id) {
     this.url = `${this.endPoint}/staffCourse/delete?id=`+ id;
     return this.http.delete(this.url);
   }
-  
+
   updateStaffCourse(id, body) {
     this.url = `${this.endPoint}/staffCourse/update?id=${id}`;
     return this.http.put(this.url, body);
   }
-  
+
   fetchStaffCourse() {
     this.url = `${this.endPoint}/staffCourse`;
-    return this.http.get(this.url); 
+    return this.http.get(this.url);
   }
   fetchStaffCourseById(id) {
     this.url = `${this.endPoint}/staffCourse/fetchdata?id=` + id;
@@ -1444,27 +1379,27 @@ fetchBankById(id) {
 
   public getExpensesEntry() {
     this.url = `${this.endPoint}/expenses-entry/aggregation`;
-    return this.http.get(this.url);   
+    return this.http.get(this.url);
   }
-  
+
   public addExpensesEntry(newExpenses) {
-    this.url = `${this.endPoint}/expenses-entry/add`;   
+    this.url = `${this.endPoint}/expenses-entry/add`;
     return this.http.post(this.url,newExpenses);
   }
-  
+
   public deleteExpensesEntry(id) {
     this.url = `${this.endPoint}/expenses-entry/delete?id=`+ id;
     return this.http.delete(this.url);
   }
-  
+
   updateExpensesEntry(id, body) {
     this.url = `${this.endPoint}/expenses-entry/update?id=${id}`;
     return this.http.put(this.url, body);
   }
-  
+
   fetchExpensesEntry() {
     this.url = `${this.endPoint}/expenses-entry`;
-    return this.http.get(this.url); 
+    return this.http.get(this.url);
   }
   fetchExpensesEntryById(id) {
     this.url = `${this.endPoint}/expenses-entry/fetchdata?id=` + id;
@@ -1479,21 +1414,21 @@ fetchBankById(id) {
 
   public getFuelEntry() {
     this.url = `${this.endPoint}/fuel-entry/aggregation`;
-    return this.http.get(this.url);   
+    return this.http.get(this.url);
   }
 
   public getvehicleFuelReport(VehicleNo) {
     this.url = `${this.endPoint}/fuel-entry/fetchFuelReportbyVehicle?fuelVehicleNo=` + VehicleNo;
-    return this.http.get(this.url);   
+    return this.http.get(this.url);
   }
 
   public getRecentOpeningKms(VehicleNo) {
     this.url = `${this.endPoint}/fuel-entry/fetchOpenKMSbyVehicle?vehicleno=` + VehicleNo;
     return this.http.get(this.url);
   }
-  
+
   public addFuelEntry(newFuel) {
-    this.url = `${this.endPoint}/fuel-entry/add`;   
+    this.url = `${this.endPoint}/fuel-entry/add`;
     return this.http.post(this.url,newFuel);
   }
   public fetchFuelReport(VehicleNo) {
@@ -1505,24 +1440,234 @@ fetchBankById(id) {
     console.log('service',FuelReportdate);
     this.url = `${this.endPoint}/fuel-entry/fetchFuelReportbyDate`;
     return this.http.post(this.url,FuelReportdate);
-  }  
-    
+  }
+
   public deleteFuelEntry(id) {
     this.url = `${this.endPoint}/fuel-entry/delete?id=`+ id;
     return this.http.delete(this.url);
   }
-  
+
   updateFuelEntry(id, body) {
     this.url = `${this.endPoint}/fuel-entry/update?id=${id}`;
     return this.http.put(this.url, body);
   }
-  
+
   fetchFuelEntry() {
     this.url = `${this.endPoint}/fuel-entry`;
-    return this.http.get(this.url); 
+    return this.http.get(this.url);
   }
   fetchFuelEntryById(id) {
     this.url = `${this.endPoint}/fuel-entry/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
+
+  // CandiadateEnquiry - BasicDetails
+  public getBasicDetails() {
+    this.url = `${this.endPoint}/ce-basicdetails/aggregation`;
+    return this.http.get(this.url);
+  }
+
+  public addBasicDetails(newCandidateDetails) {
+    this.url = `${this.endPoint}/ce-basicdetails/add`;
+    return this.http.post(this.url, newCandidateDetails);
+  }
+
+  public deleteBasicDetails(id) {
+    this.url = `${this.endPoint}/ce-basicdetails/delete?id=` + id;
+    return this.http.delete(this.url);
+  }
+
+  updateBasicDetails(id, body) {
+    this.url = `${this.endPoint}/ce-basicdetails/update?id=${id}`;
+    return this.http.put(this.url, body);
+  }
+
+  fetchBasicDetails() {
+    this.url = `${this.endPoint}/ce-basicdetails/`;
+    return this.http.get(this.url);
+  }
+  fetchBasicDetailsById(id) {
+    this.url = `${this.endPoint}/ce-basicdetails/fetchdata?id=` + id;
+    return this.http.get(this.url);
+  }
+
+  // CandiadateEnquiry - AddressDetails
+  public getAddressDetails() {
+    this.url = `${this.endPoint}/ce-addressdetails/aggregation`;
+    return this.http.get(this.url);
+  }
+
+  public addAddressDetails(newadressdetails: {}) {
+    this.url = `${this.endPoint}/ce-addressdetails/add`;
+    return this.http.post(this.url, newadressdetails);
+  }
+
+  public deleteAddressDetails(id) {
+    this.url = `${this.endPoint}/ce-addressdetails/delete?id=` + id;
+    return this.http.delete(this.url);
+  }
+
+  updateAddressDetails(id, body) {
+    this.url = `${this.endPoint}/ce-addressdetails/update?id=${id}`;
+    return this.http.put(this.url, body);
+  }
+
+  fetchAddressDetails() {
+    this.url = `${this.endPoint}/ce-addressdetails/`;
+    return this.http.get(this.url);
+  }
+  fetchAddressDetailsById(id) {
+    this.url = `${this.endPoint}/ce-addressdetails/fetchdata?id=` + id;
+    return this.http.get(this.url);
+  }
+  getAddressDetailsById(canId) {
+    this.url = `${this.endPoint}/ce-addressdetails/fetchaddress?canId=` + canId;
+    return this.http.get(this.url);
+  }
+  // CandiadateEnquiry - PaymentDetails
+  public getPaymentDetails() {
+    this.url = `${this.endPoint}/ce-paymentdetails/aggregation`;
+    return this.http.get(this.url);
+  }
+
+  public addPaymentDetails(newadressdetails: {}) {
+    this.url = `${this.endPoint}/ce-paymentdetails/add`;
+    return this.http.post(this.url, newadressdetails);
+  }
+
+  public deletePaymentDetails(id) {
+    this.url = `${this.endPoint}/ce-paymentdetails/delete?id=` + id;
+    return this.http.delete(this.url);
+  }
+
+  updatePaymentDetails(id, body) {
+    this.url = `${this.endPoint}/ce-paymentdetails/update?id=${id}`;
+    return this.http.put(this.url, body);
+  }
+
+  fetchPaymentDetails() {
+    this.url = `${this.endPoint}/ce-paymentdetails/`;
+    return this.http.get(this.url);
+  }
+  fetchPaymentDetailsById(id) {
+    this.url = `${this.endPoint}/ce-paymentdetails/fetchdata?id=` + id;
+    return this.http.get(this.url);
+  }
+  getPaymentDetailsById(canId) {
+    this.url = `${this.endPoint}/ce-paymentdetails/fetchpayment?canId=` + canId;
+    return this.http.get(this.url);
+  }
+
+  // CandiadateEnquiry - Followups
+  public getFollowups() {
+    this.url = `${this.endPoint}/ce-followups/`;
+    return this.http.get(this.url);
+  }
+
+  public addFollowups(newfollowups: {}) {
+    this.url = `${this.endPoint}/ce-followups/add`;
+    return this.http.post(this.url, newfollowups);
+  }
+
+  public deleteFollowups(id) {
+    this.url = `${this.endPoint}/ce-followups/delete?id=` + id;
+    return this.http.delete(this.url);
+  }
+
+  updateFollowups(id, body) {
+    this.url = `${this.endPoint}/ce-followups/update?id=${id}`;
+    return this.http.put(this.url, body);
+  }
+
+  fetchFollowups() {
+    this.url = `${this.endPoint}/ce-followups/`;
+    return this.http.get(this.url);
+  }
+  fetchFollowupsById(id) {
+    this.url = `${this.endPoint}/ce-followups/fetchdata?id=` + id;
+    return this.http.get(this.url);
+  }
+  getFollowupsById(canId) {
+    this.url = `${this.endPoint}/ce-followups/fetchfollowups?canId=` + canId;
+    return this.http.get(this.url);
+  }
+  // CandiadateEnquiry - qualificationDetails
+  public getQualificationDetails() {
+    this.url = `${this.endPoint}/ce-qualificationdetails/aggregation`;
+    return this.http.get(this.url);
+  }
+
+  public addQualificationDetails(newadressdetails: {}) {
+    this.url = `${this.endPoint}/ce-qualificationdetails/add`;
+    return this.http.post(this.url, newadressdetails);
+  }
+
+  public deleteQualificationDetails(id) {
+    this.url = `${this.endPoint}/ce-qualificationdetails/delete?id=` + id;
+    return this.http.delete(this.url);
+  }
+
+  updateQualificationDetails(id, body) {
+    this.url = `${this.endPoint}/ce-qualificationdetails/update?id=${id}`;
+    return this.http.put(this.url, body);
+  }
+
+  fetchQualificationDetails() {
+    this.url = `${this.endPoint}/ce-qualificationdetails/`;
+    return this.http.get(this.url);
+  }
+  fetchQualificationById(id) {
+    this.url = `${this.endPoint}/ce-qualificationdetails/fetchdata?id=` + id;
+    return this.http.get(this.url);
+  }
+  getQualificationDetailsById(canId) {
+    this.url = `${this.endPoint}/ce-qualificationdetails/fetchqualification?canId=` + canId;
+    return this.http.get(this.url);
+  }
+  // CandiadateEnquiry - CourseProgram
+  public getCEcourseprogram() {
+    this.url = `${this.endPoint}/addCEcourseProgram/aggregation`;
+    return this.http.get(this.url);
+  }
+
+  public addCEcourseprogram(newadressdetails: {}) {
+    this.url = `${this.endPoint}/addCEcourseProgram/add`;
+    return this.http.post(this.url, newadressdetails);
+  }
+
+  public deleteCEcourseprogram(id) {
+    this.url = `${this.endPoint}/addCEcourseProgram/delete?id=` + id;
+    return this.http.delete(this.url);
+  }
+
+  updateCEcourseprogram(id, body) {
+    this.url = `${this.endPoint}/addCEcourseProgram/update?id=${id}`;
+    return this.http.put(this.url, body);
+  }
+
+  fetchCEcourseprogram() {
+    this.url = `${this.endPoint}/addCEcourseProgram/aggregation`;
+    return this.http.get(this.url);
+  }
+  getCEcourseprogramById(canId) {
+    this.url = `${this.endPoint}/addCEcourseProgram/fetchCECouPro?canId=` + canId;
+    return this.http.get(this.url);
+  }
+
+
+  public getAdmissionCategoryByIns(institution) {
+    this.url = `${this.endPoint}/admissionCategory/fetchbyIns/?institution=` + institution;
+    return this.http.get(this.url);
+  }
+
+
+public getCourseProbycourCat(coursecategory) {
+    this.url = `${this.endPoint}/course-program/fetchByCouCate/?coursecategory=` + coursecategory;
+    return this.http.get(this.url);
+  }
+  public getAdmissionTypeByIns(institution) {
+    this.url = `${this.endPoint}/admission-type/fetchbyIns/?institution=` + institution;
+    return this.http.get(this.url);
+    }
+
 }

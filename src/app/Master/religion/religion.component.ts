@@ -39,10 +39,10 @@ export class ReligionComponent implements OnInit {
     });
     // Edit Form
     this.editForm = this.formBuilder.group({
-      religion:['', Validators.required]
+      religion2:['', Validators.required]
     });
      }
-     
+
      public setMessage(message) {
       return this.message = message;
     }
@@ -81,24 +81,24 @@ export class ReligionComponent implements OnInit {
 
   // To deleted religion
   deleteReligion(id: any) {
-    this.request.deleteReligion(id).subscribe(res => {         
+    this.request.deleteReligion(id).subscribe(res => {
     swal("Deleted Sucessfully");
     this.viewData();
-    
+
     });
   }
 
   // To edit religion
   onEdit(religion){
     this.Id=religion._id;
-    this.request.fetchReligionBy(this.Id).subscribe((response) => {     
-      this.editReligion=response[0];     
+    this.request.fetchReligionBy(this.Id).subscribe((response) => {
+      this.editReligion=response[0];
       console.log(response);
-      this.religionValue=this.editReligion.religion; 
+      this.religionValue=this.editReligion.religion;
       this.IdValue=this.editReligion._id;
-     
+
       this.editForm = this.formBuilder.group({
-        religion:[this.religionValue, Validators.required]
+        religion2:[this.religionValue, Validators.required]
     });
     console.log(this.editForm.value);
   });
@@ -109,16 +109,22 @@ onEditSubmit() {
   if (this.editForm.invalid) {
       return;
     }
-this.request.updateReligion(this.IdValue,this.editForm.value).subscribe((res : any) => {
+
+
+    const edata = {
+      religion: this.editForm.get('religion2').value,
+
+  }
+this.request.updateReligion(this.IdValue,edata).subscribe((res : any) => {
   if (res.status == 'success') {
-    swal("Updated Sucessfully");     
+    swal("Updated Sucessfully");
     this.loadModal();
     this.viewData();
   }
-  else if (res.status == 'error') {       
+  else if (res.status == 'error') {
     this.setMessage(res.error);
-  }      
- 
+  }
+
 }, (error) => {
   console.log(error);
   this.setMessage(error);
@@ -127,6 +133,10 @@ this.request.updateReligion(this.IdValue,this.editForm.value).subscribe((res : a
 
 // convenience getter for easy access to form fields
 get f() { return this.registerForm.controls; }
+
+get f2() {
+  return this.editForm.controls;
+}
 
 async startScript() {
     await this.dynamicScriptLoader.load('dataTables.buttons', 'buttons.flash', 'jszip', 'pdfmake', 'vfs_fonts', 'pdfmake', 'buttons.html5', 'buttons.print', 'form.min').then(data => {
@@ -148,7 +158,7 @@ async startScript() {
     $('#addModal').on('hidden.bs.modal', function () {
     $(this).find('form').trigger('reset');
    });
-  
+
    $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
    $('#editModal').on('hidden.bs.modal', function () {
    $(this).find('form').trigger('reset');

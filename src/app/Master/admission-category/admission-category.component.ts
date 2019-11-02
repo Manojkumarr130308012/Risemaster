@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestService } from '../../services/request.service';
 import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 declare const M: any;
 declare const $: any;
 declare const swal: any;
@@ -14,10 +14,10 @@ declare const swal: any;
 })
 export class AdmissionCategoryComponent implements OnInit {
     submitted = false;
-    institution: any;
-    admissionCategory: any;
-    institution2: any;
-    admissionCategory2: any;
+    institution: FormControl;
+    admissionCategory: FormControl;
+    institution2: FormControl;
+    admissionCategory2: FormControl;
     admissionCategories: any;
     Id: any;
     editAdmissionCategorydata;
@@ -75,7 +75,7 @@ export class AdmissionCategoryComponent implements OnInit {
                // this.onAddReset();
                 this.viewData();
                 this.loadModal();
-               
+
             }
         }, (error) => {
             this.setMessage(error);
@@ -92,7 +92,7 @@ export class AdmissionCategoryComponent implements OnInit {
     }
 
     //Edit Function
-    onEdit(Id) {       
+    onEdit(Id) {
         this.request.fetchAdmissionCategoryById(Id).subscribe((response) => {
             this.editAdmissionCategorydata = response[0];
             console.log(response);
@@ -130,12 +130,12 @@ export class AdmissionCategoryComponent implements OnInit {
 
         this.request.updateAdmissionCategory(this.IdValue, edata).subscribe((response: any) => {
             if (response.status == 'success') {
-                swal("Updated Sucessfully");             
+                swal("Updated Sucessfully");
                 //  console.log('cat res', response);
               //  this.onEditReset();
                 this.viewData();
                 this.loadModal();
-                               
+
             }
             else if (response.status == 'error') {
                 this.setMessage(response.error);

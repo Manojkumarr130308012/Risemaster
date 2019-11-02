@@ -21,6 +21,16 @@ export class BankComponent implements OnInit {
   IFSCCode: any;
   MICRCode: any;
   banks: any;
+
+  institution2: any;
+  accountName2: any;
+  accountNumber2: any;
+  branch2:any;
+  IFSCCode2: any;
+  MICRCode2: any;
+
+
+
   Id: any;
   editBankdata;
   bankValue: any;
@@ -51,12 +61,12 @@ export class BankComponent implements OnInit {
     });
     //Edit Form Group
     this.editForm = this.formBuilder.group({
-      institution:['', Validators.required],
-      accountName: ['', Validators.required],
-      accountNumber: ['', Validators.required],
-      branch: ['', Validators.required],
-      IFSCCode: ['', Validators.required],
-      MICRCode: ['', Validators.required]
+      institution2:['', Validators.required],
+      accountName2: ['', Validators.required],
+      accountNumber2: ['', Validators.required],
+      branch2: ['', Validators.required],
+      IFSCCode2: ['', Validators.required],
+      MICRCode2: ['', Validators.required]
   });
 }
 // To display the data
@@ -76,6 +86,7 @@ public setMessage(message) {
 
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
+  get f2() { return this.editForm.controls; }
   //Add form validation and function
   onAddSubmit() {
       this.submitted = true;
@@ -87,7 +98,7 @@ public setMessage(message) {
         this.setMessage(res.error);
       }
       else if (res.status == 'success') {
-        
+
         swal("Added Sucessfully");
         this.viewData();
         this.loadModal();
@@ -97,15 +108,15 @@ public setMessage(message) {
       });
         console.log(this.registerForm.value);
   }
-  
+
   //To delete the data
   deleteBank(id: any) {
     this.request.deleteBank(id).subscribe(res => {
-      swal(" Deleted Successfully "); 
+      swal(" Deleted Successfully ");
       this.viewData();
     });
   }
-  
+
 //Edit Function
   onEdit(bank) {
     this.Id = bank._id;
@@ -121,12 +132,12 @@ public setMessage(message) {
       this.IdValue = this.editBankdata._id;
 
       this.editForm = this.formBuilder.group({
-        institution: [this.InstitutionValue, Validators.required],
-        accountName: [  this.accountNameValue, Validators.required],
-        accountNumber: [  this.accountNumberValue, Validators.required],
-        branch: [ this.branchValue, Validators.required],
-        IFSCCode: [ this.IFSCCodeValue, Validators.required],
-        MICRCode: [ this.MICRCodeValue, Validators.required]
+        institution2: [this.InstitutionValue, Validators.required],
+        accountName2: [  this.accountNameValue, Validators.required],
+        accountNumber2: [  this.accountNumberValue, Validators.required],
+        branch2: [ this.branchValue, Validators.required],
+        IFSCCode2: [ this.IFSCCodeValue, Validators.required],
+        MICRCode2: [ this.MICRCodeValue, Validators.required]
     });
      console.log(this.editForm.value);
     });
@@ -146,18 +157,27 @@ public setMessage(message) {
     if (this.editForm.invalid) {
         return;
     }
-  
-  this.request.updateBank(this.IdValue, this.editForm.value).subscribe((response: any) => {
+
+    const edata = {
+      institution: this.editForm.get('institution2').value,
+      accountName: this.editForm.get('accountName2').value,
+      accountNumber: this.editForm.get('accountNumber2').value,
+      branch: this.editForm.get('branch2').value,
+      IFSCCode: this.editForm.get('IFSCCode2').value,
+      MICRCode: this.editForm.get('MICRCode2').value
+  }
+
+  this.request.updateBank(this.IdValue, edata).subscribe((response: any) => {
     if (response.status == 'success') {
-      swal("Updated Sucessfully");       
-      
+      swal("Updated Sucessfully");
+
       this.viewData();
       this.loadModal();
     }
-    else if (response.status == 'error') {       
+    else if (response.status == 'error') {
       this.setMessage(response.error);
-    }      
-   
+    }
+
   }, (error) => {
     console.log(error);
     this.setMessage(error);
@@ -188,7 +208,7 @@ public setMessage(message) {
         $(this).find('form').trigger('reset');
      })
     }
-  
+
   ngOnInit() {
     this.viewData();
     this.startScript();
@@ -197,4 +217,3 @@ public setMessage(message) {
   }
 }
 
- 

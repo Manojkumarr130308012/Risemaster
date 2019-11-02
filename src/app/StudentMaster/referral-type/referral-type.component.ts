@@ -16,6 +16,7 @@ export class ReferralTypeComponent implements OnInit {
   submitted = false;
    public Id: any;
    public referralType: any;
+   public referralType2: any;
    editReferralTypedata;
    public referralTypeValue: any;
    public IdValue: any;
@@ -32,7 +33,7 @@ export class ReferralTypeComponent implements OnInit {
     });
     //Edit Form Group
     this.editForm = this.formBuilder.group({
-      referralType:['', Validators.required],
+      referralType2:['', Validators.required],
   });
 }
 // To display  ReferralType
@@ -49,6 +50,7 @@ export class ReferralTypeComponent implements OnInit {
       }
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
+  get f2() { return this.editForm.controls; }
   //Add form validation and function
   onAddSubmit() {
       this.submitted = true;
@@ -60,7 +62,7 @@ export class ReferralTypeComponent implements OnInit {
         this.setMessage(res.error);
       }
       else if (res.status == 'success') {
-        
+
         swal("Added Sucessfully");
         this.viewData();
         this.loadModal();
@@ -71,15 +73,15 @@ export class ReferralTypeComponent implements OnInit {
         console.log(this.registerForm.value);
   }
 
-  
+
   //To delete the data
   deleteReferralType(id: any) {
     this.request.deleteReferralType(id).subscribe(res => {
-      swal(" Deleted Successfully "); 
+      swal(" Deleted Successfully ");
       this.viewData();
     });
   }
-  
+
 //Edit Function
   onEdit(referralType) {
     this.Id = referralType._id;
@@ -90,7 +92,7 @@ export class ReferralTypeComponent implements OnInit {
       this.IdValue = this.editReferralTypedata._id;
 
       this.editForm = this.formBuilder.group({
-        referralType:[this.referralTypeValue, Validators.required],
+        referralType2:[this.referralTypeValue, Validators.required],
     });
     // console.log(this.editForm.value);
     });
@@ -101,18 +103,22 @@ export class ReferralTypeComponent implements OnInit {
     if (this.editForm.invalid) {
         return;
     }
-  
-  this.request.updateReferralType(this.IdValue, this.editForm.value).subscribe((response: any) => {
+    const edata = {
+      referralType: this.editForm.get('referralType2').value
+
+  }
+
+  this.request.updateReferralType(this.IdValue, edata).subscribe((response: any) => {
     if (response.status == 'success') {
-      swal("Updated Sucessfully");       
-      
+      swal("Updated Sucessfully");
+
       this.viewData();
       this.loadModal();
     }
-    else if (response.status == 'error') {       
+    else if (response.status == 'error') {
       this.setMessage(response.error);
-    }      
-   
+    }
+
   }, (error) => {
     console.log(error);
     this.setMessage(error);
@@ -143,7 +149,7 @@ export class ReferralTypeComponent implements OnInit {
         $(this).find('form').trigger('reset');
      })
     }
-  
+
   ngOnInit() {
     this.viewData();
     this.startScript();

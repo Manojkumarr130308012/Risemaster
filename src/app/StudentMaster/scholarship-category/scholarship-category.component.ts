@@ -17,6 +17,7 @@ export class ScholarshipCategoryComponent implements OnInit {
   submitted = false;
    public Id: any;
    public scholarshipCategory: any;
+   public scholarshipCategory2: any;
    editScholarshipCategorydata;
    public scholarshipCategoryValue: any;
    public IdValue: any;
@@ -33,7 +34,7 @@ export class ScholarshipCategoryComponent implements OnInit {
     });
     //Edit Form Group
     this.editForm = this.formBuilder.group({
-      scholarshipCategory:['', Validators.required],
+      scholarshipCategory2:['', Validators.required],
   });
 }
 
@@ -52,6 +53,7 @@ public setMessage(message) {
 
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
+  get f2() { return this.editForm.controls; }
   //Add form validation and function
   onAddSubmit() {
       this.submitted = true;
@@ -63,7 +65,7 @@ public setMessage(message) {
         this.setMessage(res.error);
       }
       else if (res.status == 'success') {
-        
+
         swal("Added Sucessfully");
         this.viewData();
         this.loadModal();
@@ -73,15 +75,15 @@ public setMessage(message) {
       });
         console.log(this.registerForm.value);
   }
-  
+
   //To delete the data
   deleteScholarshipCategory(id: any) {
     this.request.deleteScholarshipCategory(id).subscribe(res => {
-      swal(" Deleted Successfully "); 
+      swal(" Deleted Successfully ");
       this.viewData();
     });
   }
-  
+
 //Edit Function
   onEdit(scholarshipCategory) {
     this.Id = scholarshipCategory._id;
@@ -92,7 +94,7 @@ public setMessage(message) {
       this.IdValue = this.editScholarshipCategorydata._id;
 
       this.editForm = this.formBuilder.group({
-        scholarshipCategory:[this.scholarshipCategoryValue, Validators.required],
+        scholarshipCategory2:[this.scholarshipCategoryValue, Validators.required],
     });
     // console.log(this.editForm.value);
     });
@@ -103,18 +105,23 @@ public setMessage(message) {
     if (this.editForm.invalid) {
         return;
     }
-  
-  this.request.updateScholarshipCategory(this.IdValue, this.editForm.value).subscribe((response: any) => {
+
+    const edata = {
+      scholarshipCategory: this.editForm.get('scholarshipCategory2').value
+
+  }
+
+  this.request.updateScholarshipCategory(this.IdValue, edata).subscribe((response: any) => {
     if (response.status == 'success') {
-      swal("Updated Sucessfully");       
-      
+      swal("Updated Sucessfully");
+
       this.viewData();
       this.loadModal();
     }
-    else if (response.status == 'error') {       
+    else if (response.status == 'error') {
       this.setMessage(response.error);
-    }      
-   
+    }
+
   }, (error) => {
     console.log(error);
     this.setMessage(error);
@@ -145,7 +152,7 @@ public setMessage(message) {
         $(this).find('form').trigger('reset');
      })
     }
-  
+
   ngOnInit() {
     this.viewData();
     this.startScript();

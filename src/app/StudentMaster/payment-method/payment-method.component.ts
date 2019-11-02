@@ -17,6 +17,7 @@ export class PaymentMethodComponent implements OnInit {
   submitted = false;
    public Id: any;
    public paymentMethod: any;
+   public paymentMethod2: any;
    editPaymentMethoddata;
    public paymentMethodValue: any;
    public IdValue: any;
@@ -33,7 +34,7 @@ export class PaymentMethodComponent implements OnInit {
     });
     //Edit Form Group
     this.editForm = this.formBuilder.group({
-      paymentMethod:['', Validators.required],
+      paymentMethod2:['', Validators.required],
   });
 }
 // To display  paymentMethod
@@ -51,6 +52,7 @@ export class PaymentMethodComponent implements OnInit {
       }
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
+  get f2() { return this.editForm.controls; }
   //Add form validation and function
   onAddSubmit() {
       this.submitted = true;
@@ -62,7 +64,7 @@ export class PaymentMethodComponent implements OnInit {
         this.setMessage(res.error);
       }
       else if (res.status == 'success') {
-        
+
         swal("Added Sucessfully");
         this.viewData();
         this.loadModal();
@@ -72,15 +74,15 @@ export class PaymentMethodComponent implements OnInit {
       });
         console.log(this.registerForm.value);
   }
-  
+
   //To delete the data
   deletePaymentMethod(id: any) {
     this.request.deletePaymentMethod(id).subscribe(res => {
-      swal(" Deleted Successfully "); 
+      swal(" Deleted Successfully ");
       this.viewData();
     });
   }
-  
+
 //Edit Function
   onEdit(paymentMethod) {
     this.Id = paymentMethod._id;
@@ -91,7 +93,7 @@ export class PaymentMethodComponent implements OnInit {
       this.IdValue = this.editPaymentMethoddata._id;
 
       this.editForm = this.formBuilder.group({
-        paymentMethod:[this.paymentMethodValue, Validators.required],
+        paymentMethod2:[this.paymentMethodValue, Validators.required],
     });
     // console.log(this.editForm.value);
     });
@@ -102,18 +104,23 @@ export class PaymentMethodComponent implements OnInit {
     if (this.editForm.invalid) {
         return;
     }
-  
-  this.request.updatePaymentMethod(this.IdValue, this.editForm.value).subscribe((response: any) => {
+
+    const edata = {
+      paymentMethod: this.editForm.get('paymentMethod2').value
+  }
+
+
+  this.request.updatePaymentMethod(this.IdValue, edata).subscribe((response: any) => {
     if (response.status == 'success') {
-      swal("Updated Sucessfully");       
-      
+      swal("Updated Sucessfully");
+
       this.viewData();
       this.loadModal();
     }
-    else if (response.status == 'error') {       
+    else if (response.status == 'error') {
       this.setMessage(response.error);
-    }      
-   
+    }
+
   }, (error) => {
     console.log(error);
     this.setMessage(error);
@@ -144,7 +151,7 @@ export class PaymentMethodComponent implements OnInit {
         $(this).find('form').trigger('reset');
      })
     }
-  
+
   ngOnInit() {
     this.viewData();
     this.startScript();

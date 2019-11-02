@@ -30,7 +30,7 @@
                                <div class="row">
                                 <div class="col-md-6">
                                    <div class="form-group">
-                                       <label>Year</label> 
+                                       <label>Year</label>
                                        <input type="text" value = "" formControlName="year" class="form-control" placeholder="Enter year"
                                            [ngClass]="{ 'is-invalid': submitted && f.year.errors }" />
                                        <div *ngIf="submitted && f.year.errors" class="invalid-feedback">
@@ -73,17 +73,18 @@
                                    </div>
                                    <div class="form-group">
                                            <label>Status</label>
-                                           <select class="browser-default" 
+                                           <select class="browser-default"
                                            formControlName="status" value = " " class="form-control" placeholder="Enter Status"
                                                [ngClass]="{ 'is-invalid': submitted && f.status.errors }" >
-                                               <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
-                                                   <div *ngIf="f.status.errors.required">Status is required</div>
-                                               </div>
+
                                            <option value="" disabled selected>Choose your option
                                            </option>
                                            <option value="active">Active</option>
                                            <option value="inactive">Inactive</option>
                                        </select>
+                                       <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                                        <div *ngIf="f.status.errors.required">Status is required</div>
+                                    </div>
                                        </div>
                                    <div class="modal-footer">
                                        <button type="submit" class="btn btn-default"  >Add</button >
@@ -112,21 +113,21 @@
                                                     <div class="row">
                                                      <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>Year</label> 
-                                                            <input type="text"  formControlName="year" class="form-control" placeholder="Enter year"
-                                                                [ngClass]="{ 'is-invalid': submitted && f.year.errors }" />
-                                                            <div *ngIf="submitted && f.year.errors" class="invalid-feedback">
-                                                                <div *ngIf="f.year.errors.required">Year is required</div>
+                                                            <label>Year</label>
+                                                            <input type="text"  formControlName="year2" class="form-control" placeholder="Enter year"
+                                                                [ngClass]="{ 'is-invalid': submitted && f2.year2.errors }" />
+                                                            <div *ngIf="submitted && f2.year2.errors" class="invalid-feedback">
+                                                                <div *ngIf="f2.year2.errors.required">Year is required</div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                         <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Short Code</label>
-                                                            <input type="text" formControlName="short_code" class="form-control" placeholder="Enter ShortCode"
-                                                                [ngClass]="{ 'is-invalid': submitted && f.short_code.errors }" />
-                                                            <div *ngIf="submitted && f.short_code.errors" class="invalid-feedback">
-                                                                <div *ngIf="f.short_code.errors.required">Short Code is required</div>
+                                                            <input type="text" formControlName="short_code2" class="form-control" placeholder="Enter ShortCode"
+                                                                [ngClass]="{ 'is-invalid': submitted && f2.short_code2.errors }" />
+                                                            <div *ngIf="submitted && f2.short_code2.errors" class="invalid-feedback">
+                                                                <div *ngIf="f2.short_code2.errors.required">Short Code is required</div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -135,37 +136,38 @@
                                                             <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Start Date</label>
-                                                            <input type="date"  formControlName="start_date" class="form-control"  placeholder="Enter StarDate"
-                                                                [ngClass]="{ 'is-invalid': submitted && f.start_date.errors }" />
-                                                            <div *ngIf="submitted && f.start_date.errors" class="invalid-feedback">
-                                                                <div *ngIf="f.start_date.errors.required">StartDate is required</div>
+                                                            <input type="date"  formControlName="start_date2" class="form-control"  placeholder="Enter StarDate"
+                                                                [ngClass]="{ 'is-invalid': submitted && f2.start_date2.errors }" />
+                                                            <div *ngIf="submitted && f2.start_date2.errors" class="invalid-feedback">
+                                                                <div *ngIf="f2.start_date2.errors.required">StartDate is required</div>
                                                             </div>
                                                         </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>End Date</label>
-                                                            <input type="date"  formControlName="end_date" class="form-control" placeholder="Enter EndDate"
-                                                                [ngClass]="{ 'is-invalid': submitted && f.end_date.errors }" />
-                                                            <div *ngIf="submitted && f.end_date.errors" class="invalid-feedback">
-                                                                <div *ngIf="f.end_date.errors.required">EndDate is required</div>
+                                                            <input type="date"  formControlName="end_date2" class="form-control" placeholder="Enter EndDate"
+                                                                [ngClass]="{ 'is-invalid': submitted && f2.end_date2.errors }" />
+                                                            <div *ngIf="submitted && f2.end_date2.errors" class="invalid-feedback">
+                                                                <div *ngIf="f2.end_date2.errors.required">EndDate is required</div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                         </div>
                                                         <div class="form-group">
                                                                 <label>Status</label>
-                                                                <select class="browser-default" 
-                                                                formControlName="status"  class="form-control" placeholder="Enter Status"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.status.errors }" >
-                                                                    <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
-                                                                        <div *ngIf="f.status.errors.required">Status is required</div>
-                                                                    </div>
+                                                                <select class="browser-default"
+                                                                formControlName="status2"  class="form-control" placeholder="Enter Status"
+                                                                    [ngClass]="{ 'is-invalid': submitted && f2.status2.errors }" >
+
                                                                 <option value="" disabled selected>Choose your option
                                                                 </option>
                                                                 <option value="active">Active</option>
                                                                 <option value="inactive">Inactive</option>
                                                             </select>
+                                                            <div *ngIf="submitted && f2.status2.errors" class="invalid-feedback">
+                                                              <div *ngIf="f2.status2.errors.required">Status is required</div>
+                                                          </div>
                                                             </div>
                                                     </form>
                                             </div>
@@ -206,7 +208,7 @@
                                         <td>{{academicyear?.start_date}}</td>
                                         <td>{{academicyear?.end_date}}</td>
                                         <td>{{academicyear?.status}}</td>
-                                        
+
                                         <td>
                                             <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editModal">
                                                 <i class="material-icons" (click)="onEdit(academicyear) ">create</i>

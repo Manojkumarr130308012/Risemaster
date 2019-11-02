@@ -17,6 +17,7 @@ export class QualificationTypeComponent implements OnInit {
   submitted = false;
    public Id: any;
    public qualificationType: any;
+   public qualificationType2: any;
    editQualificationTypedata;
    public qualificationTypeValue: any;
    public IdValue: any;
@@ -33,7 +34,7 @@ export class QualificationTypeComponent implements OnInit {
     });
     //Edit Form Group
     this.editForm = this.formBuilder.group({
-      qualificationType:['', Validators.required],
+      qualificationType2:['', Validators.required],
   });
 }
 // To display  QualificationType
@@ -50,6 +51,7 @@ export class QualificationTypeComponent implements OnInit {
       }
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
+  get f2() { return this.editForm.controls; }
   //Add form validation and function
   onAddSubmit() {
       this.submitted = true;
@@ -61,7 +63,7 @@ export class QualificationTypeComponent implements OnInit {
         this.setMessage(res.error);
       }
       else if (res.status == 'success') {
-        
+
         swal("Added Sucessfully");
         this.viewData();
         this.loadModal();
@@ -72,15 +74,15 @@ export class QualificationTypeComponent implements OnInit {
         console.log(this.registerForm.value);
   }
 
-  
+
   //To delete the data
   deleteQualificationType(id: any) {
     this.request.deleteQualificationType(id).subscribe(res => {
-      swal(" Deleted Successfully "); 
+      swal(" Deleted Successfully ");
       this.viewData();
     });
   }
-  
+
 //Edit Function
   onEdit(qualificationType) {
     this.Id = qualificationType._id;
@@ -91,7 +93,7 @@ export class QualificationTypeComponent implements OnInit {
       this.IdValue = this.editQualificationTypedata._id;
 
       this.editForm = this.formBuilder.group({
-        qualificationType:[this.qualificationTypeValue, Validators.required],
+        qualificationType2:[this.qualificationTypeValue, Validators.required],
     });
     // console.log(this.editForm.value);
     });
@@ -102,18 +104,22 @@ export class QualificationTypeComponent implements OnInit {
     if (this.editForm.invalid) {
         return;
     }
-  
-  this.request.updateQualificationType(this.IdValue, this.editForm.value).subscribe((response: any) => {
+
+    const edata = {
+      qualificationType: this.editForm.get('qualificationType2').value
+  }
+
+  this.request.updateQualificationType(this.IdValue, edata).subscribe((response: any) => {
     if (response.status == 'success') {
-      swal("Updated Sucessfully");       
-      
+      swal("Updated Sucessfully");
+
       this.viewData();
       this.loadModal();
     }
-    else if (response.status == 'error') {       
+    else if (response.status == 'error') {
       this.setMessage(response.error);
-    }      
-   
+    }
+
   }, (error) => {
     console.log(error);
     this.setMessage(error);
@@ -144,7 +150,7 @@ export class QualificationTypeComponent implements OnInit {
         $(this).find('form').trigger('reset');
      })
     }
-  
+
   ngOnInit() {
     this.viewData();
     this.startScript();

@@ -30,7 +30,7 @@ import { ScholarshipCategoryComponent } from './StudentMaster/scholarship-catego
 import { BankComponent } from './StudentMaster/bank/bank.component';
 import { QualificationTypeComponent } from './StudentMaster/qualification-type/qualification-type.component';
 
-//Staff Master
+// Staff Master
 import { GenderComponent } from './StaffMaster/gender/gender.component';
 import { MaritalStatusComponent } from './StaffMaster/marital-status/marital-status.component';
 import { DepartmentComponent } from './StaffMaster/department/department.component';
@@ -62,25 +62,25 @@ import { CEtabpageComponent } from './Student/cetabpage/cetabpage.component';
 import { CeEditTabpageComponent } from './Student/ce-edit-tabpage/ce-edit-tabpage.component';
 
 const routes: Routes = [
-  //{ path: '', component: LoginComponent },
+  // { path: '', component: LoginComponent },
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
   },
- 
-  
+
+
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
-  
+
 
   {
     path: '',
     redirectTo: 'auth',
     pathMatch: 'full'
   },
-  
+
  {
     path: 'user-designation',
     component: UserDesignationComponent
@@ -144,138 +144,138 @@ const routes: Routes = [
     component: CourseProgramComponent
   },
 
-  //Student Master
+  // Student Master
 {
-	path: 'address-type', 
+	path: 'address-type',
 	component: AddressTypeComponent
 	},
- { 
- path: 'course-type', 
- component: CourseTypeComponent 
- },
- { 
- path: 'degree', 
- component: DegreeComponent 
- },
- { 
- path: 'institution-type', 
- component: InstitutionTypeComponent
- },
- { 
- path: 'medium',
- component: MediumComponent 
- },
- { 
- path: 'mother-tongue', 
- component: MotherTongueComponent
- },
- { 
- path: 'payment-method', 
- component: PaymentMethodComponent 
+ {
+ path: 'course-type',
+ component: CourseTypeComponent
  },
  {
-	 path: 'referral-type', 
+ path: 'degree',
+ component: DegreeComponent
+ },
+ {
+ path: 'institution-type',
+ component: InstitutionTypeComponent
+ },
+ {
+ path: 'medium',
+ component: MediumComponent
+ },
+ {
+ path: 'mother-tongue',
+ component: MotherTongueComponent
+ },
+ {
+ path: 'payment-method',
+ component: PaymentMethodComponent
+ },
+ {
+	 path: 'referral-type',
 	 component: ReferralTypeComponent
 	 },
- { 
+ {
  path: 'scholarship-category',
- component: ScholarshipCategoryComponent 
+ component: ScholarshipCategoryComponent
  },
- { 
+ {
  path: 'bank',
- component: BankComponent 
+ component: BankComponent
  },
- { 
+ {
   path: 'qualification-type',
-  component: QualificationTypeComponent 
-  
+  component: QualificationTypeComponent
+
   },
 
  // Staff Master
-{ 
-  path: 'staff-type', 
-  component: StaffTypeComponent 
+{
+  path: 'staff-type',
+  component: StaffTypeComponent
   },
 
 {
-  path: 'staff-role', 
-  component: StaffRoleComponent 
+  path: 'staff-role',
+  component: StaffRoleComponent
   },
 
-{ 
-  path: 'pay-type', 
-  component: PayTypeComponent 
+{
+  path: 'pay-type',
+  component: PayTypeComponent
   },
 
-{ 
-  path: 'salutation', 
-  component: SalutationComponent 
+{
+  path: 'salutation',
+  component: SalutationComponent
   },
 
-{ 
-  path: 'gender', 
-  component: GenderComponent 
+{
+  path: 'gender',
+  component: GenderComponent
   },
 
-{ 
-  path: 'marital-status', 
-  component: MaritalStatusComponent 
+{
+  path: 'marital-status',
+  component: MaritalStatusComponent
   },
 
-{ 
-  path: 'department', 
-  component: DepartmentComponent 
+{
+  path: 'department',
+  component: DepartmentComponent
   },
 
-{ 
-  path: 'fee-type', 
-  component: FeeTypeComponent 
+{
+  path: 'fee-type',
+  component: FeeTypeComponent
   },
 
-{ 
-  path: 'mode-of-enquiry', 
-  component: ModeOfEnquiryComponent 
+{
+  path: 'mode-of-enquiry',
+  component: ModeOfEnquiryComponent
   },
- 
+
     //  Vehicle Management
-  { path: 'vehicle', 
+  { path: 'vehicle',
   component: VehicleMasterComponent },
 
-  { path: 'driver', 
+  { path: 'driver',
   component: DriverMasterComponent },
 
-  { path: 'vehicle-expenses', 
+  { path: 'vehicle-expenses',
   component: VehicleExpensesComponent },
 
-  { path: 'filling-stations', 
+  { path: 'filling-stations',
   component: FillingStationsComponent },
 
-  { path: 'stage-details', 
+  { path: 'stage-details',
   component: StageDetailsComponent },
 
-  { path: 'fuel-entry', 
+  { path: 'fuel-entry',
   component: FuelEntryComponent },
 
-  { path: 'expenses-entry', 
+  { path: 'expenses-entry',
   component: ExpensesEntryComponent },
 
-  { path: 'vehicle-transaction', 
+  { path: 'vehicle-transaction',
   component: VehicleTransactionComponent },
 
 
   // Staff Management
-  { path: 'staff-profile', 
+  { path: 'staff-profile',
   component: StaffProfileComponent },
 
-  { path: 'staff-details', 
+  { path: 'staff-details',
   component: StaffDetailsComponent },
 
-  
-  { path: 'candidateEnquiry', 
+
+  { path: 'candidateEnquiry',
   component: CEmainPageComponent },
-  { path: 'addCandidate', 
+  { path: 'addCandidate',
   component: CEtabpageComponent },
-  { path: 'editCandidate', 
+  { path: 'editCandidate',
   component: CeEditTabpageComponent },
 ];
 

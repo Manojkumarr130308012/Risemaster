@@ -18,7 +18,7 @@ export class BloodgroupComponent implements OnInit {
   registerForm: FormGroup;
   editForm: FormGroup;
   submitted = false;
-  public bloodgroup: any;
+  public bloodgroup: any; public bloodgroup2: any;
   private bloodgroups: any;
   Id: any;
   IdValue: any;
@@ -31,7 +31,7 @@ export class BloodgroupComponent implements OnInit {
     private dynamicScriptLoader: DynamicScriptLoaderService,
     private request: RequestService,
     private router: Router,
-    private activeRoute:  ActivatedRoute) 
+    private activeRoute:  ActivatedRoute)
     {
       // Add Form
       this.registerForm = this.formBuilder.group({
@@ -39,10 +39,10 @@ export class BloodgroupComponent implements OnInit {
     });
     // Edit Form
       this.editForm = this.formBuilder.group({
-        bloodgroup:['', Validators.required]
+        bloodgroup2:['', Validators.required]
     });
      }
-     
+
      public setMessage(message) {
       return this.message = message;
     }
@@ -85,7 +85,7 @@ export class BloodgroupComponent implements OnInit {
       console.log(id);
       this.viewData();
     console.log('Deleted');
-   
+
     this.router.navigate(['bloodgroup']);
     });
   }
@@ -93,14 +93,14 @@ export class BloodgroupComponent implements OnInit {
   // To edit bloodgroup
   onEdit(bloodgroup){
     this.Id=bloodgroup._id;
-    this.request.fetchBloodgroupBy(this.Id).subscribe((response) => {          
-      this.editBloodgroup=response[0];     
+    this.request.fetchBloodgroupBy(this.Id).subscribe((response) => {
+      this.editBloodgroup=response[0];
       console.log(response);
-        this.bloodgroupValue=this.editBloodgroup.bloodgroup; 
+        this.bloodgroupValue=this.editBloodgroup.bloodgroup;
         this.IdValue=this.editBloodgroup._id;
 
         this.editForm = this.formBuilder.group({
-          bloodgroup:[this.bloodgroupValue, Validators.required]
+          bloodgroup2:[this.bloodgroupValue, Validators.required]
       });
       console.log(this.editForm.value);
     });
@@ -111,16 +111,20 @@ export class BloodgroupComponent implements OnInit {
     if (this.editForm.invalid) {
         return;
       }
-  this.request.updateBloodgroup(this.IdValue,this.editForm.value).subscribe((res : any) => {
+      const edata = {
+        bloodgroup: this.editForm.get('bloodgroup2').value
+
+    }
+  this.request.updateBloodgroup(this.IdValue,edata).subscribe((res : any) => {
     if (res.status == 'success') {
-      swal("Updated Sucessfully");     
+      swal("Updated Sucessfully");
       this.loadModal();
       this.viewData();
     }
-    else if (res.status == 'error') {       
+    else if (res.status == 'error') {
       this.setMessage(res.error);
-    }      
-   
+    }
+
   }, (error) => {
     console.log(error);
     this.setMessage(error);
@@ -129,7 +133,9 @@ export class BloodgroupComponent implements OnInit {
 
 // convenience getter for easy access to form fields
 get f() { return this.registerForm.controls; }
-      
+get f2() { return this.editForm.controls; }
+
+
   async startScript() {
     await this.dynamicScriptLoader.load('dataTables.buttons', 'buttons.flash', 'jszip', 'pdfmake', 'vfs_fonts', 'pdfmake', 'buttons.html5', 'buttons.print', 'form.min').then(data => {
       this.loadData();
@@ -149,7 +155,7 @@ get f() { return this.registerForm.controls; }
     $('#addModal').on('hidden.bs.modal', function () {
     $(this).find('form').trigger('reset');
    });
-  
+
    $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
    $('#editModal').on('hidden.bs.modal', function () {
    $(this).find('form').trigger('reset');

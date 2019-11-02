@@ -18,6 +18,7 @@ export class StaffRoleComponent implements OnInit {
   editForm: FormGroup;
   submitted = false;
   public staffrole: any;
+  public staffrole2: any;
   private staffroles: any;
   Id: any;
   IdValue: any;
@@ -30,7 +31,7 @@ export class StaffRoleComponent implements OnInit {
     private dynamicScriptLoader: DynamicScriptLoaderService,
     private request: RequestService,
     private router: Router,
-    private activeRoute:  ActivatedRoute) 
+    private activeRoute:  ActivatedRoute)
     {
        // Add Form
       this.registerForm = this.formBuilder.group({
@@ -38,10 +39,10 @@ export class StaffRoleComponent implements OnInit {
     });
     // Edit Form
     this.editForm = this.formBuilder.group({
-      staffrole:['', Validators.required]
+      staffrole2:['', Validators.required]
     });
      }
-     
+
      public setMessage(message) {
       return this.message = message;
     }
@@ -84,7 +85,7 @@ export class StaffRoleComponent implements OnInit {
       console.log(id);
       this.viewData();
     console.log('Deleted');
-   
+
     this.router.navigate(['staff-role']);
     });
   }
@@ -92,14 +93,14 @@ export class StaffRoleComponent implements OnInit {
   // To edit staffrole
   onEdit(staffrole){
     this.Id=staffrole._id;
-    this.request.fetchStaffroleBy(this.Id).subscribe((response) => {     
-      this.editStaffrole=response[0];     
+    this.request.fetchStaffroleBy(this.Id).subscribe((response) => {
+      this.editStaffrole=response[0];
       console.log(response);
-      this.staffroleValue=this.editStaffrole.staffrole; 
+      this.staffroleValue=this.editStaffrole.staffrole;
       this.IdValue=this.editStaffrole._id;
 
       this.editForm = this.formBuilder.group({
-        staffrole:[this.staffroleValue, Validators.required]
+        staffrole2:[this.staffroleValue, Validators.required]
     });
     console.log(this.editForm.value);
   });
@@ -110,16 +111,20 @@ onEditSubmit() {
   if (this.editForm.invalid) {
       return;
     }
-this.request.updateStaffrole(this.IdValue,this.editForm.value).subscribe((res : any) => {
+
+    const edata = {
+      staffrole: this.editForm.get("staffrole2").value
+    };
+this.request.updateStaffrole(this.IdValue,edata).subscribe((res : any) => {
   if (res.status == 'success') {
-    swal("Updated Sucessfully");     
+    swal("Updated Sucessfully");
     this.loadModal();
     this.viewData();
   }
-  else if (res.status == 'error') {       
+  else if (res.status == 'error') {
     this.setMessage(res.error);
-  }      
- 
+  }
+
 }, (error) => {
   console.log(error);
   this.setMessage(error);
@@ -128,7 +133,10 @@ this.request.updateStaffrole(this.IdValue,this.editForm.value).subscribe((res : 
 
 // convenience getter for easy access to form fields
 get f() { return this.registerForm.controls; }
-      
+get f2() {
+  return this.editForm.controls;
+}
+
   async startScript() {
     await this.dynamicScriptLoader.load('dataTables.buttons', 'buttons.flash', 'jszip', 'pdfmake', 'vfs_fonts', 'pdfmake', 'buttons.html5', 'buttons.print', 'form.min').then(data => {
       this.loadData();
@@ -149,7 +157,7 @@ get f() { return this.registerForm.controls; }
     $('#addModal').on('hidden.bs.modal', function () {
     $(this).find('form').trigger('reset');
    });
-  
+
    $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
    $('#editModal').on('hidden.bs.modal', function () {
    $(this).find('form').trigger('reset');

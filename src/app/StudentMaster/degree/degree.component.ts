@@ -13,11 +13,12 @@ declare const swal: any;
 })
 export class DegreeComponent implements OnInit {
 
-  
+
   registerForm: FormGroup;
   submitted = false;
    public Id: any;
    public degree: any;
+   public degree2: any;
    editDegreedata;
    public degreeValue: any;
    public IdValue: any;
@@ -34,7 +35,7 @@ export class DegreeComponent implements OnInit {
     });
     //Edit Form Group
     this.editForm = this.formBuilder.group({
-      degree:['', Validators.required],
+      degree2:['', Validators.required],
   });
 }
 // To display  degree
@@ -51,6 +52,7 @@ export class DegreeComponent implements OnInit {
       }
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
+  get f2() { return this.editForm.controls; }
   //Add form validation and function
   onAddSubmit() {
       this.submitted = true;
@@ -62,7 +64,7 @@ export class DegreeComponent implements OnInit {
         this.setMessage(res.error);
       }
       else if (res.status == 'success') {
-        
+
         swal("Added Sucessfully");
         this.viewData();
         this.loadModal();
@@ -72,15 +74,15 @@ export class DegreeComponent implements OnInit {
       });
         console.log(this.registerForm.value);
   }
-  
+
   //To delete the data
   deleteDegree(id: any) {
     this.request.deleteDegree(id).subscribe(res => {
-      swal(" Deleted Successfully "); 
+      swal(" Deleted Successfully ");
       this.viewData();
     });
   }
-  
+
 //Edit Function
   onEdit(degree) {
     this.Id = degree._id;
@@ -91,7 +93,7 @@ export class DegreeComponent implements OnInit {
       this.IdValue = this.editDegreedata._id;
 
       this.editForm = this.formBuilder.group({
-        degree:[this.degreeValue, Validators.required],
+        degree2:[this.degreeValue, Validators.required],
     });
     // console.log(this.editForm.value);
     });
@@ -102,18 +104,23 @@ export class DegreeComponent implements OnInit {
     if (this.editForm.invalid) {
         return;
     }
-  
-  this.request.updateDegree(this.IdValue, this.editForm.value).subscribe((response: any) => {
+
+    const edata = {
+      degree: this.editForm.get('degree2').value
+
+  }
+
+  this.request.updateDegree(this.IdValue, edata).subscribe((response: any) => {
     if (response.status == 'success') {
-      swal("Updated Sucessfully");       
-      
+      swal("Updated Sucessfully");
+
       this.viewData();
       this.loadModal();
     }
-    else if (response.status == 'error') {       
+    else if (response.status == 'error') {
       this.setMessage(response.error);
-    }      
-   
+    }
+
   }, (error) => {
     console.log(error);
     this.setMessage(error);
@@ -144,7 +151,7 @@ export class DegreeComponent implements OnInit {
         $(this).find('form').trigger('reset');
      })
     }
-  
+
   ngOnInit() {
     this.viewData();
     this.startScript();

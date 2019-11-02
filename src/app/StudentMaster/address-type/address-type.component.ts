@@ -12,12 +12,13 @@ declare const swal: any;
   templateUrl: './address-type.component.html',
   styleUrls: ['./address-type.component.scss']
 })
-export class AddressTypeComponent implements OnInit { 
+export class AddressTypeComponent implements OnInit {
 
   registerForm: FormGroup;
   submitted = false;
    public Id: any;
    public addressType: any;
+   public addressType2: any;
    editAddressTypedata;
    public addressTypeValue: any;
    public IdValue: any;
@@ -34,7 +35,7 @@ export class AddressTypeComponent implements OnInit {
     });
     //Edit Form Group
     this.editForm = this.formBuilder.group({
-      addressType:['', Validators.required],
+      addressType2:['', Validators.required],
   });
 }
 // To display  addressType
@@ -51,10 +52,11 @@ export class AddressTypeComponent implements OnInit {
       public setMessage(message) {
         return this.message = message;
       }
-      
-      
+
+
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
+  get f2() { return this.editForm.controls; }
   //Add form validation and function
   onAddSubmit() {
       this.submitted = true;
@@ -66,7 +68,7 @@ export class AddressTypeComponent implements OnInit {
         this.setMessage(res.error);
       }
       else if (res.status == 'success') {
-        
+
         swal("Added Sucessfully");
         this.viewData();
         this.loadModal();
@@ -76,15 +78,15 @@ export class AddressTypeComponent implements OnInit {
       });
         console.log(this.registerForm.value);
   }
-  
+
   //To delete the data
   deleteAddressType(id: any) {
     this.request.deleteAddressType(id).subscribe(res => {
-      swal(" Deleted Successfully "); 
+      swal(" Deleted Successfully ");
       this.viewData();
     });
   }
-  
+
 //Edit Function
   onEdit(addressType) {
     this.Id = addressType._id;
@@ -95,7 +97,7 @@ export class AddressTypeComponent implements OnInit {
       this.IdValue = this.editAddressTypedata._id;
 
       this.editForm = this.formBuilder.group({
-        addressType:[this.addressTypeValue, Validators.required],
+        addressType2:[this.addressTypeValue, Validators.required],
     });
     // console.log(this.editForm.value);
     });
@@ -106,22 +108,26 @@ export class AddressTypeComponent implements OnInit {
     if (this.editForm.invalid) {
         return;
     }
-  
-  this.request.updateAddressType(this.IdValue, this.editForm.value).subscribe((response: any) => {
-    if (response.status == 'success') {
-      swal("Updated Sucessfully");       
-      
-      this.viewData();
-      this.loadModal();
+    const edata = {
+      addressType: this.editForm.get('addressType2').value
+      }
+
+  this.request.updateAddressType(this.IdValue, edata).subscribe(
+    (response: any) => {
+      if (response.status == "success") {
+        swal("Updated Sucessfully");
+
+        this.viewData();
+        this.loadModal();
+      } else if (response.status == "error") {
+        this.setMessage(response.error);
+      }
+    },
+    error => {
+      console.log(error);
+      this.setMessage(error);
     }
-    else if (response.status == 'error') {       
-      this.setMessage(response.error);
-    }      
-   
-  }, (error) => {
-    console.log(error);
-    this.setMessage(error);
-  });
+  );
 
       }
 
@@ -148,7 +154,7 @@ export class AddressTypeComponent implements OnInit {
         $(this).find('form').trigger('reset');
      })
     }
-  
+
   ngOnInit() {
     this.viewData();
     this.startScript();
