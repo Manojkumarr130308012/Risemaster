@@ -353,7 +353,36 @@ export class RequestService {
     return this.http.get(this.url);
   }
 
+// batch
+public getbatch() {
+  this.url = `${this.endPoint}/batch/aggregation`;
+  return this.http.get(this.url);
 
+}
+public addBatch(newBatch: { batch: any; }) {
+  this.url = `${this.endPoint}/batch/add`;
+  return this.http.post(this.url, newBatch);
+}
+
+public deleteBatch(id) {
+  this.url = `${this.endPoint}/batch/delete?id=` + id;
+  return this.http.delete(this.url);
+
+}
+fetchBatch() {
+  this.url = `${this.endPoint}/batch`;
+  return this.http.get(this.url);
+}
+
+fetchBatchById(id) {
+  this.url = `${this.endPoint}/batch/fetchdata?id=` + id;
+  return this.http.get(this.url);
+
+}
+  updateBatch(id, body) {
+    this.url = `${this.endPoint}/batch/update?id=` + id, body;
+    return this.http.put(this.url, body);
+  }
   // course-category
   public getCoursecategory() {
     this.url = `${this.endPoint}/course-category/aggregation`;

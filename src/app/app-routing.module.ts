@@ -57,9 +57,12 @@ import { VehicleTransactionComponent } from './VehicleManagement/vehicle-transac
 // Staff Management
 import { StaffProfileComponent } from './StaffManagement/staff-profile/staff-profile.component';
 import { StaffDetailsComponent } from './StaffManagement/staff-details/staff-details.component';
+//CandidateEnquiry
 import { CEmainPageComponent } from './Student/cemain-page/cemain-page.component';
 import { CEtabpageComponent } from './Student/cetabpage/cetabpage.component';
 import { CeEditTabpageComponent } from './Student/ce-edit-tabpage/ce-edit-tabpage.component';
+import { BatchComponent } from './Master/batch/batch.component';
+import { ConvertToStudentComponent } from './Student/convert-to-student/convert-to-student.component';
 
 const routes: Routes = [
   // { path: '', component: LoginComponent },
@@ -132,6 +135,10 @@ const routes: Routes = [
   {
     path: 'admissionCategory',
     component: AdmissionCategoryComponent
+  },
+  {
+    path: 'batch',
+    component: BatchComponent
   },
   {
     path: 'course-category',
@@ -271,12 +278,14 @@ const routes: Routes = [
   component: StaffDetailsComponent },
 
 
-  { path: 'candidateEnquiry',
+  { path: 'candidateEnquiry', 
   component: CEmainPageComponent },
-  { path: 'addCandidate',
+  { path: 'addCandidate', 
   component: CEtabpageComponent },
-  { path: 'editCandidate',
+  { path: 'editCandidate', 
   component: CeEditTabpageComponent },
+  { path: 'convertToStudent', 
+  component: ConvertToStudentComponent },
 ];
 
 @NgModule({

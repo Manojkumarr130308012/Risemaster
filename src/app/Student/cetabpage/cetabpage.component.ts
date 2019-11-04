@@ -4,6 +4,7 @@ import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader
 import { RequestService } from '../../services/request.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FileUploader } from 'ng2-file-upload';
+import { DatePipe } from '@angular/common';
 
 const URL = 'http://localhost:3000/uploadStudentPhoto/upload';
 const url = 'http://localhost:3000/ce-qd-fileupload/fileupload';
@@ -12,7 +13,8 @@ declare const swal: any;
 @Component({
   selector: 'app-cetabpage',
   templateUrl: './cetabpage.component.html',
-  styleUrls: ['./cetabpage.component.scss']
+  styleUrls: ['./cetabpage.component.scss'],
+  providers: [DatePipe]
 })
 export class CEtabpageComponent implements OnInit {
   submitted = false;
@@ -20,6 +22,7 @@ export class CEtabpageComponent implements OnInit {
   firstName: any;
   lastName: any;
   dob: any;
+  enquiryDate: any;
   gender: any;
   aadharNo: any;
   regNo12th: any;
@@ -99,7 +102,7 @@ export class CEtabpageComponent implements OnInit {
   streetLane3: any;
   ///////////////DataBinding Load Data////////////////////
   addressTypes: any;
-  userInfo: string;
+  userInfo: any;
   genders: any;
   institutions: any;
   boards: any;
@@ -228,6 +231,7 @@ amountValue: any;
     private router: Router,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
+    private datePipe: DatePipe
    ) { 
        // Add Form - BasicDetail 
     this.firstName = new FormControl('', Validators.required);
@@ -249,7 +253,6 @@ amountValue: any;
     this.applicatonNo = new FormControl('', Validators.required);
     this.admissiontype = new FormControl('', Validators.required);
     this.admissionCategory = new FormControl('', Validators.required);
-    this.coursecategory = new FormControl('', Validators.required);
     this.scholarshipCategory = new FormControl('', Validators.required);
     this.remark = new FormControl('', Validators.required);
     this.nationality = new FormControl('', Validators.required);
@@ -274,6 +277,7 @@ amountValue: any;
       this.canId = params.id;
     });
     //courseProgram
+    this.coursecategory = new FormControl('', Validators.required);
      this.courseprogram = new FormControl('', Validators.required);
 
  //add Form Group - addressDetails 
@@ -389,6 +393,7 @@ this.followupseditform = this.formBuilder.group({
   }
 // To add the basicDetails
 addbasicdetails() {
+  this.enquiryDate = this.datePipe.transform(new Date(),"dd-MM-yyyy");
   const newBasicDetails = {
     firstName: this.firstName.value,
     lastName: this.lastName.value,
@@ -408,8 +413,7 @@ addbasicdetails() {
     referenceBy: this.referenceBy.value,
     applicatonNo: this.applicatonNo.value,
     admissiontype: this.admissiontype.value,
-    admissionCategory: this.admissionCategory.value,
-    coursecategory: this.coursecategory.value,
+    admissionCategory: this.admissionCategory.value, 
     scholarshipCategory: this.scholarshipCategory.value,
     remark: this.remark.value,
     nationality: this.nationality.value,
@@ -428,9 +432,11 @@ addbasicdetails() {
     pPanNumber: this.pPanNumber.value,
     pAadharNumber: this.pAadharNumber.value,
     relativeName: this.relativeName.value,
-    sPhoto: this.getfileLoc
+    sPhoto: this.getfileLoc,
+    enquiryDate: this.enquiryDate
   };
   this.request.addBasicDetails(newBasicDetails).subscribe((response: any) => {
+    
     console.log(response);
       swal("Added Sucessfully");
       this.viewData();
@@ -448,13 +454,18 @@ addbasicdetails() {
 //Add CourseProgram
  addCEcourseProgram() {
   const newcourseProgram = {
+    coursecategory: this.coursecategory.value,
     courseprogram:this.courseprogram.value,
     canId: this.canId
   };
   this.request.addCEcourseprogram(newcourseProgram).subscribe((response: any) => {
-    console.log(response);  
+    if (response.status == 'success') {
       swal("Added Sucessfully");
       this.viewCEcourseprogram(this.canId);
+    }
+    else if (response.status == 'error') {       
+      this.setMessage(response.error);
+    }  
   }, (error) => {
     this.setMessage(error);
   });
@@ -754,8 +765,8 @@ addpaymentdetails() {
     if (res.status == 'error') {
       this.setMessage(res.error);
     }
-    else if (res.status == 'success') {
-      
+    else if (res.status == 'success') { 
+     
       swal("Added Sucessfully");
       this.viewPaymentData(this.canId);
       this.loadModal();
@@ -947,7 +958,7 @@ onEditFollowupsSubmit() {
   }
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Filter CourseCategory, AdmissionType, AdmissionCategory by Institution 
-  onInstitutionChange(Institution: string) {
+  onInstitutionChange(Institution: any) {
     console.log('institution', Institution)
     if (Institution) {
       this.request.getCoursecategorybyIns(Institution).subscribe((response: any) => {
@@ -975,7 +986,7 @@ onEditFollowupsSubmit() {
     this.admissioncategories = null;
   }
   // Filter CourseProgram by CourseCategory
-  onCourseCategoryChange(CourseCategory: string) {
+  onCourseCategoryChange(CourseCategory: any) {
     console.log('courseCategory', CourseCategory)
     if (CourseCategory) {
       this.request.getCourseProbycourCat(CourseCategory).subscribe((response: any) => {
@@ -1006,6 +1017,7 @@ onEditFollowupsSubmit() {
       console.log(error);
     });
   }
+  
   loadInstitution() {
     this.request.getInstitution().subscribe((response: any) => {
       console.log('Institution', response);

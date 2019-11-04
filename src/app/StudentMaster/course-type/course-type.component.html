@@ -38,7 +38,7 @@
                                                          formControlName="qualificationType" class="form-control"
                                                              [ngClass]="{ 'is-invalid': submitted && f.qualificationType.errors }" >
 
-                                                          <option value="" disabled selected>Choose your qualificationType</option>
+                                                          <option value="" >Choose your qualificationType</option>
                                                           <option *ngFor="let qualificationType of qualificationtypes?.response" [value]="qualificationType._id">{{qualificationType?.qualificationType}}</option>
 
                                                         </select>

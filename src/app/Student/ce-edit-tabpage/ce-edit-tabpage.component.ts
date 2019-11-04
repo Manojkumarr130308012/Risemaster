@@ -137,7 +137,7 @@ export class CeEditTabpageComponent implements OnInit {
   streetLane3: any;
   ///////////////DataBinding Load Data////////////////////
   addressTypes: any;
-  userInfo: string;
+  userInfo: any;
   genders: any;
   institutions: any;
   boards: any;
@@ -261,6 +261,11 @@ export class CeEditTabpageComponent implements OnInit {
   canId: any;
   public edit = false;
   editbasicDetails: any;
+  editcedetails: any;
+  Institution: any;
+  id: any;
+  coursecategoriesbyIns: any;
+  basicdetails1: any;
   
   constructor(
     private request: RequestService,
@@ -271,55 +276,55 @@ export class CeEditTabpageComponent implements OnInit {
       this.edit = params.edit;
       this.canId = params.id;
     });
-      // Add Form - BasicDetail 
-      this.firstName = new FormControl('', Validators.required);
-      this.lastName = new FormControl('', Validators.required);
-      this.dob = new FormControl('', Validators.required);
-      this.gender = new FormControl('', Validators.required);
-      this.aadharNo = new FormControl('', Validators.required);
-      this.regNo12th = new FormControl('', Validators.required);
-      this.mark12th = new FormControl('', Validators.required);
-      this.email = new FormControl('', Validators.required);
-      this.sMobileNumber = new FormControl('', Validators.required);
-      this.fFirstName = new FormControl('', Validators.required);
-      this.fLastName = new FormControl('', Validators.required);
-      this.fMobileNumber = new FormControl('', Validators.required);
-      this.institution = new FormControl('', Validators.required);
-      this.board = new FormControl('', Validators.required);
-      this.referenceType = new FormControl('', Validators.required);
-      this.referenceBy = new FormControl('', Validators.required);
-      this.applicatonNo = new FormControl('', Validators.required);
-      this.admissiontype = new FormControl('', Validators.required);
-      this.admissionCategory = new FormControl('', Validators.required);
-      this.coursecategory = new FormControl('', Validators.required);
-      this.scholarshipCategory = new FormControl('', Validators.required);
-      this.remark = new FormControl('', Validators.required);
-      this.nationality = new FormControl('', Validators.required);
-      this.religion = new FormControl('', Validators.required);
-      this.community = new FormControl('', Validators.required);
-      this.caste = new FormControl('', Validators.required);
-      this.motherTongue = new FormControl('', Validators.required);
-      this.fEmail = new FormControl('', Validators.required);
-      this.fOccupation = new FormControl('', Validators.required);
-      this.fAnnualIncome = new FormControl('', Validators.required);
-      this.mName = new FormControl('', Validators.required);
-      this.mEmail = new FormControl('', Validators.required);
-      this.mMobileNo = new FormControl('', Validators.required);
-      this.mOccupation = new FormControl('', Validators.required);
-      this.mAnnualIncome = new FormControl('', Validators.required);
-      this.pPanNumber = new FormControl('', Validators.required);
-      this.pAadharNumber = new FormControl('', Validators.required);
-      this.relativeName = new FormControl('', Validators.required);
-      this.sPhoto = new FormControl('', Validators.required);
-  
-  
-      //courseProgram
-       this.courseprogram = new FormControl('', Validators.required);
-  
-//Edit Basic Details
-this.onEditBasic();
+   this.id = this.canId;
+    // Edit Form - BasicDetail 
+    this.firstName = new FormControl('', Validators.required);
+    this.lastName = new FormControl('', Validators.required);
+    this.dob = new FormControl('', Validators.required);
+    this.gender = new FormControl('', Validators.required);
+    this.aadharNo = new FormControl('', Validators.required);
+    this.regNo12th = new FormControl('', Validators.required);
+    this.mark12th = new FormControl('', Validators.required);
+    this.email = new FormControl('', Validators.required);
+    this.sMobileNumber = new FormControl('', Validators.required);
+    this.fFirstName = new FormControl('', Validators.required);
+    this.fLastName = new FormControl('', Validators.required);
+    this.fMobileNumber = new FormControl('', Validators.required);
+    this.institution = new FormControl('', Validators.required);
+    this.board = new FormControl('', Validators.required);
+    this.referenceType = new FormControl('', Validators.required);
+    this.referenceBy = new FormControl('', Validators.required);
+    this.applicatonNo = new FormControl('', Validators.required);
+    this.admissiontype = new FormControl('', Validators.required);
+    this.admissionCategory = new FormControl('', Validators.required);
+    this.scholarshipCategory = new FormControl('', Validators.required);
+    this.remark = new FormControl('', Validators.required);
+    this.nationality = new FormControl('', Validators.required);
+    this.religion = new FormControl('', Validators.required);
+    this.community = new FormControl('', Validators.required);
+    this.caste = new FormControl('', Validators.required);
+    this.motherTongue = new FormControl('', Validators.required);
+    this.fEmail = new FormControl('', Validators.required);
+    this.fOccupation = new FormControl('', Validators.required);
+    this.fAnnualIncome = new FormControl('', Validators.required);
+    this.mName = new FormControl('', Validators.required);
+    this.mEmail = new FormControl('', Validators.required);
+    this.mMobileNo = new FormControl('', Validators.required);
+    this.mOccupation = new FormControl('', Validators.required);
+    this.mAnnualIncome = new FormControl('', Validators.required);
+    this.pPanNumber = new FormControl('', Validators.required);
+    this.pAadharNumber = new FormControl('', Validators.required);
+    this.relativeName = new FormControl('', Validators.required);
+    this.sPhoto = new FormControl('', Validators.required);
 
-  
+    //Edit Basic Details
+    this.onEditBasic();
+
+    //courseProgram
+    this.coursecategory = new FormControl('', Validators.required);
+    this.courseprogram = new FormControl('', Validators.required);
+
+
 
    //add Form Group - addressDetails 
    this.addressAddForm = this.formBuilder.group({
@@ -456,7 +461,6 @@ this.onEditBasic();
   this.applicatonNoValue = this.editbasicDetails.applicatonNo;
   this.admissiontypeValue = this.editbasicDetails.admissiontype;
   this.admissionCategoryValue = this.editbasicDetails.admissionCategory;
-  this.coursecategoryValue = this.editbasicDetails.coursecategory;
   this.scholarshipCategoryValue = this.editbasicDetails.scholarshipCategory;
   this.remarkValue = this.editbasicDetails.remark;
   this.nationalityValue = this.editbasicDetails.nationality;
@@ -498,7 +502,6 @@ this.onEditBasic();
   this.applicatonNo = new FormControl(this.applicatonNoValue, Validators.required);
   this.admissiontype = new FormControl(this.admissiontypeValue, Validators.required);
   this.admissionCategory = new FormControl(this.admissionCategoryValue, Validators.required);
-  this.coursecategory = new FormControl(this.coursecategoryValue, Validators.required);
   this.scholarshipCategory = new FormControl(this.scholarshipCategoryValue, Validators.required);
   this.remark = new FormControl(this.remarkValue, Validators.required);
   this.nationality = new FormControl(this.nationalityValue, Validators.required);
@@ -520,9 +523,9 @@ this.onEditBasic();
   this.sPhoto = new FormControl(this.sPhotoValue, Validators.required);
   });
   }
+
   editbasicdetails(){
-      
-      const edata = {
+        const edata = {
         firstName: this.firstName.value,
         lastName: this.lastName.value,
         dob: this.dob.value,
@@ -542,8 +545,6 @@ this.onEditBasic();
         applicatonNo: this.applicatonNo.value,
         admissiontype: this.admissiontype.value,
         admissionCategory: this.admissionCategory.value,
-        coursecategory: this.coursecategory.value,
-        courseprogram: this.courseprogram.value,
         scholarshipCategory: this.scholarshipCategory.value,
         remark: this.remark.value,
         nationality: this.nationality.value,
@@ -587,12 +588,23 @@ this.onEditBasic();
     }, (error) => {
       console.log(error);
     });
+  } 
+  getData(id) {
+    this.request.fetchBasicDetailsById(id).subscribe((response: any) => {
+      this.basicdetails1 = response;
+      this.institution = response[0].institution[0]._id;
+      this.loadCourseCategoryByIns(this.institution);
+      console.log('BasicDetailsById',  this.basicdetails1);
+    }, (error) => {
+      console.log(error);
+    });
   }
 
 
 //Add CourseProgram
 addCEcourseProgram() {
-  const newcourseProgram = {
+  const newcourseProgram = {  
+    coursecategory: this.coursecategory.value,
     courseprogram:this.courseprogram.value,
     canId: this.canId
   };
@@ -632,10 +644,6 @@ addaddressdetails() {
   if (this.addressAddForm.invalid) {
     return;
     }
-    // this.route.queryParams.subscribe((params: any) => {
-    //   this.edit = params.edit;
-    //   this.canId = params.id;
-    // });
     let newAddress = {
       addresstype: this.addressAddForm.get('addresstype').value,
       flatNo:  this.addressAddForm.get('flatNo').value,
@@ -870,6 +878,8 @@ this.qualificationdetails = null;
       this.viewQualificationDetails(this.canId);
     });
   }
+
+
 ////////////////////////////////////////////////////////////////Payment Details/////////////////////////////////////////////////
  // convenience getter for easy access to form fields
  get f5() { return this.paymentAddForm.controls; }
@@ -1087,8 +1097,8 @@ this.followups = null;
 
  ///////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Filter CourseCategory, AdmissionType, AdmissionCategory by Institution 
-  onInstitutionChange(Institution: string) {
-    console.log('institution', Institution)
+  onInstitutionChange(Institution: any) {
+   
     if (Institution) {
       this.request.getCoursecategorybyIns(Institution).subscribe((response: any) => {
         console.log('courseCategory', response);
@@ -1115,7 +1125,7 @@ this.followups = null;
     this.admissioncategories = null;
   }
   // Filter CourseProgram by CourseCategory
-  onCourseCategoryChange(CourseCategory: string) {
+  onCourseCategoryChange(CourseCategory: any) {
     console.log('courseCategory', CourseCategory)
     if (CourseCategory) {
       this.request.getCourseProbycourCat(CourseCategory).subscribe((response: any) => {
@@ -1138,18 +1148,18 @@ this.followups = null;
       console.log(error);
     });
   }
-  loadGender() {
-    this.request.getGender().subscribe((response: any) => {
-      this.genders = response;
-      console.log('Gender', response);
-    }, (error) => {
-      console.log(error);
-    });
-  }
   loadInstitution() {
     this.request.getInstitution().subscribe((response: any) => {
       console.log('Institution', response);
       this.institutions = response;
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  loadGender() {
+    this.request.getGender().subscribe((response: any) => {
+      this.genders = response;
+      console.log('Gender', response);
     }, (error) => {
       console.log(error);
     });
@@ -1182,6 +1192,14 @@ this.followups = null;
     this.request.getScholarshipCategory().subscribe((response: any) => {
       this.scholarshipCategories = response;
       console.log('ScholarshipCategory' ,response);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  loadCourseCategoryByIns(institution) {
+    this.request.getCoursecategorybyIns(institution).subscribe((response: any) => {
+      this.coursecategoriesbyIns = response;
+      console.log('CourseCategoryByIns', this.coursecategoriesbyIns);
     }, (error) => {
       console.log(error);
     });
@@ -1336,6 +1354,7 @@ this.followups = null;
   ngOnInit() {
     this.viewAddressData(this.canId);
     this.viewData();
+    this.getData(this.id);
     this.viewPaymentData(this.canId);
     this.viewQualificationDetails(this.canId);
     this.viewFollowupsData(this.canId);
@@ -1344,7 +1363,6 @@ this.followups = null;
     this.loadAddressType();
     this.loadQualificationType();
     this.loadGender();
-    this.loadInstitution();
     this.loadBoard();
     this.loadAdmissionType();
     this.loadScholarshipCategory();
@@ -1356,6 +1374,7 @@ this.followups = null;
     this.loadCommunity();
     this.loadCaste();
     this.loadCourseType();
+    this.loadInstitution();
     this.loadInstitutionType();
     this.loadAdmissionCategory();
     this.loadMotherTongue();

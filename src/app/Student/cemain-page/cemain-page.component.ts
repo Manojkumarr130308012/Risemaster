@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestService } from 'src/app/services/request.service';
 
+
 @Component({
   selector: 'app-cemain-page',
   templateUrl: './cemain-page.component.html',
@@ -13,9 +14,13 @@ export class CEmainPageComponent implements OnInit {
   Id: any;
   paymentdetails: Object;
   followups: Object;
-
+  enquiryDate: any;
+  
   constructor( private router: Router,
-    private request: RequestService,) { }
+    private request: RequestService) { 
+    
+    }
+
 openNew(){
     this.router.navigate(['addCandidate']);
   }
@@ -29,6 +34,15 @@ openNew(){
          }
         });
   }
+  onConvert(basicdetail) {
+    this.Id=basicdetail._id;
+    console.log(this.Id);
+    this.router.navigate(['convertToStudent'], {
+       queryParams: {      
+           id: basicdetail._id,
+         }
+        });
+  }
 // To display the data
 viewData() {
   this.request.getBasicDetails().subscribe((response) => {
@@ -38,26 +52,8 @@ viewData() {
     console.log(error);
   });
  }
- viewPaymentData() {
-  this.request.getPaymentDetails().subscribe((response) => {
-    this.paymentdetails = response;
-    console.log('PaymentDetails', this.paymentdetails);
-  }, (error) => {
-    console.log(error);
-  });
- }
- viewFollowupsData() {
-  this.request.getFollowups().subscribe((response) => {
-    this.followups = response;
-    console.log('followups', this.followups);
-  }, (error) => {
-    console.log(error);
-  });
- }
   ngOnInit() {
     this.viewData();
-    this.viewPaymentData();
-    this.viewFollowupsData();
   }
 
 }

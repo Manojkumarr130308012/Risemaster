@@ -5,7 +5,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {   MatSnackBarModule} from '@angular/material';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
@@ -90,6 +89,10 @@ import { StaffDetailsComponent } from './StaffManagement/staff-details/staff-det
 import { CEmainPageComponent } from './Student/cemain-page/cemain-page.component';
 import { CEtabpageComponent } from './Student/cetabpage/cetabpage.component';
 import { CeEditTabpageComponent } from './Student/ce-edit-tabpage/ce-edit-tabpage.component';
+import { BatchComponent } from './Master/batch/batch.component';
+import { ConvertToStudentComponent } from './Student/convert-to-student/convert-to-student.component';
+import { StudentProfileComponent } from './StudentManagement/student-profile/student-profile.component';
+import { StudentEntryComponent } from './StudentManagement/student-entry/student-entry.component';
 
 
 
@@ -161,7 +164,11 @@ import { CeEditTabpageComponent } from './Student/ce-edit-tabpage/ce-edit-tabpag
 // Candidate Enquiry
 CEmainPageComponent,
 CEtabpageComponent,
-CeEditTabpageComponent
+CeEditTabpageComponent,
+BatchComponent,
+ConvertToStudentComponent,
+StudentProfileComponent,
+StudentEntryComponent
 
   ],
   imports: [
