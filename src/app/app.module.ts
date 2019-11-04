@@ -92,7 +92,6 @@ import { CeEditTabpageComponent } from './Student/ce-edit-tabpage/ce-edit-tabpag
 import { BatchComponent } from './Master/batch/batch.component';
 import { ConvertToStudentComponent } from './Student/convert-to-student/convert-to-student.component';
 import { StudentProfileComponent } from './StudentManagement/student-profile/student-profile.component';
-import { StudentEntryComponent } from './StudentManagement/student-entry/student-entry.component';
 
 
 
@@ -168,7 +167,7 @@ CeEditTabpageComponent,
 BatchComponent,
 ConvertToStudentComponent,
 StudentProfileComponent,
-StudentEntryComponent
+
 
   ],
   imports: [

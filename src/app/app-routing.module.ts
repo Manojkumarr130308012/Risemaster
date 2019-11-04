@@ -63,6 +63,7 @@ import { CEtabpageComponent } from './Student/cetabpage/cetabpage.component';
 import { CeEditTabpageComponent } from './Student/ce-edit-tabpage/ce-edit-tabpage.component';
 import { BatchComponent } from './Master/batch/batch.component';
 import { ConvertToStudentComponent } from './Student/convert-to-student/convert-to-student.component';
+import { StudentProfileComponent } from './StudentManagement/student-profile/student-profile.component';
 
 const routes: Routes = [
   // { path: '', component: LoginComponent },
@@ -277,7 +278,7 @@ const routes: Routes = [
   { path: 'staff-details',
   component: StaffDetailsComponent },
 
-
+//CandidateEnquiry
   { path: 'candidateEnquiry', 
   component: CEmainPageComponent },
   { path: 'addCandidate', 
@@ -286,6 +287,12 @@ const routes: Routes = [
   component: CeEditTabpageComponent },
   { path: 'convertToStudent', 
   component: ConvertToStudentComponent },
+  
+  //StudentManagemnat
+  { path: 'studentProfile', 
+  component: StudentProfileComponent },
+  // { path: 'studentDetails', 
+  // component:  },
 ];
 
 @NgModule({
