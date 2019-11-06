@@ -12,15 +12,15 @@
                         <div class="header-dropdown m-r--5">
                             <!-- Add button -->
                                 <div class="btn-group m-l-15">
-                                        <button class="btn btn-info" (click)="openNew()">Add New</button>
-                                      
+                                  <button class="btn btn-info" (click)="openNew()">Add New</button>
+                                       
                         </div>
                     </div>
                    <div class="body">
                         <div class="table-responsive">
                           
                                 <table id="tableExport" 
-                                class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                class="display table table-hover table-checkable order-column m-t-50 width-per-100">
                                    <thead>
                                        <tr>
                                            <th>#</th>
@@ -51,8 +51,9 @@
                                            <td>{{basicdetail?.PaymentDetails[0].amount}}</td>
                                            <td>{{basicdetail?.remark}}</td>
                                            <td>
-                                                 <div class="btn-group" role="group">
-                                                            <button type="button" class="btn btn-primary waves-effect dropdown-toggle"
+                                               <div class="demo-single-button-dropdowns">
+                                                 <div class="btn-group">
+                                                            <button type="button" class="btn btn-default dropdown-toggle"
                                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                 Action
                                                                 <span class="caret"></span>
@@ -66,6 +67,7 @@
                                                                 </li>
                                                             </ul>
                                                     </div>
+                                                </div>
                                              </td>
                                        </tr>
                                    </tbody>

@@ -58,12 +58,13 @@ import { VehicleTransactionComponent } from './VehicleManagement/vehicle-transac
 import { StaffProfileComponent } from './StaffManagement/staff-profile/staff-profile.component';
 import { StaffDetailsComponent } from './StaffManagement/staff-details/staff-details.component';
 //CandidateEnquiry
-import { CEmainPageComponent } from './Student/cemain-page/cemain-page.component';
-import { CEtabpageComponent } from './Student/cetabpage/cetabpage.component';
-import { CeEditTabpageComponent } from './Student/ce-edit-tabpage/ce-edit-tabpage.component';
 import { BatchComponent } from './Master/batch/batch.component';
-import { ConvertToStudentComponent } from './Student/convert-to-student/convert-to-student.component';
 import { StudentProfileComponent } from './StudentManagement/student-profile/student-profile.component';
+import { StudentEntryComponent } from './StudentManagement/student-entry/student-entry.component';
+import { CEMainPageComponent } from './StudentCandidateEnquiry/ce-main-page/ce-main-page.component';
+import { CEAddFormComponent } from './StudentCandidateEnquiry/ce-add-form/ce-add-form.component';
+import { CEEditFormComponent } from './StudentCandidateEnquiry/ce-edit-form/ce-edit-form.component';
+import { ConvertToStudentComponent } from './StudentCandidateEnquiry/convert-to-student/convert-to-student.component';
 
 const routes: Routes = [
   // { path: '', component: LoginComponent },
@@ -280,19 +281,19 @@ const routes: Routes = [
 
 //CandidateEnquiry
   { path: 'candidateEnquiry', 
-  component: CEmainPageComponent },
+  component: CEMainPageComponent },
   { path: 'addCandidate', 
-  component: CEtabpageComponent },
+  component: CEAddFormComponent },
   { path: 'editCandidate', 
-  component: CeEditTabpageComponent },
+  component: CEEditFormComponent },
   { path: 'convertToStudent', 
   component: ConvertToStudentComponent },
   
   //StudentManagemnat
   { path: 'studentProfile', 
   component: StudentProfileComponent },
-  // { path: 'studentDetails', 
-  // component:  },
+  { path: 'studentEntry', 
+  component: StudentEntryComponent},
 ];
 
 @NgModule({

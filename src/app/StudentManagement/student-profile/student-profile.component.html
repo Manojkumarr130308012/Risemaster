@@ -1,1 +1,102 @@
-<p>student-profile works!</p>
+<section class="content">
+        <div class="container-fluid">
+            <!-- Table Start-->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">       
+                            <h2>
+                                <strong>Student Profile Management</strong>
+                            </h2>
+                            <div class="header-dropdown m-r--5">
+                                    <!-- Add button -->
+                                        <div class="btn-group m-l-15">
+                                                <button id="addRow" class="btn btn-info" (click)="addNew()">
+                                                    Add New
+                                                    <i class="fa fa-plus" style="color: white"></i>  
+                                                </button>
+                                        </div>
+                                     <!-- Add button -->
+                                </div>
+                            </div>
+    
+                            <div class="modal-body">
+                                <div class="body">
+                                    <div class="row clearfix">
+                                        <div class="col-md-3">
+                                            <label  for="institution">Institution</label>
+                                            <select  id="select" [(ngModel)]="selectedinstitution" class="browser-default form-control">
+                                               <!-- (change)="onInstitutionChange($event.target.value)" -->
+                                                <option>Choose your institution</option>
+                                                <option  *ngFor="let institution of institutions" [value]="institution._id">{{institution.institution_name}}</option>
+                                                </select>        
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="degree">Degree/Program</label>
+                                            <select id="select" [(ngModel)]="selectedDegree" class="browser-default form-control">
+                                                <option>Choose your Degree</option>
+                                                <option *ngFor="let degree of degrees?.response"
+                                                    [value]="degree._id">{{degree?.degree}}</option>
+                                                </select>
+                                        </div> 
+                                        <div class="col-md-3">
+                                                <label for="batch">Batch</label>
+                                                <select id="select" [(ngModel)]="selectedbatch" class="browser-default form-control">
+                                                    <option>Choose your Batch</option>
+                                                    <option *ngFor="let batch of batches"
+                                                        [value]="batch._id">{{batch?.batch}}</option>
+                                                    </select>
+                                            </div> 
+                                             <div class="col-lg-3 header-dropdown m-r--5">
+                                                    <div class="form-line input-field">
+                                                        <input class="form-control" type="text" name="search" [(ngModel)]="filter"
+                                                            placeholder="Search">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                            </div>
+                
+                       <div class="body">
+                                <div class="table-responsive">
+                                     <table id="tableExport" 
+                                     class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                        <thead>
+                                            <tr>
+                                            <th>S.No</th>
+                                            <th>Photo</th>
+                                            <th>RollNo.</th>
+                                            <th>Name</th>
+                                            <th>Gender</th>
+                                            <th>DOB</th>
+                                            <th>Blood Group</th>
+                                            <th>Parent Mobile Number</th>
+                                            <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let studentdetail of studentDetails; let i=index">
+                                                <td>{{i +1 }}</td> 
+                                                <td><img src="{{studentdetail?.photoLocation}}" width="100px"></td>
+                                                <td>{{studentdetail?.rollNo}}</td>
+                                                <td>{{studentdetail?.firstName}}{{studentdetail?.lastName}}</td>
+                                                <td>{{studentdetail.gender[0].gender}}</td>
+                                                <td>{{studentdetail?.dob}}</td>
+                                                <td>{{studentdetail.bloodGroup[0].bloodgroup}}</td>
+                                                <td>{{studentdetail?.fmobileNo}}</td>
+                                                <td>
+                                                        <button type="button" (click)="open(studentdetail)"
+                                                        class="btn btn-default">View</button>
+                                                    </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            
+            <!-- Table End -->
+        </div>
+    </section>

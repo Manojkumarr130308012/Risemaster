@@ -17,7 +17,7 @@
                                                 <div class="row">
                                                     <div class="col-md-5">
                                                         <div class="form-group form-float">
-                                                            <label for="firstName">First Name</label>
+                                                            <label for="firstName">First Name<a>*</a></label>
                                                             <div class="form-line">
                                                                 <input type="text" class="form-control" name="firstName" placeholder="Enter First Name"
                                                                     [formControl]="firstName" required />
@@ -176,8 +176,7 @@
                                                             <label for="admissionCategory">Admission Category</label>
                                                             <div class="form-line">
                                                                 <select class="browser-default" id="select3" [formControl]="admissionCategory" class="form-control">
-                                                                    <option value="">Choose your AdmissionCategory
-                                                                    </option>
+                                                                    <option value="">Choose your AdmissionCategory </option>
                                                                     <option *ngFor="let admissionCategory of admissioncategories?.response" [value]="admissionCategory._id">
                                                                         {{admissionCategory?.admissionCategory}}
                                                                     </option>
@@ -203,13 +202,6 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group form-float">
-                                                            <label for="referenceBy">Reference By</label>
-                                                            <div class="form-line">
-                                                                <input type="text" class="form-control" name="referenceBy" placeholder="Enter Reference By"
-                                                                    [formControl]="referenceBy" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group form-float">
                                                             <label for="scholarshipCategory">ScholarshipCategory</label>
                                                             <div class="form-line">
                                                                 <select class="browser-default" id="select5" [formControl]="scholarshipCategory" class="form-control">
@@ -220,6 +212,13 @@
                                                                         {{scholarshipCategory?.scholarshipCategory}}
                                                                     </option>
                                                                 </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group form-float">
+                                                            <label for="referenceBy">Reference By</label>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="referenceBy" placeholder="Enter Reference By"
+                                                                    [formControl]="referenceBy" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group form-float">
@@ -283,13 +282,13 @@
                                                                     [formControl]="pAadharNumber" />
                                                             </div>
                                                         </div>
-                                                        <div class="form-group form-float">
+                                                        <div class="form-group default-select">
                                                             <label for="motherTongue">Mother Tongue</label>
                                                             <div class="form-line">
-                                                                <select class="browser-default" id="select18" [formControl]="motherTongue" class="form-control">
+                                                                <select class="form-control select2"  [formControl]="motherTongue" >
                                                                     <option default>Choose your MotherTongue
                                                                     </option>
-                                                                    <option *ngFor="let motherTongue of motherTongues?.response" [value]="motherTongue._id">
+                                                                    <option *ngFor="let motherTongue of motherTongues?.response" [value]="motherTongue._id" selected>
                                                                         {{motherTongue?.motherTongue}}</option>
                                                                 </select>
                                                             </div>
@@ -419,6 +418,7 @@
 
                                         </div>
                                         <div class="text-right">
+                                            <button class="btn-hover btn-border-radius color-10" (click)="goBackToMain()">Back</button>
                                             <button class="btn-hover btn-border-radius color-8"  awNextStep>Next</button>
                                         </div>
                                     </div>
@@ -1075,14 +1075,19 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-group">
-                                                                                    <label>Advance Fee Type</label>
-                                                                                    <input type="text" value="" formControlName="advanceFeeType" class="form-control"
-                                                                                        placeholder="Enter Advance Fee Type" [ngClass]="{ 'is-invalid': submitted && f5.advanceFeeType.errors }" />
+                                                                                    <label>Advance Fees Type</label>
+                                                                                    <select class="browser-default" id="select" [(ngModel)]="selectedadvanceFeeType" formControlName="advanceFeeType"
+                                                                                       class="form-control" placeholder="Enter Advance Fees type"
+                                                                                        [ngClass]="{ 'is-invalid': submitted && f5.advanceFeeType.errors }">
+                                                                                        <option value="" selected> Choose your AddvanceFees Type</option>
+                                                                                        <option *ngFor="let feetype of feetypes?.response" [value]="feetype._id">
+                                                                                            {{feetype?.feetype}}
+                                                                                        </option>
+                                                                                    </select>
                                                                                     <div *ngIf="submitted && f5.advanceFeeType.errors" class="invalid-feedback">
-                                                                                        <div *ngIf="f5.advanceFeeType.errors.required">Advance
-                                                                                            Fee Type is required</div>
+                                                                                        <div *ngIf="f5.advanceFeeType.errors.required"> Advance Fees Type is required </div>
                                                                                     </div>
-                                                                                </div>
+                                                                                </div> 
                                                                         </div>
                                                                     </div> 
                                                                     <div class="modal-footer">
@@ -1211,12 +1216,17 @@
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                             <div class="form-group">
-                                                                                                                <label>Advance Fee Type</label>
-                                                                                                                <input type="text" value="" formControlName="advanceFeeType2" class="form-control"
-                                                                                                                    placeholder="Enter Advance Fee Type" [ngClass]="{ 'is-invalid': submitted && f6.advanceFeeType2.errors }" />
+                                                                                                                <label>Advance Fees Type</label>
+                                                                                                                <select class="browser-default" id="select" [(ngModel)]="selectedadvanceFeeType" formControlName="advanceFeeType2"
+                                                                                                                    class="form-control" placeholder="Enter Advance Fees type"
+                                                                                                                    [ngClass]="{ 'is-invalid': submitted && f6.advanceFeeType2.errors }">
+                                                                                                                    <option value="" selected> Choose your AddvanceFees Type</option>
+                                                                                                                    <option *ngFor="let feetype of feetypes?.response" [value]="feetype._id">
+                                                                                                                        {{feetype?.feetype}}
+                                                                                                                    </option>
+                                                                                                                </select>
                                                                                                                 <div *ngIf="submitted && f6.advanceFeeType2.errors" class="invalid-feedback">
-                                                                                                                    <div *ngIf="f6.advanceFeeType2.errors.required"> Advance Fee Type is required
-                                                                                                                    </div>
+                                                                                                                    <div *ngIf="f6.advanceFeeType2.errors.required"> Advance Fees Type is required </div>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
@@ -1350,11 +1360,15 @@
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label>ModeOfEnquiry</label>
-                                                                            <input type="text" value="" formControlName="modeOfEnquiry" class="form-control"
-                                                                                placeholder="Enter ModeOfEnquiry" [ngClass]="{ 'is-invalid': submitted && f7.modeOfEnquiry.errors }" />
+                                                                            <select class="browser-default" id="select" [(ngModel)]="selectedModeOfEnquiry" formControlName="modeOfEnquiry"
+                                                                                value=" " class="form-control" [ngClass]="{ 'is-invalid': submitted && f7.modeOfEnquiry.errors }">
+                                                                                <option value="" selected> Choose your ModeOfEnquiry</option>
+                                                                                <option *ngFor="let modeOfEnquiry of modeOfEnquiries?.response" [value]="modeOfEnquiry._id">
+                                                                                    {{modeOfEnquiry?.modeofenquiry}}
+                                                                                </option>
+                                                                            </select>
                                                                             <div *ngIf="submitted && f7.modeOfEnquiry.errors" class="invalid-feedback">
-                                                                                <div *ngIf="f7.modeOfEnquiry.errors.required">
-                                                                                    ModeOfEnquiry is required</div>
+                                                                                <div *ngIf="f7.modeOfEnquiry.errors.required"> ModeOfEnquiry is required </div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
@@ -1426,16 +1440,21 @@
                                                                             <div class="col-md-6">
                                                                                 <div class="form-group">
                                                                                     <label>ModeOfEnquiry</label>
-                                                                                    <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f8.modeOfEnquiry2.errors }"
-                                                                                        formControlName="modeOfEnquiry2">
+                                                                                    <select class="browser-default" id="select" [(ngModel)]="selectedModeOfEnquiry" formControlName="modeOfEnquiry2"
+                                                                                        value=" " class="form-control" [ngClass]="{ 'is-invalid': submitted && f8.modeOfEnquiry2.errors }">
+                                                                                        <option value="" selected> Choose your ModeOfEnquiry</option>
+                                                                                        <option *ngFor="let modeOfEnquiry of modeOfEnquiries?.response" [value]="modeOfEnquiry._id">
+                                                                                            {{modeOfEnquiry?.modeofenquiry}}
+                                                                                        </option>
+                                                                                    </select>
                                                                                     <div *ngIf="submitted && f8.modeOfEnquiry2.errors" class="invalid-feedback">
-                                                                                        <div *ngIf="f8.modeOfEnquiry2.errors.required">
-                                                                                            ModeOfEnquiry is required</div>
+                                                                                        <div *ngIf="f8.modeOfEnquiry2.errors.required"> ModeOfEnquiry is required </div>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label>NextEnquiryDate</label>
-                                                                                    <input type="date" value="" formControlName="nextEnquiryDate2" class="form-control" placeholder="Enter Cheque / DD Number"
+                                                                                    <input type="date" value="" formControlName="nextEnquiryDate2" class="form-control"
+                                                                                        placeholder="Enter Cheque / DD Number"
                                                                                         [ngClass]="{ 'is-invalid': submitted && f8.nextEnquiryDate2.errors }" />
                                                                                     <div *ngIf="submitted && f8.nextEnquiryDate2.errors" class="invalid-feedback">
                                                                                         <div *ngIf="f8.nextEnquiryDate2.errors.required">

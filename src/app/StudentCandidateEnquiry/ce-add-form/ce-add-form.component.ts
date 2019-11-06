@@ -1,24 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { RequestService } from 'src/app/services/request.service';
+import { FormControl, Validators, FormBuilder } from '@angular/forms';
+import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
+import { RequestService } from '../../services/request.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload';
+import { DatePipe } from '@angular/common';
 
-const url = 'http://localhost:3000/ce-qd-fileupload/fileupload';
 const URL = 'http://localhost:3000/uploadStudentPhoto/upload';
+const url = 'http://localhost:3000/ce-qd-fileupload/fileupload';
 declare const $: any;
 declare const swal: any;
 @Component({
-  selector: 'app-ce-edit-tabpage',
-  templateUrl: './ce-edit-tabpage.component.html',
-  styleUrls: ['./ce-edit-tabpage.component.scss']
+  selector: 'app-ce-add-form',
+  templateUrl: './ce-add-form.component.html',
+  styleUrls: ['./ce-add-form.component.scss']
 })
-export class CeEditTabpageComponent implements OnInit {
+export class CEAddFormComponent implements OnInit {
+
   submitted = false;
   ///////////////////Basic Details
   firstName: any;
   lastName: any;
   dob: any;
+  enquiryDate: any;
   gender: any;
   aadharNo: any;
   regNo12th: any;
@@ -61,45 +65,6 @@ export class CeEditTabpageComponent implements OnInit {
   message: any;
   admissiontypes: any;
   basicdetails: any;
-  firstNameValue: any;
-  lastNameValue: any;
-  dobValue: any;
-  genderValue: any;
-  aadharNoValue: any;
-  regNo12thValue: any;
-  mark12thValue: any;
-  emailValue: any;
-  sMobileNumberValue: any;
-  fFirstNameValue: any;
-  fLastNameValue: any;
-  fMobileNumberValue: any;
-  institutionValue: any;
-  boardValue: any;
-  referenceTypeValue: any;
-  referenceByValue: any;
-  applicatonNoValue: any;
-  admissiontypeValue: any;
-  admissionCategoryValue: any;
-  coursecategoryValue: any;
-  scholarshipCategoryValue: any;
-  remarkValue: any;
-  nationalityValue: any;
-  religionValue: any;
-  communityValue: any;
-  casteValue: any;
-  motherTongueValue: any;
-  fEmailValue: any;
-  fOccupationValue: any;
-  fAnnualIncomeValue: any;
-  mNameValue: any;
-  mEmailValue: any;
-  mMobileNoValue: any;
-  mOccupationValue: any;
-  mAnnualIncomeValue: any;
-  pPanNumberValue: any;
-  pAadharNumberValue: any;
-  relativeNameValue: any;
-  sPhotoValue: any;
 
   ///////////////////////Address Details//////////////////////////
   addresstype: any;
@@ -178,7 +143,7 @@ export class CeEditTabpageComponent implements OnInit {
   maxMark2: any;
   percentage2: any;
   organisationType2: any;
-  qdAddForm: any;
+  // qdAddForm: any;
   qualificationdetails: any;
   admissioncategories: any;
   fileValue: any;
@@ -188,7 +153,7 @@ export class CeEditTabpageComponent implements OnInit {
   fileLocationValue: any;
   fileLocation2: FormControl;
   admissionCatgeories: any;
-  qdEditForm: any;
+  // qdEditForm: any;
   editqualificationDetails: any;
   qualificationTypeValue: any;
   courseTypeValue: any;
@@ -204,29 +169,29 @@ export class CeEditTabpageComponent implements OnInit {
   can: any;
 ///////////////////////////////////////Payment Details////////////////////////
 //Payment Details
-  paymentDate: any;
-  paymentmethod: any;
-  bank: any;
-  chequeDDDate: any;
-  chequeDDNumber: any;
-  advanceFeeType: any;
-  amount: any;
-  paymentDate2: any;
-  paymentmethod2: any;
-  bank2: any;
-  chequeDDDate2: any;
-  chequeDDNumber2: any;
-  advanceFeeType2: any;
-  amount2: any;
-  paymentdetails: any;
-  editpaymentDetailsdata: any;
-  paymentDateValue: any;
-  paymentMethodValue: any;
-  bankValue: any;
-  chequeDDDateValue: any;
-  chequeDDNumberValue: any;
-  advanceFeeTypeValue: any;
-  amountValue: any;
+paymentDate: any;
+paymentmethod:any;
+bank: any;
+chequeDDDate: any;
+chequeDDNumber: any;
+advanceFeeType: any;
+amount: any;
+paymentDate2: any;
+paymentmethod2:any;
+bank2: any;
+chequeDDDate2: any;
+chequeDDNumber2: any;
+advanceFeeType2: any;
+amount2: any;
+paymentdetails: any;
+editpaymentDetailsdata: any;
+paymentDateValue: any;
+paymentMethodValue: any;
+bankValue: any;
+chequeDDDateValue: any;
+chequeDDNumberValue: any;
+advanceFeeTypeValue: any;
+amountValue: any;
   paymentAddForm: any;
   paymentEditForm: any;
   followupsaddform: any;
@@ -259,101 +224,90 @@ export class CeEditTabpageComponent implements OnInit {
   canInfo: any;
   editFollowupsdata: any;
   canId: any;
-  public edit = false;
-  editbasicDetails: any;
-  editcedetails: any;
-  Institution: any;
-  id: any;
-  coursecategoriesbyIns: any;
-  basicdetails1: any;
   modeOfEnquiries: any;
+  feestypes: any;
   feetypes: any;
-  
-  constructor(
+
+
+  constructor(private dynamicScriptLoader: DynamicScriptLoaderService,
     private request: RequestService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute) {
-    this.route.queryParams.subscribe((params: any) => {
-      this.edit = params.edit;
-      this.canId = params.id;
-    });
-   this.id = this.canId;
-    // Edit Form - BasicDetail 
+    private route: ActivatedRoute,
+    private datePipe: DatePipe
+   ) { 
+       // Add Form - BasicDetail 
     this.firstName = new FormControl('', Validators.required);
     this.lastName = new FormControl('', Validators.required);
     this.dob = new FormControl('', Validators.required);
     this.gender = new FormControl('', Validators.required);
-    this.aadharNo = new FormControl('', Validators.required);
-    this.regNo12th = new FormControl('', Validators.required);
-    this.mark12th = new FormControl('', Validators.required);
-    this.email = new FormControl('', Validators.required);
-    this.sMobileNumber = new FormControl('', Validators.required);
-    this.fFirstName = new FormControl('', Validators.required);
-    this.fLastName = new FormControl('', Validators.required);
-    this.fMobileNumber = new FormControl('', Validators.required);
+    this.aadharNo = new FormControl('');
+    this.regNo12th = new FormControl('');
+    this.mark12th = new FormControl('');
+    this.email = new FormControl('');
+    this.sMobileNumber = new FormControl('');
+    this.fFirstName = new FormControl('');
+    this.fLastName = new FormControl('');
+    this.fMobileNumber = new FormControl('');
     this.institution = new FormControl('', Validators.required);
-    this.board = new FormControl('', Validators.required);
+    this.board = new FormControl('');
     this.referenceType = new FormControl('', Validators.required);
-    this.referenceBy = new FormControl('', Validators.required);
+    this.referenceBy = new FormControl('');
     this.applicatonNo = new FormControl('', Validators.required);
-    this.admissiontype = new FormControl('', Validators.required);
-    this.admissionCategory = new FormControl('', Validators.required);
-    this.scholarshipCategory = new FormControl('', Validators.required);
-    this.remark = new FormControl('', Validators.required);
-    this.nationality = new FormControl('', Validators.required);
-    this.religion = new FormControl('', Validators.required);
-    this.community = new FormControl('', Validators.required);
-    this.caste = new FormControl('', Validators.required);
-    this.motherTongue = new FormControl('', Validators.required);
-    this.fEmail = new FormControl('', Validators.required);
-    this.fOccupation = new FormControl('', Validators.required);
-    this.fAnnualIncome = new FormControl('', Validators.required);
-    this.mName = new FormControl('', Validators.required);
-    this.mEmail = new FormControl('', Validators.required);
-    this.mMobileNo = new FormControl('', Validators.required);
-    this.mOccupation = new FormControl('', Validators.required);
-    this.mAnnualIncome = new FormControl('', Validators.required);
-    this.pPanNumber = new FormControl('', Validators.required);
-    this.pAadharNumber = new FormControl('', Validators.required);
-    this.relativeName = new FormControl('', Validators.required);
-    this.sPhoto = new FormControl('', Validators.required);
+    this.admissiontype = new FormControl('');
+    this.admissionCategory = new FormControl('');
+    this.scholarshipCategory = new FormControl('');
+    this.remark = new FormControl('');
+    this.nationality = new FormControl('');
+    this.religion = new FormControl('');
+    this.community = new FormControl('');
+    this.caste = new FormControl('');
+    this.motherTongue = new FormControl('');
+    this.fEmail = new FormControl('');
+    this.fOccupation = new FormControl('');
+    this.fAnnualIncome = new FormControl('');
+    this.mName = new FormControl('');
+    this.mEmail = new FormControl('');
+    this.mMobileNo = new FormControl('');
+    this.mOccupation = new FormControl('');
+    this.mAnnualIncome = new FormControl('');
+    this.pPanNumber = new FormControl('');
+    this.pAadharNumber = new FormControl('');
+    this.relativeName = new FormControl('');
+    this.sPhoto = new FormControl('');
 
-    //Edit Basic Details
-    this.onEditBasic();
-
+    this.route.queryParams.subscribe((params: any) => {
+      this.canId = params.id;
+    });
     //courseProgram
     this.coursecategory = new FormControl('', Validators.required);
-    this.courseprogram = new FormControl('', Validators.required);
+     this.courseprogram = new FormControl('', Validators.required);
 
-
-
-   //add Form Group - addressDetails 
-   this.addressAddForm = this.formBuilder.group({
-    addresstype: ['', Validators.required],
-    flatNo: ['', Validators.required],
-    streetLane: ['', Validators.required],
-    area: ['', Validators.required],
-    city: ['', Validators.required],
-    district: ['', Validators.required],
-    pincode: ['', Validators.required],
-    state: ['', Validators.required],
-    country: ['', Validators.required],
-  });
-  // Edit Form Group - addressDetails 
-  this.addressEditForm = this.formBuilder.group({
-    addresstype3: ['', Validators.required],
-    flatNo3: ['', Validators.required],
-    streetLane3: ['', Validators.required],
-    area3: ['', Validators.required],
-    city3: ['', Validators.required],
-    district3: ['', Validators.required],
-    pincode3: ['', Validators.required],
-    state3: ['', Validators.required],
-    country3: ['', Validators.required],
-  });
-  // Add Form Group - Qualification Details
-  // Add Form controller - Qualification Details
+ //add Form Group - addressDetails 
+ this.addressAddForm = this.formBuilder.group({
+  addresstype: ['', Validators.required],
+  flatNo: ['', Validators.required],
+  streetLane: ['', Validators.required],
+  area: ['', Validators.required],
+  city: ['', Validators.required],
+  district: ['', Validators.required],
+  pincode: ['', Validators.required],
+  state: ['', Validators.required],
+  country: ['', Validators.required],
+});
+// Edit Form Group - addressDetails 
+this.addressEditForm = this.formBuilder.group({
+  addresstype3: ['', Validators.required],
+  flatNo3: ['', Validators.required],
+  streetLane3: ['', Validators.required],
+  area3: ['', Validators.required],
+  city3: ['', Validators.required],
+  district3: ['', Validators.required],
+  pincode3: ['', Validators.required],
+  state3: ['', Validators.required],
+  country3: ['', Validators.required],
+});
+// Add Form controller - Qualification Details
 
   this.qualificationType = new FormControl('', Validators.required);
   this.courseType = new FormControl('', Validators.required);
@@ -390,45 +344,46 @@ export class CeEditTabpageComponent implements OnInit {
   this.organisationType2 = new FormControl('', Validators.required);
   this.fileLocation2 = new FormControl('', Validators.required);
 
-  //add Form Group - addressDetails 
-  this.paymentAddForm = this.formBuilder.group({
-    paymentDate: ['', Validators.required],
-    paymentmethod: ['', Validators.required],
-    bank: ['', Validators.required],
-    chequeDDDate: ['', Validators.required],
-    chequeDDNumber: ['', Validators.required],
-    advanceFeeType: ['', Validators.required],
-    amount: ['', Validators.required],
-  });
-  // Edit Form Group - addressDetails 
-  this.paymentEditForm = this.formBuilder.group({
-    paymentDate2: ['', Validators.required],
-    paymentmethod2: ['', Validators.required],
-    bank2: ['', Validators.required],
-    chequeDDDate2: ['', Validators.required],
-    chequeDDNumber2: ['', Validators.required],
-    advanceFeeType2: ['', Validators.required],
-    amount2: ['', Validators.required],
-  });
-  //Add Form Group - FollowUps
-  this.followupsaddform = this.formBuilder.group({
-    dateOfEnquiry: ['', Validators.required],
-    modeOfEnquiry: ['', Validators.required],
-    description: ['', Validators.required],
-    nextEnquiryDate: ['', Validators.required],
-    nextEnquiryTime: ['', Validators.required],
-  });
-  
-  //Edit Form Group - FollowUps
-  this.followupseditform = this.formBuilder.group({
-    dateOfEnquiry2: ['', Validators.required],
-    modeOfEnquiry2: ['', Validators.required],
-    description2: ['', Validators.required],
-    nextEnquiryDate2: ['', Validators.required],
-    nextEnquiryTime2: ['', Validators.required],
-  });
-   }
-  // to upload Image
+//add Form Group - addressDetails 
+this.paymentAddForm = this.formBuilder.group({
+  paymentDate: ['', Validators.required],
+  paymentmethod: ['', Validators.required],
+  bank: ['', Validators.required],
+  chequeDDDate: ['', Validators.required],
+  chequeDDNumber: ['', Validators.required],
+  advanceFeeType: ['', Validators.required],
+  amount: ['', Validators.required],
+});
+// Edit Form Group - addressDetails 
+this.paymentEditForm = this.formBuilder.group({
+  paymentDate2: ['', Validators.required],
+  paymentmethod2: ['', Validators.required],
+  bank2: ['', Validators.required],
+  chequeDDDate2: ['', Validators.required],
+  chequeDDNumber2: ['', Validators.required],
+  advanceFeeType2: ['', Validators.required],
+  amount2: ['', Validators.required],
+});
+//Add Form Group - FollowUps
+this.followupsaddform = this.formBuilder.group({
+  dateOfEnquiry: ['', Validators.required],
+  modeOfEnquiry: ['', Validators.required],
+  description: ['', Validators.required],
+  nextEnquiryDate: ['', Validators.required],
+  nextEnquiryTime: ['', Validators.required],
+});
+
+//Edit Form Group - FollowUps
+this.followupseditform = this.formBuilder.group({
+  dateOfEnquiry2: ['', Validators.required],
+  modeOfEnquiry2: ['', Validators.required],
+  description2: ['', Validators.required],
+  nextEnquiryDate2: ['', Validators.required],
+  nextEnquiryTime2: ['', Validators.required],
+});
+
+    }
+    //to upload logo
   submit() {
     this.uploader.uploadAll();
   }
@@ -439,180 +394,84 @@ export class CeEditTabpageComponent implements OnInit {
   public setMessage(message) {
     return this.message = message;
   }
-  onEditBasic() {
-    this.Id = this.canId;
-  this.request.fetchBasicDetailsById(this.Id).subscribe((response) => {
-  this.editbasicDetails = response[0];
-  console.log(this.editbasicDetails);
-  this.firstNameValue = this.editbasicDetails.firstName;
-  this.lastNameValue = this.editbasicDetails.lastName;
-  this.dobValue = this.editbasicDetails.dob;
-  this.genderValue = this.editbasicDetails.gender;
-  this.aadharNoValue = this.editbasicDetails.aadharNo;
-  this.regNo12thValue = this.editbasicDetails.regNo12th;
-  this.mark12thValue = this.editbasicDetails.mark12th;
-  this.emailValue = this.editbasicDetails.email;
-  this.sMobileNumberValue = this.editbasicDetails.sMobileNumber;
-  this.fFirstNameValue = this.editbasicDetails.fFirstName;
-  this.fLastNameValue = this.editbasicDetails.fLastName;
-  this.fMobileNumberValue = this.editbasicDetails.fMobileNumber;
-  this.institutionValue = this.editbasicDetails.institution;
-  this.boardValue = this.editbasicDetails.board;
-  this.referenceTypeValue = this.editbasicDetails.referenceType;
-  this.referenceByValue = this.editbasicDetails.referenceBy;
-  this.applicatonNoValue = this.editbasicDetails.applicatonNo;
-  this.admissiontypeValue = this.editbasicDetails.admissiontype;
-  this.admissionCategoryValue = this.editbasicDetails.admissionCategory;
-  this.scholarshipCategoryValue = this.editbasicDetails.scholarshipCategory;
-  this.remarkValue = this.editbasicDetails.remark;
-  this.nationalityValue = this.editbasicDetails.nationality;
-  this.religionValue = this.editbasicDetails.religion;
-  this.communityValue = this.editbasicDetails.community;
-  this.casteValue = this.editbasicDetails.caste;
-  this.motherTongueValue = this.editbasicDetails.motherTongue;
-  this.fEmailValue = this.editbasicDetails.fEmail;
-  this.fOccupationValue = this.editbasicDetails.fOccupation;
-  this.fAnnualIncomeValue = this.editbasicDetails.fAnnualIncome;
-  this.mNameValue = this.editbasicDetails.mName;
-  this.mEmailValue = this.editbasicDetails.mEmail;
-  this.mMobileNoValue = this.editbasicDetails.mMobileNo;
-  this.mOccupationValue = this.editbasicDetails.mOccupation;
-  this.mAnnualIncomeValue = this.editbasicDetails.mAnnualIncome;
-  this.pPanNumberValue = this.editbasicDetails.pPanNumber;
-  this.pAadharNumberValue = this.editbasicDetails.pAadharNumber;
-  this.relativeNameValue = this.editbasicDetails.relativeName;
-  this.sPhotoValue = this.editbasicDetails.sPhoto;
-  this.IdValue = this.editbasicDetails._id;
-  
-
-  this.firstName = new FormControl(this.firstNameValue, Validators.required);
-  this.lastName = new FormControl(this.lastNameValue, Validators.required);
-  this.dob = new FormControl(this.dobValue, Validators.required);
-  this.gender = new FormControl(this.genderValue, Validators.required);
-  this.aadharNo = new FormControl(this.aadharNoValue, Validators.required);
-  this.regNo12th = new FormControl(this.regNo12thValue, Validators.required);
-  this.mark12th = new FormControl(this.mark12thValue, Validators.required);
-  this.email = new FormControl(this.emailValue, Validators.required);
-  this.sMobileNumber = new FormControl(this.sMobileNumberValue, Validators.required);
-  this.fFirstName = new FormControl(this.fFirstNameValue, Validators.required);
-  this.fLastName = new FormControl(this.fLastNameValue, Validators.required);
-  this.fMobileNumber = new FormControl(this.fMobileNumberValue, Validators.required);
-  this.institution = new FormControl(this.institutionValue, Validators.required);
-  this.board = new FormControl(this.boardValue, Validators.required);
-  this.referenceType = new FormControl(this.referenceTypeValue, Validators.required);
-  this.referenceBy = new FormControl(this.referenceByValue, Validators.required);
-  this.applicatonNo = new FormControl(this.applicatonNoValue, Validators.required);
-  this.admissiontype = new FormControl(this.admissiontypeValue, Validators.required);
-  this.admissionCategory = new FormControl(this.admissionCategoryValue, Validators.required);
-  this.scholarshipCategory = new FormControl(this.scholarshipCategoryValue, Validators.required);
-  this.remark = new FormControl(this.remarkValue, Validators.required);
-  this.nationality = new FormControl(this.nationalityValue, Validators.required);
-  this.religion = new FormControl(this.religionValue, Validators.required);
-  this.community = new FormControl(this.communityValue, Validators.required);
-  this.caste = new FormControl(this.casteValue, Validators.required);
-  this.motherTongue = new FormControl(this.motherTongueValue, Validators.required);
-  this.fEmail = new FormControl(this.fEmailValue, Validators.required);
-  this.fOccupation = new FormControl(this.fOccupationValue, Validators.required);
-  this.fAnnualIncome = new FormControl(this.fAnnualIncomeValue, Validators.required);
-  this.mName = new FormControl(this.mNameValue, Validators.required);
-  this.mEmail = new FormControl(this.mEmailValue, Validators.required);
-  this.mMobileNo = new FormControl(this.mMobileNoValue, Validators.required);
-  this.mOccupation = new FormControl(this.mOccupationValue, Validators.required);
-  this.mAnnualIncome = new FormControl(this.mAnnualIncomeValue, Validators.required);
-  this.pPanNumber = new FormControl(this.pPanNumberValue, Validators.required);
-  this.pAadharNumber = new FormControl(this.pAadharNumberValue, Validators.required);
-  this.relativeName = new FormControl(this.relativeNameValue, Validators.required);
-  this.sPhoto = new FormControl(this.sPhotoValue, Validators.required);
+// To add the basicDetails
+addbasicdetails() {
+  this.enquiryDate = this.datePipe.transform(new Date(),"dd-MM-yyyy");
+  const newBasicDetails = {
+    firstName: this.firstName.value,
+    lastName: this.lastName.value,
+    dob: this.dob.value,
+    gender: this.gender.value,
+    aadharNo: this.aadharNo.value,
+    regNo12th: this.regNo12th.value,
+    mark12th: this.mark12th.value,
+    email: this.email.value,
+    sMobileNumber: this.sMobileNumber.value,
+    fFirstName: this.fFirstName.value,
+    fLastName: this.fLastName.value,
+    fMobileNumber: this.fMobileNumber.value,
+    institution: this.institution.value,
+    board: this.board.value,
+    referenceType: this.referenceType.value,
+    referenceBy: this.referenceBy.value,
+    applicatonNo: this.applicatonNo.value,
+    admissiontype: this.admissiontype.value,
+    admissionCategory: this.admissionCategory.value, 
+    scholarshipCategory: this.scholarshipCategory.value,
+    remark: this.remark.value,
+    nationality: this.nationality.value,
+    religion: this.religion.value,
+    community: this.community.value,
+    caste: this.caste.value,
+    motherTongue: this.motherTongue.value,
+    fEmail: this.fEmail.value,
+    fOccupation: this.fOccupation.value,
+    fAnnualIncome: this.fAnnualIncome.value,
+    mName: this.mName.value,
+    mEmail: this.mEmail.value,
+    mMobileNo: this.mMobileNo.value,
+    mOccupation: this.mOccupation.value,
+    mAnnualIncome: this.mAnnualIncome.value,
+    pPanNumber: this.pPanNumber.value,
+    pAadharNumber: this.pAadharNumber.value,
+    relativeName: this.relativeName.value,
+    sPhoto: this.getfileLoc,
+    enquiryDate: this.enquiryDate
+  };
+  this.request.addBasicDetails(newBasicDetails).subscribe((response: any) => {
+    if (response.status == 'error') {
+      this.setMessage(response.error);
+    }
+    else if (response.status == 'success') {
+      swal("Added Sucessfully"); 
+      this.viewData();
+      this.router.navigate([], {
+        queryParams: {    
+            id: response._id,
+          }
+         }); 
+    }
+  }, (error) => {
+    this.setMessage(error);
   });
-  }
-  editbasicdetails(){
-        const edata = {
-        firstName: this.firstName.value,
-        lastName: this.lastName.value,
-        dob: this.dob.value,
-        gender: this.gender.value,
-        aadharNo: this.aadharNo.value,
-        regNo12th: this.regNo12th.value,
-        mark12th: this.mark12th.value,
-        email: this.email.value,
-        sMobileNumber: this.sMobileNumber.value,
-        fFirstName: this.fFirstName.value,
-        fLastName: this.fLastName.value,
-        fMobileNumber: this.fMobileNumber.value,
-        institution: this.institution.value,
-        board: this.board.value,
-        referenceType: this.referenceType.value,
-        referenceBy: this.referenceBy.value,
-        applicatonNo: this.applicatonNo.value,
-        admissiontype: this.admissiontype.value,
-        admissionCategory: this.admissionCategory.value,
-        scholarshipCategory: this.scholarshipCategory.value,
-        remark: this.remark.value,
-        nationality: this.nationality.value,
-        religion: this.religion.value,
-        community: this.community.value,
-        caste: this.caste.value,
-        motherTongue: this.motherTongue.value,
-        fEmail: this.fEmail.value,
-        fOccupation: this.fOccupation.value,
-        fAnnualIncome: this.fAnnualIncome.value,
-        mName: this.mName.value,
-        mEmail: this.mEmail.value,
-        mMobileNo: this.mMobileNo.value,
-        mOccupation: this.mOccupation.value,
-        mAnnualIncome: this.mAnnualIncome.value,
-        pPanNumber: this.pPanNumber.value,
-        pAadharNumber: this.pAadharNumber.value,
-        relativeName: this.relativeName.value,
-        sphoto: this.getfileLoc
-      };
-      this.request.updateBasicDetails(this.IdValue, edata).subscribe((response: any) => {
-        if (response.status == 'success') {
-          swal("Updated Sucessfully");        
-          this.viewData(this.id);
-        }
-        else if (response.status == 'error') {       
-          this.setMessage(response.error);
-        }      
-       
-      }, (error) => {
-        console.log(error);
-        this.setMessage(error);
-      });
-    
-  }
-  // To display the BasicDetails Data
-  // viewData() {
-  //   this.request.getBasicDetails().subscribe((response) => {
-  //     this.basicdetails = response;
-  //     console.log('BasicDetails', this.basicdetails);
-  //   }, (error) => {
-  //     console.log(error);
-  //   });
-  // } 
-  viewData(id) {
-    this.request.fetchBasicDetailsById(id).subscribe((response: any) => {
-      this.basicdetails = response;
-      this.institution = response[0].institution[0]._id;
-      this.loadCourseCategoryByIns(this.institution);
-      console.log('BasicDetailsById',  this.basicdetails);
-    }, (error) => {
-      console.log(error);
-    });
-  }
-
+  console.log(newBasicDetails);
+}
 
 //Add CourseProgram
-addCEcourseProgram() {
-  const newcourseProgram = {  
+ addCEcourseProgram() {
+  const newcourseProgram = {
     coursecategory: this.coursecategory.value,
     courseprogram:this.courseprogram.value,
     canId: this.canId
   };
   this.request.addCEcourseprogram(newcourseProgram).subscribe((response: any) => {
-    console.log(response);  
+    if (response.status == 'success') {
       swal("Added Sucessfully");
       this.viewCEcourseprogram(this.canId);
+    }
+    else if (response.status == 'error') {       
+      this.setMessage(response.error);
+    }  
   }, (error) => {
     this.setMessage(error);
   });
@@ -637,7 +496,16 @@ deleteCEcourseProgram(id: any) {
   this.viewCEcourseprogram(this.canId);
   });
   }
-  /////////////////////////////////////////////////////Address Details////////////////////////////////////////////////
+  // To display the data
+viewData() {
+  this.request.getBasicDetails().subscribe((response) => {
+    this.basicdetails = response;
+    console.log('BasicDetails', this.basicdetails);
+  }, (error) => {
+    console.log(error);
+  });
+ }
+ /////////////////////////////////////////////////////Address Details////////////////////////////////////////////////
 // convenience getter for easy access to form fields
 get f() { return this.addressAddForm.controls; }
 addaddressdetails() {
@@ -645,6 +513,7 @@ addaddressdetails() {
   if (this.addressAddForm.invalid) {
     return;
     }
+    
     let newAddress = {
       addresstype: this.addressAddForm.get('addresstype').value,
       flatNo:  this.addressAddForm.get('flatNo').value,
@@ -655,26 +524,26 @@ addaddressdetails() {
       pincode: this.addressAddForm.get('pincode').value,
       state: this.addressAddForm.get('state').value,
       country: this.addressAddForm.get('country').value,
-      canId:  this.canId
+      canId: this.canId
     }
 
   this.request.addAddressDetails(newAddress).subscribe((res: any) => {
-    if(res.status == "success") {
-      console.log(newAddress);
-      swal("Added Sucessfully");  
-      this.viewAddressData(this.canId);
-      this.loadModal();
-    }else if (res.status == "error") {
+    if (res.status == 'error') {
       this.setMessage(res.error);
     }
-  }, error => {
-console.log(error);
-this.setMessage(error);
-   });
-    
- }
- // View the address Details
- viewAddressData(canId) {
+    else if (res.status == 'success') {
+      swal("Added Sucessfully"); 
+      this.viewAddressData(this.canId);
+      this.loadModal();
+    }
+  }, (error) => {
+    this.setMessage(error);
+  });
+    console.log(newAddress);
+}
+   
+// View the address Details
+viewAddressData(canId) {
   if (canId){
   this.request.getAddressDetailsById(canId).subscribe((response) => {
     this.addressdetails = response;
@@ -720,9 +589,6 @@ this.addressdetails = null;
     }
     onEditAdressSubmit() {
       this.submitted = true;
-      if (this.addressEditForm.invalid) {
-        return;
-    }
       console.log(this.addressEditForm.value);
       const edata = {
         addresstype: this.addressEditForm.get('addresstype3').value,
@@ -736,12 +602,12 @@ this.addressdetails = null;
         country: this.addressEditForm.get('country3').value,
       };
       this.request.updateAddressDetails(this.IdValue, edata).subscribe((response: any) => {
-        if (response.status == "success") {
+        if (response.status == 'success') {
           swal("Updated Sucessfully");       
           this.viewAddressData(this.canId);
          this.loadModal();
         }
-        else if (response.status == "error") {       
+        else if (response.status == 'error') {       
           this.setMessage(response.error);
         }      
        
@@ -784,13 +650,13 @@ addQualificationDetails() {
       canId: this.canId
     }
   this.request.addQualificationDetails(newQualificationDetail).subscribe((res: any) => {
-    if (res.status == "success") {
+    if (res.status == 'success') {
    swal("Added Sucessfully");  
         this.getfileLoc2=""; 
         this.loadModal();
         this.viewQualificationDetails(this.canId);
       }
-      else if (res.status == "error") {
+      else if (res.status == 'error') {
         this.setMessage(res.error);
       }
     }, (error) => {
@@ -857,9 +723,6 @@ this.qualificationdetails = null;
     // get f4() { return this.qdEditForm.controls; }
     onEditQualificationSubmit() {
       this.submitted = true;
-    //   if (this.qdEditForm.invalid) {
-    //     return;
-    // }
       const edata = {
         qualificationType: this.qualificationType2.value,
       courseType: this.courseType2.value,
@@ -879,21 +742,23 @@ this.qualificationdetails = null;
       fileLocation: this.getfileLoc2
       };
       this.request.updateQualificationDetails(this.IdValue, edata).subscribe((response: any) => {
-        console.log(response);
-        if (response.status == "success") {
-          swal("Updated Sucessfully");
+        if (response.status == 'success') {
+          swal("Updated Sucessfully");       
+          
           this.viewQualificationDetails(this.canId);
-          this.loadModal();;
-        } else if (response.status == "error") {
-          this.setMessage(response.error);
+          this.loadModal();
         }
-      },
-   error => {
+        else if (response.status == 'error') {       
+          this.setMessage(response.error);
+        }      
+       
+      }, (error) => {
         console.log(error);
         this.setMessage(error);
+      });
+    
       }
-    );
-    }
+      
   //To delete the addressdetails data
   deleteQualificationDetails(id: any) {
     this.request.deleteQualificationDetails(id).subscribe(res => {
@@ -901,8 +766,6 @@ this.qualificationdetails = null;
       this.viewQualificationDetails(this.canId);
     });
   }
-
-
 ////////////////////////////////////////////////////////////////Payment Details/////////////////////////////////////////////////
  // convenience getter for easy access to form fields
  get f5() { return this.paymentAddForm.controls; }
@@ -910,8 +773,8 @@ addpaymentdetails() {
   this.submitted = true;
   if (this.paymentAddForm.invalid) {
     return;
-    }
-   
+  }
+
    let newpaymentdetails ={
     paymentDate: this.paymentAddForm.get('paymentDate').value,
     paymentmethod: this.paymentAddForm.get('paymentmethod').value,
@@ -923,11 +786,11 @@ addpaymentdetails() {
     canId: this.canId
   }
   this.request.addPaymentDetails(newpaymentdetails).subscribe((res: any) => {
-    if (res.status == "error") {
+    if (res.status == 'error') {
       this.setMessage(res.error);
     }
-    else if (res.status == "success") {
-      
+    else if (res.status == 'success') { 
+     
       swal("Added Sucessfully");
       this.viewPaymentData(this.canId);
       this.loadModal();
@@ -948,6 +811,7 @@ viewPaymentData(canId) {
 } else
 this.paymentdetails = null;
 }
+ 
  
 // convenience getter for easy access to form fields
 get f6() { return this.paymentEditForm.controls; }
@@ -980,9 +844,6 @@ onEditPayment(paymentsdetails) {
 }
 onEditPaymentSubmit() {
   this.submitted = true;
-  if (this.paymentEditForm.invalid) {
-    return;
-}
   console.log(this.paymentEditForm.value);
   const edata = {
     paymentDate: this.paymentEditForm.get('paymentDate2').value,
@@ -994,13 +855,13 @@ onEditPaymentSubmit() {
     amount: this.paymentEditForm.get('amount2').value,
   };
   this.request.updatePaymentDetails(this.IdValue, edata).subscribe((response: any) => {
-    if (response.status == "success") {
+    if (response.status == 'success') {
       swal("Updated Sucessfully");       
       
       this.viewPaymentData(this.canId);
      this.loadModal();
     }
-    else if (response.status == "error") {       
+    else if (response.status == 'error') {       
       this.setMessage(response.error);
     }      
    
@@ -1019,38 +880,37 @@ deletePaymentDetails(id: any) {
   }
 ////////////////////////////////////////////////////////////////Followups///////////////////////////////////////////////////////
  // convenience getter for easy access to form fields
- get f7() { return this.followupsaddform.controls; }
- addFollowups() {
-   this.submitted = true;
-   if (this.followupsaddform.invalid) {
-     return;
-     }
-     let newfollowups ={
-       dateOfEnquiry: this.followupsaddform.get('dateOfEnquiry').value,
-       modeOfEnquiry: this.followupsaddform.get('modeOfEnquiry').value,
-       description: this.followupsaddform.get('description').value,
-       nextEnquiryDate: this.followupsaddform.get('nextEnquiryDate').value,
-       nextEnquiryTime: this.followupsaddform.get('nextEnquiryTime').value,
-       canId: this.canId
-     }
- 
-   this.request.addFollowups(newfollowups).subscribe((res: any) => {
-     if (res.status == 'error') {
-       this.setMessage(res.error);
-     }
-     else if (res.status == 'success') {
-       
-       swal("Added Sucessfully");
-        this.viewFollowupsData(this.canId);
-       this.loadModal();
-     }
-     }, (error) => {
-       this.setMessage(error);
-     });
-       console.log(newfollowups);
- }
- // View the address Details
- viewFollowupsData(canId) {
+get f7() { return this.followupsaddform.controls; }
+addFollowups() {
+  this.submitted = true;
+  if (this.followupsaddform.invalid) {
+    return;
+    }
+    let newfollowups ={
+      dateOfEnquiry: this.followupsaddform.get('dateOfEnquiry').value,
+      modeOfEnquiry: this.followupsaddform.get('modeOfEnquiry').value,
+      description: this.followupsaddform.get('description').value,
+      nextEnquiryDate: this.followupsaddform.get('nextEnquiryDate').value,
+      nextEnquiryTime: this.followupsaddform.get('nextEnquiryTime').value,
+      canId: this.canId
+    }
+
+  this.request.addFollowups(newfollowups).subscribe((res: any) => {
+    if (res.status == 'error') {
+      this.setMessage(res.error);
+    }
+    else if (res.status == 'success') {
+      swal("Added Sucessfully"); 
+      this.viewFollowupsData(this.canId);
+      this.loadModal(); 
+    }
+  }, (error) => {
+    this.setMessage(error);
+  });
+    console.log(newfollowups);
+}
+
+viewFollowupsData(canId) {
   if (canId){
   this.request.getFollowupsById(canId).subscribe((response) => {
     this.followups = response;
@@ -1061,73 +921,69 @@ deletePaymentDetails(id: any) {
 } else
 this.followups = null;
 }
-   // convenience getter for easy access to form fields
- get f8() { return this.followupseditform.controls; }
- //Edit Function -addressDetails
- onEditFollowups(followupDetails) {
-   this.Id = followupDetails._id;
-   this.request.fetchFollowupsById(this.Id).subscribe((response) => {
-     this.editfollowupsdata = response[0];
-     console.log(response);
-     this.dateOfEnquiryValue = this.editfollowupsdata.dateOfEnquiry;
-     this.modeOfEnquiryValue = this.editfollowupsdata.modeOfEnquiry;
-     this.descriptionValue = this.editfollowupsdata.description;
-     this.nextEnquiryDateValue = this.editfollowupsdata.nextEnquiryDate;
-     this.nextEnquiryTimeValue = this.editfollowupsdata.nextEnquiryTime;
-     this.IdValue = this.editfollowupsdata._id;
- 
-     this.followupseditform = this.formBuilder.group({
-       dateOfEnquiry2: [this.dateOfEnquiryValue, Validators.required],
-       modeOfEnquiry2: [this.modeOfEnquiryValue, Validators.required],
-       description2: [this.descriptionValue, Validators.required],
-       nextEnquiryDate2: [this.nextEnquiryDateValue, Validators.required],
-       nextEnquiryTime2: [this.nextEnquiryTimeValue, Validators.required],
-     });
-     console.log(this.followupseditform.value);
-   });
- }
- onEditFollowupsSubmit() {
-   this.submitted = true;
-   if (this.followupseditform.invalid) {
-    return;
-}
-   console.log(this.followupseditform.value);
-   const edata = {
-     dateOfEnquiry: this.followupseditform.get('dateOfEnquiry2').value,
-     modeOfEnquiry: this.followupseditform.get('modeOfEnquiry2').value,
-     description: this.followupseditform.get('description2').value,
-     nextEnquiryDate: this.followupseditform.get('nextEnquiryDate2').value,
-     nextEnquiryTime: this.followupseditform.get('nextEnquiryTime2').value,
-   };
-   this.request.updateFollowups(this.IdValue, edata).subscribe((response: any) => {
-     if (response.status == 'success') {
-       swal("Updated Sucessfully");       
-       
-       this.viewFollowupsData(this.canId);
-      this.loadModal();
-     }
-     else if (response.status == 'error') {       
-       this.setMessage(response.error);
-     }      
-    
-   }, (error) => {
-     console.log(error);
-     this.setMessage(error);
-   });
- 
-   }
-   //To delete the followups data
-   deleteFollowups(id: any) {
-     this.request.deleteFollowups(id).subscribe(res => {
-       swal(" Deleted Successfully ");
-       this.viewFollowupsData(this.canId);
-     });
-   }
+  // convenience getter for easy access to form fields
+get f8() { return this.followupseditform.controls; }
+//Edit Function -addressDetails
+onEditFollowups(followupDetails) {
+  this.Id = followupDetails._id;
+  this.request.fetchFollowupsById(this.Id).subscribe((response) => {
+    this.editfollowupsdata = response[0];
+    console.log(response);
+    this.dateOfEnquiryValue = this.editfollowupsdata.dateOfEnquiry;
+    this.modeOfEnquiryValue = this.editfollowupsdata.modeOfEnquiry;
+    this.descriptionValue = this.editfollowupsdata.description;
+    this.nextEnquiryDateValue = this.editfollowupsdata.nextEnquiryDate;
+    this.nextEnquiryTimeValue = this.editfollowupsdata.nextEnquiryTime;
+    this.IdValue = this.editfollowupsdata._id;
 
- ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    this.followupseditform = this.formBuilder.group({
+      dateOfEnquiry2: [this.dateOfEnquiryValue, Validators.required],
+      modeOfEnquiry2: [this.modeOfEnquiryValue, Validators.required],
+      description2: [this.descriptionValue, Validators.required],
+      nextEnquiryDate2: [this.nextEnquiryDateValue, Validators.required],
+      nextEnquiryTime2: [this.nextEnquiryTimeValue, Validators.required],
+    });
+    console.log(this.followupseditform.value);
+  });
+}
+onEditFollowupsSubmit() {
+  this.submitted = true;
+  console.log(this.followupseditform.value);
+  const edata = {
+    dateOfEnquiry: this.followupseditform.get('dateOfEnquiry2').value,
+    modeOfEnquiry: this.followupseditform.get('modeOfEnquiry2').value,
+    description: this.followupseditform.get('description2').value,
+    nextEnquiryDate: this.followupseditform.get('nextEnquiryDate2').value,
+    nextEnquiryTime: this.followupseditform.get('nextEnquiryTime2').value,
+  };
+  this.request.updateFollowups(this.IdValue, edata).subscribe((response: any) => {
+    if (response.status == 'success') {
+      swal("Updated Sucessfully");       
+      
+      this.viewFollowupsData(this.canId);
+     this.loadModal();
+    }
+    else if (response.status == 'error') {       
+      this.setMessage(response.error);
+    }      
+   
+  }, (error) => {
+    console.log(error);
+    this.setMessage(error);
+  });
+
+  }
+  //To delete the followups data
+  deleteFollowups(id: any) {
+    this.request.deleteFollowups(id).subscribe(res => {
+      swal(" Deleted Successfully ");
+      this.viewFollowupsData(this.canId);
+    });
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Filter CourseCategory, AdmissionType, AdmissionCategory by Institution 
   onInstitutionChange(Institution: any) {
-   
+    console.log('institution', Institution)
     if (Institution) {
       this.request.getCoursecategorybyIns(Institution).subscribe((response: any) => {
         console.log('courseCategory', response);
@@ -1177,18 +1033,19 @@ this.followups = null;
       console.log(error);
     });
   }
-  loadInstitution() {
-    this.request.getInstitution().subscribe((response: any) => {
-      console.log('Institution', response);
-      this.institutions = response;
-    }, (error) => {
-      console.log(error);
-    });
-  }
   loadGender() {
     this.request.getGender().subscribe((response: any) => {
       this.genders = response;
       console.log('Gender', response);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  
+  loadInstitution() {
+    this.request.getInstitution().subscribe((response: any) => {
+      console.log('Institution', response);
+      this.institutions = response;
     }, (error) => {
       console.log(error);
     });
@@ -1221,14 +1078,6 @@ this.followups = null;
     this.request.getScholarshipCategory().subscribe((response: any) => {
       this.scholarshipCategories = response;
       console.log('ScholarshipCategory' ,response);
-    }, (error) => {
-      console.log(error);
-    });
-  }
-  loadCourseCategoryByIns(institution) {
-    this.request.getCoursecategorybyIns(institution).subscribe((response: any) => {
-      this.coursecategoriesbyIns = response;
-      console.log('CourseCategoryByIns', this.coursecategoriesbyIns);
     }, (error) => {
       console.log(error);
     });
@@ -1345,7 +1194,6 @@ this.followups = null;
       console.log(error);
     });
   }
-
   loadFeesType() {
     this.request.getFeetype().subscribe((response: any) => {
       this.feetypes = response;
@@ -1354,6 +1202,7 @@ this.followups = null;
       console.log(error);
     });
   }
+
   private loadModal() {
     $('#addModaladdress').modal('hide'); //or $('#IDModal').modal('hide');
     $('#addModaladdress').on('hidden.bs.modal', function () {
@@ -1390,9 +1239,7 @@ this.followups = null;
     $('#editFollowupsModal ').on('hidden.bs.modal', function () {
     $(this).find('form').trigger('reset');
     })
-    $(".select2").select2();
     }
-    
     complete(){
       this.router.navigate(['candidateEnquiry']);
     }
@@ -1400,17 +1247,17 @@ this.followups = null;
       this.router.navigate(['candidateEnquiry']);
     }
   ngOnInit() {
+    this.viewData(); 
     this.viewAddressData(this.canId);
-    // this.viewData();
-    this.viewData(this.id);
-    this.viewPaymentData(this.canId);
     this.viewQualificationDetails(this.canId);
+    this.viewPaymentData(this.canId);
     this.viewFollowupsData(this.canId);
     this.viewCEcourseprogram(this.canId);
     this.loadPaymentMethod();
     this.loadAddressType();
     this.loadQualificationType();
     this.loadGender();
+    this.loadInstitution();
     this.loadBoard();
     this.loadAdmissionType();
     this.loadScholarshipCategory();
@@ -1422,7 +1269,6 @@ this.followups = null;
     this.loadCommunity();
     this.loadCaste();
     this.loadCourseType();
-    this.loadInstitution();
     this.loadInstitutionType();
     this.loadAdmissionCategory();
     this.loadMotherTongue();
@@ -1435,6 +1281,13 @@ this.followups = null;
       const resPath = JSON.parse(response);
       this.getfileLoc = resPath.result;
     };
+    this.uploader2.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    this.uploader2.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+      console.log('ImageUpload:uploaded:', item, status, response);
+      const resPath = JSON.parse(response);
+     this.getfileLoc2 = resPath.qdFileResult2;
+    };
+
     //jQuery Validation form BasicDetails (Form-Control)
     $(function () {
       $('#form_advanced_validation').validate({
@@ -1450,5 +1303,36 @@ this.followups = null;
         }
       });
     });
+     //jQuery Validation form qdadd (Form-Control)
+     $(function () {
+      $('#qdAddForm').validate({
+
+        highlight: function (input) {
+          $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+          $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+          $(element).parents('.form-group').append(error);
+        }
+      });
+    });
+     //jQuery Validation form qdEdit (Form-Control)
+     $(function () {
+      $('#qdEditForm').validate({
+
+        highlight: function (input) {
+          $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+          $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+          $(element).parents('.form-group').append(error);
+        }
+      });
+    });
   }
+
 }

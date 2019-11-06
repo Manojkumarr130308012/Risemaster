@@ -90,8 +90,12 @@ import { CEmainPageComponent } from './Student/cemain-page/cemain-page.component
 import { CEtabpageComponent } from './Student/cetabpage/cetabpage.component';
 import { CeEditTabpageComponent } from './Student/ce-edit-tabpage/ce-edit-tabpage.component';
 import { BatchComponent } from './Master/batch/batch.component';
-import { ConvertToStudentComponent } from './Student/convert-to-student/convert-to-student.component';
+import { ConvertToStudentComponent } from './StudentCandidateEnquiry/convert-to-student/convert-to-student.component';
 import { StudentProfileComponent } from './StudentManagement/student-profile/student-profile.component';
+import { StudentEntryComponent } from './StudentManagement/student-entry/student-entry.component';
+import { CEAddFormComponent } from './StudentCandidateEnquiry/ce-add-form/ce-add-form.component';
+import { CEEditFormComponent } from './StudentCandidateEnquiry/ce-edit-form/ce-edit-form.component';
+import { CEMainPageComponent } from './StudentCandidateEnquiry/ce-main-page/ce-main-page.component';
 
 
 
@@ -167,6 +171,10 @@ CeEditTabpageComponent,
 BatchComponent,
 ConvertToStudentComponent,
 StudentProfileComponent,
+StudentEntryComponent,
+CEAddFormComponent,
+CEEditFormComponent,
+CEMainPageComponent,
 
 
   ],

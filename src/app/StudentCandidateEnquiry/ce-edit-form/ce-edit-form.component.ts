@@ -9,11 +9,11 @@ const URL = 'http://localhost:3000/uploadStudentPhoto/upload';
 declare const $: any;
 declare const swal: any;
 @Component({
-  selector: 'app-ce-edit-tabpage',
-  templateUrl: './ce-edit-tabpage.component.html',
-  styleUrls: ['./ce-edit-tabpage.component.scss']
+  selector: 'app-ce-edit-form',
+  templateUrl: './ce-edit-form.component.html',
+  styleUrls: ['./ce-edit-form.component.scss']
 })
-export class CeEditTabpageComponent implements OnInit {
+export class CEEditFormComponent implements OnInit {
   submitted = false;
   ///////////////////Basic Details
   firstName: any;
