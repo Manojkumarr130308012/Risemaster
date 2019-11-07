@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CEmainPageComponent } from './cemain-page.component';
+import { CEMainPageComponent } from './ce-main-page.component';
 
-describe('CEmainPageComponent', () => {
-  let component: CEmainPageComponent;
-  let fixture: ComponentFixture<CEmainPageComponent>;
+describe('CEMainPageComponent', () => {
+  let component: CEMainPageComponent;
+  let fixture: ComponentFixture<CEMainPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CEmainPageComponent ]
+      declarations: [ CEMainPageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CEmainPageComponent);
+    fixture = TestBed.createComponent(CEMainPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

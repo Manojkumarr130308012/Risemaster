@@ -11,12 +11,12 @@ const url = 'http://localhost:3000/ce-qd-fileupload/fileupload';
 declare const $: any;
 declare const swal: any;
 @Component({
-  selector: 'app-cetabpage',
-  templateUrl: './cetabpage.component.html',
-  styleUrls: ['./cetabpage.component.scss'],
-  providers: [DatePipe]
+  selector: 'app-ce-add-form',
+  templateUrl: './ce-add-form.component.html',
+  styleUrls: ['./ce-add-form.component.scss']
 })
-export class CEtabpageComponent implements OnInit {
+export class CEAddFormComponent implements OnInit {
+
   submitted = false;
   ///////////////////Basic Details
   firstName: any;
@@ -224,6 +224,9 @@ amountValue: any;
   canInfo: any;
   editFollowupsdata: any;
   canId: any;
+  modeOfEnquiries: any;
+  feestypes: any;
+  feetypes: any;
 
 
   constructor(private dynamicScriptLoader: DynamicScriptLoaderService,
@@ -238,40 +241,40 @@ amountValue: any;
     this.lastName = new FormControl('', Validators.required);
     this.dob = new FormControl('', Validators.required);
     this.gender = new FormControl('', Validators.required);
-    this.aadharNo = new FormControl('', Validators.required);
-    this.regNo12th = new FormControl('', Validators.required);
-    this.mark12th = new FormControl('', Validators.required);
-    this.email = new FormControl('', Validators.required);
-    this.sMobileNumber = new FormControl('', Validators.required);
-    this.fFirstName = new FormControl('', Validators.required);
-    this.fLastName = new FormControl('', Validators.required);
-    this.fMobileNumber = new FormControl('', Validators.required);
+    this.aadharNo = new FormControl('');
+    this.regNo12th = new FormControl('');
+    this.mark12th = new FormControl('');
+    this.email = new FormControl('');
+    this.sMobileNumber = new FormControl('');
+    this.fFirstName = new FormControl('');
+    this.fLastName = new FormControl('');
+    this.fMobileNumber = new FormControl('');
     this.institution = new FormControl('', Validators.required);
-    this.board = new FormControl('', Validators.required);
+    this.board = new FormControl('');
     this.referenceType = new FormControl('', Validators.required);
-    this.referenceBy = new FormControl('', Validators.required);
+    this.referenceBy = new FormControl('');
     this.applicatonNo = new FormControl('', Validators.required);
-    this.admissiontype = new FormControl('', Validators.required);
-    this.admissionCategory = new FormControl('', Validators.required);
-    this.scholarshipCategory = new FormControl('', Validators.required);
-    this.remark = new FormControl('', Validators.required);
-    this.nationality = new FormControl('', Validators.required);
-    this.religion = new FormControl('', Validators.required);
-    this.community = new FormControl('', Validators.required);
-    this.caste = new FormControl('', Validators.required);
-    this.motherTongue = new FormControl('', Validators.required);
-    this.fEmail = new FormControl('', Validators.required);
-    this.fOccupation = new FormControl('', Validators.required);
-    this.fAnnualIncome = new FormControl('', Validators.required);
-    this.mName = new FormControl('', Validators.required);
-    this.mEmail = new FormControl('', Validators.required);
-    this.mMobileNo = new FormControl('', Validators.required);
-    this.mOccupation = new FormControl('', Validators.required);
-    this.mAnnualIncome = new FormControl('', Validators.required);
-    this.pPanNumber = new FormControl('', Validators.required);
-    this.pAadharNumber = new FormControl('', Validators.required);
-    this.relativeName = new FormControl('', Validators.required);
-    this.sPhoto = new FormControl('', Validators.required);
+    this.admissiontype = new FormControl('');
+    this.admissionCategory = new FormControl('');
+    this.scholarshipCategory = new FormControl('');
+    this.remark = new FormControl('');
+    this.nationality = new FormControl('');
+    this.religion = new FormControl('');
+    this.community = new FormControl('');
+    this.caste = new FormControl('');
+    this.motherTongue = new FormControl('');
+    this.fEmail = new FormControl('');
+    this.fOccupation = new FormControl('');
+    this.fAnnualIncome = new FormControl('');
+    this.mName = new FormControl('');
+    this.mEmail = new FormControl('');
+    this.mMobileNo = new FormControl('');
+    this.mOccupation = new FormControl('');
+    this.mAnnualIncome = new FormControl('');
+    this.pPanNumber = new FormControl('');
+    this.pAadharNumber = new FormControl('');
+    this.relativeName = new FormControl('');
+    this.sPhoto = new FormControl('');
 
     this.route.queryParams.subscribe((params: any) => {
       this.canId = params.id;
@@ -436,15 +439,18 @@ addbasicdetails() {
     enquiryDate: this.enquiryDate
   };
   this.request.addBasicDetails(newBasicDetails).subscribe((response: any) => {
-    
-    console.log(response);
-      swal("Added Sucessfully");
+    if (response.status == 'error') {
+      this.setMessage(response.error);
+    }
+    else if (response.status == 'success') {
+      swal("Added Sucessfully"); 
       this.viewData();
-     this.router.navigate([], {
-      queryParams: {    
-          id: response._id,
-        }
-       });
+      this.router.navigate([], {
+        queryParams: {    
+            id: response._id,
+          }
+         }); 
+    }
   }, (error) => {
     this.setMessage(error);
   });
@@ -522,13 +528,20 @@ addaddressdetails() {
     }
 
   this.request.addAddressDetails(newAddress).subscribe((res: any) => {
-   console.log(newAddress);
-   swal("Added Sucessfully");  
-   this.viewAddressData(this.canId);
-   this.loadModal();
-   });
-    
- }
+    if (res.status == 'error') {
+      this.setMessage(res.error);
+    }
+    else if (res.status == 'success') {
+      swal("Added Sucessfully"); 
+      this.viewAddressData(this.canId);
+      this.loadModal();
+    }
+  }, (error) => {
+    this.setMessage(error);
+  });
+    console.log(newAddress);
+}
+   
 // View the address Details
 viewAddressData(canId) {
   if (canId){
@@ -729,12 +742,23 @@ this.qualificationdetails = null;
       fileLocation: this.getfileLoc2
       };
       this.request.updateQualificationDetails(this.IdValue, edata).subscribe((response: any) => {
-        console.log(response);
-        swal("Updated Sucessfully");  
-        this.viewQualificationDetails(this.canId);
-      this.loadModal();
+        if (response.status == 'success') {
+          swal("Updated Sucessfully");       
+          
+          this.viewQualificationDetails(this.canId);
+          this.loadModal();
+        }
+        else if (response.status == 'error') {       
+          this.setMessage(response.error);
+        }      
+       
+      }, (error) => {
+        console.log(error);
+        this.setMessage(error);
       });
+    
       }
+      
   //To delete the addressdetails data
   deleteQualificationDetails(id: any) {
     this.request.deleteQualificationDetails(id).subscribe(res => {
@@ -1162,6 +1186,22 @@ onEditFollowupsSubmit() {
       console.log(error);
     });
   }
+  loadModeofEnquiry() {
+    this.request.getModeofenquiry().subscribe((response: any) => {
+      this.modeOfEnquiries = response;
+      console.log('ModeOfEnquiry' ,this.modeOfEnquiries);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  loadFeesType() {
+    this.request.getFeetype().subscribe((response: any) => {
+      this.feetypes = response;
+      console.log('Fees-Type' ,this.feetypes);
+    }, (error) => {
+      console.log(error);
+    });
+  }
 
   private loadModal() {
     $('#addModaladdress').modal('hide'); //or $('#IDModal').modal('hide');
@@ -1203,6 +1243,9 @@ onEditFollowupsSubmit() {
     complete(){
       this.router.navigate(['candidateEnquiry']);
     }
+    goBackToMain() {
+      this.router.navigate(['candidateEnquiry']);
+    }
   ngOnInit() {
     this.viewData(); 
     this.viewAddressData(this.canId);
@@ -1230,6 +1273,8 @@ onEditFollowupsSubmit() {
     this.loadAdmissionCategory();
     this.loadMotherTongue();
     this.loadMedium();
+    this.loadModeofEnquiry();
+    this.loadFeesType();
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       console.log('ImageUpload:uploaded:', item, status, response);

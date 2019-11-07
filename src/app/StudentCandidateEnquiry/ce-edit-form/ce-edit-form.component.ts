@@ -9,11 +9,11 @@ const URL = 'http://localhost:3000/uploadStudentPhoto/upload';
 declare const $: any;
 declare const swal: any;
 @Component({
-  selector: 'app-ce-edit-tabpage',
-  templateUrl: './ce-edit-tabpage.component.html',
-  styleUrls: ['./ce-edit-tabpage.component.scss']
+  selector: 'app-ce-edit-form',
+  templateUrl: './ce-edit-form.component.html',
+  styleUrls: ['./ce-edit-form.component.scss']
 })
-export class CeEditTabpageComponent implements OnInit {
+export class CEEditFormComponent implements OnInit {
   submitted = false;
   ///////////////////Basic Details
   firstName: any;
@@ -266,6 +266,8 @@ export class CeEditTabpageComponent implements OnInit {
   id: any;
   coursecategoriesbyIns: any;
   basicdetails1: any;
+  modeOfEnquiries: any;
+  feetypes: any;
   
   constructor(
     private request: RequestService,
@@ -523,7 +525,6 @@ export class CeEditTabpageComponent implements OnInit {
   this.sPhoto = new FormControl(this.sPhotoValue, Validators.required);
   });
   }
-
   editbasicdetails(){
         const edata = {
         firstName: this.firstName.value,
@@ -568,7 +569,7 @@ export class CeEditTabpageComponent implements OnInit {
       this.request.updateBasicDetails(this.IdValue, edata).subscribe((response: any) => {
         if (response.status == 'success') {
           swal("Updated Sucessfully");        
-          this.viewData();
+          this.viewData(this.id);
         }
         else if (response.status == 'error') {       
           this.setMessage(response.error);
@@ -581,20 +582,20 @@ export class CeEditTabpageComponent implements OnInit {
     
   }
   // To display the BasicDetails Data
-  viewData() {
-    this.request.getBasicDetails().subscribe((response) => {
-      this.basicdetails = response;
-      console.log('BasicDetails', this.basicdetails);
-    }, (error) => {
-      console.log(error);
-    });
-  } 
-  getData(id) {
+  // viewData() {
+  //   this.request.getBasicDetails().subscribe((response) => {
+  //     this.basicdetails = response;
+  //     console.log('BasicDetails', this.basicdetails);
+  //   }, (error) => {
+  //     console.log(error);
+  //   });
+  // } 
+  viewData(id) {
     this.request.fetchBasicDetailsById(id).subscribe((response: any) => {
-      this.basicdetails1 = response;
+      this.basicdetails = response;
       this.institution = response[0].institution[0]._id;
       this.loadCourseCategoryByIns(this.institution);
-      console.log('BasicDetailsById',  this.basicdetails1);
+      console.log('BasicDetailsById',  this.basicdetails);
     }, (error) => {
       console.log(error);
     });
@@ -658,10 +659,17 @@ addaddressdetails() {
     }
 
   this.request.addAddressDetails(newAddress).subscribe((res: any) => {
-   console.log(newAddress);
-   swal("Added Sucessfully");  
-   this.viewAddressData(this.canId);
-   this.loadModal();
+    if(res.status == "success") {
+      console.log(newAddress);
+      swal("Added Sucessfully");  
+      this.viewAddressData(this.canId);
+      this.loadModal();
+    }else if (res.status == "error") {
+      this.setMessage(res.error);
+    }
+  }, error => {
+console.log(error);
+this.setMessage(error);
    });
     
  }
@@ -712,6 +720,9 @@ this.addressdetails = null;
     }
     onEditAdressSubmit() {
       this.submitted = true;
+      if (this.addressEditForm.invalid) {
+        return;
+    }
       console.log(this.addressEditForm.value);
       const edata = {
         addresstype: this.addressEditForm.get('addresstype3').value,
@@ -725,12 +736,12 @@ this.addressdetails = null;
         country: this.addressEditForm.get('country3').value,
       };
       this.request.updateAddressDetails(this.IdValue, edata).subscribe((response: any) => {
-        if (response.status == 'success') {
+        if (response.status == "success") {
           swal("Updated Sucessfully");       
           this.viewAddressData(this.canId);
          this.loadModal();
         }
-        else if (response.status == 'error') {       
+        else if (response.status == "error") {       
           this.setMessage(response.error);
         }      
        
@@ -773,13 +784,13 @@ addQualificationDetails() {
       canId: this.canId
     }
   this.request.addQualificationDetails(newQualificationDetail).subscribe((res: any) => {
-    if (res.status == 'success') {
+    if (res.status == "success") {
    swal("Added Sucessfully");  
         this.getfileLoc2=""; 
         this.loadModal();
         this.viewQualificationDetails(this.canId);
       }
-      else if (res.status == 'error') {
+      else if (res.status == "error") {
         this.setMessage(res.error);
       }
     }, (error) => {
@@ -846,6 +857,9 @@ this.qualificationdetails = null;
     // get f4() { return this.qdEditForm.controls; }
     onEditQualificationSubmit() {
       this.submitted = true;
+    //   if (this.qdEditForm.invalid) {
+    //     return;
+    // }
       const edata = {
         qualificationType: this.qualificationType2.value,
       courseType: this.courseType2.value,
@@ -866,11 +880,20 @@ this.qualificationdetails = null;
       };
       this.request.updateQualificationDetails(this.IdValue, edata).subscribe((response: any) => {
         console.log(response);
-        swal("Updated Sucessfully");  
-        this.viewQualificationDetails(this.canId);
-      this.loadModal();
-      });
+        if (response.status == "success") {
+          swal("Updated Sucessfully");
+          this.viewQualificationDetails(this.canId);
+          this.loadModal();;
+        } else if (response.status == "error") {
+          this.setMessage(response.error);
+        }
+      },
+   error => {
+        console.log(error);
+        this.setMessage(error);
       }
+    );
+    }
   //To delete the addressdetails data
   deleteQualificationDetails(id: any) {
     this.request.deleteQualificationDetails(id).subscribe(res => {
@@ -900,10 +923,10 @@ addpaymentdetails() {
     canId: this.canId
   }
   this.request.addPaymentDetails(newpaymentdetails).subscribe((res: any) => {
-    if (res.status == 'error') {
+    if (res.status == "error") {
       this.setMessage(res.error);
     }
-    else if (res.status == 'success') {
+    else if (res.status == "success") {
       
       swal("Added Sucessfully");
       this.viewPaymentData(this.canId);
@@ -957,6 +980,9 @@ onEditPayment(paymentsdetails) {
 }
 onEditPaymentSubmit() {
   this.submitted = true;
+  if (this.paymentEditForm.invalid) {
+    return;
+}
   console.log(this.paymentEditForm.value);
   const edata = {
     paymentDate: this.paymentEditForm.get('paymentDate2').value,
@@ -968,13 +994,13 @@ onEditPaymentSubmit() {
     amount: this.paymentEditForm.get('amount2').value,
   };
   this.request.updatePaymentDetails(this.IdValue, edata).subscribe((response: any) => {
-    if (response.status == 'success') {
+    if (response.status == "success") {
       swal("Updated Sucessfully");       
       
       this.viewPaymentData(this.canId);
      this.loadModal();
     }
-    else if (response.status == 'error') {       
+    else if (response.status == "error") {       
       this.setMessage(response.error);
     }      
    
@@ -1062,6 +1088,9 @@ this.followups = null;
  }
  onEditFollowupsSubmit() {
    this.submitted = true;
+   if (this.followupseditform.invalid) {
+    return;
+}
    console.log(this.followupseditform.value);
    const edata = {
      dateOfEnquiry: this.followupseditform.get('dateOfEnquiry2').value,
@@ -1308,7 +1337,23 @@ this.followups = null;
       console.log(error);
     });
   }
+  loadModeofEnquiry() {
+    this.request.getModeofenquiry().subscribe((response: any) => {
+      this.modeOfEnquiries = response;
+      console.log('ModeOfEnquiry' ,this.modeOfEnquiries);
+    }, (error) => {
+      console.log(error);
+    });
+  }
 
+  loadFeesType() {
+    this.request.getFeetype().subscribe((response: any) => {
+      this.feetypes = response;
+      console.log('Fees-Type' ,this.feetypes);
+    }, (error) => {
+      console.log(error);
+    });
+  }
   private loadModal() {
     $('#addModaladdress').modal('hide'); //or $('#IDModal').modal('hide');
     $('#addModaladdress').on('hidden.bs.modal', function () {
@@ -1345,16 +1390,19 @@ this.followups = null;
     $('#editFollowupsModal ').on('hidden.bs.modal', function () {
     $(this).find('form').trigger('reset');
     })
+    $(".select2").select2();
     }
+    
     complete(){
-      // localStorage.removeItem('currentCandidate');
       this.router.navigate(['candidateEnquiry']);
     }
- 
+    goBackToMain() {
+      this.router.navigate(['candidateEnquiry']);
+    }
   ngOnInit() {
     this.viewAddressData(this.canId);
-    this.viewData();
-    this.getData(this.id);
+    // this.viewData();
+    this.viewData(this.id);
     this.viewPaymentData(this.canId);
     this.viewQualificationDetails(this.canId);
     this.viewFollowupsData(this.canId);
@@ -1379,6 +1427,8 @@ this.followups = null;
     this.loadAdmissionCategory();
     this.loadMotherTongue();
     this.loadMedium();
+    this.loadModeofEnquiry();
+    this.loadFeesType();
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       console.log('ImageUpload:uploaded:', item, status, response);

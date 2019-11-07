@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CEtabpageComponent } from './cetabpage.component';
+import { CEAddFormComponent } from './ce-add-form.component';
 
-describe('CEtabpageComponent', () => {
-  let component: CEtabpageComponent;
-  let fixture: ComponentFixture<CEtabpageComponent>;
+describe('CEAddFormComponent', () => {
+  let component: CEAddFormComponent;
+  let fixture: ComponentFixture<CEAddFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CEtabpageComponent ]
+      declarations: [ CEAddFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CEtabpageComponent);
+    fixture = TestBed.createComponent(CEAddFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

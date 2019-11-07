@@ -17,7 +17,19 @@ export class ConvertToStudentComponent implements OnInit {
   batches: any;
   coursecategoriesbyIns: any;
   institution: any;
-
+  degree: any;
+  batch: any;
+  semester: any;
+  languageSubject: any;
+  boardingType: any;
+  checkbox1: any;
+  financialCategory: any;
+  joiningDate: any;
+  hostel: any;
+  rout: any;
+  busstop: any;
+  batcheByDegree: any;
+  batcheByDegrees: any;
   constructor(
     private request: RequestService,
     private router: Router,
@@ -39,7 +51,7 @@ export class ConvertToStudentComponent implements OnInit {
   financialCategory: ['', Validators.required],
   joiningDate: ['', Validators.required],
   hostel: ['', Validators.required],
-  route: ['', Validators.required],
+  rout: ['', Validators.required],
   busstop: ['', Validators.required],
   checkbox1: ['', Validators.required],
 });
@@ -79,6 +91,18 @@ export class ConvertToStudentComponent implements OnInit {
       console.log(error);
     });
    }
+   onDegreeChange(degree: any) {
+    console.log('Degree' ,degree)
+    if (degree) {
+      this.request.getBatchByDegree(degree).subscribe((response: any) => {
+        this.batcheByDegrees = response;
+        console.log('BatchByDegree',  this.batcheByDegrees);
+      }, (error) => {
+        console.log(error);
+      });
+    } else
+      this.batcheByDegree = null;
+  }
   ngOnInit() {
     this.viewBasicDetailsById(this.id);
     this.loadDegree();

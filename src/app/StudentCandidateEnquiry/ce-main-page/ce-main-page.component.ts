@@ -2,13 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestService } from 'src/app/services/request.service';
 
-
 @Component({
-  selector: 'app-cemain-page',
-  templateUrl: './cemain-page.component.html',
-  styleUrls: ['./cemain-page.component.scss']
+  selector: 'app-ce-main-page',
+  templateUrl: './ce-main-page.component.html',
+  styleUrls: ['./ce-main-page.component.scss']
 })
-export class CEmainPageComponent implements OnInit {
+export class CEMainPageComponent implements OnInit {
   basicdetails: any;
   ce_basicdetails: Object;
   Id: any;

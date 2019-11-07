@@ -27,7 +27,7 @@
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
-                                            <th>Course Program</th>
+                                            <th>Degree/Program</th>
                                             <th>Batch</th>
                                             <th >Action</th>
                                         </tr>
@@ -35,7 +35,7 @@
                                     <tbody>
                                         <tr *ngFor="let batch of batches; let i=index">
                                             <td>{{i +1 }}</td>
-                                            <td>{{batch?.courseprogram[0].courseprogram}}</td>
+                                            <td>{{batch?.degree[0].degree}}</td>
                                             <td>{{batch?.batch}}</td>
                                             <td>
                                                 <div class="btn btn-tbl-edit" data-toggle="modal"
@@ -77,14 +77,14 @@
                         <div class="row clearfix">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Course Prgram</label>
-                                    <select  id="select"  class="browser-default form-control" formControlName="courseprogram"
-                                    [ngClass]="{ 'is-invalid': submitted && f.courseprogram.errors }">
-                                    <option disabled selected>Choose your Course Program</option>
-                                    <option  *ngFor="let courseprogram of courseprograms" [value]="courseprogram._id">{{courseprogram.courseprogram}}</option>
+                                    <label>Degree/Program</label>
+                                    <select  id="select"  class="browser-default form-control" formControlName="degree"
+                                    [ngClass]="{ 'is-invalid': submitted && f.degree.errors }">
+                                    <option default value>Choose your Course Program</option>
+                                    <option  *ngFor="let degree of degrees?.response" [value]="degree._id">{{degree.degree}}</option>
                                     </select>
-                                    <div *ngIf="submitted && f.courseprogram.errors" class="invalid-feedback">
-                                        <div *ngIf="f.courseprogram.errors.required">Course Program  is required</div>
+                                    <div *ngIf="submitted && f.degree.errors" class="invalid-feedback">
+                                        <div *ngIf="f.degree.errors.required">Degree/Program  is required</div>
                                     </div>
                                  </div>
                             </div>
@@ -124,15 +124,14 @@
                 <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
                         <div class="row clearfix">
                                 <div class="col-md-12">
-                                    <label>Course Program</label>
-                                    <select  id="select2" class="browser-default form-control" formControlName="courseprogram2"
-                                    [ngClass]="{ 'is-invalid': submitted && f2.courseprogram2.errors }" >
-                                    <option disabled selected>Choose your institution</option>
-                                    <option  *ngFor="let courseprogram of courseprograms" [value]="courseprogram._id">{{courseprogram.courseprogram}}</option>
+                                    <label> Program</label>
+                                    <select  id="select2" class="browser-default form-control" formControlName="degree2"
+                                    [ngClass]="{ 'is-invalid': submitted && f2.degree2.errors }" >
+                                    <option >Choose your Degree</option>
+                                    <option  *ngFor="let degree of degrees?.response" [value]="degree._id">{{degree.degree}}</option>
                                     </select>
-
-                                    <div *ngIf="submitted && f2.courseprogram2.errors" class="invalid-feedback">
-                                        <div *ngIf="f2.courseprogram2.errors.required">Institution is required</div>
+                                    <div *ngIf="submitted && f2.degree2.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.degree2.errors.required">Degree is required</div>
                                     </div>
                                        </div>
                               </div>
@@ -140,7 +139,7 @@
 
                     <div class="form-group">
                             <label>Batch</label>
-                            <input type="text" value=" " formControlName="batch2" class="form-control" placeholder="Enter Course-category"
+                            <input type="text"  formControlName="batch2" class="form-control" placeholder="Enter Course-category"
                                 [ngClass]="{ 'is-invalid': submitted && f2.batch2.errors }" />
                             <div *ngIf="submitted && f2.batch2.errors" class="invalid-feedback">
                                 <div *ngIf="f2.batch2.errors.required">Batch is required</div>
