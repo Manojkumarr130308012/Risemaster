@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RequestService } from 'src/app/services/request.service';
+import { RequestService } from '../../services/request.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 @Component({
@@ -35,13 +35,13 @@ export class ConvertToStudentComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-  ) { 
+  ) {
     this.route.queryParams.subscribe((params: any) => {
       this.canId = params.id;
     });
     this.id = this.canId;
 
-    //add Form Group - addressDetails 
+    //add Form Group - addressDetails
  this.convertToStudent = this.formBuilder.group({
   degree: ['', Validators.required],
   batch: ['', Validators.required],

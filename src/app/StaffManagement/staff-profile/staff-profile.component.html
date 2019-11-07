@@ -4,7 +4,7 @@
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
-                        <div class="header">       
+                        <div class="header">
                             <h2>
                                 <strong>Staff Profile Management</strong>
                             </h2>
@@ -14,33 +14,33 @@
                                                 <button id="addRow" class="btn btn-info" data-toggle="modal"
                                                 data-target="#addModal">
                                                     Add New
-                                                    <i class="fa fa-plus" style="color: white"></i>  
+                                                    <i class="fa fa-plus" style="color: white"></i>
                                                 </button>
                                         </div>
                                      <!-- Add button -->
                                 </div>
                             </div>
-    
+
                             <div class="modal-body">
                                 <div class="body">
                                     <div class="row clearfix">
                                         <div class="col-md-3">
                                             <label  for="institution">Institution</label>
-                                            <select  id="select" [(ngModel)]="selectedinstitution" class="browser-default form-control" 
+                                            <select  id="select" [(ngModel)]="selectedinstitution" class="browser-default form-control"
                                                 (change)="onInstitutionChange($event.target.value)">
                                                 <option>Choose your institution</option>
                                                 <option  *ngFor="let institution of institutions" [value]="institution._id">{{institution.institution_name}}</option>
-                                                </select>        
+                                                </select>
                                         </div>
                                         <div class="col-md-3">
                                             <label for="department">Department</label>
-                                            <select id="select" [(ngModel)]="selectedDepartment" class="browser-default form-control"
+                                            <select id="select2" [(ngModel)]="selectedDepartment" class="browser-default form-control"
                                             (change)="onDepartmentChange($event.target.value)">
                                                 <option>Choose your Department</option>
                                                 <option *ngFor="let department of departments?.response"
                                                     [value]="department._id">{{department?.department}}</option>
                                                 </select>
-                                        </div> 
+                                        </div>
                                              <div class="col-lg-3 header-dropdown m-r--5">
                                                     <div class="form-line input-field">
                                                         <input class="form-control" type="text" name="search" [(ngModel)]="filter"
@@ -50,10 +50,10 @@
                                             </div>
                                         </div>
                             </div>
-                
+
                        <div class="body">
                                 <div class="table-responsive">
-                                     <table id="tableExport" 
+                                     <table id="tableExport"
                                      class="display table table-hover table-checkable order-column m-t-20 width-per-100">
                                         <thead>
                                             <tr>
@@ -71,7 +71,7 @@
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let staffprofile of staffprofiles; let i=index">
-                                                <td>{{i +1 }}</td> 
+                                                <td>{{i +1 }}</td>
                                                 <td><img src="{{staffprofile?.photoLocation}}" width="100px"></td>
                                                 <td>{{staffprofile?.staffCode}}</td>
                                                 <td>{{staffprofile?.lastName}}</td>
@@ -88,11 +88,11 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                 </div>
-            
+
             <!-- Table End -->
         </div>
     </section>
@@ -109,19 +109,44 @@
                 <div class="modal-body">
                     <form id="form_advanced_validation">
                             <div class="row">
-                                    <div class="col-md-6">
+                                <div class="col-md-12">
+                                    <div class="form-group form-float">
+                                    <label  for="institution">Institution</label>
+                                    <div class="form-line">
+                                    <select  id="select3" [(ngModel)]="selectedinstitution2" class="browser-default form-control"
+                                        (change)="onInstitutionChange($event.target.value)" [formControl]="institution" required>
+                                        <option>Choose your institution</option>
+                                        <option  *ngFor="let institution of institutions" [value]="institution._id">{{institution.institution_name}}</option>
+                                        </select></div>
+                                      </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-float">
+                                    <label for="department">Department</label>
+                                    <div class="form-line">
+                                    <select id="select4" name="department" [(ngModel)]="selectedDepartment2" class="browser-default form-control"
+                                    (change)="onDepartmentChange($event.target.value)" [formControl]="department" required>
+                                        <option>Choose your Department</option>
+                                        <option *ngFor="let department of departments?.response"
+                                            [value]="department._id">{{department?.department}}</option>
+                                        </select>
+                                      </div>
+                                      </div>
+                                </div>
+
+                                    <!-- <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <label for="department">Choose Department</label>
                                                 <div class="form-line">
                                                     <select id="select" name="department" [(ngModel)]="selecteddepartment"
                                                         class="browser-default form-control" [formControl]="department" required>
                                                         <option>Choose your Department</option>
-                                                        <option *ngFor="let department of departments?.response" [value]="department._id">
+                                                        <option *ngFor="let department of departmentsdrop" [value]="department._id">
                                                             {{department?.department}}</option>
                                                     </select>
                                                     </div>
                                             </div>
-                                    </div>
+                                    </div> -->
                                 <div class="col-md-6">
                                     <div class="form-group form-float">
                                         <label for="staffCode">Staff Code</label>
@@ -131,8 +156,8 @@
                                                 </div>
                                     </div>
                                 </div>
-                                   </div> 
-    
+                                   </div>
+
                                   <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group form-float">
@@ -144,6 +169,7 @@
                                                     <option *ngFor="let stafftype of stafftypes?.response" [value]="stafftype._id">
                                                         {{stafftype?.stafftype}}</option>
                                                 </select>
+
                                                 </div>
                                         </div>
                                       </div>
@@ -188,7 +214,7 @@
                                                 </div>
                                         </div>
                                       </div>
-                                      
+
                                   </div>
                                   <div class="row">
                                         <div class="col-md-6">
@@ -209,10 +235,10 @@
                                                     </div>
                                         </div>
                                     </div>
-                            
-                                
+
+
                                   </div>
-                                  
+
                                   <div class="row">
                                         <div class="col-md-6">
                                                 <div class="form-group form-float">
@@ -232,7 +258,7 @@
                                                     </div>
                                         </div>
                                     </div>
-                                    
+
                                   </div>
                                   <div class="row">
                                     <div class="col-md-6">
@@ -343,7 +369,7 @@
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-info waves-effect" (click)="addStaffprofile()">Add</button>
                                     <span> {{message}}</span>
-            
+
                                     <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
                                 </div>
                             </form>

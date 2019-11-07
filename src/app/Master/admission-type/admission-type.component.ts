@@ -52,6 +52,7 @@ export class AdmissionTypeComponent implements OnInit {
     return this.message = message;
   }
 
+
   // Bind institution data
   loadAdmissiontype() {
     this.request.getInstitution().subscribe((response: any) => {
@@ -164,8 +165,8 @@ export class AdmissionTypeComponent implements OnInit {
 
    console.log('response',response);
     var i=1;
-    var id = '5d8c62e3e851032c189f6931';
-    var t = $('#tableExport').DataTable({
+    //var id = '5d8c62e3e851032c189f6931';
+    var table = $('#tableExport').DataTable({
        data: response,
       columns: [
          { "render": function (data, type, full, meta) { return i++;}},
@@ -174,11 +175,14 @@ export class AdmissionTypeComponent implements OnInit {
        { data: '_id' },
        {
         data: null,
-      "defaultContent": "<div class='btn btn-tbl-edit' data-toggle='modal' data-target='#editModal'> <i class='material-icons' (click)='onEdit(data[0])'>create</i></div> <div class='btn btn-tbl-delete'><i class='material-icons' onclick='deleteAdmissiontype('5d8c62e3e851032c189f6931)'>delete</i></div>",
-       // "defaultContent": "<button>Click</button>",
+        "defaultContent": "<div class='btn btn-tbl-edit'> <i class='material-icons'>create</i></div> <div class='btn btn-tbl-delete'><i class='material-icons'>delete</i></div>",
+
         "targets": -1
       }
       ],
+
+      // "defaultContent": "<div class='btn btn-tbl-edit' data-toggle='modal' data-target='#editModal'> <i class='material-icons' (click)='onEdit(data[0])'>create</i></div> <div class='btn btn-tbl-delete'><i class='material-icons' onclick='deleteAdmissiontype('5d8c62e3e851032c189f6931)'>delete</i></div>",
+       // "defaultContent": "<button>Click</button>",
 
       dom: 'Bfrtip',
       buttons: [
@@ -186,11 +190,27 @@ export class AdmissionTypeComponent implements OnInit {
       ]
     });
 
-    $('#tableExport').on( 'click','button',function(){
+  // Edit button click
+  $('#tableExport tbody').on('click', '.btn-tbl-edit', function () {
+    let data = table.row($(this).parents('tr')).data();
+    const name = data._id;
+    console.log('Edit',name);
+    //this.onEdit(name);
+
+  });
+
+  // Delete button click
+  $('#tableExport tbody').on('click', '.btn-tbl-delete', function () {
+    let data = table.row($(this).parents('tr')).data();
+    const name = data._id;
+    console.log('Delete',name)
+  });
+
+   /* $('#tableExport').on( 'click','button',function(){
 
       var uid = t.row($(this).parents('tr')).data();
       console.log(uid);
-    } );
+    } );*/
 
   }, (error) => {
     console.log(error);
