@@ -48,44 +48,32 @@
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="aadharNo">Aadhar Number</label>
-                                                                <div class="form-line">
                                                                     <input type="text" class="form-control" name="aadharNo" placeholder="Enter AadharNumber"
                                                                         [formControl]="aadharNo" />
-                                                                </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="fFirstName">Father's FirstName</label>
-                                                                <div class="form-line">
                                                                     <input type="text" class="form-control" name="fFirstName" placeholder="Enter Father's FirstName"
                                                                         [formControl]="fFirstName" />
-                                                                </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="fLastName">Father's LastName</label>
-                                                                <div class="form-line">
                                                                     <input type="text" class="form-control" name="fLastName" placeholder="Enter Father's LastName"
                                                                         [formControl]="fLastName" />
-                                                                </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="fMobileNumber">Father's MobileNumber</label>
-                                                                <div class="form-line">
                                                                     <input type="text" class="form-control" name="fMobileNumber" placeholder="Enter Father's MobileNumber"
                                                                         [formControl]="fMobileNumber" />
-                                                                </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="sMobileNumber">Student MobileNumber</label>
-                                                                <div class="form-line">
                                                                     <input type="text" class="form-control" name="sMobileNumber" placeholder="Enter Student Mobile Number"
                                                                         [formControl]="sMobileNumber" />
-                                                                </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="email">Email Id</label>
-                                                                <div class="form-line">
-                                                                    <input type="text" class="form-control" name="email" placeholder="Enter Email Id" [formControl]="email" />
-                                                                </div>
+                                                                    <input type="email" class="form-control" name="email" placeholder="Enter Email Id" [formControl]="email" />
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="referenceType">Reference Type</label>
@@ -101,23 +89,20 @@
                                                             </div> 
                                                             <div class="form-group form-float">
                                                                 <label for="nationality">Nationality</label>
-                                                                <div class="form-line"> <select class="browser-default" id="select7" [formControl]="nationality"
+                                                                    <select class="browser-default" id="select7" [formControl]="nationality"
                                                                         class="form-control">
-                                                                        <option value="">Choose your Nationality</option>
+                                                                        <option defult value="">Choose your Nationality</option>
                                                                         <option *ngFor="let nationality of nationalities?.response" [value]="nationality._id">
                                                                             {{nationality?.nationality}}</option>
                                                                     </select>
-                                                                </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="religion">Religion</label>
-                                                                <div class="form-line">
                                                                     <select class="browser-default" id="select9" [formControl]="religion" class="form-control">
-                                                                        <option value="">Choose your Religion</option>
+                                                                        <option defult value="">Choose your Religion</option>
                                                                         <option *ngFor="let religion of religions?.response" [value]="religion._id">{{religion?.religion}}
                                                                         </option>
                                                                     </select>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-1"></div>
@@ -132,17 +117,13 @@
                                                                 </div>
                                                             <div class="form-group form-float">
                                                                 <label for="regNo12th">12th RegisterNumber</label>
-                                                                <div class="form-line">
                                                                     <input type="text" class="form-control" name="regNo12th" placeholder="Enter 12th RegisterNumber"
                                                                         [formControl]="regNo12th" />
-                                                                </div>
                                                             </div>    
                                                             <div class="form-group form-float">
                                                                 <label for="mark12th">12th Mark</label>
-                                                                <div class="form-line">
                                                                     <input type="text" class="form-control" name="mark12th" placeholder="Enter 12th Mark"
                                                                         [formControl]="mark12th" />
-                                                                </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="institution">Institution</label>
@@ -157,13 +138,10 @@
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="board">Board Of Education</label>
-                                                                <div class="form-line">
                                                                     <select class="browser-default" id="select2" [formControl]="board" class="form-control">
-                                                                        <option value="">Choose your BoardOfEducation
-                                                                        </option>
+                                                                        <option defult value="">Choose your BoardOfEducation</option>
                                                                         <option *ngFor="let board of boards?.response" [value]="board._id">{{board?.board}}</option>
                                                                     </select>
-                                                                </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="applicatonNo">Application Number</label>
@@ -174,36 +152,29 @@
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="admissionCategory">Admission Category</label>
-                                                                <div class="form-line">
-                                                                    <select class="browser-default" id="select3" [formControl]="admissionCategory" class="form-control">
+                                                                    <select class="browser-default" id="select3" [formControl]="admissionCategory" class="form-control" required>
                                                                         <option value="">Choose your AdmissionCategory </option>
                                                                         <option *ngFor="let admissionCategory of admissioncategories?.response" [value]="admissionCategory._id">
                                                                             {{admissionCategory?.admissionCategory}}
                                                                         </option>
                                                                     </select>
-                                                                </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="admissiontype">Admission Type</label>
-                                                                <div class="form-line">
-                                                                    <select class="browser-default" id="select11" [formControl]="admissiontype" class="form-control">
+                                                                    <select class="browser-default" id="select11" [formControl]="admissiontype" class="form-control" required>
                                                                         <option value="">Choose your Admission Type
                                                                         </option>
                                                                         <option *ngFor="let admissiontype of admissiontypes?.response" [value]="admissiontype._id">
                                                                             {{admissiontype?.admissiontype}}</option>
                                                                     </select>
-                                                                </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="remark">Remark</label>
-                                                                <div class="form-line">
                                                                     <input type="text" class="form-control" name="remark" value="-" placeholder="Enter Remark"
                                                                         [formControl]="remark" />
-                                                                </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="scholarshipCategory">ScholarshipCategory</label>
-                                                                <div class="form-line">
                                                                     <select class="browser-default" id="select5" [formControl]="scholarshipCategory" class="form-control">
                                                                         <option value="">Choose your scholarshipCategory
                                                                         </option>
@@ -212,33 +183,26 @@
                                                                             {{scholarshipCategory?.scholarshipCategory}}
                                                                         </option>
                                                                     </select>
-                                                                </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="referenceBy">Reference By</label>
-                                                                <div class="form-line">
                                                                     <input type="text" class="form-control" name="referenceBy" placeholder="Enter Reference By"
                                                                         [formControl]="referenceBy" />
-                                                                </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="community">Community</label>
-                                                                <div class="form-line">
                                                                     <select class="browser-default" id="select10" [formControl]="community" class="form-control">
                                                                         <option value="">Choose your Community</option>
                                                                         <option *ngFor="let community of communities?.response" [value]="community._id">{{community?.community}}
                                                                         </option>
                                                                     </select>
-                                                                </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="caste">Caste</label>
-                                                                <div class="form-line">
                                                                     <select class="browser-default" id="select12" [formControl]="caste" class="form-control">
                                                                         <option value="">Choose your Caste</option>
                                                                         <option *ngFor="let caste of castes?.response" [value]="caste._id">{{caste?.caste}}</option>
                                                                     </select>
-                                                                </div>
                                                             </div>
                                                             </div>
                                                     </div>
@@ -249,94 +213,70 @@
                                                         <div class="col-md-5">
                                                             <div class="form-group form-float">
                                                                 <label for="fEmail">Father's EmailID</label>
-                                                                <div class="form-line">
-                                                                    <input type="text" class="form-control" name="fEmail" placeholder="Enter Father's EmailId"
+                                                                    <input type="email" class="form-control" name="fEmail" placeholder="Enter Father's EmailId"
                                                                         [formControl]="fEmail" />
-                                                                </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="fOccupation">Father's Occupation</label>
-                                                                <div class="form-line">
                                                                     <input type="text" class="form-control" name="fOccupation" placeholder="Enter Father's Occupation"
                                                                         [formControl]="fOccupation" />
-                                                                </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="fAnnualIncome">Father's AnnualIncome</label>
-                                                                <div class="form-line">
                                                                     <input type="text" class="form-control" name="fAnnualIncome" placeholder="Enter Father's AnnualIncome"
                                                                         [formControl]="fAnnualIncome" />
-                                                                </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="pPanNumber">Parent PAN Number</label>
-                                                                <div class="form-line">
                                                                     <input type="text" class="form-control" name="pPanNumber" placeholder="Enter Parent PAN Number"
                                                                         [formControl]="pPanNumber" />
-                                                                </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="pAadharNumber">Parent AadharNumber</label>
-                                                                <div class="form-line">
                                                                     <input type="text" class="form-control" name="pAadharNumber" placeholder="Enter Parent AadharNumber"
                                                                         [formControl]="pAadharNumber" />
-                                                                </div>
                                                             </div>
                                                             <div class="form-group default-select">
                                                                 <label for="motherTongue">Mother Tongue</label>
-                                                                <div class="form-line">
                                                                     <select class="form-control select2"  [formControl]="motherTongue" >
                                                                         <option default>Choose your MotherTongue
                                                                         </option>
                                                                         <option *ngFor="let motherTongue of motherTongues?.response" [value]="motherTongue._id" selected>
                                                                             {{motherTongue?.motherTongue}}</option>
                                                                     </select>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-1"></div>
                                                         <div class="col-md-5">
                                                             <div class="form-group form-float">
                                                                 <label for="mName">Mothers's Name</label>
-                                                                <div class="form-line">
                                                                     <input type="text" class="form-control" name="mName" placeholder="Enter Mother's Name"
                                                                         [formControl]="mName" />
-                                                                </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="mEmail">Mothers's EmailID</label>
-                                                                <div class="form-line">
                                                                     <input type="email" class="form-control" name="mEmail" placeholder="Enter Mother's EmailId"
                                                                         [formControl]="mEmail" />
-                                                                </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="mOccupation">Mothers's Occupation</label>
-                                                                <div class="form-line">
                                                                     <input type="text" class="form-control" name="mOccupation" placeholder="Enter Mother's Occupation"
                                                                         [formControl]="mOccupation" />
-                                                                </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="mMobileNo">Mothers's MobileNumber</label>
-                                                                <div class="form-line">
                                                                     <input type="text" class="form-control" name="mMobileNo" placeholder="Enter Mother's MobileNumber"
                                                                         [formControl]="mMobileNo" />
-                                                                </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="mAnnualIncome">Mothers's AnnualIncome</label>
-                                                                <div class="form-line">
                                                                     <input type="text" class="form-control" name="mAnnualIncome" placeholder="Enter Mother's AnnualIncome"
                                                                         [formControl]="mAnnualIncome" />
-                                                                </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="relativeName">Name of the Relative Studing in This Institution</label>
-                                                                <div class="form-line">
                                                                     <input type="text" class="form-control" name="relativeName" placeholder="Enter Relative Name"
                                                                         [formControl]="relativeName" />
-                                                                </div>
                                                             </div>
                                                          </div>
                                                     </div> 
@@ -350,22 +290,18 @@
                                                         <div class="col-md-5">
                                                             <div class="form-group form-float">
                                                                 <label for="coursecategory">Course Category</label>
-                                                                <div class="form-line">
                                                                     <select class="browser-default" id="select6" [formControl]="coursecategory" name="coursecategory"
-                                                                        class="form-control" (change)="onCourseCategoryChange($event.target.value)" required>
+                                                                        class="form-control" (change)="onCourseCategoryChange($event.target.value)" >
                                                                         <option value="">Choose your Course Category
                                                                         </option>
                                                                         <option *ngFor="let coursecategory of coursecategories?.response" [value]="coursecategory._id">
                                                                             {{coursecategory?.coursecategory}}</option>
                                                                     </select>
                                                                 </div>
-                                                            </div>
-                                                    
                                                         </div>
                                                         <div class="col-md-5">
                                                             <div class="form-group form-float">
                                                                 <label for="courseprogram">Course/Program</label>
-                                                                <div class="form-line">
                                                                     <select class="browser-default" id="select8"
                                                                         [formControl]="courseprogram" class="form-control" >
                                                                         <option default value="">Choose your Course/Program
@@ -375,7 +311,6 @@
                                                                             [value]="courseprogram._id">
                                                                             {{courseprogram?.courseprogram}}</option>
                                                                     </select>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-1">
@@ -383,35 +318,37 @@
                                                         </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-md-12">
-                                                                <table id="tableExport"
-                                                                    class="display table table-hover table-checkable order-column m-t-20 width-per-100">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>#</th>
-                                                                            <th>Course/program</th>  
-                                                                            <th>Action</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr
-                                                                            *ngFor="let courseprogram of cecourseprograms; let i=index">
-                                                                            <td>{{ i +1 }} </td>
-                                                                            <td>{{courseprogram.courseprogram[0].courseprogram}}</td>
-                                                                            <div class="noprint">
-                                                                                <td>
-                                                                                  <div class="btn btn-tbl-delete">
-                                                                                        <i class="material-icons"
-                                                                                            (click)="deleteCEcourseProgram(courseprogram?._id)">delete_forever</i>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </div>
-                                                                        </tr>
-                                                                    </tbody>
-            
-                                                                </table>
+                                                                <div class="col-md-12">
+                                                                    <table id="tableExport"
+                                                                        class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>#</th>
+                                                                                <th>CourseCategory</th>
+                                                                                <th>Course/program</th>  
+                                                                                <th>Action</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr
+                                                                                *ngFor="let courseprogram of cecourseprograms; let i=index">
+                                                                                <td>{{ i +1 }} </td>
+                                                                                <td>{{courseprogram.coursecategory[0].coursecategory}}</td>
+                                                                                <td>{{courseprogram.courseprogram[0].courseprogram}}</td>
+                                                                                <div class="noprint">
+                                                                                    <td>
+                                                                                      <div class="btn btn-tbl-delete">
+                                                                                            <i class="material-icons"
+                                                                                                (click)="deleteCEcourseProgram(courseprogram?._id)">delete_forever</i>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </div>
+                                                                            </tr>
+                                                                        </tbody>
+                
+                                                                    </table>
+                                                                </div>
                                                             </div>
-                                                        </div>
     
                                                     
                                                 </form>
@@ -740,8 +677,6 @@
                                                                     <th>#</th>
                                                                     <th>Qualification Type</th>
                                                                     <th>Course Type</th>
-                                                                    <th>Institution Type</th>
-                                                                    <th>School/College</th>
                                                                     <th>Medium</th>
                                                                     <th>Address</th>
                                                                     <th>YearOfPassing</th>
@@ -749,6 +684,7 @@
                                                                     <th>MaxMark</th>
                                                                     <th>Percentage</th>
                                                                     <th>OrganisationType</th>
+                                                                    <th>MarkSheet</th>
                                                                     <th>Action</th>
                                                                 </tr>
                                                             </thead>
@@ -760,9 +696,6 @@
                                                                     </td>
                                                                     <td>{{qualificationdetail.courseType[0].courseType}}
                                                                     </td>
-                                                                    <td>{{qualificationdetail.institutionType[0].institutionType}}
-                                                                    </td>
-                                                                    <td>{{qualificationdetail?.schoolCollege}}</td>
                                                                     <td>{{qualificationdetail.medium[0].medium}}</td>
                                                                     <td>{{qualificationdetail?.city}},
                                                                         {{qualificationdetail?.taluk}},
@@ -774,6 +707,7 @@
                                                                     <td>{{qualificationdetail?.maxMark}}</td>
                                                                     <td>{{qualificationdetail?.percentage}}</td>
                                                                     <td>{{qualificationdetail?.organisationType}}</td>
+                                                                    <td><a href="{{qualificationdetail?.photoLocation}}">MarksheetLink</a></td>
                                                                     <div class="noprint">
                                                                         <td>
                                                                             <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editModalqd">
@@ -955,25 +889,20 @@
                                                          </div>
                                                            <!--//Cerificate Upload-->
                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <!-- <img style="margin:0 auto" src="{{fileLocationValue}}" class="user-img">
-                                                                    <img style="margin:0 auto" src="{{getfileLoc2}}" class="user-img"> -->
-                                                                    <label for="file">MarkSheet</label>
-                                                                
-                                                                    <div class="col-sm-12">
-                                                                        <input type="file" name="file" ng2FileSelect [uploader]="uploader2" />
-                                                                        <div class="progress">
-                                                                            <div class="progress-bar width-per-45" role="progressbar" aria-valuenow="60"
-                                                                                [ngStyle]="{'width':uploader2.progress+'%'}" aria-valuemin="0" aria-valuemax="100">
-                                                                            </div>
+                                                                <div class="col-sm-12">
+                                                                    <h6>MarkSheet</h6>
+                                                                     <!-- <a href="{{getfileLoc2}}">MarkSheet</a> -->
+                                                                    <a href="{{photoLocationValue}}">MarkSheet</a><br><br>
+                                                                    <input type="file" name="photo" ng2FileSelect [uploader]="uploader2" />
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar width-per-45" role="progressbar" aria-valuenow="60"
+                                                                            [ngStyle]="{'width':uploader2.progress+'%'}" aria-valuemin="0" aria-valuemax="100">
                                                                         </div>
-                                                                        <div class="row" *ngIf="uploader2?.queue?.length > 0">
-                                                                            <button class="btn bg-teal waves-effect" (click)="filesubmit()">Upload File</button>
-                                                                        </div>
-                                                                        <!-- <span> {{getfileLoc}}</span> -->
                                                                     </div>
+                                                                    <div class="row" *ngIf="uploader2?.queue?.length > 0">
+                                                                        <button type="button" class="btn bg-teal waves-effect" (click)="filesubmit()">Upload File</button></div>
                                                                 </div>
-                                                        </div>
+                                                            </div>
                                                        <div class="modal-footer">
                                                            <button type="submit" class="btn btn-default" (click)="onEditQualificationSubmit()">Update</button>
                                                            <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
@@ -1339,21 +1268,12 @@
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group">
-                                                                                <label>Description</label>
-                                                                                <input type="text" value="" formControlName="description" class="form-control" placeholder="Enter Description"
-                                                                                    [ngClass]="{ 'is-invalid': submitted && f7.description.errors }" />
-                                                                                <div *ngIf="submitted && f7.description.errors" class="invalid-feedback">
-                                                                                    <div *ngIf="f7.description.errors.required">
-                                                                                        Description is required</div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label>NextEnquiryTime</label>
-                                                                                <input type="time" formControlName="nextEnquiryTime" value=" " class="form-control"
-                                                                                    placeholder="Enter NextEnquiryTime" [ngClass]="{ 'is-invalid': submitted && f7.nextEnquiryTime.errors }">
-                                                                                <div *ngIf="submitted && f7.nextEnquiryTime.errors" class="invalid-feedback">
-                                                                                    <div *ngIf="f7.nextEnquiryTime.errors.required">
-                                                                                        NextEnquiryTime is required</div>
+                                                                                <label>NextEnquiryDate</label>
+                                                                                <input type="date" value="" formControlName="nextEnquiryDate" class="form-control"
+                                                                                    placeholder="Enter nextEnquiryDate" [ngClass]="{ 'is-invalid': submitted && f7.nextEnquiryDate.errors }" />
+                                                                                <div *ngIf="submitted && f7.nextEnquiryDate.errors" class="invalid-feedback">
+                                                                                    <div *ngIf="f7.nextEnquiryDate.errors.required">
+                                                                                        NextEnquiryDate is required</div>
                                                                                 </div>
                                                                             </div>
                                                                             </div>
@@ -1372,12 +1292,25 @@
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group">
-                                                                                <label>NextEnquiryDate</label>
-                                                                                <input type="date" value="" formControlName="nextEnquiryDate" class="form-control"
-                                                                                    placeholder="Enter nextEnquiryDate" [ngClass]="{ 'is-invalid': submitted && f7.nextEnquiryDate.errors }" />
-                                                                                <div *ngIf="submitted && f7.nextEnquiryDate.errors" class="invalid-feedback">
-                                                                                    <div *ngIf="f7.nextEnquiryDate.errors.required">
-                                                                                        NextEnquiryDate is required</div>
+                                                                                <label>NextEnquiryTime</label>
+                                                                                <input type="time" formControlName="nextEnquiryTime" value=" " class="form-control"
+                                                                                    placeholder="Enter NextEnquiryTime" [ngClass]="{ 'is-invalid': submitted && f7.nextEnquiryTime.errors }">
+                                                                                <div *ngIf="submitted && f7.nextEnquiryTime.errors" class="invalid-feedback">
+                                                                                    <div *ngIf="f7.nextEnquiryTime.errors.required">
+                                                                                        NextEnquiryTime is required</div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-group">
+                                                                                <label>Description</label>
+                                                                                <textarea type="text" value="" formControlName="description" class="form-control"
+                                                                                    placeholder="Enter Description" [ngClass]="{ 'is-invalid': submitted && f7.description.errors }"></textarea>
+                                                                                <div *ngIf="submitted && f7.description.errors" class="invalid-feedback">
+                                                                                    <div *ngIf="f7.description.errors.required">
+                                                                                        Description is required</div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -1418,22 +1351,13 @@
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="form-group">
-                                                                                        <label>Description</label>
-                                                                                        <input type="text" value="" formControlName="description2" class="form-control" placeholder="Enter Cheque/DD Date"
-                                                                                            [ngClass]="{ 'is-invalid': submitted && f8.description2.errors }" />
-                                                                                        <div *ngIf="submitted && f8.description2.errors" class="invalid-feedback">
-                                                                                            <div *ngIf="f8.description2.errors.required">
-                                                                                                Description is required
+                                                                                        <label>NextEnquiryDate</label>
+                                                                                        <input type="date" value="" formControlName="nextEnquiryDate2" class="form-control"
+                                                                                            placeholder="Enter Cheque / DD Number" [ngClass]="{ 'is-invalid': submitted && f8.nextEnquiryDate2.errors }" />
+                                                                                        <div *ngIf="submitted && f8.nextEnquiryDate2.errors" class="invalid-feedback">
+                                                                                            <div *ngIf="f8.nextEnquiryDate2.errors.required">
+                                                                                                NextEnquiryDate is required
                                                                                             </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="form-group">
-                                                                                        <label>NextEnquiryTime</label>
-                                                                                        <input type="time" value="" formControlName="nextEnquiryTime2" class="form-control"
-                                                                                            placeholder="Enter NextEnquiryTime" [ngClass]="{ 'is-invalid': submitted && f8.nextEnquiryTime2.errors }" />
-                                                                                        <div *ngIf="submitted && f8.nextEnquiryTime2.errors" class="invalid-feedback">
-                                                                                            <div *ngIf="f8.nextEnquiryTime2.errors.required">
-                                                                                                NextEnquiryTime is required</div>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -1452,13 +1376,25 @@
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="form-group">
-                                                                                        <label>NextEnquiryDate</label>
-                                                                                        <input type="date" value="" formControlName="nextEnquiryDate2" class="form-control"
-                                                                                            placeholder="Enter Cheque / DD Number"
-                                                                                            [ngClass]="{ 'is-invalid': submitted && f8.nextEnquiryDate2.errors }" />
-                                                                                        <div *ngIf="submitted && f8.nextEnquiryDate2.errors" class="invalid-feedback">
-                                                                                            <div *ngIf="f8.nextEnquiryDate2.errors.required">
-                                                                                                NextEnquiryDate is required
+                                                                                        <label>NextEnquiryTime</label>
+                                                                                        <input type="time" value="" formControlName="nextEnquiryTime2" class="form-control"
+                                                                                            placeholder="Enter NextEnquiryTime" [ngClass]="{ 'is-invalid': submitted && f8.nextEnquiryTime2.errors }" />
+                                                                                        <div *ngIf="submitted && f8.nextEnquiryTime2.errors" class="invalid-feedback">
+                                                                                            <div *ngIf="f8.nextEnquiryTime2.errors.required">
+                                                                                                NextEnquiryTime is required</div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group">
+                                                                                        <label>Description</label>
+                                                                                        <textarea type="text" value="" formControlName="description2" class="form-control"
+                                                                                            placeholder="Enter Cheque/DD Date" [ngClass]="{ 'is-invalid': submitted && f8.description2.errors }"></textarea>
+                                                                                        <div *ngIf="submitted && f8.description2.errors" class="invalid-feedback">
+                                                                                            <div *ngIf="f8.description2.errors.required">
+                                                                                                Description is required
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -1639,18 +1575,21 @@
                             </div>
                                  <!--//Cerificate Upload-->
                                  <div class="row">
-                                    <div class="col-sm-12">
-                                        <h6>MarkSheet</h6>
-                                        <!-- <img style="margin:0 auto" src="{{getfileLoc2}}" width="100px"> -->
-                                        <input type="file" name="file" ng2FileSelect [uploader]="uploader2" />
-                                        <div class="progress">
-                                            <div class="progress-bar width-per-45" role="progressbar" aria-valuenow="60"
-                                                [ngStyle]="{'width':uploader2.progress+'%'}" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="col-md-12">
+                                                <label for="file">MarkSheet</label>
+                                                <a href="{{getfileLoc}}">MarkSheet</a><br><br>
+                                            <div class="col-sm-12">
+                                                <input type="file" name="photo" ng2FileSelect [uploader]="uploader2" />
+                                                <div class="progress">
+                                                    <div class="progress-bar width-per-45" role="progressbar" aria-valuenow="60"
+                                                        [ngStyle]="{'width':uploader2.progress+'%'}" aria-valuemin="0" aria-valuemax="100">
+                                                    </div>
+                                                </div>
+                                                <div class="row" *ngIf="uploader2?.queue?.length > 0">
+                                                    <button class="btn bg-teal waves-effect" (click)="filesubmit()">Upload File</button>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="row" *ngIf="uploader2?.queue?.length > 0">
-                                            <button type="button" class="btn bg-teal waves-effect" (click)="filesubmit()">Upload File</button></div>
-                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-default" (click)="addQualificationDetails()">Add</button>

@@ -7,13 +7,14 @@ import { FileUploader } from 'ng2-file-upload';
 import { DatePipe } from '@angular/common';
 
 const URL = 'http://localhost:3000/uploadStudentPhoto/upload';
-const url = 'http://localhost:3000/ce-qd-fileupload/fileupload';
+const url = 'http://localhost:3000/ce-qd-fileupload/upload';
 declare const $: any;
 declare const swal: any;
 @Component({
   selector: 'app-ce-add-form',
   templateUrl: './ce-add-form.component.html',
-  styleUrls: ['./ce-add-form.component.scss']
+  styleUrls: ['./ce-add-form.component.scss'],
+  providers: [DatePipe]
 })
 export class CEAddFormComponent implements OnInit {
 
@@ -43,7 +44,7 @@ export class CEAddFormComponent implements OnInit {
   courseprogram: any;
   scholarshipCategory: any;
   remark: any;
-  nationality: any;
+  nationality;
   religion: any;
   community: any;
   caste: any;
@@ -147,7 +148,7 @@ export class CEAddFormComponent implements OnInit {
   qualificationdetails: any;
   admissioncategories: any;
   fileValue: any;
-  public uploader2: FileUploader = new FileUploader({ url: url, itemAlias: 'file' });
+  public uploader2: FileUploader = new FileUploader({ url: url, itemAlias: 'photo' });
   getfileLoc2: any;
   fileLocation: any;
   fileLocationValue: any;
@@ -227,6 +228,11 @@ amountValue: any;
   modeOfEnquiries: any;
   feestypes: any;
   feetypes: any;
+  photoLocation: FormControl;
+  photoLocation2: FormControl;
+  photoLocationValue: any;
+  basic;
+  ID;
 
 
   constructor(private dynamicScriptLoader: DynamicScriptLoaderService,
@@ -250,19 +256,19 @@ amountValue: any;
     this.fLastName = new FormControl('');
     this.fMobileNumber = new FormControl('');
     this.institution = new FormControl('', Validators.required);
-    this.board = new FormControl('');
+    this.board = new FormControl();
     this.referenceType = new FormControl('', Validators.required);
     this.referenceBy = new FormControl('');
     this.applicatonNo = new FormControl('', Validators.required);
-    this.admissiontype = new FormControl('');
-    this.admissionCategory = new FormControl('');
-    this.scholarshipCategory = new FormControl('');
+    this.admissiontype = new FormControl('', Validators.required);
+    this.admissionCategory = new FormControl('', Validators.required);
+    this.scholarshipCategory = new FormControl();
     this.remark = new FormControl('');
-    this.nationality = new FormControl('');
-    this.religion = new FormControl('');
-    this.community = new FormControl('');
-    this.caste = new FormControl('');
-    this.motherTongue = new FormControl('');
+    this.nationality = new FormControl();
+    this.religion = new FormControl();
+    this.community = new FormControl();
+    this.caste = new FormControl();
+    this.motherTongue = new FormControl();
     this.fEmail = new FormControl('');
     this.fOccupation = new FormControl('');
     this.fAnnualIncome = new FormControl('');
@@ -280,8 +286,8 @@ amountValue: any;
       this.canId = params.id;
     });
     //courseProgram
-    this.coursecategory = new FormControl('', Validators.required);
-     this.courseprogram = new FormControl('', Validators.required);
+    this.coursecategory = new FormControl('');
+     this.courseprogram = new FormControl('');
 
  //add Form Group - addressDetails 
  this.addressAddForm = this.formBuilder.group({
@@ -324,7 +330,7 @@ this.addressEditForm = this.formBuilder.group({
   this.maxMark = new FormControl('', Validators.required);
   this.percentage = new FormControl('', Validators.required);
   this.organisationType = new FormControl('', Validators.required);
-  this.fileLocation = new FormControl('', Validators.required);
+  this.photoLocation = new FormControl('', Validators.required);
 // Edit Form controller - Qualification Details
 
   this.qualificationType2 = new FormControl('', Validators.required);
@@ -342,7 +348,7 @@ this.addressEditForm = this.formBuilder.group({
   this.maxMark2 = new FormControl('', Validators.required);
   this.percentage2 = new FormControl('', Validators.required);
   this.organisationType2 = new FormControl('', Validators.required);
-  this.fileLocation2 = new FormControl('', Validators.required);
+  this.photoLocation2 = new FormControl('', Validators.required);
 
 //add Form Group - addressDetails 
 this.paymentAddForm = this.formBuilder.group({
@@ -439,22 +445,28 @@ addbasicdetails() {
     enquiryDate: this.enquiryDate
   };
   this.request.addBasicDetails(newBasicDetails).subscribe((response: any) => {
+    console.log(response);
+    this.basic = response[0];
+    console.log('BB', this.basic);
+    this.ID = this.basic._id;
+    console.log('ID',this.ID);
     if (response.status == 'error') {
       this.setMessage(response.error);
+      console.log(response.error);
     }
     else if (response.status == 'success') {
-      swal("Added Sucessfully"); 
-      this.viewData();
       this.router.navigate([], {
         queryParams: {    
-            id: response._id,
-          }
+            id: this.basic._id,  
+          },
          }); 
     }
+      swal("Added Sucessfully"); 
+      this.viewData();    
   }, (error) => {
     this.setMessage(error);
   });
-  console.log(newBasicDetails);
+  console.log();
 }
 
 //Add CourseProgram
@@ -646,7 +658,7 @@ addQualificationDetails() {
       maxMark: this.maxMark.value,
       percentage: this.percentage.value,
       organisationType: this.organisationType.value,
-      fileLocation: this.getfileLoc2,
+      photoLocation: this.getfileLoc2,
       canId: this.canId
     }
   this.request.addQualificationDetails(newQualificationDetail).subscribe((res: any) => {
@@ -697,7 +709,7 @@ this.qualificationdetails = null;
     this.maxMarkValue = this.editqdDetailsdata.maxMark;
     this.percentageValue = this.editqdDetailsdata.percentage;
     this.organisationTypeValue = this.editqdDetailsdata.organisationType;
-    this.fileLocationValue = this.editqdDetailsdata.fileLocation;
+    this.photoLocationValue = this.editqdDetailsdata.photoLocation;
     this.IdValue = this.editqdDetailsdata._id;
   
     this.qualificationType2 = new FormControl(this.qualificationTypeValue, Validators.required);
@@ -715,7 +727,7 @@ this.qualificationdetails = null;
     this.maxMark2 = new FormControl(this.maxMarkValue, Validators.required);
     this.percentage2 = new FormControl(this.percentageValue, Validators.required);
     this.organisationType2 = new FormControl(this.organisationTypeValue, Validators.required);
-    this.fileLocation2 = new FormControl(this.fileLocationValue, Validators.required);
+    this.photoLocation2 = new FormControl(this.photoLocationValue, Validators.required);
     
     });
     }
@@ -739,7 +751,7 @@ this.qualificationdetails = null;
       maxMark: this.maxMark2.value,
       percentage: this.percentage2.value,
       organisationType: this.organisationType2.value,
-      fileLocation: this.getfileLoc2
+      photoLocation: this.getfileLoc2
       };
       this.request.updateQualificationDetails(this.IdValue, edata).subscribe((response: any) => {
         if (response.status == 'success') {
@@ -1285,7 +1297,7 @@ onEditFollowupsSubmit() {
     this.uploader2.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       console.log('ImageUpload:uploaded:', item, status, response);
       const resPath = JSON.parse(response);
-     this.getfileLoc2 = resPath.qdFileResult2;
+     this.getfileLoc2 = resPath.qdFileResult1;
     };
 
     //jQuery Validation form BasicDetails (Form-Control)
