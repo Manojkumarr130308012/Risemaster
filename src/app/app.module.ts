@@ -86,9 +86,7 @@ import { VehicleTransactionComponent } from './VehicleManagement/vehicle-transac
 import { StaffProfileComponent } from './StaffManagement/staff-profile/staff-profile.component';
 import { StaffDetailsComponent } from './StaffManagement/staff-details/staff-details.component';
 
-import { CEmainPageComponent } from './Student/cemain-page/cemain-page.component';
-import { CEtabpageComponent } from './Student/cetabpage/cetabpage.component';
-import { CeEditTabpageComponent } from './Student/ce-edit-tabpage/ce-edit-tabpage.component';
+
 import { BatchComponent } from './Master/batch/batch.component';
 import { ConvertToStudentComponent } from './StudentCandidateEnquiry/convert-to-student/convert-to-student.component';
 import { StudentProfileComponent } from './StudentManagement/student-profile/student-profile.component';
@@ -165,9 +163,6 @@ import { CEMainPageComponent } from './StudentCandidateEnquiry/ce-main-page/ce-m
     FuelEntryComponent,
 
 // Candidate Enquiry
-CEmainPageComponent,
-CEtabpageComponent,
-CeEditTabpageComponent,
 BatchComponent,
 ConvertToStudentComponent,
 StudentProfileComponent,
