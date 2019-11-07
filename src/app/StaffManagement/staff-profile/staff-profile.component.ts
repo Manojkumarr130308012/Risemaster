@@ -20,6 +20,8 @@ export class StaffProfileComponent implements OnInit {
   public staffprofiles: any;
   public staffCode: any;
   public stafftype: any;
+
+
   public staffrole: any;
   public salutation: any;
   public firstName: any;
@@ -47,6 +49,7 @@ export class StaffProfileComponent implements OnInit {
   institutionValue: any;
   institutions;
   departments;
+  departmentsdrop;
   public message: string;
   Id: any;
   stafftypes;
@@ -68,6 +71,11 @@ export class StaffProfileComponent implements OnInit {
     this.department= new FormControl('', Validators.required);
     this.staffCode = new FormControl('', Validators.required);
     this.stafftype= new FormControl('', Validators.required);
+
+    this.institution= new FormControl('', Validators.required);
+    this.department= new FormControl('', Validators.required);
+
+
     this.staffrole= new FormControl('', Validators.required);
     this.salutation= new FormControl('', Validators.required);
     this.firstName= new FormControl('', Validators.required);
@@ -84,7 +92,7 @@ export class StaffProfileComponent implements OnInit {
     this.maritalstatus= new FormControl('', Validators.required);
     this.bloodgroup= new FormControl('', Validators.required);
     this.photoLocation= new FormControl('', Validators.required);
-    
+
   }
   public setMessage(message) {
     return this.message = message;
@@ -107,8 +115,8 @@ export class StaffProfileComponent implements OnInit {
   // Bind departments data
   loadDepartment()  {
     this.request.getDepartment().subscribe((response : any) => {
-      console.log(response);
-    this.departments = response;
+      console.log('departmentsdrop',response);
+    this.departmentsdrop = response;
     }, (error) => {
       console.log(error);
     });
@@ -124,7 +132,7 @@ export class StaffProfileComponent implements OnInit {
        }, (error) => {
          console.log(error);
        });
-     } else 
+     } else
          this.departments = null;
     }
 
@@ -238,6 +246,7 @@ viewData() {
    //Add form validation and function
    addStaffprofile() {
     const newStaffprofile = {
+      institution: this.institution.value,
       department: this.department.value,
       staffCode: this.staffCode.value,
       stafftype: this.stafftype.value,
@@ -259,7 +268,7 @@ viewData() {
       photoLocation: this.getfileLoc,
     };
 
-    
+
 this.request.addSaffProfile(newStaffprofile).subscribe((res: any) => {
   if (res.status == 'success') {
     swal("Added Sucessfully");
@@ -281,8 +290,8 @@ open(staffprofile) {
   this.Id=staffprofile._id;
   console.log(this.Id);
   this.router.navigate(['staff-details'], {
-     queryParams: {  
-         edit: true,      
+     queryParams: {
+         edit: true,
          id: staffprofile._id,
        }
       });
