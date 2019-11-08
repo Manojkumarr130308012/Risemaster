@@ -1,12 +1,12 @@
 <section class="content">
         <div class="container-fluid">
-    
+
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
                             <div class="header-dropdown m-r--5">
-    
+
                             </div>
                             <div class="body">
                                 <aw-wizard #wizard [navBarLayout]="'large-empty-symbols'">
@@ -37,11 +37,10 @@
                                                                 <label for="gender">Gender</label>
                                                                 <select class="form-control" [formControl]="gender"
                                                                  required>
-                                                                    <option value="" selected>Choose your Gender</option>
-                                                                    <option *ngFor="let basicdetail of basicdetails" [value]="basicdetail.gender[0]._id"
-                                                                     [selected]="basicdetail.gender[0].gender">{{basicdetail.gender[0].gender}}</option>
+                                                                    <option selected>Choose your Gender</option>
+                                                                    <option *ngFor="let basicdetail of basicdetails" [value]="basicdetail.genderd[0]._id">{{basicdetail.genderd[0].gender}}</option>
                                                                 </select>
-                                                            </div>    
+                                                            </div>
                                                             <div class="form-group form-float">
                                                                 <label for="dob">Date Of Birth</label>
                                                                 <div class="form-line">
@@ -93,23 +92,22 @@
                                                             <div class="form-group form-float">
                                                                 <label for="referenceType">Reference Type</label>
                                                                 <div class="form-line">
-                                                                    <select class="browser-default" id="select4" [formControl]="referenceType" name="referenceType"
-                                                                        class="form-control" required>
-                                                                        <option value="">Choose your ReferenceType
-                                                                        </option>
-                                                                        <option *ngFor="let  referralType of referralTypes?.response" [value]="referralType._id"
-                                                                        [selected]="referralType?.referralType">
+                                                                    <select class="browser-default" id="selectreferenceType" [formControl]="referenceType" name="referenceType"
+                                                                        class="form-control" placeholder="Choose your Reference Type" required>
+                                                                        <option>Choose your ReferenceType</option>
+                                                                        <option *ngFor="let  referralType of referralTypes?.response" [value]="referralType._id">
                                                                             {{referralType?.referralType}}</option>
                                                                     </select>
                                                                 </div>
-                                                            </div> 
+
+                                                            </div>
                                                             <div class="form-group form-float">
                                                                 <label for="nationality">Nationality</label>
-                                                                <div class="form-line"> <select class="browser-default" id="select7" [formControl]="nationality"
+                                                                <div class="form-line">
+                                                                  <select class="browser-default" id="selectnationality" [formControl]="nationality" name="nationality"
                                                                         class="form-control">
-                                                                        <option value="">Choose your Nationality</option>
-                                                                        <option *ngFor="let nationality of nationalities?.response" [value]="nationality._id"
-                                                                        [selected]="referralType?.referralType">
+                                                                        <option>Choose your Nationality</option>
+                                                                        <option *ngFor="let nationality of nationalities?.response" [value]="nationality._id" >
                                                                             {{nationality?.nationality}}</option>
                                                                     </select>
                                                                 </div>
@@ -117,10 +115,9 @@
                                                             <div class="form-group form-float">
                                                                 <label for="religion">Religion</label>
                                                                 <div class="form-line">
-                                                                    <select class="browser-default" id="select9" [formControl]="religion" class="form-control">
-                                                                        <option value="">Choose your Religion</option>
-                                                                        <option *ngFor="let religion of religions?.response" [value]="religion._id"
-                                                                        [selected]="religion?.religion">{{religion?.religion}}
+                                                                    <select class="browser-default" id="selectreligion" name="religion" [formControl]="religion" class="form-control">
+                                                                        <option>Choose your Religion</option>
+                                                                        <option *ngFor="let religion of religions?.response" [value]="religion._id">{{religion?.religion}}
                                                                         </option>
                                                                     </select>
                                                                 </div>
@@ -130,7 +127,7 @@
                                                         <div class="col-md-5">
                                                             <label for="sphoto">Student Photo</label>
                                                             <div class="col-sm-12">
-                                                            <img style="margin:0 auto" src="{{getfileLoc}}" width="100px"> 
+                                                            <img style="margin:0 auto" src="{{getfileLoc}}" width="100px">
                                                         </div>
                                                             <div class="form-group form-float">
                                                                     <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
@@ -142,7 +139,7 @@
                                                                     <input type="text" class="form-control" name="regNo12th" placeholder="Enter 12th RegisterNumber"
                                                                         [formControl]="regNo12th" />
                                                                 </div>
-                                                            </div>    
+                                                            </div>
                                                             <div class="form-group form-float">
                                                                 <label for="mark12th">12th Mark</label>
                                                                 <div class="form-line">
@@ -154,10 +151,10 @@
                                                                 <label for="institution">Institution</label>
                                                                 <!-- <div class="form-line">   -->
                                                                     <select class="browser-default" [formControl]="institution" name="institution"  class="form-control"
-                                                                         required>  
-                                                                        <option *ngFor="let basicdetail of basicdetails" value ="basicdetail.institution[0]._id" 
-                                                                        [selected]="basicdetail.institution[0].institution_name">
-                                                                            {{basicdetail.institution[0].institution_name}}</option>
+                                                                         required>
+                                                                        <option *ngFor="let basicdetail of basicdetails" value ="basicdetail.institutiond[0]._id"
+                                                                        [selected]="basicdetail.institutiond[0].institution_name">
+                                                                            {{basicdetail.institutiond[0].institution_name}}</option>
                                                                     </select>
                                                                 <!-- </div> -->
                                                             </div>
@@ -165,10 +162,9 @@
                                                                 <label for="board">Board Of Education</label>
                                                                 <div class="form-line">
                                                                     <select class="browser-default" id="select2" [formControl]="board" class="form-control">
-                                                                        <option value="">Choose your BoardOfEducation
+                                                                        <option>Choose your Board Of Education
                                                                         </option>
-                                                                        <option *ngFor="let board of boards?.response" [value]="board._id"
-                                                                        [selected]="board?.board">{{board?.board}}</option>
+                                                                        <option *ngFor="let board of boards?.response" [value]="board._id">{{board?.board}}</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -184,9 +180,9 @@
                                                                 <div class="form-line" >
                                                                     <select class="browser-default" id="select3" [formControl]="admissionCategory" class="form-control">
                                                                         <!-- <option value="">Choose your AdmissionCategory</option> -->
-                                                                        <option  *ngFor="let basicdetail of basicdetails" [value]="basicdetail.admissionCategory[0]._id"
-                                                                        [selected]="basicdetail.admissionCategory[0].admissionCategory">
-                                                                            {{basicdetail.admissionCategory[0].admissionCategory}}
+                                                                        <option  *ngFor="let basicdetail of basicdetails" [value]="basicdetail.admissionCategoryd[0]._id"
+                                                                        [selected]="basicdetail.admissionCategoryd[0].admissionCategory">
+                                                                            {{basicdetail.admissionCategoryd[0].admissionCategory}}
                                                                         </option>
                                                                     </select>
                                                                 </div>
@@ -194,11 +190,9 @@
                                                             <div class="form-group form-float">
                                                                 <label for="admissiontype">Admission Type</label>
                                                                 <div class="form-line">
-                                                                    <select class="browser-default" id="select11" [formControl]="admissiontype" class="form-control">
-                                                                        <!-- <option value="">Choose your Admission Type</option> -->
-                                                                        <option  *ngFor="let basicdetail of basicdetails" [value]="basicdetail.admissiontype[0]._id"
-                                                                        [selected]="basicdetail.admissiontype[0].admissiontype">
-                                                                            {{basicdetail.admissiontype[0].admissiontype}}</option>
+                                                                    <select class="browser-default" id="selectadmissiontype" [formControl]="admissiontype" class="form-control">
+                                                                        <option  *ngFor="let basicdetail of basicdetails" [value]="basicdetail.admissiontyped[0]._id">
+                                                                            {{basicdetail.admissiontyped[0].admissiontype}}</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -220,9 +214,9 @@
                                                                 <label for="scholarshipCategory">ScholarshipCategory</label>
                                                                 <div class="form-line">
                                                                     <select class="browser-default" id="select5" [formControl]="scholarshipCategory" class="form-control">
-                                                                        <option value="">Choose your scholarshipCategory</option>
+                                                                        <option>Choose your scholarshipCategory</option>
                                                                         <option *ngFor="let scholarshipCategory of scholarshipCategories?.response"
-                                                                            [value]="scholarshipCategory._id" [selected]="scholarshipCategory?.scholarshipCategory">
+                                                                            [value]="scholarshipCategory._id">
                                                                             {{scholarshipCategory?.scholarshipCategory}}
                                                                         </option>
                                                                     </select>
@@ -232,9 +226,8 @@
                                                                 <label for="community">Community</label>
                                                                 <div class="form-line">
                                                                     <select class="browser-default" id="select10" [formControl]="community" class="form-control">
-                                                                        <option value="">Choose your Community</option>
-                                                                        <option *ngFor="let community of communities?.response" [value]="community._id"
-                                                                        [selected]="community?.community">{{community?.community}}
+                                                                        <option>Choose your Community</option>
+                                                                        <option *ngFor="let community of communities?.response" [value]="community._id">{{community?.community}}
                                                                         </option>
                                                                     </select>
                                                                 </div>
@@ -243,15 +236,14 @@
                                                                 <label for="caste">Caste</label>
                                                                 <div class="form-line">
                                                                     <select class="browser-default" id="select12" [formControl]="caste" class="form-control">
-                                                                        <option value="">Choose your Caste</option>
-                                                                        <option *ngFor="let caste of castes?.response" [value]="caste._id"
-                                                                        [selected]="caste?.caste">{{caste?.caste}}</option>
+                                                                        <option>Choose your Caste</option>
+                                                                        <option *ngFor="let caste of castes?.response" [value]="caste._id">{{caste?.caste}}</option>
                                                                     </select>
                                                                 </div>
-                                                            </div> 
+                                                            </div>
                                                             </div>
                                                     </div>
-                                                  
+
     <!--///////////////////////////////////////////////////Parent Details////////////////////////////////////////////////////////////-->
                                                     <h3><Strong>Parent Details</Strong></h3>
                                                     <div class="row">
@@ -351,8 +343,8 @@
                                                         <button type="submit" class="btn btn-info waves-effect"
                                                             (click)="editbasicdetails()">Update BasicDetails</button>
                                                         <!-- <span> {{message}}</span> -->
-    
-    
+
+
                                                     </div>
                                                     <!--///////////////////////////Course Program//////////////////////////////-->
                                                     <h3><Strong>Select Course</Strong></h3>
@@ -398,7 +390,7 @@
                                                                         <tr>
                                                                             <th>#</th>
                                                                             <th>CourseCategory</th>
-                                                                            <th>Course/program</th>  
+                                                                            <th>Course/program</th>
                                                                             <th>Action</th>
                                                                         </tr>
                                                                     </thead>
@@ -418,14 +410,14 @@
                                                                             </div>
                                                                         </tr>
                                                                     </tbody>
-            
+
                                                                 </table>
                                                             </div>
                                                         </div>
-    
-                                                    
+
+
                                                 </form>
-    
+
                                             </div>
                                             <div class="text-right">
                                                     <button class="btn-hover btn-border-radius color-10" (click)="goBackToMain()">Back</button>
@@ -437,7 +429,7 @@
                                     <aw-wizard-step [stepTitle]="'General Information'">
                                         <ng-template awWizardStepSymbol><i class="fa fa-upload"></i></ng-template>
                                         <div class="centered-content">
-                                            <div>   
+                                            <div>
                                                 <div class="text-right">
                                                     <button id="addRow" class="btn btn-info" data-toggle="modal"
                                                         data-target="#addModaladdress">
@@ -479,7 +471,7 @@
                                                                                 <i class="material-icons"
                                                                                     (click)="onEditAddress(addressdetail)">create</i>
                                                                             </div>
-    
+
                                                                             <div class="btn btn-tbl-delete">
                                                                                 <i class="material-icons"
                                                                                     (click)="deleteAddressDetails(addressdetail?._id)">delete_forever</i>
@@ -488,18 +480,18 @@
                                                                     </div>
                                                                 </tr>
                                                             </tbody>
-    
+
                                                         </table>
                                                     </div>
                                                 </div>
                                             </div>
-    
+
                                             <div class="text-right">
                                                 <button class="btn-hover btn-border-radius color-10"
                                                     awPreviousStep>Back</button>
                                                 <button class="btn-hover btn-border-radius color-8"  awNextStep>Next</button>
                                             </div>
-    
+
                                         </div>
                                         <!-- ///////////////////////////////////////// -->
                                         <!-- Add form - AddressDetails-->
@@ -734,7 +726,7 @@
                                                 </div>
                                             </div>
                                         </div>
-    
+
                                     </aw-wizard-step>
     <!--///////////////////////////////////////////////////////////////////////////////////Qualification Details//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
                                     <aw-wizard-step [stepTitle]="'QualificationDetails'">
@@ -746,7 +738,7 @@
                                                     Add Qualification Details
                                                 </button>
                                             </div>
-                                            
+
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <table id="tableExport"
@@ -792,7 +784,7 @@
                                                                             <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editModalqd">
                                                                                 <i class="material-icons" (click)="onEditQualification(qualificationdetail)">create</i>
                                                                             </div>
-                                                                            
+
                                                                             <div class="btn btn-tbl-delete">
                                                                                 <i class="material-icons" (click)="deleteQualificationDetails(qualificationdetail?._id)">delete_forever</i>
                                                                             </div>
@@ -800,24 +792,24 @@
                                                                     </div>
                                                                 </tr>
                                                             </tbody>
-    
+
                                                         </table>
                                                     </div>
                                                 </div>
                                             </div>
-    
+
                                             <div class="text-right">
                                                 <button class="btn-hover btn-border-radius color-10"
                                                     awPreviousStep>Back</button>
                                                 <button class="btn-hover btn-border-radius color-8" awNextStep>Next</button>
                                             </div>
-    
+
                                         </div>
-    
-    
+
+
                                         <!--////////////////////////////////////////////////////////////////////////////-->
-                                         
-                                    
+
+
                                        <!-- Edit form - QualificationDeatils-->
                                        <div class="modal fade" id="editModalqd" tabindex="-1" role="dialog"
                                        aria-labelledby="formModal" aria-hidden="true">
@@ -872,7 +864,7 @@
                                                                                 </option>
                                                                             </select>
                                                                         </div>
-                                                                    </div> 
+                                                                    </div>
                                                                     <div class="form-group form-float">
                                                                         <label>Taluk</label>
                                                                         <div class="form-line">
@@ -902,7 +894,7 @@
                                                                         <div class="form-line">
                                                                             <input type="text" class="form-control" [formControl]="maxMark2" />
                                                                         </div>
-                                                                    </div> 
+                                                                    </div>
                                                                     </div>
                                                             <div class="col-md-6">
                                                                     <div class="form-group form-float">
@@ -994,9 +986,9 @@
                                            </div>
                                        </div>
                                    </div>
-                                       
-    
-    
+
+
+
                                     </aw-wizard-step>
      <!-- ///////////////////////////////////////////////////////////////////Payment Details////////////////////////////////////////////////////////////// -->
                                     <aw-wizard-step [stepTitle]="'Payment Details'">
@@ -1098,14 +1090,14 @@
                                                                                                     <div *ngIf="submitted && f5.advanceFeeType.errors" class="invalid-feedback">
                                                                                                         <div *ngIf="f5.advanceFeeType.errors.required"> Advance Fees Type is required </div>
                                                                                                     </div>
-                                                                                                </div> 
+                                                                                                </div>
                                                                                     </div>
                                                                                 </div>
                                                                         <div class="modal-footer">
                                                                             <button type="submit" class="btn btn-default" (click)="addpaymentdetails()">Add</button>
                                                                             <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
                                                                         </div>
-    
+
                                                                     </form>
                                                                 </div>
                                                             </div>
@@ -1152,7 +1144,7 @@
                                                                                     (click)="deletePaymentDetails(paymentdetail?._id)">delete_forever</i>
                                                                             </div>
                                                           <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-                                                                            
+
                                                                             <!--Edit Payment Details-->
                                                                             <div class="modal fade" id="editPaymentModal" tabindex="-1" role="dialog" aria-labelledby="formModal"
                                                                                 aria-hidden="true">
@@ -1241,7 +1233,7 @@
                                                                                                     <button type="submit" class="btn btn-default" (click)="onEditPaymentSubmit()">Update</button>
                                                                                                     <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
                                                                                                 </div>
-    
+
                                                                                             </form>
                                                                                         </div>
                                                                                     </div>
@@ -1251,18 +1243,18 @@
                                                                     </div>
                                                                 </tr>
                                                             </tbody>
-    
+
                                                         </table>
                                                     </div>
                                                 </div>
                                             </div>
-    
+
                                             <div class="text-right">
                                                 <button class="btn-hover btn-border-radius color-10"
                                                     awPreviousStep>Back</button>
                                                 <button class="btn-hover btn-border-radius color-8"  awNextStep>Next</button>
                                             </div>
-    
+
                                         </div>
                                     </aw-wizard-step>
                                     <!--///////////////////////////////////////////Followups////////////////////////////////////////////-->
@@ -1312,7 +1304,7 @@
                                                                     </div>
                                                                 </tr>
                                                             </tbody>
-    
+
                                                         </table>
                                                     </div>
                                                 </div>
@@ -1483,22 +1475,22 @@
                                                 </div>
                                             </div>
                                         </div>
-    
+
                                             <div class="text-right">
                                                 <button class="btn-hover btn-border-radius color-10"
                                                     awPreviousStep>Back</button>
                                                 <button class="btn-hover btn-border-radius color-5" (click)="complete()">Finish</button>
                                             </div>
-    
+
                                         </div>
                                     </aw-wizard-step>
                                 </aw-wizard>
-    
+
                             </div>
                         </div>
                     </div>
                 </div>
-    
+
      <!-- Add form - QualificationDeatils-->
     <div class="modal fade" id="addModalqd" tabindex="-1" role="dialog" aria-labelledby="formModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -1582,7 +1574,7 @@
                                                 <input type="text" value="" name="maxMark" [formControl]="maxMark" class="form-control"
                                                     placeholder="Enter Maximum Mark" required />
                                             </div>
-                                        </div> 
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group form-float">
@@ -1615,7 +1607,7 @@
                                             <div class="form-line">
                                                 <input type="text" value="" [formControl]="district" name="district" class="form-control"
                                                     placeholder="Enter AddressType" required />
-                                    
+
                                             </div>
                                         </div>
                                         <div class="form-group form-float">
@@ -1623,7 +1615,7 @@
                                             <div class="form-line">
                                                 <input type="text" value="" [formControl]="country" name="country" class="form-control"
                                                     placeholder="Enter AddressType" required />
-                                    
+
                                             </div>
                                         </div>
                                         <div class="form-group form-float">
@@ -1666,4 +1658,3 @@
                                     <button type="button" class="btn btn-danger waves-effect"
                                         data-dismiss="modal">Cancel</button>
                                 </div>
-                       

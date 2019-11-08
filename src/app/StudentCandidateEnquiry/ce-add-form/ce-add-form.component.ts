@@ -231,8 +231,8 @@ amountValue: any;
   photoLocation: FormControl;
   photoLocation2: FormControl;
   photoLocationValue: any;
-  basic;
-  ID;
+  basic: any;
+  ID : any;
 
 
   constructor(private dynamicScriptLoader: DynamicScriptLoaderService,
@@ -445,28 +445,27 @@ addbasicdetails() {
     enquiryDate: this.enquiryDate
   };
   this.request.addBasicDetails(newBasicDetails).subscribe((response: any) => {
-    console.log(response);
-    this.basic = response[0];
-    console.log('BB', this.basic);
-    this.ID = this.basic._id;
-    console.log('ID',this.ID);
+
     if (response.status == 'error') {
       this.setMessage(response.error);
       console.log(response.error);
     }
     else if (response.status == 'success') {
+      console.log(response);
+     const id = response.response._id;
+      swal("Added Sucessfully");
       this.router.navigate([], {
         queryParams: {
-            id: this.basic._id,
+           id: id,
           },
          });
+         this.viewData();
     }
-      swal("Added Sucessfully");
-      this.viewData();
+
   }, (error) => {
     this.setMessage(error);
   });
-  console.log();
+
 }
 
 //Add CourseProgram
