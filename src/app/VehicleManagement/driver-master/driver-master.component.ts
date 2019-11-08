@@ -267,6 +267,12 @@ export class DriverMasterComponent implements OnInit {
     });
   }
   updateDriver() {
+
+    if (this.name2.value != '' && this.vehicleNo2.value != '' && this.fathersName2.value !='' &&
+    this.dob2.value !="" && this.joiningYear2.value != '' && this.personalContactNo2.value!='' && this.address2.value!='' &&
+    this.drivingLicenseNo2.value !='' &&  this.aadhaarNo2.value!='' && this.badgeNo2.value !='' && this.badgeExpiry2.value !=''
+    && this.homeContactNo2.value !='' && this.licenseDOIDate2.value !='' && this.licenseExpDate2.value !='' && this.referencePersonName2.value !=''
+    && this.referencePersonContactNo2.value !='' ) {
     const edata = {
       name: this.name2.value,
       vehicleNo: this.vehicleNo2.value,
@@ -304,6 +310,7 @@ export class DriverMasterComponent implements OnInit {
       console.log(error);
       this.setMessage(error);
     });
+  }
   }
 
   async startScript() {

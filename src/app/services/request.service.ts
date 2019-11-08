@@ -1207,7 +1207,14 @@ fetchBankById(id) {
     return this.http.get(this.url);
   }
 
-  public addSaffProfile(newStaffProfile) {
+  public getStaffProfileByIns(institution) {
+    this.url = `${this.endPoint}/staff-profile/fetchbyInstitution?institution=` + institution;
+    return this.http.get(this.url);
+  }
+
+
+
+  public addStaffProfile(newStaffProfile) {
     this.url = `${this.endPoint}/staff-profile/add`;
     return this.http.post(this.url, newStaffProfile);
   }
