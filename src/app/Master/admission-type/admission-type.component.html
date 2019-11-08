@@ -59,7 +59,7 @@
                     <div class="row clearfix">
                         <div class="col-md-12">
                             <label>Institution</label>
-                            <select id="select" [(ngModel)]="selectedinstitution" class="browser-default form-control"
+                            <select id="institution" [(ngModel)]="selectedinstitution" class="browser-default form-control"
                                 formControlName="institution"
                                 [ngClass]="{ 'is-invalid': submitted && f.institution.errors }"
                                 placeholder="Choose your institution">
@@ -108,7 +108,7 @@
                     <div class="row clearfix">
                         <div class="col-md-12">
                             <label>Institution</label>
-                            <select id="select" [(ngModel)]="selectedinstitution" class="browser-default form-control"
+                            <select id="institution2" [(ngModel)]="selectedinstitution" class="browser-default form-control"
                                 formControlName="institution2"
                                 [ngClass]="{ 'is-invalid': submitted && f2.institution2.errors }">
                                 <option disabled selected>Choose your institution</option>
@@ -125,9 +125,10 @@
 
                     <div class="form-group">
                         <label>Admission Type</label>
-                        <input type="text" formControlName="admissiontype2" class="form-control"
+                        <input type="text" formControlName="admissiontype2" id ="admissiontype2" class="form-control"
                             placeholder="Enter admission-type"
                             [ngClass]="{ 'is-invalid': submitted && f2.admissiontype2.errors }" />
+                            <label id="ID"></label>
                         <div *ngIf="submitted && f2.admissiontype2.errors" class="invalid-feedback">
                             <div *ngIf="f2.admissiontype2.errors.required">Admission-type is required</div>
                         </div>
