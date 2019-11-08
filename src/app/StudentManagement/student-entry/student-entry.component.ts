@@ -68,59 +68,100 @@ export class StudentEntryComponent implements OnInit {
   secondLanguages: any;
   maritalstatuses: any;
   bloodgroups: any;
+  firstGraduate: any;
+  scholarshipApplicable: any;
+  parentExServiceMan: any;
+  minoritygroup: any;
+  physicallyChallengedPerson: any;
+  andhamanAndNicobarNative: any;
+  fg: any;
+  sa: any;
+  pxsm: any;
+  mg: any;
+  pcp: any;
+  aan: any;
   constructor(
     private request: RequestService,
     private router: Router,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
   ) {
-    this.firstName = new FormControl('', Validators.required);
     this.rollNo = new FormControl('', Validators.required);
     this.regNo = new FormControl('', Validators.required);
     this.firstName = new FormControl('', Validators.required);
     this.lastName = new FormControl('', Validators.required);
     this.gender = new FormControl('', Validators.required);
     this.dob = new FormControl('', Validators.required);
-    this.maritalStatus = new FormControl('', Validators.required);
+    this.maritalStatus = new FormControl('');
     this.mobileNo = new FormControl('', Validators.required);
-    this.bloodGroup = new FormControl('', Validators.required);
+    this.bloodGroup = new FormControl('');
     this.emailId = new FormControl('', Validators.required);
-    this.ffirstName = new FormControl('', Validators.required);
-    this.flastName = new FormControl('', Validators.required);
-    this.foccupation = new FormControl('', Validators.required);
-    this.fannualIncome = new FormControl('', Validators.required);
-    this.fmobileNo = new FormControl('', Validators.required);
-    this.mfirstName = new FormControl('', Validators.required);
-    this.mlastName = new FormControl('', Validators.required);
-    this.moccupation = new FormControl('', Validators.required);
-    this.mannualIncome = new FormControl('', Validators.required);
-    this.mmobileNo = new FormControl('', Validators.required);
-    this.nationality = new FormControl('', Validators.required);
-    this.religion = new FormControl('', Validators.required);
-    this.caste = new FormControl('', Validators.required);
+    this.ffirstName = new FormControl('');
+    this.flastName = new FormControl('');
+    this.foccupation = new FormControl('');
+    this.fannualIncome = new FormControl('');
+    this.fmobileNo = new FormControl('');
+    this.mfirstName = new FormControl('');
+    this.mlastName = new FormControl('');
+    this.moccupation = new FormControl('');
+    this.mannualIncome = new FormControl('');
+    this.mmobileNo = new FormControl('');
+    this.nationality = new FormControl();
+    this.religion = new FormControl();
+    this.caste = new FormControl();
     this.community = new FormControl('', Validators.required);
     this.admissionCategory = new FormControl('', Validators.required);
     this.admissionType = new FormControl('', Validators.required);
     this.financialCategory = new FormControl('', Validators.required);
     this.boarding = new FormControl('', Validators.required);
-    this.boardingStartDate = new FormControl('', Validators.required);
-    this.applicationNo = new FormControl('', Validators.required);
-    this.admissionDate = new FormControl('', Validators.required);
-    this.admissionNo = new FormControl('', Validators.required);
-    this.joinDate = new FormControl('', Validators.required);
-    this.referalType = new FormControl('', Validators.required);
-    this.referal = new FormControl('', Validators.required);
-    this.motherTongue = new FormControl('', Validators.required);
-    this.secondLanguage = new FormControl('', Validators.required);
-    // this.sPhoto = new FormControl('', Validators.required);
+    this.boardingStartDate = new FormControl('');
+    this.applicationNo = new FormControl('');
+    this.admissionDate = new FormControl('');
+    this.admissionNo = new FormControl('');
+    this.joinDate = new FormControl('');
+    this.referalType = new FormControl();
+    this.referal = new FormControl('');
+    this.motherTongue = new FormControl();
+    this.secondLanguage = new FormControl();
+    this.sPhoto = new FormControl('');
+    this.firstGraduate = new FormControl('');
+    this.scholarshipApplicable = new FormControl('');
+    this.parentExServiceMan = new FormControl('');
+    this.minoritygroup = new FormControl('');
+    this.physicallyChallengedPerson = new FormControl('');
+    this.andhamanAndNicobarNative = new FormControl('');
    }
-     //to upload logo
+     //to upload Photo
   submit() {
     this.uploader.uploadAll();
   }
   // Error Message 
   public setMessage(message) {
     return this.message = message;
+  }
+  firstGraduate1(event: any) {
+    // console.log('FG', event);
+    this.fg = event;
+  }
+  scholarshipApplicable1(event1: any) {
+    // console.log('SA', event);
+    this.sa = event1;
+  }
+  parentExServiceMan1(event2: any) {
+    // console.log('PXSM', event);
+    this.pxsm = event2;
+  }
+  minoritygroup1(event3: any) {
+    // console.log('MG', event);
+    this.mg = event3;
+  }
+  physicallyChallengedPerson1(event4: any) {
+    // console.log('PCP', event);
+    this.pcp = event4;
+  }
+  andhamanAndNicobarNative1(event5: any) {
+    // console.log('AAN', event);
+    this.aan = event5;
   }
   addStudentDetails() {
     const newStudentDetail = {
@@ -161,16 +202,30 @@ export class StudentEntryComponent implements OnInit {
       referal: this.referal.value,
       motherTongue: this.motherTongue.value,
       secondLanguage: this.secondLanguage.value,
+      firstGraduate: this.fg,
+      scholarshipApplicable: this.sa,
+      parentExServiceMan: this.pxsm,
+      minoritygroup: this.mg,
+      physicallyChallengedPerson: this.pcp,
+      andhamanAndNicobarNative: this.aan,
       sPhoto: this.getfileLoc,
+
     };
     this.request.addStudentDetails(newStudentDetail).subscribe((response: any) => { 
-      console.log(response);
-        swal("Added Sucessfully");
-        this.viewData();
+     console.log(response);
+    if (response.status == 'success') {
+      swal("Added Sucessfully");
+      this.router.navigate(['studentProfile']);
+      this.viewData();
+    }
+    else if (response.status == 'error') {
+      this.setMessage(response.error);
+      console.log(response.error);
+    }
+
     }, (error) => {
       this.setMessage(error);
     });
-    console.log(newStudentDetail);
   }
   viewData() {
     this.request.getStudentDetails().subscribe((response) => {
@@ -180,6 +235,7 @@ export class StudentEntryComponent implements OnInit {
       console.log(error);
     });
   } 
+ 
   loadGender() {
     this.request.getGender().subscribe((response: any) => {
       this.genders = response;
@@ -276,7 +332,11 @@ export class StudentEntryComponent implements OnInit {
       console.log(error);
     });
   }
-  ngOnInit() {
+ 
+ cancel() {
+  this.router.navigate(['studentProfile']);
+ }
+  ngOnInit() { 
     this.viewData();
     this.loadAdmissionCategory();
     this.loadAdmissionType();
@@ -290,6 +350,41 @@ export class StudentEntryComponent implements OnInit {
     this.loadSecondLanguage();
     this.loadMaritalstatus();
     this.loadBloodgroup();
-  }
+    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+      console.log('ImageUpload:uploaded:', item, status, response);
+      const resPath = JSON.parse(response);
+      this.getfileLoc = resPath.result;
+    };
+    //jQuery Validation form BasicDetails (Form-Control)
+    $(function () {
+      $('#form_advanced_validation').validate({
 
+        highlight: function (input) {
+          $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+          $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+          $(element).parents('.form-group').append(error);
+        }
+      });
+    });
+    $(function () {
+      $('#form_advanced_validation2').validate({
+
+        highlight: function (input) {
+          $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+          $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+          $(element).parents('.form-group').append(error);
+        }
+      });
+    });
+   
+  }
 }

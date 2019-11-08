@@ -17,21 +17,21 @@
                                                     <div class="row">
                                                         <div class="col-md-5">
                                                             <div class="form-group form-float">
-                                                                <label for="firstName">First Name<a>*</a></label>
+                                                                <label for="firstName">First Name<span class="asterisk">*</span></label>
                                                                 <div class="form-line">
                                                                     <input type="text" class="form-control" name="firstName" placeholder="Enter First Name"
                                                                         [formControl]="firstName" required />
                                                                 </div>
                                                             </div>
                                                             <div class="form-group form-float">
-                                                                <label for="lastName">Last Name</label>
+                                                                <label for="lastName">Last Name<span class="asterisk">*</span></label>
                                                                 <div class="form-line">
                                                                     <input type="text" class="form-control" name="lastName" placeholder="Enter Last Name" [formControl]="lastName"
                                                                         required />
                                                                 </div>
                                                             </div>
                                                             <div class="form-group form-float">
-                                                                <label for="gender">Gender</label>
+                                                                <label for="gender">Gender<span class="asterisk">*</span></label>
                                                                 <div class="form-line">
                                                                     <select class="browser-default" id="select" [formControl]="gender" name="gender" class="form-control" required>
                                                                         <option value="">Choose your Gender</option>
@@ -40,7 +40,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group form-float">
-                                                                <label for="dob">Date Of Birth</label>
+                                                                <label for="dob">Date Of Birth<span class="asterisk">*</span></label>
                                                                 <div class="form-line">
                                                                     <input type="date" class="form-control" name="dob" placeholder="Enter DateOfBirth" [formControl]="dob"
                                                                         required />
@@ -76,7 +76,7 @@
                                                                     <input type="email" class="form-control" name="email" placeholder="Enter Email Id" [formControl]="email" />
                                                             </div>
                                                             <div class="form-group form-float">
-                                                                <label for="referenceType">Reference Type</label>
+                                                                <label for="referenceType">Reference Type<span class="asterisk">*</span></label>
                                                                 <div class="form-line">
                                                                     <select class="browser-default" id="select4" [formControl]="referenceType" name="referenceType"
                                                                         class="form-control" required>
@@ -126,7 +126,7 @@
                                                                         [formControl]="mark12th" />
                                                             </div>
                                                             <div class="form-group form-float">
-                                                                <label for="institution">Institution</label>
+                                                                <label for="institution">Institution<span class="asterisk">*</span></label>
                                                                 <div class="form-line">
                                                                     <select class="browser-default" id="select1" [formControl]="institution" name="institution" class="form-control"
                                                                         (change)="onInstitutionChange($event.target.value)" required>
@@ -144,14 +144,14 @@
                                                                     </select>
                                                             </div>
                                                             <div class="form-group form-float">
-                                                                <label for="applicatonNo">Application Number</label>
+                                                                <label for="applicatonNo">Application Number<span class="asterisk">*</span></label>
                                                                 <div class="form-line">
                                                                     <input type="text" class="form-control" name="applicatonNo" placeholder="Enter Application Number"
                                                                         [formControl]="applicatonNo" required />
                                                                 </div>
                                                             </div>
                                                             <div class="form-group form-float">
-                                                                <label for="admissionCategory">Admission Category</label>
+                                                                <label for="admissionCategory">Admission Category<span class="asterisk">*</span></label>
                                                                     <select class="browser-default" id="select3" [formControl]="admissionCategory" class="form-control" required>
                                                                         <option value="">Choose your AdmissionCategory </option>
                                                                         <option *ngFor="let admissionCategory of admissioncategories?.response" [value]="admissionCategory._id">
@@ -160,7 +160,7 @@
                                                                     </select>
                                                             </div>
                                                             <div class="form-group form-float">
-                                                                <label for="admissiontype">Admission Type</label>
+                                                                <label for="admissiontype">Admission Type<span class="asterisk">*</span></label>
                                                                     <select class="browser-default" id="select11" [formControl]="admissiontype" class="form-control" required>
                                                                         <option value="">Choose your Admission Type
                                                                         </option>

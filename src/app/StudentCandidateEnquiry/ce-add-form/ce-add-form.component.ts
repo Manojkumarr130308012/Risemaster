@@ -233,6 +233,7 @@ amountValue: any;
   photoLocationValue: any;
   basic;
   ID;
+  id: any;
 
 
   constructor(private dynamicScriptLoader: DynamicScriptLoaderService,
@@ -446,23 +447,21 @@ addbasicdetails() {
   };
   this.request.addBasicDetails(newBasicDetails).subscribe((response: any) => {
     console.log(response);
-    this.basic = response[0];
-    console.log('BB', this.basic);
-    this.ID = this.basic._id;
-    console.log('ID',this.ID);
+    this.id = response.response._id;
+    console.log('BB', this.id);
     if (response.status == 'error') {
       this.setMessage(response.error);
       console.log(response.error);
     }
     else if (response.status == 'success') {
+      swal("Added Sucessfully"); 
+      this.viewData(); 
       this.router.navigate([], {
         queryParams: {    
-            id: this.basic._id,  
+            id: this.id,  
           },
          }); 
-    }
-      swal("Added Sucessfully"); 
-      this.viewData();    
+     }      
   }, (error) => {
     this.setMessage(error);
   });

@@ -13,6 +13,7 @@ export class StudentProfileComponent implements OnInit {
   institutions: any;
   degreesbyIns: any;
   studentDetails: any;
+  batcheByDegrees: any;
 
   constructor(
     private request: RequestService,
@@ -69,19 +70,17 @@ export class StudentProfileComponent implements OnInit {
   //        this.degrees = null;
   //   }
 
-  //   onDegreeChange(degree : string) {
-  //     if (degree){
-  //       console.log(degree);
-  //     this.request.getBatchByDeg(degree).subscribe((response) => {
-  //        console.log('depres',response);
-  //       this.staffprofiles = response;
-  //       console.log(this.staffprofiles);
-  //     }, (error) => {
-  //       console.log(error);
-  //     });
-  //     } else
-  //     this.staffprofiles = null;
-  //   }
+  onDegreeChange(degree: any) {
+    if (degree) {
+      this.request.getBatchByDegree(degree).subscribe((response: any) => {
+        this.batcheByDegrees = response;
+        console.log('BatchByDegree',  this.batcheByDegrees);
+      }, (error) => {
+        console.log(error);
+      });
+    } else
+      this.batcheByDegrees = null;
+  }
   ngOnInit() {
     this.loadBatch();
     this.loadDegree();

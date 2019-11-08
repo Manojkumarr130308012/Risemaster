@@ -33,7 +33,8 @@
                                         </div>
                                         <div class="col-md-3">
                                             <label for="degree">Degree/Program</label>
-                                            <select id="select" [(ngModel)]="selectedDegree" class="browser-default form-control">
+                                            <select id="select" [(ngModel)]="selectedDegree" class="browser-default form-control"
+                                            (change)="onDegreeChange($event.target.value)">   
                                                 <option>Choose your Degree</option>
                                                 <option *ngFor="let degree of degrees?.response"
                                                     [value]="degree._id">{{degree?.degree}}</option>
@@ -43,7 +44,7 @@
                                                 <label for="batch">Batch</label>
                                                 <select id="select" [(ngModel)]="selectedbatch" class="browser-default form-control">
                                                     <option>Choose your Batch</option>
-                                                    <option *ngFor="let batch of batches"
+                                                    <option *ngFor="let batch of batcheByDegrees?.response"
                                                         [value]="batch._id">{{batch?.batch}}</option>
                                                     </select>
                                             </div> 
@@ -77,7 +78,7 @@
                                         <tbody>
                                             <tr *ngFor="let studentdetail of studentDetails; let i=index">
                                                 <td>{{i +1 }}</td> 
-                                                <td><img src="{{studentdetail?.photoLocation}}" width="100px"></td>
+                                                <td><img src="{{studentdetail?.sPhoto}}" width="100px"></td>
                                                 <td>{{studentdetail?.rollNo}}</td>
                                                 <td>{{studentdetail?.firstName}}{{studentdetail?.lastName}}</td>
                                                 <td>{{studentdetail.gender[0].gender}}</td>
