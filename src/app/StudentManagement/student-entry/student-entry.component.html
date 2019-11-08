@@ -4,7 +4,7 @@
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
-                    <div class="header"> 
+                    <div class="header">
                         <h2>Student Entry</h2></div>
                     <div class="body">
                         <form>
@@ -49,7 +49,7 @@
                                         <label for="gender">Gender</label>
                                         <div class="form-line">
                                             <select class="browser-default" id="select" [formControl]="gender" name="gender" class="form-control" required>
-                                                <option value="">Choose your Gender</option>
+                                                <option >Choose your Gender</option>
                                                 <option *ngFor="let gender of genders?.response" [value]="gender._id">{{gender?.gender}}</option>
                                             </select>
                                         </div>
@@ -99,7 +99,7 @@
                                         <label for="nationality">Nationality</label>
                                         <div class="form-line"> <select class="browser-default" id="select7" [formControl]="nationality"
                                                 class="form-control">
-                                                <option value="">Choose your Nationality</option>
+                                                <option >Choose your Nationality</option>
                                                 <option *ngFor="let nationality of nationalities?.response" [value]="nationality._id">
                                                     {{nationality?.nationality}}</option>
                                             </select>
@@ -109,7 +109,7 @@
                                         <label for="religion">Religion</label>
                                         <div class="form-line">
                                             <select class="browser-default" id="select9" [formControl]="religion" class="form-control">
-                                                <option value="">Choose your Religion</option>
+                                                <option >Choose your Religion</option>
                                                 <option *ngFor="let religion of religions?.response" [value]="religion._id">{{religion?.religion}}
                                                 </option>
                                             </select>
@@ -164,7 +164,7 @@
                                             <div class="form-line">----------------------------------</div>
                                     </div>
                                     <div class="form-group form-float">
-                                            <div class="form-line">----------------------------------</div>     
+                                            <div class="form-line">----------------------------------</div>
                                     </div>
                                     <div class="form-group form-float">
                                         <label for="mfirstName">Mother's FirstName</label>
@@ -207,16 +207,16 @@
                                     <div class="form-group form-float">
                                         <label for="community">Community</label>
                                             <select class="browser-default" id="select10" [formControl]="community" class="form-control">
-                                                <option value="">Choose your Community</option>
+                                                <option >Choose your Community</option>
                                                 <option *ngFor="let community of communities?.response" [value]="community._id">{{community?.community}}
                                                 </option>
                                             </select>
-                                        
+
                                     </div>
                                     <div class="form-group form-float">
                                         <label for="caste">Caste</label>
                                             <select class="browser-default" id="select12" [formControl]="caste" class="form-control">
-                                                <option value="">Choose your Caste</option>
+                                                <option >Choose your Caste</option>
                                                 <option *ngFor="let caste of castes?.response" [value]="caste._id">{{caste?.caste}}</option>
                                             </select>
                                         </div>
@@ -226,7 +226,7 @@
                                         <label for="admissionCategory">Admission Category</label>
                                         <div class="form-line">
                                             <select class="browser-default" id="select3" [formControl]="admissionCategory" class="form-control">
-                                                <option value="">Choose your AdmissionCategory
+                                                <option >Choose your AdmissionCategory
                                                 </option>
                                                 <option *ngFor="let admissionCategory of admissioncategories" [value]="admissionCategory._id">
                                                     {{admissionCategory?.admissionCategory}}
@@ -238,7 +238,7 @@
                                         <label for="admissionType">Admission Type</label>
                                         <div class="form-line">
                                             <select class="browser-default" id="select11" [formControl]="admissionType" class="form-control">
-                                                <option value="">Choose your Admission Type
+                                                <option >Choose your Admission Type
                                                 </option>
                                                 <option *ngFor="let admissiontype of admissiontypes" [value]="admissiontype._id">
                                                     {{admissiontype?.admissiontype}}</option>
@@ -290,7 +290,7 @@
                                         <label>Financial Category</label>
                                         <div class="form-line">
                                             <select class="browser-default" id="select20" [formControl]="financialCategory" class="form-control">
-                                                <option value="">Choose your Financial Category</option>
+                                                <option >Choose your Financial Category</option>
                                                 <option value="Self">Self</option>
                                                 <option value="Loan">Loan</option>
                                                 <option value="Sponsor">Sponsor</option>
@@ -301,7 +301,7 @@
                                         <label>Boarding Type</label>
                                         <div class="form-line">
                                             <select class="browser-default" id="select18" [formControl]="boarding" class="form-control">
-                                                <option value="">Choose your BoardingType</option>
+                                                <option >Choose your BoardingType</option>
                                                 <option value="DayScholler">Day Scholar</option>
                                                 <option value="Hosteller"> Hosteller</option>
                                             </select>
@@ -314,14 +314,14 @@
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
-                                            <div class="form-line">----------------------------------</div>       
+                                            <div class="form-line">----------------------------------</div>
                                     </div>
                                     <div class="form-group form-float">
                                         <label for="referalType">Reference Type</label>
                                         <div class="form-line">
                                             <select class="browser-default" id="select4" [formControl]="referalType" name="referalType"
                                                 class="form-control" required>
-                                                <option value="">Choose your ReferralType
+                                                <option >Choose your ReferralType
                                                 </option>
                                                 <option *ngFor="let  referralType of referralTypes?.response" [value]="referralType._id">
                                                     {{referralType?.referralType}}</option>

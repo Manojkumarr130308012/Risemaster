@@ -739,7 +739,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Address 1</label>
-                                <input type="text" value="" formControlName="address1" class="form-control"
+                                <input type="text"  formControlName="address1" class="form-control"
                                     placeholder="Enter Address"
                                     [ngClass]="{ 'is-invalid': submitted && f.address1.errors }" />
                                 <div *ngIf="submitted && f.address1.errors" class="invalid-feedback">
@@ -752,7 +752,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Address 2</label>
-                                <input type="text" value="" formControlName="address2" class="form-control"
+                                <input type="text"  formControlName="address2" class="form-control"
                                     placeholder="Enter Address"
                                     [ngClass]="{ 'is-invalid': submitted && f.address2.errors }" />
                                 <div *ngIf="submitted && f.address2.errors" class="invalid-feedback">
@@ -763,7 +763,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>City</label>
-                                <input type="text" value="" formControlName="city" class="form-control"
+                                <input type="text"  formControlName="city" class="form-control"
                                     placeholder="Enter City" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
                                 <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
                                     <div *ngIf="f.city.errors.required">City is required</div>
@@ -775,7 +775,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>District</label>
-                                <input type="text" value="" formControlName="district" class="form-control"
+                                <input type="text"  formControlName="district" class="form-control"
                                     placeholder="Enter District"
                                     [ngClass]="{ 'is-invalid': submitted && f.district.errors }" />
                                 <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
@@ -786,7 +786,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>State</label>
-                                <input type="text" value="" formControlName="state" class="form-control"
+                                <input type="text"  formControlName="state" class="form-control"
                                     placeholder="Enter State"
                                     [ngClass]="{ 'is-invalid': submitted && f.state.errors }" />
                                 <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
@@ -799,7 +799,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Country</label>
-                                <input type="text" value="" formControlName="country" class="form-control"
+                                <input type="text"  formControlName="country" class="form-control"
                                     placeholder="Enter Country"
                                     [ngClass]="{ 'is-invalid': submitted && f.country.errors }" />
                                 <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
@@ -810,7 +810,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Pin</label>
-                                <input type="text" value="" formControlName="pin" class="form-control"
+                                <input type="text"  formControlName="pin" class="form-control"
                                     placeholder="Enter Pin" [ngClass]="{ 'is-invalid': submitted && f.pin.errors }" />
                                 <div *ngIf="submitted && f.pin.errors" class="invalid-feedback">
                                     <div *ngIf="f.pin.errors.required">Pin is required</div>
@@ -851,7 +851,7 @@
                                     <div *ngIf="submitted && f2.addressType.errors" class="invalid-feedback">
                                         <div *ngIf="f2.addressType.errors.required">Address Type is required</div>
                                     </div>
-                                    <option value="">Choose your Address Type</option>
+                                    <option >Choose your Address Type</option>
                                     <option *ngFor="let addressType of addresstypes?.response"
                                         [value]="addressType._id">{{addressType?.addressType}}</option>
                                 </select>
@@ -860,7 +860,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Address 1</label>
-                                <input type="text" value="" formControlName="address1" class="form-control"
+                                <input type="text"  formControlName="address1" class="form-control"
                                     placeholder="Enter Address"
                                     [ngClass]="{ 'is-invalid': submitted && f2.address1.errors }" />
                                 <div *ngIf="submitted && f2.address1.errors" class="invalid-feedback">
@@ -873,7 +873,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Address 2</label>
-                                <input type="text" value="" formControlName="address2" class="form-control"
+                                <input type="text"  formControlName="address2" class="form-control"
                                     placeholder="Enter Address"
                                     [ngClass]="{ 'is-invalid': submitted && f2.address2.errors }" />
                                 <div *ngIf="submitted && f2.address2.errors" class="invalid-feedback">
@@ -884,7 +884,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>City</label>
-                                <input type="text" value="" formControlName="city" class="form-control"
+                                <input type="text"  formControlName="city" class="form-control"
                                     placeholder="Enter City"
                                     [ngClass]="{ 'is-invalid': submitted && f2.city.errors }" />
                                 <div *ngIf="submitted && f2.city.errors" class="invalid-feedback">
@@ -897,7 +897,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>District</label>
-                                <input type="text" value="" formControlName="district" class="form-control"
+                                <input type="text"  formControlName="district" class="form-control"
                                     placeholder="Enter District"
                                     [ngClass]="{ 'is-invalid': submitted && f2.district.errors }" />
                                 <div *ngIf="submitted && f2.district.errors" class="invalid-feedback">
@@ -908,7 +908,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>State</label>
-                                <input type="text" value="" formControlName="state" class="form-control"
+                                <input type="text"  formControlName="state" class="form-control"
                                     placeholder="Enter State"
                                     [ngClass]="{ 'is-invalid': submitted && f2.state.errors }" />
                                 <div *ngIf="submitted && f2.state.errors" class="invalid-feedback">
@@ -921,7 +921,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Country</label>
-                                <input type="text" value="" formControlName="country" class="form-control"
+                                <input type="text"  formControlName="country" class="form-control"
                                     placeholder="Enter Country"
                                     [ngClass]="{ 'is-invalid': submitted && f2.country.errors }" />
                                 <div *ngIf="submitted && f2.country.errors" class="invalid-feedback">
@@ -932,7 +932,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Pin</label>
-                                <input type="text" value="" formControlName="pin" class="form-control"
+                                <input type="text"  formControlName="pin" class="form-control"
                                     placeholder="Enter Pin" [ngClass]="{ 'is-invalid': submitted && f2.pin.errors }" />
                                 <div *ngIf="submitted && f2.pin.errors" class="invalid-feedback">
                                     <div *ngIf="f2.pin.errors.required">Pin is required</div>
@@ -967,7 +967,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Identity Type</label>
-                                <input type="text" value="" formControlName="identityType" class="form-control"
+                                <input type="text"  formControlName="identityType" class="form-control"
                                     placeholder="Enter Identity Type"
                                     [ngClass]="{ 'is-invalid': submitted && s.identityType.errors }" />
                                 <div *ngIf="submitted && s.identityType.errors" class="invalid-feedback">
@@ -978,7 +978,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Identity Value</label>
-                                <input type="text" value="" formControlName="identityValue" class="form-control"
+                                <input type="text"  formControlName="identityValue" class="form-control"
                                     placeholder="Enter Identity Value"
                                     [ngClass]="{ 'is-invalid': submitted && s.identityValue.errors }" />
                                 <div *ngIf="submitted && s.identityValue.errors" class="invalid-feedback">
@@ -991,7 +991,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Issue Authority</label>
-                                <input type="text" value="" formControlName="issueAuthority" class="form-control"
+                                <input type="text"  formControlName="issueAuthority" class="form-control"
                                     placeholder="Enter Issue Authority"
                                     [ngClass]="{ 'is-invalid': submitted && s.issueAuthority.errors }" />
                                 <div *ngIf="submitted && s.issueAuthority.errors" class="invalid-feedback">
@@ -1002,7 +1002,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Valid From</label>
-                                <input type="date" value="" formControlName="validFrom" class="form-control"
+                                <input type="date"  formControlName="validFrom" class="form-control"
                                     placeholder="Enter Valid From"
                                     [ngClass]="{ 'is-invalid': submitted && s.validFrom.errors }" />
                                 <div *ngIf="submitted && s.validFrom.errors" class="invalid-feedback">
@@ -1015,7 +1015,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Valid To</label>
-                                <input type="date" value="" formControlName="validTo" class="form-control"
+                                <input type="date"  formControlName="validTo" class="form-control"
                                     placeholder="Enter Valid To"
                                     [ngClass]="{ 'is-invalid': submitted && s.validTo.errors }" />
                                 <div *ngIf="submitted && s.validTo.errors" class="invalid-feedback">
@@ -1051,7 +1051,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Identity Type</label>
-                                <input type="text" value="" formControlName="identityType" class="form-control"
+                                <input type="text"  formControlName="identityType" class="form-control"
                                     placeholder="Enter Identity Type"
                                     [ngClass]="{ 'is-invalid': submitted && s2.identityType.errors }" />
                                 <div *ngIf="submitted && s2.identityType.errors" class="invalid-feedback">
@@ -1062,7 +1062,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Identity Value</label>
-                                <input type="text" value="" formControlName="identityValue" class="form-control"
+                                <input type="text"  formControlName="identityValue" class="form-control"
                                     placeholder="Enter Identity Value"
                                     [ngClass]="{ 'is-invalid': submitted && s2.identityValue.errors }" />
                                 <div *ngIf="submitted && s2.identityValue.errors" class="invalid-feedback">
@@ -1075,7 +1075,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Issue Authority</label>
-                                <input type="text" value="" formControlName="issueAuthority" class="form-control"
+                                <input type="text"  formControlName="issueAuthority" class="form-control"
                                     placeholder="Enter Issue Authority"
                                     [ngClass]="{ 'is-invalid': submitted && s2.issueAuthority.errors }" />
                                 <div *ngIf="submitted && s2.issueAuthority.errors" class="invalid-feedback">
@@ -1086,7 +1086,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Valid From</label>
-                                <input type="date" value="" formControlName="validFrom" class="form-control"
+                                <input type="date"  formControlName="validFrom" class="form-control"
                                     placeholder="Enter Valid From"
                                     [ngClass]="{ 'is-invalid': submitted && s2.validFrom.errors }" />
                                 <div *ngIf="submitted && s2.validFrom.errors" class="invalid-feedback">
@@ -1099,7 +1099,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Valid To</label>
-                                <input type="date" value="" formControlName="validTo" class="form-control"
+                                <input type="date"  formControlName="validTo" class="form-control"
                                     placeholder="Enter Valid To"
                                     [ngClass]="{ 'is-invalid': submitted && s2.validTo.errors }" />
                                 <div *ngIf="submitted && s2.validTo.errors" class="invalid-feedback">
@@ -1136,7 +1136,7 @@
                                 <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Staff Code</label>
-                                            <input type="text" value="" formControlName="staffCode" class="form-control"
+                                            <input type="text"  formControlName="staffCode" class="form-control"
                                                 placeholder="Enter Staff Code"
                                                 [ngClass]="{ 'is-invalid': submitted && w.staffCode.errors }" />
                                             <div *ngIf="submitted && w.staffCode.errors" class="invalid-feedback">
@@ -1147,7 +1147,7 @@
                                     <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Employee Code</label>
-                                                <input type="text" value="" formControlName="employeeCode" class="form-control"
+                                                <input type="text"  formControlName="employeeCode" class="form-control"
                                                     placeholder="Enter Employee Code"
                                                     [ngClass]="{ 'is-invalid': submitted && w.employeeCode.errors }" />
                                                 <div *ngIf="submitted && w.employeeCode.errors" class="invalid-feedback">
@@ -1192,7 +1192,7 @@
                                             <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Designation</label>
-                                                        <input type="text" value="" formControlName="designation" class="form-control"
+                                                        <input type="text"  formControlName="designation" class="form-control"
                                                             placeholder="Enter Designation"
                                                             [ngClass]="{ 'is-invalid': submitted && w.designation.errors }" />
                                                         <div *ngIf="submitted && w.designation.errors" class="invalid-feedback">
@@ -1203,7 +1203,7 @@
                                                 <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Abbrevation</label>
-                                                            <input type="text" value="" formControlName="abbrevation" class="form-control"
+                                                            <input type="text"  formControlName="abbrevation" class="form-control"
                                                                 placeholder="Enter Abbrevation" />
 
                                                         </div>
@@ -1213,7 +1213,7 @@
                                             <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Date Of Joining</label>
-                                                        <input type="date" value="" formControlName="doj" class="form-control"
+                                                        <input type="date"  formControlName="doj" class="form-control"
                                                             placeholder="Enter Date Of Joining"
                                                             [ngClass]="{ 'is-invalid': submitted && w.doj.errors }" />
                                                         <div *ngIf="submitted && w.doj.errors" class="invalid-feedback">
@@ -1224,7 +1224,7 @@
                                                 <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Date Of Relieving</label>
-                                                            <input type="date" value="" formControlName="dor" class="form-control"
+                                                            <input type="date"  formControlName="dor" class="form-control"
                                                                 placeholder="Enter Date Of Relieving"/>
                                                         </div>
                                                     </div>
@@ -1233,7 +1233,7 @@
                                             <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Reason</label>
-                                                        <input type="text" value="" formControlName="reason" class="form-control"
+                                                        <input type="text"  formControlName="reason" class="form-control"
                                                             placeholder="Enter Reason" />
 
                                                     </div>
@@ -1266,7 +1266,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Organization</label>
-                                <input type="text" value="" formControlName="organization" class="form-control"
+                                <input type="text"  formControlName="organization" class="form-control"
                                     placeholder="Enter Organization"
                                     [ngClass]="{ 'is-invalid': submitted && e.organization.errors }" />
                                 <div *ngIf="submitted && e.organization.errors" class="invalid-feedback">
@@ -1277,7 +1277,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Designation</label>
-                                <input type="text" value="" formControlName="expDesignation" class="form-control"
+                                <input type="text"  formControlName="expDesignation" class="form-control"
                                     placeholder="Enter Designation"
                                     [ngClass]="{ 'is-invalid': submitted && e.expDesignation.errors }" />
                                 <div *ngIf="submitted && e.expDesignation.errors" class="invalid-feedback">
@@ -1290,7 +1290,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Nature Of Experience</label>
-                                <input type="text" value="" formControlName="natureOfExperience" class="form-control"
+                                <input type="text"  formControlName="natureOfExperience" class="form-control"
                                     placeholder="Enter Nature Of Experience"
                                     [ngClass]="{ 'is-invalid': submitted && e.natureOfExperience.errors }" />
                                 <div *ngIf="submitted && e.natureOfExperience.errors" class="invalid-feedback">
@@ -1302,7 +1302,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Place</label>
-                                <input type="text" value="" formControlName="place" class="form-control"
+                                <input type="text"  formControlName="place" class="form-control"
                                     placeholder="Enter Place"
                                     [ngClass]="{ 'is-invalid': submitted && e.place.errors }" />
                                 <div *ngIf="submitted && e.place.errors" class="invalid-feedback">
@@ -1315,7 +1315,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>From Date</label>
-                                <input type="date" value="" formControlName="fromDate" class="form-control"
+                                <input type="date"  formControlName="fromDate" class="form-control"
                                     placeholder="Enter From Date"
                                     [ngClass]="{ 'is-invalid': submitted && e.fromDate.errors }" />
                                 <div *ngIf="submitted && e.fromDate.errors" class="invalid-feedback">
@@ -1326,7 +1326,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>To Date</label>
-                                <input type="date" value="" formControlName="toDate" class="form-control"
+                                <input type="date"  formControlName="toDate" class="form-control"
                                     placeholder="Enter To Date"
                                     [ngClass]="{ 'is-invalid': submitted && e.toDate.errors }" />
                                 <div *ngIf="submitted && e.toDate.errors" class="invalid-feedback">
@@ -1362,7 +1362,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Organization</label>
-                                <input type="text" value="" formControlName="organization" class="form-control"
+                                <input type="text"  formControlName="organization" class="form-control"
                                     placeholder="Enter Organization"
                                     [ngClass]="{ 'is-invalid': submitted && e2.organization.errors }" />
                                 <div *ngIf="submitted && e2.organization.errors" class="invalid-feedback">
@@ -1373,7 +1373,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Designation</label>
-                                <input type="text" value="" formControlName="expDesignation" class="form-control"
+                                <input type="text"  formControlName="expDesignation" class="form-control"
                                     placeholder="Enter Designation"
                                     [ngClass]="{ 'is-invalid': submitted && e2.expDesignation.errors }" />
                                 <div *ngIf="submitted && e2.expDesignation.errors" class="invalid-feedback">
@@ -1386,7 +1386,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Nature Of Experience</label>
-                                <input type="text" value="" formControlName="natureOfExperience" class="form-control"
+                                <input type="text"  formControlName="natureOfExperience" class="form-control"
                                     placeholder="Enter Nature Of Experience"
                                     [ngClass]="{ 'is-invalid': submitted && e2.natureOfExperience.errors }" />
                                 <div *ngIf="submitted && e2.natureOfExperience.errors" class="invalid-feedback">
@@ -1398,7 +1398,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Place</label>
-                                <input type="text" value="" formControlName="place" class="form-control"
+                                <input type="text"  formControlName="place" class="form-control"
                                     placeholder="Enter Place"
                                     [ngClass]="{ 'is-invalid': submitted && e2.place.errors }" />
                                 <div *ngIf="submitted && e2.place.errors" class="invalid-feedback">
@@ -1411,7 +1411,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>From Date</label>
-                                <input type="date" value="" formControlName="fromDate" class="form-control"
+                                <input type="date"  formControlName="fromDate" class="form-control"
                                     placeholder="Enter From Date"
                                     [ngClass]="{ 'is-invalid': submitted && e2.fromDate.errors }" />
                                 <div *ngIf="submitted && e2.fromDate.errors" class="invalid-feedback">
@@ -1422,7 +1422,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>To Date</label>
-                                <input type="date" value="" formControlName="toDate" class="form-control"
+                                <input type="date"  formControlName="toDate" class="form-control"
                                     placeholder="Enter To Date"
                                     [ngClass]="{ 'is-invalid': submitted && e2.toDate.errors }" />
                                 <div *ngIf="submitted && e2.toDate.errors" class="invalid-feedback">
@@ -1458,7 +1458,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Degree</label>
-                                <input type="text" value="" formControlName="degree" class="form-control"
+                                <input type="text"  formControlName="degree" class="form-control"
                                     placeholder="Enter Degree"
                                     [ngClass]="{ 'is-invalid': submitted && e3.degree.errors }" />
                                 <div *ngIf="submitted && e3.degree.errors" class="invalid-feedback">
@@ -1469,7 +1469,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Specialization</label>
-                                <input type="text" value="" formControlName="specialization" class="form-control"
+                                <input type="text"  formControlName="specialization" class="form-control"
                                     placeholder="Enter Specialization"
                                     [ngClass]="{ 'is-invalid': submitted && e3.specialization.errors }" />
                                 <div *ngIf="submitted && e3.specialization.errors" class="invalid-feedback">
@@ -1482,7 +1482,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Institution Type</label>
-                                <input type="text" value="" formControlName="institutionType" class="form-control"
+                                <input type="text"  formControlName="institutionType" class="form-control"
                                     placeholder="Enter Institution Type"
                                     [ngClass]="{ 'is-invalid': submitted && e3.institutionType.errors }" />
                                 <div *ngIf="submitted && e3.institutionType.errors" class="invalid-feedback">
@@ -1493,7 +1493,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Institution Name</label>
-                                <input type="text" value="" formControlName="institutionName" class="form-control"
+                                <input type="text"  formControlName="institutionName" class="form-control"
                                     placeholder="Enter Institution Name"
                                     [ngClass]="{ 'is-invalid': submitted && e3.institutionName.errors }" />
                                 <div *ngIf="submitted && e3.institutionName.errors" class="invalid-feedback">
@@ -1506,7 +1506,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Year Of Passing</label>
-                                <input type="date" value="" formControlName="eyop" class="form-control"
+                                <input type="date"  formControlName="eyop" class="form-control"
                                     placeholder="Enter Year Of Passing"
                                     [ngClass]="{ 'is-invalid': submitted && e3.eyop.errors }" />
                                 <div *ngIf="submitted && e3.eyop.errors" class="invalid-feedback">
@@ -1517,7 +1517,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Mode Of Study</label>
-                                <input type="text" value="" formControlName="modeOfStudy" class="form-control"
+                                <input type="text"  formControlName="modeOfStudy" class="form-control"
                                     placeholder="Enter Mode Of Study"
                                     [ngClass]="{ 'is-invalid': submitted && e3.modeOfStudy.errors }" />
                                 <div *ngIf="submitted && e3.modeOfStudy.errors" class="invalid-feedback">
@@ -1530,7 +1530,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Percentage/Grade</label>
-                                <input type="text" value="" formControlName="epercentage" class="form-control"
+                                <input type="text"  formControlName="epercentage" class="form-control"
                                     placeholder="Enter Percentage/Grade"
                                     [ngClass]="{ 'is-invalid': submitted && e3.epercentage.errors }" />
                                 <div *ngIf="submitted && e3.epercentage.errors" class="invalid-feedback">
@@ -1566,7 +1566,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Degree</label>
-                                <input type="text" value="" formControlName="degree" class="form-control"
+                                <input type="text"  formControlName="degree" class="form-control"
                                     placeholder="Enter Degree"
                                     [ngClass]="{ 'is-invalid': submitted && e4.degree.errors }" />
                                 <div *ngIf="submitted && e4.degree.errors" class="invalid-feedback">
@@ -1577,7 +1577,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Specialization</label>
-                                <input type="text" value="" formControlName="specialization" class="form-control"
+                                <input type="text"  formControlName="specialization" class="form-control"
                                     placeholder="Enter Specialization"
                                     [ngClass]="{ 'is-invalid': submitted && e4.specialization.errors }" />
                                 <div *ngIf="submitted && e4.specialization.errors" class="invalid-feedback">
@@ -1590,7 +1590,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Institution Type</label>
-                                <input type="text" value="" formControlName="institutionType" class="form-control"
+                                <input type="text"  formControlName="institutionType" class="form-control"
                                     placeholder="Enter Institution Type"
                                     [ngClass]="{ 'is-invalid': submitted && e4.institutionType.errors }" />
                                 <div *ngIf="submitted && e4.institutionType.errors" class="invalid-feedback">
@@ -1601,7 +1601,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Institution Name</label>
-                                <input type="text" value="" formControlName="institutionName" class="form-control"
+                                <input type="text"  formControlName="institutionName" class="form-control"
                                     placeholder="Enter Institution Name"
                                     [ngClass]="{ 'is-invalid': submitted && e4.institutionName.errors }" />
                                 <div *ngIf="submitted && e4.institutionName.errors" class="invalid-feedback">
@@ -1614,7 +1614,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Year Of Passing</label>
-                                <input type="date" value="" formControlName="eyop" class="form-control"
+                                <input type="date"  formControlName="eyop" class="form-control"
                                     placeholder="Enter Year Of Passing"
                                     [ngClass]="{ 'is-invalid': submitted && e4.eyop.errors }" />
                                 <div *ngIf="submitted && e4.eyop.errors" class="invalid-feedback">
@@ -1625,7 +1625,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Mode Of Study</label>
-                                <input type="text" value="" formControlName="modeOfStudy" class="form-control"
+                                <input type="text"  formControlName="modeOfStudy" class="form-control"
                                     placeholder="Enter Mode Of Study"
                                     [ngClass]="{ 'is-invalid': submitted && e4.modeOfStudy.errors }" />
                                 <div *ngIf="submitted && e4.modeOfStudy.errors" class="invalid-feedback">
@@ -1638,7 +1638,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Percentage/Grade</label>
-                                <input type="text" value="" formControlName="epercentage" class="form-control"
+                                <input type="text"  formControlName="epercentage" class="form-control"
                                     placeholder="Enter Percentage/Grade"
                                     [ngClass]="{ 'is-invalid': submitted && e4.epercentage.errors }" />
                                 <div *ngIf="submitted && e4.epercentage.errors" class="invalid-feedback">
@@ -1674,7 +1674,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Course Type</label>
-                                <input type="text" value="" formControlName="courseType" class="form-control"
+                                <input type="text"  formControlName="courseType" class="form-control"
                                     placeholder="Enter Course Type"
                                     [ngClass]="{ 'is-invalid': submitted && c.courseType.errors }" />
                                 <div *ngIf="submitted && c.courseType.errors" class="invalid-feedback">
@@ -1685,7 +1685,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Institution Type</label>
-                                <input type="text" value="" formControlName="cInstitutionType" class="form-control"
+                                <input type="text"  formControlName="cInstitutionType" class="form-control"
                                     placeholder="Enter Institution Type"
                                     [ngClass]="{ 'is-invalid': submitted && c.cInstitutionType.errors }" />
                                 <div *ngIf="submitted && c.cInstitutionType.errors" class="invalid-feedback">
@@ -1698,7 +1698,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Institution Name</label>
-                                <input type="text" value="" formControlName="cInstitutionName" class="form-control"
+                                <input type="text"  formControlName="cInstitutionName" class="form-control"
                                     placeholder="Enter Institution Name"
                                     [ngClass]="{ 'is-invalid': submitted && c.cInstitutionName.errors }" />
                                 <div *ngIf="submitted && c.cInstitutionName.errors" class="invalid-feedback">
@@ -1709,7 +1709,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Mode Of Course</label>
-                                <input type="text" value="" formControlName="modeOfCourse" class="form-control"
+                                <input type="text"  formControlName="modeOfCourse" class="form-control"
                                     placeholder="Enter Mode Of Course"
                                     [ngClass]="{ 'is-invalid': submitted && c.modeOfCourse.errors }" />
                                 <div *ngIf="submitted && c.modeOfCourse.errors" class="invalid-feedback">
@@ -1722,7 +1722,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Duration Of Course</label>
-                                <input type="text" value="" formControlName="durationOfCourse" class="form-control"
+                                <input type="text"  formControlName="durationOfCourse" class="form-control"
                                     placeholder="Enter Duration Of Course"
                                     [ngClass]="{ 'is-invalid': submitted && c.durationOfCourse.errors }" />
                                 <div *ngIf="submitted && c.durationOfCourse.errors" class="invalid-feedback">
@@ -1733,7 +1733,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>UOM</label>
-                                <input type="text" value="" formControlName="uom" class="form-control"
+                                <input type="text"  formControlName="uom" class="form-control"
                                     placeholder="Enter UOM" [ngClass]="{ 'is-invalid': submitted && c.uom.errors }" />
                                 <div *ngIf="submitted && c.uom.errors" class="invalid-feedback">
                                     <div *ngIf="c.uom.errors.required">UOM is required</div>
@@ -1745,7 +1745,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Year Of Passing</label>
-                                <input type="text" value="" formControlName="cyop" class="form-control"
+                                <input type="text"  formControlName="cyop" class="form-control"
                                     placeholder="Enter Year Of Passing"
                                     [ngClass]="{ 'is-invalid': submitted && c.cyop.errors }" />
                                 <div *ngIf="submitted && c.cyop.errors" class="invalid-feedback">
@@ -1756,7 +1756,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Percentage/Grade</label>
-                                <input type="text" value="" formControlName="cpercentage" class="form-control"
+                                <input type="text"  formControlName="cpercentage" class="form-control"
                                     placeholder="Enter Percentage/Grade"
                                     [ngClass]="{ 'is-invalid': submitted && c.cpercentage.errors }" />
                                 <div *ngIf="submitted && c.cpercentage.errors" class="invalid-feedback">
@@ -1792,7 +1792,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Course Type</label>
-                                <input type="text" value="" formControlName="courseType" class="form-control"
+                                <input type="text"  formControlName="courseType" class="form-control"
                                     placeholder="Enter Course Type"
                                     [ngClass]="{ 'is-invalid': submitted && c2.courseType.errors }" />
                                 <div *ngIf="submitted && c2.courseType.errors" class="invalid-feedback">
@@ -1803,7 +1803,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Institution Type</label>
-                                <input type="text" value="" formControlName="cInstitutionType" class="form-control"
+                                <input type="text"  formControlName="cInstitutionType" class="form-control"
                                     placeholder="Enter Institution Type"
                                     [ngClass]="{ 'is-invalid': submitted && c2.cInstitutionType.errors }" />
                                 <div *ngIf="submitted && c2.cInstitutionType.errors" class="invalid-feedback">
@@ -1816,7 +1816,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Institution Name</label>
-                                <input type="text" value="" formControlName="cInstitutionName" class="form-control"
+                                <input type="text"  formControlName="cInstitutionName" class="form-control"
                                     placeholder="Enter Institution Name"
                                     [ngClass]="{ 'is-invalid': submitted && c2.cInstitutionName.errors }" />
                                 <div *ngIf="submitted && c2.cInstitutionName.errors" class="invalid-feedback">
@@ -1827,7 +1827,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Mode Of Course</label>
-                                <input type="text" value="" formControlName="modeOfCourse" class="form-control"
+                                <input type="text"  formControlName="modeOfCourse" class="form-control"
                                     placeholder="Enter Mode Of Course"
                                     [ngClass]="{ 'is-invalid': submitted && c2.modeOfCourse.errors }" />
                                 <div *ngIf="submitted && c2.modeOfCourse.errors" class="invalid-feedback">
@@ -1840,7 +1840,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Duration Of Course</label>
-                                <input type="text" value="" formControlName="durationOfCourse" class="form-control"
+                                <input type="text"  formControlName="durationOfCourse" class="form-control"
                                     placeholder="Enter Duration Of Course"
                                     [ngClass]="{ 'is-invalid': submitted && c2.durationOfCourse.errors }" />
                                 <div *ngIf="submitted && c2.durationOfCourse.errors" class="invalid-feedback">
@@ -1852,7 +1852,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>UOM</label>
-                                <input type="text" value="" formControlName="uom" class="form-control"
+                                <input type="text"  formControlName="uom" class="form-control"
                                     placeholder="Enter UOM" [ngClass]="{ 'is-invalid': submitted && c2.uom.errors }" />
                                 <div *ngIf="submitted && c2.uom.errors" class="invalid-feedback">
                                     <div *ngIf="c2.uom.errors.required">UOM is required</div>
@@ -1864,7 +1864,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Year Of Passing</label>
-                                <input type="text" value="" formControlName="cyop" class="form-control"
+                                <input type="text"  formControlName="cyop" class="form-control"
                                     placeholder="Enter Year Of Passing"
                                     [ngClass]="{ 'is-invalid': submitted && c2.cyop.errors }" />
                                 <div *ngIf="submitted && c2.cyop.errors" class="invalid-feedback">
@@ -1875,7 +1875,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Percentage/Grade</label>
-                                <input type="text" value="" formControlName="cpercentage" class="form-control"
+                                <input type="text"  formControlName="cpercentage" class="form-control"
                                     placeholder="Enter Percentage/Grade"
                                     [ngClass]="{ 'is-invalid': submitted && c2.cpercentage.errors }" />
                                 <div *ngIf="submitted && c2.cpercentage.errors" class="invalid-feedback">

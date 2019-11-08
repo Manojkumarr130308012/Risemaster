@@ -1,10 +1,10 @@
 <section class="content">
         <div class="container-fluid">
-    
+
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
-                        <div class="header">        
+                        <div class="header">
                             <div class="body">
                                 <aw-wizard #wizard [navBarLayout]="'large-empty-symbols'">
                                     <aw-wizard-step [stepTitle]="'Basic Details'">
@@ -34,7 +34,7 @@
                                                                 <label for="gender">Gender</label>
                                                                 <div class="form-line">
                                                                     <select class="browser-default" id="select" [formControl]="gender" name="gender" class="form-control" required>
-                                                                        <option value="">Choose your Gender</option>
+                                                                        <option >Choose your Gender</option>
                                                                         <option *ngFor="let gender of genders?.response" [value]="gender._id">{{gender?.gender}}</option>
                                                                     </select>
                                                                 </div>
@@ -80,18 +80,18 @@
                                                                 <div class="form-line">
                                                                     <select class="browser-default" id="select4" [formControl]="referenceType" name="referenceType"
                                                                         class="form-control" required>
-                                                                        <option value="">Choose your ReferenceType
+                                                                        <option >Choose your ReferenceType
                                                                         </option>
                                                                         <option *ngFor="let  referralType of referralTypes?.response" [value]="referralType._id">
                                                                             {{referralType?.referralType}}</option>
                                                                     </select>
                                                                 </div>
-                                                            </div> 
+                                                            </div>
                                                             <div class="form-group form-float">
                                                                 <label for="nationality">Nationality</label>
                                                                     <select class="browser-default" id="select7" [formControl]="nationality"
                                                                         class="form-control">
-                                                                        <option defult value="">Choose your Nationality</option>
+                                                                        <option defult >Choose your Nationality</option>
                                                                         <option *ngFor="let nationality of nationalities?.response" [value]="nationality._id">
                                                                             {{nationality?.nationality}}</option>
                                                                     </select>
@@ -99,7 +99,7 @@
                                                             <div class="form-group form-float">
                                                                 <label for="religion">Religion</label>
                                                                     <select class="browser-default" id="select9" [formControl]="religion" class="form-control">
-                                                                        <option defult value="">Choose your Religion</option>
+                                                                        <option defult >Choose your Religion</option>
                                                                         <option *ngFor="let religion of religions?.response" [value]="religion._id">{{religion?.religion}}
                                                                         </option>
                                                                     </select>
@@ -109,7 +109,7 @@
                                                         <div class="col-md-5">
                                                             <label for="sphoto">Student Photo</label>
                                                             <div class="col-sm-12">
-                                                            <img style="margin:0 auto" src="{{getfileLoc}}" width="100px"> 
+                                                            <img style="margin:0 auto" src="{{getfileLoc}}" width="100px">
                                                         </div>
                                                             <div class="form-group form-float">
                                                                     <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
@@ -119,7 +119,7 @@
                                                                 <label for="regNo12th">12th RegisterNumber</label>
                                                                     <input type="text" class="form-control" name="regNo12th" placeholder="Enter 12th RegisterNumber"
                                                                         [formControl]="regNo12th" />
-                                                            </div>    
+                                                            </div>
                                                             <div class="form-group form-float">
                                                                 <label for="mark12th">12th Mark</label>
                                                                     <input type="text" class="form-control" name="mark12th" placeholder="Enter 12th Mark"
@@ -130,7 +130,7 @@
                                                                 <div class="form-line">
                                                                     <select class="browser-default" id="select1" [formControl]="institution" name="institution" class="form-control"
                                                                         (change)="onInstitutionChange($event.target.value)" required>
-                                                                        <option value="">Choose your Institution</option>
+                                                                        <option >Choose your Institution</option>
                                                                         <option *ngFor="let institution of institutions" [value]="institution._id">
                                                                             {{institution?.institution_name}}</option>
                                                                     </select>
@@ -139,7 +139,7 @@
                                                             <div class="form-group form-float">
                                                                 <label for="board">Board Of Education</label>
                                                                     <select class="browser-default" id="select2" [formControl]="board" class="form-control">
-                                                                        <option defult value="">Choose your BoardOfEducation</option>
+                                                                        <option defult >Choose your BoardOfEducation</option>
                                                                         <option *ngFor="let board of boards?.response" [value]="board._id">{{board?.board}}</option>
                                                                     </select>
                                                             </div>
@@ -153,7 +153,7 @@
                                                             <div class="form-group form-float">
                                                                 <label for="admissionCategory">Admission Category</label>
                                                                     <select class="browser-default" id="select3" [formControl]="admissionCategory" class="form-control" required>
-                                                                        <option value="">Choose your AdmissionCategory </option>
+                                                                        <option >Choose your AdmissionCategory </option>
                                                                         <option *ngFor="let admissionCategory of admissioncategories?.response" [value]="admissionCategory._id">
                                                                             {{admissionCategory?.admissionCategory}}
                                                                         </option>
@@ -162,7 +162,7 @@
                                                             <div class="form-group form-float">
                                                                 <label for="admissiontype">Admission Type</label>
                                                                     <select class="browser-default" id="select11" [formControl]="admissiontype" class="form-control" required>
-                                                                        <option value="">Choose your Admission Type
+                                                                        <option >Choose your Admission Type
                                                                         </option>
                                                                         <option *ngFor="let admissiontype of admissiontypes?.response" [value]="admissiontype._id">
                                                                             {{admissiontype?.admissiontype}}</option>
@@ -176,7 +176,7 @@
                                                             <div class="form-group form-float">
                                                                 <label for="scholarshipCategory">ScholarshipCategory</label>
                                                                     <select class="browser-default" id="select5" [formControl]="scholarshipCategory" class="form-control">
-                                                                        <option value="">Choose your scholarshipCategory
+                                                                        <option >Choose your scholarshipCategory
                                                                         </option>
                                                                         <option *ngFor="let scholarshipCategory of scholarshipCategories?.response"
                                                                             [value]="scholarshipCategory._id">
@@ -192,7 +192,7 @@
                                                             <div class="form-group form-float">
                                                                 <label for="community">Community</label>
                                                                     <select class="browser-default" id="select10" [formControl]="community" class="form-control">
-                                                                        <option value="">Choose your Community</option>
+                                                                        <option >Choose your Community</option>
                                                                         <option *ngFor="let community of communities?.response" [value]="community._id">{{community?.community}}
                                                                         </option>
                                                                     </select>
@@ -200,13 +200,13 @@
                                                             <div class="form-group form-float">
                                                                 <label for="caste">Caste</label>
                                                                     <select class="browser-default" id="select12" [formControl]="caste" class="form-control">
-                                                                        <option value="">Choose your Caste</option>
+                                                                        <option >Choose your Caste</option>
                                                                         <option *ngFor="let caste of castes?.response" [value]="caste._id">{{caste?.caste}}</option>
                                                                     </select>
                                                             </div>
                                                             </div>
                                                     </div>
-                                                  
+
     <!--///////////////////////////////////////////////////Parent Details////////////////////////////////////////////////////////////-->
                                                     <h3><Strong>Parent Details</Strong></h3>
                                                     <div class="row">
@@ -279,20 +279,20 @@
                                                                         [formControl]="relativeName" />
                                                             </div>
                                                          </div>
-                                                    </div> 
+                                                    </div>
                                                     <div class="text-right">
                                                         <button type="submit" class="btn btn-info waves-effect"
                                                             (click)="addbasicdetails()">Add BasicDetails</button>
                                                     </div>
                                                     <!--///////////////////////////Course Program//////////////////////////////-->
                                                     <h3><Strong>Select Course</Strong></h3>
-                                                    <div class="row">  
+                                                    <div class="row">
                                                         <div class="col-md-5">
                                                             <div class="form-group form-float">
                                                                 <label for="coursecategory">Course Category</label>
                                                                     <select class="browser-default" id="select6" [formControl]="coursecategory" name="coursecategory"
                                                                         class="form-control" (change)="onCourseCategoryChange($event.target.value)" >
-                                                                        <option value="">Choose your Course Category
+                                                                        <option >Choose your Course Category
                                                                         </option>
                                                                         <option *ngFor="let coursecategory of coursecategories?.response" [value]="coursecategory._id">
                                                                             {{coursecategory?.coursecategory}}</option>
@@ -304,7 +304,7 @@
                                                                 <label for="courseprogram">Course/Program</label>
                                                                     <select class="browser-default" id="select8"
                                                                         [formControl]="courseprogram" class="form-control" >
-                                                                        <option default value="">Choose your Course/Program
+                                                                        <option default >Choose your Course/Program
                                                                         </option>
                                                                         <option
                                                                             *ngFor="let courseprogram of courseprograms?.response"
@@ -325,7 +325,7 @@
                                                                             <tr>
                                                                                 <th>#</th>
                                                                                 <th>CourseCategory</th>
-                                                                                <th>Course/program</th>  
+                                                                                <th>Course/program</th>
                                                                                 <th>Action</th>
                                                                             </tr>
                                                                         </thead>
@@ -345,14 +345,14 @@
                                                                                 </div>
                                                                             </tr>
                                                                         </tbody>
-                
+
                                                                     </table>
                                                                 </div>
                                                             </div>
-    
-                                                    
+
+
                                                 </form>
-    
+
                                             </div>
                                             <div class="text-right">
                                                 <button class="btn-hover btn-border-radius color-10" (click)="goBackToMain()">Back</button>
@@ -364,7 +364,7 @@
                                     <aw-wizard-step [stepTitle]="'General Information'">
                                         <ng-template awWizardStepSymbol><i class="fa fa-upload"></i></ng-template>
                                         <div class="centered-content">
-                                            <div>   
+                                            <div>
                                                 <div class="text-right">
                                                     <button id="addRow" class="btn btn-info" data-toggle="modal"
                                                         data-target="#addModaladdress">
@@ -406,7 +406,7 @@
                                                                                 <i class="material-icons"
                                                                                     (click)="onEditAddress(addressdetail)">create</i>
                                                                             </div>
-    
+
                                                                             <div class="btn btn-tbl-delete">
                                                                                 <i class="material-icons"
                                                                                     (click)="deleteAddressDetails(addressdetail?._id)">delete_forever</i>
@@ -415,18 +415,18 @@
                                                                     </div>
                                                                 </tr>
                                                             </tbody>
-    
+
                                                         </table>
                                                     </div>
                                                 </div>
                                             </div>
-    
+
                                             <div class="text-right">
                                                 <button class="btn-hover btn-border-radius color-10"
                                                     awPreviousStep>Back</button>
                                                 <button class="btn-hover btn-border-radius color-8"  awNextStep>Next</button>
                                             </div>
-    
+
                                         </div>
                                         <!-- ///////////////////////////////////////// -->
                                         <!-- Add form - AddressDetails-->
@@ -449,7 +449,7 @@
                                                                         <select class="browser-default" id="select13" [(ngModel)]="selectedaddresstype" formControlName="addresstype"
                                                                             value=" " class="form-control" placeholder="Enter addresstype "
                                                                             [ngClass]="{ 'is-invalid': submitted && f.addresstype.errors }">
-                                                                            <option value="">Choose your AddressType</option>
+                                                                            <option >Choose your AddressType</option>
                                                                             <option *ngFor="let addressType of addressTypes?.response" [value]="addressType._id">
                                                                                 {{addressType?.addressType}}</option>
                                                                         </select>
@@ -459,7 +459,7 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label>Street/Lane</label>
-                                                                        <input type="text" value="" formControlName="streetLane" class="form-control" placeholder="Enter Street/Lane"
+                                                                        <input type="text"  formControlName="streetLane" class="form-control" placeholder="Enter Street/Lane"
                                                                             [ngClass]="{ 'is-invalid': submitted && f.streetLane.errors }" />
                                                                         <div *ngIf="submitted && f.streetLane.errors" class="invalid-feedback">
                                                                             <div *ngIf="f.streetLane.errors.required">Street/Lane is
@@ -468,7 +468,7 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label>City</label>
-                                                                        <input type="text" value="" formControlName="city" class="form-control" placeholder="Enter City"
+                                                                        <input type="text"  formControlName="city" class="form-control" placeholder="Enter City"
                                                                             [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
                                                                         <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
                                                                             <div *ngIf="f.city.errors.required">City is required
@@ -495,7 +495,7 @@
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label>Flat/Door/BlockNo.</label>
-                                                                        <input type="text" value="" formControlName="flatNo" class="form-control" placeholder="Enter Flat/Door/BlockNo."
+                                                                        <input type="text"  formControlName="flatNo" class="form-control" placeholder="Enter Flat/Door/BlockNo."
                                                                             [ngClass]="{ 'is-invalid': submitted && f.flatNo.errors }" />
                                                                         <div *ngIf="submitted && f.flatNo.errors" class="invalid-feedback">
                                                                             <div *ngIf="f.flatNo.errors.required">Flat/Door/BlockNo. is required
@@ -504,7 +504,7 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label>Area/Locality</label>
-                                                                        <input type="text" value="" formControlName="area" class="form-control" placeholder="Enter Area/Locality"
+                                                                        <input type="text"  formControlName="area" class="form-control" placeholder="Enter Area/Locality"
                                                                             [ngClass]="{ 'is-invalid': submitted && f.area.errors }" />
                                                                         <div *ngIf="submitted && f.area.errors" class="invalid-feedback">
                                                                             <div *ngIf="f.area.errors.required">Area/Locality is required</div>
@@ -512,7 +512,7 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label>District</label>
-                                                                        <input type="text" value="" formControlName="district" class="form-control" placeholder="Enter District"
+                                                                        <input type="text"  formControlName="district" class="form-control" placeholder="Enter District"
                                                                             [ngClass]="{ 'is-invalid': submitted && f.district.errors }" />
                                                                         <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
                                                                             <div *ngIf="f.district.errors.required">District is required</div>
@@ -520,7 +520,7 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label>State</label>
-                                                                        <input type="text" value="" formControlName="state" class="form-control" placeholder="Enter State"
+                                                                        <input type="text"  formControlName="state" class="form-control" placeholder="Enter State"
                                                                             [ngClass]="{ 'is-invalid': submitted && f.state.errors }" />
                                                                         <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
                                                                             <div *ngIf="f.state.errors.required">State is required
@@ -560,7 +560,7 @@
                                                                         <label>Address Type</label>
                                                                         <select class="browser-default" id="select20" formControlName="addresstype3" class="form-control"
                                                                             [ngClass]="{ 'is-invalid': submitted && f2.addresstype3.errors }">
-                                                                            <option value="">Choose your Address Type
+                                                                            <option >Choose your Address Type
                                                                             </option>
                                                                             <option *ngFor="let addressType of addressTypes?.response" [value]="addressType._id">
                                                                                 {{addressType?.addressType}}</option>
@@ -655,7 +655,7 @@
                                                 </div>
                                             </div>
                                         </div>
-    
+
                                     </aw-wizard-step>
     <!--///////////////////////////////////////////////////////////////////////////////////Qualification Details//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
                                     <aw-wizard-step [stepTitle]="'QualificationDetails'">
@@ -667,7 +667,7 @@
                                                     Add Qualification Details
                                                 </button>
                                             </div>
-                                            
+
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <table id="tableExport"
@@ -713,7 +713,7 @@
                                                                             <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editModalqd">
                                                                                 <i class="material-icons" (click)="onEditQualification(qualificationdetail)">create</i>
                                                                             </div>
-                                                                            
+
                                                                             <div class="btn btn-tbl-delete">
                                                                                 <i class="material-icons" (click)="deleteQualificationDetails(qualificationdetail?._id)">delete_forever</i>
                                                                             </div>
@@ -721,24 +721,24 @@
                                                                     </div>
                                                                 </tr>
                                                             </tbody>
-    
+
                                                         </table>
                                                     </div>
                                                 </div>
                                             </div>
-    
+
                                             <div class="text-right">
                                                 <button class="btn-hover btn-border-radius color-10"
                                                     awPreviousStep>Back</button>
                                                 <button class="btn-hover btn-border-radius color-8" awNextStep>Next</button>
                                             </div>
-    
+
                                         </div>
-    
-    
+
+
                                         <!--////////////////////////////////////////////////////////////////////////////-->
-                                         
-                                    
+
+
                                        <!-- Edit form - QualificationDeatils-->
                                        <div class="modal fade" id="editModalqd" tabindex="-1" role="dialog"
                                        aria-labelledby="formModal" aria-hidden="true">
@@ -761,7 +761,7 @@
                                                                     <div class="form-line">
                                                                         <select class="browser-default" id="select01" name="qualificationType2" [formControl]="qualificationType2"
                                                                             class="form-control" required>
-                                                                            <option value="">Choose your Qualification Type
+                                                                            <option >Choose your Qualification Type
                                                                             </option>
                                                                             <option *ngFor="let qualificationType of qualificationTypes?.response" [value]="qualificationType._id">
                                                                                 {{qualificationType?.qualificationType}}
@@ -774,7 +774,7 @@
                                                                     <div class="form-line">
                                                                         <select class="browser-default" id="select03" name="institutionType2" [formControl]="institutionType2"
                                                                             class="form-control" required>
-                                                                            <option value="">Choose your Address Type
+                                                                            <option >Choose your Address Type
                                                                             </option>
                                                                             <option *ngFor="let institutionType of institutionTypes?.response" [value]="institutionType._id">
                                                                                 {{institutionType?.institutionType}}
@@ -787,13 +787,13 @@
                                                                         <div class="form-line">
                                                                             <select class="browser-default" id="select17" name="medium2" [formControl]="medium2" class="form-control"
                                                                                 required>
-                                                                                <option value="">Choose your Medium</option>
+                                                                                <option >Choose your Medium</option>
                                                                                 <option *ngFor="let medium of media?.response" [value]="medium._id">
                                                                                     {{medium?.medium}}
                                                                                 </option>
                                                                             </select>
                                                                         </div>
-                                                                    </div> 
+                                                                    </div>
                                                                     <div class="form-group form-float">
                                                                         <label>Taluk</label>
                                                                         <div class="form-line">
@@ -823,7 +823,7 @@
                                                                         <div class="form-line">
                                                                             <input type="text" class="form-control" [formControl]="maxMark2" />
                                                                         </div>
-                                                                    </div> 
+                                                                    </div>
                                                                     </div>
                                                             <div class="col-md-6">
                                                                     <div class="form-group form-float">
@@ -831,7 +831,7 @@
                                                                         <div class="form-line">
                                                                             <select class="browser-default" id="select02" name="courseType2" [formControl]="courseType2"
                                                                                 class="form-control" required>
-                                                                                <option value="">Choose your Course Type
+                                                                                <option >Choose your Course Type
                                                                                 </option>
                                                                                 <option *ngFor="let courseType of coursetypes" [value]="courseType._id">
                                                                                     {{courseType?.courseType}}
@@ -873,7 +873,7 @@
                                                                         <label>Organisation Type</label>
                                                                         <div class="form-line">
                                                                             <select class="browser-default" id="select18" [formControl]="organisationType2" class="form-control">
-                                                                                <option value="">Choose your organisationType</option>
+                                                                                <option >Choose your organisationType</option>
                                                                                 <option value="Private">Private </option>
                                                                                 <option value="Govt"> Goverment </option>
                                                                             </select>
@@ -912,9 +912,9 @@
                                            </div>
                                        </div>
                                    </div>
-                                       
-    
-    
+
+
+
                                     </aw-wizard-step>
      <!-- ///////////////////////////////////////////////////////////////////Payment Details////////////////////////////////////////////////////////////// -->
                                     <aw-wizard-step [stepTitle]="'Payment Details'">
@@ -952,7 +952,7 @@
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label>Bank</label>
-                                                                                    <input type="text" value="" formControlName="bank" class="form-control" placeholder="Enter Bank"
+                                                                                    <input type="text"  formControlName="bank" class="form-control" placeholder="Enter Bank"
                                                                                         [ngClass]="{ 'is-invalid': submitted && f5.bank.errors }" />
                                                                                     <div *ngIf="submitted && f5.bank.errors" class="invalid-feedback">
                                                                                         <div *ngIf="f5.bank.errors.required">Bank is required
@@ -961,7 +961,7 @@
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label>Cheque / DD Number</label>
-                                                                                    <input type="text" value="" formControlName="chequeDDNumber" class="form-control"
+                                                                                    <input type="text"  formControlName="chequeDDNumber" class="form-control"
                                                                                         placeholder="Enter Cheque / DD Number"
                                                                                         [ngClass]="{ 'is-invalid': submitted && f5.chequeDDNumber.errors }" />
                                                                                     <div *ngIf="submitted && f5.chequeDDNumber.errors" class="invalid-feedback">
@@ -971,7 +971,7 @@
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label>Amount</label>
-                                                                                    <input type="text" value="" formControlName="amount" class="form-control" placeholder="Enter Amount"
+                                                                                    <input type="text"  formControlName="amount" class="form-control" placeholder="Enter Amount"
                                                                                         [ngClass]="{ 'is-invalid': submitted && f5.amount.errors }" />
                                                                                     <div *ngIf="submitted && f5.amount.errors" class="invalid-feedback">
                                                                                         <div *ngIf="f5.amount.errors.required">Amount is
@@ -985,7 +985,7 @@
                                                                                     <select class="browser-default" id="select" formControlName="paymentmethod"
                                                                                         value=" " class="form-control" placeholder="Enter Payment Method"
                                                                                         [ngClass]="{ 'is-invalid': submitted && f5.paymentmethod.errors }">
-                                                                                        <option default value="" selected>Choose your PaymentMethod</option>
+                                                                                        <option default  selected>Choose your PaymentMethod</option>
                                                                                         <option *ngFor="let paymentMethod of paymentMethods?.response" [value]="paymentMethod._id">
                                                                                             {{paymentMethod?.paymentMethod}}</option>
                                                                                     </select>
@@ -996,7 +996,7 @@
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                         <label>Cheque/DD Date</label>
-                                                                                        <input type="date" value="" formControlName="chequeDDDate" class="form-control" placeholder="Enter Cheque/DD Date"
+                                                                                        <input type="date"  formControlName="chequeDDDate" class="form-control" placeholder="Enter Cheque/DD Date"
                                                                                             [ngClass]="{ 'is-invalid': submitted && f5.chequeDDDate.errors }" />
                                                                                         <div *ngIf="submitted && f5.chequeDDDate.errors" class="invalid-feedback">
                                                                                             <div *ngIf="f5.chequeDDDate.errors.required">Cheque/DD
@@ -1008,7 +1008,7 @@
                                                                                         <select class="browser-default" id="select" [(ngModel)]="selectedadvanceFeeType" formControlName="advanceFeeType"
                                                                                            class="form-control" placeholder="Enter Advance Fees type"
                                                                                             [ngClass]="{ 'is-invalid': submitted && f5.advanceFeeType.errors }">
-                                                                                            <option value="" selected> Choose your AddvanceFees Type</option>
+                                                                                            <option  selected> Choose your AddvanceFees Type</option>
                                                                                             <option *ngFor="let feetype of feetypes?.response" [value]="feetype._id">
                                                                                                 {{feetype?.feetype}}
                                                                                             </option>
@@ -1016,14 +1016,14 @@
                                                                                         <div *ngIf="submitted && f5.advanceFeeType.errors" class="invalid-feedback">
                                                                                             <div *ngIf="f5.advanceFeeType.errors.required"> Advance Fees Type is required </div>
                                                                                         </div>
-                                                                                    </div> 
+                                                                                    </div>
                                                                             </div>
-                                                                        </div> 
+                                                                        </div>
                                                                         <div class="modal-footer">
                                                                             <button type="submit" class="btn btn-default" (click)="addpaymentdetails()">Add</button>
                                                                             <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
                                                                         </div>
-    
+
                                                                     </form>
                                                                 </div>
                                                             </div>
@@ -1070,7 +1070,7 @@
                                                                                     (click)="deletePaymentDetails(paymentdetail?._id)">delete_forever</i>
                                                                             </div>
                                                           <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-                                                                            
+
                                                                             <!--Edit Payment Details-->
                                                                             <div class="modal fade" id="editPaymentModal" tabindex="-1" role="dialog" aria-labelledby="formModal"
                                                                                 aria-hidden="true">
@@ -1097,7 +1097,7 @@
                                                                                                                 </div>
                                                                                                                 <div class="form-group">
                                                                                                                     <label>Bank</label>
-                                                                                                                    <input type="text" value="" formControlName="bank2" class="form-control" placeholder="Enter Bank"
+                                                                                                                    <input type="text"  formControlName="bank2" class="form-control" placeholder="Enter Bank"
                                                                                                                         [ngClass]="{ 'is-invalid': submitted && f6.bank2.errors }" />
                                                                                                                     <div *ngIf="submitted && f6.bank2.errors" class="invalid-feedback">
                                                                                                                         <div *ngIf="f6.bank2.errors.required"> Bank is required </div>
@@ -1105,7 +1105,7 @@
                                                                                                                 </div>
                                                                                                                 <div class="form-group">
                                                                                                                     <label>Cheque / DD Number</label>
-                                                                                                                    <input type="text" value="" formControlName="chequeDDNumber2" class="form-control"
+                                                                                                                    <input type="text"  formControlName="chequeDDNumber2" class="form-control"
                                                                                                                         placeholder="Enter Cheque / DD Number"
                                                                                                                         [ngClass]="{ 'is-invalid': submitted && f6.chequeDDNumber2.errors }" />
                                                                                                                     <div *ngIf="submitted && f6.chequeDDNumber2.errors" class="invalid-feedback">
@@ -1114,7 +1114,7 @@
                                                                                                                 </div>
                                                                                                                 <div class="form-group">
                                                                                                                     <label>Amount</label>
-                                                                                                                    <input type="text" value="" formControlName="amount2" class="form-control" placeholder="Enter Amount"
+                                                                                                                    <input type="text"  formControlName="amount2" class="form-control" placeholder="Enter Amount"
                                                                                                                         [ngClass]="{ 'is-invalid': submitted && f6.amount2.errors }" />
                                                                                                                     <div *ngIf="submitted && f6.amount2.errors" class="invalid-feedback">
                                                                                                                         <div *ngIf="f6.amount2.errors.required"> Amount is required </div>
@@ -1127,7 +1127,7 @@
                                                                                                                     <select class="browser-default" id="select" [(ngModel)]="selectedpaymentmethod" formControlName="paymentmethod2"
                                                                                                                         value=" " class="form-control" placeholder="Enter Payment Method"
                                                                                                                         [ngClass]="{ 'is-invalid': submitted && f6.paymentmethod2.errors }">
-                                                                                                                        <option value="" selected> Choose your PaymentMethod</option>
+                                                                                                                        <option  selected> Choose your PaymentMethod</option>
                                                                                                                         <option *ngFor="let paymentMethod of paymentMethods?.response" [value]="paymentMethod._id">
                                                                                                                             {{paymentMethod?.paymentMethod}}
                                                                                                                         </option>
@@ -1138,7 +1138,7 @@
                                                                                                                 </div>
                                                                                                                 <div class="form-group">
                                                                                                                     <label>Cheque/DD Date</label>
-                                                                                                                    <input type="date" value="" formControlName="chequeDDDate2" class="form-control"
+                                                                                                                    <input type="date"  formControlName="chequeDDDate2" class="form-control"
                                                                                                                         placeholder="Enter Cheque/DD Date" [ngClass]="{ 'is-invalid': submitted && f6.chequeDDDate2.errors }" />
                                                                                                                     <div *ngIf="submitted && f6.chequeDDDate2.errors" class="invalid-feedback">
                                                                                                                         <div *ngIf="f6.chequeDDDate2.errors.required"> Cheque/DD Date is required</div>
@@ -1149,7 +1149,7 @@
                                                                                                                     <select class="browser-default" id="select" [(ngModel)]="selectedadvanceFeeType" formControlName="advanceFeeType2"
                                                                                                                         class="form-control" placeholder="Enter Advance Fees type"
                                                                                                                         [ngClass]="{ 'is-invalid': submitted && f6.advanceFeeType2.errors }">
-                                                                                                                        <option value="" selected> Choose your AddvanceFees Type</option>
+                                                                                                                        <option  selected> Choose your AddvanceFees Type</option>
                                                                                                                         <option *ngFor="let feetype of feetypes?.response" [value]="feetype._id">
                                                                                                                             {{feetype?.feetype}}
                                                                                                                         </option>
@@ -1164,7 +1164,7 @@
                                                                                                     <button type="submit" class="btn btn-default" (click)="onEditPaymentSubmit()">Update</button>
                                                                                                     <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
                                                                                                 </div>
-    
+
                                                                                             </form>
                                                                                         </div>
                                                                                     </div>
@@ -1174,18 +1174,18 @@
                                                                     </div>
                                                                 </tr>
                                                             </tbody>
-    
+
                                                         </table>
                                                     </div>
                                                 </div>
                                             </div>
-    
+
                                             <div class="text-right">
                                                 <button class="btn-hover btn-border-radius color-10"
                                                     awPreviousStep>Back</button>
                                                 <button class="btn-hover btn-border-radius color-8"  awNextStep>Next</button>
                                             </div>
-    
+
                                         </div>
                                     </aw-wizard-step>
                                     <!--///////////////////////////////////////////Followups////////////////////////////////////////////-->
@@ -1239,7 +1239,7 @@
                                                                     </div>
                                                                 </tr>
                                                             </tbody>
-    
+
                                                         </table>
                                                     </div>
                                                 </div>
@@ -1260,7 +1260,7 @@
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label>DateOfEnquiry</label>
-                                                                                <input type="date" value="" formControlName="dateOfEnquiry" class="form-control" placeholder="Enter dateOfEnquiry"
+                                                                                <input type="date"  formControlName="dateOfEnquiry" class="form-control" placeholder="Enter dateOfEnquiry"
                                                                                     [ngClass]="{ 'is-invalid': submitted && f7.dateOfEnquiry.errors }" />
                                                                                 <div *ngIf="submitted && f7.dateOfEnquiry.errors" class="invalid-feedback">
                                                                                     <div *ngIf="f7.dateOfEnquiry.errors.required">
@@ -1269,7 +1269,7 @@
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label>NextEnquiryDate</label>
-                                                                                <input type="date" value="" formControlName="nextEnquiryDate" class="form-control"
+                                                                                <input type="date"  formControlName="nextEnquiryDate" class="form-control"
                                                                                     placeholder="Enter nextEnquiryDate" [ngClass]="{ 'is-invalid': submitted && f7.nextEnquiryDate.errors }" />
                                                                                 <div *ngIf="submitted && f7.nextEnquiryDate.errors" class="invalid-feedback">
                                                                                     <div *ngIf="f7.nextEnquiryDate.errors.required">
@@ -1282,7 +1282,7 @@
                                                                                 <label>ModeOfEnquiry</label>
                                                                                 <select class="browser-default" id="select" [(ngModel)]="selectedModeOfEnquiry" formControlName="modeOfEnquiry"
                                                                                     value=" " class="form-control" [ngClass]="{ 'is-invalid': submitted && f7.modeOfEnquiry.errors }">
-                                                                                    <option value="" selected> Choose your ModeOfEnquiry</option>
+                                                                                    <option  selected> Choose your ModeOfEnquiry</option>
                                                                                     <option *ngFor="let modeOfEnquiry of modeOfEnquiries?.response" [value]="modeOfEnquiry._id">
                                                                                         {{modeOfEnquiry?.modeofenquiry}}
                                                                                     </option>
@@ -1306,7 +1306,7 @@
                                                                         <div class="col-md-12">
                                                                             <div class="form-group">
                                                                                 <label>Description</label>
-                                                                                <textarea type="text" value="" formControlName="description" class="form-control"
+                                                                                <textarea type="text"  formControlName="description" class="form-control"
                                                                                     placeholder="Enter Description" [ngClass]="{ 'is-invalid': submitted && f7.description.errors }"></textarea>
                                                                                 <div *ngIf="submitted && f7.description.errors" class="invalid-feedback">
                                                                                     <div *ngIf="f7.description.errors.required">
@@ -1352,7 +1352,7 @@
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <label>NextEnquiryDate</label>
-                                                                                        <input type="date" value="" formControlName="nextEnquiryDate2" class="form-control"
+                                                                                        <input type="date"  formControlName="nextEnquiryDate2" class="form-control"
                                                                                             placeholder="Enter Cheque / DD Number" [ngClass]="{ 'is-invalid': submitted && f8.nextEnquiryDate2.errors }" />
                                                                                         <div *ngIf="submitted && f8.nextEnquiryDate2.errors" class="invalid-feedback">
                                                                                             <div *ngIf="f8.nextEnquiryDate2.errors.required">
@@ -1366,7 +1366,7 @@
                                                                                         <label>ModeOfEnquiry</label>
                                                                                         <select class="browser-default" id="select" [(ngModel)]="selectedModeOfEnquiry" formControlName="modeOfEnquiry2"
                                                                                             value=" " class="form-control" [ngClass]="{ 'is-invalid': submitted && f8.modeOfEnquiry2.errors }">
-                                                                                            <option value="" selected> Choose your ModeOfEnquiry</option>
+                                                                                            <option  selected> Choose your ModeOfEnquiry</option>
                                                                                             <option *ngFor="let modeOfEnquiry of modeOfEnquiries?.response" [value]="modeOfEnquiry._id">
                                                                                                 {{modeOfEnquiry?.modeofenquiry}}
                                                                                             </option>
@@ -1377,7 +1377,7 @@
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <label>NextEnquiryTime</label>
-                                                                                        <input type="time" value="" formControlName="nextEnquiryTime2" class="form-control"
+                                                                                        <input type="time"  formControlName="nextEnquiryTime2" class="form-control"
                                                                                             placeholder="Enter NextEnquiryTime" [ngClass]="{ 'is-invalid': submitted && f8.nextEnquiryTime2.errors }" />
                                                                                         <div *ngIf="submitted && f8.nextEnquiryTime2.errors" class="invalid-feedback">
                                                                                             <div *ngIf="f8.nextEnquiryTime2.errors.required">
@@ -1390,7 +1390,7 @@
                                                                                 <div class="col-md-12">
                                                                                     <div class="form-group">
                                                                                         <label>Description</label>
-                                                                                        <textarea type="text" value="" formControlName="description2" class="form-control"
+                                                                                        <textarea type="text"  formControlName="description2" class="form-control"
                                                                                             placeholder="Enter Cheque/DD Date" [ngClass]="{ 'is-invalid': submitted && f8.description2.errors }"></textarea>
                                                                                         <div *ngIf="submitted && f8.description2.errors" class="invalid-feedback">
                                                                                             <div *ngIf="f8.description2.errors.required">
@@ -1410,22 +1410,22 @@
                                                     </div>
                                                 </div>
                                             </div>
-    
+
                                             <div class="text-right">
                                                 <button class="btn-hover btn-border-radius color-10"
                                                     awPreviousStep>Back</button>
                                                 <button class="btn-hover btn-border-radius color-5" (click)="complete()">Finish</button>
                                             </div>
-    
+
                                         </div>
                                     </aw-wizard-step>
                                 </aw-wizard>
-    
+
                             </div>
                         </div>
                     </div>
                 </div>
-    
+
      <!-- Add form - QualificationDeatils-->
     <div class="modal fade" id="addModalqd" tabindex="-1" role="dialog" aria-labelledby="formModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -1445,7 +1445,7 @@
                                         <label>Qualification Type</label>
                                         <div class="form-line">
                                             <select class="browser-default form-control" id="select14" [formControl]="qualificationType" required>
-                                                <option value="">Choose your QualificationType</option>
+                                                <option >Choose your QualificationType</option>
                                                 <option *ngFor="let qualificationType of qualificationTypes?.response" [value]="qualificationType._id">
                                                     {{qualificationType?.qualificationType}}</option>
                                             </select>
@@ -1456,7 +1456,7 @@
                                         <div class="form-line">
                                             <select class="browser-default" id="select16" [formControl]="institutionType" name="institutionType"
                                                 class="form-control" required>
-                                                <option value="">Choose your InstitutionType</option>
+                                                <option >Choose your InstitutionType</option>
                                                 <option *ngFor="let institutionType of institutionTypes?.response" [value]="institutionType._id">
                                                     {{institutionType?.institutionType}}
                                                 </option>
@@ -1468,7 +1468,7 @@
                                         <div class="form-line">
                                             <select class="browser-default" id="select17" name="medium" [formControl]="medium" class="form-control"
                                                 required>
-                                                <option value="">Choose your Medium</option>
+                                                <option >Choose your Medium</option>
                                                 <option *ngFor="let medium of media?.response" [value]="medium._id">
                                                     {{medium?.medium}}
                                                 </option>
@@ -1478,38 +1478,38 @@
                                     <div class="form-group form-float">
                                         <label>Taluk</label>
                                         <div class="form-line">
-                                            <input type="text" value="" [formControl]="taluk" name="taluk" class="form-control"
+                                            <input type="text"  [formControl]="taluk" name="taluk" class="form-control"
                                                 placeholder="Enter Taluk" required />
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <label>State</label>
                                         <div class="form-line">
-                                            <input type="text" value="" [formControl]="state" name="state" class="form-control"
+                                            <input type="text"  [formControl]="state" name="state" class="form-control"
                                                 placeholder="Enter State" required />
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <label>YearOfPassing</label>
                                         <div class="form-line">
-                                            <input type="text" value="" [formControl]="yearOfPassing" name="yearOfPassing" class="form-control"
+                                            <input type="text"  [formControl]="yearOfPassing" name="yearOfPassing" class="form-control"
                                                 placeholder="Enter yearOfPassing" required />
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <label>MarkObtained</label>
                                         <div class="form-line">
-                                            <input type="text" value="" name="markObtained" [formControl]="markObtained" class="form-control"
+                                            <input type="text"  name="markObtained" [formControl]="markObtained" class="form-control"
                                                 placeholder="Enter markObtained" required />
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <label>Maximum Mark</label>
                                         <div class="form-line">
-                                            <input type="text" value="" name="maxMark" [formControl]="maxMark" class="form-control"
+                                            <input type="text"  name="maxMark" [formControl]="maxMark" class="form-control"
                                                 placeholder="Enter Maximum Mark" required />
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group form-float">
@@ -1517,7 +1517,7 @@
                                         <div class="form-line">
                                             <select class="browser-default" id="select15" [formControl]="courseType" name="courseType"
                                                 class="form-control" required>
-                                                <option value="" selected>Choose your CourseType</option>
+                                                <option  selected>Choose your CourseType</option>
                                                 <option *ngFor="let courseType of coursetypes" [value]="courseType._id">{{courseType?.courseType}}
                                                 </option>
                                             </select>
@@ -1526,31 +1526,31 @@
                                     <div class="form-group form-float">
                                         <label>School/College</label>
                                         <div class="form-line">
-                                            <input type="text" value="" name="schoolCollege" [formControl]="schoolCollege" class="form-control"
+                                            <input type="text"  name="schoolCollege" [formControl]="schoolCollege" class="form-control"
                                                 placeholder="Enter School/College" required />
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <label>City</label>
                                         <div class="form-line">
-                                            <input type="text" value="" [formControl]="city" name="city" class="form-control" placeholder="Enter City"
+                                            <input type="text"  [formControl]="city" name="city" class="form-control" placeholder="Enter City"
                                                 required />
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <label>District</label>
                                         <div class="form-line">
-                                            <input type="text" value="" [formControl]="district" name="district" class="form-control"
+                                            <input type="text"  [formControl]="district" name="district" class="form-control"
                                                 placeholder="Enter AddressType" required />
-                                
+
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <label>Country</label>
                                         <div class="form-line">
-                                            <input type="text" value="" [formControl]="country" name="country" class="form-control"
+                                            <input type="text"  [formControl]="country" name="country" class="form-control"
                                                 placeholder="Enter AddressType" required />
-                                
+
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
@@ -1558,7 +1558,7 @@
                                         <div class="form-line">
                                             <select class="browser-default" id="select18" name="organisationType" [formControl]="organisationType"
                                                 class="form-control" required>
-                                                <option value="">Choose your organisationType</option>
+                                                <option >Choose your organisationType</option>
                                                 <option value="Private">Private </option>
                                                 <option value="Govt"> Goverment </option>
                                             </select>
@@ -1567,7 +1567,7 @@
                                     <div class="form-group form-float">
                                         <label>Percentage</label>
                                         <div class="form-line">
-                                            <input type="text" value="" name="percentage" [formControl]="percentage" class="form-control"
+                                            <input type="text"  name="percentage" [formControl]="percentage" class="form-control"
                                                 placeholder="Enter Percentage" required />
                                         </div>
                                     </div>
@@ -1596,4 +1596,3 @@
                                     <button type="button" class="btn btn-danger waves-effect"
                                         data-dismiss="modal">Cancel</button>
                                 </div>
-                       
