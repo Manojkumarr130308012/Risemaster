@@ -36,7 +36,7 @@
                                   placeholder="Enter institution"
                                   [ngClass]="{ 'is-invalid': submitted && f.institution.errors }">
 
-                                  <option value="" disabled selected>Choose your
+                                  <option  disabled selected>Choose your
                                     institution</option>
                                   <option *ngFor="let institution of institutions" [value]="institution._id">
                                     {{institution?.institution_name}}</option>
@@ -52,7 +52,7 @@
                             <div class="col-md-12">
                               <div class="form-group">
                                 <label>Admission Category</label>
-                                <input type="text" value="" formControlName="admissionCategory" class="form-control"
+                                <input type="text"  formControlName="admissionCategory" class="form-control"
                                   placeholder="Enter admissionCategory"
                                   [ngClass]="{ 'is-invalid': submitted && f.admissionCategory.errors }" />
                                 <div *ngIf="submitted && f.admissionCategory.errors" class="invalid-feedback">
@@ -131,7 +131,7 @@
                       formControlName="institution2" class="form-control"
                       [ngClass]="{ 'is-invalid': submitted && f2.institution2.errors }">
 
-                      <option value="" disabled selected>Choose your institution</option>
+                      <option  disabled selected>Choose your institution</option>
                       <option *ngFor="let institution of institutions" [value]="institution._id">
                         {{institution?.institution_name}}</option>
                     </select>
@@ -144,7 +144,7 @@
 
                   <div class="form-group">
                     <label>Admission Category</label>
-                    <input type="text" value="" formControlName="admissionCategory2" class="form-control"
+                    <input type="text"  formControlName="admissionCategory2" class="form-control"
                       placeholder="Enter admissionCategory"
                       [ngClass]="{ 'is-invalid': submitted && f2.admissionCategory2.errors }" />
                     <div *ngIf="submitted && f2.admissionCategory2.errors" class="invalid-feedback">

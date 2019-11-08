@@ -26,7 +26,7 @@
                                     <div class="row clearfix">
                                         <div class="col-md-3">
                                             <label  for="institution">Institution</label>
-                                            <select  id="select" [(ngModel)]="selectedinstitution" class="browser-default form-control"
+                                            <select  id="selectInstitution" [(ngModel)]="selectedinstitution" class="browser-default form-control"
                                                 (change)="onInstitutionChange($event.target.value)">
                                                 <option>Choose your institution</option>
                                                 <option  *ngFor="let institution of institutions" [value]="institution._id">{{institution.institution_name}}</option>
@@ -34,7 +34,7 @@
                                         </div>
                                         <div class="col-md-3">
                                             <label for="department">Department</label>
-                                            <select id="select2" [(ngModel)]="selectedDepartment" class="browser-default form-control"
+                                            <select id="selectDepartment" [(ngModel)]="selectedDepartment" class="browser-default form-control"
                                             (change)="onDepartmentChange($event.target.value)">
                                                 <option>Choose your Department</option>
                                                 <option *ngFor="let department of departments?.response"
@@ -62,6 +62,7 @@
                                             <th>Code</th>
                                             <th>Name</th>
                                             <th>Department</th>
+                                            <th>Institution</th>
                                             <th>Designation</th>
                                             <th>Staff Role</th>
                                             <th>Gender</th>
@@ -74,8 +75,9 @@
                                                 <td>{{i +1 }}</td>
                                                 <td><img src="{{staffprofile?.photoLocation}}" width="100px"></td>
                                                 <td>{{staffprofile?.staffCode}}</td>
-                                                <td>{{staffprofile?.lastName}}</td>
+                                                <td>{{staffprofile?.firstName}}</td>
                                                 <td>{{staffprofile.DepartmentDetails[0].department}}</td>
+                                                <td>{{staffprofile?.InstitutionDetails[0].institution_name}}</td>
                                                 <td>{{staffprofile?.designation}}</td>
                                                 <td>{{staffprofile.StaffRoleDetails[0].staffrole}}</td>
                                                 <td>{{staffprofile.GenderDetails[0].gender}}</td>
@@ -113,7 +115,7 @@
                                     <div class="form-group form-float">
                                     <label  for="institution">Institution</label>
                                     <div class="form-line">
-                                    <select  id="select3" [(ngModel)]="selectedinstitution2" class="browser-default form-control"
+                                    <select  id="select" [(ngModel)]="selectedinstitution2" class="browser-default form-control"
                                         (change)="onInstitutionChange($event.target.value)" [formControl]="institution" required>
                                         <option>Choose your institution</option>
                                         <option  *ngFor="let institution of institutions" [value]="institution._id">{{institution.institution_name}}</option>
@@ -124,7 +126,7 @@
                                     <div class="form-group form-float">
                                     <label for="department">Department</label>
                                     <div class="form-line">
-                                    <select id="select4" name="department" [(ngModel)]="selectedDepartment2" class="browser-default form-control"
+                                    <select id="selectDepartment2" name="selectedDepartment2" [(ngModel)]="selectedDepartment2" class="browser-default form-control"
                                     (change)="onDepartmentChange($event.target.value)" [formControl]="department" required>
                                         <option>Choose your Department</option>
                                         <option *ngFor="let department of departments?.response"
@@ -163,7 +165,7 @@
                                         <div class="form-group form-float">
                                             <label for="stafftype">Choose Staff Type</label>
                                             <div class="form-line">
-                                                <select id="select" name="stafftype" [(ngModel)]="selectedstafftype"
+                                                <select id="selectStafftype" name="stafftype" [(ngModel)]="selectedstafftype"
                                                     class="browser-default form-control" [formControl]="stafftype" required>
                                                     <option>Choose your Staff Type</option>
                                                     <option *ngFor="let stafftype of stafftypes?.response" [value]="stafftype._id">
@@ -177,7 +179,7 @@
                                             <div class="form-group form-float">
                                                 <label for="staffrole">Choose Staff Role</label>
                                                 <div class="form-line">
-                                                    <select id="select" name="staffrole" [(ngModel)]="selectedstaffrole"
+                                                    <select id="selectStaffrole" name="staffrole" [(ngModel)]="selectedstaffrole"
                                                         class="browser-default form-control" [formControl]="staffrole" required>
                                                         <option>Choose your Staff Role</option>
                                                         <option *ngFor="let staffrole of staffroles?.response" [value]="staffrole._id">
@@ -192,7 +194,7 @@
                                                 <div class="form-group form-float">
                                                     <label for="gender">Choose Gender</label>
                                                     <div class="form-line">
-                                                        <select id="select" name="gender" [(ngModel)]="selectedgender"
+                                                        <select id="selectGender" name="gender" [(ngModel)]="selectedgender"
                                                             class="browser-default form-control" [formControl]="gender" required>
                                                             <option>Choose your Gender</option>
                                                             <option *ngFor="let gender of genders?.response" [value]="gender._id">
@@ -205,7 +207,7 @@
                                         <div class="form-group form-float">
                                             <label for="salutation">Choose Salutation</label>
                                             <div class="form-line">
-                                                <select id="select" name="salutation" [(ngModel)]="selectedsalutation"
+                                                <select id="selectSalutation" name="salutation" [(ngModel)]="selectedsalutation"
                                                     class="browser-default form-control" [formControl]="salutation" required>
                                                     <option>Choose your Salutation</option>
                                                     <option *ngFor="let salutation of salutations?.response" [value]="salutation._id">
@@ -285,7 +287,7 @@
                                         <div class="form-group form-float">
                                             <label for="paytype">Choose Pay Type</label>
                                             <div class="form-line">
-                                                <select id="select" name="paytype" [(ngModel)]="selectedpaytype"
+                                                <select id="selectpaytype" name="paytype" [(ngModel)]="selectedpaytype"
                                                     class="browser-default form-control" [formControl]="paytype" required>
                                                     <option>Choose your Pay Type</option>
                                                     <option *ngFor="let paytype of paytypes?.response" [value]="paytype._id">
@@ -329,7 +331,7 @@
                                         <div class="form-group form-float">
                                             <label for="maritalstatus">Choose Marital Status</label>
                                             <div class="form-line">
-                                                <select id="select" name="maritalstatus" [(ngModel)]="selectedmaritalstatus"
+                                                <select id="selectmaritalstatus" name="maritalstatus" [(ngModel)]="selectedmaritalstatus"
                                                     class="browser-default form-control" [formControl]="maritalstatus" required>
                                                     <option>Choose your Marital Status</option>
                                                     <option *ngFor="let maritalstatus of maritalstatuses?.response" [value]="maritalstatus._id">
@@ -342,7 +344,7 @@
                                         <div class="form-group form-float">
                                             <label for="bloodgroup">Choose Blood Group</label>
                                             <div class="form-line">
-                                                <select id="select" name="bloodgroup" [(ngModel)]="selectedbloodgroup"
+                                                <select id="selectbloodgroup" name="bloodgroup" [(ngModel)]="selectedbloodgroup"
                                                     class="browser-default form-control" [formControl]="bloodgroup" required>
                                                     <option>Choose your Blood Group</option>
                                                     <option *ngFor="let bloodgroup of bloodgroups?.response" [value]="bloodgroup._id">

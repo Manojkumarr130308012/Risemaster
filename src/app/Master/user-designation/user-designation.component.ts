@@ -87,8 +87,8 @@ export class UserDesignationComponent implements OnInit {
         this.loadModal();
       }
 
-      // this.designationId.value="";
-      // this.designationName.value="";
+      // this.designationId.;
+      // this.designationName.;
       // this.message ="";
 
     }, (error) => {
@@ -109,7 +109,7 @@ export class UserDesignationComponent implements OnInit {
         designationId: this.designationId2.value,
         designationName: this.designationName2.value
       };
-     
+
       this.request.updateDesignation(this.IdValue, editedDesignation).subscribe((response: any) => {
 
         if (response.status == 'success') {
@@ -179,7 +179,7 @@ export class UserDesignationComponent implements OnInit {
     this.viewDesignation();
 
     this.designationId = new FormControl('', Validators.required);
-    
+
     this.designationName = new FormControl('', Validators.required);
     this.designationName2 = new FormControl('', Validators.required);
     this.designationId2 = new FormControl('', Validators.required);

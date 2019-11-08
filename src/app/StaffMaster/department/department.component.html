@@ -75,7 +75,7 @@
                 <select class="browser-default" id="select" [(ngModel)]="selectedinstitution"
                   formControlName="institution" class="form-control" placeholder="Enter institution"
                   [ngClass]="{ 'is-invalid': submitted && f.institution.errors }">
-                  <option value="">Choose your institution</option>
+                  <option >Choose your institution</option>
                   <option *ngFor="let institution of institutions" [value]="institution._id">
                     {{institution?.institution_name}}</option>
                 </select>
@@ -123,7 +123,7 @@
               <select id="select2" [(ngModel)]="selectedinstitution2"
                 class="browser-default form-control" formControlName="institution2"
                 [ngClass]="{ 'is-invalid': submitted && f2.institution2.errors }">
-                <option value="">Choose your institution</option>
+                <option >Choose your institution</option>
                 <option *ngFor="let institution of institutions" [value]="institution._id">
                   {{institution.institution_name}}</option>
               </select>

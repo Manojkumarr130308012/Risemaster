@@ -100,6 +100,7 @@ export class StaffDetailsComponent implements OnInit {
   addContactForm: FormGroup;
   editContactForm: FormGroup;
   submitted = false;
+
   addressType: any;
   address1: any;
   address2:any;
@@ -108,9 +109,11 @@ export class StaffDetailsComponent implements OnInit {
   state: any;
   country: any;
   pin: any;
+
   addressTypes;
   staffcontacts;
   addresstypes: any;
+
   editContact: any;
   addressTypeValue: any;
   address1Value: any;
@@ -509,6 +512,11 @@ this.editCourseForm = this.formBuilder.group({
     });
   }
   updateStaffProfile() {
+    if (this.staffCode2.value != '' && this.stafftype2.value != '' && this.staffrole2.value !='' &&
+    this.salutation2.value !="" && this.firstName2.value != '' && this.lastName2.value!='' && this.designation2.value!='' &&
+    this.doj2.value !='' &&  this.gender2.value!='' && this.dob2.value !='' && this.employeeCode2.value !='' && this.paytype2.value !=''
+    && this.emailId2.value !='' && this.mobileNo2.value !='' && this.emergencyNo2.value !='' && this.maritalstatus2.value !='' && this.bloodgroup2.value !='') {
+
     const staffprofile = {
       staffCode: this.staffCode2.value,
       stafftype: this.stafftype2.value,
@@ -546,6 +554,7 @@ this.editCourseForm = this.formBuilder.group({
       this.setMessage(err);
     });
   }
+  }
 
   private loadModal() {
 
@@ -569,7 +578,7 @@ this.editCourseForm = this.formBuilder.group({
     })
   }
 
-  // Contact Form 
+  // Contact Form
   loadAddressType() {
     this.request.getAddressType().subscribe((response: any) => {
       console.log(response);
@@ -632,8 +641,8 @@ onAddContact() {
 
   onEditContact(id: any){
     console.log('conid', id);
-    this.request.fetchStaffContactById(id).subscribe((response) => {     
-      this.editContact=response[0];     
+    this.request.fetchStaffContactById(id).subscribe((response) => {
+      this.editContact=response[0];
       console.log(response);
           this.addressTypeValue=this.editContact.addressType;
           this.address1Value=this.editContact.address1;
@@ -644,8 +653,8 @@ onAddContact() {
           this.countryValue=this.editContact.country;
           this.pinValue=this.editContact.pin;
           this.IdValue2=this.editContact._id;
-      
-          
+
+
       this.editContactForm = this.formBuilder.group({
         addressType:[this.addressTypeValue, Validators.required],
         address1:[this.address1Value, Validators.required],
@@ -668,14 +677,14 @@ onAddContact() {
       console.log('edit',this.IdValue2);
   this.request.updateStaffContact(this.IdValue2,this.editContactForm.value).subscribe((res : any) => {
     if (res.status == 'success') {
-      swal("Updated Sucessfully");     
+      swal("Updated Sucessfully");
       this.loadStaffContact();
       this.viewStaffContactById(this.id);
     }
-    else if (res.status == 'error') {       
+    else if (res.status == 'error') {
       this.setMessage(res.error);
-    }      
-   
+    }
+
   }, (error) => {
     console.log(error);
     this.setMessage(error);
@@ -697,7 +706,7 @@ private loadStaffContact(){
 });
 }
 
-// Identity Form 
+// Identity Form
 
   viewStaffIdentityById(id : string) {
     if (id){
@@ -750,8 +759,8 @@ onAddIdentity() {
 
 onEditIdentity(id: any){
   console.log('idnyid', id);
-  this.request.fetchStaffIdentityById(id).subscribe((response) => {     
-    this.editIdentity=response[0];     
+  this.request.fetchStaffIdentityById(id).subscribe((response) => {
+    this.editIdentity=response[0];
     console.log(response);
         this.identityTypeValue=this.editIdentity.identityType;
         this.identityValueValue=this.editIdentity.identityValue;
@@ -759,7 +768,7 @@ onEditIdentity(id: any){
         this.validFromValue=this.editIdentity.validFrom;
         this.validToValue=this.editIdentity.validTo;
         this.IdValue3=this.editIdentity._id;
-      
+
     this.editIdentityForm = this.formBuilder.group({
       identityType:[this.identityTypeValue, Validators.required],
       identityValue:[this.identityValueValue, Validators.required],
@@ -779,14 +788,14 @@ onEditIdentitySubmit() {
 this.request.updateStaffIdentity(this.IdValue3,this.editIdentityForm.value).subscribe((res : any) => {
   console.log('idy', res);
   if (res.status == 'success') {
-    swal("Updated Sucessfully");     
+    swal("Updated Sucessfully");
     this.viewStaffIdentityById(this.id);
     this.loadStaffIdentity();
   }
-  else if (res.status == 'error') {       
+  else if (res.status == 'error') {
     this.setMessage(res.error);
-  }      
- 
+  }
+
 }, (error) => {
   console.log(error);
   this.setMessage(error);
@@ -826,8 +835,8 @@ viewStaffWorkprofile(id: string) {
 onEditWorkProfile(staffprofile){
   console.log(this.id);
     this.request.getStaffProfilebyIdValue(this.id).subscribe((response) => {
-      console.log('data', response);    
-    this.editWorkProfile=response[0];     
+      console.log('data', response);
+    this.editWorkProfile=response[0];
     console.log(response);
         this.staffCodeValue=this.editWorkProfile.staffCode;
         this.employeeCodeValue=this.editWorkProfile.employeeCode;
@@ -839,7 +848,7 @@ onEditWorkProfile(staffprofile){
         this.dorValue=this.editWorkProfile.dor;
         this.reasonValue=this.editWorkProfile.reason;
         this.IdValue=this.editWorkProfile._id;
-      
+
     this.editWorkProfileForm = this.formBuilder.group({
       staffCode:[this.staffCodeValue, Validators.required],
       employeeCode:[this.employeeCodeValue, Validators.required],
@@ -863,14 +872,14 @@ onEditWorkProfileSubmit() {
     this.request.updateStaffWorkProfile(this.IdValue, this.editWorkProfileForm.value).subscribe((res: any) => {
   console.log('wp', res);
   if (res.status == 'success') {
-    swal("Updated Sucessfully");     
+    swal("Updated Sucessfully");
     this.viewStaffWorkprofile(this.id);
     this.loadStaffWorkprofile();
   }
-  else if (res.status == 'error') {       
+  else if (res.status == 'error') {
     this.setMessage(res.error);
-  }      
- 
+  }
+
 }, (error) => {
   console.log(error);
   this.setMessage(error);
@@ -887,7 +896,7 @@ private loadStaffWorkprofile() {
 });
 }
 
-  // Experience Form 
+  // Experience Form
 
   viewStaffExperienceById(id : string) {
     if (id){
@@ -941,8 +950,8 @@ onAddExperience() {
 
 onEditExperience(id: any){
   console.log('expid', id);
-  this.request.fetchStaffExperienceById(id).subscribe((response) => {     
-    this.editExperience=response[0];     
+  this.request.fetchStaffExperienceById(id).subscribe((response) => {
+    this.editExperience=response[0];
     console.log(response);
         this.organizationValue=this.editExperience.organization;
         this.expDesignationValue=this.editExperience.expDesignation;
@@ -951,7 +960,7 @@ onEditExperience(id: any){
         this.fromDateValue=this.editExperience.fromDate;
         this.toDateValue=this.editExperience.toDate;
         this.IdValue4=this.editExperience._id;
-      
+
     this.editExperienceForm = this.formBuilder.group({
       organization:[this.organizationValue, Validators.required],
       expDesignation:[this.expDesignationValue, Validators.required],
@@ -972,14 +981,14 @@ onEditExperienceSubmit() {
 this.request.updateStaffExperience(this.IdValue4,this.editExperienceForm.value).subscribe((res : any) => {
   console.log('idy', res);
   if (res.status == 'success') {
-    swal("Updated Sucessfully");     
+    swal("Updated Sucessfully");
     this.viewStaffExperienceById(this.id);
     this.loadStaffExperience();
   }
-  else if (res.status == 'error') {       
+  else if (res.status == 'error') {
     this.setMessage(res.error);
-  }      
- 
+  }
+
 }, (error) => {
   console.log(error);
   this.setMessage(error);
@@ -1002,7 +1011,7 @@ private loadStaffExperience(){
 });
 }
 
-// Education Form 
+// Education Form
 
 viewStaffEducationById(id : string) {
   if (id){
@@ -1057,8 +1066,8 @@ else if (res.status == 'success') {
 
 onEditEducation(id: any){
 console.log('eduid', id);
-this.request.fetchStaffEducationById(id).subscribe((response) => {     
-  this.editEducation=response[0];     
+this.request.fetchStaffEducationById(id).subscribe((response) => {
+  this.editEducation=response[0];
   console.log(response);
       this.degreeValue=this.editEducation.degree;
       this.specializationValue=this.editEducation.specialization;
@@ -1068,7 +1077,7 @@ this.request.fetchStaffEducationById(id).subscribe((response) => {
       this.modeOfStudyValue=this.editEducation.modeOfStudy;
       this.epercentageValue=this.editEducation.epercentage;
       this.IdValue5=this.editEducation._id;
-    
+
   this.editEducationForm = this.formBuilder.group({
     degree:[this.degreeValue, Validators.required],
     specialization:[this.specializationValue, Validators.required],
@@ -1090,13 +1099,13 @@ if (this.editEducationForm.invalid) {
 this.request.updateStaffEducation(this.IdValue5,this.editEducationForm.value).subscribe((res : any) => {
 console.log('edu', res);
 if (res.status == 'success') {
-  swal("Updated Sucessfully");     
+  swal("Updated Sucessfully");
   this.viewStaffEducationById(this.id);
   this.loadStaffEducation();
 }
-else if (res.status == 'error') {       
+else if (res.status == 'error') {
   this.setMessage(res.error);
-}      
+}
 
 }, (error) => {
 console.log(error);
@@ -1120,7 +1129,7 @@ $(this).find('form').trigger('reset');
 });
 }
 
-// Course Form 
+// Course Form
 
 viewStaffCourseById(id : string) {
   if (id){
@@ -1176,8 +1185,8 @@ else if (res.status == 'success') {
 
 onEditCourse(id: any){
 console.log('couid', id);
-this.request.fetchStaffCourseById(id).subscribe((response) => {     
-  this.editCourse=response[0];     
+this.request.fetchStaffCourseById(id).subscribe((response) => {
+  this.editCourse=response[0];
   console.log(response);
       this.courseTypeValue=this.editCourse.courseType;
       this.cInstitutionTypeValue=this.editCourse.cInstitutionType;
@@ -1188,7 +1197,7 @@ this.request.fetchStaffCourseById(id).subscribe((response) => {
       this.cyopValue=this.editCourse.cyop;
       this.cpercentageValue=this.editCourse.cpercentage;
       this.IdValue6=this.editCourse._id;
-    
+
   this.editCourseForm = this.formBuilder.group({
     courseType:[this.courseTypeValue, Validators.required],
     cInstitutionType:[this.cInstitutionTypeValue, Validators.required],
@@ -1211,13 +1220,13 @@ if (this.editCourseForm.invalid) {
 this.request.updateStaffCourse(this.IdValue6,this.editCourseForm.value).subscribe((res : any) => {
 console.log('cou', res);
 if (res.status == 'success') {
-  swal("Updated Sucessfully");     
+  swal("Updated Sucessfully");
   this.viewStaffCourseById(this.id);
   this.loadStaffCourse();
 }
-else if (res.status == 'error') {       
+else if (res.status == 'error') {
   this.setMessage(res.error);
-}      
+}
 
 }, (error) => {
 console.log(error);

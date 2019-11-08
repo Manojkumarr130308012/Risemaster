@@ -268,7 +268,7 @@ export class CEEditFormComponent implements OnInit {
   basicdetails1: any;
   modeOfEnquiries: any;
   feetypes: any;
-  
+
   constructor(
     private request: RequestService,
     private router: Router,
@@ -279,7 +279,7 @@ export class CEEditFormComponent implements OnInit {
       this.canId = params.id;
     });
    this.id = this.canId;
-    // Edit Form - BasicDetail 
+    // Edit Form - BasicDetail
     this.firstName = new FormControl('', Validators.required);
     this.lastName = new FormControl('', Validators.required);
     this.dob = new FormControl('', Validators.required);
@@ -328,7 +328,7 @@ export class CEEditFormComponent implements OnInit {
 
 
 
-   //add Form Group - addressDetails 
+   //add Form Group - addressDetails
    this.addressAddForm = this.formBuilder.group({
     addresstype: ['', Validators.required],
     flatNo: ['', Validators.required],
@@ -340,7 +340,7 @@ export class CEEditFormComponent implements OnInit {
     state: ['', Validators.required],
     country: ['', Validators.required],
   });
-  // Edit Form Group - addressDetails 
+  // Edit Form Group - addressDetails
   this.addressEditForm = this.formBuilder.group({
     addresstype3: ['', Validators.required],
     flatNo3: ['', Validators.required],
@@ -390,7 +390,7 @@ export class CEEditFormComponent implements OnInit {
   this.organisationType2 = new FormControl('', Validators.required);
   this.photoLocation2 = new FormControl('', Validators.required);
 
-  //add Form Group - addressDetails 
+  //add Form Group - addressDetails
   this.paymentAddForm = this.formBuilder.group({
     paymentDate: ['', Validators.required],
     paymentmethod: ['', Validators.required],
@@ -400,7 +400,7 @@ export class CEEditFormComponent implements OnInit {
     advanceFeeType: ['', Validators.required],
     amount: ['', Validators.required],
   });
-  // Edit Form Group - addressDetails 
+  // Edit Form Group - addressDetails
   this.paymentEditForm = this.formBuilder.group({
     paymentDate2: ['', Validators.required],
     paymentmethod2: ['', Validators.required],
@@ -418,7 +418,7 @@ export class CEEditFormComponent implements OnInit {
     nextEnquiryDate: ['', Validators.required],
     nextEnquiryTime: ['', Validators.required],
   });
-  
+
   //Edit Form Group - FollowUps
   this.followupseditform = this.formBuilder.group({
     dateOfEnquiry2: ['', Validators.required],
@@ -435,7 +435,7 @@ export class CEEditFormComponent implements OnInit {
   filesubmit() {
     this.uploader2.uploadAll();
   }
-  // Error Message 
+  // Error Message
   public setMessage(message) {
     return this.message = message;
   }
@@ -443,7 +443,7 @@ export class CEEditFormComponent implements OnInit {
     this.Id = this.canId;
   this.request.fetchBasicDetailsById(this.Id).subscribe((response) => {
   this.editbasicDetails = response[0];
-  console.log(this.editbasicDetails);
+  console.log('fetchBasicDetailsById',this.editbasicDetails);
   this.firstNameValue = this.editbasicDetails.firstName;
   this.lastNameValue = this.editbasicDetails.lastName;
   this.dobValue = this.editbasicDetails.dob;
@@ -483,7 +483,7 @@ export class CEEditFormComponent implements OnInit {
   this.relativeNameValue = this.editbasicDetails.relativeName;
   this.sPhotoValue = this.editbasicDetails.sPhoto;
   this.IdValue = this.editbasicDetails._id;
-  
+
 
   this.firstName = new FormControl(this.firstNameValue, Validators.required);
   this.lastName = new FormControl(this.lastNameValue, Validators.required);
@@ -568,19 +568,19 @@ export class CEEditFormComponent implements OnInit {
       };
       this.request.updateBasicDetails(this.IdValue, edata).subscribe((response: any) => {
         if (response.status == 'success') {
-          swal("Updated Sucessfully");        
+          swal("Updated Sucessfully");
           this.viewData(this.id);
         }
-        else if (response.status == 'error') {       
+        else if (response.status == 'error') {
           this.setMessage(response.error);
           console.log(response.error);
-        }      
-       
+        }
+
       }, (error) => {
         console.log(error);
         this.setMessage(error);
       });
-    
+
   }
   // To display the BasicDetails Data
   // viewData() {
@@ -590,7 +590,7 @@ export class CEEditFormComponent implements OnInit {
   //   }, (error) => {
   //     console.log(error);
   //   });
-  // } 
+  // }
   viewData(id) {
     this.request.fetchBasicDetailsById(id).subscribe((response: any) => {
       this.basicdetails = response;
@@ -605,13 +605,13 @@ export class CEEditFormComponent implements OnInit {
 
 //Add CourseProgram
 addCEcourseProgram() {
-  const newcourseProgram = {  
+  const newcourseProgram = {
     coursecategory: this.coursecategory.value,
     courseprogram:this.courseprogram.value,
     canId: this.canId
   };
   this.request.addCEcourseprogram(newcourseProgram).subscribe((response: any) => {
-    console.log(response);  
+    console.log(response);
       swal("Added Sucessfully");
       this.viewCEcourseprogram(this.canId);
   }, (error) => {
@@ -634,7 +634,7 @@ this.cecourseprograms = null;
 //Delete courseProgram
 deleteCEcourseProgram(id: any) {
   this.request.deleteCEcourseprogram(id).subscribe(res => {
-  swal(" Deleted Successfully "); 
+  swal(" Deleted Successfully ");
   this.viewCEcourseprogram(this.canId);
   });
   }
@@ -662,7 +662,7 @@ addaddressdetails() {
   this.request.addAddressDetails(newAddress).subscribe((res: any) => {
     if(res.status == "success") {
       console.log(newAddress);
-      swal("Added Sucessfully");  
+      swal("Added Sucessfully");
       this.viewAddressData(this.canId);
       this.loadModal();
     }else if (res.status == "error") {
@@ -672,7 +672,7 @@ addaddressdetails() {
 console.log(error);
 this.setMessage(error);
    });
-    
+
  }
  // View the address Details
  viewAddressData(canId) {
@@ -704,7 +704,7 @@ this.addressdetails = null;
         this.stateValue = this.editaddressDetailsdata.state;
         this.countryValue = this.editaddressDetailsdata.country;
         this.IdValue = this.editaddressDetailsdata._id;
-  
+
         this.addressEditForm = this.formBuilder.group({
           addresstype3: [this.addressTypeValue, Validators.required],
           flatNo3: [this.flatNoValue, Validators.required],
@@ -738,24 +738,24 @@ this.addressdetails = null;
       };
       this.request.updateAddressDetails(this.IdValue, edata).subscribe((response: any) => {
         if (response.status == "success") {
-          swal("Updated Sucessfully");       
+          swal("Updated Sucessfully");
           this.viewAddressData(this.canId);
          this.loadModal();
         }
-        else if (response.status == "error") {       
+        else if (response.status == "error") {
           this.setMessage(response.error);
-        }      
-       
+        }
+
       }, (error) => {
         console.log(error);
         this.setMessage(error);
       });
-    
+
           }
        //To delete the addressdetails data
 deleteAddressDetails(id: any) {
   this.request.deleteAddressDetails(id).subscribe(res => {
-  swal(" Deleted Successfully "); 
+  swal(" Deleted Successfully ");
   this.viewAddressData(this.canId);
   });
   }
@@ -833,7 +833,7 @@ this.qualificationdetails = null;
     this.organisationTypeValue = this.editqdDetailsdata.organisationType;
     this.photoLocationValue = this.editqdDetailsdata.photoLocation;
     this.IdValue = this.editqdDetailsdata._id;
-  
+
     this.qualificationType2 = new FormControl(this.qualificationTypeValue, Validators.required);
     this.courseType2 = new FormControl(this.courseTypeValue, Validators.required);
     this.institutionType2 = new FormControl(this.institutionTypeValue, Validators.required);
@@ -850,7 +850,7 @@ this.qualificationdetails = null;
     this.percentage2 = new FormControl(this.percentageValue, Validators.required);
     this.organisationType2 = new FormControl(this.organisationTypeValue, Validators.required);
     this.photoLocation2 = new FormControl(this.photoLocationValue, Validators.required);
-    
+
     });
     }
     // convenience getter for easy access to form fields
@@ -911,7 +911,7 @@ addpaymentdetails() {
   if (this.paymentAddForm.invalid) {
     return;
     }
-   
+
    let newpaymentdetails ={
     paymentDate: this.paymentAddForm.get('paymentDate').value,
     paymentmethod: this.paymentAddForm.get('paymentmethod').value,
@@ -927,7 +927,7 @@ addpaymentdetails() {
       this.setMessage(res.error);
     }
     else if (res.status == "success") {
-      
+
       swal("Added Sucessfully");
       this.viewPaymentData(this.canId);
       this.loadModal();
@@ -948,7 +948,7 @@ viewPaymentData(canId) {
 } else
 this.paymentdetails = null;
 }
- 
+
 // convenience getter for easy access to form fields
 get f6() { return this.paymentEditForm.controls; }
 //Edit Function -addressDetails
@@ -995,15 +995,15 @@ onEditPaymentSubmit() {
   };
   this.request.updatePaymentDetails(this.IdValue, edata).subscribe((response: any) => {
     if (response.status == "success") {
-      swal("Updated Sucessfully");       
-      
+      swal("Updated Sucessfully");
+
       this.viewPaymentData(this.canId);
      this.loadModal();
     }
-    else if (response.status == "error") {       
+    else if (response.status == "error") {
       this.setMessage(response.error);
-    }      
-   
+    }
+
   }, (error) => {
     console.log(error);
     this.setMessage(error);
@@ -1013,7 +1013,7 @@ onEditPaymentSubmit() {
      //To delete the paymentdetails data
 deletePaymentDetails(id: any) {
   this.request.deletePaymentDetails(id).subscribe(res => {
-  swal(" Deleted Successfully "); 
+  swal(" Deleted Successfully ");
   this.viewPaymentData(this.canId);
   });
   }
@@ -1033,13 +1033,13 @@ deletePaymentDetails(id: any) {
        nextEnquiryTime: this.followupsaddform.get('nextEnquiryTime').value,
        canId: this.canId
      }
- 
+
    this.request.addFollowups(newfollowups).subscribe((res: any) => {
      if (res.status == 'error') {
        this.setMessage(res.error);
      }
      else if (res.status == 'success') {
-       
+
        swal("Added Sucessfully");
         this.viewFollowupsData(this.canId);
        this.loadModal();
@@ -1075,7 +1075,7 @@ this.followups = null;
      this.nextEnquiryDateValue = this.editfollowupsdata.nextEnquiryDate;
      this.nextEnquiryTimeValue = this.editfollowupsdata.nextEnquiryTime;
      this.IdValue = this.editfollowupsdata._id;
- 
+
      this.followupseditform = this.formBuilder.group({
        dateOfEnquiry2: [this.dateOfEnquiryValue, Validators.required],
        modeOfEnquiry2: [this.modeOfEnquiryValue, Validators.required],
@@ -1101,20 +1101,20 @@ this.followups = null;
    };
    this.request.updateFollowups(this.IdValue, edata).subscribe((response: any) => {
      if (response.status == 'success') {
-       swal("Updated Sucessfully");       
-       
+       swal("Updated Sucessfully");
+
        this.viewFollowupsData(this.canId);
       this.loadModal();
      }
-     else if (response.status == 'error') {       
+     else if (response.status == 'error') {
        this.setMessage(response.error);
-     }      
-    
+     }
+
    }, (error) => {
      console.log(error);
      this.setMessage(error);
    });
- 
+
    }
    //To delete the followups data
    deleteFollowups(id: any) {
@@ -1125,9 +1125,9 @@ this.followups = null;
    }
 
  ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // Filter CourseCategory, AdmissionType, AdmissionCategory by Institution 
+  // Filter CourseCategory, AdmissionType, AdmissionCategory by Institution
   onInstitutionChange(Institution: any) {
-   
+
     if (Institution) {
       this.request.getCoursecategorybyIns(Institution).subscribe((response: any) => {
         console.log('courseCategory', response);
@@ -1391,7 +1391,7 @@ this.followups = null;
     $(this).find('form').trigger('reset');
     })
     }
-    
+
     complete(){
       this.router.navigate(['candidateEnquiry']);
     }

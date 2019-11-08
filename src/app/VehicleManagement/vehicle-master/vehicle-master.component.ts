@@ -17,6 +17,7 @@ export class VehicleMasterComponent implements OnInit {
   registerForm: FormGroup;
   editForm: FormGroup;
   submitted = false;
+
   public institution: any;
   public vehicle: any;
   private vehicles: any;
@@ -34,6 +35,25 @@ export class VehicleMasterComponent implements OnInit {
   public smokeTest: any;
   public serviceKMS: any;
   public notes: any;
+
+  public institution2: any;
+  public vehicle2: any;
+  public vehicleNo2: any;
+  public vanNo2: any;
+  public engineNo2: any;
+  public chasisNo2: any;
+  public ownership2: any;
+  public vehicleValue2: any;
+  public model2: any;
+  public make2: any;
+  public type2: any;
+  public insurance2: any;
+  public fc2: any;
+  public smokeTest2: any;
+  public serviceKMS2: any;
+  public notes2: any;
+
+
   Id: any;
   IdValue: any;
   editVehicle: any;
@@ -82,21 +102,21 @@ export class VehicleMasterComponent implements OnInit {
     });
     // Edit Form
     this.editForm = this.formBuilder.group({
-      institution: ['', Validators.required],
-      vehicleNo: ['', Validators.required],
-      vanNo: ['', Validators.required],
-      engineNo: ['', Validators.required],
-      chasisNo: ['', Validators.required],
-      ownership: ['', Validators.required],
-      vehicleValue: ['', Validators.required],
-      model: ['', Validators.required],
-      make: ['', Validators.required],
-      type: ['', Validators.required],
-      insurance: ['', Validators.required],
-      fc: ['', Validators.required],
-      smokeTest: ['', Validators.required],
-      serviceKMS: ['', Validators.required],
-      notes: ['', Validators.required]
+      institution2: ['', Validators.required],
+      vehicleNo2: ['', Validators.required],
+      vanNo2: ['', Validators.required],
+      engineNo2: ['', Validators.required],
+      chasisNo2: ['', Validators.required],
+      ownership2: ['', Validators.required],
+      vehicleValue2: ['', Validators.required],
+      model2: ['', Validators.required],
+      make2: ['', Validators.required],
+      type2: ['', Validators.required],
+      insurance2: ['', Validators.required],
+      fc2: ['', Validators.required],
+      smokeTest2: ['', Validators.required],
+      serviceKMS2: ['', Validators.required],
+      notes2: ['', Validators.required]
     });
   }
 
@@ -120,7 +140,7 @@ export class VehicleMasterComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-   
+
     this.request.addVehicle(this.registerForm.value).subscribe((res: any) => {
       if (res.status == 'success') {
         swal("Added Sucessfully");
@@ -162,12 +182,16 @@ export class VehicleMasterComponent implements OnInit {
   //  console.log(this.Id);
    // console.log(this.vehicleNo);
     this.router.navigate(['stage-details'], {
-       queryParams: {  
-          // edit: true,      
+       queryParams: {
+          // edit: true,
            id: vehicle._id,
          }
         });
 }
+
+// convenience getter for easy access to form fields
+get f() { return this.registerForm.controls; }
+get f2() { return this.editForm.controls; }
 
   // To edit vehicle
   onEdit(vehicle) {
@@ -193,21 +217,21 @@ export class VehicleMasterComponent implements OnInit {
       this.IdValue = this.editVehicle._id;
 
       this.editForm = this.formBuilder.group({
-        institution: [this.institutionValue, Validators.required],
-        vehicleNo: [this.vehicleNoValue, Validators.required],
-        vanNo: [this.vanNoValue, Validators.required],
-        engineNo: [this.engineNoValue, Validators.required],
-        chasisNo: [this.chasisNoValue, Validators.required],
-        ownership: [this.ownershipValue, Validators.required],
-        vehicleValue: [this.vehicleValueValue, Validators.required],
-        model: [this.modelValue, Validators.required],
-        make: [this.makeValue, Validators.required],
-        type: [this.typeValue, Validators.required],
-        insurance: [this.insuranceValue, Validators.required],
-        fc: [this.fcValue, Validators.required],
-        smokeTest: [this.smokeTestValue, Validators.required],
-        serviceKMS: [this.serviceKMSValue, Validators.required],
-        notes: [this.notesValue, Validators.required]
+        institution2: [this.institutionValue, Validators.required],
+        vehicleNo2: [this.vehicleNoValue, Validators.required],
+        vanNo2: [this.vanNoValue, Validators.required],
+        engineNo2: [this.engineNoValue, Validators.required],
+        chasisNo2: [this.chasisNoValue, Validators.required],
+        ownership2: [this.ownershipValue, Validators.required],
+        vehicleValue2: [this.vehicleValueValue, Validators.required],
+        model2: [this.modelValue, Validators.required],
+        make2: [this.makeValue, Validators.required],
+        type2: [this.typeValue, Validators.required],
+        insurance2: [this.insuranceValue, Validators.required],
+        fc2: [this.fcValue, Validators.required],
+        smokeTest2: [this.smokeTestValue, Validators.required],
+        serviceKMS2: [this.serviceKMSValue, Validators.required],
+        notes2: [this.notesValue, Validators.required]
 
       });
     //  console.log(this.editForm.value);
@@ -219,7 +243,26 @@ export class VehicleMasterComponent implements OnInit {
     if (this.editForm.invalid) {
       return;
     }
-    this.request.updateVehicle(this.IdValue, this.editForm.value).subscribe((res: any) => {
+
+    const edata = {
+      caste: this.editForm.get('institution2').value,
+      vehicleNo: this.editForm.get('vehicleNo2').value,
+      vanNo: this.editForm.get('vanNo2').value,
+      engineNo: this.editForm.get('engineNo2').value,
+      chasisNo: this.editForm.get('chasisNo2').value,
+      ownership: this.editForm.get('ownership2').value,
+      vehicleValue: this.editForm.get('vehicleValue2').value,
+      model: this.editForm.get('model2').value,
+      make: this.editForm.get('make2').value,
+      type: this.editForm.get('type2').value,
+      insurance: this.editForm.get('insurance2').value,
+      fc: this.editForm.get('fc2').value,
+      smokeTest: this.editForm.get('smokeTest2').value,
+      serviceKMS: this.editForm.get('serviceKMS2').value,
+      notes: this.editForm.get('notes2').value,
+  }
+
+    this.request.updateVehicle(this.IdValue, edata).subscribe((res: any) => {
       if (res.status == 'success') {
         swal("Updated Sucessfully");
         this.loadModal();
@@ -235,8 +278,7 @@ export class VehicleMasterComponent implements OnInit {
     });
   }
 
-  // convenience getter for easy access to form fields
-  get f() { return this.registerForm.controls; }
+
 
   async startScript() {
     await this.dynamicScriptLoader.load('dataTables.buttons', 'buttons.flash', 'jszip', 'pdfmake', 'vfs_fonts', 'pdfmake', 'buttons.html5', 'buttons.print', 'form.min').then(data => {

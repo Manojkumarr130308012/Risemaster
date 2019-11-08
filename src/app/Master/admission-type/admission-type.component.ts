@@ -89,7 +89,7 @@ export class AdmissionTypeComponent implements OnInit {
 
 
   // To delete admission type
-  deleteAdmissiontype(id: any) {
+ /*deleteAdmissiontype(id: any) {
     alert("hi");
     console.log(id);
     this.request.deleteAdmissiontype(id).subscribe(res => {
@@ -98,10 +98,10 @@ export class AdmissionTypeComponent implements OnInit {
       console.log('Deleted');
       this.router.navigate(['admission-type']);
     });
-  }
+  }*/
 
   // To edit admission type
-  onEdit(id) {
+  /*onEdit(id) {
     console.log('admissiontype_id',id);
 
     this.request.fetchAdmissiontypeBy(id).subscribe((response) => {
@@ -117,18 +117,27 @@ export class AdmissionTypeComponent implements OnInit {
       });
       console.log(this.editForm.value);
     });
-  }
+  }*/
+
+
   onEditSubmit() {
     this.submitted = true;
-    console.log(this.editForm.value);
-    if (this.editForm.invalid) {
-      return;
+   // console.log('this.editForm.value',this.editForm.value);
+
+    const id= $('#ID').val();
+
+    const updatedData={
+      institution: this.editForm.get("institution2").value,
+      admissiontype: this.editForm.get("admissiontype2").value,
     }
-    this.request.updateAdmissiontype(this.IdValue, this.editForm.value).subscribe((res: any) => {
+    //console.log('updatedData',updatedData);
+
+    this.request.updateAdmissiontype(id, updatedData).subscribe((res: any) => {
       if (res.status == 'success') {
+        this.loadData();
         swal("Updated Sucessfully");
         this.loadModal();
-        this.loadData();
+
       }
       else if (res.status == 'error') {
         this.setMessage(res.error);
@@ -144,15 +153,7 @@ export class AdmissionTypeComponent implements OnInit {
   get f() { return this.registerForm.controls; }
   get f2() { return this.editForm.controls; }
 
-    // To display admission type
-   /* viewData() {
-      this.request.getAdmissiontype().subscribe((response) => {
-        this.admissiontypes = response;
-        console.log('admission',this.admissiontypes);
-      }, (error) => {
-        console.log(error);
-      });
-    }*/
+
 
   async startScript() {
     await this.dynamicScriptLoader.load('dataTables.buttons', 'buttons.flash', 'jszip',  'vfs_fonts', 'pdfmake', 'buttons.html5', 'buttons.print').then(data => {
@@ -165,7 +166,6 @@ export class AdmissionTypeComponent implements OnInit {
 
    console.log('response',response);
     var i=1;
-    //var id = '5d8c62e3e851032c189f6931';
     var table = $('#tableExport').DataTable({
        data: response,
       columns: [
@@ -181,8 +181,6 @@ export class AdmissionTypeComponent implements OnInit {
       }
       ],
 
-      // "defaultContent": "<div class='btn btn-tbl-edit' data-toggle='modal' data-target='#editModal'> <i class='material-icons' (click)='onEdit(data[0])'>create</i></div> <div class='btn btn-tbl-delete'><i class='material-icons' onclick='deleteAdmissiontype('5d8c62e3e851032c189f6931)'>delete</i></div>",
-       // "defaultContent": "<button>Click</button>",
 
       dom: 'Bfrtip',
       buttons: [
@@ -193,18 +191,37 @@ export class AdmissionTypeComponent implements OnInit {
   // Edit button click
   $('#tableExport tbody').on('click', '.btn-tbl-edit', function () {
     let data = table.row($(this).parents('tr')).data();
-    const name = data._id;
-    console.log('Edit',name);
-    //this.onEdit(name);
+
+    const institution = data.institution;
+    const admissiontype = data.admissiontype;
+    const id = data._id;
+   //console.log('Edit _id',id);
+
+    showMyModalSetInput(id,institution,admissiontype);
 
   });
+
+  function showMyModalSetInput(id,institution,admissiontype){
+    $('#institution2').val(institution);
+    $('#admissiontype2').val(admissiontype);
+    $('#ID').val(id);
+    $('#editModal').modal('show');
+
+
+  }
 
   // Delete button click
   $('#tableExport tbody').on('click', '.btn-tbl-delete', function () {
+
     let data = table.row($(this).parents('tr')).data();
-    const name = data._id;
-    console.log('Delete',name)
+    //let data = table.row($(this).parents('tr')).remove().draw(false);
+
+    const id = data._id;
+    console.log('Delete',id);
+
   });
+
+
 
    /* $('#tableExport').on( 'click','button',function(){
 

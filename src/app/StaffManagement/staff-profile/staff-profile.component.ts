@@ -129,11 +129,22 @@ export class StaffProfileComponent implements OnInit {
        this.request.getDetartmentbyIns(Institution).subscribe((response: any) => {
          console.log(response);
          this.departments = response;
+
+
        }, (error) => {
          console.log(error);
        });
-     } else
+     } else{
          this.departments = null;
+    }
+    if (Institution) {
+         this.request.getStaffProfileByIns(Institution).subscribe((response: any) => {
+          console.log('staffbyIns',response);
+         this.staffprofiles = response;
+         }, (error) => {
+          console.log(error);
+        });
+      }
     }
 
     onDepartmentChange(department : string) {
@@ -161,7 +172,7 @@ viewData() {
   });
   }
 
-  viewDepartment(department : string) {
+ /* viewDepartment(department : string) {
     if (department){
       console.log(department);
     this.request.getStaffProfileByDep(department).subscribe((response) => {
@@ -173,7 +184,7 @@ viewData() {
     });
     } else
     this.staffprofiles = null;
-  }
+  }*/
 
   // Bind staff type data
   loadStaffType()  {
@@ -269,7 +280,7 @@ viewData() {
     };
 
 
-this.request.addSaffProfile(newStaffprofile).subscribe((res: any) => {
+this.request.addStaffProfile(newStaffprofile).subscribe((res: any) => {
   if (res.status == 'success') {
     swal("Added Sucessfully");
     this.getfileLoc="";

@@ -11,10 +11,10 @@
                         </div>
                         <div class="body" >
                             </div>
-                    </div> 
+                    </div>
                 </div>
                 <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
-                        <div class="card"> 
+                        <div class="card">
                             <div class="body" *ngFor="let basicdetail of basicdetails">
                                     <div class="row">
                                             <div class="col-md-4">
@@ -29,8 +29,8 @@
                                                 <h6> Admission Category :</h6> {{basicdetail?.admissionCategory[0].admissionCategory}}</div>
                                                 <div class="col-md-4">
                                                 <h6> Admission Type :</h6> {{basicdetail?.admissiontype[0].admissiontype}}</div>
-    
-                                            </div> 
+
+                                            </div>
                                         </div>
                             </div>
                         </div>
@@ -43,9 +43,9 @@
                                                 <div class="form-group form-float">
                                                     <label>Degree Program</label>
                                                     <div class="form-line">
-                                                        <select class="browser-default" id="select15" [formControl]="degree" name="degree" 
+                                                        <select class="browser-default" id="select15" [formControl]="degree" name="degree"
                                                         (change)="onDegreeChange($event.target.value)" class="form-control" required>
-                                                            <option value="">Choose your Degree</option>
+                                                            <option >Choose your Degree</option>
                                                             <option *ngFor="let degree of degrees?.response" [value]="degree._id">{{degree?.degree}}
                                                             </option>
                                                         </select>
@@ -58,7 +58,7 @@
                                                     <div class="form-line">
                                                         <select class="browser-default" id="select15" [formControl]="batch" name="batch" class="form-control"
                                                             required>
-                                                            <option value="">Choose your Batch</option>
+                                                            <option >Choose your Batch</option>
                                                             <option *ngFor="let batch of batcheByDegrees?.response" [value]="batch._id">{{batch?.batch}}
                                                             </option>
                                                         </select>
@@ -79,7 +79,7 @@
                                                     <label>Language Subject</label>
                                                     <div class="form-line">
                                                         <select class="browser-default" id="select21" formControlName="languageSubject" class="form-control">
-                                                            <option value="">Choose your Language Subject</option>
+                                                            <option >Choose your Language Subject</option>
                                                             <option value="Tamil">Tamil</option>
                                                             <option value="English">English</option>
                                                             <option value="Telugu">Telugu</option>
@@ -94,7 +94,7 @@
                                                     <label>Boarding Type</label>
                                                     <div class="form-line">
                                                         <select class="browser-default" id="select18" formControlName="boardingType" class="form-control">
-                                                            <option value="">Choose your BoardingType</option>
+                                                            <option >Choose your BoardingType</option>
                                                             <option value="DayScholler">Day Scholar</option>
                                                             <option value="Hosteller"> Hosteller</option>
                                                         </select>
@@ -104,7 +104,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-check m-l-10  m-t-25">
                                                     <label class="form-check-label">
-                                                        <input formControlName="checkbox1" class="form-check-input" type="checkbox" value="">
+                                                        <input formControlName="checkbox1" class="form-check-input" type="checkbox" >
                                                          is Trasport Needed?
                                                         <span class="form-check-sign">
                                                             <span class="check"></span>
@@ -117,7 +117,7 @@
                                                     <label>Financial Category</label>
                                                     <div class="form-line">
                                                         <select class="browser-default" id="select20" formControlName="financialCategory" class="form-control">
-                                                            <option value="">Choose your Financial Category</option>
+                                                            <option >Choose your Financial Category</option>
                                                             <option value="Self">Self</option>
                                                             <option value="Loan">Loan</option>
                                                             <option value="Sponsor">Sponsor</option>
@@ -140,18 +140,18 @@
                                                     <label>Hostel</label>
                                                     <div class="form-line">
                                                         <select class="browser-default" id="select19" formControlName="hostel" class="form-control">
-                                                            <option value="">Choose your Hostel</option>
+                                                            <option >Choose your Hostel</option>
                                                             <option value="DayScholler">GIRLS HOSTEL</option>
                                                             <option value="Hosteller"> Vellalar Educational Trust Hostel 2 - Girls</option>
                                                         </select>
                                                     </div>
-                                                </div>   
+                                                </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group form-float">
                                                     <label for="rout">Route</label>
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" name="rout" placeholder="Enter Route" 
+                                                        <input type="text" class="form-control" name="rout" placeholder="Enter Route"
                                                         formControlName ="rout" required />
                                                     </div>
                                                 </div>
@@ -164,7 +164,7 @@
                                                         formControlName ="busstop" required />
                                                     </div>
                                                 </div>
-                                            </div> 
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
@@ -172,5 +172,4 @@
                         </div>
                     </div>
             </div>
-    </section>                                      
-    
+    </section>
