@@ -3,11 +3,11 @@ import { RequestService } from 'src/app/services/request.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload';
-
-const url = 'http://localhost:3000/ce-qd-fileupload/fileupload';
+const url = 'http://localhost:3000/ce-qd-fileupload/upload';
 const URL = 'http://localhost:3000/uploadStudentPhoto/upload';
 declare const $: any;
 declare const swal: any;
+
 @Component({
   selector: 'app-ce-edit-form',
   templateUrl: './ce-edit-form.component.html',
@@ -182,11 +182,11 @@ export class CEEditFormComponent implements OnInit {
   qualificationdetails: any;
   admissioncategories: any;
   fileValue: any;
-  public uploader2: FileUploader = new FileUploader({ url: url, itemAlias: 'file' });
+  public uploader2: FileUploader = new FileUploader({ url: url, itemAlias: 'photo' });
   getfileLoc2: any;
-  fileLocation: any;
-  fileLocationValue: any;
-  fileLocation2: FormControl;
+  photoLocation: any;
+  photoLocationValue: any;
+  photoLocation2: FormControl;
   admissionCatgeories: any;
   qdEditForm: any;
   editqualificationDetails: any;
@@ -283,7 +283,7 @@ export class CEEditFormComponent implements OnInit {
     this.firstName = new FormControl('', Validators.required);
     this.lastName = new FormControl('', Validators.required);
     this.dob = new FormControl('', Validators.required);
-    this.gender = new FormControl('', Validators.required);
+    this.gender = new FormControl({value:'', disabled: true});
     this.aadharNo = new FormControl('', Validators.required);
     this.regNo12th = new FormControl('', Validators.required);
     this.mark12th = new FormControl('', Validators.required);
@@ -292,7 +292,7 @@ export class CEEditFormComponent implements OnInit {
     this.fFirstName = new FormControl('', Validators.required);
     this.fLastName = new FormControl('', Validators.required);
     this.fMobileNumber = new FormControl('', Validators.required);
-    this.institution = new FormControl('', Validators.required);
+    this.institution = new FormControl({value:'', disabled: true});
     this.board = new FormControl('', Validators.required);
     this.referenceType = new FormControl('', Validators.required);
     this.referenceBy = new FormControl('', Validators.required);
@@ -370,7 +370,7 @@ export class CEEditFormComponent implements OnInit {
   this.maxMark = new FormControl('', Validators.required);
   this.percentage = new FormControl('', Validators.required);
   this.organisationType = new FormControl('', Validators.required);
-  this.fileLocation = new FormControl('', Validators.required);
+  this.photoLocation = new FormControl('', Validators.required);
 // Edit Form controller - Qualification Details
 
   this.qualificationType2 = new FormControl('', Validators.required);
@@ -388,7 +388,7 @@ export class CEEditFormComponent implements OnInit {
   this.maxMark2 = new FormControl('', Validators.required);
   this.percentage2 = new FormControl('', Validators.required);
   this.organisationType2 = new FormControl('', Validators.required);
-  this.fileLocation2 = new FormControl('', Validators.required);
+  this.photoLocation2 = new FormControl('', Validators.required);
 
   //add Form Group - addressDetails 
   this.paymentAddForm = this.formBuilder.group({
@@ -573,6 +573,7 @@ export class CEEditFormComponent implements OnInit {
         }
         else if (response.status == 'error') {       
           this.setMessage(response.error);
+          console.log(response.error);
         }      
        
       }, (error) => {
@@ -780,13 +781,12 @@ addQualificationDetails() {
       maxMark: this.maxMark.value,
       percentage: this.percentage.value,
       organisationType: this.organisationType.value,
-      fileLocation: this.getfileLoc2,
+      photoLocation: this.getfileLoc2,
       canId: this.canId
     }
   this.request.addQualificationDetails(newQualificationDetail).subscribe((res: any) => {
     if (res.status == "success") {
-   swal("Added Sucessfully");  
-        this.getfileLoc2=""; 
+   swal("Added Sucessfully");
         this.loadModal();
         this.viewQualificationDetails(this.canId);
       }
@@ -831,7 +831,7 @@ this.qualificationdetails = null;
     this.maxMarkValue = this.editqdDetailsdata.maxMark;
     this.percentageValue = this.editqdDetailsdata.percentage;
     this.organisationTypeValue = this.editqdDetailsdata.organisationType;
-    this.fileLocationValue = this.editqdDetailsdata.fileLocation;
+    this.photoLocationValue = this.editqdDetailsdata.photoLocation;
     this.IdValue = this.editqdDetailsdata._id;
   
     this.qualificationType2 = new FormControl(this.qualificationTypeValue, Validators.required);
@@ -849,7 +849,7 @@ this.qualificationdetails = null;
     this.maxMark2 = new FormControl(this.maxMarkValue, Validators.required);
     this.percentage2 = new FormControl(this.percentageValue, Validators.required);
     this.organisationType2 = new FormControl(this.organisationTypeValue, Validators.required);
-    this.fileLocation2 = new FormControl(this.fileLocationValue, Validators.required);
+    this.photoLocation2 = new FormControl(this.photoLocationValue, Validators.required);
     
     });
     }
@@ -876,7 +876,7 @@ this.qualificationdetails = null;
       maxMark: this.maxMark2.value,
       percentage: this.percentage2.value,
       organisationType: this.organisationType2.value,
-      fileLocation: this.getfileLoc2
+      photoLocation: this.getfileLoc2
       };
       this.request.updateQualificationDetails(this.IdValue, edata).subscribe((response: any) => {
         console.log(response);
@@ -1390,7 +1390,6 @@ this.followups = null;
     $('#editFollowupsModal ').on('hidden.bs.modal', function () {
     $(this).find('form').trigger('reset');
     })
-    $(".select2").select2();
     }
     
     complete(){
@@ -1434,6 +1433,12 @@ this.followups = null;
       console.log('ImageUpload:uploaded:', item, status, response);
       const resPath = JSON.parse(response);
       this.getfileLoc = resPath.result;
+    };
+    this.uploader2.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    this.uploader2.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+      console.log('ImageUpload:uploaded:', item, status, response);
+      const resPath = JSON.parse(response);
+     this.getfileLoc2 = resPath.qdFileResult1;
     };
     //jQuery Validation form BasicDetails (Form-Control)
     $(function () {
