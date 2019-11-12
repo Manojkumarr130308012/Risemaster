@@ -1777,4 +1777,66 @@ fetchStudentcontactById(id) {
   this.url = `${this.endPoint}/student-contact/fetchdata?id=` + id;
   return this.http.get(this.url);
 }
+// StudentManagment - studentIdentity
+public getStudentIdentity() {
+  this.url = `${this.endPoint}/student-identity/aggregation`;
+  return this.http.get(this.url);
+}
+
+public addStudentIdentity(newadressdetails: any) {
+  this.url = `${this.endPoint}/student-identity/add`;
+  return this.http.post(this.url, newadressdetails);
+}
+
+public deleteStudentIdentity(id) {
+  this.url = `${this.endPoint}/student-identity/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateStudentIdentity(id, body) {
+  this.url = `${this.endPoint}/student-identity/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchStudentIdentity() {
+  this.url = `${this.endPoint}/student-identity/`;
+  return this.http.get(this.url);
+}
+getStudentIdentityById(id) {
+  this.url = `${this.endPoint}/student-identity/fetchbyId?id=` + id;
+  return this.http.get(this.url);
+}
+fetchStudentIdentityById(id) {
+  this.url = `${this.endPoint}/student-identity/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+// StudentManagment - studentMeedicalInformation
+public getStudentMedical() {
+  this.url = `${this.endPoint}/student-medical/aggregation`;
+  return this.http.get(this.url);
+}
+
+public addStudentMedical(newadressdetails: any) {
+  this.url = `${this.endPoint}/student-medical/add`;
+  return this.http.post(this.url, newadressdetails);
+}
+
+public deleteStudentMedical(id) {
+  this.url = `${this.endPoint}/student-medical/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateStudentMedical(id, body) {
+  this.url = `${this.endPoint}/student-medical/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchStudentMedical() {
+  this.url = `${this.endPoint}/student-medical/`;
+  return this.http.get(this.url);
+}
+getStudentMedicalById(id) {
+  this.url = `${this.endPoint}/student-medical/fetchbyId?id=` + id;
+  return this.http.get(this.url);
+}
+fetchStudentMedicalById(id) {
+  this.url = `${this.endPoint}/student-medical/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
 }
