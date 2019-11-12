@@ -151,22 +151,22 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group form-float">
-                                                                <label for="admissionCategory">Admission Category<span class="asterisk">*</span></label>
-                                                                    <select class="browser-default" id="select3" [formControl]="admissionCategory" class="form-control" required>
-                                                                        <option >Choose your AdmissionCategory </option>
-                                                                        <option *ngFor="let admissionCategory of admissioncategories?.response" [value]="admissionCategory._id">
-                                                                            {{admissionCategory?.admissionCategory}}
-                                                                        </option>
-                                                                    </select>
+                                                                <label for="admissiontype">Admission Type<span class="asterisk">*</span></label>
+                                                                <select class="browser-default" [formControl]="admissiontype" class="form-control" required>
+                                                                    <option>Choose your Admission Type
+                                                                    </option>
+                                                                    <option *ngFor="let admissiontype of admissiontypes?.response" [value]="admissiontype._id">
+                                                                        {{admissiontype?.admissiontype}}</option>
+                                                                </select>
                                                             </div>
                                                             <div class="form-group form-float">
-                                                                <label for="admissiontype">Admission Type<span class="asterisk">*</span></label>
-                                                                    <select class="browser-default" id="select11" [formControl]="admissiontype" class="form-control" required>
-                                                                        <option >Choose your Admission Type
-                                                                        </option>
-                                                                        <option *ngFor="let admissiontype of admissiontypes?.response" [value]="admissiontype._id">
-                                                                            {{admissiontype?.admissiontype}}</option>
-                                                                    </select>
+                                                                <label for="admissionCategory">Admission Category<span class="asterisk">*</span></label>
+                                                                <select class="browser-default" [formControl]="admissionCategory" class="form-control" required>
+                                                                    <option>Choose your AdmissionCategory </option>
+                                                                    <option *ngFor="let admissionCategory of admissioncategories?.response" [value]="admissionCategory._id">
+                                                                        {{admissionCategory?.admissionCategory}}
+                                                                    </option>
+                                                                </select>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="remark">Remark</label>

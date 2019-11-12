@@ -4,60 +4,57 @@
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
-                        <div class="header">       
+                        <div class="header">
                             <h2>
                                 <strong>Student Profile Management</strong>
                             </h2>
                             <div class="header-dropdown m-r--5">
-                                    <!-- Add button -->
-                                        <div class="btn-group m-l-15">
-                                                <button id="addRow" class="btn btn-info" (click)="addNew()">
-                                                    Add New
-                                                    <i class="fa fa-plus" style="color: white"></i>  
-                                                </button>
-                                        </div>
-                                     <!-- Add button -->
+                                <!-- Add button -->
+                                <div class="btn-group m-l-15">
+                                    <button id="addRow" class="btn btn-info" (click)="addNew()">
+                                        Add New
+                                        <i class="fa fa-plus" style="color: white"></i>
+                                    </button>
                                 </div>
+                                <!-- Add button -->
                             </div>
-    
+                        </div>
                             <div class="modal-body">
                                 <div class="body">
                                     <div class="row clearfix">
                                         <div class="col-md-3">
-                                            <label  for="institution">Institution</label>
-                                            <select  id="select" [(ngModel)]="selectedinstitution" class="browser-default form-control">
-                                               <!-- (change)="onInstitutionChange($event.target.value)" -->
+                                            <label for="institution">Institution</label>
+                                            <select id="select" [(ngModel)]="selectedinstitution" class="browser-default form-control">
+                                                <!-- (change)="onInstitutionChange($event.target.value)" -->
                                                 <option>Choose your institution</option>
-                                                <option  *ngFor="let institution of institutions" [value]="institution._id">{{institution.institution_name}}</option>
-                                                </select>        
+                                                <option *ngFor="let institution of institutions" [value]="institution._id">
+                                                    {{institution.institution_name}}</option>
+                                            </select>
                                         </div>
                                         <div class="col-md-3">
                                             <label for="degree">Degree/Program</label>
                                             <select id="select" [(ngModel)]="selectedDegree" class="browser-default form-control"
-                                            (change)="onDegreeChange($event.target.value)">   
+                                                (change)="onDegreeChange($event.target.value)">
                                                 <option>Choose your Degree</option>
-                                                <option *ngFor="let degree of degrees?.response"
-                                                    [value]="degree._id">{{degree?.degree}}</option>
-                                                </select>
-                                        </div> 
+                                                <option *ngFor="let degree of degrees?.response" [value]="degree._id">{{degree?.degree}}</option>
+                                            </select>
+                                        </div>
                                         <div class="col-md-3">
-                                                <label for="batch">Batch</label>
-                                                <select id="select" [(ngModel)]="selectedbatch" class="browser-default form-control">
-                                                    <option>Choose your Batch</option>
-                                                    <option *ngFor="let batch of batcheByDegrees?.response"
-                                                        [value]="batch._id">{{batch?.batch}}</option>
-                                                    </select>
-                                            </div> 
-                                             <div class="col-lg-3 header-dropdown m-r--5">
-                                                    <div class="form-line input-field">
-                                                        <input class="form-control" type="text" name="search" [(ngModel)]="filter"
-                                                            placeholder="Search">
-                                                    </div>
-                                                </div>
+                                            <label for="batch">Batch</label>
+                                            <select id="select" [(ngModel)]="selectedbatch" class="browser-default form-control">
+                                                <option>Choose your Batch</option>
+                                                <option *ngFor="let batch of batcheByDegrees?.response" [value]="batch._id">{{batch?.batch}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-3 header-dropdown m-r--5">
+                                            <div class="form-line input-field">
+                                                <input class="form-control" type="text" name="search" [(ngModel)]="filter" placeholder="Search">
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
                             </div>
-                
                        <div class="body">
                                 <div class="table-responsive">
                                      <table id="tableExport" 
@@ -77,7 +74,7 @@
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let studentdetail of studentDetails; let i=index">
-                                                <td>{{i +1 }}</td> 
+                                                <td>{{i +1 }}</td>
                                                 <td><img src="{{studentdetail?.sPhoto}}" width="100px"></td>
                                                 <td>{{studentdetail?.rollNo}}</td>
                                                 <td>{{studentdetail?.firstName}}{{studentdetail?.lastName}}</td>
@@ -86,9 +83,8 @@
                                                 <td>{{studentdetail.bloodGroup[0].bloodgroup}}</td>
                                                 <td>{{studentdetail?.fmobileNo}}</td>
                                                 <td>
-                                                        <button type="button" (click)="open(studentdetail)"
-                                                        class="btn btn-default">View</button>
-                                                    </td>
+                                                    <button type="button" class="btn btn-default" (click)="open(studentdetail)">View</button>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>

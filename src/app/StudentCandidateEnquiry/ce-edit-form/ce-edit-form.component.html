@@ -35,9 +35,8 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="gender">Gender</label>
-                                                                <select class="form-control" [formControl]="gender"
-                                                                 required>
-                                                                    <option selected>Choose your Gender</option>
+                                                                <select class="form-control" [formControl]="gender" required>
+                                                                    <option>Choose your Gender</option>
                                                                     <option *ngFor="let basicdetail of basicdetails" [value]="basicdetail.genderd[0]._id">{{basicdetail.genderd[0].gender}}</option>
                                                                 </select>
                                                             </div>
@@ -92,20 +91,17 @@
                                                             <div class="form-group form-float">
                                                                 <label for="referenceType">Reference Type</label>
                                                                 <div class="form-line">
-                                                                    <select class="browser-default" id="selectreferenceType" [formControl]="referenceType" name="referenceType"
-                                                                        class="form-control" placeholder="Choose your Reference Type" required>
+                                                                    <select class="browser-default form-control"  [formControl]="referenceType" name="referenceType" required>
                                                                         <option>Choose your ReferenceType</option>
                                                                         <option *ngFor="let  referralType of referralTypes?.response" [value]="referralType._id">
                                                                             {{referralType?.referralType}}</option>
                                                                     </select>
                                                                 </div>
-
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="nationality">Nationality</label>
                                                                 <div class="form-line">
-                                                                  <select class="browser-default" id="selectnationality" [formControl]="nationality" name="nationality"
-                                                                        class="form-control">
+                                                                  <select class="browser-default form-control" [formControl]="nationality" name="nationality">
                                                                         <option>Choose your Nationality</option>
                                                                         <option *ngFor="let nationality of nationalities?.response" [value]="nationality._id" >
                                                                             {{nationality?.nationality}}</option>
@@ -115,7 +111,7 @@
                                                             <div class="form-group form-float">
                                                                 <label for="religion">Religion</label>
                                                                 <div class="form-line">
-                                                                    <select class="browser-default" id="selectreligion" name="religion" [formControl]="religion" class="form-control">
+                                                                    <select class="browser-default" name="religion" [formControl]="religion" class="form-control">
                                                                         <option>Choose your Religion</option>
                                                                         <option *ngFor="let religion of religions?.response" [value]="religion._id">{{religion?.religion}}
                                                                         </option>
@@ -127,12 +123,8 @@
                                                         <div class="col-md-5">
                                                             <label for="sphoto">Student Photo</label>
                                                             <div class="col-sm-12">
-<<<<<<< HEAD
                                                             <img style="margin:0 auto" src="{{getfileLoc}}" width="100px"> 
                                                             <img style="margin:0 auto" src="{{sPhotoValue}}" width="100px"> 
-=======
-                                                            <img style="margin:0 auto" src="{{getfileLoc}}" width="100px">
->>>>>>> 2578e7c638250cad2d37c0a82f6e7b540ba44a36
                                                         </div>
                                                             <div class="form-group form-float">
                                                                     <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
@@ -166,9 +158,8 @@
                                                             <div class="form-group form-float">
                                                                 <label for="board">Board Of Education</label>
                                                                 <div class="form-line">
-                                                                    <select class="browser-default" id="select2" [formControl]="board" class="form-control">
-                                                                        <option>Choose your Board Of Education
-                                                                        </option>
+                                                                    <select class="browser-default"  [formControl]="board" class="form-control">
+                                                                        <option>Choose your Board Of Education </option>
                                                                         <option *ngFor="let board of boards?.response" [value]="board._id">{{board?.board}}</option>
                                                                     </select>
                                                                 </div>
@@ -181,26 +172,26 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group form-float">
-                                                                <label for="admissionCategory">Admission Category</label>
-                                                                <div class="form-line" >
-                                                                    <select class="browser-default" id="select3" [formControl]="admissionCategory" class="form-control">
-                                                                        <!-- <option >Choose your AdmissionCategory</option> -->
-                                                                        <option  *ngFor="let basicdetail of basicdetails" [value]="basicdetail.admissionCategoryd[0]._id"
-                                                                        [selected]="basicdetail.admissionCategoryd[0].admissionCategory">
-                                                                            {{basicdetail.admissionCategoryd[0].admissionCategory}}
-                                                                        </option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group form-float">
                                                                 <label for="admissiontype">Admission Type</label>
                                                                 <div class="form-line">
                                                                     <select class="browser-default" id="selectadmissiontype" [formControl]="admissiontype" class="form-control">
-                                                                        <option  *ngFor="let basicdetail of basicdetails" [value]="basicdetail.admissiontyped[0]._id">
+                                                                        <option  *ngFor="let basicdetail of basicdetails" [value]="basicdetail.admissiontyped[0]._id"
+                                                                        [selected]="basicdetail.admissiontyped[0].admissiontype">
                                                                             {{basicdetail.admissiontyped[0].admissiontype}}</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
+                                                            <div class="form-group form-float">
+                                                                    <label for="admissionCategory">Admission Category</label>
+                                                                    <div class="form-line" >
+                                                                        <select class="browser-default"  [formControl]="admissionCategory" class="form-control">
+                                                                            <option value="">Choose your AdmissionCategory</option>
+                                                                            <option  *ngFor="let admissionCategory of admissioncategories" [value]="admissionCategory._id">
+                                                                                {{admissionCategory.admissionCategory}}
+                                                                            </option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
                                                             <div class="form-group form-float">
                                                                 <label for="remark">Remark</label>
                                                                 <div class="form-line">
@@ -218,7 +209,7 @@
                                                             <div class="form-group form-float">
                                                                 <label for="scholarshipCategory">ScholarshipCategory</label>
                                                                 <div class="form-line">
-                                                                    <select class="browser-default" id="select5" [formControl]="scholarshipCategory" class="form-control">
+                                                                    <select class="browser-default form-control" [formControl]="scholarshipCategory" >
                                                                         <option>Choose your scholarshipCategory</option>
                                                                         <option *ngFor="let scholarshipCategory of scholarshipCategories?.response"
                                                                             [value]="scholarshipCategory._id">
@@ -230,7 +221,7 @@
                                                             <div class="form-group form-float">
                                                                 <label for="community">Community</label>
                                                                 <div class="form-line">
-                                                                    <select class="browser-default" id="select10" [formControl]="community" class="form-control">
+                                                                    <select class="browser-default form-control" [formControl]="community" >
                                                                         <option>Choose your Community</option>
                                                                         <option *ngFor="let community of communities?.response" [value]="community._id">{{community?.community}}
                                                                         </option>
@@ -240,7 +231,7 @@
                                                             <div class="form-group form-float">
                                                                 <label for="caste">Caste</label>
                                                                 <div class="form-line">
-                                                                    <select class="browser-default" id="select12" [formControl]="caste" class="form-control">
+                                                                    <select class="browser-default form-control"  [formControl]="caste">
                                                                         <option>Choose your Caste</option>
                                                                         <option *ngFor="let caste of castes?.response" [value]="caste._id">{{caste?.caste}}</option>
                                                                     </select>

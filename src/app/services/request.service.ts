@@ -1739,11 +1739,42 @@ fetchStudentDetails() {
   return this.http.get(this.url);
 }
 fetchStudentDetailsById(id) {
-  this.url = `${this.endPoint}/student-details/fetchdata?id=` + id;
+  this.url = `${this.endPoint}/student-details/fetchbyId?id=` + id;
   return this.http.get(this.url);
 }
 public getBatchByDegree(degree) {
   this.url = `${this.endPoint}/batch/fetchByDeg/?degree=` + degree;
+  return this.http.get(this.url);
+}
+// StudentManagment - StudentContact
+public getStudentcontact() {
+  this.url = `${this.endPoint}/student-contact/aggregation`;
+  return this.http.get(this.url);
+}
+
+public addStudentcontact(newadressdetails: any) {
+  this.url = `${this.endPoint}/student-contact/add`;
+  return this.http.post(this.url, newadressdetails);
+}
+
+public deleteStudentcontact(id) {
+  this.url = `${this.endPoint}/student-contact/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateStudentcontact(id, body) {
+  this.url = `${this.endPoint}/student-contact/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchStudentcontact() {
+  this.url = `${this.endPoint}/student-contact/`;
+  return this.http.get(this.url);
+}
+getStudentcontactById(id) {
+  this.url = `${this.endPoint}/student-contact/fetchbyId?id=` + id;
+  return this.http.get(this.url);
+}
+fetchStudentcontactById(id) {
+  this.url = `${this.endPoint}/student-contact/fetchdata?id=` + id;
   return this.http.get(this.url);
 }
 }

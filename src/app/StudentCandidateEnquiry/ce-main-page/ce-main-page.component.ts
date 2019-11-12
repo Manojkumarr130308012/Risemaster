@@ -44,7 +44,7 @@ openNew(){
   }
 // To display the data
 viewData() {
-  this.request.getBasicDetails().subscribe((response) => {
+  this.request.getBasicDetails().subscribe(response => {
     this.ce_basicdetails = response;
     console.log('BasicDetails', this.ce_basicdetails);
   }, (error) => {

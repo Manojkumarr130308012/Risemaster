@@ -80,6 +80,8 @@ export class StudentEntryComponent implements OnInit {
   mg: any;
   pcp: any;
   aan: any;
+  institution: any;
+  institutions: any;
   constructor(
     private request: RequestService,
     private router: Router,
@@ -110,6 +112,7 @@ export class StudentEntryComponent implements OnInit {
     this.religion = new FormControl();
     this.caste = new FormControl();
     this.community = new FormControl('', Validators.required);
+    this.institution = new FormControl('', Validators.required);
     this.admissionCategory = new FormControl('', Validators.required);
     this.admissionType = new FormControl('', Validators.required);
     this.financialCategory = new FormControl('', Validators.required);
@@ -189,6 +192,7 @@ export class StudentEntryComponent implements OnInit {
       religion: this.religion.value,
       caste: this.caste.value,
       community: this.community.value,
+      institution: this.institution.value,
       admissionCategory: this.admissionCategory.value,
       admissionType: this.admissionType.value,
       financialCategory: this.financialCategory.value,
@@ -208,7 +212,7 @@ export class StudentEntryComponent implements OnInit {
       minoritygroup: this.mg,
       physicallyChallengedPerson: this.pcp,
       andhamanAndNicobarNative: this.aan,
-      sPhoto: this.getfileLoc,
+      sPhoto: this.getfileLoc
 
     };
     this.request.addStudentDetails(newStudentDetail).subscribe((response: any) => { 
@@ -332,10 +336,36 @@ export class StudentEntryComponent implements OnInit {
       console.log(error);
     });
   }
- 
- cancel() {
-  this.router.navigate(['studentProfile']);
- }
+  loadInstitution() {
+    this.request.getInstitution().subscribe((response: any) => {
+      console.log('Institution', response);
+      this.institutions = response;
+    }, (error) => {
+      console.log(error);
+    });
+  }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Filter CourseCategory, AdmissionType, AdmissionCategory by Institution
+  onInstitutionChange(Institution: any) {
+    // console.log('institution', Institution)
+    if (Institution) {
+      this.request.getAdmissionTypeByIns(Institution).subscribe((response: any) => {
+        console.log('admissionType', response);
+        this.admissiontypes = response;
+      }, (error) => {
+        console.log(error);
+      });
+      this.request.getAdmissionCategoryByIns(Institution).subscribe((response: any) => {
+        console.log('admissionCategory', response);
+        this.admissioncategories = response;
+      }, (error) => {
+        console.log(error);
+      });
+    } else
+
+    this.admissiontypes = null;
+    this.admissioncategories = null;
+  }
   ngOnInit() { 
     this.viewData();
     this.loadAdmissionCategory();
@@ -350,6 +380,7 @@ export class StudentEntryComponent implements OnInit {
     this.loadSecondLanguage();
     this.loadMaritalstatus();
     this.loadBloodgroup();
+    this.loadInstitution();
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       console.log('ImageUpload:uploaded:', item, status, response);

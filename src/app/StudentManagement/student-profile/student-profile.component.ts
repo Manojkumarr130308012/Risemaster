@@ -14,6 +14,7 @@ export class StudentProfileComponent implements OnInit {
   degreesbyIns: any;
   studentDetails: any;
   batcheByDegrees: any;
+  stuId: any;
 
   constructor(
     private request: RequestService,
@@ -56,20 +57,6 @@ export class StudentProfileComponent implements OnInit {
   addNew() {
     this.router.navigate(['studentEntry']);
   }
-   // Filter Degree data
-  //  onInstitutionChange(Institution: string) {
-  //   console.log('institution',Institution)
-  //    if (Institution) {
-  //      this.request.getDegreeByIns(Institution).subscribe((response: any) => {
-  //        this.degreesbyIns = response;
-  //        console.log('DegreeByIns',this.degreesbyIns);
-  //      }, (error) => {
-  //        console.log(error);
-  //      });
-  //    } else 
-  //        this.degrees = null;
-  //   }
-
   onDegreeChange(degree: any) {
     if (degree) {
       this.request.getBatchByDegree(degree).subscribe((response: any) => {
@@ -81,26 +68,21 @@ export class StudentProfileComponent implements OnInit {
     } else
       this.batcheByDegrees = null;
   }
+  open(studentdetail) {
+    this.stuId=studentdetail._id;
+    console.log('StudentID', this.stuId);
+    this.router.navigate(['studentDetail'], {
+       queryParams: {
+           id: studentdetail._id,
+         }
+        });
+  }
   ngOnInit() {
     this.loadBatch();
     this.loadDegree();
     this.loadInstitution();
     this.viewData();
-  //   //jQuery Validation
-  // $(function () {
-  //   $('#form_advanced_validation').validate({
-
-  //     highlight: function (input) {
-  //       $(input).parents('.form-line').addClass('error');
-  //     },
-  //     unhighlight: function (input) {
-  //       $(input).parents('.form-line').removeClass('error');
-  //     },
-  //     errorPlacement: function (error, element) {
-  //       $(element).parents('.form-group').append(error);
-  //     }
-  //   });
-  // });
+  
   }
 
 }

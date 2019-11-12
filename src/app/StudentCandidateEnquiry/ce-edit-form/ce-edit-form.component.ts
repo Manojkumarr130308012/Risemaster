@@ -268,6 +268,7 @@ export class CEEditFormComponent implements OnInit {
   basicdetails1: any;
   modeOfEnquiries: any;
   feetypes: any;
+  institutiond: any;
 
   constructor(
     private request: RequestService,
@@ -283,7 +284,7 @@ export class CEEditFormComponent implements OnInit {
     this.firstName = new FormControl('', Validators.required);
     this.lastName = new FormControl('', Validators.required);
     this.dob = new FormControl('', Validators.required);
-    this.gender = new FormControl({value:'', disabled: true});
+    this.gender = new FormControl('', Validators.required);
     this.aadharNo = new FormControl('', Validators.required);
     this.regNo12th = new FormControl('', Validators.required);
     this.mark12th = new FormControl('', Validators.required);
@@ -296,8 +297,8 @@ export class CEEditFormComponent implements OnInit {
     this.board = new FormControl('', Validators.required);
     this.referenceType = new FormControl('', Validators.required);
     this.referenceBy = new FormControl('', Validators.required);
-    this.applicatonNo = new FormControl('', Validators.required);
-    this.admissiontype = new FormControl('', Validators.required);
+    this.applicatonNo = new FormControl({value:'', disabled: true});
+    this.admissiontype = new FormControl({value:'', disabled: true});
     this.admissionCategory = new FormControl('', Validators.required);
     this.scholarshipCategory = new FormControl('', Validators.required);
     this.remark = new FormControl('', Validators.required);
@@ -582,20 +583,11 @@ export class CEEditFormComponent implements OnInit {
       });
 
   }
-  // To display the BasicDetails Data
-  // viewData() {
-  //   this.request.getBasicDetails().subscribe((response) => {
-  //     this.basicdetails = response;
-  //     console.log('BasicDetails', this.basicdetails);
-  //   }, (error) => {
-  //     console.log(error);
-  //   });
-  // }
   viewData(id) {
     this.request.fetchBasicDetailsById(id).subscribe((response: any) => {
       this.basicdetails = response;
-      this.institution = response[0].institution[0]._id;
-      this.loadCourseCategoryByIns(this.institution);
+      this.institutiond = response[0].institution;
+      this.loadCourseCategoryByIns(this.institutiond);
       console.log('BasicDetailsById',  this.basicdetails);
     }, (error) => {
       console.log(error);

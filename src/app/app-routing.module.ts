@@ -65,6 +65,7 @@ import { CEMainPageComponent } from './StudentCandidateEnquiry/ce-main-page/ce-m
 import { CEAddFormComponent } from './StudentCandidateEnquiry/ce-add-form/ce-add-form.component';
 import { CEEditFormComponent } from './StudentCandidateEnquiry/ce-edit-form/ce-edit-form.component';
 import { ConvertToStudentComponent } from './StudentCandidateEnquiry/convert-to-student/convert-to-student.component';
+import { StudentDetailComponent } from './StudentManagement/student-detail/student-detail.component';
 
 const routes: Routes = [
   // { path: '', component: LoginComponent },
@@ -294,6 +295,8 @@ const routes: Routes = [
   component: StudentProfileComponent },
   { path: 'studentEntry', 
   component: StudentEntryComponent},
+  { path: 'studentDetail', 
+  component: StudentDetailComponent},
 ];
 
 @NgModule({
