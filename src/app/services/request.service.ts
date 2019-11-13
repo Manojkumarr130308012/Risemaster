@@ -1769,8 +1769,8 @@ fetchStudentcontact() {
   this.url = `${this.endPoint}/student-contact/`;
   return this.http.get(this.url);
 }
-getStudentcontactById(id) {
-  this.url = `${this.endPoint}/student-contact/fetchbyId?id=` + id;
+getStudentcontactById(stuId) {
+  this.url = `${this.endPoint}/student-contact/fetchbyId?stuId=` + stuId;
   return this.http.get(this.url);
 }
 fetchStudentcontactById(id) {
@@ -1783,9 +1783,9 @@ public getStudentIdentity() {
   return this.http.get(this.url);
 }
 
-public addStudentIdentity(newadressdetails: any) {
+public addStudentIdentity(newdetail: any) {
   this.url = `${this.endPoint}/student-identity/add`;
-  return this.http.post(this.url, newadressdetails);
+  return this.http.post(this.url, newdetail);
 }
 
 public deleteStudentIdentity(id) {
@@ -1800,26 +1800,24 @@ fetchStudentIdentity() {
   this.url = `${this.endPoint}/student-identity/`;
   return this.http.get(this.url);
 }
-getStudentIdentityById(id) {
-  this.url = `${this.endPoint}/student-identity/fetchbyId?id=` + id;
+getStudentIdentityById(stuId) {
+  this.url = `${this.endPoint}/student-identity/fetchbyId?stuId=` + stuId;
   return this.http.get(this.url);
 }
 fetchStudentIdentityById(id) {
   this.url = `${this.endPoint}/student-identity/fetchdata?id=` + id;
   return this.http.get(this.url);
 }
-// StudentManagment - studentMeedicalInformation
-public getStudentMedical() {
+// StudentManagment - studentMedicalInformation
+getStudentMedical() {
   this.url = `${this.endPoint}/student-medical/aggregation`;
   return this.http.get(this.url);
 }
-
-public addStudentMedical(newadressdetails: any) {
+addStudentMedical(newdetail: any) {
   this.url = `${this.endPoint}/student-medical/add`;
-  return this.http.post(this.url, newadressdetails);
+  return this.http.post(this.url, newdetail);
 }
-
-public deleteStudentMedical(id) {
+deleteStudentMedical(id) {
   this.url = `${this.endPoint}/student-medical/delete?id=` + id;
   return this.http.delete(this.url);
 }
@@ -1827,16 +1825,138 @@ updateStudentMedical(id, body) {
   this.url = `${this.endPoint}/student-medical/update?id=${id}`;
   return this.http.put(this.url, body);
 }
-fetchStudentMedical() {
-  this.url = `${this.endPoint}/student-medical/`;
-  return this.http.get(this.url);
-}
-getStudentMedicalById(id) {
-  this.url = `${this.endPoint}/student-medical/fetchbyId?id=` + id;
+getStudentMedicalById(stuId) {
+  this.url = `${this.endPoint}/student-medical/fetchbyId?stuId=` + stuId;
   return this.http.get(this.url);
 }
 fetchStudentMedicalById(id) {
   this.url = `${this.endPoint}/student-medical/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+// StudentManagment - studentQualification
+getStudentQualification() {
+  this.url = `${this.endPoint}/student-qualification/aggregation`;
+  return this.http.get(this.url);
+}
+addStudentQualification(newdetail: any) {
+  this.url = `${this.endPoint}/student-qualification/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteStudentQualification(id) {
+  this.url = `${this.endPoint}/student-qualification/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateStudentQualification(id, body) {
+  this.url = `${this.endPoint}/student-qualification/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+getStudentQualificationById(stuId) {
+  this.url = `${this.endPoint}/student-qualification/fetchbyId?stuId=` + stuId;
+  return this.http.get(this.url);
+}
+fetchStudentQualificationById(id) {
+  this.url = `${this.endPoint}/student-qualification/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+// StudentManagment - studentCerificate
+getStudentCerificate() {
+  this.url = `${this.endPoint}/student-certificate/aggregation`;
+  return this.http.get(this.url);
+}
+addStudentCerificate(newdetail: any) {
+  this.url = `${this.endPoint}/student-certificate/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteStudentCerificate(id) {
+  this.url = `${this.endPoint}/student-certificate/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateStudentCerificate(id, body) {
+  this.url = `${this.endPoint}/student-certificate/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+getStudentCerificateById(stuId) {
+  this.url = `${this.endPoint}/student-certificate/fetchbyId?stuId=` + stuId;
+  return this.http.get(this.url);
+}
+fetchStudentCerificateById(id) {
+  this.url = `${this.endPoint}/student-certificate/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+// StudentManagment - studentOthers
+getStudentOther() {
+  this.url = `${this.endPoint}/student-other/aggregation`;
+  return this.http.get(this.url);
+}
+addStudentOther(newdetail: any) {
+  this.url = `${this.endPoint}/student-other/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteStudentOther(id) {
+  this.url = `${this.endPoint}/student-other/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateStudentOther(id, body) {
+  this.url = `${this.endPoint}/student-other/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+getStudentOtherById(stuId) {
+  this.url = `${this.endPoint}/student-other/fetchbyId?stuId=` + stuId;
+  return this.http.get(this.url);
+}
+fetchStudentOtherById(id) {
+  this.url = `${this.endPoint}/student-other/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+// StudentManagment - StudentGuardian
+getStudentGardian() {
+  this.url = `${this.endPoint}/student-guardian/aggregation`;
+  return this.http.get(this.url);
+}
+addStudentGardian(newdetail: any) {
+  this.url = `${this.endPoint}/student-guardian/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteStudentGardian(id) {
+  this.url = `${this.endPoint}/student-guardian/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateStudentGardian(id, body) {
+  this.url = `${this.endPoint}/student-guardian/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+getStudentGardianById(stuId) {
+  this.url = `${this.endPoint}/student-guardian/fetchbyId?stuId=` + stuId;
+  return this.http.get(this.url);
+}
+fetchStudentGardianById(id) {
+  this.url = `${this.endPoint}/student-guardian/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+
+// StudentManagment - StudentExtraCuricular
+getStudentExtra() {
+  this.url = `${this.endPoint}/student-extra/aggregation`;
+  return this.http.get(this.url);
+}
+addStudentExtra(newdetail: any) {
+  this.url = `${this.endPoint}/student-extra/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteStudentExtra(id) {
+  this.url = `${this.endPoint}/student-extra/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateStudentExtra(id, body) {
+  this.url = `${this.endPoint}/student-extra/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+getStudentExtraById(stuId) {
+  this.url = `${this.endPoint}/student-extra/fetchbyId?stuId=` + stuId;
+  return this.http.get(this.url);
+}
+fetchStudentExtraById(id) {
+  this.url = `${this.endPoint}/student-extra/fetchdata?id=` + id;
   return this.http.get(this.url);
 }
 }

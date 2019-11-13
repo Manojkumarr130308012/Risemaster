@@ -18,26 +18,23 @@
                                 <img src="{{studentdetail?.sPhoto}}" width="100px">
                             </div>
                             <div class="col-md-3" *ngFor="let studentdetail of studentDetails;let i=index">
-                                <h6> Campus :</h6> {{studentdetail.institution[0].tagline}}
-                                <h6> Date Of Birth :</h6> {{studentdetail?.dob}}
-                                <h6> Date Of Joining :</h6> {{studentdetail?.dob}}
-                                <h6> Nationality:</h6> {{studentdetail?.nationality[0].nationality}}
-                                <h6> Mobile No. :</h6> {{studentdetail?.mobileNo}}
+                                <h6> Campus :</h6><span>{{studentdetail.institution[0].tagline}}</span>
+                                <h6> Date Of Birth :</h6><span>{{studentdetail?.dob}}</span>
+                                <h6> Date Of Joining :</h6><span>{{studentdetail?.joinDate}}</span>
+                                <h6> Nationality:</h6><span>{{studentdetail?.nationality[0].nationality}}</span>
+                                <h6> Mobile No. :</h6><span>{{studentdetail?.mobileNo}}</span>
                             </div>
-                            <div class="col-md-3">
-                                <div *ngFor="let studentdetail of studentDetails">
-                                    <h6>Grade :</h6>
+                            <div class="col-md-3" *ngFor="let studentdetail of studentDetails;let i=index">
+                                    <h6>Grade :</h6>-
                                     <h6>Gender :</h6>{{studentdetail?.gender[0].gender}}
-                                    <h6>Boarding :</h6>
-                                    <h6>AdmissionCategory :</h6>
-                                    <h6>EmailId :</h6>
-                                </div>
+                                    <h6>Boarding :</h6>{{studentdetail?.boarding}}
+                                    <h6>EmailId :</h6>{{studentdetail?.emailId}}
                             </div>
-                            <div class="col-md-3">
-                                <h6 *ngFor="let studentdetail of studentDetails">Reg No. :</h6>{{studentdetail?.regNo}}
-                                <h6>Blood Group :</h6>
-                                <h6>Route Name :</h6>
-                                <h6>AdmissionCategory :</h6>
+                            <div class="col-md-3" *ngFor="let studentdetail of studentDetails;let i=index">
+                                <h6 >Reg No. :</h6>{{studentdetail?.regNo}}
+                                <h6>Blood Group :</h6>{{studentdetail?.bloodGroup[0].bloodgroup}}
+                                <h6>Route Name :</h6>-
+                                <h6>AdmissionCategory :</h6>{{studentdetail?.admissionCategory[0].admissionCategory}}
                             </div>
                         </div>
                     </div>
@@ -171,7 +168,7 @@
                                                                 </div>
                                                                 <div class="btn btn-tbl-delete">
                                                                     <i class="material-icons"
-                                                                        (click)="deleteStaffContact(studentcontact?._id)">delete</i>
+                                                                        (click)="deleteContact(studentcontact?._id)">delete</i>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -205,30 +202,22 @@
                                                         <tr>
                                                             <th>S.No</th>
                                                             <th>Identity Type</th>
-                                                            <th>Identity Value</th>
-                                                            <th>Issue Authority</th>
-                                                            <th>Valid From</th>
-                                                            <th>Valid To</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr *ngFor="let staffidentity of staffidentities; let i=index">
+                                                        <tr *ngFor="let studentidentity of studentidentities; let i=index">
                                                             <td>{{i +1 }}</td>
-                                                            <td>{{staffidentity?.identityType}}</td>
-                                                            <td>{{staffidentity?.identityValue}}</td>
-                                                            <td>{{staffidentity?.issueAuthority}}</td>
-                                                            <td>{{staffidentity?.validFrom}}</td>
-                                                            <td>{{staffidentity?.validTo}}</td>
+                                                            <td>{{studentidentity?.identityType}}</td>
                                                             <td>
                                                                 <div class="btn btn-tbl-edit" data-toggle="modal"
                                                                     data-target="#editidentityModal">
                                                                     <i class="material-icons"
-                                                                        (click)="onEditIdentity(staffidentity?._id) ">create</i>
+                                                                        (click)="onEditIdentity(studentidentity?._id) ">create</i>
                                                                 </div>
                                                                 <div class="btn btn-tbl-delete">
                                                                     <i class="material-icons"
-                                                                        (click)="deleteStaffIdentity(staffidentity?._id)">delete</i>
+                                                                        (click)="deleteIdentity(studentidentity?._id)">delete</i>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -241,7 +230,7 @@
                                     <div role="tabpanel" class="tab-pane fade" id="workProfile_with_icon_title">
                                         <div class="header">
                                             <h2>
-                                                <strong>Institute Identical Details</strong>
+                                                <strong>Medical Information</strong>
                                             </h2>
                                             <div class="header-dropdown m-r--5">
                                                 <!-- Add button -->
@@ -253,43 +242,7 @@
                                             </div>
                                         </div>
                                         <br>
-                                        <div class="body" *ngFor="let staffprofile of staffprofiles; let i=index">
-                                            <div class="row">
-                                                <div class="col-md-2">
-                                                    <h6> Code :</h6> {{staffprofile?.staffCode}}
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <h6> Staff Type :</h6>
-                                                    {{staffprofile.StaffTypeDetails[0].stafftype}}
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <h6> Employee Code :</h6> {{staffprofile?.employeeCode}}
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <h6> Designation :</h6> {{staffprofile?.designation}}
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <h6> Staff Role :</h6>
-                                                    {{staffprofile.StaffRoleDetails[0].staffrole}}
-                                                </div>
-
-                                            </div>
-                                            <div class="row">
-
-                                                <div class="col-md-2">
-                                                    <h6> Abbrevation :</h6> {{staffprofile?.abbrevation}}
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <h6>Date of Joining :</h6> {{staffprofile?.doj}}
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <h6> Date of Relieving :</h6> {{staffprofile?.dor}}
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <h6> Reason :</h6> {{staffprofile?.reason}}
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
 
                                     </div>
                                     <div role="tabpanel" class="tab-pane fade" id="professionalProfile_with_icon_title">
@@ -783,8 +736,8 @@
         </div>
     </div>
 </div>
-<!-- Edit Contact Form
-Add Identity Form
+<!-- Edit Contact Form -->
+<!-- Add Identity Form -->
 <div class="modal fade" id="addidentityModal" tabindex="-1" role="dialog" aria-labelledby="identity1formModal"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -819,8 +772,8 @@ Add Identity Form
         </div>
     </div>
 </div>
- Add Identity Form
- Edit Identity Form
+ <!-- Add Identity Form -->
+ <!-- Edit Identity Form -->
 <div class="modal fade" id="editidentityModal" tabindex="-1" role="dialog" aria-labelledby="identity2formModal"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -855,5 +808,5 @@ Add Identity Form
         </div>
     </div>
 </div>
-Edit Identity Form -->
+<!-- Edit Identity Form  -->
 
