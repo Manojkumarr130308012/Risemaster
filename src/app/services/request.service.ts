@@ -1810,27 +1810,52 @@ fetchStudentIdentityById(id) {
 }
 // StudentManagment - studentMedicalInformation
 getStudentMedical() {
-  this.url = `${this.endPoint}/student-medical/aggregation`;
+  this.url = `${this.endPoint}/student-medicalinfo/aggregation`;
   return this.http.get(this.url);
 }
 addStudentMedical(newdetail: any) {
-  this.url = `${this.endPoint}/student-medical/add`;
+  this.url = `${this.endPoint}/student-medicalinfo/add`;
   return this.http.post(this.url, newdetail);
 }
 deleteStudentMedical(id) {
-  this.url = `${this.endPoint}/student-medical/delete?id=` + id;
+  this.url = `${this.endPoint}/student-medicalinfo/delete?id=` + id;
   return this.http.delete(this.url);
 }
 updateStudentMedical(id, body) {
-  this.url = `${this.endPoint}/student-medical/update?id=${id}`;
+  this.url = `${this.endPoint}/student-medicalinfo/update?id=${id}`;
   return this.http.put(this.url, body);
 }
 getStudentMedicalById(stuId) {
-  this.url = `${this.endPoint}/student-medical/fetchbyId?stuId=` + stuId;
+  this.url = `${this.endPoint}/student-medicalinfo/fetchbyId?stuId=` + stuId;
   return this.http.get(this.url);
 }
 fetchStudentMedicalById(id) {
-  this.url = `${this.endPoint}/student-medical/fetchdata?id=` + id;
+  this.url = `${this.endPoint}/student-medicalinfo/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+// StudentManagment - studentIdentificationMarkDetails
+getStudentIdentityMark() {
+  this.url = `${this.endPoint}/student-identitymark/aggregation`;
+  return this.http.get(this.url);
+}
+addStudentIdentityMark(newdetail: any) {
+  this.url = `${this.endPoint}/student-identitymark/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteStudentIdentityMark(id) {
+  this.url = `${this.endPoint}/student-identitymark/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateStudentIdentityMark(id, body) {
+  this.url = `${this.endPoint}/student-identitymark/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+getStudentIdentityMarkById(stuId) {
+  this.url = `${this.endPoint}/student-identitymark/fetchbyId?stuId=` + stuId;
+  return this.http.get(this.url);
+}
+fetchStudentIdentityMarkById(id) {
+  this.url = `${this.endPoint}/student-identitymark/fetchdata?id=` + id;
   return this.http.get(this.url);
 }
 // StudentManagment - studentQualification

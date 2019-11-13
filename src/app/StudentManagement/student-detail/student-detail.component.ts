@@ -63,7 +63,7 @@ export class StudentDetailComponent implements OnInit {
   complexion: any;
   bloodGroup: any;
   colorBlind:any;
-  IdentityType: any;
+  identityType: any;
   markDetail: any;
   editMedical: any;
   heightValue: any;
@@ -74,6 +74,16 @@ export class StudentDetailComponent implements OnInit {
   bloodGroupValue: any;
   colorBlindValue: any;
   markDetailsValue: any;
+  bloodgroups: any;
+  mf: any;
+  medicallyFit: any;
+  medicallyFitValue: any;
+  addIdentityMarkForm: any;
+  editIdentityMarkForm: any;
+  studentidentityMarks: any;
+  editIdentityMark: any;
+  markDetailValue: any;
+  IdValue5: any;
   constructor(
     private request: RequestService,
     private router: Router,
@@ -126,8 +136,8 @@ this.addMedicalForm = this.formBuilder.group({
   complexion: [''],
   bloodGroup: [''],
   colorBlind: [''],
-  IdentityType: ['', Validators.required],
-  markDetail: ['', Validators.required],
+  medicallyFit: [''],
+ 
 });
 this.editMedicalForm = this.formBuilder.group({
   height: [''],
@@ -137,12 +147,20 @@ this.editMedicalForm = this.formBuilder.group({
   complexion: [''],
   bloodGroup: [''],
   colorBlind: [''],
-  IdentityType: ['', Validators.required],
+  medicallyFit: [''],
+});
+//Add addIdentity Form Group
+this.addIdentityMarkForm = this.formBuilder.group({
+  identityType: ['', Validators.required],
+  markDetail: ['', Validators.required],
+});
+//Edit editIdentity Form Group
+this.editIdentityMarkForm = this.formBuilder.group({
+   identityType: ['', Validators.required],
   markDetail: ['', Validators.required],
 });
   }
-  viewStudentDetail(id: any) {
-    console.log('StudId', id);
+  viewStudentDetailById(id: any) {
     if(id) {
       this.request.fetchStudentDetailsById(id).subscribe((response) => {
         this.studentDetails = response;
@@ -172,7 +190,7 @@ this.editMedicalForm = this.formBuilder.group({
  
    deletecontact(id: any) {
      this.request.deleteStaffContact(id).subscribe(res => {
-       console.log(id);
+      //  console.log(id);
        this.viewStudentConatctById(this.id);
      console.log('Deleted');
      });
@@ -212,10 +230,9 @@ this.editMedicalForm = this.formBuilder.group({
    }
  
    onEditContact(id: any){
-     console.log('conid', id);
      this.request.fetchStudentcontactById(id).subscribe((response) => {
        this.editContact=response[0];
-       console.log(response);
+      //  console.log(response);
            this.addressTypeValue=this.editContact.addressType;
            this.address1Value=this.editContact.address1;
            this.address2Value=this.editContact.address2;
@@ -268,7 +285,6 @@ this.editMedicalForm = this.formBuilder.group({
  }
  loadAddressType() {
   this.request.getAddressType().subscribe((response: any) => {
-    console.log(response);
     this.addresstypes = response;
     console.log('AddressType', this.addresstypes)
   }, (error) => {
@@ -389,9 +405,9 @@ $(this).find('form').trigger('reset');
  ///////StudentMedicalInfromation////////
  viewStudentMedicalById(stuId : string) {
   if (stuId){
-  this.request.getStudentMedicalById(stuId).subscribe((response) => {
+  this.request.getStudentMedicalById(stuId).subscribe(response => {
      this.studentmedicals = response;
-     console.log('StudentIdentityById',this.studentmedicals);
+     console.log('StudentMedicalById',this.studentmedicals);
      }, (error) => {
        console.log(error);
      });
@@ -406,7 +422,10 @@ this.viewStudentMedicalById(this.id);
 swal("Deleted");
 });
 }
-
+// For ChceckBOx
+medicallyFit1(event: any) {
+  this.mf= event;
+}
 onAddMedical() {
 this.submitted = true;
 if (this.addMedicalForm.invalid) {
@@ -420,9 +439,8 @@ let newstudentMedical = {
   complexion: this.addMedicalForm.get('complexion').value,
   bloodGroup: this.addMedicalForm.get('bloodGroup').value,
   colorBlind: this.addMedicalForm.get('colorBlind').value,
-  // medicallyFit: this.addMedicalForm.get('medicallyFit').value,
-  identityType: this.addMedicalForm.get('identityType').value,
-  markDetail: this.addMedicalForm.get('markDetail').value,
+  medicallyFit: this.mf,
+  stuId: this.id,
   }
 this.request.addStudentMedical(newstudentMedical).subscribe((res: any) => {
 if (res.status == 'error') {
@@ -450,13 +468,10 @@ this.request.fetchStudentMedicalById(id).subscribe((response) => {
   this.complexionValue=this.editMedical.complexion;
   this.bloodGroupValue=this.editMedical.bloodGroup;
   this.colorBlindValue=this.editMedical.colorBlind;
-  // this.medicallyFitValue=this.editMedical.height;
-  this.identityTypeValue=this.editMedical.identityType;
-  this.markDetailsValue=this.editMedical.markDetail;
+  this.medicallyFitValue=this.editMedical.medicallyFit;
   this.IdValue4=this.editMedical._id;
 
   this.editMedicalForm = this.formBuilder.group({
-    identityType:[this.identityTypeValue, Validators.required],
     height: [this.heightValue],
     weight: [this.weightValue],
     hairColor: [this.hairColorValue],
@@ -464,8 +479,7 @@ this.request.fetchStudentMedicalById(id).subscribe((response) => {
     complexion: [this.complexionValue],
     bloodGroup: [this.bloodGroupValue],
     colorBlind: [this.colorBlindValue],
-    IdentityType: [this.identityTypeValue, Validators.required],
-    markDetail: [this.markDetailsValue, Validators.required],
+    medicallyFit: [this.colorBlindValue],
     });
   console.log(this.editMedicalForm.value);
 });
@@ -492,9 +506,6 @@ this.setMessage(error);
 });
 }
 
-// convenience getter for easy access to form fields
-get m() { return this.addMedicalForm.controls; }
-get m2() { return this.editMedicalForm.controls; }
 
 private loadStudentMedical(){
 $('#addmedicalModal').modal('hide'); //or  $('#IDModal').modal('hide');
@@ -507,12 +518,121 @@ $('#editmedicalModal').on('hidden.bs.modal', function () {
 $(this).find('form').trigger('reset');
 });
 }
+loadBloodgroup()  {
+  this.request.getBloodgroup().subscribe((response : any) => {
+  this.bloodgroups = response;
+  console.log('BloodGroup',this.bloodgroups);
+  }, (error) => {
+    console.log(error);
+  });
+}
+ ///////StudentIdentityMark////////
+ viewStudentIdentityMarkById(stuId : string) {
+  if (stuId){
+  this.request.getStudentIdentityMarkById(stuId).subscribe((response) => {
+     this.studentidentityMarks = response;
+     console.log('StudentIdentityMarkById',this.studentidentityMarks);
+     }, (error) => {
+       console.log(error);
+     });
+   } else
+      this.studentidentityMarks = null;
+ }
+
+ deleteIdentityMark(id: any) {
+this.request.deleteStudentIdentityMark(id).subscribe(res => {
+console.log(id);
+this.viewStudentIdentityMarkById(this.id);
+swal("Deleted");
+});
+}
+
+onAddIdentityMark() {
+this.submitted = true;
+if (this.addIdentityMarkForm.invalid) {
+    return;
+}
+let newstudentIdentityMark = {
+  identityType : this.addIdentityMarkForm.get('identityType').value,
+  markDetail: this.addIdentityMarkForm.get('markDetail').value,
+  stuId : this.id
+  }
+this.request.addStudentIdentityMark(newstudentIdentityMark).subscribe((res: any) => {
+if (res.status == 'error') {
+  this.setMessage(res.error);
+}
+else if (res.status == 'success') {
+  swal("Added Sucessfully");
+  this.viewStudentIdentityMarkById(this.id);
+  this.loadStudentIdentity();
+}
+}, (error) => {
+  this.setMessage(error);
+});
+  console.log(newstudentIdentityMark);
+}
+
+onEditIdentityMark(id: any){
+this.request.fetchStudentIdentityMarkById(id).subscribe((response) => {
+  this.editIdentityMark=response[0];
+  console.log(response);
+      this.identityTypeValue=this.editIdentityMark.identityType;
+      this.markDetailValue=this.editIdentityMark.markDetail;
+      this.IdValue5=this.editIdentityMark._id;
+
+  this.editIdentityMarkForm = this.formBuilder.group({
+    identityType: [this.identityTypeValue, Validators.required],
+    markDetail: [this.markDetailValue, Validators.required]
+    });
+  console.log(this.editIdentityMarkForm.value);
+});
+}
+onEditIdentityMarkSubmit() {
+this.submitted = true;
+console.log(this.editIdentityMarkForm.value);
+if (this.editIdentityMarkForm.invalid) {
+    return;
+  }
+this.request.updateStudentIdentityMark(this.IdValue5,this.editIdentityMarkForm.value).subscribe((res : any) => {
+if (res.status == 'success') {
+  swal("Updated Sucessfully");
+  this.viewStudentIdentityMarkById(this.id);
+  this.loadStudentIdentityMark();
+}
+else if (res.status == 'error') {
+  this.setMessage(res.error);
+}
+
+}, (error) => {
+console.log(error);
+this.setMessage(error);
+});
+}
+
+// convenience getter for easy access to form fields
+get m() { return this.addIdentityMarkForm.controls; }
+get m2() { return this.editIdentityMarkForm.controls; }
+
+private loadStudentIdentityMark(){
+$('#addIdentityDetail').modal('hide'); //or  $('#IDModal').modal('hide');
+$('#addIdentityDetail').on('hidden.bs.modal', function () {
+$(this).find('form').trigger('reset');
+});
+
+$('#editIdentityDetail').modal('hide'); //or  $('#IDModal').modal('hide');
+$('#editIdentityDetail').on('hidden.bs.modal', function () {
+$(this).find('form').trigger('reset');
+});
+}
 
   ngOnInit() {
+    this.viewStudentDetailById(this.id);
     this.viewStudentConatctById(this.id);
     this.loadAddressType();
     this.viewStudentIdentityById(this.id);
+    this.loadBloodgroup();
     this.viewStudentMedicalById(this.id);
+    this.viewStudentIdentityMarkById(this.id);
     }
 
 }

@@ -227,7 +227,7 @@
                                         </div>
 
                                     </div>
-                                    <div role="tabpanel" class="tab-pane fade" id="workProfile_with_icon_title">
+                                    <div role="tabpanel" class="tab-pane fade" id="medicalInfo_with_icon_title">
                                         <div class="header">
                                             <h2>
                                                 <strong>Medical Information</strong>
@@ -236,28 +236,7 @@
                                                 <!-- Add button -->
                                                 <div class="btn-group m-l-15">
                                                     <button id="addRow1" class="btn btn-info" data-toggle="modal"
-                                                        data-target="#editworkprofileModal" (click)="onEditWorkProfile(staffprofile)">Edit</button>
-                                                </div>
-                                                <!-- Add button -->
-                                            </div>
-                                        </div>
-                                        <br>
-                                        
-
-                                    </div>
-                                    <div role="tabpanel" class="tab-pane fade" id="professionalProfile_with_icon_title">
-                                        <h4>Professional Profile Details</h4>
-                                        <div>
-                                        <div class="header">
-                                            <h5>Experience</h5>
-                                            <div class="header-dropdown m-r--5">
-                                                <!-- Add button -->
-                                                <div class="btn-group m-l-15">
-                                                    <button id="addRow" class="btn btn-info" data-toggle="modal"
-                                                        data-target="#addExperienceModal">
-                                                        Add New
-                                                        <i class="fa fa-plus" style="color: white"></i>
-                                                    </button>
+                                                        data-target="#addMedicalModal" (click)="onAddMedical()">Add</button>
                                                 </div>
                                                 <!-- Add button -->
                                             </div>
@@ -269,34 +248,36 @@
                                                     <thead>
                                                         <tr>
                                                             <th>S.No</th>
-                                                            <th>Organization</th>
-                                                            <th>Designation</th>
-                                                            <th>Nature Of Experience</th>
-                                                            <th>Place</th>
-                                                            <th>From Date</th>
-                                                            <th>To Date</th>
+                                                            <th>Height</th>
+                                                            <th>Weight</th>
+                                                            <th>Hair Color</th>
+                                                            <th>Eye Color</th>
+                                                            <th>Complexion</th>
+                                                            <th>Blood Group</th>
+                                                            <th>Color Blind</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr *ngFor="let experience of experiences; let i=index">
+                                                        <tr *ngFor="let studentmedical of studentmedicals; let i=index">
                                                             <td>{{i +1 }}</td>
-                                                            <td>{{experience?.organization}}</td>
-                                                            <td>{{experience?.expDesignation}}</td>
-                                                            <td>{{experience?.natureOfExperience}}</td>
-                                                            <td>{{experience?.place}}</td>
-                                                            <td>{{experience?.fromDate}}</td>
-                                                            <td>{{experience?.toDate}}</td>
+                                                            <td>{{studentmedical?.height}}</td>
+                                                            <td>{{studentmedical?.weight}}</td>
+                                                            <td>{{studentmedical?.hairColor}}</td>
+                                                            <td>{{studentmedical?.eyeColor}}</td>
+                                                            <td>{{studentmedical?.complexion}}</td>
+                                                            <td>{{studentmedical.bloodGroup[0].bloodgroup}}</td>
+                                                            <td>{{studentmedical?.colorBlind}}</td>
 
                                                             <td>
                                                                 <div class="btn btn-tbl-edit" data-toggle="modal"
-                                                                    data-target="#editExperienceModal">
+                                                                    data-target="#editMedicalModal">
                                                                     <i class="material-icons"
-                                                                        (click)="onEditExperience(experience?._id) ">create</i>
+                                                                        (click)="onEditMedical(studentmedical?._id) ">create</i>
                                                                 </div>
                                                                 <div class="btn btn-tbl-delete">
                                                                     <i class="material-icons"
-                                                                        (click)="deleteStaffExperience(experience?._id)">delete</i>
+                                                                        (click)="deleteMedical(studentmedical?._id)">delete</i>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -304,15 +285,13 @@
                                                 </table>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                            <div class="header">
-                                                <h5> Education</h5>
+                                        <div class="header">
+                                                <h5> Idendification Mark Details</h5>
                                                 <div class="header-dropdown m-r--5">
                                                     <!-- Add button -->
                                                     <div class="btn-group m-l-15">
                                                         <button id="addRow" class="btn btn-info" data-toggle="modal"
-                                                            data-target="#addEducationModal">
+                                                            data-target="#addIdentityDetail">
                                                             Add New
                                                             <i class="fa fa-plus" style="color: white"></i>
                                                         </button>
@@ -327,35 +306,25 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>S.No</th>
-                                                                <th>Degree</th>
-                                                                <th>Specialization</th>
-                                                                <th>Institution Type</th>
-                                                                <th>Institution Name</th>
-                                                                <th>Year Of Passing</th>
-                                                                <th>Mode Of Study</th>
-                                                                <th>Percentage/Grade</th>
+                                                                <th>Identity Type</th>
+                                                                <th>Mark Detail</th>
                                                                 <th>Action</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let education of educations; let i=index">
+                                                            <tr *ngFor="let studentidentityMark of studentidentityMarks; let i=index">
                                                                 <td>{{i +1 }}</td>
-                                                                <td>{{education?.degree}}</td>
-                                                                <td>{{education?.specialization}}</td>
-                                                                <td>{{education?.institutionType}}</td>
-                                                                <td>{{education?.institutionName}}</td>
-                                                                <td>{{education?.eyop}}</td>
-                                                                <td>{{education?.modeOfStudy}}</td>
-                                                                <td>{{education?.epercentage}}</td>
+                                                                <td>{{studentidentityMark?.identityType}}</td>
+                                                                <td>{{studentidentityMark?.markDetail}}</td>
                                                                 <td>
                                                                     <div class="btn btn-tbl-edit" data-toggle="modal"
-                                                                        data-target="#editEducationModal">
+                                                                        data-target="#editIdentityDetail">
                                                                         <i class="material-icons"
-                                                                            (click)="onEditEducation(education?._id) ">create</i>
+                                                                            (click)="onEditIdentityMark(studentidentityMark?._id)">create</i>
                                                                     </div>
                                                                     <div class="btn btn-tbl-delete">
                                                                         <i class="material-icons"
-                                                                            (click)="deleteStaffEducation(education?._id)">delete</i>
+                                                                            (click)="deleteIdentityMark(studentidentityMark?._id)">delete</i>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -365,13 +334,74 @@
                                             </div>
                                         </div>
                                         <div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="qualification_with_icon_title">
+                                        <h4>Qualification</h4>
+                                        <div>
+                                            <div class="header">
+                                                <div class="header-dropdown m-r--5">
+                                                    <!-- Add button -->
+                                                    <div class="btn-group m-l-15">
+                                                        <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addExperienceModal">
+                                                            Add New
+                                                            <i class="fa fa-plus" style="color: white"></i>
+                                                        </button>
+                                                    </div>
+                                                    <!-- Add button -->
+                                                </div>
+                                            </div>
+                                            <div class="body">
+                                                <div class="table-responsive">
+                                                    <table id="tableExport"
+                                                        class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>S.No</th>
+                                                                <th>Qualification Type</th>
+                                                                <th>Course Type</th>
+                                                                <th>Medium</th>
+                                                                <th>Year Of Passing</th>
+                                                                <th>Mark Obtained</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let experience of experiences; let i=index">
+                                                                <td>{{i +1 }}</td>
+                                                                <td>{{experience?.organization}}</td>
+                                                                <td>{{experience?.expDesignation}}</td>
+                                                                <td>{{experience?.natureOfExperience}}</td>
+                                                                <td>{{experience?.place}}</td>
+                                                                <td>{{experience?.fromDate}}</td>
+                                                                <td>
+                                                                    <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editExperienceModal">
+                                                                        <i class="material-icons" (click)="onEditExperience(experience?._id) ">create</i>
+                                                                    </div>
+                                                                    <div class="btn btn-tbl-delete">
+                                                                        <i class="material-icons"
+                                                                            (click)="deleteStaffExperience(experience?._id)">delete</i>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <div role="tabpanel" class="tab-pane fade"
+                                            id="certification_with_icon_title">
+                                            <h4>Cerificate</h4>
+                                           
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade" id="others_with_icon_title">
+                                            <h4>Other Information</h4>
+                                            <div>
                                                 <div class="header">
-                                                    <h5> Additional Courses</h5>
                                                     <div class="header-dropdown m-r--5">
                                                         <!-- Add button -->
                                                         <div class="btn-group m-l-15">
-                                                            <button id="addRow" class="btn btn-info" data-toggle="modal"
-                                                                data-target="#addCourseModal">
+                                                            <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addExperienceModal">
                                                                 Add New
                                                                 <i class="fa fa-plus" style="color: white"></i>
                                                             </button>
@@ -386,37 +416,31 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th>S.No</th>
-                                                                    <th>Course Type</th>
-                                                                    <th>Institution Type</th>
-                                                                    <th>Institution Name</th>
-                                                                    <th>Mode Of Course</th>
-                                                                    <th>Duration Of Course</th>
-                                                                    <th>UOM</th>
-                                                                    <th>Year Of Passing</th>
-                                                                    <th>Percentage/Grade</th>
+                                                                    <th>Over All Rank</th>
+                                                                    <th>University Application No.</th>
+                                                                    <th>University Admission No.</th>
+                                                                    <th>Challan No.</th>
+                                                                    <th>Challan Date</th>
+                                                                    <th>Challan Amount</th>
                                                                     <th>Action</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr *ngFor="let course of courses; let i=index">
+                                                                <tr *ngFor="let experience of experiences; let i=index">
                                                                     <td>{{i +1 }}</td>
-                                                                    <td>{{course?.courseType}}</td>
-                                                                    <td>{{course?.cInstitutionType}}</td>
-                                                                    <td>{{course?.cInstitutionName}}</td>
-                                                                    <td>{{course?.modeOfCourse}}</td>
-                                                                    <td>{{course?.durationOfCourse}}</td>
-                                                                    <td>{{course?.uom}}</td>
-                                                                    <td>{{course?.cyop}}</td>
-                                                                    <td>{{course?.cpercentage}}</td>
+                                                                    <td>{{experience?.organization}}</td>
+                                                                    <td>{{experience?.expDesignation}}</td>
+                                                                    <td>{{experience?.natureOfExperience}}</td>
+                                                                    <td>{{experience?.place}}</td>
+                                                                    <td>{{experience?.fromDate}}</td>
+                                                                    <td>{{experience?.fromDate}}</td>
                                                                     <td>
-                                                                        <div class="btn btn-tbl-edit" data-toggle="modal"
-                                                                            data-target="#editCourseModal">
-                                                                            <i class="material-icons"
-                                                                                (click)="onEditCourse(course?._id) ">create</i>
+                                                                        <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editExperienceModal">
+                                                                            <i class="material-icons" (click)="onEditExperience(experience?._id) ">create</i>
                                                                         </div>
                                                                         <div class="btn btn-tbl-delete">
                                                                             <i class="material-icons"
-                                                                                (click)="deleteStaffCourse(course?._id)">delete</i>
+                                                                                (click)="deleteStaffExperience(experience?._id)">delete</i>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
@@ -425,15 +449,117 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            </div>
-                                        <div role="tabpanel" class="tab-pane fade"
-                                            id="publicationAchievements_with_icon_title">
-                                            <b>Publication/Achievements Content</b>
-
                                         </div>
-                                        <div role="tabpanel" class="tab-pane fade" id="academicProfile_with_icon_title">
-                                            <b>Academic Profile Content</b>
-
+                                        <div role="tabpanel" class="tab-pane fade" id="guardian_with_icon_title">
+                                            <b>Guardian</b>
+                                            <div>
+                                                <div class="header">
+                                                    <div class="header-dropdown m-r--5">
+                                                        <!-- Add button -->
+                                                        <div class="btn-group m-l-15">
+                                                            <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addExperienceModal">
+                                                                Add New
+                                                                <i class="fa fa-plus" style="color: white"></i>
+                                                            </button>
+                                                        </div>
+                                                        <!-- Add button -->
+                                                    </div>
+                                                </div>
+                                                <div class="body">
+                                                    <div class="table-responsive">
+                                                        <table id="tableExport"
+                                                            class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>S.No</th>
+                                                                    <th>Relationship</th>
+                                                                    <th>Name</th>
+                                                                    <th>Address Type</th>
+                                                                    <th>Address</th>
+                                                                    <th>Mobile No.</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let experience of experiences; let i=index">
+                                                                    <td>{{i +1 }}</td>
+                                                                    <td>{{experience?.organization}}</td>
+                                                                    <td>{{experience?.expDesignation}}</td>
+                                                                    <td>{{experience?.natureOfExperience}}</td>
+                                                                    <td>{{experience?.place}}</td>
+                                                                    <td>{{experience?.fromDate}}</td>
+                                                                    <td>
+                                                                        <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editExperienceModal">
+                                                                            <i class="material-icons" (click)="onEditExperience(experience?._id) ">create</i>
+                                                                        </div>
+                                                                        <div class="btn btn-tbl-delete">
+                                                                            <i class="material-icons"
+                                                                                (click)="deleteStaffExperience(experience?._id)">delete</i>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade" id="extraCurricular_with_icon_title">
+                                            <b>Extra Curricular</b>
+                                            <div>
+                                                <div class="header">
+                                                    <div class="header-dropdown m-r--5">
+                                                        <!-- Add button -->
+                                                        <div class="btn-group m-l-15">
+                                                            <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addExperienceModal">
+                                                                Add New
+                                                                <i class="fa fa-plus" style="color: white"></i>
+                                                            </button>
+                                                        </div>
+                                                        <!-- Add button -->
+                                                    </div>
+                                                </div>
+                                                <div class="body">
+                                                    <div class="table-responsive">
+                                                        <table id="tableExport"
+                                                            class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>S.No</th>
+                                                                    <th>Activity Category</th>
+                                                                    <th>Sub Category</th>
+                                                                    <th>From Date</th>
+                                                                    <th>To Date</th>
+                                                                    <th>Year</th>
+                                                                    <th>Venue</th>
+                                                                    <th>Award</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let experience of experiences; let i=index">
+                                                                    <td>{{i +1 }}</td>
+                                                                    <td>{{experience?.organization}}</td>
+                                                                    <td>{{experience?.expDesignation}}</td>
+                                                                    <td>{{experience?.natureOfExperience}}</td>
+                                                                    <td>{{experience?.place}}</td>
+                                                                    <td>{{experience?.fromDate}}</td>
+                                                                    <td>{{experience?.fromDate}}</td>
+                                                                    <td>
+                                                                        <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editExperienceModal">
+                                                                            <i class="material-icons" (click)="onEditExperience(experience?._id) ">create</i>
+                                                                        </div>
+                                                                        <div class="btn btn-tbl-delete">
+                                                                            <i class="material-icons"
+                                                                                (click)="deleteStaffExperience(experience?._id)">delete</i>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -809,4 +935,298 @@
     </div>
 </div>
 <!-- Edit Identity Form  -->
-
+<!-- Add Medical Form-->
+<div class="modal fade" id="addMedicalModal" tabindex="-1" role="dialog" aria-labelledby="medical1formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="medical1formModal">Add Medical</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addMedicalForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Height</label>
+                                <input type="text" formControlName="height" class="form-control" placeholder="Enter Height" />
+                            </div>
+                            <div class="form-group">
+                                <label>Hair Color</label>
+                                <select class="browser-default" formControlName="hairColor" class="form-control">
+                                    <option value="">Choose your HairColor</option>
+                                    <option value="brown">Brown</option>
+                                    <option value="black">Black</option>
+                                    <option value="white">White</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Complexion</label>
+                                <select class="browser-default" formControlName="complexion" class="form-control">
+                                    <option value="">Choose your Completion</option>
+                                    <option value="blackish">Blackish</option>
+                                    <option value="fair">Fair</option>
+                                    <option value="Wheatish">Wheatish</option>
+                                    <option value="whitish">Whitish</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Color Blind</label>
+                                <select class="browser-default" formControlName="colorBlind" class="form-control">
+                                    <option value="">Choose your ColorBlind</option>
+                                    <option value="Yes">YES</option>
+                                    <option value="No">NO</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Weight</label>
+                                <input type="text" formControlName="weight" class="form-control" placeholder="Enter weight" />
+                            </div>
+                            <div class="form-group">
+                                <label>Eye Color</label>
+                                <select class="browser-default" formControlName="eyeColor" class="form-control">
+                                    <option value="">Choose your EyeColor</option>
+                                    <option value="brown">Brown</option>
+                                    <option value="black">Black</option>
+                                    <option value="blue">Blue</option>
+                                    <option value="meroon">Meroon</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Blood Group</label>
+                                <select class="browser-default" formControlName="bloodGroup" class="form-control">
+                                    <option>Choose your BloodGroup</option>
+                                    <option *ngFor="let bloodGroup of bloodgroups?.response" [value]="bloodGroup._id">
+                                        {{bloodGroup?.bloodgroup}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check m-l-10  m-t-25">
+                                    <label class="form-check-label">
+                                        <input formControlName="medicallyFit" class="form-check-input" type="checkbox"
+                                            [(ngModel)]="isChecked" (change)="medicallyFit1(isChecked?'Yes':'No')">Medically Fit
+                                        <span class="form-check-sign">
+                                            <span class="check"></span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default" (click)="onAddMedical()">Add</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Medical Form-->
+<!-- Edit Medical Form-->
+<div class="modal fade" id="editMedicalModal" tabindex="-1" role="dialog" aria-labelledby="medical2formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="medical2formModal">Edit Medical</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <form [formGroup]="editMedicalForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Height</label>
+                                        <input type="text" formControlName="height" class="form-control" placeholder="Enter Height" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Hair Color</label>
+                                        <select class="browser-default" formControlName="hairColor" class="form-control">
+                                            <option value="">Choose your HairColor</option>
+                                            <option value="brown">Brown</option>
+                                            <option value="black">Black</option>
+                                            <option value="white">White</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Complexion</label>
+                                        <select class="browser-default" formControlName="complexion" class="form-control">
+                                            <option value="">Choose your Completion</option>
+                                            <option value="blackish">Blackish</option>
+                                            <option value="fair">Fair</option>
+                                            <option value="Wheatish">Wheatish</option>
+                                            <option value="whitish">Whitish</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Color Blind</label>
+                                        <select class="browser-default" formControlName="colorBlind" class="form-control">
+                                            <option value="">Choose your ColorBlind</option>
+                                            <option value="Yes">YES</option>
+                                            <option value="No">NO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Weight</label>
+                                        <input type="text" formControlName="weight" class="form-control" placeholder="Enter weight" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Eye Color</label>
+                                        <select class="browser-default" formControlName="eyeColor" class="form-control">
+                                            <option value="">Choose your EyeColor</option>
+                                            <option value="brown">Brown</option>
+                                            <option value="black">Black</option>
+                                            <option value="blue">Blue</option>
+                                            <option value="meroon">Meroon</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Blood Group</label>
+                                        <select class="browser-default" formControlName="bloodGroup" class="form-control">
+                                            <option>Choose your BloodGroup</option>
+                                            <option *ngFor="let bloodGroup of bloodgroups?.response" [value]="bloodGroup._id">
+                                                {{bloodGroup?.bloodgroup}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-check m-l-10  m-t-25">
+                                            <label class="form-check-label">
+                                                <input formControlName="medicallyFit" class="form-check-input" type="checkbox"
+                                                    [(ngModel)]="isChecked" (change)="medicallyFit1(isChecked?'Yes':'No')">Medically Fit
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default" (click)="onEditMedical">Update</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit Medical Form -->
+<!-- Add IdentityMark Form -->
+<div class="modal fade" id="addIdentityDetail" tabindex="-1" role="dialog" aria-labelledby="identity1formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="identity1formModal">Add Identity</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addIdentityMarkForm" (ngSubmit)="onAddIdentityMark()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Identity Type</label>
+                                <select class="browser-default" id="select" formControlName="identityType" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && m.identityType.errors }">
+                                    <option value="">Choose your Address Type</option>
+                                    <option value="Marks">Marks</option>
+                                    <option value="Mole">Mole</option>
+                                    <option value="Scar">Scar</option>
+                                    <option value="Tattoos">Tattoos</option>
+                                </select>
+                                <div *ngIf="submitted && m.identityType.errors" class="invalid-feedback">
+                                    <div *ngIf="m.identityType.errors.required">Identity Type is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Mark Details</label>
+                                <textarea type="text" formControlName="markDetail" class="form-control" placeholder="Enter Mark Detail"
+                                    [ngClass]="{ 'is-invalid': submitted && m.markDetail.errors }" ></textarea>
+                                <div *ngIf="submitted && m.markDetail.errors" class="invalid-feedback">
+                                    <div *ngIf="m.markDetail.errors.required">Mark Detail is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Add</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+ <!-- Add IdentityMark Form -->
+ <!-- Edit IdentityMark Form -->
+<div class="modal fade" id="editIdentityDetail" tabindex="-1" role="dialog" aria-labelledby="identity2formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="identity2formModal">Edit Identification Mark Detail</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="editIdentityMarkForm" (ngSubmit)="onEditIdentityMarkSubmit()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Identity Type</label>
+                                <select class="browser-default" formControlName="identityType" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && m2.identityType.errors }">
+                                    <option value="">Choose your Address Type</option>
+                                    <option value="Marks">Marks</option>
+                                    <option value="Mole">Mole</option>
+                                    <option value="Scar">Scar</option>
+                                    <option value="Tattoos">Tattoos</option>
+                                </select>
+                                <div *ngIf="submitted && m2.identityType.errors" class="invalid-feedback">
+                                    <div *ngIf="m2.identityType.errors.required">Identity Type is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Mark Details</label>
+                                <textarea type="text" formControlName="markDetail" class="form-control"
+                                    placeholder="Enter Identity Type"
+                                    [ngClass]="{ 'is-invalid': submitted && m2.markDetail.errors }"></textarea>
+                                <div *ngIf="submitted && m2.markDetail.errors" class="invalid-feedback">
+                                    <div *ngIf="m2.markDetail.errors.required">Mark Detail is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Update</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit IdentityMark Form  -->
