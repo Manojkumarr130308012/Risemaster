@@ -29,7 +29,9 @@ import { ReferralTypeComponent } from './StudentMaster/referral-type/referral-ty
 import { ScholarshipCategoryComponent } from './StudentMaster/scholarship-category/scholarship-category.component';
 import { BankComponent } from './StudentMaster/bank/bank.component';
 import { QualificationTypeComponent } from './StudentMaster/qualification-type/qualification-type.component';
-
+import { RelationshipComponent } from './StudentMaster/relationship/relationship.component';
+import { ActivityCategoryComponent } from './StudentMaster/activity-category/activity-category.component';
+import { SubCategoryComponent } from './StudentMaster/sub-category/sub-category.component';
 // Staff Master
 import { GenderComponent } from './StaffMaster/gender/gender.component';
 import { MaritalStatusComponent } from './StaffMaster/marital-status/marital-status.component';
@@ -198,7 +200,18 @@ const routes: Routes = [
  {
   path: 'qualification-type',
   component: QualificationTypeComponent
-
+  },
+  {
+    path: 'relationship',
+    component: RelationshipComponent
+  },
+  {
+    path: 'activity-category',
+    component: ActivityCategoryComponent
+  },
+  {
+    path: 'sub-category',
+    component: SubCategoryComponent
   },
 
  // Staff Master

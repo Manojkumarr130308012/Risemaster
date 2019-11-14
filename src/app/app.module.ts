@@ -95,6 +95,9 @@ import { CEAddFormComponent } from './StudentCandidateEnquiry/ce-add-form/ce-add
 import { CEEditFormComponent } from './StudentCandidateEnquiry/ce-edit-form/ce-edit-form.component';
 import { CEMainPageComponent } from './StudentCandidateEnquiry/ce-main-page/ce-main-page.component';
 import { StudentDetailComponent } from './StudentManagement/student-detail/student-detail.component';
+import { RelationshipComponent } from './StudentMaster/relationship/relationship.component';
+import { ActivityCategoryComponent } from './StudentMaster/activity-category/activity-category.component';
+import { SubCategoryComponent } from './StudentMaster/sub-category/sub-category.component';
 
 
 
@@ -172,6 +175,9 @@ ConvertToStudentComponent,
 StudentProfileComponent,
 StudentEntryComponent,
 StudentDetailComponent,
+RelationshipComponent,
+ActivityCategoryComponent,
+SubCategoryComponent,
 
 
   ],

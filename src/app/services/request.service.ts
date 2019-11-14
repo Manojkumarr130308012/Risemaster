@@ -1934,54 +1934,122 @@ fetchStudentOtherById(id) {
   return this.http.get(this.url);
 }
 // StudentManagment - StudentGuardian
-getStudentGardian() {
+getStudentGuardian() {
   this.url = `${this.endPoint}/student-guardian/aggregation`;
   return this.http.get(this.url);
 }
-addStudentGardian(newdetail: any) {
+addStudentGuardian(newdetail: any) {
   this.url = `${this.endPoint}/student-guardian/add`;
   return this.http.post(this.url, newdetail);
 }
-deleteStudentGardian(id) {
+deleteStudentGuardian(id) {
   this.url = `${this.endPoint}/student-guardian/delete?id=` + id;
   return this.http.delete(this.url);
 }
-updateStudentGardian(id, body) {
+updateStudentGuardian(id, body) {
   this.url = `${this.endPoint}/student-guardian/update?id=${id}`;
   return this.http.put(this.url, body);
 }
-getStudentGardianById(stuId) {
+getStudentGuardianById(stuId) {
   this.url = `${this.endPoint}/student-guardian/fetchbyId?stuId=` + stuId;
   return this.http.get(this.url);
 }
-fetchStudentGardianById(id) {
+fetchStudentGuardianById(id) {
   this.url = `${this.endPoint}/student-guardian/fetchdata?id=` + id;
   return this.http.get(this.url);
 }
 
 // StudentManagment - StudentExtraCuricular
 getStudentExtra() {
-  this.url = `${this.endPoint}/student-extra/aggregation`;
+  this.url = `${this.endPoint}/student-extracur/aggregation`;
   return this.http.get(this.url);
 }
 addStudentExtra(newdetail: any) {
-  this.url = `${this.endPoint}/student-extra/add`;
+  this.url = `${this.endPoint}/student-extracur/add`;
   return this.http.post(this.url, newdetail);
 }
 deleteStudentExtra(id) {
-  this.url = `${this.endPoint}/student-extra/delete?id=` + id;
+  this.url = `${this.endPoint}/student-extracur/delete?id=` + id;
   return this.http.delete(this.url);
 }
 updateStudentExtra(id, body) {
-  this.url = `${this.endPoint}/student-extra/update?id=${id}`;
+  this.url = `${this.endPoint}/student-extracur/update?id=${id}`;
   return this.http.put(this.url, body);
 }
 getStudentExtraById(stuId) {
-  this.url = `${this.endPoint}/student-extra/fetchbyId?stuId=` + stuId;
+  this.url = `${this.endPoint}/student-extracur/fetchbyId?stuId=` + stuId;
   return this.http.get(this.url);
 }
 fetchStudentExtraById(id) {
-  this.url = `${this.endPoint}/student-extra/fetchdata?id=` + id;
+  this.url = `${this.endPoint}/student-extracur/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+
+//Relationship
+getRelationship() {
+  this.url = `${this.endPoint}/relationship/`;
+  return this.http.get(this.url);
+}
+addRelationship(newdetail: any) {
+  this.url = `${this.endPoint}/relationship/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteRelationship(id) {
+  this.url = `${this.endPoint}/relationship/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateRelationship(id, body) {
+  this.url = `${this.endPoint}/relationship/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchRelationshipById(id) {
+  this.url = `${this.endPoint}/relationship/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+//ActivityCategory
+getActivityCat() {
+  this.url = `${this.endPoint}/activityCategory/`;
+  return this.http.get(this.url);
+}
+addActivityCat(newdetail: any) {
+  this.url = `${this.endPoint}/activityCategory/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteActivityCat(id) {
+  this.url = `${this.endPoint}/activityCategory/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateActivityCat(id, body) {
+  this.url = `${this.endPoint}/activityCategory/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchActivityCatById(id) {
+  this.url = `${this.endPoint}/activityCategory/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+//SubCategory
+getSubCat() {
+  this.url = `${this.endPoint}/subCategory/aggregation`;
+  return this.http.get(this.url);
+}
+addSubCat(newdetail: any) {
+  this.url = `${this.endPoint}/subCategory/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteSubCat(id) {
+  this.url = `${this.endPoint}/subCategory/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateSubCat(id, body) {
+  this.url = `${this.endPoint}/subCategory/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchSubCatById(id) {
+  this.url = `${this.endPoint}/subCategory/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+fetchSubCatByActCat(activityCate) {
+  this.url = `${this.endPoint}/subCategory/fetchSubCat?activityCate=` + activityCate;
   return this.http.get(this.url);
 }
 }

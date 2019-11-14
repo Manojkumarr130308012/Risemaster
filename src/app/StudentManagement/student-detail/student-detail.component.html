@@ -49,6 +49,42 @@
                             </div>
                 
                             <div class="body">
+                                    <div class="table-responsive">
+                                            <table id="tableExport"
+                                                class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Relation Type</th>
+                                                        <th>Name</th>
+                                                        <th>Occupation</th>
+                                                        <th>Mobile No.</th>
+                                                        <th>Email</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let studentdetail of studentDetails;let i=index">
+                                                        <td>{{i +1 }}</td>
+                                                        <td>-</td>
+                                                        <td>-</td>
+                                                        <td>-</td>
+                                                        <td>-</td>
+                                                        <td>-</td>
+                                                        <td>
+                                                            <div class="btn btn-tbl-edit" data-toggle="modal"
+                                                                data-target="#editcontactModal">
+                                                                <i class="material-icons"
+                                                                    (click)="onEditContact(studentcontact?._id) ">create</i>
+                                                            </div>
+                                                            <div class="btn btn-tbl-delete">
+                                                                <i class="material-icons"
+                                                                    (click)="deleteContact(studentcontact?._id)">delete</i>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     <div class="row">
                                             <div class="col-md-1">
                                                 <button type="button" class="btn btn-danger waves-effect"
@@ -401,7 +437,7 @@
                                                     <div class="header-dropdown m-r--5">
                                                         <!-- Add button -->
                                                         <div class="btn-group m-l-15">
-                                                            <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addExperienceModal">
+                                                            <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addOtherModal">
                                                                 Add New
                                                                 <i class="fa fa-plus" style="color: white"></i>
                                                             </button>
@@ -426,21 +462,21 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr *ngFor="let experience of experiences; let i=index">
+                                                                <tr *ngFor="let studentother of studentothers; let i=index">
                                                                     <td>{{i +1 }}</td>
-                                                                    <td>{{experience?.organization}}</td>
-                                                                    <td>{{experience?.expDesignation}}</td>
-                                                                    <td>{{experience?.natureOfExperience}}</td>
-                                                                    <td>{{experience?.place}}</td>
-                                                                    <td>{{experience?.fromDate}}</td>
-                                                                    <td>{{experience?.fromDate}}</td>
+                                                                    <td>{{studentother?.overAllRank}}</td>
+                                                                    <td>{{studentother?.universityAppNo}}</td>
+                                                                    <td>{{studentother?.universityAdmiNo}}</td>
+                                                                    <td>{{studentother?.challanNo}}</td>
+                                                                    <td>{{studentother?.challandate}}</td>
+                                                                    <td>{{studentother?.challanAmount}}</td>
                                                                     <td>
-                                                                        <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editExperienceModal">
-                                                                            <i class="material-icons" (click)="onEditExperience(experience?._id) ">create</i>
+                                                                        <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editOtherModal">
+                                                                            <i class="material-icons" (click)="onEditOther(studentother?._id) ">create</i>
                                                                         </div>
                                                                         <div class="btn btn-tbl-delete">
                                                                             <i class="material-icons"
-                                                                                (click)="deleteStaffExperience(experience?._id)">delete</i>
+                                                                                (click)="deleteOther(studentother?._id)">delete</i>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
@@ -454,10 +490,10 @@
                                             <b>Guardian</b>
                                             <div>
                                                 <div class="header">
-                                                    <div class="header-dropdown m-r--5">
+                                                     <div class="header-dropdown m-r--5">
                                                         <!-- Add button -->
                                                         <div class="btn-group m-l-15">
-                                                            <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addExperienceModal">
+                                                            <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addGuardianModal">
                                                                 Add New
                                                                 <i class="fa fa-plus" style="color: white"></i>
                                                             </button>
@@ -481,20 +517,26 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr *ngFor="let experience of experiences; let i=index">
+                                                                <tr *ngFor="let studentGuardian of studentGuardians; let i=index">
                                                                     <td>{{i +1 }}</td>
-                                                                    <td>{{experience?.organization}}</td>
-                                                                    <td>{{experience?.expDesignation}}</td>
-                                                                    <td>{{experience?.natureOfExperience}}</td>
-                                                                    <td>{{experience?.place}}</td>
-                                                                    <td>{{experience?.fromDate}}</td>
+                                                                    <td>{{studentGuardian.relationship[0].relationship}}</td>
+                                                                    <td>{{studentGuardian?.firstName}}{{studentGuardian?.lastName}}</td>
+                                                                    <td>{{studentGuardian.addressType[0].addressType}}</td>
+                                                                    <td>{{studentGuardian?.flatNo}},
+                                                                        {{studentGuardian?.areaLocality}},
+                                                                        {{studentGuardian?.city}},
+                                                                        {{studentGuardian?.district}},
+                                                                        {{studentGuardian?.pincode}},
+                                                                        {{studentGuardian?.state}},
+                                                                        {{studentGuardian?.country}}</td>
+                                                                    <td>{{studentGuardian?.mobileNo}}</td>
                                                                     <td>
-                                                                        <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editExperienceModal">
-                                                                            <i class="material-icons" (click)="onEditExperience(experience?._id) ">create</i>
+                                                                        <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editGuardianModal">
+                                                                            <i class="material-icons" (click)="onEditGuardian(studentGuardian?._id) ">create</i>
                                                                         </div>
                                                                         <div class="btn btn-tbl-delete">
                                                                             <i class="material-icons"
-                                                                                (click)="deleteStaffExperience(experience?._id)">delete</i>
+                                                                                (click)="deleteGuardian(studentGuardian?._id)">delete</i>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
@@ -511,7 +553,7 @@
                                                     <div class="header-dropdown m-r--5">
                                                         <!-- Add button -->
                                                         <div class="btn-group m-l-15">
-                                                            <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addExperienceModal">
+                                                            <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addExtraModal">
                                                                 Add New
                                                                 <i class="fa fa-plus" style="color: white"></i>
                                                             </button>
@@ -528,6 +570,7 @@
                                                                     <th>S.No</th>
                                                                     <th>Activity Category</th>
                                                                     <th>Sub Category</th>
+                                                                    <th>Level</th>
                                                                     <th>From Date</th>
                                                                     <th>To Date</th>
                                                                     <th>Year</th>
@@ -537,21 +580,23 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr *ngFor="let experience of experiences; let i=index">
+                                                                <tr *ngFor="let studentExtra of studentExtras; let i=index">
                                                                     <td>{{i +1 }}</td>
-                                                                    <td>{{experience?.organization}}</td>
-                                                                    <td>{{experience?.expDesignation}}</td>
-                                                                    <td>{{experience?.natureOfExperience}}</td>
-                                                                    <td>{{experience?.place}}</td>
-                                                                    <td>{{experience?.fromDate}}</td>
-                                                                    <td>{{experience?.fromDate}}</td>
+                                                                    <td>{{studentExtra.activityCate[0].activityCategory}}</td>
+                                                                    <td>{{studentExtra.subCate[0].subCategory}}</td>
+                                                                    <td>{{studentExtra?.level}}</td>
+                                                                    <td>{{studentExtra?.fromDate}}</td>
+                                                                    <td>{{studentExtra?.toDate}}</td>
+                                                                    <td>{{studentExtra?.year}}</td>
+                                                                    <td>{{studentExtra?.venue}}</td>
+                                                                    <td>{{studentExtra?.awardDetail}}</td>
                                                                     <td>
-                                                                        <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editExperienceModal">
-                                                                            <i class="material-icons" (click)="onEditExperience(experience?._id) ">create</i>
+                                                                        <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editExtraModal">
+                                                                            <i class="material-icons" (click)="onEditExtra(studentExtra?._id) ">create</i>
                                                                         </div>
                                                                         <div class="btn btn-tbl-delete">
                                                                             <i class="material-icons"
-                                                                                (click)="deleteStaffExperience(experience?._id)">delete</i>
+                                                                                (click)="deleteExtra(studentExtra?._id)">delete</i>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
@@ -1112,7 +1157,7 @@
                                 </div>
                             </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-default" (click)="onEditMedical">Update</button>
+                        <button type="submit" class="btn btn-default" (click)="onEditMedicalSubmit()">Update</button>
                         <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
@@ -1230,3 +1275,542 @@
     </div>
 </div>
 <!-- Edit IdentityMark Form  -->
+<!-- Add OTHER Form-->
+<div class="modal fade" id="addOtherModal" tabindex="-1" role="dialog" aria-labelledby="other1formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="other1formModal">Add OtherDetails</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addOtherForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Mother's Age</label>
+                                <input type="text" formControlName="motherAge" class="form-control" placeholder="Enter Mother'sAge" />
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check m-l-10  m-t-25">
+                                    <label class="form-check-label">
+                                        <input formControlName="optOut" class="form-check-input" type="checkbox" [(ngModel)]="isChecked"
+                                            (change)="optOut1(isChecked?'Yes':'No')">Opt Out of Placments
+                                        <span class="form-check-sign">
+                                            <span class="check"></span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Over All Rank</label>
+                                <input type="text" formControlName="overAllRank" class="form-control" placeholder="Enter OverAllRank" />
+                            </div>
+                            <div class="form-group">
+                                <label>University Admission No.</label>
+                                <input type="text" formControlName="universityAdmiNo" class="form-control" placeholder="Enter UniversityAdmiNo" />
+                            </div>
+                            <div class="form-group">
+                                <label>Challan Date</label>
+                                <input type="text" formControlName="challandate" class="form-control" placeholder="Enter challanDate" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Place of Birth</label>
+                                <input type="text" formControlName="placeOfBirth" class="form-control" placeholder="Enter PlaceOfBirth" />
+                            </div>
+                            <div class="form-group">
+                                <label>Date of Leave</label>
+                                <input type="date" formControlName="dateOfLeave" class="form-control" placeholder="Enter DateOfLeave" />
+                            </div>
+                            <div class="form-group">
+                                <label>University Application No.</label>
+                                <input type="text" formControlName="universityAppNo" class="form-control" placeholder="Enter UniversityAppNo." />
+                            </div>
+                            <div class="form-group">
+                                <label>Challan No.</label>
+                                <input type="text" formControlName="challanNo" class="form-control" placeholder="Enter ChallanNo." />
+                            </div>
+                            <div class="form-group">
+                                <label>Challan Amount</label>
+                                <input type="text" formControlName="challanAmount" class="form-control" placeholder="Enter challanAmount" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default" (click)="onAddOther()">Add</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add OTHER Form-->
+<!-- Edit OTHER Form-->
+<div class="modal fade" id="editOtherModal" tabindex="-1" role="dialog" aria-labelledby="other2formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="other2formModal">Edit OtherDetails</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <form [formGroup]="editOtherForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Mother's Age</label>
+                                        <input type="text" formControlName="motherAge" class="form-control" placeholder="Enter Mother'sAge" />
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-check m-l-10  m-t-25">
+                                            <label class="form-check-label">
+                                                <input formControlName="optOut" class="form-check-input" type="checkbox" [(ngModel)]="isChecked"
+                                                    (change)="optOut1(isChecked?'Yes':'No')">Opt Out of Placments
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Over All Rank</label>
+                                        <input type="text" formControlName="overAllRank" class="form-control" placeholder="Enter OverAllRank" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>University Admission No.</label>
+                                        <input type="text" formControlName="universityAdmiNo" class="form-control" placeholder="Enter universityAdmiNo" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Challan Date</label>
+                                        <input type="date" formControlName="challandate" class="form-control" placeholder="Enter challanDate" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Place of Birth</label>
+                                        <input type="text" formControlName="placeOfBirth" class="form-control" placeholder="Enter PlaceOfBirth" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Date of Leave</label>
+                                        <input type="date" formControlName="dateOfLeave" class="form-control" placeholder="Enter DateOfLeave" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>University Application No.</label>
+                                        <input type="text" formControlName="universityAppNo" class="form-control" placeholder="Enter UniversityAppNo." />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Challan No.</label>
+                                        <input type="text" formControlName="challanNo" class="form-control" placeholder="Enter ChallanNo." />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Challan Amount</label>
+                                        <input type="text" formControlName="challanAmount" class="form-control" placeholder="Enter challanAmount" />
+                                    </div>
+                                </div>
+                            </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default" (click)="onEditOtherSubmit()">Update</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit OTHER Form -->
+<!-- Add Guardian Form-->
+<div class="modal fade" id="addGuardianModal" tabindex="-1" role="dialog" aria-labelledby="guardian1formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="guardian1formModal">Add Contact</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addGuardianForm" (ngSubmit)="onAddGuardian()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Relationship</label>
+                                <select class="browser-default" formControlName="relationship" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && g.relationship.errors }">
+                                    <option>Choose your Address Type</option>
+                                    <option *ngFor="let relationship of relationships?.response" [value]="relationship._id">
+                                        {{relationship?.relationship}}</option>
+                                </select>
+                                <div *ngIf="submitted && g.relationship.errors" class="invalid-feedback">
+                                        <div *ngIf="g.relationship.errors.required">Address Type is required</div>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Address Type</label>
+                                <select class="browser-default" id="select" formControlName="addressType" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && g.addressType.errors }">
+                                    <option>Choose your Address Type</option>
+                                    <option *ngFor="let addressType of addresstypes?.response" [value]="addressType._id">
+                                        {{addressType?.addressType}}</option>
+                                </select>
+                                <div *ngIf="submitted && g.addressType.errors" class="invalid-feedback">
+                                        <div *ngIf="g.addressType.errors.required">Address Type is required</div>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Flat/Door/Block No.</label>
+                                <input type="text" formControlName="flatNo" class="form-control"
+                                    placeholder="Enter Flat/Door/Block No." />
+                            </div>
+                            <div class="form-group">
+                                <label>Mobile No.</label>
+                                <input type="text" formControlName="mobileNo" class="form-control" placeholder="Enter Mobile No."
+                                    [ngClass]="{ 'is-invalid': submitted && g.mobileNo.errors }" />
+                                <div *ngIf="submitted && g.mobileNo.errors" class="invalid-feedback">
+                                    <div *ngIf="g.mobileNo.errors.required">Mobile No. is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>District</label>
+                                <input type="text" formControlName="district" class="form-control" placeholder="Enter District"
+                                    [ngClass]="{ 'is-invalid': submitted && g.district.errors }" />
+                                <div *ngIf="submitted && g.district.errors" class="invalid-feedback">
+                                    <div *ngIf="g.district.errors.required">District is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>State</label>
+                                <input type="text" formControlName="state" class="form-control" placeholder="Enter State"
+                                    [ngClass]="{ 'is-invalid': submitted && g.state.errors }" />
+                                <div *ngIf="submitted && g.state.errors" class="invalid-feedback">
+                                    <div *ngIf="g.state.errors.required">State is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" formControlName="firstName" class="form-control" placeholder="Enter FirstName"
+                                    [ngClass]="{ 'is-invalid': submitted && g.firstName.errors }" />
+                                <div *ngIf="submitted && g.firstName.errors" class="invalid-feedback">
+                                    <div *ngIf="g.firstName.errors.required">First Name is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" formControlName="lastName" class="form-control" placeholder="Enter LastName" />
+                            </div>
+                            <div class="form-group">
+                                <label>Area/Locality</label>
+                                <input type="text" formControlName="areaLocality" class="form-control"
+                                    placeholder="Enter Area/Locality" />
+                            </div>
+                            <div class="form-group">
+                                <label>City</label>
+                                <input type="text" formControlName="city" class="form-control" placeholder="Enter City" />
+                            </div>
+                            <div class="form-group">
+                                <label>Pincode</label>
+                                <input type="text" formControlName="pincode" class="form-control" placeholder="Enter Pincode" />
+                            </div>
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input type="text" formControlName="country" class="form-control" placeholder="Enter Country" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Add</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Guardian Form-->
+<!-- Edit Guardian Form-->
+<div class="modal fade" id="editGuardianModal" tabindex="-1" role="dialog" aria-labelledby="guardian2formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="guardian2formModal">Edit Guardian</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="editGuardianForm" (ngSubmit)="onEditGuardianSubmit()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Relationship</label>
+                                <select class="browser-default" formControlName="relationship" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && g2.relationship.errors }">
+                                    <option value="">Choose your Address Type</option>
+                                    <option *ngFor="let relationship of relationships?.response" [value]="relationship._id">
+                                        {{relationship?.relationship}}</option>
+                                </select>
+                                <div *ngIf="submitted && g2.relationship.errors" class="invalid-feedback">
+                                        <div *ngIf="g2.relationship.errors.required">Address Type is required</div>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Address Type</label>
+                                <select class="browser-default" formControlName="addressType" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && g2.addressType.errors }">
+                                    <option value="">Choose your Address Type</option>
+                                    <option *ngFor="let addressType of addresstypes?.response" [value]="addressType._id">
+                                        {{addressType?.addressType}}</option>
+                                </select>
+                                <div *ngIf="submitted && g2.addressType.errors" class="invalid-feedback">
+                                        <div *ngIf="g2.addressType.errors.required">Address Type is required</div>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Flat/Door/Block No.</label>
+                                <input type="text" formControlName="flatNo" class="form-control" placeholder="Enter Flat/Door/Block No."/>
+                            </div>
+                            <div class="form-group">
+                                <label>Mobile No.</label>
+                                <input type="text" formControlName="mobileNo" class="form-control" placeholder="Enter Mobile No."
+                                    [ngClass]="{ 'is-invalid': submitted && g2.mobileNo.errors }" />
+                                <div *ngIf="submitted && g2.mobileNo.errors" class="invalid-feedback">
+                                    <div *ngIf="g2.mobileNo.errors.required">Mobile No. is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>District</label>
+                                <input type="text" formControlName="district" class="form-control" placeholder="Enter District"
+                                    [ngClass]="{ 'is-invalid': submitted && g2.district.errors }" />
+                                <div *ngIf="submitted && g2.district.errors" class="invalid-feedback">
+                                    <div *ngIf="g2.district.errors.required">District is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>State</label>
+                                <input type="text" formControlName="state" class="form-control" placeholder="Enter State"
+                                    [ngClass]="{ 'is-invalid': submitted && g2.state.errors }" />
+                                <div *ngIf="submitted && g2.state.errors" class="invalid-feedback">
+                                    <div *ngIf="g2.state.errors.required">State is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text"  formControlName="firstName" class="form-control"
+                                    placeholder="Enter FirstName"
+                                    [ngClass]="{ 'is-invalid': submitted && g2.firstName.errors }" />
+                                <div *ngIf="submitted && g2.firstName.errors" class="invalid-feedback">
+                                    <div *ngIf="g2.firstName.errors.required">First Name is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" formControlName="lastName" class="form-control" placeholder="Enter LastName"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Area/Locality</label>
+                                <input type="text" formControlName="areaLocality" class="form-control" placeholder="Enter Area/Locality" />
+                            </div>
+                            <div class="form-group">
+                                <label>City</label>
+                                <input type="text" formControlName="city" class="form-control" placeholder="Enter City"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Pincode</label>
+                                <input type="text" formControlName="pincode" class="form-control" placeholder="Enter Pincode" />
+                            </div>
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input type="text" formControlName="country" class="form-control" placeholder="Enter Country" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Update</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit Guardian Form -->
+<!-- Add Extracurricular Form-->
+<div class="modal fade" id="addExtraModal" tabindex="-1" role="dialog" aria-labelledby="guardian1formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="guardian1formModal">Add Contact</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addExtraForm" (ngSubmit)="onAddExtra()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Activity Category</label>
+                                <select class="browser-default" formControlName="activityCate" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && e.activityCate.errors }"
+                                    (change)="onActivityCatChange($event.target.value)">
+                                    <option value="">Choose your Activity Category</option>
+                                    <option *ngFor="let activityCate of activitycats?.response" [value]="activityCate._id">
+                                        {{activityCate?.activityCategory}}</option>
+                                </select>
+                                <div *ngIf="submitted && e.activityCate.errors" class="invalid-feedback">
+                                    <div *ngIf="e.activityCate.errors.required">Activity Category is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>From Date</label>
+                                <input type="date" formControlName="fromDate" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Sub Category</label>
+                                <select class="browser-default" formControlName="subCate" class="form-control">
+                                    <option value="">Choose your Sub Category</option>
+                                    <option *ngFor="let subCate of subcates?.response" [value]="subCate._id">
+                                        {{subCate?.subCategory}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>To Date</label>
+                                <input type="date" formControlName="toDate" class="form-control" />
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea type="text" formControlName="description" class="form-control" placeholder="Description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Award Details</label>
+                                    <textarea type="text" formControlName="awardDetail" class="form-control" placeholder="Award Details"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Remark</label>
+                                    <textarea type="text" formControlName="remark" class="form-control"
+                                        placeholder="Remark"></textarea>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Add</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Extracurricular Form-->
+<!-- Edit Extracurricular Form-->
+<div class="modal fade" id="editExtraModal" tabindex="-1" role="dialog" aria-labelledby="guardian2formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="guardian2formModal">Edit Guardian</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <form [formGroup]="editExtraForm" (ngSubmit)="onEditExtraSubmit()">
+                            <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Activity Category</label>
+                                            <select class="browser-default" formControlName="activityCate" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && e.activityCate.errors }"
+                                                (change)="onActivityCatChange($event.target.value)">
+                                                <option value="">Choose your Activity Category</option>
+                                                <option *ngFor="let activityCate of activitycats?.response" [value]="activityCate._id">
+                                                    {{activityCate?.activityCategory}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && e.activityCate.errors" class="invalid-feedback">
+                                                <div *ngIf="e.activityCate.errors.required">Activity Category is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>From Date</label>
+                                            <input type="date" formControlName="fromDate" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Sub Category</label>
+                                            <select class="browser-default" formControlName="subCate" class="form-control">
+                                                <option value="">Choose your Sub Category</option>
+                                                <option *ngFor="let subCate of subcates?.response" [value]="subCate._id">
+                                                    {{subCate?.subCategory}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>To Date</label>
+                                            <input type="date" formControlName="toDate" class="form-control" />
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Description</label>
+                                                <textarea type="text" formControlName="description" class="form-control" placeholder="Description"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Award Details</label>
+                                                <textarea type="text" formControlName="awardDetail" class="form-control" placeholder="Award Details"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Remark</label>
+                                                <textarea type="text" formControlName="remark" class="form-control"
+                                                    placeholder="Remark"></textarea>
+                                            </div>
+                                        </div>
+                                </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Update</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit Extracurricular Form -->
