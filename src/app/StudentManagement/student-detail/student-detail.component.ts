@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestService } from 'src/app/services/request.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, Validators} from '@angular/forms';
+import { FormBuilder, Validators, FormControl} from '@angular/forms';
+import { FileUploader } from 'ng2-file-upload';
 declare const $: any;
-declare const M: any;
 declare const swal: any;
+
+const URL = 'http://localhost:3000/ce-qd-fileupload/upload';
 @Component({
   selector: 'app-student-detail',
   templateUrl: './student-detail.component.html',
@@ -159,7 +161,93 @@ export class StudentDetailComponent implements OnInit {
   IdValue8: any;
   activitycats: any;
   subcats: any;
-  subcates: any;
+  subcategories: any;
+  //Qualification 
+  studentQualifications: Object;
+  addQualificationForm: any;
+  editQualification: any;
+  editQualificationForm: any;
+  qualificationType: any;
+  courseType: any;
+  courseName: any;
+  courseStartDate: any;
+  courseEndDate: any;
+  board: any;
+  medium: any;
+  institution: any;
+  yearOfPassing: any;
+  markObtained: any;
+  maxMark: any;
+  organisationType: any;
+  certificateNo: any;
+  registerNo: any;
+  placeOfIssue: any;
+  certificateIssuedate: any;
+  tmrCode: any;
+  tmrDate: any;
+  groupCode: any;
+  photoLoctaion: any;
+  qualificationTypeValue: any;
+  courseTypeValue: any;
+  courseNameValue: any;
+  courseStartDateValue: any;
+  courseEndDateValue: any;
+  boardValue: any;
+  mediumValue: any;
+  institutionValue: any;
+  yearOfPassingValue: any;
+  markObtainedValue: any;
+  maxMarkValue: any;
+  organisationTypeValue: any;
+  certificateNoValue: any;
+  registerNoValue: any;
+  placeOfIssueValue: any;
+  certificateIssuedateValue: any;
+  tmrCodeValue: any;
+  tmrDateValue: any;
+  groupCodeValue: any;
+  photoLoctaionValue: any;
+  qualificationType2: any;
+  courseType2: any;
+  courseName2: any;
+  courseStartDate2: any;
+  courseEndDate2: any;
+  board2: any;
+  medium2: any;
+  institution2: any;
+  yearOfPassing2: any;
+  markObtained2: any;
+  maxMark2: any;
+  organisationType2: any;
+  certificateNo2: any;
+  registerNo2: any;
+  placeOfIssue2: any;
+  certificateIssuedate2: any;
+  tmrCode2: any;
+  tmrDate2: any;
+  groupCode2: any;
+  photoLoctaion2: any;
+  firstName2: any;
+  city2: any;
+  taluk2: any;
+  district2: any;
+  state2: any;
+  country2: any;
+  pincode2: any;
+  cutOff2: any;
+  percentage2: any;
+  IdValue9: any;
+  cutOffValue: any;
+  percentageValue: any;
+  boards: any;
+  coursetypes: any;
+  media: any;
+  qualificationTypes: any;
+  public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'photo' });
+  getfileLoc: any;
+  cutOff: FormControl;
+  percentage: FormControl;
+  
   constructor(
     private request: RequestService,
     private router: Router,
@@ -304,7 +392,7 @@ this.addExtraForm = this.formBuilder.group({
   venue: [''],
   description: [''],
   awardDetail: [''],
-  remark: [''],
+  remark: ['']
 });
 //EditForm -Student ExtraCurricular
 this.editExtraForm = this.formBuilder.group({
@@ -319,7 +407,73 @@ this.editExtraForm = this.formBuilder.group({
   awardDetail: [''],
   remark: [''],
 });
+//AddForm - Student Qualification
+this.firstName = new FormControl('', Validators.required);
+this.qualificationType = new FormControl('', Validators.required);
+this.courseType = new FormControl('', Validators.required);
+this.courseName = new FormControl('', Validators.required);
+this.courseStartDate = new FormControl('');
+this.courseEndDate = new FormControl('');
+this.board = new FormControl('', Validators.required);
+this.medium = new FormControl('');
+this.institution = new FormControl('');
+this.city = new FormControl('');
+this.taluk = new FormControl('');
+this.district = new FormControl('');
+this.state = new FormControl('');
+this.country = new FormControl('');
+this.pincode = new FormControl('');
+this.yearOfPassing = new FormControl('', Validators.required);
+this.markObtained = new FormControl('');
+this.maxMark = new FormControl('');
+this.organisationType = new FormControl('');
+this.certificateNo = new FormControl('');
+this.registerNo = new FormControl('');
+this.placeOfIssue = new FormControl('');
+this.certificateIssuedate = new FormControl('');
+this.tmrCode = new FormControl('');
+this.tmrDate = new FormControl('');
+this.groupCode = new FormControl('');
+this.cutOff = new FormControl('');
+this.percentage = new FormControl('');
+this.photoLoctaion = new FormControl('');
+
+//EditForm -Student Qualification
+this.firstName2 = new FormControl('', Validators.required);
+this.qualificationType2 = new FormControl('', Validators.required);
+this.courseType2 = new FormControl('', Validators.required);
+this.courseName2 = new FormControl('', Validators.required);
+this.courseStartDate2 = new FormControl('');
+this.courseEndDate2 = new FormControl('');
+this.board2 = new FormControl('', Validators.required);
+this.medium2 = new FormControl('');
+this.institution2 = new FormControl('');
+this.city2 = new FormControl('');
+this.taluk2 = new FormControl('');
+this.district2 = new FormControl('');
+this.state2 = new FormControl('');
+this.country2 = new FormControl('');
+this.pincode2 = new FormControl('');
+this.yearOfPassing2 = new FormControl('', Validators.required);
+this.markObtained2 = new FormControl('');
+this.maxMark2 = new FormControl('');
+this.organisationType2 = new FormControl('');
+this.certificateNo2 = new FormControl('');
+this.registerNo2 = new FormControl('');
+this.placeOfIssue2 = new FormControl('');
+this.certificateIssuedate2 = new FormControl('');
+this.tmrCode2 = new FormControl('');
+this.tmrDate2 = new FormControl('');
+this.groupCode2 = new FormControl('');
+this.cutOff2 = new FormControl('');
+this.percentage2 = new FormControl('');
+this.photoLoctaion2 = new FormControl('');
+
   }
+   //to upload qualificationfile
+ submit() {
+  this.uploader.uploadAll();
+}
   viewStudentDetailById(id: any) {
     if(id) {
       this.request.fetchStudentDetailsById(id).subscribe((response) => {
@@ -1085,7 +1239,7 @@ let newstudentExtra = {
   remark: this.addExtraForm.get('remark').value,
   stuId : this.id
   }
-this.request.addStudentGuardian(newstudentExtra).subscribe((res: any) => {
+this.request.addStudentExtra(newstudentExtra).subscribe((res: any) => {
 if (res.status == 'error') {
   this.setMessage(res.error);
 }
@@ -1104,17 +1258,17 @@ onEditExtra(id: any){
 this.request.fetchStudentExtraById(id).subscribe((response) => {
   this.editExtra = response[0];
  
-  this.activityCateValue = this.editExtra.motherAge;
-  this.subCateValue = this.editExtra.motherAge;
-  this.levelValue = this.editExtra.motherAge;
-  this.fromDateValue = this.editExtra.motherAge;
-  this.toDateValue = this.editExtra.motherAge;
-  this.yearValue = this.editExtra.motherAge;
-  this.venueValue = this.editExtra.motherAge;
-  this.descriptionValue = this.editExtra.motherAge;
-  this.awardDetailValue = this.editExtra.motherAge;
-  this.remarkValue = this.editExtra.motherAge;
-  this.IdValue8 = this.editOther._id;
+  this.activityCateValue = this.editExtra.activityCate;
+  this.subCateValue = this.editExtra.subCate;
+  this.levelValue = this.editExtra.level;
+  this.fromDateValue = this.editExtra.fromDate;
+  this.toDateValue = this.editExtra.toDate;
+  this.yearValue = this.editExtra.year;
+  this.venueValue = this.editExtra.venue;
+  this.descriptionValue = this.editExtra.description;
+  this.awardDetailValue = this.editExtra.awardDetail;
+  this.remarkValue = this.editExtra.remark;
+  this.IdValue8 = this.editExtra._id;
 
   this.editExtraForm = this.formBuilder.group({
     activityCate: [this.activityCateValue, Validators.required],
@@ -1176,25 +1330,240 @@ loadActivityCategory()  {
     console.log(error);
   });
 }
-loadSubCategory()  {
-  this.request.getSubCat().subscribe((response : any) => {
-  this.subcats = response;
-  console.log('SubCategory',this.subcats);
-  }, (error) => {
-    console.log(error);
-  });
-}
  // Filter SubCategory by AcitivityCategory
  onActivityCatChange(acitivityCate: any) {
   if (acitivityCate) {
-    this.request.fetchSubCatByActCat(acitivityCate).subscribe((response: any) => {
-      console.log('SubCatByActCat', response);
-      this.subcates = response;
+    this.request.fetchSubCatByActCat(acitivityCate).subscribe(response => {
+      this.subcategories = response;
+      console.log('SubCatByActCat', this.subcategories);
     }, (error) => {
       console.log(error);
     });
   } else
-  this.subcates = null;
+  this.subcategories = null;
+}
+///////Student Qualification////////
+viewStudentQualificationById(stuId : string) {
+  if (stuId){
+  this.request.getStudentQualificationById(stuId).subscribe(response => {
+     this.studentQualifications = response;
+     console.log('StudentQulaificationById', this.studentQualifications);
+     }, (error) => {
+       console.log(error);
+     });
+   } else
+      this.studentQualifications = null;
+ }
+
+ deleteQualification(id: any) {
+this.request.deleteStudentQualification(id).subscribe(res => {
+this.viewStudentQualificationById(this.id);
+swal("Deleted");
+});
+}
+
+onAddQualification() {
+let newstudentQualification = {
+  qualificationType: this.qualificationType.value,
+  courseType:  this.courseType.value,
+  courseName: this.courseName.value,
+  courseStartDate: this.courseStartDate.value,
+  courseEndDate: this.courseEndDate.value,
+  board: this.board.value,
+  medium: this.medium.value,
+  institution: this.institution.value,
+  city: this.city.value,
+  taluk: this.taluk.value,
+  district: this.district.value,
+  state: this.state.value,
+  country: this.country.value,
+  pincode: this.pincode.value,
+  yearOfPassing: this.yearOfPassing.value,
+  markObtained: this.markObtained.value,
+  maxMark: this.maxMark.value,
+  organisationType: this.organisationType.value,
+  certificateNo: this.certificateNo.value,
+  registerNo: this.registerNo.value,
+  placeOfIssue: this.placeOfIssue.value,
+  certificateIssuedate: this.certificateIssuedate.value,
+  tmrCode: this.tmrCode.value,
+  tmrDate: this.tmrDate.value,
+  groupCode: this.groupCode.value,
+  cutOff: this.cutOff.value,
+  percentage: this.percentage.value,
+  photoLoctaion: this.getfileLoc,
+  stuId : this.id
+  }
+this.request.addStudentQualification(newstudentQualification).subscribe((res: any) => {
+if (res.status == 'error') {
+  this.setMessage(res.error);
+}
+else if (res.status == 'success') {
+  swal("Added Sucessfully");
+  this.viewStudentQualificationById(this.id);
+  this.loadStudentQualification();
+}
+}, (error) => {
+  this.setMessage(error);
+});
+  console.log(newstudentQualification);
+}
+
+onEditQualification(id: any){
+this.request.fetchStudentQualificationById(id).subscribe((response) => {
+  this.editQualification = response[0];
+ 
+  this.qualificationTypeValue = this.editQualification.qualificationType;
+  this.courseTypeValue = this.editQualification.courseType;
+  this.courseNameValue = this.editQualification.courseName;
+  this.courseStartDateValue = this.editQualification.courseStartDate;
+  this.courseEndDateValue = this.editQualification.courseEndDate;
+  this.boardValue = this.editQualification.board;
+  this.mediumValue = this.editQualification.medium;
+  this.institutionValue = this.editQualification.institution;
+  this.cityValue = this.editQualification.city;
+  this.talukValue = this.editQualification.taluk;
+  this.districtValue = this.editQualification.district;
+  this.stateValue = this.editQualification.state;
+  this.countryValue = this.editQualification.country;
+  this.pincodeValue = this.editQualification.pincode;
+  this.yearOfPassingValue = this.editQualification.yearOfPassing;
+  this.markObtainedValue = this.editQualification.markObtained;
+  this.maxMarkValue = this.editQualification.maxMark;
+  this.organisationTypeValue = this.editQualification.organisationType;
+  this.certificateNoValue = this.editQualification.certificateNo;
+  this.registerNoValue = this.editQualification.registerNo;
+  this.placeOfIssueValue = this.editQualification.placeOfIssue;
+  this.certificateIssuedateValue = this.editQualification.certificateIssuedate;
+  this.tmrCodeValue = this.editQualification.tmrCode;
+  this.tmrDateValue = this.editQualification.tmrDate;
+  this.groupCodeValue = this.editQualification.groupCode;
+  this.cutOffValue = this.editQualification.cutOff;
+  this.percentageValue = this.editQualification.percentage;
+  this.photoLoctaionValue = this.editQualification.photoLoctaion;
+  this.IdValue9 = this.editQualification._id;
+
+this.qualificationType2 = new FormControl(this.qualificationTypeValue, Validators.required);
+this.courseType2 = new FormControl(this.courseTypeValue, Validators.required);
+this.courseName2 = new FormControl(this.courseNameValue, Validators.required);
+this.courseStartDate2 = new FormControl(this.courseStartDateValue);
+this.courseEndDate2 = new FormControl( this.courseEndDateValue);
+this.board2 = new FormControl( this.boardValue, Validators.required);
+this.medium2 = new FormControl(this.mediumValue);
+this.institution2 = new FormControl(this.institutionValue);
+this.city2 = new FormControl(this.cityValue);
+this.taluk2 = new FormControl( this.talukValue);
+this.district2 = new FormControl(this.districtValue);
+this.state2 = new FormControl(this.stateValue);
+this.country2 = new FormControl( this.countryValue);
+this.pincode2 = new FormControl(this.pincodeValue);
+this.yearOfPassing2 = new FormControl(this.yearOfPassingValue, Validators.required);
+this.markObtained2 = new FormControl( this.markObtainedValue);
+this.maxMark2 = new FormControl(this.maxMarkValue);
+this.organisationType2 = new FormControl(this.organisationTypeValue);
+this.certificateNo2 = new FormControl(this.certificateNoValue);
+this.registerNo2 = new FormControl(this.registerNoValue);
+this.placeOfIssue2 = new FormControl(this.placeOfIssueValue);
+this.certificateIssuedate2 = new FormControl(this.certificateIssuedateValue);
+this.tmrCode2 = new FormControl(this.tmrCodeValue);
+this.tmrDate2 = new FormControl( this.tmrDateValue);
+this.groupCode2 = new FormControl( this.groupCodeValue);
+this.cutOff2 = new FormControl(this.cutOffValue);
+this.percentage2 = new FormControl(this.percentageValue);
+this.photoLoctaion2 = new FormControl(this.photoLoctaionValue);
+
+});
+}
+onEditQualificationSubmit() {
+  let edata = {
+    qualificationType: this.qualificationType2.value,
+    courseType:  this.courseType2.value,
+    courseName: this.courseName2.value,
+    courseStartDate: this.courseStartDate2.value,
+    courseEndDate: this.courseEndDate2.value,
+    board: this.board2.value,
+    medium: this.medium2.value,
+    institution: this.institution2.value,
+    city: this.city2.value,
+    taluk: this.taluk2.value,
+    district: this.district2.value,
+    state: this.state2.value,
+    country: this.country2.value,
+    pincode: this.pincode2.value,
+    yearOfPassing: this.yearOfPassing2.value,
+    markObtained: this.markObtained2.value,
+    maxMark: this.maxMark2.value,
+    organisationType: this.organisationType2.value,
+    certificateNo: this.certificateNo2.value,
+    registerNo: this.registerNo2.value,
+    placeOfIssue: this.placeOfIssue2.value,
+    certificateIssuedate: this.certificateIssuedate2.value,
+    tmrCode: this.tmrCode2.value,
+    tmrDate: this.tmrDate2.value,
+    groupCode: this.groupCode2.value,
+    cutOff: this.cutOff2.value,
+    percentage: this.percentage2.value,
+    photoLoctaion: this.getfileLoc
+    }
+this.request.updateStudentQualification(this.IdValue9,edata).subscribe((res : any) => {
+if (res.status == 'success') {
+  swal("Updated Sucessfully");
+  console.log(res);
+  this.viewStudentQualificationById(this.id);
+  this.loadStudentQualification();
+}
+else if (res.status == 'error') {
+  this.setMessage(res.error);
+}
+
+}, (error) => {
+console.log(error);
+this.setMessage(error);
+});
+}
+
+private loadStudentQualification(){
+$('#addQualificationModal').modal('hide'); //or  $('#IDModal').modal('hide');
+$('#addQualificationModal').on('hidden.bs.modal', function () {
+$(this).find('form').trigger('reset');
+});
+
+$('#editQualificationModal').modal('hide'); //or  $('#IDModal').modal('hide');
+$('#editQualificationModal').on('hidden.bs.modal', function () {
+$(this).find('form').trigger('reset');
+});
+}
+loadBoard() {
+  this.request.getBoard().subscribe((response: any) => {
+    this.boards = response;
+    console.log('Board', this.boards);
+  }, (error) => {
+    console.log(error);
+  });
+}
+loadCourseType() {
+  this.request.getCourseType().subscribe((response: any) => {
+    this.coursetypes = response;
+    console.log('CourseType' ,this.coursetypes);
+  }, (error) => {
+    console.log(error);
+  });
+}
+loadMedium() {
+  this.request.getMedium().subscribe((response: any) => {
+    this.media = response;
+    console.log('Medium' , this.media);
+  }, (error) => {
+    console.log(error);
+  });
+}
+loadQualificationType() {
+  this.request.getQualificationType().subscribe((response: any) => {
+    this.qualificationTypes = response;
+    console.log('QualificationType' ,this.qualificationTypes);
+  }, (error) => {
+    console.log(error);
+  });
 }
   ngOnInit() {
     this.viewStudentDetailById(this.id);
@@ -1208,8 +1577,19 @@ loadSubCategory()  {
     this.loadRelationship();
     this.viewStudentGuardianById(this.id);
     this.loadActivityCategory();
-    this.loadSubCategory();
     this.viewStudentExtraById(this.id);
+    this.loadAddressType();
+    this.loadMedium();
+    this.loadQualificationType();
+    this.loadCourseType();
+    this.loadBoard();
+    this.viewStudentQualificationById(this.id);
+    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+      console.log('ImageUpload:uploaded:', item, status, response);
+      const resPath = JSON.parse(response);
+      this.getfileLoc = resPath.result;
+    };
     }
 
 }

@@ -749,7 +749,7 @@ this.qualificationdetails = null;
       maxMark: this.maxMark2.value,
       percentage: this.percentage2.value,
       organisationType: this.organisationType2.value,
-      photoLocation: this.getfileLoc2
+      photoLocation: this.getfileLoc2,
       };
       this.request.updateQualificationDetails(this.IdValue, edata).subscribe((response: any) => {
         if (response.status == 'success') {

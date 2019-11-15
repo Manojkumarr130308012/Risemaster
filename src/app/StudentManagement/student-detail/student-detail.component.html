@@ -378,7 +378,7 @@
                                                 <div class="header-dropdown m-r--5">
                                                     <!-- Add button -->
                                                     <div class="btn-group m-l-15">
-                                                        <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addExperienceModal">
+                                                        <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addQualificationModal">
                                                             Add New
                                                             <i class="fa fa-plus" style="color: white"></i>
                                                         </button>
@@ -402,20 +402,20 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let experience of experiences; let i=index">
+                                                            <tr *ngFor="let studentQualification of studentQualifications; let i=index">
                                                                 <td>{{i +1 }}</td>
-                                                                <td>{{experience?.organization}}</td>
-                                                                <td>{{experience?.expDesignation}}</td>
-                                                                <td>{{experience?.natureOfExperience}}</td>
-                                                                <td>{{experience?.place}}</td>
-                                                                <td>{{experience?.fromDate}}</td>
+                                                                <td>{{studentQualification.qualificationType[0].qualificationType}}</td>
+                                                                <td>{{studentQualification.courseType[0].courseType}}</td>
+                                                                <td>{{studentQualification.medium[0].medium}}</td>
+                                                                <td>{{studentQualification?.yearOfPassing}}</td>
+                                                                <td>{{studentQualification?.markObtained}}</td>
                                                                 <td>
-                                                                    <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editExperienceModal">
-                                                                        <i class="material-icons" (click)="onEditExperience(experience?._id) ">create</i>
+                                                                    <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editQualificationModal">
+                                                                        <i class="material-icons" (click)="onEditQualification(studentQualification?._id) ">create</i>
                                                                     </div>
                                                                     <div class="btn btn-tbl-delete">
                                                                         <i class="material-icons"
-                                                                            (click)="deleteStaffExperience(experience?._id)">delete</i>
+                                                                            (click)="deleteQualification(studentQualification?._id)">delete</i>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -1649,12 +1649,12 @@
 </div>
 <!-- Edit Guardian Form -->
 <!-- Add Extracurricular Form-->
-<div class="modal fade" id="addExtraModal" tabindex="-1" role="dialog" aria-labelledby="guardian1formModal"
+<div class="modal fade" id="addExtraModal" tabindex="-1" role="dialog" aria-labelledby="extra1formModal"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="guardian1formModal">Add Contact</h5>
+                <h5 class="modal-title" id="extra1formModal">Add Contact</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -1686,7 +1686,7 @@
                                 <label>Sub Category</label>
                                 <select class="browser-default" formControlName="subCate" class="form-control">
                                     <option value="">Choose your Sub Category</option>
-                                    <option *ngFor="let subCate of subcates?.response" [value]="subCate._id">
+                                    <option *ngFor="let subCate of subcategories" [value]="subCate._id">
                                         {{subCate?.subCategory}}</option>
                                 </select>
                             </div>
@@ -1695,31 +1695,52 @@
                                 <input type="date" formControlName="toDate" class="form-control" />
                             </div>
                         </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Description</label>
-                                    <textarea type="text" formControlName="description" class="form-control" placeholder="Description"></textarea>
-                                </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Level</label>
+                                <input type="text" formControlName="level" class="form-control" />
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Award Details</label>
-                                    <textarea type="text" formControlName="awardDetail" class="form-control" placeholder="Award Details"></textarea>
-                                </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Year</label>
+                                <input type="text" formControlName="year" class="form-control" />
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Remark</label>
-                                    <textarea type="text" formControlName="remark" class="form-control"
-                                        placeholder="Remark"></textarea>
-                                </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Venue</label>
+                                <input type="text" formControlName="venue" class="form-control" />
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea type="text" formControlName="description" class="form-control"
+                                    placeholder="Description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Award Details</label>
+                                <textarea type="text" formControlName="awardDetail" class="form-control"
+                                    placeholder="Award Details"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Remark</label>
+                                <textarea type="text" formControlName="remark" class="form-control" placeholder="Remark"></textarea>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-default">Add</button>
@@ -1732,12 +1753,12 @@
 </div>
 <!-- Add Extracurricular Form-->
 <!-- Edit Extracurricular Form-->
-<div class="modal fade" id="editExtraModal" tabindex="-1" role="dialog" aria-labelledby="guardian2formModal"
+<div class="modal fade" id="editExtraModal" tabindex="-1" role="dialog" aria-labelledby="extra2formModal"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="guardian2formModal">Edit Guardian</h5>
+                <h5 class="modal-title" id="extra2formModal">Edit Extracurricular</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -1745,65 +1766,86 @@
             <div class="modal-body">
                     <form [formGroup]="editExtraForm" (ngSubmit)="onEditExtraSubmit()">
                             <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Activity Category</label>
-                                            <select class="browser-default" formControlName="activityCate" class="form-control"
-                                                [ngClass]="{ 'is-invalid': submitted && e.activityCate.errors }"
-                                                (change)="onActivityCatChange($event.target.value)">
-                                                <option value="">Choose your Activity Category</option>
-                                                <option *ngFor="let activityCate of activitycats?.response" [value]="activityCate._id">
-                                                    {{activityCate?.activityCategory}}</option>
-                                            </select>
-                                            <div *ngIf="submitted && e.activityCate.errors" class="invalid-feedback">
-                                                <div *ngIf="e.activityCate.errors.required">Activity Category is required</div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>From Date</label>
-                                            <input type="date" formControlName="fromDate" class="form-control" />
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Activity Category</label>
+                                        <select class="browser-default" formControlName="activityCate" class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted && e2.activityCate.errors }"
+                                            (change)="onActivityCatChange($event.target.value)">
+                                            <option value="">Choose your Activity Category</option>
+                                            <option *ngFor="let activityCate of activitycats?.response" [value]="activityCate._id">
+                                                {{activityCate?.activityCategory}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && e2.activityCate.errors" class="invalid-feedback">
+                                            <div *ngIf="e2.activityCate.errors.required">Activity Category is required</div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Sub Category</label>
-                                            <select class="browser-default" formControlName="subCate" class="form-control">
-                                                <option value="">Choose your Sub Category</option>
-                                                <option *ngFor="let subCate of subcates?.response" [value]="subCate._id">
-                                                    {{subCate?.subCategory}}</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>To Date</label>
-                                            <input type="date" formControlName="toDate" class="form-control" />
-                                        </div>
+                                    <div class="form-group">
+                                        <label>From Date</label>
+                                        <input type="date" formControlName="fromDate" class="form-control" />
                                     </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Description</label>
-                                                <textarea type="text" formControlName="description" class="form-control" placeholder="Description"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Award Details</label>
-                                                <textarea type="text" formControlName="awardDetail" class="form-control" placeholder="Award Details"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Remark</label>
-                                                <textarea type="text" formControlName="remark" class="form-control"
-                                                    placeholder="Remark"></textarea>
-                                            </div>
-                                        </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Sub Category</label>
+                                        <select class="browser-default" formControlName="subCate" class="form-control">
+                                            <option value="">Choose your Sub Category</option>
+                                            <option *ngFor="let subCate of subcategories" [value]="subCate._id">
+                                                {{subCate?.subCategory}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>To Date</label>
+                                        <input type="date" formControlName="toDate" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Level</label>
+                                        <input type="text" formControlName="level" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Year</label>
+                                        <input type="text" formControlName="year" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Venue</label>
+                                        <input type="text" formControlName="venue" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea type="text" formControlName="description" class="form-control"
+                                            placeholder="Description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Award Details</label>
+                                        <textarea type="text" formControlName="awardDetail" class="form-control"
+                                            placeholder="Award Details"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Remark</label>
+                                        <textarea type="text" formControlName="remark" class="form-control" placeholder="Remark"></textarea>
+                                    </div>
+                                </div>
+                            </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-default">Update</button>
                         <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
@@ -1814,3 +1856,445 @@
     </div>
 </div>
 <!-- Edit Extracurricular Form -->
+<!-- Add Qualification Form-->
+<div class="modal fade" id="addQualificationModal" tabindex="-1" role="dialog" aria-labelledby="qualification1formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="qualification1formModal">Add Contact</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Qualification Type</label>
+                                <div class="form-line">
+                                <select class="browser-default" name="qualificationType" [formControl]="qualificationType"
+                                    class="form-control" required>
+                                    <option>Choose your Qualification Type</option>
+                                    <option *ngFor="let qualificationType of qualificationTypes?.response" [value]="qualificationType._id">
+                                        {{qualificationType?.qualificationType}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label>Course Name</label>
+                                <div class="form-line">
+                                <input type="text" [formControl]="courseName" class="form-control" placeholder="Enter courseName"
+                                    required />
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label>Course End Date</label>
+                                <div class="form-line">
+                                <input type="date" [formControl]="courseEndDate" class="form-control" placeholder="Enter CourseEndDate" />
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label>Institution Name</label>
+                                <div class="form-line">
+                                <input type="text" [formControl]="institution" class="form-control" placeholder="Enter Institution" />
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label>Country</label>
+                                <div class="form-line">
+                                <input type="text" [formControl]="country" class="form-control" placeholder="Enter Country" />
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label>District</label>
+                                <div class="form-line">
+                                <input type="text" [formControl]="district" class="form-control" placeholder="Enter District" />
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label>City</label>
+                                <div class="form-line">
+                                <input type="text" [formControl]="city" class="form-control" placeholder="Enter City" />
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label>Year Of Passing</label>
+                                <div class="form-line">
+                                <input type="text" [formControl]="yearOfPassing" class="form-control" placeholder="Enter yearOfPassing"
+                                    required/>
+                                
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label>Register No.</label>
+                                <div class="form-line">
+                                <input type="text" [formControl]="registerNo" class="form-control" placeholder="Enter Register No." />
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label>Certificate Issue Date</label>
+                                <div class="form-line">
+                                <input type="date" [formControl]="certificateIssuedate" class="form-control" placeholder="Enter certificateIssuedate" />
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label>Total Mark</label>
+                                <div class="form-line">
+                                <input type="text" [formControl]="maxMark" class="form-control" placeholder="Enter Total Mark" />
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label>TMR Code</label>
+                                <div class="form-line">
+                                <input type="text" [formControl]="tmrCode" class="form-control" placeholder="Enter TMR Code" />
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-float">
+                                <label>Course Type</label>
+                                <div class="form-line">
+                                    <select class="browser-default" name="courseType" [formControl]="courseType" class="form-control">
+                                        <option>Choose your Course Type</option>
+                                        <option *ngFor="let courseType of coursetypes" [value]="courseType._id">
+                                            {{courseType?.courseType}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Course Start Date</label>
+                                <div class="form-line">
+                                    <input type="date" [formControl]="courseStartDate" class="form-control"
+                                        placeholder="Enter CourseStartDate" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="board">Board Of Education</label>
+                                <div class="form-line">
+                                    <select class="browser-default" id="select2" [formControl]="board" class="form-control" required>
+                                        <option defult>Choose your BoardOfEducation</option>
+                                        <option *ngFor="let board of boards?.response" [value]="board._id">{{board?.board}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group form-float">
+                                <label>Medium</label>
+                                <div class="form-line">
+                                    <select class="browser-default" name="medium" [formControl]="medium" class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && q.medium.errors }">
+                                        <option>Choose your Medium</option>
+                                        <option *ngFor="let medium of media?.response" [value]="medium._id">{{medium?.medium}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && q.medium.errors" class="invalid-feedback">
+                                        <div *ngIf="q.medium.errors.required">Medium is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>State</label>
+                                <input type="text" [formControl]="state" class="form-control" placeholder="Enter State" />
+                            </div>
+                            <div class="form-group">
+                                <label>Taluk</label>
+                                <input type="text" [formControl]="taluk" class="form-control" placeholder="Enter Taluk" />
+                            </div>
+                            <div class="form-group">
+                                <label>Pincode</label>
+                                <input type="text" [formControl]="pincode" class="form-control" placeholder="Enter Pincode" />
+                            </div>
+                            <div class="form-group">
+                                <label>Certificate No.</label>
+                                <input type="text" [formControl]="certificateNo" class="form-control" placeholder="Enter certificateNo" />
+                            </div>
+                            <div class="form-group">
+                                <label>Place Of Issue</label>
+                                <input type="text" [formControl]="placeOfIssue" class="form-control" placeholder="Enter placeOfIssue" />
+                            </div>
+                            <div class="form-group ">
+                                <label>Organisation Type</label>
+                                <select class="browser-default" name="organisationType" [formControl]="organisationType" class="form-control"
+                                    required>
+                                    <option>Choose your organisationType</option>
+                                    <option value="Private">Private </option>
+                                    <option value="Govt"> Goverment </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>MarkObtained</label>
+                                <input type="text" class="form-control" [formControl]="markObtained" placeholder="Enter Obtained mark" />
+                            </div>
+                            <div class="form-group">
+                                <label>TMR Date</label>
+                                <input type="date" [formControl]="tmrDate" class="form-control" placeholder="Enter TMR Date" />
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Group Code</label>
+                            <input type="text" [formControl]="groupCode" class="form-control" placeholder="Enter Group Code" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Cut Off</label>
+                            <input type="text" [formControl]="cutOff" class="form-control" placeholder="Enter Cut Off" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Percentage</label>
+                            <input type="text" [formControl]="percentage" class="form-control" placeholder="Enter Percentage" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h6>MarkSheet</h6>
+                        <a href="{{photoLoctaionValue}}">MarkSheet</a><br><br>
+                        <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+                        <div class="progress">
+                            <div class="progress-bar width-per-45" role="progressbar" aria-valuenow="60"
+                                [ngStyle]="{'width':uploader.progress+'%'}" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="uploader?.queue?.length > 0">
+                            <button type="button" class="btn bg-teal waves-effect" (click)="submit()">Upload File</button></div>
+                    </div>
+                </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default" (click)="onAddQualification()">Add</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Qualification Form-->
+<!-- Edit Qualification Form-->
+<div class="modal fade" id="editQualificationModal" tabindex="-1" role="dialog" aria-labelledby="qualification2formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="qualification2formModal">Edit Qualification</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                        <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Qualification Type</label>
+                                        <div class="form-line">
+                                        <select class="browser-default" name="qualificationType2" [formControl]="qualificationType2"
+                                            class="form-control" required>
+                                            <option>Choose your Qualification Type</option>
+                                            <option *ngFor="let qualificationType of qualificationTypes?.response" [value]="qualificationType._id">
+                                                {{qualificationType?.qualificationType}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label>Course Name</label>
+                                        <div class="form-line">
+                                        <input type="text" [formControl]="courseName2" class="form-control" placeholder="Enter courseName"
+                                            required />
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label>Course End Date</label>
+                                        <div class="form-line">
+                                        <input type="date" [formControl]="courseEndDate2" class="form-control" placeholder="Enter CourseEndDate" />
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label>Institution Name</label>
+                                        <div class="form-line">
+                                        <input type="text" [formControl]="institution2" class="form-control" placeholder="Enter Institution" />
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label>Country</label>
+                                        <div class="form-line">
+                                        <input type="text" [formControl]="country2" class="form-control" placeholder="Enter Country" />
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label>District</label>
+                                        <div class="form-line">
+                                        <input type="text" [formControl]="district2" class="form-control" placeholder="Enter District" />
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <div class="form-line">
+                                        <input type="text" [formControl]="city2" class="form-control" placeholder="Enter City" />
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label>Year Of Passing</label>
+                                        <div class="form-line">
+                                        <input type="text" [formControl]="yearOfPassing2" class="form-control" placeholder="Enter yearOfPassing"
+                                            required/>
+                                        
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label>Register No.</label>
+                                        <div class="form-line">
+                                        <input type="text" [formControl]="registerNo2" class="form-control" placeholder="Enter Register No." />
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label>Certificate Issue Date</label>
+                                        <div class="form-line">
+                                        <input type="date" [formControl]="certificateIssuedate2" class="form-control" placeholder="Enter certificateIssuedate" />
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label>Total Mark</label>
+                                        <div class="form-line">
+                                        <input type="text" [formControl]="maxMark2" class="form-control" placeholder="Enter Total Mark" />
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label>TMR Code</label>
+                                        <div class="form-line">
+                                        <input type="text" [formControl]="tmrCode2" class="form-control" placeholder="Enter TMR Code" />
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <label>Course Type</label>
+                                        <div class="form-line">
+                                            <select class="browser-default" name="courseType2" [formControl]="courseType2" class="form-control">
+                                                <option>Choose your Course Type</option>
+                                                <option *ngFor="let courseType of coursetypes" [value]="courseType._id">
+                                                    {{courseType?.courseType}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Course Start Date</label>
+                                        <div class="form-line">
+                                            <input type="date" [formControl]="courseStartDate2" class="form-control"
+                                                placeholder="Enter CourseStartDate" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="board">Board Of Education</label>
+                                        <div class="form-line">
+                                            <select class="browser-default" [formControl]="board2" class="form-control" required>
+                                                <option defult>Choose your BoardOfEducation</option>
+                                                <option *ngFor="let board of boards?.response" [value]="board._id">{{board?.board}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <label>Medium</label>
+                                        <div class="form-line">
+                                            <select class="browser-default" name="medium2" [formControl]="medium2" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && q.medium.errors }">
+                                                <option>Choose your Medium</option>
+                                                <option *ngFor="let medium of media?.response" [value]="medium._id">{{medium?.medium}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && q.medium.errors" class="invalid-feedback">
+                                                <div *ngIf="q.medium.errors.required">Medium is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>State</label>
+                                        <input type="text" [formControl]="state2" class="form-control" placeholder="Enter State" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Taluk</label>
+                                        <input type="text" [formControl]="taluk2" class="form-control" placeholder="Enter Taluk" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Pincode</label>
+                                        <input type="text" [formControl]="pincode2" class="form-control" placeholder="Enter Pincode" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Certificate No.</label>
+                                        <input type="text" [formControl]="certificateNo2" class="form-control" placeholder="Enter certificateNo" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Place Of Issue</label>
+                                        <input type="text" [formControl]="placeOfIssue2" class="form-control" placeholder="Enter placeOfIssue" />
+                                    </div>
+                                    <div class="form-group ">
+                                        <label>Organisation Type</label>
+                                        <select class="browser-default" name="organisationType2" [formControl]="organisationType2" class="form-control"
+                                            required>
+                                            <option>Choose your organisationType</option>
+                                            <option value="Private">Private </option>
+                                            <option value="Govt"> Goverment </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>MarkObtained</label>
+                                        <input type="text" class="form-control" [formControl]="markObtained2" placeholder="Enter Obtained mark" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>TMR Date</label>
+                                        <input type="date" [formControl]="tmrDate2" class="form-control" placeholder="Enter TMR Date" />
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Group Code</label>
+                                    <input type="text" [formControl]="groupCode2" class="form-control" placeholder="Enter Group Code" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Cut Off</label>
+                                    <input type="text" [formControl]="cutOff2" class="form-control" placeholder="Enter Cut Off" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Percentage</label>
+                                    <input type="text" [formControl]="percentage2" class="form-control" placeholder="Enter Percentage" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h6>MarkSheet</h6>
+                                <a href="{{getfileLoc}}">MarkSheet</a><br><br>
+                                <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+                                <div class="progress">
+                                    <div class="progress-bar width-per-45" role="progressbar" aria-valuenow="60"
+                                        [ngStyle]="{'width':uploader.progress+'%'}" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <div class="row" *ngIf="uploader?.queue?.length > 0">
+                                    <button type="button" class="btn bg-teal waves-effect" (click)="submit()">Upload File</button></div>
+                            </div>
+                        </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default"  (click)="onEditQualificationSubmit()">Update</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit Qualification Form -->

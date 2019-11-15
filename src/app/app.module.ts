@@ -98,6 +98,7 @@ import { StudentDetailComponent } from './StudentManagement/student-detail/stude
 import { RelationshipComponent } from './StudentMaster/relationship/relationship.component';
 import { ActivityCategoryComponent } from './StudentMaster/activity-category/activity-category.component';
 import { SubCategoryComponent } from './StudentMaster/sub-category/sub-category.component';
+import { CertificateTypeComponent } from './StudentMaster/certificate-type/certificate-type.component';
 
 
 
@@ -178,6 +179,7 @@ StudentDetailComponent,
 RelationshipComponent,
 ActivityCategoryComponent,
 SubCategoryComponent,
+CertificateTypeComponent,
 
 
   ],
