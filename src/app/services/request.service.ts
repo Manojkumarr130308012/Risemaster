@@ -1746,6 +1746,10 @@ public getBatchByDegree(degree) {
   this.url = `${this.endPoint}/batch/fetchByDeg/?degree=` + degree;
   return this.http.get(this.url);
 }
+public getStudentDetailByBatch(batch) {
+  this.url = `${this.endPoint}/batch/fetchbyBatch?batch=` + batch;
+  return this.http.get(this.url);
+}
 // StudentManagment - StudentContact
 public getStudentcontact() {
   this.url = `${this.endPoint}/student-contact/aggregation`;
@@ -2050,6 +2054,52 @@ fetchSubCatById(id) {
 }
 fetchSubCatByActCat(activityCate) {
   this.url = `${this.endPoint}/subCategory/fetchSubCat?activityCate=` + activityCate;
+  return this.http.get(this.url);
+}
+//CertificateType
+getCertificateType() {
+  this.url = `${this.endPoint}/certificateType/`;
+  return this.http.get(this.url);
+}
+addCertificateType(newdetail: any) {
+  this.url = `${this.endPoint}/certificateType/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteCertificateType(id) {
+  this.url = `${this.endPoint}/certificateType/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateCertificateType(id, body) {
+  this.url = `${this.endPoint}/certificateType/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchCertificateTypeById(id) {
+  this.url = `${this.endPoint}/certificateType/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+//StudentManegment - CertificateType
+getStudentCertificate() {
+  this.url = `${this.endPoint}/student-certificate/aggregation`;
+  return this.http.get(this.url);
+}
+addStudentCertificate(newdetail: any) {
+  this.url = `${this.endPoint}/student-certificate/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteStudentCertificate(id) {
+  this.url = `${this.endPoint}/student-certificate/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateStudentCertificate(id, body) {
+  this.url = `${this.endPoint}/student-certificate/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchStudentCertificateById(id) {
+  this.url = `${this.endPoint}/student-certificate/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+getStudentCertificateById(stuId) {
+  this.url = `${this.endPoint}/student-certificate/fetchbyId?stuId=` + stuId;
   return this.http.get(this.url);
 }
 }

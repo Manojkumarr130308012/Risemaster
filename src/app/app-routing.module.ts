@@ -68,6 +68,8 @@ import { CEAddFormComponent } from './StudentCandidateEnquiry/ce-add-form/ce-add
 import { CEEditFormComponent } from './StudentCandidateEnquiry/ce-edit-form/ce-edit-form.component';
 import { ConvertToStudentComponent } from './StudentCandidateEnquiry/convert-to-student/convert-to-student.component';
 import { StudentDetailComponent } from './StudentManagement/student-detail/student-detail.component';
+import { CertificateTypeComponent } from './StudentMaster/certificate-type/certificate-type.component';
+import { StudentEditComponent } from './StudentManagement/student-edit/student-edit.component';
 
 const routes: Routes = [
   // { path: '', component: LoginComponent },
@@ -213,6 +215,10 @@ const routes: Routes = [
     path: 'sub-category',
     component: SubCategoryComponent
   },
+  {
+    path: 'certificateType',
+    component: CertificateTypeComponent
+  },
 
  // Staff Master
 {
@@ -310,6 +316,8 @@ const routes: Routes = [
   component: StudentEntryComponent},
   { path: 'studentDetail', 
   component: StudentDetailComponent},
+  { path: 'studentEdit', 
+  component: StudentEditComponent},
 ];
 
 @NgModule({

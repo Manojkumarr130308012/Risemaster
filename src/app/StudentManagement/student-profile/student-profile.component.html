@@ -41,7 +41,8 @@
                                         </div>
                                         <div class="col-md-3">
                                             <label for="batch">Batch</label>
-                                            <select id="select" [(ngModel)]="selectedbatch" class="browser-default form-control">
+                                            <select id="select" [(ngModel)]="selectedbatch" class="browser-default form-control"
+                                            (change)="onBatchChange($event.target.value)">
                                                 <option>Choose your Batch</option>
                                                 <option *ngFor="let batch of batcheByDegrees?.response" [value]="batch._id">{{batch?.batch}}
                                                 </option>

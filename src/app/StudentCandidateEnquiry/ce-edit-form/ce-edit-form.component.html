@@ -186,12 +186,12 @@
                                                                     <div class="form-line" >
                                                                         <select class="browser-default"  [formControl]="admissionCategory" class="form-control">
                                                                             <option value="">Choose your AdmissionCategory</option>
-                                                                            <option  *ngFor="let admissionCategory of admissioncategories" [value]="admissionCategory._id">
+                                                                            <option  *ngFor="let admissionCategory of admissioncategories?.response" [value]="admissionCategory._id">
                                                                                 {{admissionCategory.admissionCategory}}
                                                                             </option>
                                                                         </select>
                                                                     </div>
-                                                                </div>
+                                                                </div> 
                                                             <div class="form-group form-float">
                                                                 <label for="remark">Remark</label>
                                                                 <div class="form-line">
@@ -1010,85 +1010,88 @@
                                                                 <div class="modal-body">
                                                                     <form [formGroup]="paymentAddForm">
                                                                             <div class="row">
-                                                                                    <div class="col-md-6">
-                                                                                        <div class="form-group">
-                                                                                            <label>PaymentDate</label>
-                                                                                            <input type="date" class="form-control" [ngClass]="{ 'is-invalid': submitted && f5.paymentDate.errors }"
-                                                                                                formControlName="paymentDate">
-                                                                                            <div *ngIf="submitted && f5.paymentDate.errors" class="invalid-feedback">
-                                                                                                <div *ngIf="f5.paymentDate.errors.required">paymentDate
-                                                                                                    is required</div>
-                                                                                            </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        <label>PaymentDate</label>
+                                                                                        <input type="date" class="form-control" [ngClass]="{ 'is-invalid': submitted && f5.paymentDate.errors }"
+                                                                                            formControlName="paymentDate">
+                                                                                        <div *ngIf="submitted && f5.paymentDate.errors" class="invalid-feedback">
+                                                                                            <div *ngIf="f5.paymentDate.errors.required">paymentDate
+                                                                                                is required</div>
                                                                                         </div>
-                                                                                        <div class="form-group">
-                                                                                            <label>Bank</label>
-                                                                                            <input type="text"  formControlName="bank" class="form-control" placeholder="Enter Bank"
-                                                                                                [ngClass]="{ 'is-invalid': submitted && f5.bank.errors }" />
-                                                                                            <div *ngIf="submitted && f5.bank.errors" class="invalid-feedback">
-                                                                                                <div *ngIf="f5.bank.errors.required">Bank is required
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label>Cheque / DD Number</label>
-                                                                                            <input type="text"  formControlName="chequeDDNumber" class="form-control"
-                                                                                                placeholder="Enter Cheque / DD Number"
-                                                                                                [ngClass]="{ 'is-invalid': submitted && f5.chequeDDNumber.errors }" />
-                                                                                            <div *ngIf="submitted && f5.chequeDDNumber.errors" class="invalid-feedback">
-                                                                                                <div *ngIf="f5.chequeDDNumber.errors.required">Cheque /
-                                                                                                    DD Number is required</div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label>Amount</label>
-                                                                                            <input type="text"  formControlName="amount" class="form-control" placeholder="Enter Amount"
-                                                                                                [ngClass]="{ 'is-invalid': submitted && f5.amount.errors }" />
-                                                                                            <div *ngIf="submitted && f5.amount.errors" class="invalid-feedback">
-                                                                                                <div *ngIf="f5.amount.errors.required">Amount is
-                                                                                                    required</div>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label>Bank Name</label>
+                                                                                        <select class="browser-default" formControlName="bank" class="form-control" placeholder="Enter Bank"
+                                                                                            [ngClass]="{ 'is-invalid': submitted && f5.bank.errors }">
+                                                                                            <option default selected>Choose your BankName</option>
+                                                                                            <option *ngFor="let bank of banks" [value]="bank._id">
+                                                                                                {{bank?.bankName}}</option>
+                                                                                        </select>
+                                                                                        <div *ngIf="submitted && f5.bank.errors" class="invalid-feedback">
+                                                                                            <div *ngIf="f5.bank.errors.required">Bank is required
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <div class="col-md-6">
-                                                                                        <div class="form-group">
-                                                                                            <label>PaymentMethod</label>
-                                                                                            <select class="browser-default" id="select" formControlName="paymentmethod"
-                                                                                                value=" " class="form-control" placeholder="Enter Payment Method"
-                                                                                                [ngClass]="{ 'is-invalid': submitted && f5.paymentmethod.errors }">
-                                                                                                <option default  selected>Choose your PaymentMethod</option>
-                                                                                                <option *ngFor="let paymentMethod of paymentMethods?.response" [value]="paymentMethod._id">
-                                                                                                    {{paymentMethod?.paymentMethod}}</option>
-                                                                                            </select>
-                                                                                            <div *ngIf="submitted && f5.paymentmethod.errors" class="invalid-feedback">
-                                                                                                <div *ngIf="f5.paymentmethod.errors.required">Payment
-                                                                                                    Method is required</div>
-                                                                                            </div>
+                                                                                    <div class="form-group">
+                                                                                        <label>Cheque / DD Number</label>
+                                                                                        <input type="text" formControlName="chequeDDNumber" class="form-control"
+                                                                                            placeholder="Enter Cheque / DD Number"
+                                                                                            [ngClass]="{ 'is-invalid': submitted && f5.chequeDDNumber.errors }" />
+                                                                                        <div *ngIf="submitted && f5.chequeDDNumber.errors" class="invalid-feedback">
+                                                                                            <div *ngIf="f5.chequeDDNumber.errors.required">Cheque /
+                                                                                                DD Number is required</div>
                                                                                         </div>
-                                                                                        <div class="form-group">
-                                                                                                <label>Cheque/DD Date</label>
-                                                                                                <input type="date"  formControlName="chequeDDDate" class="form-control" placeholder="Enter Cheque/DD Date"
-                                                                                                    [ngClass]="{ 'is-invalid': submitted && f5.chequeDDDate.errors }" />
-                                                                                                <div *ngIf="submitted && f5.chequeDDDate.errors" class="invalid-feedback">
-                                                                                                    <div *ngIf="f5.chequeDDDate.errors.required">Cheque/DD
-                                                                                                        Date is required</div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="form-group">
-                                                                                                    <label>Advance Fees Type</label>
-                                                                                                    <select class="browser-default" id="select" [(ngModel)]="selectedadvanceFeeType" formControlName="advanceFeeType"
-                                                                                                       class="form-control" placeholder="Enter Advance Fees type"
-                                                                                                        [ngClass]="{ 'is-invalid': submitted && f5.advanceFeeType.errors }">
-                                                                                                        <option  selected> Choose your AddvanceFees Type</option>
-                                                                                                        <option *ngFor="let feetype of feetypes?.response" [value]="feetype._id">
-                                                                                                            {{feetype?.feetype}}
-                                                                                                        </option>
-                                                                                                    </select>
-                                                                                                    <div *ngIf="submitted && f5.advanceFeeType.errors" class="invalid-feedback">
-                                                                                                        <div *ngIf="f5.advanceFeeType.errors.required"> Advance Fees Type is required </div>
-                                                                                                    </div>
-                                                                                                </div>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label>Amount</label>
+                                                                                        <input type="text" formControlName="amount" class="form-control" placeholder="Enter Amount"
+                                                                                            [ngClass]="{ 'is-invalid': submitted && f5.amount.errors }" />
+                                                                                        <div *ngIf="submitted && f5.amount.errors" class="invalid-feedback">
+                                                                                            <div *ngIf="f5.amount.errors.required">Amount is
+                                                                                                required</div>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        <label>PaymentMethod</label>
+                                                                                        <select class="browser-default" id="select" formControlName="paymentmethod" value=" " class="form-control"
+                                                                                            placeholder="Enter Payment Method" [ngClass]="{ 'is-invalid': submitted && f5.paymentmethod.errors }">
+                                                                                            <option default selected>Choose your PaymentMethod</option>
+                                                                                            <option *ngFor="let paymentMethod of paymentMethods?.response" [value]="paymentMethod._id">
+                                                                                                {{paymentMethod?.paymentMethod}}</option>
+                                                                                        </select>
+                                                                                        <div *ngIf="submitted && f5.paymentmethod.errors" class="invalid-feedback">
+                                                                                            <div *ngIf="f5.paymentmethod.errors.required">Payment
+                                                                                                Method is required</div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label>Cheque/DD Date</label>
+                                                                                        <input type="date" formControlName="chequeDDDate" class="form-control" placeholder="Enter Cheque/DD Date"
+                                                                                            [ngClass]="{ 'is-invalid': submitted && f5.chequeDDDate.errors }" />
+                                                                                        <div *ngIf="submitted && f5.chequeDDDate.errors" class="invalid-feedback">
+                                                                                            <div *ngIf="f5.chequeDDDate.errors.required">Cheque/DD
+                                                                                                Date is required</div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label>Advance Fees Type</label>
+                                                                                        <select class="browser-default" id="select" [(ngModel)]="selectedadvanceFeeType"
+                                                                                            formControlName="advanceFeeType" class="form-control" placeholder="Enter Advance Fees type"
+                                                                                            [ngClass]="{ 'is-invalid': submitted && f5.advanceFeeType.errors }">
+                                                                                            <option selected> Choose your AddvanceFees Type</option>
+                                                                                            <option *ngFor="let feetype of feetypes?.response" [value]="feetype._id">
+                                                                                                {{feetype?.feetype}}
+                                                                                            </option>
+                                                                                        </select>
+                                                                                        <div *ngIf="submitted && f5.advanceFeeType.errors" class="invalid-feedback">
+                                                                                            <div *ngIf="f5.advanceFeeType.errors.required"> Advance Fees Type is required </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
                                                                         <div class="modal-footer">
                                                                             <button type="submit" class="btn btn-default" (click)="addpaymentdetails()">Add</button>
                                                                             <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
@@ -1108,7 +1111,7 @@
                                                                     <th>#</th>
                                                                     <th>Payment Date</th>
                                                                     <th>Payment Method</th>
-                                                                    <th>Bank </th>
+                                                                    <th>Bank Name</th>
                                                                     <th>Cheque / DD Date</th>
                                                                     <th>Cheque / DD Number</th>
                                                                     <th> Advance Fee Type</th>
@@ -1122,10 +1125,10 @@
                                                                     <td>{{ i +1 }} </td>
                                                                     <td>{{paymentdetail?.paymentDate}}</td>
                                                                     <td>{{paymentdetail.paymentmethod[0].paymentMethod}}</td>
-                                                                    <td>{{paymentdetail?.bank}}</td>
+                                                                    <td>{{paymentdetail.bank[0].bankName}}</td>
                                                                     <td>{{paymentdetail?.chequeDDDate}}</td>
                                                                     <td>{{paymentdetail?.chequeDDNumber}}</td>
-                                                                    <td>{{paymentdetail?.advanceFeeType}}</td>
+                                                                    <td>{{paymentdetail.advanceFeeType[0].feetype}}</td>
                                                                     <td>{{paymentdetail?.amount}}</td>
                                                                     <div class="noprint">
                                                                         <td>
@@ -1166,11 +1169,16 @@
                                                                                                             </div>
                                                                                                         </div>
                                                                                                         <div class="form-group">
-                                                                                                            <label>Bank</label>
-                                                                                                            <input type="text"  formControlName="bank2" class="form-control" placeholder="Enter Bank"
-                                                                                                                [ngClass]="{ 'is-invalid': submitted && f6.bank2.errors }" />
+                                                                                                            <label>Bank Name</label>
+                                                                                                            <select class="browser-default" formControlName="bank2" class="form-control" placeholder="Enter Bank"
+                                                                                                                [ngClass]="{ 'is-invalid': submitted && f6.bank2.errors }">
+                                                                                                                <option default selected>Choose your BankName</option>
+                                                                                                                <option *ngFor="let bank of banks" [value]="bank._id">
+                                                                                                                    {{bank?.bankName}}</option>
+                                                                                                            </select>
                                                                                                             <div *ngIf="submitted && f6.bank2.errors" class="invalid-feedback">
-                                                                                                                <div *ngIf="f6.bank2.errors.required"> Bank is required </div>
+                                                                                                                <div *ngIf="f6.bank2.errors.required">BankName is required
+                                                                                                                </div>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                         <div class="form-group">
@@ -1215,12 +1223,17 @@
                                                                                                             </div>
                                                                                                         </div>
                                                                                                         <div class="form-group">
-                                                                                                            <label>Advance Fee Type</label>
-                                                                                                            <input type="text"  formControlName="advanceFeeType2" class="form-control"
-                                                                                                                placeholder="Enter Advance Fee Type" [ngClass]="{ 'is-invalid': submitted && f6.advanceFeeType2.errors }" />
+                                                                                                            <label>Advance Fees Type</label>
+                                                                                                            <select class="browser-default"  formControlName="advanceFeeType2"
+                                                                                                                class="form-control" placeholder="Enter Advance Fees type"
+                                                                                                                [ngClass]="{ 'is-invalid': submitted && f6.advanceFeeType2.errors }">
+                                                                                                                <option selected> Choose your AddvanceFees Type</option>
+                                                                                                                <option *ngFor="let feetype of feetypes?.response" [value]="feetype._id">
+                                                                                                                    {{feetype?.feetype}}
+                                                                                                                </option>
+                                                                                                            </select>
                                                                                                             <div *ngIf="submitted && f6.advanceFeeType2.errors" class="invalid-feedback">
-                                                                                                                <div *ngIf="f6.advanceFeeType2.errors.required"> Advance Fee Type is required
-                                                                                                                </div>
+                                                                                                                <div *ngIf="f6.advanceFeeType2.errors.required"> Advance Fees Type is required </div>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>

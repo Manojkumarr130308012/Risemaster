@@ -147,7 +147,7 @@ export class StaffProfileComponent implements OnInit {
       }
     }
 
-    onDepartmentChange(department : string) {
+    onDepartmentChange(department : string) { 
       if (department){
         console.log(department);
       this.request.getStaffProfileByDep(department).subscribe((response) => {

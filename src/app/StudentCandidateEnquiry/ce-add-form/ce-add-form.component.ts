@@ -233,6 +233,7 @@ amountValue: any;
   photoLocationValue: any;
   basic: any;
   ID : any;
+  banks: any;
 
 
   constructor(private dynamicScriptLoader: DynamicScriptLoaderService,
@@ -1068,6 +1069,14 @@ onEditFollowupsSubmit() {
       console.log(error);
     });
   }
+  loadBank() {
+    this.request.getBank().subscribe((response: any) => {
+      this.banks = response;
+      console.log('Bank',this.banks);
+    }, (error) => {
+      console.log(error);
+    });
+  }
   loadAdmissionType() {
     this.request.getAdmissiontype().subscribe((response: any) => {
       this.admissiontypes = response;
@@ -1269,6 +1278,7 @@ onEditFollowupsSubmit() {
     this.loadGender();
     this.loadInstitution();
     this.loadBoard();
+    this.loadBank();
     this.loadAdmissionType();
     this.loadScholarshipCategory();
     this.loadRefferalType();

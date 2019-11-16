@@ -46,6 +46,8 @@ export class BankComponent implements OnInit {
   IFSCCodeValue: any;
   MICRCodeValue: any;
   message: any;
+  bankNameValue: any;
+  accountTypeValue: any;
   constructor(private formBuilder: FormBuilder,
     private dynamicScriptLoader: DynamicScriptLoaderService,
     private request: RequestService,
@@ -53,8 +55,10 @@ export class BankComponent implements OnInit {
       //Add Form Group
       this.registerForm = this.formBuilder.group({
         institution:['', Validators.required],
+        bankName:['', Validators.required],
         accountName: ['', Validators.required],
         accountNumber: ['', Validators.required],
+        accountType:['', Validators.required],
         branch: ['', Validators.required],
         IFSCCode: ['', Validators.required],
         MICRCode: ['', Validators.required]
@@ -62,8 +66,10 @@ export class BankComponent implements OnInit {
     //Edit Form Group
     this.editForm = this.formBuilder.group({
       institution2:['', Validators.required],
+      bankName2:['', Validators.required],
       accountName2: ['', Validators.required],
       accountNumber2: ['', Validators.required],
+      accountType2:['', Validators.required],
       branch2: ['', Validators.required],
       IFSCCode2: ['', Validators.required],
       MICRCode2: ['', Validators.required]
@@ -124,8 +130,10 @@ public setMessage(message) {
       this.editBankdata = response[0];
        console.log(this.editBankdata);
       this.InstitutionValue = this.editBankdata.institution;
+       this.bankNameValue = this.editBankdata.bankName;
       this.accountNameValue = this.editBankdata.accountName;
       this.accountNumberValue = this.editBankdata.accountNumber;
+      this.accountTypeValue = this.editBankdata.accountType;
       this.branchValue = this.editBankdata.branch;
       this.IFSCCodeValue = this.editBankdata.IFSCCode;
       this.MICRCodeValue = this.editBankdata.MICRCode;
@@ -133,8 +141,10 @@ public setMessage(message) {
 
       this.editForm = this.formBuilder.group({
         institution2: [this.InstitutionValue, Validators.required],
+        bankName2: [this.bankNameValue, Validators.required],
         accountName2: [  this.accountNameValue, Validators.required],
         accountNumber2: [  this.accountNumberValue, Validators.required],
+        accountType2: [this.accountTypeValue, Validators.required],
         branch2: [ this.branchValue, Validators.required],
         IFSCCode2: [ this.IFSCCodeValue, Validators.required],
         MICRCode2: [ this.MICRCodeValue, Validators.required]
@@ -160,8 +170,10 @@ public setMessage(message) {
 
     const edata = {
       institution: this.editForm.get('institution2').value,
+      bankName: this.editForm.get('bankName2').value,
       accountName: this.editForm.get('accountName2').value,
       accountNumber: this.editForm.get('accountNumber2').value,
+      accountType: this.editForm.get('accountType2').value,
       branch: this.editForm.get('branch2').value,
       IFSCCode: this.editForm.get('IFSCCode2').value,
       MICRCode: this.editForm.get('MICRCode2').value

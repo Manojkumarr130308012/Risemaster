@@ -14,6 +14,8 @@ declare const swal: any;
 })
 export class StudentEntryComponent implements OnInit {
 
+  degree: any;
+  batch: any;
   rollNo: any;
   regNo: any;
   firstName: any;
@@ -29,6 +31,7 @@ export class StudentEntryComponent implements OnInit {
   foccupation: any;
   fannualIncome: any;
   fmobileNo: any;
+  paadharNO: any;
   mfirstName: any;
   mlastName: any;
   moccupation: any;
@@ -82,12 +85,18 @@ export class StudentEntryComponent implements OnInit {
   aan: any;
   institution: any;
   institutions: any;
+  id: any;
+  batcheByDegrees: any;
+  batches: any;
+  degrees: any;
   constructor(
     private request: RequestService,
     private router: Router,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
   ) {
+    this.degree = new FormControl('', Validators.required);
+    this.batch = new FormControl('', Validators.required);
     this.rollNo = new FormControl('', Validators.required);
     this.regNo = new FormControl('', Validators.required);
     this.firstName = new FormControl('', Validators.required);
@@ -103,6 +112,7 @@ export class StudentEntryComponent implements OnInit {
     this.foccupation = new FormControl('');
     this.fannualIncome = new FormControl('');
     this.fmobileNo = new FormControl('');
+    this.paadharNO = new FormControl('');
     this.mfirstName = new FormControl('');
     this.mlastName = new FormControl('');
     this.moccupation = new FormControl('');
@@ -133,7 +143,7 @@ export class StudentEntryComponent implements OnInit {
     this.minoritygroup = new FormControl('');
     this.physicallyChallengedPerson = new FormControl('');
     this.andhamanAndNicobarNative = new FormControl('');
-   }
+  }
      //to upload Photo
   submit() {
     this.uploader.uploadAll();
@@ -168,6 +178,8 @@ export class StudentEntryComponent implements OnInit {
   }
   addStudentDetails() {
     const newStudentDetail = {
+      degree: this.degree.value,
+      batch: this.batch.value,
       rollNo: this.rollNo.value,
       regNo: this.regNo.value,
       firstName: this.firstName.value,
@@ -183,6 +195,7 @@ export class StudentEntryComponent implements OnInit {
       foccupation: this.foccupation.value,
       fannualIncome: this.fannualIncome.value,
       fmobileNo: this.fmobileNo.value,
+      paadharNO: this.paadharNO.value,
       mfirstName: this.mfirstName.value,
       mlastName: this.mlastName.value,
       moccupation: this.moccupation.value,
@@ -344,6 +357,22 @@ export class StudentEntryComponent implements OnInit {
       console.log(error);
     });
   }
+  loadBatch() {
+    this.request.getbatch().subscribe((response: any) => {
+      this.batches = response;
+      console.log('Batches' ,this.batches);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  loadDegree() {
+    this.request.getDegree().subscribe((response: any) => {
+      this.degrees = response;
+      console.log('DegreeProgram' ,this.degrees);
+    }, (error) => {
+      console.log(error);
+    });
+  }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Filter CourseCategory, AdmissionType, AdmissionCategory by Institution
   onInstitutionChange(Institution: any) {
@@ -366,6 +395,17 @@ export class StudentEntryComponent implements OnInit {
     this.admissiontypes = null;
     this.admissioncategories = null;
   }
+  onDegreeChange(degree: any) {
+    if (degree) {
+      this.request.getBatchByDegree(degree).subscribe((response: any) => {
+        this.batcheByDegrees = response;
+        console.log('BatchByDegree',  this.batcheByDegrees);
+      }, (error) => {
+        console.log(error);
+      });
+    } else
+      this.batcheByDegrees = null;
+  }
   ngOnInit() { 
     this.viewData();
     this.loadAdmissionCategory();
@@ -381,6 +421,8 @@ export class StudentEntryComponent implements OnInit {
     this.loadMaritalstatus();
     this.loadBloodgroup();
     this.loadInstitution();
+    this.loadDegree();
+    this.loadBatch();
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       console.log('ImageUpload:uploaded:', item, status, response);

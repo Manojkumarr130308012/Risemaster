@@ -37,6 +37,14 @@
                                 <h6>AdmissionCategory :</h6>{{studentdetail?.admissionCategory[0].admissionCategory}}
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <button type="button" class="btn btn-danger waves-effect" routerLink="/studentProfile">Back</button>
+                            </div>
+                            <div class="col-md-1" *ngFor="let studentdetail of studentDetails">
+                                <button type="button" class="btn bg-indigo waves-effect" (click)="onEdit(studentdetail?._id)">Edit</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row clearfix">
@@ -54,50 +62,31 @@
                                                 class="display table table-hover table-checkable order-column m-t-20 width-per-100">
                                                 <thead>
                                                     <tr>
-                                                        <th>#</th>
-                                                        <th>Relation Type</th>
-                                                        <th>Name</th>
-                                                        <th>Occupation</th>
-                                                        <th>Mobile No.</th>
-                                                        <th>Email</th>
+                                                        <th>Father Name</th>
+                                                        <th>Father Occupation</th>
+                                                        <th>Father Mobile No.</th>
+                                                        <th>Mother Name</th>
+                                                        <th>Mother Occupation</th>
+                                                        <th>Mother Mobile No.</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr *ngFor="let studentdetail of studentDetails;let i=index">
-                                                        <td>{{i +1 }}</td>
-                                                        <td>-</td>
-                                                        <td>-</td>
-                                                        <td>-</td>
-                                                        <td>-</td>
-                                                        <td>-</td>
-                                                        <td>
-                                                            <div class="btn btn-tbl-edit" data-toggle="modal"
-                                                                data-target="#editcontactModal">
-                                                                <i class="material-icons"
-                                                                    (click)="onEditContact(studentcontact?._id) ">create</i>
-                                                            </div>
-                                                            <div class="btn btn-tbl-delete">
-                                                                <i class="material-icons"
-                                                                    (click)="deleteContact(studentcontact?._id)">delete</i>
-                                                            </div>
-                                                        </td>
+                                                    <tr *ngFor="let studentdetail of studentDetails">
+                                                        <td>{{studentdetail?.ffirstName}} {{studentdetail?.flastName}}</td>
+                                                        <td>{{studentdetail?.foccupation}}</td>
+                                                        <td>{{studentdetail?.fmobileNo}}</td>
+                                                        <td>{{studentdetail?.mfirstName}} {{studentdetail?.mlastName}}</td>
+                                                        <td>{{studentdetail?.moccupation}}</td>
+                                                        <td>{{studentdetail?.mmobileNo}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
-                                    <div class="row">
-                                            <div class="col-md-1">
-                                                <button type="button" class="btn btn-danger waves-effect"
-                                                    routerLink="/studentProfile">Back</button>
-                                            </div>
-                                            <div class="col-md-1">
-                                                <button type="button" class="btn btn-info waves-effect" data-toggle="modal"
-                                                    data-target="#editModal" (click)="onEdit()">Edit</button>
-                                            </div>
-                                        </div>
+                                   
                             </div>
                         </div>
                     </div>
+                    
                 </div>
                 <!--Tabs Start-->
                 <div class="row clearfix">
@@ -128,7 +117,7 @@
                                     </li>
                                     <li role="presentation">
                                         <a href="#certification_with_icon_title" data-toggle="tab">
-                                            <i class="material-icons">star</i> Cerification
+                                            <i class="material-icons">star</i> Certification
                                         </a>
                                     </li>
                                     <li role="presentation">
@@ -398,6 +387,7 @@
                                                                 <th>Medium</th>
                                                                 <th>Year Of Passing</th>
                                                                 <th>Mark Obtained</th>
+                                                                <th>Mark Sheet</th>
                                                                 <th>Action</th>
                                                             </tr>
                                                         </thead>
@@ -409,6 +399,7 @@
                                                                 <td>{{studentQualification.medium[0].medium}}</td>
                                                                 <td>{{studentQualification?.yearOfPassing}}</td>
                                                                 <td>{{studentQualification?.markObtained}}</td>
+                                                                <td><a href="{{studentQualification?.photoLoctaion}}">MarksheetLink</a></td>
                                                                 <td>
                                                                     <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editQualificationModal">
                                                                         <i class="material-icons" (click)="onEditQualification(studentQualification?._id) ">create</i>
@@ -425,10 +416,58 @@
                                             </div>
                                         </div>
                                     </div>
-                                        <div role="tabpanel" class="tab-pane fade"
-                                            id="certification_with_icon_title">
-                                            <h4>Cerificate</h4>
-                                           
+                                        <div role="tabpanel" class="tab-pane fade" id="certification_with_icon_title">
+                                            <h4>Certification</h4>
+                                            <div>
+                                                <div class="header">
+                                                    <div class="header-dropdown m-r--5">
+                                                        <!-- Add button -->
+                                                        <div class="btn-group m-l-15">
+                                                            <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addCertificateModal">
+                                                                Add New
+                                                                <i class="fa fa-plus" style="color: white"></i>
+                                                            </button>
+                                                        </div>
+                                                        <!-- Add button -->
+                                                    </div>
+                                                </div>
+                                                <div class="body">
+                                                    <div class="table-responsive">
+                                                        <table id="tableExport"
+                                                            class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>S.No</th>
+                                                                    <th>Certificate Type</th>
+                                                                    <th>Register No.</th>
+                                                                    <th>Certificate No.</th>
+                                                                    <th>Certificate</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let studentCertificate of studentCertificates; let i=index">
+                                                                    <td>{{i +1 }}</td>
+                                                                    <td>{{studentCertificate.certificateType[0].certificateType}}</td>
+                                                                    <td>{{studentCertificate?.registerNo}}</td>
+                                                                    <td>{{studentCertificate?.certificateNo}}</td>
+                                                                    <td><a href="{{studentCertificate?.fileUpload}}">CertificateLink</a></td>
+                                                                    <td>
+                                                                        <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editCertificateModal">
+                                                                            <i class="material-icons"
+                                                                                (click)="onEditCertificate(studentCertificate?._id) ">create</i>
+                                                                        </div>
+                                                                        <div class="btn btn-tbl-delete">
+                                                                            <i class="material-icons"
+                                                                                (click)="deleteCertificate(studentCertificate?._id)">delete</i>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade" id="others_with_icon_title">
                                             <h4>Other Information</h4>
@@ -2205,14 +2244,10 @@
                                     <div class="form-group form-float">
                                         <label>Medium</label>
                                         <div class="form-line">
-                                            <select class="browser-default" name="medium2" [formControl]="medium2" class="form-control"
-                                                [ngClass]="{ 'is-invalid': submitted && q.medium.errors }">
+                                            <select class="browser-default" name="medium2" [formControl]="medium2" class="form-control" required>
                                                 <option>Choose your Medium</option>
                                                 <option *ngFor="let medium of media?.response" [value]="medium._id">{{medium?.medium}}</option>
                                             </select>
-                                            <div *ngIf="submitted && q.medium.errors" class="invalid-feedback">
-                                                <div *ngIf="q.medium.errors.required">Medium is required</div>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -2298,3 +2333,128 @@
     </div>
 </div>
 <!-- Edit Qualification Form -->
+<!-- Add Certificate Form -->
+<div class="modal fade" id="addCertificateModal" tabindex="-1" role="dialog" aria-labelledby="certificate1formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="certificate1formModal">Add Certificate</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group form-float">
+                                <label>Certificate Type</label>
+                                <div class="form-line">
+                                    <select class="browser-default" name="certificateType" [formControl]="certificateType" class="form-control" required>
+                                        <option value="">Choose your CertificateType</option>
+                                        <option *ngFor="let certificateType of certificateTypes?.response" [value]="certificateType._id">{{certificateType?.certificateType}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Register No.</label>
+                                <input type="text" [formControl]="registerNo" class="form-control" placeholder="Enter registerNo" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Certificate No.</label>
+                                <input type="text" [formControl]="certificateNo" class="form-control" placeholder="Enter certificateNo" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h6>Certificate</h6>
+                            <a href="{{getfileLoc2}}">Certificate Link</a><br><br>
+                            <input type="file" name="photo" ng2FileSelect [uploader]="uploader2" />
+                            <div class="progress">
+                                <div class="progress-bar width-per-45" role="progressbar" aria-valuenow="60"
+                                    [ngStyle]="{'width':uploader2.progress+'%'}" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="uploader2?.queue?.length > 0">
+                                <button type="button" class="btn bg-teal waves-effect" (click)="filesubmit()">Upload File</button></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                            <button type="submit" class="btn btn-default" (click)="onAddCertificate()">Add</button>
+                            <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+ <!-- Add Certificate Form -->
+ <!-- Edit Certificate Form -->
+<div class="modal fade" id="editCertificateModal" tabindex="-1" role="dialog" aria-labelledby="certificate2formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="certificate2formModal">Edit Certificate Detail</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                        <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group form-float">
+                                        <label>Certificate Type</label>
+                                        <div class="form-line">
+                                            <select class="browser-default" name="certificateType2" [formControl]="certificateType2" class="form-control" required>
+                                                <option value="">Choose your CertificateType</option>
+                                                <option *ngFor="let certificateType of certificateTypes?.response" [value]="certificateType._id">{{certificateType?.certificateType}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Register No.</label>
+                                        <input type="text" [formControl]="registerNo2" class="form-control" placeholder="Enter registerNo" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Certificate No.</label>
+                                        <input type="text" [formControl]="certificateNo2" class="form-control" placeholder="Enter certificateNo" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h6>Certificate</h6>
+                                    <a href="{{fileLocationValue}}">Previous Certificate</a>
+                                    <a href="{{getfileLoc2}}">New Certificate</a><br><br>
+                                    <input type="file" name="photo" ng2FileSelect [uploader]="uploader2" />
+                                    <div class="progress">
+                                        <div class="progress-bar width-per-45" role="progressbar" aria-valuenow="60"
+                                            [ngStyle]="{'width':uploader2.progress+'%'}" aria-valuemin="0" aria-valuemax="100">
+                                        </div>
+                                    </div>
+                                    <div class="row" *ngIf="uploader2?.queue?.length > 0">
+                                        <button type="button" class="btn bg-teal waves-effect" (click)="filesubmit()">Upload File</button></div>
+                                </div>
+                            </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default" (click)="onEditCertificateSubmit()">Update</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit Certificate Form  -->

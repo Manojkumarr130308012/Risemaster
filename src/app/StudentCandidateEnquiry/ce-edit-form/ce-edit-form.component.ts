@@ -269,6 +269,7 @@ export class CEEditFormComponent implements OnInit {
   modeOfEnquiries: any;
   feetypes: any;
   institutiond: any;
+  banks: any;
 
   constructor(
     private request: RequestService,
@@ -588,6 +589,7 @@ export class CEEditFormComponent implements OnInit {
       this.basicdetails = response;
       this.institutiond = response[0].institution;
       this.loadCourseCategoryByIns(this.institutiond);
+      this.loadAdmissionCategoryByIns(this.institutiond);
       console.log('BasicDetailsById',  this.basicdetails);
     }, (error) => {
       console.log(error);
@@ -1225,18 +1227,18 @@ this.followups = null;
       console.log(error);
     });
   }
-  loadCourseCategory() {
-    this.request.getCoursecategory().subscribe((response: any) => {
-      this.coursecategories = response;
-      console.log('CourseCategory', response);
+  loadAdmissionCategoryByIns(institution) {
+    this.request.getAdmissionCategoryByIns(institution).subscribe((response: any) => {
+      this.admissioncategories = response;
+      console.log('AdmissionCategoryByIns', this.admissioncategories);
     }, (error) => {
       console.log(error);
     });
   }
-  loadAdmissionCategory() {
-    this.request.getAdmissionCategory().subscribe((response: any) => {
-      this.admissioncategories = response;
-      console.log('AdmissionCategory' ,response);
+  loadCourseCategory() {
+    this.request.getCoursecategory().subscribe((response: any) => {
+      this.coursecategories = response;
+      console.log('CourseCategory', response);
     }, (error) => {
       console.log(error);
     });
@@ -1346,6 +1348,14 @@ this.followups = null;
       console.log(error);
     });
   }
+  loadBank() {
+    this.request.getBank().subscribe((response: any) => {
+      this.banks = response;
+      console.log('Bank',this.banks);
+    }, (error) => {
+      console.log(error);
+    });
+  }
   private loadModal() {
     $('#addModaladdress').modal('hide'); //or $('#IDModal').modal('hide');
     $('#addModaladdress').on('hidden.bs.modal', function () {
@@ -1403,6 +1413,7 @@ this.followups = null;
     this.loadQualificationType();
     this.loadGender();
     this.loadBoard();
+    this.loadBank();
     this.loadAdmissionType();
     this.loadScholarshipCategory();
     this.loadRefferalType();
@@ -1415,7 +1426,6 @@ this.followups = null;
     this.loadCourseType();
     this.loadInstitution();
     this.loadInstitutionType();
-    this.loadAdmissionCategory();
     this.loadMotherTongue();
     this.loadMedium();
     this.loadModeofEnquiry();

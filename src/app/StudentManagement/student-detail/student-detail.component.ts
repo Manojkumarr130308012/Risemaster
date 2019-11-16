@@ -7,6 +7,7 @@ declare const $: any;
 declare const swal: any;
 
 const URL = 'http://localhost:3000/ce-qd-fileupload/upload';
+const url = 'http://localhost:3000/student-certi-upload/upload';
 @Component({
   selector: 'app-student-detail',
   templateUrl: './student-detail.component.html',
@@ -247,6 +248,24 @@ export class StudentDetailComponent implements OnInit {
   getfileLoc: any;
   cutOff: FormControl;
   percentage: FormControl;
+  studentCertificates: Object;
+  addCertificateForm: any;
+  editCertificate: any;
+  editCertificateForm: any;
+  getfileLoc2: any;
+  certificateTypeValue: any;
+  fileUploadValue: any;
+  IdValue: any;
+  certificateType2: any;
+  certificateType: any;
+  fileUpload2: any;
+  public uploader2: FileUploader = new FileUploader({ url: url, itemAlias: 'file' });
+  certificateTypes: any;
+  fileUpload: FormControl;
+  Id: any;
+  editDetails: any;
+  stuDetail: any;
+
   
   constructor(
     private request: RequestService,
@@ -468,7 +487,16 @@ this.groupCode2 = new FormControl('');
 this.cutOff2 = new FormControl('');
 this.percentage2 = new FormControl('');
 this.photoLoctaion2 = new FormControl('');
-
+//AddForm - Certificate
+this.certificateType = new FormControl('');
+this.registerNo = new FormControl('');
+this.certificateNo = new FormControl('');
+this.fileUpload = new FormControl('');
+//EditForm - Certificate
+this.certificateType2 = new FormControl('');
+this.registerNo2 = new FormControl('');
+this.certificateNo2 = new FormControl('');
+this.fileUpload2 = new FormControl('');
   }
    //to upload qualificationfile
  submit() {
@@ -1565,6 +1593,124 @@ loadQualificationType() {
     console.log(error);
   });
 }
+///////Student-Certificate////////
+viewStudentCertificateById(stuId : string) {
+  if (stuId){
+  this.request.getStudentCertificateById(stuId).subscribe((response) => {
+     this.studentCertificates = response;
+     console.log('StudentCertificateById',this.studentCertificates);
+     }, (error) => {
+       console.log(error);
+     });
+   } else
+      this.studentCertificates = null;
+ }
+
+ deleteCertificate(id: any) {
+this.request.deleteStudentCertificate(id).subscribe(res => {
+console.log(id);
+this.viewStudentCertificateById(this.id);
+swal("Deleted");
+});
+}
+
+//Fileupolad 
+filesubmit() {
+  this.uploader2.uploadAll();
+}
+
+onAddCertificate() {
+let newstudentCertificate = {
+  certificateType: this.certificateType.value,
+  registerNo: this.registerNo.value,
+  certificateNo: this.certificateNo.value,
+  fileUpload: this.getfileLoc2,
+  stuId : this.id
+  }
+this.request.addStudentCertificate(newstudentCertificate).subscribe((res: any) => {
+if (res.status == 'error') {
+  this.setMessage(res.error);
+}
+else if (res.status == 'success') {
+  swal("Added Sucessfully");
+  this.viewStudentCertificateById(this.id);
+  this.loadStudentCertificate();
+}
+}, (error) => {
+  this.setMessage(error);
+});
+  console.log(newstudentCertificate);
+}
+
+onEditCertificate(id: any){
+this.request.fetchStudentCertificateById(id).subscribe((response) => {
+  this.editCertificate=response[0];
+  // console.log(response);
+      this.certificateTypeValue = this.editCertificate.identityType;
+      this.registerNoValue = this.editCertificate.markDetail;
+      this.certificateNoValue = this.editCertificate.certificateNo;
+      this.fileUploadValue = this.editCertificate.fileUpload;
+      this.IdValue = this.editCertificate._id;
+
+ 
+    this.certificateType2= [this.certificateTypeValue, Validators.required],
+    this.registerNo2= [this.registerNoValue, Validators.required],
+    this.certificateNo2= [this.certificateNoValue, Validators.required],
+    this.fileUpload2= [this.fileUploadValue, Validators.required]
+});
+}
+onEditCertificateSubmit() {
+  let edata = {
+    certificateType : this.certificateType2.value,
+    registerNo: this.registerNo2.value,
+    certificateNo: this.certificateNo2.value,
+    fileUpload: this.getfileLoc2,
+    }
+this.request.updateStudentCertificate(this.IdValue,edata).subscribe((res : any) => {
+if (res.status == 'success') {
+  swal("Updated Sucessfully");
+  this.viewStudentCertificateById(this.id);
+  this.loadStudentCertificate();
+}
+else if (res.status == 'error') {
+  this.setMessage(res.error);
+}
+
+}, (error) => {
+console.log(error);
+this.setMessage(error);
+});
+}
+
+
+private loadStudentCertificate(){
+$('#addIdentityDetail').modal('hide'); //or  $('#IDModal').modal('hide');
+$('#addIdentityDetail').on('hidden.bs.modal', function () {
+$(this).find('form').trigger('reset');
+});
+
+$('#editIdentityDetail').modal('hide'); //or  $('#IDModal').modal('hide');
+$('#editIdentityDetail').on('hidden.bs.modal', function () {
+$(this).find('form').trigger('reset');
+});
+}
+loadCertificateType() {
+  this.request.getCertificateType().subscribe((response: any) => {
+    this.certificateTypes = response;
+    console.log('CertificateType' ,this.certificateTypes);
+  }, (error) => {
+    console.log(error);
+  });
+}
+  onEdit(id: any) {
+    this.Id = id;
+    this.router.navigate(['studentEdit'], {
+      queryParams: {
+        edit: true,
+        id: this.Id,
+      }
+    });
+  }
   ngOnInit() {
     this.viewStudentDetailById(this.id);
     this.viewStudentConatctById(this.id);
@@ -1588,7 +1734,15 @@ loadQualificationType() {
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       console.log('ImageUpload:uploaded:', item, status, response);
       const resPath = JSON.parse(response);
-      this.getfileLoc = resPath.result;
+      this.getfileLoc = resPath.qdFileResult1;
+    };
+    this.loadCertificateType();
+    this.viewStudentCertificateById(this.id);
+    this.uploader2.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    this.uploader2.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+      console.log('ImageUpload:uploaded:', item, status, response);
+      const resPath = JSON.parse(response);
+     this.getfileLoc2 = resPath.fileResult;
     };
     }
 
