@@ -1723,7 +1723,10 @@ public addStudentDetails(newadressdetails: {}) {
   this.url = `${this.endPoint}/student-details/add`;
   return this.http.post(this.url, newadressdetails);
 }
-
+public getStudentDetailByBatch(batch) {
+  this.url = `${this.endPoint}/student-details/fetchbyBatch?batch=` + batch;
+  return this.http.get(this.url);
+}
 public deleteStudentDetails(id) {
   this.url = `${this.endPoint}/student-details/delete?id=` + id;
   return this.http.delete(this.url);
@@ -1744,10 +1747,6 @@ fetchStudentDetailsById(id) {
 }
 public getBatchByDegree(degree) {
   this.url = `${this.endPoint}/batch/fetchByDeg/?degree=` + degree;
-  return this.http.get(this.url);
-}
-public getStudentDetailByBatch(batch) {
-  this.url = `${this.endPoint}/batch/fetchbyBatch?batch=` + batch;
   return this.http.get(this.url);
 }
 // StudentManagment - StudentContact

@@ -28,6 +28,16 @@ export class StudentDetailComponent implements OnInit {
   state: any;
   country: any;
   pin: any;
+  addressType2: any;
+  address12: any;
+  address22: any;
+  taluk2: any;
+  villageName2: any;
+  city2: any;
+  district2: any;
+  state2: any;
+  country2: any;
+  pin2: any;
   stuId: any;
   addContactForm: any;
   editContactForm: any;
@@ -68,6 +78,15 @@ export class StudentDetailComponent implements OnInit {
   colorBlind:any;
   identityType: any;
   markDetail: any;
+  height2: any;
+  weight2:  any;
+  hairColor2: any;
+  eyeColor2: any;
+  complexion2: any;
+  bloodGroup2: any;
+  colorBlind2:any;
+  identityType2: any;
+  markDetail2: any;
   editMedical: any;
   heightValue: any;
   weightValue: any;
@@ -102,6 +121,15 @@ export class StudentDetailComponent implements OnInit {
   challanNo: any;
   challandate: any;
   challanAmount: any;
+  motherAge2: any;
+  placeOfBirth2: any;
+  dateOfLeave2: any;
+  overAllRank2: any;
+  universityAppNo2: any;
+  universityAdmiNo2: any;
+  challanNo2: any;
+  challandate2: any;
+  challanAmount2: any;
   motherAgeValue: any;
   placeOfBirthValue: any;
   dateOfLeaveValue: any;
@@ -125,6 +153,13 @@ export class StudentDetailComponent implements OnInit {
   areaLocality: any;
   mobileNo: any;
   pincode: any;
+  relationship2: any;
+  firstName2: any;
+  lastName2: any;
+  flatNo2: any;
+  areaLocality2: any;
+  mobileNo2: any;
+  pincode2: any;
   relationshipValue: any;
   firstNameValue: any;
   lastNameValue: any;
@@ -149,6 +184,16 @@ export class StudentDetailComponent implements OnInit {
   description: any;
   awardDetail: any;
   remark: any;
+  activityCate2: any;
+  subCate2: any;
+  level2: any;
+  fromDate2: any;
+  toDate2: any;
+  year2: any;
+  venue2: any;
+  description2: any;
+  awardDetail2: any;
+  remark2: any;
   activityCateValue: any;
   subCateValue: any;
   levelValue: any;
@@ -228,13 +273,6 @@ export class StudentDetailComponent implements OnInit {
   tmrDate2: any;
   groupCode2: any;
   photoLoctaion2: any;
-  firstName2: any;
-  city2: any;
-  taluk2: any;
-  district2: any;
-  state2: any;
-  country2: any;
-  pincode2: any;
   cutOff2: any;
   percentage2: any;
   IdValue9: any;
@@ -282,8 +320,8 @@ this.addContactForm = this.formBuilder.group({
   addressType: ['', Validators.required],
   address1: ['', Validators.required],
   address2: ['', Validators.required],
-  villageName: ['', Validators.required],
-  taluk: ['', Validators.required],
+  villageName: [''],
+  taluk: [''],
   city: ['', Validators.required],
   district: ['', Validators.required],
   pin: ['', Validators.required],
@@ -292,16 +330,16 @@ this.addContactForm = this.formBuilder.group({
 });
 //EDitForm - StudentAddress
 this.editContactForm = this.formBuilder.group({
-  addressType: ['', Validators.required],
-  address1: ['', Validators.required],
-  address2: ['', Validators.required],
-  villageName: ['', Validators.required],
-  taluk: ['', Validators.required],
-  city: ['', Validators.required],
-  district: ['', Validators.required],
-  pin: ['', Validators.required],
-  state: ['', Validators.required],
-  country: ['', Validators.required],
+  addressType2: ['', Validators.required],
+  address12: ['', Validators.required],
+  address22: ['', Validators.required],
+  villageName2: ['', Validators.required],
+  taluk2: [''],
+  city2: [''],
+  district2: ['', Validators.required],
+  pin2: ['', Validators.required],
+  state2: ['', Validators.required],
+  country2: ['', Validators.required],
 });
 //Add addIdentity Form Group
 this.addIdentityForm = this.formBuilder.group({
@@ -309,7 +347,7 @@ this.addIdentityForm = this.formBuilder.group({
 });
 //Edit editIdentity Form Group
 this.editIdentityForm = this.formBuilder.group({
-  identityType:['', Validators.required]
+  identityType2:['', Validators.required]
 });
 //AddForm - StudentMedical
 this.addMedicalForm = this.formBuilder.group({
@@ -325,14 +363,14 @@ this.addMedicalForm = this.formBuilder.group({
 });
 //EditForm - StudentMedical
 this.editMedicalForm = this.formBuilder.group({
-  height: [''],
-  weight: [''],
-  hairColor: [''],
-  eyeColor: [''],
-  complexion: [''],
-  bloodGroup: [''],
-  colorBlind: [''],
-  medicallyFit: [''],
+  height2: [''],
+  weight2: [''],
+  hairColor2: [''],
+  eyeColor2: [''],
+  complexion2: [''],
+  bloodGroup2: [''],
+  colorBlind2: [''],
+  medicallyFit2: [''],
 });
 //Add addIdentity Form Group
 this.addIdentityMarkForm = this.formBuilder.group({
@@ -341,8 +379,8 @@ this.addIdentityMarkForm = this.formBuilder.group({
 });
 //Edit editIdentity Form Group
 this.editIdentityMarkForm = this.formBuilder.group({
-   identityType: ['', Validators.required],
-  markDetail: ['', Validators.required],
+   identityType2: ['', Validators.required],
+  markDetail2: ['', Validators.required],
 });
 //AddForm - StudentOtherDetails
 this.addOtherForm = this.formBuilder.group({
@@ -359,16 +397,16 @@ this.addOtherForm = this.formBuilder.group({
 });
 //EditForm - StudentOtherDetails
 this.editOtherForm = this.formBuilder.group({
-  motherAge: [''],
-  placeOfBirth: [''],
-  dateOfLeave: [''],
-  overAllRank: [''],
-  universityAppNo: [''],
-  universityAdmiNo: [''],
-  challanNo: [''],
-  challandate: [''],
-  challanAmount: [''],
-  optOut: ['']
+  motherAge2: [''],
+  placeOfBirth2: [''],
+  dateOfLeave2: [''],
+  overAllRank2: [''],
+  universityAppNo2: [''],
+  universityAdmiNo2: [''],
+  challanNo2: [''],
+  challandate2: [''],
+  challanAmount2: [''],
+  optOut2: ['']
 });
 //AddForm - StudentGuardian
 this.addGuardianForm = this.formBuilder.group({
@@ -387,23 +425,23 @@ this.addGuardianForm = this.formBuilder.group({
 });
 //EditForm - StudentGuardian
 this.editGuardianForm = this.formBuilder.group({
-  relationship: ['', Validators.required],
-  firstName: ['', Validators.required],
-  lastName: [''],
-  addressType: ['', Validators.required],
-  flatNo: [''],
-  areaLocality: [''],
-  mobileNo: ['', Validators.required],
-  city: [''],
-  district: ['', Validators.required],
-  pincode: ['', Validators.required],
-  state: [''],
-  country: [''],
+  relationship2: ['', Validators.required],
+  firstName2: ['', Validators.required],
+  lastName2: [''],
+  addressType2: ['', Validators.required],
+  flatNo2: [''],
+  areaLocality2: [''],
+  mobileNo2: ['', Validators.required],
+  city2: [''],
+  district2: ['', Validators.required],
+  pincode2: ['', Validators.required],
+  state2: [''],
+  country2: [''],
 });
 //AddForm - Student ExtraCurricular
 this.addExtraForm = this.formBuilder.group({
   activityCate: ['', Validators.required],
-  subCate: [''],
+  subCate: [],
   level: [''],
   fromDate: [''],
   toDate: [''],
@@ -415,26 +453,25 @@ this.addExtraForm = this.formBuilder.group({
 });
 //EditForm -Student ExtraCurricular
 this.editExtraForm = this.formBuilder.group({
-  activityCate: ['', Validators.required],
-  subCate: [''],
-  level: [''],
-  fromDate: [''],
-  toDate: [''],
-  year: [''],
-  venue: [''],
-  description: [''],
-  awardDetail: [''],
-  remark: [''],
+  activityCate2: ['', Validators.required],
+  subCate2: [],
+  level2: [''],
+  fromDate2: [''],
+  toDate2: [''],
+  year2: [''],
+  venue2: [''],
+  description2: [''],
+  awardDetail2: [''],
+  remark2: [''],
 });
 //AddForm - Student Qualification
-this.firstName = new FormControl('', Validators.required);
 this.qualificationType = new FormControl('', Validators.required);
 this.courseType = new FormControl('', Validators.required);
 this.courseName = new FormControl('', Validators.required);
 this.courseStartDate = new FormControl('');
 this.courseEndDate = new FormControl('');
 this.board = new FormControl('', Validators.required);
-this.medium = new FormControl('');
+this.medium = new FormControl();
 this.institution = new FormControl('');
 this.city = new FormControl('');
 this.taluk = new FormControl('');
@@ -445,7 +482,7 @@ this.pincode = new FormControl('');
 this.yearOfPassing = new FormControl('', Validators.required);
 this.markObtained = new FormControl('');
 this.maxMark = new FormControl('');
-this.organisationType = new FormControl('');
+this.organisationType = new FormControl();
 this.certificateNo = new FormControl('');
 this.registerNo = new FormControl('');
 this.placeOfIssue = new FormControl('');
@@ -458,14 +495,13 @@ this.percentage = new FormControl('');
 this.photoLoctaion = new FormControl('');
 
 //EditForm -Student Qualification
-this.firstName2 = new FormControl('', Validators.required);
 this.qualificationType2 = new FormControl('', Validators.required);
 this.courseType2 = new FormControl('', Validators.required);
 this.courseName2 = new FormControl('', Validators.required);
 this.courseStartDate2 = new FormControl('');
 this.courseEndDate2 = new FormControl('');
 this.board2 = new FormControl('', Validators.required);
-this.medium2 = new FormControl('');
+this.medium2 = new FormControl();
 this.institution2 = new FormControl('');
 this.city2 = new FormControl('');
 this.taluk2 = new FormControl('');
@@ -476,7 +512,7 @@ this.pincode2 = new FormControl('');
 this.yearOfPassing2 = new FormControl('', Validators.required);
 this.markObtained2 = new FormControl('');
 this.maxMark2 = new FormControl('');
-this.organisationType2 = new FormControl('');
+this.organisationType2 = new FormControl();
 this.certificateNo2 = new FormControl('');
 this.registerNo2 = new FormControl('');
 this.placeOfIssue2 = new FormControl('');
@@ -589,28 +625,38 @@ this.fileUpload2 = new FormControl('');
  
  
        this.editContactForm = this.formBuilder.group({
-         addressType:[this.addressTypeValue, Validators.required],
-         address1:[this.address1Value, Validators.required],
-         address2:[this.address2Value, Validators.required],
-         city:[this.cityValue, Validators.required],
-         taluk:[this.talukValue, Validators.required],
-         villageName:[this.villageNameValue, Validators.required],
-         district:[this.districtValue, Validators.required],
-         state:[this.stateValue, Validators.required],
-         country:[this.countryValue, Validators.required],
-         pin:[this.pinValue, Validators.required],
+         addressType2:[this.addressTypeValue, Validators.required],
+         address12:[this.address1Value, Validators.required],
+         address22:[this.address2Value, Validators.required],
+         city2:[this.cityValue, Validators.required],
+         taluk2:[this.talukValue],
+         villageName2:[this.villageNameValue],
+         district2:[this.districtValue, Validators.required],
+         state2:[this.stateValue, Validators.required],
+         country2:[this.countryValue, Validators.required],
+         pin2:[this.pinValue, Validators.required],
        });
        console.log(this.editContactForm.value);
      });
    }
    onEditContactSubmit() {
      this.submitted = true;
-     console.log(this.editContactForm.value);
      if (this.editContactForm.invalid) {
-         return;
-       }
-       console.log('edit',this.IdValue2);
-   this.request.updateStudentcontact(this.IdValue2,this.editContactForm.value).subscribe((res : any) => {
+      return;
+    }
+       let edata2 = {
+        addressType : this.editContactForm.get('addressType2').value,
+        address1 : this.editContactForm.get('address12').value,
+        address2 : this.editContactForm.get('address22').value,
+        city : this.editContactForm.get('city2').value,
+        taluk : this.editContactForm.get('taluk2').value,
+        villageName : this.editContactForm.get('villageName2').value,
+        district : this.editContactForm.get('district2').value,
+        state : this.editContactForm.get('state2').value,
+        country : this.editContactForm.get('country2').value,
+        pin : this.editContactForm .get('pin2').value
+        }
+   this.request.updateStudentcontact(this.IdValue2,edata2).subscribe((res : any) => {
      if (res.status == 'success') {
        swal("Updated Sucessfully");
         this.loadstudentContact();
@@ -701,7 +747,7 @@ this.request.fetchStudentIdentityById(id).subscribe((response) => {
       this.IdValue3=this.editIdentity._id;
 
   this.editIdentityForm = this.formBuilder.group({
-    identityType:[this.identityTypeValue, Validators.required]
+    identityType2:[this.identityTypeValue, Validators.required]
     });
   console.log(this.editIdentityForm.value);
 });
@@ -709,10 +755,10 @@ this.request.fetchStudentIdentityById(id).subscribe((response) => {
 onEditIdentitySubmit() {
 this.submitted = true;
 console.log(this.editIdentityForm.value);
-if (this.editIdentityForm.invalid) {
-    return;
+let edata3 = {
+  identityType : this.editIdentityForm.get('identityType2').value
   }
-this.request.updateStudentIdentity(this.IdValue3,this.editIdentityForm.value).subscribe((res : any) => {
+this.request.updateStudentIdentity(this.IdValue3,edata3).subscribe((res : any) => {
 if (res.status == 'success') {
   swal("Updated Sucessfully");
   this.viewStudentIdentityById(this.id);
@@ -770,9 +816,6 @@ medicallyFit1(event: any) {
 }
 onAddMedical() {
 this.submitted = true;
-if (this.addMedicalForm.invalid) {
-    return;
-}
 let newstudentMedical = {
   height: this.addMedicalForm.get('height').value,
   weight: this.addMedicalForm.get('weight').value,
@@ -814,14 +857,14 @@ this.request.fetchStudentMedicalById(id).subscribe((response) => {
   this.IdValue4=this.editMedical._id;
 
   this.editMedicalForm = this.formBuilder.group({
-    height: [this.heightValue],
-    weight: [this.weightValue],
-    hairColor: [this.hairColorValue],
-    eyeColor: [this.eyeColorValue],
-    complexion: [this.complexionValue],
-    bloodGroup: [this.bloodGroupValue],
-    colorBlind: [this.colorBlindValue],
-    medicallyFit: [this.colorBlindValue],
+    height2: [this.heightValue],
+    weight2: [this.weightValue],
+    hairColor2: [this.hairColorValue],
+    eyeColor2: [this.eyeColorValue],
+    complexion2: [this.complexionValue],
+    bloodGroup2: [this.bloodGroupValue],
+    colorBlind2: [this.colorBlindValue],
+    medicallyFit2: [this.colorBlindValue],
     });
   console.log(this.editMedicalForm.value);
 });
@@ -829,10 +872,18 @@ this.request.fetchStudentMedicalById(id).subscribe((response) => {
 onEditMedicalSubmit() {
 this.submitted = true;
 console.log(this.editMedicalForm.value);
-if (this.editMedicalForm.invalid) {
-    return;
-  }
-this.request.updateStudentMedical(this.IdValue4,this.editMedicalForm.value).subscribe((res : any) => {
+  let edata4 = {
+    height: this.editMedicalForm.get('height2').value,
+    weight: this.editMedicalForm.get('weight2').value,
+    hairColor: this.editMedicalForm.get('hairColor2').value,
+    eyeColor: this.editMedicalForm.get('eyeColor2').value,
+    complexion: this.editMedicalForm.get('complexion2').value,
+    bloodGroup: this.editMedicalForm.get('bloodGroup2').value,
+    colorBlind: this.editMedicalForm.get('colorBlind2').value,
+    medicallyFit: this.mf,
+    stuId: this.id,
+    }
+this.request.updateStudentMedical(this.IdValue4,edata4).subscribe((res : any) => {
 if (res.status == 'success') {
   swal("Updated Sucessfully");
   this.viewStudentMedicalById(this.id);
@@ -850,13 +901,13 @@ this.setMessage(error);
 
 
 private loadStudentMedical(){
-$('#addmedicalModal').modal('hide'); //or  $('#IDModal').modal('hide');
-$('#addmedicalModal').on('hidden.bs.modal', function () {
+$('#addMedicalModal').modal('hide'); //or  $('#IDModal').modal('hide');
+$('#addMedicalModal').on('hidden.bs.modal', function () {
 $(this).find('form').trigger('reset');
 });
 
-$('#editmedicalModal').modal('hide'); //or  $('#IDModal').modal('hide');
-$('#editmedicalModal').on('hidden.bs.modal', function () {
+$('#editMedicalModal').modal('hide'); //or  $('#IDModal').modal('hide');
+$('#editMedicalModal').on('hidden.bs.modal', function () {
 $(this).find('form').trigger('reset');
 });
 }
@@ -923,19 +974,23 @@ this.request.fetchStudentIdentityMarkById(id).subscribe((response) => {
       this.IdValue5=this.editIdentityMark._id;
 
   this.editIdentityMarkForm = this.formBuilder.group({
-    identityType: [this.identityTypeValue, Validators.required],
-    markDetail: [this.markDetailValue, Validators.required]
+    identityType2: [this.identityTypeValue, Validators.required],
+    markDetail2: [this.markDetailValue, Validators.required]
     });
   console.log(this.editIdentityMarkForm.value);
 });
 }
 onEditIdentityMarkSubmit() {
 this.submitted = true;
-console.log(this.editIdentityMarkForm.value);
 if (this.editIdentityMarkForm.invalid) {
-    return;
+  return;
+}
+console.log(this.editIdentityMarkForm.value);
+let edata5 = {
+  identityType : this.editIdentityMarkForm.get('identityType2').value,
+  markDetail: this.editIdentityMarkForm.get('markDetail2').value
   }
-this.request.updateStudentIdentityMark(this.IdValue5,this.editIdentityMarkForm.value).subscribe((res : any) => {
+this.request.updateStudentIdentityMark(this.IdValue5,edata5).subscribe((res : any) => {
 if (res.status == 'success') {
   swal("Updated Sucessfully");
   this.viewStudentIdentityMarkById(this.id);
@@ -1042,16 +1097,16 @@ this.request.fetchStudentOtherById(id).subscribe((response) => {
   this.IdValue6 = this.editOther._id;
 
   this.editOtherForm = this.formBuilder.group({
-    motherAge: [this.motherAgeValue],
-    placeOfBirth: [this.placeOfBirthValue],
-    dateOfLeave: [this.dateOfLeaveValue],
-    overAllRank: [this.overAllRankValue],
-    universityAppNo: [this.universityAppNoValue],
-    universityAdmiNo: [this.universityAdmiNoValue],
-    challanNo: [this.challanNoValue],
-    challandate: [this.challandateValue],
-    challanAmount: [this.challanAmountValue],
-    optOut: [this.optOutValue]
+    motherAge2: [this.motherAgeValue],
+    placeOfBirth2: [this.placeOfBirthValue],
+    dateOfLeave2: [this.dateOfLeaveValue],
+    overAllRank2: [this.overAllRankValue],
+    universityAppNo2: [this.universityAppNoValue],
+    universityAdmiNo2: [this.universityAdmiNoValue],
+    challanNo2: [this.challanNoValue],
+    challandate2: [this.challandateValue],
+    challanAmount2: [this.challanAmountValue],
+    optOut2: [this.optOutValue]
     });
   console.log(this.editOtherForm.value);
 });
@@ -1059,10 +1114,19 @@ this.request.fetchStudentOtherById(id).subscribe((response) => {
 onEditOtherSubmit() {
 this.submitted = true;
 console.log(this.editOtherForm.value);
-if (this.editOtherForm.invalid) {
-    return;
+let edata6 = {
+  motherAge: this.editOtherForm.get('motherAge2').value,
+  placeOfBirth:this.editOtherForm.get('placeOfBirth2').value, 
+  dateOfLeave: this.editOtherForm.get('dateOfLeave2').value,
+  overAllRank: this.editOtherForm.get('overAllRank2').value,
+  universityAppNo: this.editOtherForm.get('universityAppNo2').value,
+  universityAdmiNo: this.editOtherForm.get('universityAdmiNo2').value,
+  challanNo: this.editOtherForm.get('challandate2').value,
+  challandate: this.editOtherForm.get('challandate2').value,
+  challanAmount: this.editOtherForm.get('challanAmount2').value,
+  optOut: this.optOutPla,
   }
-this.request.updateStudentOther(this.IdValue6,this.editOtherForm.value).subscribe((res : any) => {
+this.request.updateStudentOther(this.IdValue6,edata6).subscribe((res : any) => {
 if (res.status == 'success') {
   swal("Updated Sucessfully");
   this.viewStudentOtherById(this.id);
@@ -1168,29 +1232,43 @@ this.request.fetchStudentGuardianById(id).subscribe((response) => {
   this.IdValue7 = this.editGuardian._id;
 
   this.editGuardianForm = this.formBuilder.group({
-    relationship: [this.relationshipValue, Validators.required],
-    firstName: [this.firstNameValue, Validators.required],
-    lastName: [this.lastNameValue],
-    addressType: [this.addressTypeValue, Validators.required],
-    flatNo: [this.flatNoValue],
-    areaLocality: [this.areaLocalityValue],
-    mobileNo: [this.mobileNoValue, Validators.required],
-    city: [this.cityValue],
-    district: [this.districtValue, Validators.required],
-    pincode: [this.pincodeValue],
-    state: [this.stateValue],
-    country: [this.countryValue]
+    relationship2: [this.relationshipValue, Validators.required],
+    firstName2: [this.firstNameValue, Validators.required],
+    lastName2: [this.lastNameValue],
+    addressType2: [this.addressTypeValue, Validators.required],
+    flatNo2: [this.flatNoValue],
+    areaLocality2: [this.areaLocalityValue],
+    mobileNo2: [this.mobileNoValue, Validators.required],
+    city2: [this.cityValue],
+    district2: [this.districtValue, Validators.required],
+    pincode2: [this.pincodeValue, Validators.required],
+    state2: [this.stateValue],
+    country2: [this.countryValue]
     });
   console.log(this.editGuardianForm.value);
 });
 }
 onEditGuardianSubmit() {
 this.submitted = true;
-console.log(this.editGuardianForm.value);
 if (this.editGuardianForm.invalid) {
-    return;
+  return;
+}
+console.log(this.editGuardianForm.value);
+let edata7 = {
+  relationship: this.editGuardianForm.get('relationship2').value,
+  firstName: this.editGuardianForm.get('firstName2').value,
+  lastName: this.editGuardianForm.get('lastName2').value,
+  addressType: this.editGuardianForm.get('addressType2').value,
+  flatNo: this.editGuardianForm.get('flatNo2').value,
+  areaLocality: this.editGuardianForm.get('areaLocality2').value,
+  mobileNo: this.editGuardianForm.get('mobileNo2').value,
+  city: this.editGuardianForm.get('city2').value,
+  district: this.editGuardianForm.get('district2').value,
+  pincode: this.editGuardianForm.get('pincode2').value,
+  state: this.editGuardianForm.get('state2').value,
+  country: this.editGuardianForm.get('country2').value
   }
-this.request.updateStudentGuardian(this.IdValue7,this.editGuardianForm.value).subscribe((res : any) => {
+this.request.updateStudentGuardian(this.IdValue7,edata7).subscribe((res : any) => {
 if (res.status == 'success') {
   swal("Updated Sucessfully");
   this.viewStudentGuardianById(this.id);
@@ -1299,27 +1377,39 @@ this.request.fetchStudentExtraById(id).subscribe((response) => {
   this.IdValue8 = this.editExtra._id;
 
   this.editExtraForm = this.formBuilder.group({
-    activityCate: [this.activityCateValue, Validators.required],
-    subCate:[this.subCateValue],
-    level: [this.levelValue],
-    fromDate: [this.fromDateValue],
-    toDate: [this.toDateValue],
-    year: [this.yearValue],
-    venue: [this.venueValue],
-    description: [this.descriptionValue],
-    awardDetail: [this.awardDetailValue],
-    remark: [this.remarkValue],
+    activityCate2: [this.activityCateValue, Validators.required],
+    subCate2:[this.subCateValue],
+    level2: [this.levelValue],
+    fromDate2: [this.fromDateValue],
+    toDate2: [this.toDateValue],
+    year2: [this.yearValue],
+    venue2: [this.venueValue],
+    description2: [this.descriptionValue],
+    awardDetail2: [this.awardDetailValue],
+    remark2: [this.remarkValue],
     });
   console.log(this.editExtraForm.value);
 });
 }
 onEditExtraSubmit() {
 this.submitted = true;
-console.log(this.editExtraForm.value);
 if (this.editExtraForm.invalid) {
-    return;
+  return;
+}
+console.log(this.editExtraForm.value);
+let edata8 = {
+  activityCate: this.editExtraForm.get('activityCate2').value,
+  subCate:this.editExtraForm.get('subCate2').value,
+  level: this.editExtraForm.get('level2').value,
+  fromDate: this.editExtraForm.get('fromDate2').value,
+  toDate: this.editExtraForm.get('toDate2').value,
+  year: this.editExtraForm.get('year2').value,
+  venue: this.editExtraForm.get('venue2').value,
+  description: this.editExtraForm.get('description2').value,
+  awardDetail: this.editExtraForm.get('awardDetail2').value,
+  remark: this.editExtraForm.get('remark2').value
   }
-this.request.updateStudentExtra(this.IdValue8,this.editExtraForm.value).subscribe((res : any) => {
+this.request.updateStudentExtra(this.IdValue8,edata8).subscribe((res : any) => {
 if (res.status == 'success') {
   swal("Updated Sucessfully");
   this.viewStudentExtraById(this.id);
@@ -1744,6 +1834,35 @@ loadCertificateType() {
       const resPath = JSON.parse(response);
      this.getfileLoc2 = resPath.fileResult;
     };
+
+     //jQuery Validation form qdEdit (Form-Control)
+     $(function () {
+      $('#qualificationDetailAdd').validate({
+        highlight: function (input) {
+          $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+          $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+          $(element).parents('.form-group').append(error);
+        }
+      });
+    });
+    $(function () {
+      $('#qualificationDetailEdit').validate({
+
+        highlight: function (input) {
+          $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+          $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+          $(element).parents('.form-group').append(error);
+        }
+      });
+    });
     }
 
 }

@@ -16,25 +16,27 @@
                         <div class="row">
                             <div class="col-md-3" *ngFor="let studentdetail of studentDetails;let i=index">
                                 <img src="{{studentdetail?.sPhoto}}" width="100px">
+                                <h6>{{studentdetail?.firstName}}.{{studentdetail?.lastName}}</h6>
+                                <h6>{{studentdetail?.rollNo}}</h6>
                             </div>
                             <div class="col-md-3" *ngFor="let studentdetail of studentDetails;let i=index">
-                                <h6> Campus :</h6><span>{{studentdetail.institution[0].tagline}}</span>
+                                <h6> Campus :</h6><span>{{studentdetail.institutiond[0].tagline}}</span>
                                 <h6> Date Of Birth :</h6><span>{{studentdetail?.dob}}</span>
                                 <h6> Date Of Joining :</h6><span>{{studentdetail?.joinDate}}</span>
-                                <h6> Nationality:</h6><span>{{studentdetail?.nationality[0].nationality}}</span>
+                                <h6> Nationality:</h6><span>{{studentdetail?.nationalityd[0].nationality}}</span>
                                 <h6> Mobile No. :</h6><span>{{studentdetail?.mobileNo}}</span>
                             </div>
                             <div class="col-md-3" *ngFor="let studentdetail of studentDetails;let i=index">
                                     <h6>Grade :</h6>-
-                                    <h6>Gender :</h6>{{studentdetail?.gender[0].gender}}
+                                    <h6>Gender :</h6>{{studentdetail?.genderd[0].gender}}
                                     <h6>Boarding :</h6>{{studentdetail?.boarding}}
                                     <h6>EmailId :</h6>{{studentdetail?.emailId}}
                             </div>
                             <div class="col-md-3" *ngFor="let studentdetail of studentDetails;let i=index">
                                 <h6 >Reg No. :</h6>{{studentdetail?.regNo}}
-                                <h6>Blood Group :</h6>{{studentdetail?.bloodGroup[0].bloodgroup}}
+                                <h6>Blood Group :</h6>{{studentdetail?.bloodGroupd[0].bloodgroup}}
                                 <h6>Route Name :</h6>-
-                                <h6>AdmissionCategory :</h6>{{studentdetail?.admissionCategory[0].admissionCategory}}
+                                <h6>AdmissionCategory :</h6>{{studentdetail?.admissionCategoryd[0].admissionCategory}}
                             </div>
                         </div>
                         <div class="row">
@@ -384,7 +386,6 @@
                                                                 <th>S.No</th>
                                                                 <th>Qualification Type</th>
                                                                 <th>Course Type</th>
-                                                                <th>Medium</th>
                                                                 <th>Year Of Passing</th>
                                                                 <th>Mark Obtained</th>
                                                                 <th>Mark Sheet</th>
@@ -396,7 +397,6 @@
                                                                 <td>{{i +1 }}</td>
                                                                 <td>{{studentQualification.qualificationType[0].qualificationType}}</td>
                                                                 <td>{{studentQualification.courseType[0].courseType}}</td>
-                                                                <td>{{studentQualification.medium[0].medium}}</td>
                                                                 <td>{{studentQualification?.yearOfPassing}}</td>
                                                                 <td>{{studentQualification?.markObtained}}</td>
                                                                 <td><a href="{{studentQualification?.photoLoctaion}}">MarksheetLink</a></td>
@@ -674,8 +674,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Address Type</label>
-                                <select class="browser-default" id="select" formControlName="addressType"
+                                <label>Address Type<span class="asterisk">*</span></label>
+                                <select class="browser-default" formControlName="addressType"
                                     class="form-control"
                                     [ngClass]="{ 'is-invalid': submitted && f.addressType.errors }">
                                     <option>Choose your Address Type</option>
@@ -689,7 +689,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Address 1</label>
+                                <label>Address Line 1<span class="asterisk">*</span></label>
                                 <input type="text"  formControlName="address1" class="form-control"
                                     placeholder="Enter Address"
                                     [ngClass]="{ 'is-invalid': submitted && f.address1.errors }" />
@@ -702,7 +702,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Address 2</label>
+                                <label>Address Line 2<span class="asterisk">*</span></label>
                                 <input type="text"  formControlName="address2" class="form-control"
                                     placeholder="Enter Address"
                                     [ngClass]="{ 'is-invalid': submitted && f.address2.errors }" />
@@ -713,7 +713,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>City</label>
+                                <label>City<span class="asterisk">*</span></label>
                                 <input type="text"  formControlName="city" class="form-control"
                                     placeholder="Enter City" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
                                 <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
@@ -727,28 +727,21 @@
                                 <div class="form-group">
                                     <label>Taluk</label>
                                     <input type="text"  formControlName="taluk" class="form-control"
-                                        placeholder="Enter Taluk"
-                                        [ngClass]="{ 'is-invalid': submitted && f.taluk.errors }" />
-                                    <div *ngIf="submitted && f.taluk.errors" class="invalid-feedback">
-                                        <div *ngIf="f.taluk.errors.required">Taluk is required</div>
-                                    </div>
+                                        placeholder="Enter Taluk" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Village Name</label>
                                     <input type="text"  formControlName="villageName" class="form-control"
-                                        placeholder="Enter villageName" [ngClass]="{ 'is-invalid': submitted && f.villageName.errors }" />
-                                    <div *ngIf="submitted && f.villageName.errors" class="invalid-feedback">
-                                        <div *ngIf="f.villageName.errors.required">VillageName is required</div>
-                                    </div>
+                                        placeholder="Enter villageName"/>
                                 </div>
                             </div>
                         </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>District</label>
+                                <label>District<span class="asterisk">*</span></label>
                                 <input type="text"  formControlName="district" class="form-control"
                                     placeholder="Enter District"
                                     [ngClass]="{ 'is-invalid': submitted && f.district.errors }" />
@@ -759,7 +752,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>State</label>
+                                <label>State<span class="asterisk">*</span></label>
                                 <input type="text"  formControlName="state" class="form-control"
                                     placeholder="Enter State"
                                     [ngClass]="{ 'is-invalid': submitted && f.state.errors }" />
@@ -772,7 +765,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Country</label>
+                                <label>Country<span class="asterisk">*</span></label>
                                 <input type="text"  formControlName="country" class="form-control"
                                     placeholder="Enter Country"
                                     [ngClass]="{ 'is-invalid': submitted && f.country.errors }" />
@@ -783,7 +776,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Pin</label>
+                                <label>Pincode<span class="asterisk">*</span></label>
                                 <input type="text"  formControlName="pin" class="form-control"
                                     placeholder="Enter Pin" [ngClass]="{ 'is-invalid': submitted && f.pin.errors }" />
                                 <div *ngIf="submitted && f.pin.errors" class="invalid-feedback">
@@ -818,27 +811,27 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Address Type</label>
-                                <select class="browser-default" id="select" formControlName="addressType"
+                                <label>Address Type<span class="asterisk">*</span></label>
+                                <select class="browser-default" formControlName="addressType2"
                                     class="form-control"
-                                    [ngClass]="{ 'is-invalid': submitted && f2.addressType.errors }">
-                                    <div *ngIf="submitted && f2.addressType.errors" class="invalid-feedback">
-                                        <div *ngIf="f2.addressType.errors.required">Address Type is required</div>
-                                    </div>
+                                    [ngClass]="{ 'is-invalid': submitted && f2.addressType2.errors }">
                                     <option >Choose your Address Type</option>
                                     <option *ngFor="let addressType of addresstypes?.response"
                                         [value]="addressType._id">{{addressType?.addressType}}</option>
                                 </select>
+                                <div *ngIf="submitted && f2.addressType2.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.addressType2.errors.required">Address Type is required</div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Address 1</label>
-                                <input type="text"  formControlName="address1" class="form-control"
+                                <label>Address Line 1<span class="asterisk">*</span></label>
+                                <input type="text"  formControlName="address12" class="form-control"
                                     placeholder="Enter Address"
-                                    [ngClass]="{ 'is-invalid': submitted && f2.address1.errors }" />
-                                <div *ngIf="submitted && f2.address1.errors" class="invalid-feedback">
-                                    <div *ngIf="f2.address1.errors.required">Address is required</div>
+                                    [ngClass]="{ 'is-invalid': submitted && f2.address12.errors }" />
+                                <div *ngIf="submitted && f2.address12.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.address12.errors.required">Address is required</div>
                                 </div>
                             </div>
                         </div>
@@ -846,23 +839,23 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Address 2</label>
-                                <input type="text"  formControlName="address2" class="form-control"
+                                <label>AddressLine 2<span class="asterisk">*</span></label>
+                                <input type="text"  formControlName="address22" class="form-control"
                                     placeholder="Enter Address"
-                                    [ngClass]="{ 'is-invalid': submitted && f2.address2.errors }" />
-                                <div *ngIf="submitted && f2.address2.errors" class="invalid-feedback">
-                                    <div *ngIf="f2.address2.errors.required">Address is required</div>
+                                    [ngClass]="{ 'is-invalid': submitted && f2.address22.errors }" />
+                                <div *ngIf="submitted && f2.address22.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.address22.errors.required">Address is required</div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>City</label>
-                                <input type="text"  formControlName="city" class="form-control"
+                                <label>City<span class="asterisk">*</span></label>
+                                <input type="text"  formControlName="city2" class="form-control"
                                     placeholder="Enter City"
-                                    [ngClass]="{ 'is-invalid': submitted && f2.city.errors }" />
-                                <div *ngIf="submitted && f2.city.errors" class="invalid-feedback">
-                                    <div *ngIf="f2.city.errors.required">City is required</div>
+                                    [ngClass]="{ 'is-invalid': submitted && f2.city2.errors }" />
+                                <div *ngIf="submitted && f2.city2.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.city2.errors.required">City is required</div>
                                 </div>
                             </div>
                         </div>
@@ -871,45 +864,38 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Taluk</label>
-                                    <input type="text"  formControlName="taluk" class="form-control"
-                                        placeholder="Enter Taluk"
-                                        [ngClass]="{ 'is-invalid': submitted && f2.taluk.errors }" />
-                                    <div *ngIf="submitted && f2.taluk.errors" class="invalid-feedback">
-                                        <div *ngIf="f2.taluk.errors.required">Taluk is required</div>
-                                    </div>
+                                    <input type="text"  formControlName="taluk2" class="form-control"
+                                        placeholder="Enter Taluk"/>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Village Name</label>
-                                    <input type="text"  formControlName="villageName" class="form-control"
-                                        placeholder="Enter villageName" [ngClass]="{ 'is-invalid': submitted && f2.villageName.errors }" />
-                                    <div *ngIf="submitted && f2.villageName.errors" class="invalid-feedback">
-                                        <div *ngIf="f2.villageName.errors.required">VillageName is required</div>
-                                    </div>
+                                    <input type="text"  formControlName="villageName2" class="form-control"
+                                        placeholder="Enter villageName" />
                                 </div>
                             </div>
                         </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>District</label>
-                                <input type="text"  formControlName="district" class="form-control"
+                                <label>District<span class="asterisk">*</span></label>
+                                <input type="text"  formControlName="district2" class="form-control"
                                     placeholder="Enter District"
-                                    [ngClass]="{ 'is-invalid': submitted && f2.district.errors }" />
-                                <div *ngIf="submitted && f2.district.errors" class="invalid-feedback">
-                                    <div *ngIf="f2.district.errors.required">District is required</div>
+                                    [ngClass]="{ 'is-invalid': submitted && f2.district2.errors }" />
+                                <div *ngIf="submitted && f2.district2.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.district2.errors.required">District is required</div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>State</label>
-                                <input type="text"  formControlName="state" class="form-control"
+                                <label>State<span class="asterisk">*</span></label>
+                                <input type="text"  formControlName="state2" class="form-control"
                                     placeholder="Enter State"
-                                    [ngClass]="{ 'is-invalid': submitted && f2.state.errors }" />
-                                <div *ngIf="submitted && f2.state.errors" class="invalid-feedback">
-                                    <div *ngIf="f2.state.errors.required">State is required</div>
+                                    [ngClass]="{ 'is-invalid': submitted && f2.state2.errors }" />
+                                <div *ngIf="submitted && f2.state2.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.state2.errors.required">State is required</div>
                                 </div>
                             </div>
                         </div>
@@ -917,22 +903,22 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Country</label>
-                                <input type="text"  formControlName="country" class="form-control"
+                                <label>Country<span class="asterisk">*</span></label>
+                                <input type="text"  formControlName="country2" class="form-control"
                                     placeholder="Enter Country"
-                                    [ngClass]="{ 'is-invalid': submitted && f2.country.errors }" />
-                                <div *ngIf="submitted && f2.country.errors" class="invalid-feedback">
-                                    <div *ngIf="f2.country.errors.required">Country is required</div>
+                                    [ngClass]="{ 'is-invalid': submitted && f2.country2.errors }" />
+                                <div *ngIf="submitted && f2.country2.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.country2.errors.required">Country is required</div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Pin</label>
-                                <input type="text"  formControlName="pin" class="form-control"
-                                    placeholder="Enter Pin" [ngClass]="{ 'is-invalid': submitted && f2.pin.errors }" />
-                                <div *ngIf="submitted && f2.pin.errors" class="invalid-feedback">
-                                    <div *ngIf="f2.pin.errors.required">Pin is required</div>
+                                <label>Pincode<span class="asterisk">*</span></label>
+                                <input type="text"  formControlName="pin2" class="form-control"
+                                    placeholder="Enter Pin" [ngClass]="{ 'is-invalid': submitted && f2.pin2.errors }" />
+                                <div *ngIf="submitted && f2.pin2.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.pin2.errors.required">Pin is required</div>
                                 </div>
                             </div>
                         </div>
@@ -961,7 +947,7 @@
             <div class="modal-body">
                 <form [formGroup]="addIdentityForm" (ngSubmit)="onAddIdentity()">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label>Identity Type</label>
                                 <input type="text"  formControlName="identityType" class="form-control"
@@ -1000,11 +986,11 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Identity Type</label>
-                                <input type="text"  formControlName="identityType" class="form-control"
+                                <input type="text"  formControlName="identityType2" class="form-control"
                                     placeholder="Enter Identity Type"
-                                    [ngClass]="{ 'is-invalid': submitted && s2.identityType.errors }" />
-                                <div *ngIf="submitted && s2.identityType.errors" class="invalid-feedback">
-                                    <div *ngIf="s2.identityType.errors.required">Identity Type is required</div>
+                                    [ngClass]="{ 'is-invalid': submitted && s2.identityType2.errors }" />
+                                <div *ngIf="submitted && s2.identityType2.errors" class="invalid-feedback">
+                                    <div *ngIf="s2.identityType2.errors.required">Identity Type is required</div>
                                 </div>
                             </div>
                         </div>
@@ -1129,11 +1115,11 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Height</label>
-                                        <input type="text" formControlName="height" class="form-control" placeholder="Enter Height" />
+                                        <input type="text" formControlName="height2" class="form-control" placeholder="Enter Height" />
                                     </div>
                                     <div class="form-group">
                                         <label>Hair Color</label>
-                                        <select class="browser-default" formControlName="hairColor" class="form-control">
+                                        <select class="browser-default" formControlName="hairColor2" class="form-control">
                                             <option value="">Choose your HairColor</option>
                                             <option value="brown">Brown</option>
                                             <option value="black">Black</option>
@@ -1142,7 +1128,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Complexion</label>
-                                        <select class="browser-default" formControlName="complexion" class="form-control">
+                                        <select class="browser-default" formControlName="complexion2" class="form-control">
                                             <option value="">Choose your Completion</option>
                                             <option value="blackish">Blackish</option>
                                             <option value="fair">Fair</option>
@@ -1152,7 +1138,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Color Blind</label>
-                                        <select class="browser-default" formControlName="colorBlind" class="form-control">
+                                        <select class="browser-default" formControlName="colorBlind2" class="form-control">
                                             <option value="">Choose your ColorBlind</option>
                                             <option value="Yes">YES</option>
                                             <option value="No">NO</option>
@@ -1162,11 +1148,11 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Weight</label>
-                                        <input type="text" formControlName="weight" class="form-control" placeholder="Enter weight" />
+                                        <input type="text" formControlName="weight2" class="form-control" placeholder="Enter weight" />
                                     </div>
                                     <div class="form-group">
                                         <label>Eye Color</label>
-                                        <select class="browser-default" formControlName="eyeColor" class="form-control">
+                                        <select class="browser-default" formControlName="eyeColor2" class="form-control">
                                             <option value="">Choose your EyeColor</option>
                                             <option value="brown">Brown</option>
                                             <option value="black">Black</option>
@@ -1176,7 +1162,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Blood Group</label>
-                                        <select class="browser-default" formControlName="bloodGroup" class="form-control">
+                                        <select class="browser-default" formControlName="bloodGroup2" class="form-control">
                                             <option>Choose your BloodGroup</option>
                                             <option *ngFor="let bloodGroup of bloodgroups?.response" [value]="bloodGroup._id">
                                                 {{bloodGroup?.bloodgroup}}</option>
@@ -1185,7 +1171,7 @@
                                     <div class="form-group">
                                         <div class="form-check m-l-10  m-t-25">
                                             <label class="form-check-label">
-                                                <input formControlName="medicallyFit" class="form-check-input" type="checkbox"
+                                                <input formControlName="medicallyFit2" class="form-check-input" type="checkbox"
                                                     [(ngModel)]="isChecked" (change)="medicallyFit1(isChecked?'Yes':'No')">Medically Fit
                                                 <span class="form-check-sign">
                                                     <span class="check"></span>
@@ -1221,7 +1207,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Identity Type</label>
+                                <label>Identity Type<span class="asterisk">*</span></label>
                                 <select class="browser-default" id="select" formControlName="identityType" class="form-control"
                                     [ngClass]="{ 'is-invalid': submitted && m.identityType.errors }">
                                     <option value="">Choose your Address Type</option>
@@ -1240,7 +1226,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Mark Details</label>
+                                <label>Mark Details<span class="asterisk">*</span></label>
                                 <textarea type="text" formControlName="markDetail" class="form-control" placeholder="Enter Mark Detail"
                                     [ngClass]="{ 'is-invalid': submitted && m.markDetail.errors }" ></textarea>
                                 <div *ngIf="submitted && m.markDetail.errors" class="invalid-feedback">
@@ -1275,17 +1261,17 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Identity Type</label>
-                                <select class="browser-default" formControlName="identityType" class="form-control"
-                                    [ngClass]="{ 'is-invalid': submitted && m2.identityType.errors }">
+                                <label>Identity Type<span class="asterisk">*</span></label>
+                                <select class="browser-default" formControlName="identityType2" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && m2.identityType2.errors }">
                                     <option value="">Choose your Address Type</option>
                                     <option value="Marks">Marks</option>
                                     <option value="Mole">Mole</option>
                                     <option value="Scar">Scar</option>
                                     <option value="Tattoos">Tattoos</option>
                                 </select>
-                                <div *ngIf="submitted && m2.identityType.errors" class="invalid-feedback">
-                                    <div *ngIf="m2.identityType.errors.required">Identity Type is required</div>
+                                <div *ngIf="submitted && m2.identityType2.errors" class="invalid-feedback">
+                                    <div *ngIf="m2.identityType2.errors.required">Identity Type is required</div>
                                 </div>
                             </div>
                         </div>
@@ -1294,12 +1280,12 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Mark Details</label>
-                                <textarea type="text" formControlName="markDetail" class="form-control"
+                                <label>Mark Details<span class="asterisk">*</span></label>
+                                <textarea type="text" formControlName="markDetail2" class="form-control"
                                     placeholder="Enter Identity Type"
-                                    [ngClass]="{ 'is-invalid': submitted && m2.markDetail.errors }"></textarea>
-                                <div *ngIf="submitted && m2.markDetail.errors" class="invalid-feedback">
-                                    <div *ngIf="m2.markDetail.errors.required">Mark Detail is required</div>
+                                    [ngClass]="{ 'is-invalid': submitted && m2.markDetail2.errors }"></textarea>
+                                <div *ngIf="submitted && m2.markDetail2.errors" class="invalid-feedback">
+                                    <div *ngIf="m2.markDetail2.errors.required">Mark Detail is required</div>
                                 </div>
                             </div>
                         </div>
@@ -1407,12 +1393,12 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Mother's Age</label>
-                                        <input type="text" formControlName="motherAge" class="form-control" placeholder="Enter Mother'sAge" />
+                                        <input type="text" formControlName="motherAge2" class="form-control" placeholder="Enter Mother'sAge" />
                                     </div>
                                     <div class="form-group">
                                         <div class="form-check m-l-10  m-t-25">
                                             <label class="form-check-label">
-                                                <input formControlName="optOut" class="form-check-input" type="checkbox" [(ngModel)]="isChecked"
+                                                <input formControlName="optOut2" class="form-check-input" type="checkbox" [(ngModel)]="isChecked"
                                                     (change)="optOut1(isChecked?'Yes':'No')">Opt Out of Placments
                                                 <span class="form-check-sign">
                                                     <span class="check"></span>
@@ -1422,37 +1408,37 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Over All Rank</label>
-                                        <input type="text" formControlName="overAllRank" class="form-control" placeholder="Enter OverAllRank" />
+                                        <input type="text" formControlName="overAllRank2" class="form-control" placeholder="Enter OverAllRank" />
                                     </div>
                                     <div class="form-group">
                                         <label>University Admission No.</label>
-                                        <input type="text" formControlName="universityAdmiNo" class="form-control" placeholder="Enter universityAdmiNo" />
+                                        <input type="text" formControlName="universityAdmiNo2" class="form-control" placeholder="Enter universityAdmiNo" />
                                     </div>
                                     <div class="form-group">
                                         <label>Challan Date</label>
-                                        <input type="date" formControlName="challandate" class="form-control" placeholder="Enter challanDate" />
+                                        <input type="date" formControlName="challandate2" class="form-control" placeholder="Enter challanDate" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Place of Birth</label>
-                                        <input type="text" formControlName="placeOfBirth" class="form-control" placeholder="Enter PlaceOfBirth" />
+                                        <input type="text" formControlName="placeOfBirth2" class="form-control" placeholder="Enter PlaceOfBirth" />
                                     </div>
                                     <div class="form-group">
                                         <label>Date of Leave</label>
-                                        <input type="date" formControlName="dateOfLeave" class="form-control" placeholder="Enter DateOfLeave" />
+                                        <input type="date" formControlName="dateOfLeave2" class="form-control" placeholder="Enter DateOfLeave" />
                                     </div>
                                     <div class="form-group">
                                         <label>University Application No.</label>
-                                        <input type="text" formControlName="universityAppNo" class="form-control" placeholder="Enter UniversityAppNo." />
+                                        <input type="text" formControlName="universityAppNo2" class="form-control" placeholder="Enter UniversityAppNo." />
                                     </div>
                                     <div class="form-group">
                                         <label>Challan No.</label>
-                                        <input type="text" formControlName="challanNo" class="form-control" placeholder="Enter ChallanNo." />
+                                        <input type="text" formControlName="challanNo2" class="form-control" placeholder="Enter ChallanNo." />
                                     </div>
                                     <div class="form-group">
                                         <label>Challan Amount</label>
-                                        <input type="text" formControlName="challanAmount" class="form-control" placeholder="Enter challanAmount" />
+                                        <input type="text" formControlName="challanAmount2" class="form-control" placeholder="Enter challanAmount" />
                                     </div>
                                 </div>
                             </div>
@@ -1482,7 +1468,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Relationship</label>
+                                <label>Relationship<span class="asterisk">*</span></label>
                                 <select class="browser-default" formControlName="relationship" class="form-control"
                                     [ngClass]="{ 'is-invalid': submitted && g.relationship.errors }">
                                     <option>Choose your Address Type</option>
@@ -1494,7 +1480,7 @@
                                     </div>
                             </div>
                             <div class="form-group">
-                                <label>Address Type</label>
+                                <label>Address Type<span class="asterisk">*</span></label>
                                 <select class="browser-default" id="select" formControlName="addressType" class="form-control"
                                     [ngClass]="{ 'is-invalid': submitted && g.addressType.errors }">
                                     <option>Choose your Address Type</option>
@@ -1511,7 +1497,7 @@
                                     placeholder="Enter Flat/Door/Block No." />
                             </div>
                             <div class="form-group">
-                                <label>Mobile No.</label>
+                                <label>Mobile No.<span class="asterisk">*</span></label>
                                 <input type="text" formControlName="mobileNo" class="form-control" placeholder="Enter Mobile No."
                                     [ngClass]="{ 'is-invalid': submitted && g.mobileNo.errors }" />
                                 <div *ngIf="submitted && g.mobileNo.errors" class="invalid-feedback">
@@ -1519,7 +1505,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>District</label>
+                                <label>District<span class="asterisk">*</span></label>
                                 <input type="text" formControlName="district" class="form-control" placeholder="Enter District"
                                     [ngClass]="{ 'is-invalid': submitted && g.district.errors }" />
                                 <div *ngIf="submitted && g.district.errors" class="invalid-feedback">
@@ -1528,16 +1514,12 @@
                             </div>
                             <div class="form-group">
                                 <label>State</label>
-                                <input type="text" formControlName="state" class="form-control" placeholder="Enter State"
-                                    [ngClass]="{ 'is-invalid': submitted && g.state.errors }" />
-                                <div *ngIf="submitted && g.state.errors" class="invalid-feedback">
-                                    <div *ngIf="g.state.errors.required">State is required</div>
-                                </div>
+                                <input type="text" formControlName="state" class="form-control" placeholder="Enter State" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>First Name</label>
+                                <label>First Name<span class="asterisk">*</span></label>
                                 <input type="text" formControlName="firstName" class="form-control" placeholder="Enter FirstName"
                                     [ngClass]="{ 'is-invalid': submitted && g.firstName.errors }" />
                                 <div *ngIf="submitted && g.firstName.errors" class="invalid-feedback">
@@ -1558,8 +1540,12 @@
                                 <input type="text" formControlName="city" class="form-control" placeholder="Enter City" />
                             </div>
                             <div class="form-group">
-                                <label>Pincode</label>
-                                <input type="text" formControlName="pincode" class="form-control" placeholder="Enter Pincode" />
+                                <label>Pincode<span class="asterisk">*</span></label>
+                                <input type="text" formControlName="pincode" class="form-control" placeholder="Enter Pincode" 
+                                [ngClass]="{ 'is-invalid': submitted && g.pincode.errors }"/>
+                                <div *ngIf="submitted && g.pincode.errors" class="invalid-feedback">
+                                    <div *ngIf="g.pincode.errors.required">Pincode is required</div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Country</label>
@@ -1593,87 +1579,87 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Relationship</label>
-                                <select class="browser-default" formControlName="relationship" class="form-control"
-                                    [ngClass]="{ 'is-invalid': submitted && g2.relationship.errors }">
+                                <label>Relationship<span class="asterisk">*</span></label>
+                                <select class="browser-default" formControlName="relationship2" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && g2.relationship2.errors }">
                                     <option value="">Choose your Address Type</option>
                                     <option *ngFor="let relationship of relationships?.response" [value]="relationship._id">
                                         {{relationship?.relationship}}</option>
                                 </select>
-                                <div *ngIf="submitted && g2.relationship.errors" class="invalid-feedback">
-                                        <div *ngIf="g2.relationship.errors.required">Address Type is required</div>
+                                <div *ngIf="submitted && g2.relationship2.errors" class="invalid-feedback">
+                                        <div *ngIf="g2.relationship2.errors.required">Address Type is required</div>
                                     </div>
                             </div>
                             <div class="form-group">
-                                <label>Address Type</label>
-                                <select class="browser-default" formControlName="addressType" class="form-control"
-                                    [ngClass]="{ 'is-invalid': submitted && g2.addressType.errors }">
+                                <label>Address Type<span class="asterisk">*</span></label>
+                                <select class="browser-default" formControlName="addressType2" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && g2.addressType2.errors }">
                                     <option value="">Choose your Address Type</option>
                                     <option *ngFor="let addressType of addresstypes?.response" [value]="addressType._id">
                                         {{addressType?.addressType}}</option>
                                 </select>
-                                <div *ngIf="submitted && g2.addressType.errors" class="invalid-feedback">
-                                        <div *ngIf="g2.addressType.errors.required">Address Type is required</div>
+                                <div *ngIf="submitted && g2.addressType2.errors" class="invalid-feedback">
+                                        <div *ngIf="g2.addressType2.errors.required">Address Type is required</div>
                                     </div>
                             </div>
                             <div class="form-group">
                                 <label>Flat/Door/Block No.</label>
-                                <input type="text" formControlName="flatNo" class="form-control" placeholder="Enter Flat/Door/Block No."/>
+                                <input type="text" formControlName="flatNo2" class="form-control" placeholder="Enter Flat/Door/Block No."/>
                             </div>
                             <div class="form-group">
-                                <label>Mobile No.</label>
-                                <input type="text" formControlName="mobileNo" class="form-control" placeholder="Enter Mobile No."
-                                    [ngClass]="{ 'is-invalid': submitted && g2.mobileNo.errors }" />
-                                <div *ngIf="submitted && g2.mobileNo.errors" class="invalid-feedback">
-                                    <div *ngIf="g2.mobileNo.errors.required">Mobile No. is required</div>
+                                <label>Mobile No.<span class="asterisk">*</span></label>
+                                <input type="text" formControlName="mobileNo2" class="form-control" placeholder="Enter Mobile No."
+                                    [ngClass]="{ 'is-invalid': submitted && g2.mobileNo2.errors }" />
+                                <div *ngIf="submitted && g2.mobileNo2.errors" class="invalid-feedback">
+                                    <div *ngIf="g2.mobileNo2.errors.required">Mobile No. is required</div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>District</label>
-                                <input type="text" formControlName="district" class="form-control" placeholder="Enter District"
-                                    [ngClass]="{ 'is-invalid': submitted && g2.district.errors }" />
-                                <div *ngIf="submitted && g2.district.errors" class="invalid-feedback">
-                                    <div *ngIf="g2.district.errors.required">District is required</div>
+                                <label>District<span class="asterisk">*</span></label>
+                                <input type="text" formControlName="district2" class="form-control" placeholder="Enter District"
+                                    [ngClass]="{ 'is-invalid': submitted && g2.district2.errors }" />
+                                <div *ngIf="submitted && g2.district2.errors" class="invalid-feedback">
+                                    <div *ngIf="g2.district2.errors.required">District is required</div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>State</label>
-                                <input type="text" formControlName="state" class="form-control" placeholder="Enter State"
-                                    [ngClass]="{ 'is-invalid': submitted && g2.state.errors }" />
-                                <div *ngIf="submitted && g2.state.errors" class="invalid-feedback">
-                                    <div *ngIf="g2.state.errors.required">State is required</div>
-                                </div>
+                                <input type="text" formControlName="state2" class="form-control" placeholder="Enter State" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>First Name</label>
-                                <input type="text"  formControlName="firstName" class="form-control"
+                                <label>First Name<span class="asterisk">*</span></label>
+                                <input type="text"  formControlName="firstName2" class="form-control"
                                     placeholder="Enter FirstName"
-                                    [ngClass]="{ 'is-invalid': submitted && g2.firstName.errors }" />
-                                <div *ngIf="submitted && g2.firstName.errors" class="invalid-feedback">
-                                    <div *ngIf="g2.firstName.errors.required">First Name is required</div>
+                                    [ngClass]="{ 'is-invalid': submitted && g2.firstName2.errors }" />
+                                <div *ngIf="submitted && g2.firstName2.errors" class="invalid-feedback">
+                                    <div *ngIf="g2.firstName2.errors.required">First Name is required</div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Last Name</label>
-                                <input type="text" formControlName="lastName" class="form-control" placeholder="Enter LastName"/>
+                                <input type="text" formControlName="lastName2" class="form-control" placeholder="Enter LastName"/>
                             </div>
                             <div class="form-group">
                                 <label>Area/Locality</label>
-                                <input type="text" formControlName="areaLocality" class="form-control" placeholder="Enter Area/Locality" />
+                                <input type="text" formControlName="areaLocality2" class="form-control" placeholder="Enter Area/Locality" />
                             </div>
                             <div class="form-group">
                                 <label>City</label>
-                                <input type="text" formControlName="city" class="form-control" placeholder="Enter City"/>
+                                <input type="text" formControlName="city2" class="form-control" placeholder="Enter City"/>
                             </div>
                             <div class="form-group">
-                                <label>Pincode</label>
-                                <input type="text" formControlName="pincode" class="form-control" placeholder="Enter Pincode" />
+                                <label>Pincode<span class="asterisk">*</span></label>
+                                <input type="text" formControlName="pincode2" class="form-control" placeholder="Enter Pincode" 
+                                [ngClass]="{ 'is-invalid': submitted && g2.pincode2.errors }"/>
+                                <div *ngIf="submitted && g2.pincode2.errors" class="invalid-feedback">
+                                    <div *ngIf="g2.pincode2.errors.required">Pincode is required</div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Country</label>
-                                <input type="text" formControlName="country" class="form-control" placeholder="Enter Country" />
+                                <input type="text" formControlName="country2" class="form-control" placeholder="Enter Country" />
                             </div>
                         </div>
                     </div>
@@ -1703,7 +1689,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Activity Category</label>
+                                <label>Activity Category<span class="asterisk">*</span></label>
                                 <select class="browser-default" formControlName="activityCate" class="form-control"
                                     [ngClass]="{ 'is-invalid': submitted && e.activityCate.errors }"
                                     (change)="onActivityCatChange($event.target.value)">
@@ -1739,19 +1725,19 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Level</label>
-                                <input type="text" formControlName="level" class="form-control" />
+                                <input type="text" formControlName="level" class="form-control" placeholder="Enter Level" />
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Year</label>
-                                <input type="text" formControlName="year" class="form-control" />
+                                <input type="text" formControlName="year" class="form-control" placeholder="Enter Year"/>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Venue</label>
-                                <input type="text" formControlName="venue" class="form-control" />
+                                <input type="text" formControlName="venue" class="form-control" placeholder="Enter Venue"/>
                             </div>
                         </div>
                     </div>
@@ -1807,27 +1793,27 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Activity Category</label>
-                                        <select class="browser-default" formControlName="activityCate" class="form-control"
-                                            [ngClass]="{ 'is-invalid': submitted && e2.activityCate.errors }"
+                                        <label>Activity Category<span class="asterisk">*</span></label>
+                                        <select class="browser-default" formControlName="activityCate2" class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted && e2.activityCate2.errors }"
                                             (change)="onActivityCatChange($event.target.value)">
                                             <option value="">Choose your Activity Category</option>
                                             <option *ngFor="let activityCate of activitycats?.response" [value]="activityCate._id">
                                                 {{activityCate?.activityCategory}}</option>
                                         </select>
-                                        <div *ngIf="submitted && e2.activityCate.errors" class="invalid-feedback">
-                                            <div *ngIf="e2.activityCate.errors.required">Activity Category is required</div>
+                                        <div *ngIf="submitted && e2.activityCate2.errors" class="invalid-feedback">
+                                            <div *ngIf="e2.activityCate2.errors.required">Activity Category is required</div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label>From Date</label>
-                                        <input type="date" formControlName="fromDate" class="form-control" />
+                                        <input type="date" formControlName="fromDate2" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Sub Category</label>
-                                        <select class="browser-default" formControlName="subCate" class="form-control">
+                                        <select class="browser-default" formControlName="subCate2" class="form-control">
                                             <option value="">Choose your Sub Category</option>
                                             <option *ngFor="let subCate of subcategories" [value]="subCate._id">
                                                 {{subCate?.subCategory}}</option>
@@ -1835,7 +1821,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>To Date</label>
-                                        <input type="date" formControlName="toDate" class="form-control" />
+                                        <input type="date" formControlName="toDate2" class="form-control" />
                                     </div>
                                 </div>
                             </div>
@@ -1843,19 +1829,19 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Level</label>
-                                        <input type="text" formControlName="level" class="form-control" />
+                                        <input type="text" formControlName="level2" class="form-control" placeholder="Enter Level"/>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Year</label>
-                                        <input type="text" formControlName="year" class="form-control" />
+                                        <input type="text" formControlName="year2" class="form-control" placeholder="Enter Year"/>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Venue</label>
-                                        <input type="text" formControlName="venue" class="form-control" />
+                                        <input type="text" formControlName="venue2" class="form-control" placeholder="Enter Venue"/>
                                     </div>
                                 </div>
                             </div>
@@ -1863,7 +1849,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <textarea type="text" formControlName="description" class="form-control"
+                                        <textarea type="text" formControlName="description2" class="form-control"
                                             placeholder="Description"></textarea>
                                     </div>
                                 </div>
@@ -1872,7 +1858,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Award Details</label>
-                                        <textarea type="text" formControlName="awardDetail" class="form-control"
+                                        <textarea type="text" formControlName="awardDetail2" class="form-control"
                                             placeholder="Award Details"></textarea>
                                     </div>
                                 </div>
@@ -1881,7 +1867,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Remark</label>
-                                        <textarea type="text" formControlName="remark" class="form-control" placeholder="Remark"></textarea>
+                                        <textarea type="text" formControlName="remark2" class="form-control" placeholder="Remark"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -1907,11 +1893,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="qualificationDetailAdd">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Qualification Type</label>
+                                <label>Qualification Type<span class="asterisk">*</span></label>
                                 <div class="form-line">
                                 <select class="browser-default" name="qualificationType" [formControl]="qualificationType"
                                     class="form-control" required>
@@ -1923,7 +1909,7 @@
                             </div>
                         </div>
                             <div class="form-group">
-                                <label>Course Name</label>
+                                <label>Course Name<span class="asterisk">*</span></label>
                                 <div class="form-line">
                                 <input type="text" [formControl]="courseName" class="form-control" placeholder="Enter courseName"
                                     required />
@@ -1960,11 +1946,9 @@
                             </div>
                         </div>
                             <div class="form-group">
-                                <label>Year Of Passing</label>
+                                <label>Year Of Passing<span class="asterisk">*</span></label>
                                 <div class="form-line">
-                                <input type="text" [formControl]="yearOfPassing" class="form-control" placeholder="Enter yearOfPassing"
-                                    required/>
-                                
+                                <input type="text" [formControl]="yearOfPassing" name="yearOfPassing" class="form-control" placeholder="Enter yearOfPassing" required/>
                             </div>
                         </div>
                             <div class="form-group">
@@ -1994,9 +1978,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group form-float">
-                                <label>Course Type</label>
+                                <label>Course Type<span class="asterisk">*</span></label>
                                 <div class="form-line">
-                                    <select class="browser-default" name="courseType" [formControl]="courseType" class="form-control">
+                                    <select class="browser-default" name="courseType" [formControl]="courseType" class="form-control" required>
                                         <option>Choose your Course Type</option>
                                         <option *ngFor="let courseType of coursetypes" [value]="courseType._id">
                                             {{courseType?.courseType}}
@@ -2011,11 +1995,11 @@
                                         placeholder="Enter CourseStartDate" />
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="board">Board Of Education</label>
+                            <div class="form-group form-float">
+                                <label for="board">Board Of Education<span class="asterisk">*</span></label>
                                 <div class="form-line">
-                                    <select class="browser-default" id="select2" [formControl]="board" class="form-control" required>
-                                        <option defult>Choose your BoardOfEducation</option>
+                                    <select class="browser-default" [formControl]="board" name="board" class="form-control" required>
+                                        <option value="">Choose your BoardOfEducation</option>
                                         <option *ngFor="let board of boards?.response" [value]="board._id">{{board?.board}}</option>
                                     </select>
                                 </div>
@@ -2023,14 +2007,10 @@
                             <div class="form-group form-float">
                                 <label>Medium</label>
                                 <div class="form-line">
-                                    <select class="browser-default" name="medium" [formControl]="medium" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && q.medium.errors }">
-                                        <option>Choose your Medium</option>
+                                    <select class="browser-default" name="medium" [formControl]="medium" class="form-control">
+                                        <option value="">Choose your Medium</option>
                                         <option *ngFor="let medium of media?.response" [value]="medium._id">{{medium?.medium}}</option>
                                     </select>
-                                    <div *ngIf="submitted && q.medium.errors" class="invalid-feedback">
-                                        <div *ngIf="q.medium.errors.required">Medium is required</div>
-                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -2055,9 +2035,8 @@
                             </div>
                             <div class="form-group ">
                                 <label>Organisation Type</label>
-                                <select class="browser-default" name="organisationType" [formControl]="organisationType" class="form-control"
-                                    required>
-                                    <option>Choose your organisationType</option>
+                                <select class="browser-default" name="organisationType" [formControl]="organisationType" class="form-control">
+                                    <option value="">Choose your organisationType</option>
                                     <option value="Private">Private </option>
                                     <option value="Govt"> Goverment </option>
                                 </select>
@@ -2128,11 +2107,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="qualificationDetailEdit">
                         <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Qualification Type</label>
+                                        <label>Qualification Type<span class="asterisk">*</span></label>
                                         <div class="form-line">
                                         <select class="browser-default" name="qualificationType2" [formControl]="qualificationType2"
                                             class="form-control" required>
@@ -2144,7 +2123,7 @@
                                     </div>
                                 </div>
                                     <div class="form-group">
-                                        <label>Course Name</label>
+                                        <label>Course Name<span class="asterisk">*</span></label>
                                         <div class="form-line">
                                         <input type="text" [formControl]="courseName2" class="form-control" placeholder="Enter courseName"
                                             required />
@@ -2181,7 +2160,7 @@
                                     </div>
                                 </div>
                                     <div class="form-group">
-                                        <label>Year Of Passing</label>
+                                        <label>Year Of Passing<span class="asterisk">*</span></label>
                                         <div class="form-line">
                                         <input type="text" [formControl]="yearOfPassing2" class="form-control" placeholder="Enter yearOfPassing"
                                             required/>
@@ -2215,7 +2194,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group form-float">
-                                        <label>Course Type</label>
+                                        <label>Course Type<span class="asterisk">*</span></label>
                                         <div class="form-line">
                                             <select class="browser-default" name="courseType2" [formControl]="courseType2" class="form-control">
                                                 <option>Choose your Course Type</option>
@@ -2233,7 +2212,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="board">Board Of Education</label>
+                                        <label for="board">Board Of Education<span class="asterisk">*</span></label>
                                         <div class="form-line">
                                             <select class="browser-default" [formControl]="board2" class="form-control" required>
                                                 <option defult>Choose your BoardOfEducation</option>
@@ -2349,7 +2328,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group form-float">
-                                <label>Certificate Type</label>
+                                <label>Certificate Type<span class="asterisk">*</span></label>
                                 <div class="form-line">
                                     <select class="browser-default" name="certificateType" [formControl]="certificateType" class="form-control" required>
                                         <option value="">Choose your CertificateType</option>
@@ -2366,14 +2345,14 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Certificate No.</label>
-                                <input type="text" [formControl]="certificateNo" class="form-control" placeholder="Enter certificateNo" />
+                                <label>Certificate No.<span class="asterisk">*</span></label>
+                                <input type="text" [formControl]="certificateNo" class="form-control" placeholder="Enter certificateNo" required/>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <h6>Certificate</h6>
+                            <h6>Attach Certificate<span class="asterisk">*</span></h6>
                             <a href="{{getfileLoc2}}">Certificate Link</a><br><br>
                             <input type="file" name="photo" ng2FileSelect [uploader]="uploader2" />
                             <div class="progress">
@@ -2411,7 +2390,7 @@
                         <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
-                                        <label>Certificate Type</label>
+                                        <label>Certificate Type<span class="asterisk">*</span></label>
                                         <div class="form-line">
                                             <select class="browser-default" name="certificateType2" [formControl]="certificateType2" class="form-control" required>
                                                 <option value="">Choose your CertificateType</option>
@@ -2428,14 +2407,14 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Certificate No.</label>
+                                        <label>Certificate No.<span class="asterisk">*</span></label>
                                         <input type="text" [formControl]="certificateNo2" class="form-control" placeholder="Enter certificateNo" />
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <h6>Certificate</h6>
+                                    <h6>Attach Certificate<span class="asterisk">*</span></h6>
                                     <a href="{{fileLocationValue}}">Previous Certificate</a>
                                     <a href="{{getfileLoc2}}">New Certificate</a><br><br>
                                     <input type="file" name="photo" ng2FileSelect [uploader]="uploader2" />

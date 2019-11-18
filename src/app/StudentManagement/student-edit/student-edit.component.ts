@@ -13,6 +13,8 @@ declare const swal: any;
   styleUrls: ['./student-edit.component.scss']
 })
 export class StudentEditComponent implements OnInit {
+  degree:any;
+  batch:any;
   rollNo: any;
   regNo: any;
   firstName: any;
@@ -133,8 +135,6 @@ export class StudentEditComponent implements OnInit {
   institutiond: any;
   admissioncategoriesbyIns: any;
   batcheByDegrees: any;
-  degree: FormControl;
-  batch: FormControl;
   degreeValue: any;
   batchValue: any;
   paadharNO: FormControl;
