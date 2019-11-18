@@ -15,6 +15,7 @@ export class StudentProfileComponent implements OnInit {
   studentDetails: any;
   batcheByDegrees: any;
   stuId: any;
+  studentDets: Object;
 
   constructor(
     private request: RequestService,
@@ -76,6 +77,19 @@ export class StudentProfileComponent implements OnInit {
            id: studentdetail._id,
          }
         });
+  }
+  onBatchChange(batch : string) {
+      if (batch){
+        console.log(batch);
+      this.request.getStudentDetailByBatch(batch).subscribe((response) => {
+        //  console.log('depres',response);
+        this.studentDets = response;
+        console.log(this.studentDets);
+      }, (error) => {
+        console.log(error);
+      });
+      } else
+      this.studentDets = null;
   }
   ngOnInit() {
     this.loadBatch();

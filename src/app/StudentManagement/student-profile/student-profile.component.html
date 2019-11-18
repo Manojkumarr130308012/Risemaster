@@ -41,7 +41,8 @@
                                         </div>
                                         <div class="col-md-3">
                                             <label for="batch">Batch</label>
-                                            <select id="select" [(ngModel)]="selectedbatch" class="browser-default form-control">
+                                            <select id="select" [(ngModel)]="selectedbatch" class="browser-default form-control"
+                                            (change)="onBatchChange($event.target.value)">
                                                 <option>Choose your Batch</option>
                                                 <option *ngFor="let batch of batcheByDegrees?.response" [value]="batch._id">{{batch?.batch}}
                                                 </option>
@@ -73,14 +74,14 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let studentdetail of studentDetails; let i=index">
+                                            <tr *ngFor="let studentdetail of studentDets; let i=index">
                                                 <td>{{i +1 }}</td>
                                                 <td><img src="{{studentdetail?.sPhoto}}" width="100px"></td>
                                                 <td>{{studentdetail?.rollNo}}</td>
                                                 <td>{{studentdetail?.firstName}}{{studentdetail?.lastName}}</td>
-                                                <td>{{studentdetail.gender[0].gender}}</td>
+                                                <td>{{studentdetail.genderd[0].gender}}</td>
                                                 <td>{{studentdetail?.dob}}</td>
-                                                <td>{{studentdetail.bloodGroup[0].bloodgroup}}</td>
+                                                <td>{{studentdetail.bloodGroupd[0].bloodgroup}}</td>
                                                 <td>{{studentdetail?.fmobileNo}}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-default" (click)="open(studentdetail)">View</button>

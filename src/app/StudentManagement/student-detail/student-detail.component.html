@@ -16,25 +16,35 @@
                         <div class="row">
                             <div class="col-md-3" *ngFor="let studentdetail of studentDetails;let i=index">
                                 <img src="{{studentdetail?.sPhoto}}" width="100px">
+                                <h6>{{studentdetail?.firstName}}.{{studentdetail?.lastName}}</h6>
+                                <h6>{{studentdetail?.rollNo}}</h6>
                             </div>
                             <div class="col-md-3" *ngFor="let studentdetail of studentDetails;let i=index">
-                                <h6> Campus :</h6><span>{{studentdetail.institution[0].tagline}}</span>
+                                <h6> Campus :</h6><span>{{studentdetail.institutiond[0].tagline}}</span>
                                 <h6> Date Of Birth :</h6><span>{{studentdetail?.dob}}</span>
                                 <h6> Date Of Joining :</h6><span>{{studentdetail?.joinDate}}</span>
-                                <h6> Nationality:</h6><span>{{studentdetail?.nationality[0].nationality}}</span>
+                                <h6> Nationality:</h6><span>{{studentdetail?.nationalityd[0].nationality}}</span>
                                 <h6> Mobile No. :</h6><span>{{studentdetail?.mobileNo}}</span>
                             </div>
                             <div class="col-md-3" *ngFor="let studentdetail of studentDetails;let i=index">
                                     <h6>Grade :</h6>-
-                                    <h6>Gender :</h6>{{studentdetail?.gender[0].gender}}
+                                    <h6>Gender :</h6>{{studentdetail?.genderd[0].gender}}
                                     <h6>Boarding :</h6>{{studentdetail?.boarding}}
                                     <h6>EmailId :</h6>{{studentdetail?.emailId}}
                             </div>
                             <div class="col-md-3" *ngFor="let studentdetail of studentDetails;let i=index">
                                 <h6 >Reg No. :</h6>{{studentdetail?.regNo}}
-                                <h6>Blood Group :</h6>{{studentdetail?.bloodGroup[0].bloodgroup}}
+                                <h6>Blood Group :</h6>{{studentdetail?.bloodGroupd[0].bloodgroup}}
                                 <h6>Route Name :</h6>-
-                                <h6>AdmissionCategory :</h6>{{studentdetail?.admissionCategory[0].admissionCategory}}
+                                <h6>AdmissionCategory :</h6>{{studentdetail?.admissionCategoryd[0].admissionCategory}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <button type="button" class="btn btn-danger waves-effect" routerLink="/studentProfile">Back</button>
+                            </div>
+                            <div class="col-md-1" *ngFor="let studentdetail of studentDetails">
+                                <button type="button" class="btn bg-indigo waves-effect" (click)="onEdit(studentdetail?._id)">Edit</button>
                             </div>
                         </div>
                     </div>
@@ -49,19 +59,36 @@
                             </div>
                 
                             <div class="body">
-                                    <div class="row">
-                                            <div class="col-md-1">
-                                                <button type="button" class="btn btn-danger waves-effect"
-                                                    routerLink="/studentProfile">Back</button>
-                                            </div>
-                                            <div class="col-md-1">
-                                                <button type="button" class="btn btn-info waves-effect" data-toggle="modal"
-                                                    data-target="#editModal" (click)="onEdit()">Edit</button>
-                                            </div>
+                                    <div class="table-responsive">
+                                            <table id="tableExport"
+                                                class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Father Name</th>
+                                                        <th>Father Occupation</th>
+                                                        <th>Father Mobile No.</th>
+                                                        <th>Mother Name</th>
+                                                        <th>Mother Occupation</th>
+                                                        <th>Mother Mobile No.</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let studentdetail of studentDetails">
+                                                        <td>{{studentdetail?.ffirstName}} {{studentdetail?.flastName}}</td>
+                                                        <td>{{studentdetail?.foccupation}}</td>
+                                                        <td>{{studentdetail?.fmobileNo}}</td>
+                                                        <td>{{studentdetail?.mfirstName}} {{studentdetail?.mlastName}}</td>
+                                                        <td>{{studentdetail?.moccupation}}</td>
+                                                        <td>{{studentdetail?.mmobileNo}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
+                                   
                             </div>
                         </div>
                     </div>
+                    
                 </div>
                 <!--Tabs Start-->
                 <div class="row clearfix">
@@ -92,7 +119,7 @@
                                     </li>
                                     <li role="presentation">
                                         <a href="#certification_with_icon_title" data-toggle="tab">
-                                            <i class="material-icons">star</i> Cerification
+                                            <i class="material-icons">star</i> Certification
                                         </a>
                                     </li>
                                     <li role="presentation">
@@ -342,7 +369,7 @@
                                                 <div class="header-dropdown m-r--5">
                                                     <!-- Add button -->
                                                     <div class="btn-group m-l-15">
-                                                        <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addExperienceModal">
+                                                        <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addQualificationModal">
                                                             Add New
                                                             <i class="fa fa-plus" style="color: white"></i>
                                                         </button>
@@ -359,27 +386,27 @@
                                                                 <th>S.No</th>
                                                                 <th>Qualification Type</th>
                                                                 <th>Course Type</th>
-                                                                <th>Medium</th>
                                                                 <th>Year Of Passing</th>
                                                                 <th>Mark Obtained</th>
+                                                                <th>Mark Sheet</th>
                                                                 <th>Action</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let experience of experiences; let i=index">
+                                                            <tr *ngFor="let studentQualification of studentQualifications; let i=index">
                                                                 <td>{{i +1 }}</td>
-                                                                <td>{{experience?.organization}}</td>
-                                                                <td>{{experience?.expDesignation}}</td>
-                                                                <td>{{experience?.natureOfExperience}}</td>
-                                                                <td>{{experience?.place}}</td>
-                                                                <td>{{experience?.fromDate}}</td>
+                                                                <td>{{studentQualification.qualificationType[0].qualificationType}}</td>
+                                                                <td>{{studentQualification.courseType[0].courseType}}</td>
+                                                                <td>{{studentQualification?.yearOfPassing}}</td>
+                                                                <td>{{studentQualification?.markObtained}}</td>
+                                                                <td><a href="{{studentQualification?.photoLoctaion}}">MarksheetLink</a></td>
                                                                 <td>
-                                                                    <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editExperienceModal">
-                                                                        <i class="material-icons" (click)="onEditExperience(experience?._id) ">create</i>
+                                                                    <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editQualificationModal">
+                                                                        <i class="material-icons" (click)="onEditQualification(studentQualification?._id) ">create</i>
                                                                     </div>
                                                                     <div class="btn btn-tbl-delete">
                                                                         <i class="material-icons"
-                                                                            (click)="deleteStaffExperience(experience?._id)">delete</i>
+                                                                            (click)="deleteQualification(studentQualification?._id)">delete</i>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -389,10 +416,58 @@
                                             </div>
                                         </div>
                                     </div>
-                                        <div role="tabpanel" class="tab-pane fade"
-                                            id="certification_with_icon_title">
-                                            <h4>Cerificate</h4>
-                                           
+                                        <div role="tabpanel" class="tab-pane fade" id="certification_with_icon_title">
+                                            <h4>Certification</h4>
+                                            <div>
+                                                <div class="header">
+                                                    <div class="header-dropdown m-r--5">
+                                                        <!-- Add button -->
+                                                        <div class="btn-group m-l-15">
+                                                            <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addCertificateModal">
+                                                                Add New
+                                                                <i class="fa fa-plus" style="color: white"></i>
+                                                            </button>
+                                                        </div>
+                                                        <!-- Add button -->
+                                                    </div>
+                                                </div>
+                                                <div class="body">
+                                                    <div class="table-responsive">
+                                                        <table id="tableExport"
+                                                            class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>S.No</th>
+                                                                    <th>Certificate Type</th>
+                                                                    <th>Register No.</th>
+                                                                    <th>Certificate No.</th>
+                                                                    <th>Certificate</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let studentCertificate of studentCertificates; let i=index">
+                                                                    <td>{{i +1 }}</td>
+                                                                    <td>{{studentCertificate.certificateType[0].certificateType}}</td>
+                                                                    <td>{{studentCertificate?.registerNo}}</td>
+                                                                    <td>{{studentCertificate?.certificateNo}}</td>
+                                                                    <td><a href="{{studentCertificate?.fileUpload}}">CertificateLink</a></td>
+                                                                    <td>
+                                                                        <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editCertificateModal">
+                                                                            <i class="material-icons"
+                                                                                (click)="onEditCertificate(studentCertificate?._id) ">create</i>
+                                                                        </div>
+                                                                        <div class="btn btn-tbl-delete">
+                                                                            <i class="material-icons"
+                                                                                (click)="deleteCertificate(studentCertificate?._id)">delete</i>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade" id="others_with_icon_title">
                                             <h4>Other Information</h4>
@@ -401,7 +476,7 @@
                                                     <div class="header-dropdown m-r--5">
                                                         <!-- Add button -->
                                                         <div class="btn-group m-l-15">
-                                                            <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addExperienceModal">
+                                                            <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addOtherModal">
                                                                 Add New
                                                                 <i class="fa fa-plus" style="color: white"></i>
                                                             </button>
@@ -426,21 +501,21 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr *ngFor="let experience of experiences; let i=index">
+                                                                <tr *ngFor="let studentother of studentothers; let i=index">
                                                                     <td>{{i +1 }}</td>
-                                                                    <td>{{experience?.organization}}</td>
-                                                                    <td>{{experience?.expDesignation}}</td>
-                                                                    <td>{{experience?.natureOfExperience}}</td>
-                                                                    <td>{{experience?.place}}</td>
-                                                                    <td>{{experience?.fromDate}}</td>
-                                                                    <td>{{experience?.fromDate}}</td>
+                                                                    <td>{{studentother?.overAllRank}}</td>
+                                                                    <td>{{studentother?.universityAppNo}}</td>
+                                                                    <td>{{studentother?.universityAdmiNo}}</td>
+                                                                    <td>{{studentother?.challanNo}}</td>
+                                                                    <td>{{studentother?.challandate}}</td>
+                                                                    <td>{{studentother?.challanAmount}}</td>
                                                                     <td>
-                                                                        <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editExperienceModal">
-                                                                            <i class="material-icons" (click)="onEditExperience(experience?._id) ">create</i>
+                                                                        <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editOtherModal">
+                                                                            <i class="material-icons" (click)="onEditOther(studentother?._id) ">create</i>
                                                                         </div>
                                                                         <div class="btn btn-tbl-delete">
                                                                             <i class="material-icons"
-                                                                                (click)="deleteStaffExperience(experience?._id)">delete</i>
+                                                                                (click)="deleteOther(studentother?._id)">delete</i>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
@@ -454,10 +529,10 @@
                                             <b>Guardian</b>
                                             <div>
                                                 <div class="header">
-                                                    <div class="header-dropdown m-r--5">
+                                                     <div class="header-dropdown m-r--5">
                                                         <!-- Add button -->
                                                         <div class="btn-group m-l-15">
-                                                            <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addExperienceModal">
+                                                            <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addGuardianModal">
                                                                 Add New
                                                                 <i class="fa fa-plus" style="color: white"></i>
                                                             </button>
@@ -481,20 +556,26 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr *ngFor="let experience of experiences; let i=index">
+                                                                <tr *ngFor="let studentGuardian of studentGuardians; let i=index">
                                                                     <td>{{i +1 }}</td>
-                                                                    <td>{{experience?.organization}}</td>
-                                                                    <td>{{experience?.expDesignation}}</td>
-                                                                    <td>{{experience?.natureOfExperience}}</td>
-                                                                    <td>{{experience?.place}}</td>
-                                                                    <td>{{experience?.fromDate}}</td>
+                                                                    <td>{{studentGuardian.relationship[0].relationship}}</td>
+                                                                    <td>{{studentGuardian?.firstName}}{{studentGuardian?.lastName}}</td>
+                                                                    <td>{{studentGuardian.addressType[0].addressType}}</td>
+                                                                    <td>{{studentGuardian?.flatNo}},
+                                                                        {{studentGuardian?.areaLocality}},
+                                                                        {{studentGuardian?.city}},
+                                                                        {{studentGuardian?.district}},
+                                                                        {{studentGuardian?.pincode}},
+                                                                        {{studentGuardian?.state}},
+                                                                        {{studentGuardian?.country}}</td>
+                                                                    <td>{{studentGuardian?.mobileNo}}</td>
                                                                     <td>
-                                                                        <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editExperienceModal">
-                                                                            <i class="material-icons" (click)="onEditExperience(experience?._id) ">create</i>
+                                                                        <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editGuardianModal">
+                                                                            <i class="material-icons" (click)="onEditGuardian(studentGuardian?._id) ">create</i>
                                                                         </div>
                                                                         <div class="btn btn-tbl-delete">
                                                                             <i class="material-icons"
-                                                                                (click)="deleteStaffExperience(experience?._id)">delete</i>
+                                                                                (click)="deleteGuardian(studentGuardian?._id)">delete</i>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
@@ -511,7 +592,7 @@
                                                     <div class="header-dropdown m-r--5">
                                                         <!-- Add button -->
                                                         <div class="btn-group m-l-15">
-                                                            <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addExperienceModal">
+                                                            <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addExtraModal">
                                                                 Add New
                                                                 <i class="fa fa-plus" style="color: white"></i>
                                                             </button>
@@ -528,6 +609,7 @@
                                                                     <th>S.No</th>
                                                                     <th>Activity Category</th>
                                                                     <th>Sub Category</th>
+                                                                    <th>Level</th>
                                                                     <th>From Date</th>
                                                                     <th>To Date</th>
                                                                     <th>Year</th>
@@ -537,21 +619,23 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr *ngFor="let experience of experiences; let i=index">
+                                                                <tr *ngFor="let studentExtra of studentExtras; let i=index">
                                                                     <td>{{i +1 }}</td>
-                                                                    <td>{{experience?.organization}}</td>
-                                                                    <td>{{experience?.expDesignation}}</td>
-                                                                    <td>{{experience?.natureOfExperience}}</td>
-                                                                    <td>{{experience?.place}}</td>
-                                                                    <td>{{experience?.fromDate}}</td>
-                                                                    <td>{{experience?.fromDate}}</td>
+                                                                    <td>{{studentExtra.activityCate[0].activityCategory}}</td>
+                                                                    <td>{{studentExtra.subCate[0].subCategory}}</td>
+                                                                    <td>{{studentExtra?.level}}</td>
+                                                                    <td>{{studentExtra?.fromDate}}</td>
+                                                                    <td>{{studentExtra?.toDate}}</td>
+                                                                    <td>{{studentExtra?.year}}</td>
+                                                                    <td>{{studentExtra?.venue}}</td>
+                                                                    <td>{{studentExtra?.awardDetail}}</td>
                                                                     <td>
-                                                                        <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editExperienceModal">
-                                                                            <i class="material-icons" (click)="onEditExperience(experience?._id) ">create</i>
+                                                                        <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editExtraModal">
+                                                                            <i class="material-icons" (click)="onEditExtra(studentExtra?._id) ">create</i>
                                                                         </div>
                                                                         <div class="btn btn-tbl-delete">
                                                                             <i class="material-icons"
-                                                                                (click)="deleteStaffExperience(experience?._id)">delete</i>
+                                                                                (click)="deleteExtra(studentExtra?._id)">delete</i>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
@@ -590,8 +674,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Address Type</label>
-                                <select class="browser-default" id="select" formControlName="addressType"
+                                <label>Address Type<span class="asterisk">*</span></label>
+                                <select class="browser-default" formControlName="addressType"
                                     class="form-control"
                                     [ngClass]="{ 'is-invalid': submitted && f.addressType.errors }">
                                     <option>Choose your Address Type</option>
@@ -605,7 +689,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Address 1</label>
+                                <label>Address Line 1<span class="asterisk">*</span></label>
                                 <input type="text"  formControlName="address1" class="form-control"
                                     placeholder="Enter Address"
                                     [ngClass]="{ 'is-invalid': submitted && f.address1.errors }" />
@@ -618,7 +702,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Address 2</label>
+                                <label>Address Line 2<span class="asterisk">*</span></label>
                                 <input type="text"  formControlName="address2" class="form-control"
                                     placeholder="Enter Address"
                                     [ngClass]="{ 'is-invalid': submitted && f.address2.errors }" />
@@ -629,7 +713,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>City</label>
+                                <label>City<span class="asterisk">*</span></label>
                                 <input type="text"  formControlName="city" class="form-control"
                                     placeholder="Enter City" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
                                 <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
@@ -643,28 +727,21 @@
                                 <div class="form-group">
                                     <label>Taluk</label>
                                     <input type="text"  formControlName="taluk" class="form-control"
-                                        placeholder="Enter Taluk"
-                                        [ngClass]="{ 'is-invalid': submitted && f.taluk.errors }" />
-                                    <div *ngIf="submitted && f.taluk.errors" class="invalid-feedback">
-                                        <div *ngIf="f.taluk.errors.required">Taluk is required</div>
-                                    </div>
+                                        placeholder="Enter Taluk" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Village Name</label>
                                     <input type="text"  formControlName="villageName" class="form-control"
-                                        placeholder="Enter villageName" [ngClass]="{ 'is-invalid': submitted && f.villageName.errors }" />
-                                    <div *ngIf="submitted && f.villageName.errors" class="invalid-feedback">
-                                        <div *ngIf="f.villageName.errors.required">VillageName is required</div>
-                                    </div>
+                                        placeholder="Enter villageName"/>
                                 </div>
                             </div>
                         </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>District</label>
+                                <label>District<span class="asterisk">*</span></label>
                                 <input type="text"  formControlName="district" class="form-control"
                                     placeholder="Enter District"
                                     [ngClass]="{ 'is-invalid': submitted && f.district.errors }" />
@@ -675,7 +752,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>State</label>
+                                <label>State<span class="asterisk">*</span></label>
                                 <input type="text"  formControlName="state" class="form-control"
                                     placeholder="Enter State"
                                     [ngClass]="{ 'is-invalid': submitted && f.state.errors }" />
@@ -688,7 +765,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Country</label>
+                                <label>Country<span class="asterisk">*</span></label>
                                 <input type="text"  formControlName="country" class="form-control"
                                     placeholder="Enter Country"
                                     [ngClass]="{ 'is-invalid': submitted && f.country.errors }" />
@@ -699,7 +776,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Pin</label>
+                                <label>Pincode<span class="asterisk">*</span></label>
                                 <input type="text"  formControlName="pin" class="form-control"
                                     placeholder="Enter Pin" [ngClass]="{ 'is-invalid': submitted && f.pin.errors }" />
                                 <div *ngIf="submitted && f.pin.errors" class="invalid-feedback">
@@ -734,27 +811,27 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Address Type</label>
-                                <select class="browser-default" id="select" formControlName="addressType"
+                                <label>Address Type<span class="asterisk">*</span></label>
+                                <select class="browser-default" formControlName="addressType2"
                                     class="form-control"
-                                    [ngClass]="{ 'is-invalid': submitted && f2.addressType.errors }">
-                                    <div *ngIf="submitted && f2.addressType.errors" class="invalid-feedback">
-                                        <div *ngIf="f2.addressType.errors.required">Address Type is required</div>
-                                    </div>
+                                    [ngClass]="{ 'is-invalid': submitted && f2.addressType2.errors }">
                                     <option >Choose your Address Type</option>
                                     <option *ngFor="let addressType of addresstypes?.response"
                                         [value]="addressType._id">{{addressType?.addressType}}</option>
                                 </select>
+                                <div *ngIf="submitted && f2.addressType2.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.addressType2.errors.required">Address Type is required</div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Address 1</label>
-                                <input type="text"  formControlName="address1" class="form-control"
+                                <label>Address Line 1<span class="asterisk">*</span></label>
+                                <input type="text"  formControlName="address12" class="form-control"
                                     placeholder="Enter Address"
-                                    [ngClass]="{ 'is-invalid': submitted && f2.address1.errors }" />
-                                <div *ngIf="submitted && f2.address1.errors" class="invalid-feedback">
-                                    <div *ngIf="f2.address1.errors.required">Address is required</div>
+                                    [ngClass]="{ 'is-invalid': submitted && f2.address12.errors }" />
+                                <div *ngIf="submitted && f2.address12.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.address12.errors.required">Address is required</div>
                                 </div>
                             </div>
                         </div>
@@ -762,23 +839,23 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Address 2</label>
-                                <input type="text"  formControlName="address2" class="form-control"
+                                <label>AddressLine 2<span class="asterisk">*</span></label>
+                                <input type="text"  formControlName="address22" class="form-control"
                                     placeholder="Enter Address"
-                                    [ngClass]="{ 'is-invalid': submitted && f2.address2.errors }" />
-                                <div *ngIf="submitted && f2.address2.errors" class="invalid-feedback">
-                                    <div *ngIf="f2.address2.errors.required">Address is required</div>
+                                    [ngClass]="{ 'is-invalid': submitted && f2.address22.errors }" />
+                                <div *ngIf="submitted && f2.address22.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.address22.errors.required">Address is required</div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>City</label>
-                                <input type="text"  formControlName="city" class="form-control"
+                                <label>City<span class="asterisk">*</span></label>
+                                <input type="text"  formControlName="city2" class="form-control"
                                     placeholder="Enter City"
-                                    [ngClass]="{ 'is-invalid': submitted && f2.city.errors }" />
-                                <div *ngIf="submitted && f2.city.errors" class="invalid-feedback">
-                                    <div *ngIf="f2.city.errors.required">City is required</div>
+                                    [ngClass]="{ 'is-invalid': submitted && f2.city2.errors }" />
+                                <div *ngIf="submitted && f2.city2.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.city2.errors.required">City is required</div>
                                 </div>
                             </div>
                         </div>
@@ -787,45 +864,38 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Taluk</label>
-                                    <input type="text"  formControlName="taluk" class="form-control"
-                                        placeholder="Enter Taluk"
-                                        [ngClass]="{ 'is-invalid': submitted && f2.taluk.errors }" />
-                                    <div *ngIf="submitted && f2.taluk.errors" class="invalid-feedback">
-                                        <div *ngIf="f2.taluk.errors.required">Taluk is required</div>
-                                    </div>
+                                    <input type="text"  formControlName="taluk2" class="form-control"
+                                        placeholder="Enter Taluk"/>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Village Name</label>
-                                    <input type="text"  formControlName="villageName" class="form-control"
-                                        placeholder="Enter villageName" [ngClass]="{ 'is-invalid': submitted && f2.villageName.errors }" />
-                                    <div *ngIf="submitted && f2.villageName.errors" class="invalid-feedback">
-                                        <div *ngIf="f2.villageName.errors.required">VillageName is required</div>
-                                    </div>
+                                    <input type="text"  formControlName="villageName2" class="form-control"
+                                        placeholder="Enter villageName" />
                                 </div>
                             </div>
                         </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>District</label>
-                                <input type="text"  formControlName="district" class="form-control"
+                                <label>District<span class="asterisk">*</span></label>
+                                <input type="text"  formControlName="district2" class="form-control"
                                     placeholder="Enter District"
-                                    [ngClass]="{ 'is-invalid': submitted && f2.district.errors }" />
-                                <div *ngIf="submitted && f2.district.errors" class="invalid-feedback">
-                                    <div *ngIf="f2.district.errors.required">District is required</div>
+                                    [ngClass]="{ 'is-invalid': submitted && f2.district2.errors }" />
+                                <div *ngIf="submitted && f2.district2.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.district2.errors.required">District is required</div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>State</label>
-                                <input type="text"  formControlName="state" class="form-control"
+                                <label>State<span class="asterisk">*</span></label>
+                                <input type="text"  formControlName="state2" class="form-control"
                                     placeholder="Enter State"
-                                    [ngClass]="{ 'is-invalid': submitted && f2.state.errors }" />
-                                <div *ngIf="submitted && f2.state.errors" class="invalid-feedback">
-                                    <div *ngIf="f2.state.errors.required">State is required</div>
+                                    [ngClass]="{ 'is-invalid': submitted && f2.state2.errors }" />
+                                <div *ngIf="submitted && f2.state2.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.state2.errors.required">State is required</div>
                                 </div>
                             </div>
                         </div>
@@ -833,22 +903,22 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Country</label>
-                                <input type="text"  formControlName="country" class="form-control"
+                                <label>Country<span class="asterisk">*</span></label>
+                                <input type="text"  formControlName="country2" class="form-control"
                                     placeholder="Enter Country"
-                                    [ngClass]="{ 'is-invalid': submitted && f2.country.errors }" />
-                                <div *ngIf="submitted && f2.country.errors" class="invalid-feedback">
-                                    <div *ngIf="f2.country.errors.required">Country is required</div>
+                                    [ngClass]="{ 'is-invalid': submitted && f2.country2.errors }" />
+                                <div *ngIf="submitted && f2.country2.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.country2.errors.required">Country is required</div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Pin</label>
-                                <input type="text"  formControlName="pin" class="form-control"
-                                    placeholder="Enter Pin" [ngClass]="{ 'is-invalid': submitted && f2.pin.errors }" />
-                                <div *ngIf="submitted && f2.pin.errors" class="invalid-feedback">
-                                    <div *ngIf="f2.pin.errors.required">Pin is required</div>
+                                <label>Pincode<span class="asterisk">*</span></label>
+                                <input type="text"  formControlName="pin2" class="form-control"
+                                    placeholder="Enter Pin" [ngClass]="{ 'is-invalid': submitted && f2.pin2.errors }" />
+                                <div *ngIf="submitted && f2.pin2.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.pin2.errors.required">Pin is required</div>
                                 </div>
                             </div>
                         </div>
@@ -877,7 +947,7 @@
             <div class="modal-body">
                 <form [formGroup]="addIdentityForm" (ngSubmit)="onAddIdentity()">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label>Identity Type</label>
                                 <input type="text"  formControlName="identityType" class="form-control"
@@ -916,11 +986,11 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Identity Type</label>
-                                <input type="text"  formControlName="identityType" class="form-control"
+                                <input type="text"  formControlName="identityType2" class="form-control"
                                     placeholder="Enter Identity Type"
-                                    [ngClass]="{ 'is-invalid': submitted && s2.identityType.errors }" />
-                                <div *ngIf="submitted && s2.identityType.errors" class="invalid-feedback">
-                                    <div *ngIf="s2.identityType.errors.required">Identity Type is required</div>
+                                    [ngClass]="{ 'is-invalid': submitted && s2.identityType2.errors }" />
+                                <div *ngIf="submitted && s2.identityType2.errors" class="invalid-feedback">
+                                    <div *ngIf="s2.identityType2.errors.required">Identity Type is required</div>
                                 </div>
                             </div>
                         </div>
@@ -1045,11 +1115,11 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Height</label>
-                                        <input type="text" formControlName="height" class="form-control" placeholder="Enter Height" />
+                                        <input type="text" formControlName="height2" class="form-control" placeholder="Enter Height" />
                                     </div>
                                     <div class="form-group">
                                         <label>Hair Color</label>
-                                        <select class="browser-default" formControlName="hairColor" class="form-control">
+                                        <select class="browser-default" formControlName="hairColor2" class="form-control">
                                             <option value="">Choose your HairColor</option>
                                             <option value="brown">Brown</option>
                                             <option value="black">Black</option>
@@ -1058,7 +1128,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Complexion</label>
-                                        <select class="browser-default" formControlName="complexion" class="form-control">
+                                        <select class="browser-default" formControlName="complexion2" class="form-control">
                                             <option value="">Choose your Completion</option>
                                             <option value="blackish">Blackish</option>
                                             <option value="fair">Fair</option>
@@ -1068,7 +1138,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Color Blind</label>
-                                        <select class="browser-default" formControlName="colorBlind" class="form-control">
+                                        <select class="browser-default" formControlName="colorBlind2" class="form-control">
                                             <option value="">Choose your ColorBlind</option>
                                             <option value="Yes">YES</option>
                                             <option value="No">NO</option>
@@ -1078,11 +1148,11 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Weight</label>
-                                        <input type="text" formControlName="weight" class="form-control" placeholder="Enter weight" />
+                                        <input type="text" formControlName="weight2" class="form-control" placeholder="Enter weight" />
                                     </div>
                                     <div class="form-group">
                                         <label>Eye Color</label>
-                                        <select class="browser-default" formControlName="eyeColor" class="form-control">
+                                        <select class="browser-default" formControlName="eyeColor2" class="form-control">
                                             <option value="">Choose your EyeColor</option>
                                             <option value="brown">Brown</option>
                                             <option value="black">Black</option>
@@ -1092,7 +1162,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Blood Group</label>
-                                        <select class="browser-default" formControlName="bloodGroup" class="form-control">
+                                        <select class="browser-default" formControlName="bloodGroup2" class="form-control">
                                             <option>Choose your BloodGroup</option>
                                             <option *ngFor="let bloodGroup of bloodgroups?.response" [value]="bloodGroup._id">
                                                 {{bloodGroup?.bloodgroup}}</option>
@@ -1101,7 +1171,7 @@
                                     <div class="form-group">
                                         <div class="form-check m-l-10  m-t-25">
                                             <label class="form-check-label">
-                                                <input formControlName="medicallyFit" class="form-check-input" type="checkbox"
+                                                <input formControlName="medicallyFit2" class="form-check-input" type="checkbox"
                                                     [(ngModel)]="isChecked" (change)="medicallyFit1(isChecked?'Yes':'No')">Medically Fit
                                                 <span class="form-check-sign">
                                                     <span class="check"></span>
@@ -1112,7 +1182,7 @@
                                 </div>
                             </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-default" (click)="onEditMedical">Update</button>
+                        <button type="submit" class="btn btn-default" (click)="onEditMedicalSubmit()">Update</button>
                         <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
@@ -1137,7 +1207,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Identity Type</label>
+                                <label>Identity Type<span class="asterisk">*</span></label>
                                 <select class="browser-default" id="select" formControlName="identityType" class="form-control"
                                     [ngClass]="{ 'is-invalid': submitted && m.identityType.errors }">
                                     <option value="">Choose your Address Type</option>
@@ -1156,7 +1226,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Mark Details</label>
+                                <label>Mark Details<span class="asterisk">*</span></label>
                                 <textarea type="text" formControlName="markDetail" class="form-control" placeholder="Enter Mark Detail"
                                     [ngClass]="{ 'is-invalid': submitted && m.markDetail.errors }" ></textarea>
                                 <div *ngIf="submitted && m.markDetail.errors" class="invalid-feedback">
@@ -1191,17 +1261,17 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Identity Type</label>
-                                <select class="browser-default" formControlName="identityType" class="form-control"
-                                    [ngClass]="{ 'is-invalid': submitted && m2.identityType.errors }">
+                                <label>Identity Type<span class="asterisk">*</span></label>
+                                <select class="browser-default" formControlName="identityType2" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && m2.identityType2.errors }">
                                     <option value="">Choose your Address Type</option>
                                     <option value="Marks">Marks</option>
                                     <option value="Mole">Mole</option>
                                     <option value="Scar">Scar</option>
                                     <option value="Tattoos">Tattoos</option>
                                 </select>
-                                <div *ngIf="submitted && m2.identityType.errors" class="invalid-feedback">
-                                    <div *ngIf="m2.identityType.errors.required">Identity Type is required</div>
+                                <div *ngIf="submitted && m2.identityType2.errors" class="invalid-feedback">
+                                    <div *ngIf="m2.identityType2.errors.required">Identity Type is required</div>
                                 </div>
                             </div>
                         </div>
@@ -1210,12 +1280,12 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Mark Details</label>
-                                <textarea type="text" formControlName="markDetail" class="form-control"
+                                <label>Mark Details<span class="asterisk">*</span></label>
+                                <textarea type="text" formControlName="markDetail2" class="form-control"
                                     placeholder="Enter Identity Type"
-                                    [ngClass]="{ 'is-invalid': submitted && m2.markDetail.errors }"></textarea>
-                                <div *ngIf="submitted && m2.markDetail.errors" class="invalid-feedback">
-                                    <div *ngIf="m2.markDetail.errors.required">Mark Detail is required</div>
+                                    [ngClass]="{ 'is-invalid': submitted && m2.markDetail2.errors }"></textarea>
+                                <div *ngIf="submitted && m2.markDetail2.errors" class="invalid-feedback">
+                                    <div *ngIf="m2.markDetail2.errors.required">Mark Detail is required</div>
                                 </div>
                             </div>
                         </div>
@@ -1230,3 +1300,1140 @@
     </div>
 </div>
 <!-- Edit IdentityMark Form  -->
+<!-- Add OTHER Form-->
+<div class="modal fade" id="addOtherModal" tabindex="-1" role="dialog" aria-labelledby="other1formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="other1formModal">Add OtherDetails</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addOtherForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Mother's Age</label>
+                                <input type="text" formControlName="motherAge" class="form-control" placeholder="Enter Mother'sAge" />
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check m-l-10  m-t-25">
+                                    <label class="form-check-label">
+                                        <input formControlName="optOut" class="form-check-input" type="checkbox" [(ngModel)]="isChecked"
+                                            (change)="optOut1(isChecked?'Yes':'No')">Opt Out of Placments
+                                        <span class="form-check-sign">
+                                            <span class="check"></span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Over All Rank</label>
+                                <input type="text" formControlName="overAllRank" class="form-control" placeholder="Enter OverAllRank" />
+                            </div>
+                            <div class="form-group">
+                                <label>University Admission No.</label>
+                                <input type="text" formControlName="universityAdmiNo" class="form-control" placeholder="Enter UniversityAdmiNo" />
+                            </div>
+                            <div class="form-group">
+                                <label>Challan Date</label>
+                                <input type="text" formControlName="challandate" class="form-control" placeholder="Enter challanDate" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Place of Birth</label>
+                                <input type="text" formControlName="placeOfBirth" class="form-control" placeholder="Enter PlaceOfBirth" />
+                            </div>
+                            <div class="form-group">
+                                <label>Date of Leave</label>
+                                <input type="date" formControlName="dateOfLeave" class="form-control" placeholder="Enter DateOfLeave" />
+                            </div>
+                            <div class="form-group">
+                                <label>University Application No.</label>
+                                <input type="text" formControlName="universityAppNo" class="form-control" placeholder="Enter UniversityAppNo." />
+                            </div>
+                            <div class="form-group">
+                                <label>Challan No.</label>
+                                <input type="text" formControlName="challanNo" class="form-control" placeholder="Enter ChallanNo." />
+                            </div>
+                            <div class="form-group">
+                                <label>Challan Amount</label>
+                                <input type="text" formControlName="challanAmount" class="form-control" placeholder="Enter challanAmount" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default" (click)="onAddOther()">Add</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add OTHER Form-->
+<!-- Edit OTHER Form-->
+<div class="modal fade" id="editOtherModal" tabindex="-1" role="dialog" aria-labelledby="other2formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="other2formModal">Edit OtherDetails</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <form [formGroup]="editOtherForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Mother's Age</label>
+                                        <input type="text" formControlName="motherAge2" class="form-control" placeholder="Enter Mother'sAge" />
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-check m-l-10  m-t-25">
+                                            <label class="form-check-label">
+                                                <input formControlName="optOut2" class="form-check-input" type="checkbox" [(ngModel)]="isChecked"
+                                                    (change)="optOut1(isChecked?'Yes':'No')">Opt Out of Placments
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Over All Rank</label>
+                                        <input type="text" formControlName="overAllRank2" class="form-control" placeholder="Enter OverAllRank" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>University Admission No.</label>
+                                        <input type="text" formControlName="universityAdmiNo2" class="form-control" placeholder="Enter universityAdmiNo" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Challan Date</label>
+                                        <input type="date" formControlName="challandate2" class="form-control" placeholder="Enter challanDate" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Place of Birth</label>
+                                        <input type="text" formControlName="placeOfBirth2" class="form-control" placeholder="Enter PlaceOfBirth" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Date of Leave</label>
+                                        <input type="date" formControlName="dateOfLeave2" class="form-control" placeholder="Enter DateOfLeave" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>University Application No.</label>
+                                        <input type="text" formControlName="universityAppNo2" class="form-control" placeholder="Enter UniversityAppNo." />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Challan No.</label>
+                                        <input type="text" formControlName="challanNo2" class="form-control" placeholder="Enter ChallanNo." />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Challan Amount</label>
+                                        <input type="text" formControlName="challanAmount2" class="form-control" placeholder="Enter challanAmount" />
+                                    </div>
+                                </div>
+                            </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default" (click)="onEditOtherSubmit()">Update</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit OTHER Form -->
+<!-- Add Guardian Form-->
+<div class="modal fade" id="addGuardianModal" tabindex="-1" role="dialog" aria-labelledby="guardian1formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="guardian1formModal">Add Contact</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addGuardianForm" (ngSubmit)="onAddGuardian()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Relationship<span class="asterisk">*</span></label>
+                                <select class="browser-default" formControlName="relationship" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && g.relationship.errors }">
+                                    <option>Choose your Address Type</option>
+                                    <option *ngFor="let relationship of relationships?.response" [value]="relationship._id">
+                                        {{relationship?.relationship}}</option>
+                                </select>
+                                <div *ngIf="submitted && g.relationship.errors" class="invalid-feedback">
+                                        <div *ngIf="g.relationship.errors.required">Address Type is required</div>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Address Type<span class="asterisk">*</span></label>
+                                <select class="browser-default" id="select" formControlName="addressType" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && g.addressType.errors }">
+                                    <option>Choose your Address Type</option>
+                                    <option *ngFor="let addressType of addresstypes?.response" [value]="addressType._id">
+                                        {{addressType?.addressType}}</option>
+                                </select>
+                                <div *ngIf="submitted && g.addressType.errors" class="invalid-feedback">
+                                        <div *ngIf="g.addressType.errors.required">Address Type is required</div>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Flat/Door/Block No.</label>
+                                <input type="text" formControlName="flatNo" class="form-control"
+                                    placeholder="Enter Flat/Door/Block No." />
+                            </div>
+                            <div class="form-group">
+                                <label>Mobile No.<span class="asterisk">*</span></label>
+                                <input type="text" formControlName="mobileNo" class="form-control" placeholder="Enter Mobile No."
+                                    [ngClass]="{ 'is-invalid': submitted && g.mobileNo.errors }" />
+                                <div *ngIf="submitted && g.mobileNo.errors" class="invalid-feedback">
+                                    <div *ngIf="g.mobileNo.errors.required">Mobile No. is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>District<span class="asterisk">*</span></label>
+                                <input type="text" formControlName="district" class="form-control" placeholder="Enter District"
+                                    [ngClass]="{ 'is-invalid': submitted && g.district.errors }" />
+                                <div *ngIf="submitted && g.district.errors" class="invalid-feedback">
+                                    <div *ngIf="g.district.errors.required">District is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>State</label>
+                                <input type="text" formControlName="state" class="form-control" placeholder="Enter State" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>First Name<span class="asterisk">*</span></label>
+                                <input type="text" formControlName="firstName" class="form-control" placeholder="Enter FirstName"
+                                    [ngClass]="{ 'is-invalid': submitted && g.firstName.errors }" />
+                                <div *ngIf="submitted && g.firstName.errors" class="invalid-feedback">
+                                    <div *ngIf="g.firstName.errors.required">First Name is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" formControlName="lastName" class="form-control" placeholder="Enter LastName" />
+                            </div>
+                            <div class="form-group">
+                                <label>Area/Locality</label>
+                                <input type="text" formControlName="areaLocality" class="form-control"
+                                    placeholder="Enter Area/Locality" />
+                            </div>
+                            <div class="form-group">
+                                <label>City</label>
+                                <input type="text" formControlName="city" class="form-control" placeholder="Enter City" />
+                            </div>
+                            <div class="form-group">
+                                <label>Pincode<span class="asterisk">*</span></label>
+                                <input type="text" formControlName="pincode" class="form-control" placeholder="Enter Pincode" 
+                                [ngClass]="{ 'is-invalid': submitted && g.pincode.errors }"/>
+                                <div *ngIf="submitted && g.pincode.errors" class="invalid-feedback">
+                                    <div *ngIf="g.pincode.errors.required">Pincode is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input type="text" formControlName="country" class="form-control" placeholder="Enter Country" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Add</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Guardian Form-->
+<!-- Edit Guardian Form-->
+<div class="modal fade" id="editGuardianModal" tabindex="-1" role="dialog" aria-labelledby="guardian2formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="guardian2formModal">Edit Guardian</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="editGuardianForm" (ngSubmit)="onEditGuardianSubmit()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Relationship<span class="asterisk">*</span></label>
+                                <select class="browser-default" formControlName="relationship2" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && g2.relationship2.errors }">
+                                    <option value="">Choose your Address Type</option>
+                                    <option *ngFor="let relationship of relationships?.response" [value]="relationship._id">
+                                        {{relationship?.relationship}}</option>
+                                </select>
+                                <div *ngIf="submitted && g2.relationship2.errors" class="invalid-feedback">
+                                        <div *ngIf="g2.relationship2.errors.required">Address Type is required</div>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Address Type<span class="asterisk">*</span></label>
+                                <select class="browser-default" formControlName="addressType2" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && g2.addressType2.errors }">
+                                    <option value="">Choose your Address Type</option>
+                                    <option *ngFor="let addressType of addresstypes?.response" [value]="addressType._id">
+                                        {{addressType?.addressType}}</option>
+                                </select>
+                                <div *ngIf="submitted && g2.addressType2.errors" class="invalid-feedback">
+                                        <div *ngIf="g2.addressType2.errors.required">Address Type is required</div>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Flat/Door/Block No.</label>
+                                <input type="text" formControlName="flatNo2" class="form-control" placeholder="Enter Flat/Door/Block No."/>
+                            </div>
+                            <div class="form-group">
+                                <label>Mobile No.<span class="asterisk">*</span></label>
+                                <input type="text" formControlName="mobileNo2" class="form-control" placeholder="Enter Mobile No."
+                                    [ngClass]="{ 'is-invalid': submitted && g2.mobileNo2.errors }" />
+                                <div *ngIf="submitted && g2.mobileNo2.errors" class="invalid-feedback">
+                                    <div *ngIf="g2.mobileNo2.errors.required">Mobile No. is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>District<span class="asterisk">*</span></label>
+                                <input type="text" formControlName="district2" class="form-control" placeholder="Enter District"
+                                    [ngClass]="{ 'is-invalid': submitted && g2.district2.errors }" />
+                                <div *ngIf="submitted && g2.district2.errors" class="invalid-feedback">
+                                    <div *ngIf="g2.district2.errors.required">District is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>State</label>
+                                <input type="text" formControlName="state2" class="form-control" placeholder="Enter State" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>First Name<span class="asterisk">*</span></label>
+                                <input type="text"  formControlName="firstName2" class="form-control"
+                                    placeholder="Enter FirstName"
+                                    [ngClass]="{ 'is-invalid': submitted && g2.firstName2.errors }" />
+                                <div *ngIf="submitted && g2.firstName2.errors" class="invalid-feedback">
+                                    <div *ngIf="g2.firstName2.errors.required">First Name is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" formControlName="lastName2" class="form-control" placeholder="Enter LastName"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Area/Locality</label>
+                                <input type="text" formControlName="areaLocality2" class="form-control" placeholder="Enter Area/Locality" />
+                            </div>
+                            <div class="form-group">
+                                <label>City</label>
+                                <input type="text" formControlName="city2" class="form-control" placeholder="Enter City"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Pincode<span class="asterisk">*</span></label>
+                                <input type="text" formControlName="pincode2" class="form-control" placeholder="Enter Pincode" 
+                                [ngClass]="{ 'is-invalid': submitted && g2.pincode2.errors }"/>
+                                <div *ngIf="submitted && g2.pincode2.errors" class="invalid-feedback">
+                                    <div *ngIf="g2.pincode2.errors.required">Pincode is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input type="text" formControlName="country2" class="form-control" placeholder="Enter Country" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Update</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit Guardian Form -->
+<!-- Add Extracurricular Form-->
+<div class="modal fade" id="addExtraModal" tabindex="-1" role="dialog" aria-labelledby="extra1formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="extra1formModal">Add Contact</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addExtraForm" (ngSubmit)="onAddExtra()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Activity Category<span class="asterisk">*</span></label>
+                                <select class="browser-default" formControlName="activityCate" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && e.activityCate.errors }"
+                                    (change)="onActivityCatChange($event.target.value)">
+                                    <option value="">Choose your Activity Category</option>
+                                    <option *ngFor="let activityCate of activitycats?.response" [value]="activityCate._id">
+                                        {{activityCate?.activityCategory}}</option>
+                                </select>
+                                <div *ngIf="submitted && e.activityCate.errors" class="invalid-feedback">
+                                    <div *ngIf="e.activityCate.errors.required">Activity Category is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>From Date</label>
+                                <input type="date" formControlName="fromDate" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Sub Category</label>
+                                <select class="browser-default" formControlName="subCate" class="form-control">
+                                    <option value="">Choose your Sub Category</option>
+                                    <option *ngFor="let subCate of subcategories" [value]="subCate._id">
+                                        {{subCate?.subCategory}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>To Date</label>
+                                <input type="date" formControlName="toDate" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Level</label>
+                                <input type="text" formControlName="level" class="form-control" placeholder="Enter Level" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Year</label>
+                                <input type="text" formControlName="year" class="form-control" placeholder="Enter Year"/>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Venue</label>
+                                <input type="text" formControlName="venue" class="form-control" placeholder="Enter Venue"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea type="text" formControlName="description" class="form-control"
+                                    placeholder="Description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Award Details</label>
+                                <textarea type="text" formControlName="awardDetail" class="form-control"
+                                    placeholder="Award Details"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Remark</label>
+                                <textarea type="text" formControlName="remark" class="form-control" placeholder="Remark"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Add</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Extracurricular Form-->
+<!-- Edit Extracurricular Form-->
+<div class="modal fade" id="editExtraModal" tabindex="-1" role="dialog" aria-labelledby="extra2formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="extra2formModal">Edit Extracurricular</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <form [formGroup]="editExtraForm" (ngSubmit)="onEditExtraSubmit()">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Activity Category<span class="asterisk">*</span></label>
+                                        <select class="browser-default" formControlName="activityCate2" class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted && e2.activityCate2.errors }"
+                                            (change)="onActivityCatChange($event.target.value)">
+                                            <option value="">Choose your Activity Category</option>
+                                            <option *ngFor="let activityCate of activitycats?.response" [value]="activityCate._id">
+                                                {{activityCate?.activityCategory}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && e2.activityCate2.errors" class="invalid-feedback">
+                                            <div *ngIf="e2.activityCate2.errors.required">Activity Category is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>From Date</label>
+                                        <input type="date" formControlName="fromDate2" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Sub Category</label>
+                                        <select class="browser-default" formControlName="subCate2" class="form-control">
+                                            <option value="">Choose your Sub Category</option>
+                                            <option *ngFor="let subCate of subcategories" [value]="subCate._id">
+                                                {{subCate?.subCategory}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>To Date</label>
+                                        <input type="date" formControlName="toDate2" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Level</label>
+                                        <input type="text" formControlName="level2" class="form-control" placeholder="Enter Level"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Year</label>
+                                        <input type="text" formControlName="year2" class="form-control" placeholder="Enter Year"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Venue</label>
+                                        <input type="text" formControlName="venue2" class="form-control" placeholder="Enter Venue"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea type="text" formControlName="description2" class="form-control"
+                                            placeholder="Description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Award Details</label>
+                                        <textarea type="text" formControlName="awardDetail2" class="form-control"
+                                            placeholder="Award Details"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Remark</label>
+                                        <textarea type="text" formControlName="remark2" class="form-control" placeholder="Remark"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Update</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit Extracurricular Form -->
+<!-- Add Qualification Form-->
+<div class="modal fade" id="addQualificationModal" tabindex="-1" role="dialog" aria-labelledby="qualification1formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="qualification1formModal">Add Contact</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="qualificationDetailAdd">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Qualification Type<span class="asterisk">*</span></label>
+                                <div class="form-line">
+                                <select class="browser-default" name="qualificationType" [formControl]="qualificationType"
+                                    class="form-control" required>
+                                    <option>Choose your Qualification Type</option>
+                                    <option *ngFor="let qualificationType of qualificationTypes?.response" [value]="qualificationType._id">
+                                        {{qualificationType?.qualificationType}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label>Course Name<span class="asterisk">*</span></label>
+                                <div class="form-line">
+                                <input type="text" [formControl]="courseName" class="form-control" placeholder="Enter courseName"
+                                    required />
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label>Course End Date</label>
+                                <div class="form-line">
+                                <input type="date" [formControl]="courseEndDate" class="form-control" placeholder="Enter CourseEndDate" />
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label>Institution Name</label>
+                                <div class="form-line">
+                                <input type="text" [formControl]="institution" class="form-control" placeholder="Enter Institution" />
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label>Country</label>
+                                <div class="form-line">
+                                <input type="text" [formControl]="country" class="form-control" placeholder="Enter Country" />
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label>District</label>
+                                <div class="form-line">
+                                <input type="text" [formControl]="district" class="form-control" placeholder="Enter District" />
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label>City</label>
+                                <div class="form-line">
+                                <input type="text" [formControl]="city" class="form-control" placeholder="Enter City" />
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label>Year Of Passing<span class="asterisk">*</span></label>
+                                <div class="form-line">
+                                <input type="text" [formControl]="yearOfPassing" name="yearOfPassing" class="form-control" placeholder="Enter yearOfPassing" required/>
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label>Register No.</label>
+                                <div class="form-line">
+                                <input type="text" [formControl]="registerNo" class="form-control" placeholder="Enter Register No." />
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label>Certificate Issue Date</label>
+                                <div class="form-line">
+                                <input type="date" [formControl]="certificateIssuedate" class="form-control" placeholder="Enter certificateIssuedate" />
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label>Total Mark</label>
+                                <div class="form-line">
+                                <input type="text" [formControl]="maxMark" class="form-control" placeholder="Enter Total Mark" />
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label>TMR Code</label>
+                                <div class="form-line">
+                                <input type="text" [formControl]="tmrCode" class="form-control" placeholder="Enter TMR Code" />
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-float">
+                                <label>Course Type<span class="asterisk">*</span></label>
+                                <div class="form-line">
+                                    <select class="browser-default" name="courseType" [formControl]="courseType" class="form-control" required>
+                                        <option>Choose your Course Type</option>
+                                        <option *ngFor="let courseType of coursetypes" [value]="courseType._id">
+                                            {{courseType?.courseType}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Course Start Date</label>
+                                <div class="form-line">
+                                    <input type="date" [formControl]="courseStartDate" class="form-control"
+                                        placeholder="Enter CourseStartDate" />
+                                </div>
+                            </div>
+                            <div class="form-group form-float">
+                                <label for="board">Board Of Education<span class="asterisk">*</span></label>
+                                <div class="form-line">
+                                    <select class="browser-default" [formControl]="board" name="board" class="form-control" required>
+                                        <option value="">Choose your BoardOfEducation</option>
+                                        <option *ngFor="let board of boards?.response" [value]="board._id">{{board?.board}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group form-float">
+                                <label>Medium</label>
+                                <div class="form-line">
+                                    <select class="browser-default" name="medium" [formControl]="medium" class="form-control">
+                                        <option value="">Choose your Medium</option>
+                                        <option *ngFor="let medium of media?.response" [value]="medium._id">{{medium?.medium}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>State</label>
+                                <input type="text" [formControl]="state" class="form-control" placeholder="Enter State" />
+                            </div>
+                            <div class="form-group">
+                                <label>Taluk</label>
+                                <input type="text" [formControl]="taluk" class="form-control" placeholder="Enter Taluk" />
+                            </div>
+                            <div class="form-group">
+                                <label>Pincode</label>
+                                <input type="text" [formControl]="pincode" class="form-control" placeholder="Enter Pincode" />
+                            </div>
+                            <div class="form-group">
+                                <label>Certificate No.</label>
+                                <input type="text" [formControl]="certificateNo" class="form-control" placeholder="Enter certificateNo" />
+                            </div>
+                            <div class="form-group">
+                                <label>Place Of Issue</label>
+                                <input type="text" [formControl]="placeOfIssue" class="form-control" placeholder="Enter placeOfIssue" />
+                            </div>
+                            <div class="form-group ">
+                                <label>Organisation Type</label>
+                                <select class="browser-default" name="organisationType" [formControl]="organisationType" class="form-control">
+                                    <option value="">Choose your organisationType</option>
+                                    <option value="Private">Private </option>
+                                    <option value="Govt"> Goverment </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>MarkObtained</label>
+                                <input type="text" class="form-control" [formControl]="markObtained" placeholder="Enter Obtained mark" />
+                            </div>
+                            <div class="form-group">
+                                <label>TMR Date</label>
+                                <input type="date" [formControl]="tmrDate" class="form-control" placeholder="Enter TMR Date" />
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Group Code</label>
+                            <input type="text" [formControl]="groupCode" class="form-control" placeholder="Enter Group Code" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Cut Off</label>
+                            <input type="text" [formControl]="cutOff" class="form-control" placeholder="Enter Cut Off" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Percentage</label>
+                            <input type="text" [formControl]="percentage" class="form-control" placeholder="Enter Percentage" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h6>MarkSheet</h6>
+                        <a href="{{photoLoctaionValue}}">MarkSheet</a><br><br>
+                        <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+                        <div class="progress">
+                            <div class="progress-bar width-per-45" role="progressbar" aria-valuenow="60"
+                                [ngStyle]="{'width':uploader.progress+'%'}" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="uploader?.queue?.length > 0">
+                            <button type="button" class="btn bg-teal waves-effect" (click)="submit()">Upload File</button></div>
+                    </div>
+                </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default" (click)="onAddQualification()">Add</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Qualification Form-->
+<!-- Edit Qualification Form-->
+<div class="modal fade" id="editQualificationModal" tabindex="-1" role="dialog" aria-labelledby="qualification2formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="qualification2formModal">Edit Qualification</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="qualificationDetailEdit">
+                        <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Qualification Type<span class="asterisk">*</span></label>
+                                        <div class="form-line">
+                                        <select class="browser-default" name="qualificationType2" [formControl]="qualificationType2"
+                                            class="form-control" required>
+                                            <option>Choose your Qualification Type</option>
+                                            <option *ngFor="let qualificationType of qualificationTypes?.response" [value]="qualificationType._id">
+                                                {{qualificationType?.qualificationType}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label>Course Name<span class="asterisk">*</span></label>
+                                        <div class="form-line">
+                                        <input type="text" [formControl]="courseName2" class="form-control" placeholder="Enter courseName"
+                                            required />
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label>Course End Date</label>
+                                        <div class="form-line">
+                                        <input type="date" [formControl]="courseEndDate2" class="form-control" placeholder="Enter CourseEndDate" />
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label>Institution Name</label>
+                                        <div class="form-line">
+                                        <input type="text" [formControl]="institution2" class="form-control" placeholder="Enter Institution" />
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label>Country</label>
+                                        <div class="form-line">
+                                        <input type="text" [formControl]="country2" class="form-control" placeholder="Enter Country" />
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label>District</label>
+                                        <div class="form-line">
+                                        <input type="text" [formControl]="district2" class="form-control" placeholder="Enter District" />
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <div class="form-line">
+                                        <input type="text" [formControl]="city2" class="form-control" placeholder="Enter City" />
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label>Year Of Passing<span class="asterisk">*</span></label>
+                                        <div class="form-line">
+                                        <input type="text" [formControl]="yearOfPassing2" class="form-control" placeholder="Enter yearOfPassing"
+                                            required/>
+                                        
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label>Register No.</label>
+                                        <div class="form-line">
+                                        <input type="text" [formControl]="registerNo2" class="form-control" placeholder="Enter Register No." />
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label>Certificate Issue Date</label>
+                                        <div class="form-line">
+                                        <input type="date" [formControl]="certificateIssuedate2" class="form-control" placeholder="Enter certificateIssuedate" />
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label>Total Mark</label>
+                                        <div class="form-line">
+                                        <input type="text" [formControl]="maxMark2" class="form-control" placeholder="Enter Total Mark" />
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label>TMR Code</label>
+                                        <div class="form-line">
+                                        <input type="text" [formControl]="tmrCode2" class="form-control" placeholder="Enter TMR Code" />
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <label>Course Type<span class="asterisk">*</span></label>
+                                        <div class="form-line">
+                                            <select class="browser-default" name="courseType2" [formControl]="courseType2" class="form-control">
+                                                <option>Choose your Course Type</option>
+                                                <option *ngFor="let courseType of coursetypes" [value]="courseType._id">
+                                                    {{courseType?.courseType}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Course Start Date</label>
+                                        <div class="form-line">
+                                            <input type="date" [formControl]="courseStartDate2" class="form-control"
+                                                placeholder="Enter CourseStartDate" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="board">Board Of Education<span class="asterisk">*</span></label>
+                                        <div class="form-line">
+                                            <select class="browser-default" [formControl]="board2" class="form-control" required>
+                                                <option defult>Choose your BoardOfEducation</option>
+                                                <option *ngFor="let board of boards?.response" [value]="board._id">{{board?.board}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <label>Medium</label>
+                                        <div class="form-line">
+                                            <select class="browser-default" name="medium2" [formControl]="medium2" class="form-control" required>
+                                                <option>Choose your Medium</option>
+                                                <option *ngFor="let medium of media?.response" [value]="medium._id">{{medium?.medium}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>State</label>
+                                        <input type="text" [formControl]="state2" class="form-control" placeholder="Enter State" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Taluk</label>
+                                        <input type="text" [formControl]="taluk2" class="form-control" placeholder="Enter Taluk" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Pincode</label>
+                                        <input type="text" [formControl]="pincode2" class="form-control" placeholder="Enter Pincode" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Certificate No.</label>
+                                        <input type="text" [formControl]="certificateNo2" class="form-control" placeholder="Enter certificateNo" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Place Of Issue</label>
+                                        <input type="text" [formControl]="placeOfIssue2" class="form-control" placeholder="Enter placeOfIssue" />
+                                    </div>
+                                    <div class="form-group ">
+                                        <label>Organisation Type</label>
+                                        <select class="browser-default" name="organisationType2" [formControl]="organisationType2" class="form-control"
+                                            required>
+                                            <option>Choose your organisationType</option>
+                                            <option value="Private">Private </option>
+                                            <option value="Govt"> Goverment </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>MarkObtained</label>
+                                        <input type="text" class="form-control" [formControl]="markObtained2" placeholder="Enter Obtained mark" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>TMR Date</label>
+                                        <input type="date" [formControl]="tmrDate2" class="form-control" placeholder="Enter TMR Date" />
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Group Code</label>
+                                    <input type="text" [formControl]="groupCode2" class="form-control" placeholder="Enter Group Code" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Cut Off</label>
+                                    <input type="text" [formControl]="cutOff2" class="form-control" placeholder="Enter Cut Off" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Percentage</label>
+                                    <input type="text" [formControl]="percentage2" class="form-control" placeholder="Enter Percentage" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h6>MarkSheet</h6>
+                                <a href="{{getfileLoc}}">MarkSheet</a><br><br>
+                                <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+                                <div class="progress">
+                                    <div class="progress-bar width-per-45" role="progressbar" aria-valuenow="60"
+                                        [ngStyle]="{'width':uploader.progress+'%'}" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <div class="row" *ngIf="uploader?.queue?.length > 0">
+                                    <button type="button" class="btn bg-teal waves-effect" (click)="submit()">Upload File</button></div>
+                            </div>
+                        </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default"  (click)="onEditQualificationSubmit()">Update</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit Qualification Form -->
+<!-- Add Certificate Form -->
+<div class="modal fade" id="addCertificateModal" tabindex="-1" role="dialog" aria-labelledby="certificate1formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="certificate1formModal">Add Certificate</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group form-float">
+                                <label>Certificate Type<span class="asterisk">*</span></label>
+                                <div class="form-line">
+                                    <select class="browser-default" name="certificateType" [formControl]="certificateType" class="form-control" required>
+                                        <option value="">Choose your CertificateType</option>
+                                        <option *ngFor="let certificateType of certificateTypes?.response" [value]="certificateType._id">{{certificateType?.certificateType}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Register No.</label>
+                                <input type="text" [formControl]="registerNo" class="form-control" placeholder="Enter registerNo" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Certificate No.<span class="asterisk">*</span></label>
+                                <input type="text" [formControl]="certificateNo" class="form-control" placeholder="Enter certificateNo" required/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h6>Attach Certificate<span class="asterisk">*</span></h6>
+                            <a href="{{getfileLoc2}}">Certificate Link</a><br><br>
+                            <input type="file" name="photo" ng2FileSelect [uploader]="uploader2" />
+                            <div class="progress">
+                                <div class="progress-bar width-per-45" role="progressbar" aria-valuenow="60"
+                                    [ngStyle]="{'width':uploader2.progress+'%'}" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="uploader2?.queue?.length > 0">
+                                <button type="button" class="btn bg-teal waves-effect" (click)="filesubmit()">Upload File</button></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                            <button type="submit" class="btn btn-default" (click)="onAddCertificate()">Add</button>
+                            <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+ <!-- Add Certificate Form -->
+ <!-- Edit Certificate Form -->
+<div class="modal fade" id="editCertificateModal" tabindex="-1" role="dialog" aria-labelledby="certificate2formModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="certificate2formModal">Edit Certificate Detail</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                        <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group form-float">
+                                        <label>Certificate Type<span class="asterisk">*</span></label>
+                                        <div class="form-line">
+                                            <select class="browser-default" name="certificateType2" [formControl]="certificateType2" class="form-control" required>
+                                                <option value="">Choose your CertificateType</option>
+                                                <option *ngFor="let certificateType of certificateTypes?.response" [value]="certificateType._id">{{certificateType?.certificateType}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Register No.</label>
+                                        <input type="text" [formControl]="registerNo2" class="form-control" placeholder="Enter registerNo" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Certificate No.<span class="asterisk">*</span></label>
+                                        <input type="text" [formControl]="certificateNo2" class="form-control" placeholder="Enter certificateNo" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h6>Attach Certificate<span class="asterisk">*</span></h6>
+                                    <a href="{{fileLocationValue}}">Previous Certificate</a>
+                                    <a href="{{getfileLoc2}}">New Certificate</a><br><br>
+                                    <input type="file" name="photo" ng2FileSelect [uploader]="uploader2" />
+                                    <div class="progress">
+                                        <div class="progress-bar width-per-45" role="progressbar" aria-valuenow="60"
+                                            [ngStyle]="{'width':uploader2.progress+'%'}" aria-valuemin="0" aria-valuemax="100">
+                                        </div>
+                                    </div>
+                                    <div class="row" *ngIf="uploader2?.queue?.length > 0">
+                                        <button type="button" class="btn bg-teal waves-effect" (click)="filesubmit()">Upload File</button></div>
+                                </div>
+                            </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default" (click)="onEditCertificateSubmit()">Update</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit Certificate Form  -->

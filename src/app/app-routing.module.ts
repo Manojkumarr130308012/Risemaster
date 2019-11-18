@@ -29,7 +29,9 @@ import { ReferralTypeComponent } from './StudentMaster/referral-type/referral-ty
 import { ScholarshipCategoryComponent } from './StudentMaster/scholarship-category/scholarship-category.component';
 import { BankComponent } from './StudentMaster/bank/bank.component';
 import { QualificationTypeComponent } from './StudentMaster/qualification-type/qualification-type.component';
-
+import { RelationshipComponent } from './StudentMaster/relationship/relationship.component';
+import { ActivityCategoryComponent } from './StudentMaster/activity-category/activity-category.component';
+import { SubCategoryComponent } from './StudentMaster/sub-category/sub-category.component';
 // Staff Master
 import { GenderComponent } from './StaffMaster/gender/gender.component';
 import { MaritalStatusComponent } from './StaffMaster/marital-status/marital-status.component';
@@ -68,6 +70,8 @@ import { CEAddFormComponent } from './StudentCandidateEnquiry/ce-add-form/ce-add
 import { CEEditFormComponent } from './StudentCandidateEnquiry/ce-edit-form/ce-edit-form.component';
 import { ConvertToStudentComponent } from './StudentCandidateEnquiry/convert-to-student/convert-to-student.component';
 import { StudentDetailComponent } from './StudentManagement/student-detail/student-detail.component';
+import { CertificateTypeComponent } from './StudentMaster/certificate-type/certificate-type.component';
+import { StudentEditComponent } from './StudentManagement/student-edit/student-edit.component';
 
 const routes: Routes = [
   // { path: '', component: LoginComponent },
@@ -200,7 +204,22 @@ const routes: Routes = [
  {
   path: 'qualification-type',
   component: QualificationTypeComponent
-
+  },
+  {
+    path: 'relationship',
+    component: RelationshipComponent
+  },
+  {
+    path: 'activity-category',
+    component: ActivityCategoryComponent
+  },
+  {
+    path: 'sub-category',
+    component: SubCategoryComponent
+  },
+  {
+    path: 'certificateType',
+    component: CertificateTypeComponent
   },
 
  // Staff Master
@@ -305,6 +324,8 @@ const routes: Routes = [
   component: StudentEntryComponent},
   { path: 'studentDetail',
   component: StudentDetailComponent},
+  { path: 'studentEdit', 
+  component: StudentEditComponent},
 ];
 
 @NgModule({

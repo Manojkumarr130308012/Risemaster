@@ -30,6 +30,8 @@ export class ConvertToStudentComponent implements OnInit {
   busstop: any;
   batcheByDegree: any;
   batcheByDegrees: any;
+  institutiond: any;
+  cecourseprograms: Object;
   constructor(
     private request: RequestService,
     private router: Router,
@@ -83,9 +85,9 @@ export class ConvertToStudentComponent implements OnInit {
   viewBasicDetailsById(id) {
     this.request.fetchBasicDetailsById(id).subscribe((response) => {
       this.basicdetails = response;
-      this.institution = response[0].institution[0]._id;
-      console.log('Institution' , this.institution);
-      this.loadCourseCategoryByIns(this.institution);
+      this.institutiond = response[0].institutiond[0]._id;
+      console.log('Institution' , this.institutiond); 
+      this.loadCourseCategoryByIns(this.institutiond);
       console.log('BasicDetailsById', this.basicdetails);
     }, (error) => {
       console.log(error);
@@ -103,8 +105,23 @@ export class ConvertToStudentComponent implements OnInit {
     } else
       this.batcheByDegree = null;
   }
+  viewCEcourseprogram(canId) {
+    if (canId){
+    this.request.getCEcourseprogramById(canId).subscribe((response) => {
+      this.cecourseprograms = response;
+      console.log('CECourseProgramById', this.cecourseprograms);
+    }, (error) => {
+      console.log(error);
+    });
+  } else
+  this.cecourseprograms = null;
+  }
+  cancel() {
+    this.router.navigate(['candidateEnquiry']);
+  }
   ngOnInit() {
     this.viewBasicDetailsById(this.id);
+    this.viewCEcourseprogram(this.canId);
     this.loadDegree();
     this.loadBatch();
   }
