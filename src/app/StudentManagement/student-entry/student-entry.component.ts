@@ -98,14 +98,14 @@ export class StudentEntryComponent implements OnInit {
     this.degree = new FormControl('', Validators.required);
     this.batch = new FormControl('', Validators.required);
     this.rollNo = new FormControl('', Validators.required);
-    this.regNo = new FormControl('', Validators.required);
+    this.regNo = new FormControl('');
     this.firstName = new FormControl('', Validators.required);
     this.lastName = new FormControl('', Validators.required);
     this.gender = new FormControl('', Validators.required);
     this.dob = new FormControl('', Validators.required);
-    this.maritalStatus = new FormControl('');
+    this.maritalStatus = new FormControl();
     this.mobileNo = new FormControl('', Validators.required);
-    this.bloodGroup = new FormControl('');
+    this.bloodGroup = new FormControl();
     this.emailId = new FormControl('', Validators.required);
     this.ffirstName = new FormControl('');
     this.flastName = new FormControl('');
@@ -137,12 +137,12 @@ export class StudentEntryComponent implements OnInit {
     this.motherTongue = new FormControl();
     this.secondLanguage = new FormControl();
     this.sPhoto = new FormControl('');
-    this.firstGraduate = new FormControl('');
-    this.scholarshipApplicable = new FormControl('');
-    this.parentExServiceMan = new FormControl('');
-    this.minoritygroup = new FormControl('');
-    this.physicallyChallengedPerson = new FormControl('');
-    this.andhamanAndNicobarNative = new FormControl('');
+    this.firstGraduate = new FormControl();
+    this.scholarshipApplicable = new FormControl();
+    this.parentExServiceMan = new FormControl();
+    this.minoritygroup = new FormControl();
+    this.physicallyChallengedPerson = new FormControl();
+    this.andhamanAndNicobarNative = new FormControl();
   }
      //to upload Photo
   submit() {
@@ -237,9 +237,9 @@ export class StudentEntryComponent implements OnInit {
     }
     else if (response.status == 'error') {
       this.setMessage(response.error);
+      swal(response.error);
       console.log(response.error);
     }
-
     }, (error) => {
       this.setMessage(error);
     });
@@ -252,11 +252,11 @@ export class StudentEntryComponent implements OnInit {
       console.log(error);
     });
   } 
- 
+ //Load the data from database
   loadGender() {
     this.request.getGender().subscribe((response: any) => {
       this.genders = response;
-      console.log('Gender', response);
+      // console.log('Gender', response);
     }, (error) => {
       console.log(error);
     });
@@ -264,7 +264,7 @@ export class StudentEntryComponent implements OnInit {
   loadNationality() {
     this.request.getNationality().subscribe((response: any) => {
       this.nationalities = response;
-      console.log('Nationality' ,response);
+      // console.log('Nationality' ,response);
     }, (error) => {
       console.log(error);
     });
@@ -272,7 +272,7 @@ export class StudentEntryComponent implements OnInit {
   loadReligion() {
     this.request.getReligion().subscribe((response: any) => {
       this.religions = response;
-      console.log('Religion' ,response);
+      // console.log('Religion' ,response);
     }, (error) => {
       console.log(error);
     });
@@ -280,7 +280,7 @@ export class StudentEntryComponent implements OnInit {
   loadCommunity() {
     this.request.getCommunity().subscribe((response: any) => {
       this.communities = response;
-      console.log('Community' ,response);
+      // console.log('Community' ,response);
     }, (error) => {
       console.log(error);
     });
@@ -288,7 +288,7 @@ export class StudentEntryComponent implements OnInit {
   loadCaste() {
     this.request.getCaste().subscribe((response: any) => {
       this.castes = response;
-      console.log('Caste' ,response);
+      // console.log('Caste' ,response);
     }, (error) => {
       console.log(error);
     });
@@ -296,7 +296,7 @@ export class StudentEntryComponent implements OnInit {
   loadAdmissionType() {
     this.request.getAdmissiontype().subscribe((response: any) => {
       this.admissiontypes = response;
-      console.log('AdmissionType',response);
+      // console.log('AdmissionType',response);
     }, (error) => {
       console.log(error);
     });
@@ -304,7 +304,7 @@ export class StudentEntryComponent implements OnInit {
   loadRefferalType() {
     this.request.getReferralType().subscribe((response: any) => {
       this.referralTypes = response;
-      console.log('ReferenceType', response);
+      // console.log('ReferenceType', response);
     }, (error) => {
       console.log(error);
     });
@@ -312,7 +312,7 @@ export class StudentEntryComponent implements OnInit {
   loadAdmissionCategory() {
     this.request.getAdmissionCategory().subscribe((response: any) => {
       this.admissioncategories = response;
-      console.log('AdmissionCategory' ,response);
+      // console.log('AdmissionCategory' ,response);
     }, (error) => {
       console.log(error);
     });
@@ -320,7 +320,7 @@ export class StudentEntryComponent implements OnInit {
   loadMotherTongue() {
     this.request.getMotherTongue().subscribe((response: any) => {
       this.motherTongues = response;
-      console.log('MotherTongue' ,this.motherTongues);
+      // console.log('MotherTongue' ,this.motherTongues);
     }, (error) => {
       console.log(error);
     });
@@ -328,7 +328,7 @@ export class StudentEntryComponent implements OnInit {
   loadSecondLanguage() {
     this.request.getMotherTongue().subscribe((response: any) => {
       this.secondLanguages = response;
-      console.log('MotherTongue' ,this.secondLanguages);
+      // console.log('MotherTongue' ,this.secondLanguages);
     }, (error) => {
       console.log(error);
     });
@@ -336,7 +336,7 @@ export class StudentEntryComponent implements OnInit {
   loadMaritalstatus()  {
     this.request.getMaritalstatus().subscribe((response : any) => {
     this.maritalstatuses = response;
-    console.log('MaritalStatus', this.maritalstatuses);
+    // console.log('MaritalStatus', this.maritalstatuses);
     }, (error) => {
       console.log(error);
     });
@@ -344,14 +344,14 @@ export class StudentEntryComponent implements OnInit {
   loadBloodgroup()  {
     this.request.getBloodgroup().subscribe((response : any) => {
     this.bloodgroups = response;
-    console.log('BloodGroup',this.bloodgroups);
+    // console.log('BloodGroup',this.bloodgroups);
     }, (error) => {
       console.log(error);
     });
   }
   loadInstitution() {
     this.request.getInstitution().subscribe((response: any) => {
-      console.log('Institution', response);
+      // console.log('Institution', response);
       this.institutions = response;
     }, (error) => {
       console.log(error);
@@ -360,7 +360,7 @@ export class StudentEntryComponent implements OnInit {
   loadBatch() {
     this.request.getbatch().subscribe((response: any) => {
       this.batches = response;
-      console.log('Batches' ,this.batches);
+      // console.log('Batches' ,this.batches);
     }, (error) => {
       console.log(error);
     });
@@ -368,24 +368,24 @@ export class StudentEntryComponent implements OnInit {
   loadDegree() {
     this.request.getDegree().subscribe((response: any) => {
       this.degrees = response;
-      console.log('DegreeProgram' ,this.degrees);
+      // console.log('DegreeProgram' ,this.degrees);
     }, (error) => {
       console.log(error);
     });
   }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // Filter CourseCategory, AdmissionType, AdmissionCategory by Institution
+  // Filter AdmissionType, AdmissionCategory by Institution
   onInstitutionChange(Institution: any) {
     // console.log('institution', Institution)
     if (Institution) {
       this.request.getAdmissionTypeByIns(Institution).subscribe((response: any) => {
-        console.log('admissionType', response);
+        // console.log('admissionType', response);
         this.admissiontypes = response;
       }, (error) => {
         console.log(error);
       });
       this.request.getAdmissionCategoryByIns(Institution).subscribe((response: any) => {
-        console.log('admissionCategory', response);
+        // console.log('admissionCategory', response);
         this.admissioncategories = response;
       }, (error) => {
         console.log(error);
@@ -395,11 +395,12 @@ export class StudentEntryComponent implements OnInit {
     this.admissiontypes = null;
     this.admissioncategories = null;
   }
+   // Filter Batch by Degree
   onDegreeChange(degree: any) {
     if (degree) {
       this.request.getBatchByDegree(degree).subscribe((response: any) => {
         this.batcheByDegrees = response;
-        console.log('BatchByDegree',  this.batcheByDegrees);
+        // console.log('BatchByDegree',  this.batcheByDegrees);
       }, (error) => {
         console.log(error);
       });
@@ -429,9 +430,9 @@ export class StudentEntryComponent implements OnInit {
       const resPath = JSON.parse(response);
       this.getfileLoc = resPath.result;
     };
-    //jQuery Validation form BasicDetails (Form-Control)
+    //jQuery Validation form Details (Form-Control)
     $(function () {
-      $('#form_advanced_validation').validate({
+      $('#studentEntry').validate({
 
         highlight: function (input) {
           $(input).parents('.form-line').addClass('error');
@@ -444,20 +445,5 @@ export class StudentEntryComponent implements OnInit {
         }
       });
     });
-    $(function () {
-      $('#form_advanced_validation2').validate({
-
-        highlight: function (input) {
-          $(input).parents('.form-line').addClass('error');
-        },
-        unhighlight: function (input) {
-          $(input).parents('.form-line').removeClass('error');
-        },
-        errorPlacement: function (error, element) {
-          $(element).parents('.form-group').append(error);
-        }
-      });
-    });
-   
   }
 }

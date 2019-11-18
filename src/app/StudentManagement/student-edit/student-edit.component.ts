@@ -154,51 +154,51 @@ export class StudentEditComponent implements OnInit {
     this.degree = new FormControl('', Validators.required);
     this.batch = new FormControl('', Validators.required);
     this.rollNo = new FormControl('', Validators.required);
-    this.regNo = new FormControl('', Validators.required);
+    this.regNo = new FormControl('');
     this.firstName = new FormControl('', Validators.required);
     this.lastName = new FormControl('', Validators.required);
-    this.gender = new FormControl({value:'', disabled: true});
+    this.gender = new FormControl('', Validators.required);
     this.dob = new FormControl('', Validators.required);
-    this.maritalStatus = new FormControl('', Validators.required);
+    this.maritalStatus = new FormControl();
     this.mobileNo = new FormControl('', Validators.required);
-    this.bloodGroup = new FormControl('', Validators.required);
+    this.bloodGroup = new FormControl();
     this.emailId = new FormControl('', Validators.required);
-    this.ffirstName = new FormControl('', Validators.required);
-    this.flastName = new FormControl('', Validators.required);
-    this.foccupation = new FormControl('', Validators.required);
-    this.fannualIncome = new FormControl('', Validators.required);
-    this.fmobileNo = new FormControl('', Validators.required);
-    this.paadharNO = new FormControl('', Validators.required);
-    this.mfirstName = new FormControl('', Validators.required);
-    this.mlastName = new FormControl('', Validators.required);
-    this.moccupation = new FormControl('', Validators.required);
-    this.mannualIncome = new FormControl('', Validators.required);
-    this.mmobileNo = new FormControl('', Validators.required);
-    this.nationality = new FormControl('', Validators.required);
-    this.religion = new FormControl('', Validators.required);
-    this.caste = new FormControl('', Validators.required);
+    this.ffirstName = new FormControl('');
+    this.flastName = new FormControl('');
+    this.foccupation = new FormControl('');
+    this.fannualIncome = new FormControl('');
+    this.fmobileNo = new FormControl('');
+    this.paadharNO = new FormControl('');
+    this.mfirstName = new FormControl('');
+    this.mlastName = new FormControl('');
+    this.moccupation = new FormControl('');
+    this.mannualIncome = new FormControl('');
+    this.mmobileNo = new FormControl('');
+    this.nationality = new FormControl();
+    this.religion = new FormControl();
+    this.caste = new FormControl();
     this.community = new FormControl('', Validators.required);
-    this.institution = new FormControl({value:'', disabled: true});
+    this.institution = new FormControl('', Validators.required);
     this.admissionCategory = new FormControl('', Validators.required);
-    this.admissionType = new FormControl({value:'', disabled: true});
+    this.admissionType = new FormControl('', Validators.required);
     this.financialCategory = new FormControl('', Validators.required);
     this.boarding = new FormControl('', Validators.required);
-    this.boardingStartDate = new FormControl('', Validators.required);
-    this.applicationNo = new FormControl('', Validators.required);
-    this.admissionDate = new FormControl('', Validators.required);
-    this.admissionNo = new FormControl('', Validators.required);
-    this.joinDate = new FormControl('', Validators.required);
-    this.referalType = new FormControl('', Validators.required);
-    this.referal = new FormControl('', Validators.required);
-    this.motherTongue = new FormControl('', Validators.required);
-    this.secondLanguage = new FormControl('', Validators.required);
-    this.sPhoto = new FormControl('', Validators.required);
-    this.firstGraduate = new FormControl('');
-    this.scholarshipApplicable = new FormControl('');
-    this.parentExServiceMan = new FormControl('');
-    this.minoritygroup = new FormControl('');
-    this.physicallyChallengedPerson = new FormControl('');
-    this.andhamanAndNicobarNative = new FormControl('');
+    this.boardingStartDate = new FormControl('');
+    this.applicationNo = new FormControl('');
+    this.admissionDate = new FormControl('');
+    this.admissionNo = new FormControl('');
+    this.joinDate = new FormControl('');
+    this.referalType = new FormControl();
+    this.referal = new FormControl('');
+    this.motherTongue = new FormControl();
+    this.secondLanguage = new FormControl();
+    this.sPhoto = new FormControl('');
+    this.firstGraduate = new FormControl();
+    this.scholarshipApplicable = new FormControl();
+    this.parentExServiceMan = new FormControl();
+    this.minoritygroup = new FormControl();
+    this.physicallyChallengedPerson = new FormControl();
+    this.andhamanAndNicobarNative = new FormControl();
      //Edit  Details
       this.onEditStudentDetail();
    
@@ -237,10 +237,10 @@ export class StudentEditComponent implements OnInit {
   }
   onEditStudentDetail() {
     this.Id = this.id;
-    console.log('ID', this.Id);
+    // console.log('ID', this.Id);
     this.request.fetchStudentDetailsById(this.Id).subscribe((response) => {
     this.editStudentDetails = response[0];
-    console.log('FetchStudentDetailsById',this.editStudentDetails);
+    // console.log('FetchStudentDetailsById',this.editStudentDetails);
     this.degreeValue = this.editStudentDetails.degree;
     this.batchValue = this.editStudentDetails.batch;
     this.rollNoValue = this.editStudentDetails.rollNo;
@@ -294,14 +294,14 @@ export class StudentEditComponent implements OnInit {
     this.degree = new FormControl(this.degreeValue, Validators.required);
     this.batch = new FormControl(this.batchValue, Validators.required);
     this.rollNo = new FormControl(this.rollNoValue, Validators.required);
-    this.regNo = new FormControl(this.regNoValue, Validators.required);
+    this.regNo = new FormControl(this.regNoValue);
     this.firstName = new FormControl(this.firstNameValue, Validators.required);
     this.lastName = new FormControl(this.lastNameValue, Validators.required);
     this.gender = new FormControl(this.genderValue, Validators.required);
     this.dob = new FormControl(this.dobValue, Validators.required);
-    this.maritalStatus = new FormControl(this.maritalStatusValue, Validators.required);
+    this.maritalStatus = new FormControl(this.maritalStatusValue);
     this.mobileNo = new FormControl(this.mobileNoValue, Validators.required);
-    this.bloodGroup = new FormControl(this.bloodGroupValue, Validators.required);
+    this.bloodGroup = new FormControl(this.bloodGroupValue);
     this.emailId = new FormControl(this.emailIdValue, Validators.required);
     this.ffirstName = new FormControl(this.ffirstNameValue);
     this.flastName = new FormControl(this.flastNameValue);
@@ -314,24 +314,24 @@ export class StudentEditComponent implements OnInit {
     this.moccupation = new FormControl(this.moccupationValue);
     this.mannualIncome = new FormControl(this.mannualIncomeValue);
     this.mmobileNo = new FormControl(this.mmobileNoValue);
-    this.nationality = new FormControl(this.nationalityValue, Validators.required);
-    this.religion = new FormControl( this.religionValue, Validators.required);
-    this.caste = new FormControl(this.casteValue, Validators.required);
+    this.nationality = new FormControl(this.nationalityValue);
+    this.religion = new FormControl( this.religionValue);
+    this.caste = new FormControl(this.casteValue);
     this.community = new FormControl(this.communityValue, Validators.required);
     this.institution = new FormControl(this.institutionValue, Validators.required);
     this.admissionCategory = new FormControl(this.admissionCategoryValue, Validators.required);
     this.admissionType = new FormControl(this.admissionTypeValue, Validators.required);
     this.financialCategory = new FormControl(this.financialCategoryValue, Validators.required);
     this.boarding = new FormControl(this.boardingValue, Validators.required);
-    this.boardingStartDate = new FormControl(this.boardingStartDateValue, Validators.required);
+    this.boardingStartDate = new FormControl(this.boardingStartDateValue);
     this.applicationNo = new FormControl(this.applicationNoValue);
     this.admissionDate = new FormControl(this.admissionDateValue);
     this.admissionNo = new FormControl(this.admissionNoValue);
     this.joinDate = new FormControl(this.joinDateValue);
-    this.referalType = new FormControl(this.referalTypeValue, Validators.required);
-    this.referal = new FormControl(this.referalValue, Validators.required);
-    this.motherTongue = new FormControl(this.motherTongueValue, Validators.required);
-    this.secondLanguage = new FormControl(this.secondLanguageValue, Validators.required);
+    this.referalType = new FormControl(this.referalTypeValue);
+    this.referal = new FormControl(this.referalValue);
+    this.motherTongue = new FormControl(this.motherTongueValue);
+    this.secondLanguage = new FormControl(this.secondLanguageValue);
     this.sPhoto = new FormControl(this.sPhotoValue);
     this.firstGraduate = new FormControl(this.firstGraduateValue);
     this.scholarshipApplicable = new FormControl(this.scholarshipApplicableValue);
@@ -598,23 +598,9 @@ export class StudentEditComponent implements OnInit {
       this.getfileLoc = resPath.result;
     };
     this.viewStudentDetailById(this.id);
-    //jQuery Validation form BasicDetails (Form-Control)
+    //jQuery Validation
     $(function () {
-      $('#form_advanced_validation').validate({
-
-        highlight: function (input) {
-          $(input).parents('.form-line').addClass('error');
-        },
-        unhighlight: function (input) {
-          $(input).parents('.form-line').removeClass('error');
-        },
-        errorPlacement: function (error, element) {
-          $(element).parents('.form-group').append(error);
-        }
-      });
-    });
-    $(function () {
-      $('#form_advanced_validation2').validate({
+      $('#studentEntry').validate({
 
         highlight: function (input) {
           $(input).parents('.form-line').addClass('error');
