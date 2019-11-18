@@ -79,7 +79,10 @@ import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-d
 import { ExpensesEntryComponent } from './VehicleManagement/Vehicle Transaction/expenses-entry/expenses-entry.component';
 import { FuelEntryComponent } from './VehicleManagement/Vehicle Transaction/fuel-entry/fuel-entry.component';
 
-import { VehicleTransactionComponent } from './VehicleManagement/vehicle-transaction/vehicle-transaction.component';
+import { ExpenseEntryReportComponent } from './VehicleManagement/Vehicle Transaction/Expense-entry-report/Expense-entry-report.component';
+import { FuelEntryReportComponent } from './VehicleManagement/Vehicle Transaction/fuel-entry-report/fuel-entry-report.component';
+
+
 
 
 // Staff Management
@@ -158,9 +161,12 @@ import { StudentDetailComponent } from './StudentManagement/student-detail/stude
     StaffProfileComponent,
     StaffDetailsComponent,
 
-    VehicleTransactionComponent,
+
     ExpensesEntryComponent,
     FuelEntryComponent,
+    FuelEntryReportComponent,
+    ExpenseEntryReportComponent,
+
 
 // Candidate Enquiry
 BatchComponent,

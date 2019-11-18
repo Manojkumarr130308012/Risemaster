@@ -23,6 +23,14 @@ export class ExpensesEntryComponent implements OnInit {
   date:any;
   amount: any;
   notes: any;
+
+  vehicleNo2: any;
+  expense2: any;
+  date2:any;
+  amount2: any;
+  notes2: any;
+
+
   expensesEntry;
   editExpenses: any;
   vehicleNoValue: any;
@@ -42,7 +50,7 @@ export class ExpensesEntryComponent implements OnInit {
     private request: RequestService,
     private router: Router,
     private route: ActivatedRoute
-  ) { 
+  ) {
     // addExpensesForm Group
     this.addExpensesForm = this.formBuilder.group({
       vehicleNo:['', Validators.required],
@@ -53,16 +61,12 @@ export class ExpensesEntryComponent implements OnInit {
   });
   // editExpensesForm Group
   this.editExpensesForm = this.formBuilder.group({
-    vehicleNo:['', Validators.required],
-    expense:['', Validators.required],
-    date:['', Validators.required],
-    amount:['', Validators.required],
-    notes:['', Validators.required],
+    vehicleNo2:['', Validators.required],
+    expense2:['', Validators.required],
+    date2:['', Validators.required],
+    amount2:['', Validators.required],
+    notes2:['', Validators.required],
 });
-  }
-
-  public setMessage(message) {
-    return this.message = message;
   }
 
   // Bind vehicle no data
@@ -78,7 +82,7 @@ export class ExpensesEntryComponent implements OnInit {
   // Bind expense data
   loadExpenses() {
     this.request.getExpense().subscribe((response: any) => {
-      console.log(response);
+      console.log('loadExpenses',response);
       this.expenses = response;
     }, (error) => {
       console.log(error);
@@ -95,7 +99,7 @@ export class ExpensesEntryComponent implements OnInit {
        }, (error) => {
          console.log(error);
        });
-     } else 
+     } else
          this.expensesEntry = null;
     }
 
@@ -112,12 +116,12 @@ this.request.addExpensesEntry(this.addExpensesForm.value).subscribe((res: any) =
   this.viewExpensesData();
   }
   else if (res.status == 'error') {
-    this.setMessage(res.error);
+   swal(res.error);
   }
 }, (error) => {
-  this.setMessage(error);
+  console.log(error);
 });
-console.log(this.addExpensesForm.value);
+//console.log(this.addExpensesForm.value);
 }
 
 // To display Expenses
@@ -143,25 +147,25 @@ deleteExpense(id: any) {
 // To edit expenses
 onEditExpense(id: any){
   console.log('exeid', id);
-  this.request.fetchExpensesEntryById(id).subscribe((response) => {     
-    this.editExpenses=response[0];     
-    console.log(response);
+  this.request.fetchExpensesEntryById(id).subscribe((response) => {
+    this.editExpenses=response[0];
+    console.log('this.editExpenses',this.editExpenses);
         this.vehicleNoValue=this.editExpenses.vehicleNo;
         this.expenseValue=this.editExpenses.expense;
         this.dateValue=this.editExpenses.date;
         this.amountValue=this.editExpenses.amount;
         this.notesValue=this.editExpenses.notes;
         this.IdValue1=this.editExpenses._id;
-    
-        
+
+
     this.editExpensesForm = this.formBuilder.group({
-      vehicleNo:[this.vehicleNoValue, Validators.required],
-      expense:[this.expenseValue, Validators.required],
-      date:[this.dateValue, Validators.required],
-      amount:[this.amountValue, Validators.required],
-      notes:[this.notesValue, Validators.required],
+      vehicleNo2:[this.vehicleNoValue, Validators.required],
+      expense2:[this.expenseValue, Validators.required],
+      date2:[this.dateValue, Validators.required],
+      amount2:[this.amountValue, Validators.required],
+      notes2:[this.notesValue, Validators.required],
     });
-    console.log(this.editExpensesForm.value);
+   // console.log(this.editExpensesForm.value);
   });
 }
 onEditExpenses() {
@@ -170,19 +174,28 @@ onEditExpenses() {
   if (this.editExpensesForm.invalid) {
       return;
     }
-this.request.updateExpensesEntry(this.IdValue1,this.editExpensesForm.value).subscribe((res : any) => {
+    const edata = {
+      vehicleNo: this.editExpensesForm.get('vehicleNo2').value,
+      expense: this.editExpensesForm.get('expense2').value,
+      date: this.editExpensesForm.get('date2').value,
+      amount: this.editExpensesForm.get('amount2').value,
+      notes: this.editExpensesForm.get('notes2').value,
+    };
+
+
+this.request.updateExpensesEntry(this.IdValue1,edata).subscribe((res : any) => {
   if (res.status == 'success') {
-    swal("Updated Sucessfully");     
+    swal("Updated Sucessfully");
     this.loadExpensesModal();
   this.viewExpensesData();
   }
-  else if (res.status == 'error') {       
-    this.setMessage(res.error);
-  }      
- 
+  else if (res.status == 'error') {
+   swal(res.error);
+  }
+
 }, (error) => {
   console.log(error);
-  this.setMessage(error);
+
 });
 }
 

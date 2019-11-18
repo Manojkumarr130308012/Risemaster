@@ -104,9 +104,6 @@ export class FuelEntryComponent implements OnInit {
     });
   }
 
-  public setMessage(message) {
-    return this.message = message;
-  }
 
 
 
@@ -147,7 +144,7 @@ export class FuelEntryComponent implements OnInit {
           closeKM=0;
         }
         else{
-          
+
         }
       this.openKM =closeKM;
       }, (error) => {
@@ -160,7 +157,7 @@ export class FuelEntryComponent implements OnInit {
       this.openKM = 0;
     }
 
-     
+
   }
 
   // Bind vehicle no data
@@ -174,42 +171,6 @@ export class FuelEntryComponent implements OnInit {
   }
 
 
-  onVehicleChangeforFuelReport(VehicleNo: string) {
-    console.log('Vehicle', VehicleNo)
-    //this.loadCourseCategory(Institution);
-
-    if (VehicleNo) {
-      this.request.getvehicleFuelReport(VehicleNo).subscribe((response: any) => {
-        console.log('FuelReport', response);
-        this.fuels = response;
-      }, (error) => {
-        console.log(error);
-      });
-
-    } else
-
-      this.openKM = null;
-  }
-
-  filterFuelReport() {
-
-   // console.log(this.fuelReportVehicleNo.value);
-   // console.log(this.FRFromDate.value);
-    //console.log(this.FRToDate.value);
-
-
-    const FuelReportdate = {
-      fuelVehicleNo: this.fuelReportVehicleNo.value,
-      fuelDate: this.FRFromDate.value,
-      fuelDate2: this.FRToDate.value
-    };
-    //console.log('FuelReportdate', FuelReportdate);
-
-    this.request.fetchFuelReportbyDate(FuelReportdate).subscribe((response) => {
-      console.log(response);
-      this.fuels = response;
-    })
-  }
  // To display Fuel
  viewFuelData() {
   this.request.getFuelEntry().subscribe((response) => {
@@ -221,45 +182,7 @@ export class FuelEntryComponent implements OnInit {
   });
 }
 
-  exportExcel() {
-    const options = {
-      fieldSeparator: ',',
-      quoteStrings: '"',
-      decimalseparator: '.',
-      showLabels: true,
-      showTitle: true,
-      title: 'Fuel Entry Report',
-      useBom: true,
-      noDownload: false,
-      headers: [
-        'S.No',
-        'Van NO',
-        'Date',
-        'Open KM',
-        'Close KM',
-        'Running KM',
-        'Is Fill',
-        'Quantity',
-        'Rate',
-        'Amount',
-        'Filling Station',
-        'Mileage',
-        'Bill No',
-        'Driver',
-        'Action'
 
-      ],
-    };
-
-    const exportData: any = this.fuels.map(a => ({ ...a }));
-
-    exportData.map((value: any, key) => {
-      delete exportData[key]._id;
-      delete exportData[key].__v;
-    });
-    console.log(this.fuels);
-    const exportResult = new Angular5Csv(exportData, 'Vehicle Fuel Entry Report' + moment().unix() + '.xls', options);
-  }
 
 
 
@@ -270,8 +193,10 @@ export class FuelEntryComponent implements OnInit {
       return;
     }
     const runKM = this.addFuelForm.get('closeKM').value - this.addFuelForm.get('openKM').value;
-    const amount = this.addFuelForm.get('quantity').value * this.addFuelForm.get('rate').value;
-    const mileage = runKM / this.addFuelForm.get('quantity').value;
+    const amount2 = this.addFuelForm.get('quantity').value * this.addFuelForm.get('rate').value;
+    const amount = amount2.toFixed(2);
+    const mileage2 = runKM / this.addFuelForm.get('quantity').value;
+    const mileage = mileage2.toFixed(2);
     let newFuel = {
       fuelVehicleNo: this.addFuelForm.get('fuelVehicleNo').value,
       fuelDate: this.addFuelForm.get('fuelDate').value,
@@ -295,15 +220,15 @@ export class FuelEntryComponent implements OnInit {
         this.viewFuelData();
       }
       else if (res.status == 'error') {
-        this.setMessage(res.error);
+        swal(res.error);
       }
     }, (error) => {
-      this.setMessage(error);
+      console.log(error);
     });
-    console.log(newFuel);
+    //console.log(newFuel);
   }
 
- 
+
 
   // To edit fuel
   onEditFuel(id: any) {
@@ -336,7 +261,7 @@ export class FuelEntryComponent implements OnInit {
         billNo: [this.billNoValue, Validators.required],
         driverName: [this.driverNameValue, Validators.required],
       });
-      console.log(this.editFuelForm.value);
+    //  console.log(this.editFuelForm.value);
     });
   }
   onEditFuelSubmit() {
@@ -352,12 +277,12 @@ export class FuelEntryComponent implements OnInit {
         this.viewFuelData();
       }
       else if (res.status == 'error') {
-        this.setMessage(res.error);
+       swal(res.error);
       }
 
     }, (error) => {
       console.log(error);
-      this.setMessage(error);
+
     });
   }
 

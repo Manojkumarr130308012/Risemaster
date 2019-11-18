@@ -74,7 +74,7 @@
                 <form [formGroup]="registerForm" (ngSubmit)="onAddSubmit()">
                     <div class="form-group">
                             <label>Staff Role</label>
-                            <input type="text" value=" " formControlName="staffrole" class="form-control" placeholder="Enter staff-role"
+                            <input type="text"  formControlName="staffrole" class="form-control" placeholder="Enter staff-role"
                                 [ngClass]="{ 'is-invalid': submitted && f.staffrole.errors }" />
                             <div *ngIf="submitted && f.staffrole.errors" class="invalid-feedback">
                                 <div *ngIf="f.staffrole.errors.required">Staff Role is required</div>
@@ -106,7 +106,7 @@
                 <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
                     <div class="form-group">
                             <label>Staff Role</label>
-                            <input type="text" value=" " formControlName="staffrole2" class="form-control" placeholder="Enter staff-role"
+                            <input type="text"  formControlName="staffrole2" class="form-control" placeholder="Enter staff-role"
                                 [ngClass]="{ 'is-invalid': submitted && f2.staffrole2.errors }" />
                             <div *ngIf="submitted && f2.staffrole2.errors" class="invalid-feedback">
                                 <div *ngIf="f2.staffrole2.errors.required">Staff Role is required</div>

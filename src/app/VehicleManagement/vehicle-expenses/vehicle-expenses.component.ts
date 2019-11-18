@@ -17,6 +17,7 @@ export class VehicleExpensesComponent implements OnInit {
   editForm: FormGroup;
   submitted = false;
   public expense: any;
+  public expense2: any;
   private expenses: any;
   Id: any;
   IdValue: any;
@@ -36,13 +37,10 @@ export class VehicleExpensesComponent implements OnInit {
     });
     // Edit Form
     this.editForm = this.formBuilder.group({
-      expense: ['', Validators.required]
+      expense2: ['', Validators.required]
     });
   }
 
-  public setMessage(message) {
-    return this.message = message;
-  }
 
   //Add form validation and function
   onAddSubmit() {
@@ -58,19 +56,19 @@ export class VehicleExpensesComponent implements OnInit {
         this.viewData();
       }
       else if (res.status == 'error') {
-        this.setMessage(res.error);
+        swal(res.error);
       }
     }, (error) => {
-      this.setMessage(error);
+      console.log(error);
     });
-    console.log(this.registerForm.value);
+    //console.log(this.registerForm.value);
   }
 
   // To display expense
   viewData() {
     this.request.getExpense().subscribe((response) => {
       this.expenses = response;
-      console.log(this.expenses);
+     // console.log(this.expenses);
     }, (error) => {
       console.log(error);
     });
@@ -83,7 +81,7 @@ export class VehicleExpensesComponent implements OnInit {
       this.viewData();
       console.log('Deleted');
 
-      this.router.navigate(['vehicle-expenses']);
+      //router.navigate(['vehicle-expenses']);
     });
   }
 
@@ -92,14 +90,14 @@ export class VehicleExpensesComponent implements OnInit {
     this.Id = expense._id;
     this.request.fetchExpenseBy(this.Id).subscribe((response) => {
       this.editExpense = response[0];
-      console.log(response);
+     // console.log(response);
       this.expenseValue = this.editExpense.expense;
       this.IdValue = this.editExpense._id;
 
       this.editForm = this.formBuilder.group({
-        expense: [this.expenseValue, Validators.required]
+        expense2: [this.expenseValue, Validators.required]
       });
-      console.log(this.editForm.value);
+     // console.log(this.editForm.value);
     });
   }
   onEditSubmit() {
@@ -108,24 +106,30 @@ export class VehicleExpensesComponent implements OnInit {
     if (this.editForm.invalid) {
       return;
     }
-    this.request.updateExpense(this.IdValue, this.editForm.value).subscribe((res: any) => {
+
+    const edata = {
+      expense: this.editForm.get('expense2').value,
+
+  }
+    this.request.updateExpense(this.IdValue, edata).subscribe((res: any) => {
       if (res.status == 'success') {
         swal("Updated Sucessfully");
         this.loadModal();
         this.viewData();
       }
       else if (res.status == 'error') {
-        this.setMessage(res.error);
+        swal(res.error);
       }
 
     }, (error) => {
       console.log(error);
-      this.setMessage(error);
+
     });
   }
 
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
+  get f2() { return this.editForm.controls; }
 
   async startScript() {
     await this.dynamicScriptLoader.load('dataTables.buttons', 'buttons.flash', 'jszip', 'pdfmake', 'vfs_fonts', 'pdfmake', 'buttons.html5', 'buttons.print', 'form.min').then(data => {
@@ -156,7 +160,6 @@ export class VehicleExpensesComponent implements OnInit {
 
   ngOnInit() {
     this.startScript();
-    M.updateTextFields();
     this.viewData();
     this.loadModal();
   }

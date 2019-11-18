@@ -120,9 +120,7 @@ export class VehicleMasterComponent implements OnInit {
     });
   }
 
-  public setMessage(message) {
-    return this.message = message;
-  }
+
 
   // Bind institution data
   loadInstitution() {
@@ -148,10 +146,10 @@ export class VehicleMasterComponent implements OnInit {
         this.viewData();
       }
       else if (res.status == 'error') {
-        this.setMessage(res.error);
+       swal(res.error);
       }
     }, (error) => {
-      this.setMessage(error);
+     console.log(error);
     });
    // console.log(this.registerForm.value);
   }
@@ -269,12 +267,12 @@ get f2() { return this.editForm.controls; }
         this.viewData();
       }
       else if (res.status == 'error') {
-        this.setMessage(res.error);
+        swal(res.error);
       }
 
     }, (error) => {
       console.log(error);
-      this.setMessage(error);
+
     });
   }
 

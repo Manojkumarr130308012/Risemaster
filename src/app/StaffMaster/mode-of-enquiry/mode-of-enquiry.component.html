@@ -74,7 +74,7 @@
                 <form [formGroup]="registerForm" (ngSubmit)="onAddSubmit()">
                     <div class="form-group">
                             <label>Mode Of Enquiry</label>
-                            <input type="text" value=" " formControlName="modeofenquiry" class="form-control" placeholder="Enter mode of enquiry"
+                            <input type="text"  formControlName="modeofenquiry" class="form-control" placeholder="Enter mode of enquiry"
                                 [ngClass]="{ 'is-invalid': submitted && f.modeofenquiry.errors }" />
                             <div *ngIf="submitted && f.modeofenquiry.errors" class="invalid-feedback">
                                 <div *ngIf="f.modeofenquiry.errors.required">Mode of enquiry is required</div>
@@ -106,7 +106,7 @@
                 <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
                     <div class="form-group">
                             <label>Mode Of Enquiry</label>
-                            <input type="text" value=" " formControlName="modeofenquiry2" class="form-control" placeholder="Enter mode of enquiry"
+                            <input type="text"  formControlName="modeofenquiry2" class="form-control" placeholder="Enter mode of enquiry"
                                 [ngClass]="{ 'is-invalid': submitted && f2.modeofenquiry2.errors }" />
                             <div *ngIf="submitted && f2.modeofenquiry2.errors" class="invalid-feedback">
                                 <div *ngIf="f2.modeofenquiry2.errors.required">Mode of enquiry is required</div>

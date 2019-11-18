@@ -123,8 +123,8 @@
                                                         <div class="col-md-5">
                                                             <label for="sphoto">Student Photo</label>
                                                             <div class="col-sm-12">
-                                                            <img style="margin:0 auto" src="{{getfileLoc}}" width="100px"> 
-                                                            <img style="margin:0 auto" src="{{sPhotoValue}}" width="100px"> 
+                                                            <img style="margin:0 auto" src="{{getfileLoc}}" width="100px">
+                                                            <img style="margin:0 auto" src="{{sPhotoValue}}" width="100px">
                                                         </div>
                                                             <div class="form-group form-float">
                                                                     <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
@@ -508,7 +508,7 @@
                                                                         <div class="form-group">
                                                                             <label>Address Type</label>
                                                                             <select class="browser-default" id="select13" [(ngModel)]="selectedaddresstype" formControlName="addresstype"
-                                                                                value=" " class="form-control" placeholder="Enter addresstype "
+                                                                                 class="form-control" placeholder="Enter addresstype "
                                                                                 [ngClass]="{ 'is-invalid': submitted && f.addresstype.errors }">
                                                                                 <option default >Choose your AddressType</option>
                                                                                 <option *ngFor="let addressType of addressTypes?.response" [value]="addressType._id">
@@ -1053,7 +1053,7 @@
                                                                                         <div class="form-group">
                                                                                             <label>PaymentMethod</label>
                                                                                             <select class="browser-default" id="select" formControlName="paymentmethod"
-                                                                                                value=" " class="form-control" placeholder="Enter Payment Method"
+                                                                                                 class="form-control" placeholder="Enter Payment Method"
                                                                                                 [ngClass]="{ 'is-invalid': submitted && f5.paymentmethod.errors }">
                                                                                                 <option default  selected>Choose your PaymentMethod</option>
                                                                                                 <option *ngFor="let paymentMethod of paymentMethods?.response" [value]="paymentMethod._id">
@@ -1195,7 +1195,7 @@
                                                                                                         <div class="form-group">
                                                                                                             <label>PaymentMethod</label>
                                                                                                             <select class="browser-default" id="select" [(ngModel)]="selectedpaymentmethod" formControlName="paymentmethod2"
-                                                                                                                value=" " class="form-control" placeholder="Enter Payment Method"
+                                                                                                                 class="form-control" placeholder="Enter Payment Method"
                                                                                                                 [ngClass]="{ 'is-invalid': submitted && f6.paymentmethod2.errors }">
                                                                                                                 <option  selected> Choose your PaymentMethod</option>
                                                                                                                 <option *ngFor="let paymentMethod of paymentMethods?.response" [value]="paymentMethod._id">
@@ -1342,7 +1342,7 @@
                                                                         <div class="form-group">
                                                                             <label>ModeOfEnquiry</label>
                                                                             <select class="browser-default" id="select" [(ngModel)]="selectedModeOfEnquiry" formControlName="modeOfEnquiry"
-                                                                                value=" " class="form-control" [ngClass]="{ 'is-invalid': submitted && f7.modeOfEnquiry.errors }">
+                                                                                 class="form-control" [ngClass]="{ 'is-invalid': submitted && f7.modeOfEnquiry.errors }">
                                                                                 <option  selected> Choose your ModeOfEnquiry</option>
                                                                                 <option *ngFor="let modeOfEnquiry of modeOfEnquiries?.response" [value]="modeOfEnquiry._id">
                                                                                     {{modeOfEnquiry?.modeofenquiry}}
@@ -1354,7 +1354,7 @@
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label>NextEnquiryTime</label>
-                                                                            <input type="time" formControlName="nextEnquiryTime" value=" " class="form-control"
+                                                                            <input type="time" formControlName="nextEnquiryTime"  class="form-control"
                                                                                 placeholder="Enter NextEnquiryTime" [ngClass]="{ 'is-invalid': submitted && f7.nextEnquiryTime.errors }">
                                                                             <div *ngIf="submitted && f7.nextEnquiryTime.errors" class="invalid-feedback">
                                                                                 <div *ngIf="f7.nextEnquiryTime.errors.required">
@@ -1426,7 +1426,7 @@
                                                                                 <div class="form-group">
                                                                                     <label>ModeOfEnquiry</label>
                                                                                     <select class="browser-default" id="select" [(ngModel)]="selectedModeOfEnquiry" formControlName="modeOfEnquiry2"
-                                                                                        value=" " class="form-control" [ngClass]="{ 'is-invalid': submitted && f8.modeOfEnquiry2.errors }">
+                                                                                         class="form-control" [ngClass]="{ 'is-invalid': submitted && f8.modeOfEnquiry2.errors }">
                                                                                         <option  selected> Choose your ModeOfEnquiry</option>
                                                                                         <option *ngFor="let modeOfEnquiry of modeOfEnquiries?.response" [value]="modeOfEnquiry._id">
                                                                                             {{modeOfEnquiry?.modeofenquiry}}

@@ -52,7 +52,9 @@ import { VehicleExpensesComponent } from './VehicleManagement/vehicle-expenses/v
 import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-details.component';
 import { FuelEntryComponent } from './VehicleManagement/Vehicle Transaction/fuel-entry/fuel-entry.component';
 import { ExpensesEntryComponent } from './VehicleManagement/Vehicle Transaction/expenses-entry/expenses-entry.component';
-import { VehicleTransactionComponent } from './VehicleManagement/vehicle-transaction/vehicle-transaction.component';
+import { FuelEntryReportComponent } from './VehicleManagement/Vehicle Transaction/fuel-entry-report/fuel-entry-report.component';
+
+import { ExpenseEntryReportComponent } from './VehicleManagement/Vehicle Transaction/Expense-entry-report/Expense-entry-report.component';
 
 // Staff Management
 import { StaffProfileComponent } from './StaffManagement/staff-profile/staff-profile.component';
@@ -266,11 +268,17 @@ const routes: Routes = [
   { path: 'fuel-entry',
   component: FuelEntryComponent },
 
+  { path: 'fuel-entry-report',
+  component: FuelEntryReportComponent },
+
+
+
+  { path: 'expenses-entry-report',
+  component: ExpenseEntryReportComponent },
+
   { path: 'expenses-entry',
   component: ExpensesEntryComponent },
 
-  { path: 'vehicle-transaction',
-  component: VehicleTransactionComponent },
 
 
   // Staff Management
@@ -281,21 +289,21 @@ const routes: Routes = [
   component: StaffDetailsComponent },
 
 //CandidateEnquiry
-  { path: 'candidateEnquiry', 
+  { path: 'candidateEnquiry',
   component: CEMainPageComponent },
-  { path: 'addCandidate', 
+  { path: 'addCandidate',
   component: CEAddFormComponent },
-  { path: 'editCandidate', 
+  { path: 'editCandidate',
   component: CEEditFormComponent },
-  { path: 'convertToStudent', 
+  { path: 'convertToStudent',
   component: ConvertToStudentComponent },
-  
+
   //StudentManagemnat
-  { path: 'studentProfile', 
+  { path: 'studentProfile',
   component: StudentProfileComponent },
-  { path: 'studentEntry', 
+  { path: 'studentEntry',
   component: StudentEntryComponent},
-  { path: 'studentDetail', 
+  { path: 'studentDetail',
   component: StudentDetailComponent},
 ];
 

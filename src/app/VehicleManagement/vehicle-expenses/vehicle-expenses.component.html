@@ -4,7 +4,7 @@
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
-                    <div class="header">       
+                    <div class="header">
                         <h2>
                             <strong>Expense</strong>
                         </h2>
@@ -14,7 +14,7 @@
                                         <button id="addRow" class="btn btn-info" data-toggle="modal"
                                         data-target="#addModal">
                                             Add New
-                                            <i class="fa fa-plus" style="color: white"></i>  
+                                            <i class="fa fa-plus" style="color: white"></i>
                                         </button>
                                 </div>
                              <!-- Add button -->
@@ -22,7 +22,7 @@
                     </div>
                    <div class="body">
                             <div class="table-responsive">
-                                 <table id="tableExport" 
+                                 <table id="tableExport"
                                  class="display table table-hover table-checkable order-column m-t-20 width-per-100">
                                     <thead>
                                         <tr>
@@ -33,16 +33,16 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let expense of expenses?.response; let i=index">
-                                            <td>{{i +1 }}</td> 
+                                            <td>{{i +1 }}</td>
                                             <td>{{expense?.expense}}</td>
                                             <td>
                                                 <div class="btn btn-tbl-edit" data-toggle="modal"
                                                 data-target="#editModal">
-                                                        <i class="material-icons" 
+                                                        <i class="material-icons"
                                                         (click)="onEdit(expense) ">create</i>
                                                 </div>
                                                     <div class="btn btn-tbl-delete">
-                                                        <i class="material-icons" 
+                                                        <i class="material-icons"
                                                         (click) = "deleteExpense(expense?._id)" >delete</i>
                                                     </div>
                                                 </td>
@@ -50,11 +50,11 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
-        
+
         <!-- Table End -->
     </div>
 </section>
@@ -73,8 +73,8 @@
          <div class="modal-body">
                 <form [formGroup]="registerForm" (ngSubmit)="onAddSubmit()">
                     <div class="form-group">
-                            <label>Expense</label> 
-                            <input type="text" value=" " formControlName="expense" class="form-control" 
+                            <label>Expense</label>
+                            <input type="text" formControlName="expense" class="form-control"
                                 [ngClass]="{ 'is-invalid': submitted && f.expense.errors }" />
                             <div *ngIf="submitted && f.expense.errors" class="invalid-feedback">
                                 <div *ngIf="f.expense.errors.required">Expense is required</div>
@@ -105,11 +105,11 @@
          <div class="modal-body">
                 <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
                     <div class="form-group">
-                            <label>Expense</label> 
-                            <input type="text" value=" " formControlName="expense" class="form-control"
-                                [ngClass]="{ 'is-invalid': submitted && f.expense.errors }" />
-                            <div *ngIf="submitted && f.expense.errors" class="invalid-feedback">
-                                <div *ngIf="f.expense.errors.required">Expense is required</div>
+                            <label>Expense</label>
+                            <input type="text" formControlName="expense2" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f2.expense2.errors }" />
+                            <div *ngIf="submitted && f2.expense2.errors" class="invalid-feedback">
+                                <div *ngIf="f2.expense2.errors.required">Expense is required</div>
                             </div>
                         </div>
          <div class="modal-footer">

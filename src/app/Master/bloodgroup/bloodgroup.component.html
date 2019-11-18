@@ -74,7 +74,7 @@
                 <form [formGroup]="registerForm" (ngSubmit)="onAddSubmit()">
                     <div class="form-group">
                             <label>Blood Group</label>
-                            <input type="text" value=" " formControlName="bloodgroup" class="form-control" placeholder="Enter Blood Group"
+                            <input type="text"  formControlName="bloodgroup" class="form-control" placeholder="Enter Blood Group"
                                 [ngClass]="{ 'is-invalid': submitted && f.bloodgroup.errors }" />
                             <div *ngIf="submitted && f.bloodgroup.errors" class="invalid-feedback">
                                 <div *ngIf="f.bloodgroup.errors.required">Blood group is required</div>
@@ -106,7 +106,7 @@
                 <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
                     <div class="form-group">
                             <label>Blood Group</label>
-                            <input type="text" value=" " formControlName="bloodgroup2" class="form-control" placeholder="Enter Blood Group"
+                            <input type="text"  formControlName="bloodgroup2" class="form-control" placeholder="Enter Blood Group"
                                 [ngClass]="{ 'is-invalid': submitted && f2.bloodgroup2.errors }" />
                             <div *ngIf="submitted && f2.bloodgroup2.errors" class="invalid-feedback">
                                 <div *ngIf="f2.bloodgroup2.errors.required">Blood group is required</div>

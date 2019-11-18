@@ -109,8 +109,6 @@ onEditSubmit() {
   if (this.editForm.invalid) {
       return;
     }
-
-
     const edata = {
       religion: this.editForm.get('religion2').value,
 

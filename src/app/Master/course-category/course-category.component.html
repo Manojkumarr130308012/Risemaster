@@ -92,7 +92,7 @@
 
                     <div class="form-group">
                             <label>Course Category</label>
-                            <input type="text" value=" " formControlName="coursecategory" class="form-control" placeholder="Enter Course-category"
+                            <input type="text"  formControlName="coursecategory" class="form-control" placeholder="Enter Course-category"
                                 [ngClass]="{ 'is-invalid': submitted && f.coursecategory.errors }" />
                             <div *ngIf="submitted && f.coursecategory.errors" class="invalid-feedback">
                                 <div *ngIf="f.coursecategory.errors.required">Course-category is required</div>
@@ -140,7 +140,7 @@
 
                     <div class="form-group">
                             <label>Course Category</label>
-                            <input type="text" value=" " formControlName="coursecategory2" class="form-control" placeholder="Enter Course-category"
+                            <input type="text"  formControlName="coursecategory2" class="form-control" placeholder="Enter Course-category"
                                 [ngClass]="{ 'is-invalid': submitted && f2.coursecategory2.errors }" />
                             <div *ngIf="submitted && f2.coursecategory2.errors" class="invalid-feedback">
                                 <div *ngIf="f2.coursecategory2.errors.required">Course-category is required</div>
