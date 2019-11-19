@@ -445,6 +445,9 @@ addbasicdetails() {
     sPhoto: this.getfileLoc,
     enquiryDate: this.enquiryDate
   };
+  if(this.canId == 0) {
+    console.log('AAAAAddddddDDDDDDD');
+
   this.request.addBasicDetails(newBasicDetails).subscribe((response: any) => {
     if (response.status == 'error') {
       this.setMessage(response.error);
@@ -465,7 +468,15 @@ addbasicdetails() {
   }, (error) => {
     this.setMessage(error);
   });
-
+  } else {
+    console.log('UUUUUUUUUUUPppppppppppppppppppdate');
+    this.router.navigate(['editCandidate'], {
+      queryParams: {  
+          edit: true,      
+          id: this.canId,
+        }
+       });
+  }
 }
 
 //Add CourseProgram

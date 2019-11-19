@@ -103,9 +103,9 @@
          <div class="modal-body">
              <form [formGroup]="editForm">
                  <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                      <div class="form-group">
-                         <label>Course Type</label>
+                         <label>Degree</label>
                          <input type="text" formControlName="degree2" class="form-control" placeholder="Enter degree"
                              [ngClass]="{ 'is-invalid': submitted && f2.degree2.errors }" />
                          <div *ngIf="submitted && f2.degree2.errors" class="invalid-feedback">

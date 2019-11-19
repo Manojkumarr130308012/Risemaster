@@ -21,7 +21,11 @@ export class CEMainPageComponent implements OnInit {
     }
 
 openNew(){
-    this.router.navigate(['addCandidate']);
+    this.router.navigate(['addCandidate'], {
+      queryParams: {     
+          id:0
+        }
+       });
   }
   onEdit(basicdetail) {
     this.Id=basicdetail._id;
