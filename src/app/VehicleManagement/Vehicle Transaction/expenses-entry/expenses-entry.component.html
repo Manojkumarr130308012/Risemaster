@@ -93,7 +93,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Vehicle</label>
-                            <select id="select" name="vehicleNo" [(ngModel)]="selectedvehicleNo"
+                            <select id="selectvehicleNo" name="vehicleNo" [(ngModel)]="selectedvehicleNo"
                                 class="browser-default form-control" formControlName="vehicleNo"
                                 [ngClass]="{ 'is-invalid': submitted && f.vehicleNo.errors }">
                                 <option>Choose your Vehicle No</option>
@@ -108,10 +108,10 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Expenses</label>
-                            <select class="browser-default" id="select" formControlName="expense" class="form-control"
+                            <select class="browser-default" id="selectexpense" formControlName="expense" class="form-control"
                                 [ngClass]="{ 'is-invalid': submitted && f.expense.errors }">
                                 <option>Choose your Expenses</option>
-                                <option *ngFor="let expense of expenses?.response" [value]="expense._id">
+                                <option *ngFor="let expense of expenses" [value]="expense._id">
                                     {{expense?.expense}}</option>
                             </select>
                             <div *ngIf="submitted && f.expense.errors" class="invalid-feedback">
@@ -175,60 +175,60 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Vehicle</label>
-                            <select id="select" name="vehicleNo" [(ngModel)]="selectedvehicleNo"
-                                class="browser-default form-control" formControlName="vehicleNo"
-                                [ngClass]="{ 'is-invalid': submitted && f2.vehicleNo.errors }">
+                            <select id="selectvehicleNo2" name="vehicleNo2" [(ngModel)]="selectedvehicleNo"
+                                class="browser-default form-control" formControlName="vehicleNo2"
+                                [ngClass]="{ 'is-invalid': submitted && f2.vehicleNo2.errors }">
                                 <option>Choose your Vehicle No</option>
                                 <option *ngFor="let vehicle of vehicles" [value]="vehicle._id">
                                     {{vehicle?.vehicleNo}}</option>
                             </select>
-                            <div *ngIf="submitted && f2.vehicleNo.errors" class="invalid-feedback">
-                                <div *ngIf="f2.vehicleNo.errors.required">Vehicle is required</div>
+                            <div *ngIf="submitted && f2.vehicleNo2.errors" class="invalid-feedback">
+                                <div *ngIf="f2.vehicleNo2.errors.required">Vehicle is required</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Expenses</label>
-                            <select class="browser-default" id="select" formControlName="expense" class="form-control"
-                                [ngClass]="{ 'is-invalid': submitted && f2.expense.errors }">
+                            <select class="browser-default" id="selectexpense2" name="expense2" formControlName="expense2" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f2.expense2.errors }">
                                 <option>Choose your Expenses</option>
-                                <option *ngFor="let expense of expenses?.response" [value]="expense._id">
+                                <option *ngFor="let expense of expenses" [value]="expense._id">
                                     {{expense?.expense}}</option>
                             </select>
-                            <div *ngIf="submitted && f2.expense.errors" class="invalid-feedback">
-                                <div *ngIf="f2.expense.errors.required">Expenses is required</div>
+                            <div *ngIf="submitted && f2.expense2.errors" class="invalid-feedback">
+                                <div *ngIf="f2.expense2.errors.required">Expenses is required</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Date</label>
-                            <input type="date"  formControlName="date" class="form-control"
-                                placeholder="Enter Date" [ngClass]="{ 'is-invalid': submitted && f2.date.errors }" />
-                            <div *ngIf="submitted && f2.date.errors" class="invalid-feedback">
-                                <div *ngIf="f2.date.errors.required">Date is required</div>
+                            <input type="date"  formControlName="date2" class="form-control"
+                                placeholder="Enter Date" [ngClass]="{ 'is-invalid': submitted && f2.date2.errors }" />
+                            <div *ngIf="submitted && f2.date2.errors" class="invalid-feedback">
+                                <div *ngIf="f2.date2.errors.required">Date is required</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Amount</label>
-                            <input type="text"  formControlName="amount" class="form-control"
+                            <input type="text"  formControlName="amount2" class="form-control"
                                 placeholder="Enter Amount"
-                                [ngClass]="{ 'is-invalid': submitted && f2.amount.errors }" />
-                            <div *ngIf="submitted && f2.amount.errors" class="invalid-feedback">
-                                <div *ngIf="f2.amount.errors.required">Amount is required</div>
+                                [ngClass]="{ 'is-invalid': submitted && f2.amount2.errors }" />
+                            <div *ngIf="submitted && f2.amount2.errors" class="invalid-feedback">
+                                <div *ngIf="f2.amount2.errors.required">Amount is required</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Notes</label>
-                            <input type="text"  formControlName="notes" class="form-control"
-                                placeholder="Enter Notes" [ngClass]="{ 'is-invalid': submitted && f2.notes.errors }" />
-                            <div *ngIf="submitted && f2.notes.errors" class="invalid-feedback">
-                                <div *ngIf="f2.notes.errors.required">Notes is required</div>
+                            <input type="text"  formControlName="notes2" class="form-control"
+                                placeholder="Enter Notes" [ngClass]="{ 'is-invalid': submitted && f2.notes2.errors }" />
+                            <div *ngIf="submitted && f2.notes2.errors" class="invalid-feedback">
+                                <div *ngIf="f2.notes2.errors.required">Notes is required</div>
                             </div>
                         </div>
                     </div>

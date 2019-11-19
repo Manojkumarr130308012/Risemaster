@@ -74,7 +74,7 @@
                 <form [formGroup]="registerForm" (ngSubmit)="onAddSubmit()">
                     <div class="form-group">
                             <label>Fee Type</label>
-                            <input type="text" value=" " formControlName="feetype" class="form-control" placeholder="Enter fee-type"
+                            <input type="text"  formControlName="feetype" class="form-control" placeholder="Enter fee-type"
                                 [ngClass]="{ 'is-invalid': submitted && f.feetype.errors }" />
                             <div *ngIf="submitted && f.feetype.errors" class="invalid-feedback">
                                 <div *ngIf="f.feetype.errors.required">Fee Type is required</div>
@@ -106,7 +106,7 @@
                 <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
                     <div class="form-group">
                             <label>Fee Type</label>
-                            <input type="text" value=" " formControlName="feetype2" class="form-control" placeholder="Enter fee-type"
+                            <input type="text"  formControlName="feetype2" class="form-control" placeholder="Enter fee-type"
                                 [ngClass]="{ 'is-invalid': submitted && f2.feetype2.errors }" />
                             <div *ngIf="submitted && f2.feetype2.errors" class="invalid-feedback">
                                 <div *ngIf="f2.feetype2.errors.required">Pay Type is required</div>

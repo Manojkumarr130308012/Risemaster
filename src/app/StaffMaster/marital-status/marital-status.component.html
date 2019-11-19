@@ -74,7 +74,7 @@
                 <form [formGroup]="registerForm" (ngSubmit)="onAddSubmit()">
                     <div class="form-group">
                             <label>Marital Status</label>
-                            <input type="text" value=" " formControlName="maritalstatus" class="form-control" placeholder="Enter marital status"
+                            <input type="text"  formControlName="maritalstatus" class="form-control" placeholder="Enter marital status"
                                 [ngClass]="{ 'is-invalid': submitted && f.maritalstatus.errors }" />
                             <div *ngIf="submitted && f.maritalstatus.errors" class="invalid-feedback">
                                 <div *ngIf="f.maritalstatus.errors.required">Marital status is required</div>
@@ -106,7 +106,7 @@
                 <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
                     <div class="form-group">
                             <label>Marital Status</label>
-                            <input type="text" value=" " formControlName="maritalstatus2" class="form-control" placeholder="Enter marital status"
+                            <input type="text"  formControlName="maritalstatus2" class="form-control" placeholder="Enter marital status"
                                 [ngClass]="{ 'is-invalid': submitted && f2.maritalstatus2.errors }" />
                             <div *ngIf="submitted && f2.maritalstatus2.errors" class="invalid-feedback">
                                 <div *ngIf="f2.maritalstatus2.errors.required">Marital status is required</div>

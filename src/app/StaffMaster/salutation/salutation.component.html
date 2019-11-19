@@ -74,7 +74,7 @@
                 <form [formGroup]="registerForm" (ngSubmit)="onAddSubmit()">
                     <div class="form-group">
                             <label>Salutation</label>
-                            <input type="text" value=" " formControlName="salutation" class="form-control" placeholder="Enter salutation"
+                            <input type="text"  formControlName="salutation" class="form-control" placeholder="Enter salutation"
                                 [ngClass]="{ 'is-invalid': submitted && f.salutation.errors }" />
                             <div *ngIf="submitted && f.salutation.errors" class="invalid-feedback">
                                 <div *ngIf="f.salutation.errors.required">Salutation is required</div>

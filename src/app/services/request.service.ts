@@ -235,7 +235,7 @@ export class RequestService {
     return this.http.post(this.url, newAdmissiontype);
   }
 
-  public deleteAdmissiontype(id) {
+ deleteAdmissiontype(id) {
     this.url = `${this.endPoint}/admission-type/delete?id=` + id;
     return this.http.delete(this.url);
   }
@@ -1097,6 +1097,11 @@ fetchBankById(id) {
     }
 
     // vehicle expenses
+    public getExpenseType() {
+      this.url = `${this.endPoint}/vehicle-expenses/aggregation`;
+      return this.http.get(this.url);
+    }
+
     public getExpense() {
       this.url = `${this.endPoint}/vehicle-expenses`;
       return this.http.get(this.url);
@@ -1177,8 +1182,8 @@ fetchBankById(id) {
     return this.http.delete(this.url);
   }
 
-  updateStage(id, body) {
-    this.url = `${this.endPoint}/stage-details/update?id=${id}`;
+  updateStage(stageid, body) {
+    this.url = `${this.endPoint}/stage-details/update?id=${stageid}`;
     return this.http.put(this.url, body);
   }
 
@@ -1415,6 +1420,17 @@ fetchBankById(id) {
   public getExpensesEntry() {
     this.url = `${this.endPoint}/expenses-entry/aggregation`;
     return this.http.get(this.url);
+  }
+
+  public getvehicleExpenseReport(vehicleNo) {
+    this.url = `${this.endPoint}/expenses-entry/getExpenseReportbyVehicle?vehicleNo=` + vehicleNo;
+    return this.http.get(this.url);
+  }
+
+  public fetchExpenseReportbyDate(filterReportbyDate) {
+   // console.log('service',ExpenseReportdata);
+    this.url = `${this.endPoint}/expenses-entry/fetchExpenseReportbyDate`;
+    return this.http.post(this.url,filterReportbyDate);
   }
 
   public addExpensesEntry(newExpenses) {

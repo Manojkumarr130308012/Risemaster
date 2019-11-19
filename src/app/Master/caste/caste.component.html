@@ -74,7 +74,7 @@
                     <form [formGroup]="registerForm" (ngSubmit)="onAddSubmit()">
                         <div class="form-group">
                                 <label>Caste</label>
-                                <input type="text" value=" " formControlName="caste" class="form-control" placeholder="Enter caste"
+                                <input type="text"  formControlName="caste" class="form-control" placeholder="Enter caste"
                                     [ngClass]="{ 'is-invalid': submitted && f.caste.errors }" />
                                 <div *ngIf="submitted && f.caste.errors" class="invalid-feedback">
                                     <div *ngIf="f.caste.errors.required">Caste is required</div>
@@ -106,7 +106,7 @@
                     <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
                         <div class="form-group">
                                 <label>Caste</label>
-                                <input type="text" value=" " formControlName="caste2" class="form-control" placeholder="Enter caste"
+                                <input type="text"  formControlName="caste2" class="form-control" placeholder="Enter caste"
                                     [ngClass]="{ 'is-invalid': submitted && f2.caste2.errors }" />
                                 <div *ngIf="submitted && f2.caste2.errors" class="invalid-feedback">
                                     <div *ngIf="f2.caste2.errors.required">Caste is required</div>

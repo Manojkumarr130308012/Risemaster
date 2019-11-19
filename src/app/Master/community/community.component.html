@@ -74,7 +74,7 @@
                     <form [formGroup]="registerForm" (ngSubmit)="onAddSubmit()">
                         <div class="form-group">
                                 <label>Community</label>
-                                <input type="text" value=" " formControlName="community" class="form-control" placeholder="Enter community"
+                                <input type="text"  formControlName="community" class="form-control" placeholder="Enter community"
                                     [ngClass]="{ 'is-invalid': submitted && f.community.errors }" />
                                 <div *ngIf="submitted && f.community.errors" class="invalid-feedback">
                                     <div *ngIf="f.community.errors.required">Community is required</div>
@@ -106,7 +106,7 @@
                     <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
                         <div class="form-group">
                                 <label>Community</label>
-                                <input type="text" value=" " formControlName="community2" class="form-control" placeholder="Enter community"
+                                <input type="text"  formControlName="community2" class="form-control" placeholder="Enter community"
                                     [ngClass]="{ 'is-invalid': submitted && f2.community2.errors }" />
                                 <div *ngIf="submitted && f2.community2.errors" class="invalid-feedback">
                                     <div *ngIf="f2.community2.errors.required">Community is required</div>

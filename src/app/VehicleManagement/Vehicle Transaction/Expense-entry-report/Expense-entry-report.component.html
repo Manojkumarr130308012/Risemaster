@@ -1,0 +1,129 @@
+<section class="content">
+  <div class="container-fluid">
+      <!-- Table Start-->
+      <div class="row clearfix">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="card">
+                  <div class="header">
+                      <h2>
+                          <strong>Vehicle Expenses Report</strong>
+                      </h2>
+                      </div>
+                      <div class="modal-body">
+                          <form id="form_advanced_validation">
+                        <div class="body">
+
+
+                            <div class="row clearfix">
+
+                                <div class="col-md-2">
+
+                                    <div class="form-group form-float">
+                                    <label for="vehicleExpenseReport">Choose Vehicle</label>
+                                    <div class="form-line">
+
+                                    <select id="selectVehicle" [(ngModel)]="selectedVehicleforExpenseReport"
+                                        [formControl]="ExpenseReportVehicleNo" name="ExpenseReportVehicleNo"
+                                        class="browser-default form-control"
+                                        (change)="onVehicleChange($event.target.value)" required>
+                                        <option>Choose Vehicle</option>
+                                        <option>All</option>
+                                        <option *ngFor="let vehicle of vehicles" [value]="vehicle._id">
+                                            {{vehicle?.vehicleNo}}</option>
+                                    </select>
+                                    </div>
+</div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-group form-float">
+                                    <label>From Date</label>
+                                    <div class="form-line">
+                                    <input type="date" name="ERFromDate" id="ERFromDate" [formControl]="ERFromDate"
+                                        class="form-control" placeholder="Enter From Date" required />
+                                      </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-group form-float">
+                                    <label>To Date</label>
+                                    <div class="form-line">
+                                    <input type="date" name="ERToDate" id="ERToDate" [formControl]="ERToDate"
+                                        class="form-control" placeholder="Enter To Date" required/>
+                                      </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-group form-float">
+                                  <label for="vehicleExpenseReport">Choose Expense</label>
+                                  <div class="form-line">
+                                  <select id="selectExpense" [(ngModel)]="selectedExpenseType"
+                                      [formControl]="expense" name="expense"
+                                      class="browser-default form-control" required>
+                                      <option>Choose Expense</option>
+                                      <option *ngFor="let expensetype of expenseTypes" [value]="expensetype._id">
+                                          {{expensetype?.expense}}</option>
+                                  </select>
+                                </div>
+                              </div>
+
+                              </div>
+
+                                <!-- <div class="col-lg-3 header-dropdown m-r--5">
+                                        <div class="form-line input-field">
+                                            <input class="form-control" type="text" name="search" [(ngModel)]="filter"
+                                                placeholder="Search">
+                                        </div>
+                                    </div> -->
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-default"
+                                        (click)="filterExpenseReport()">Filter</button>
+                                    <button  class="btn btn-border-radius bg-green waves-effect"
+                                        >Export to Excel</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        </form>
+                    </div>
+
+                    <div class="body">
+                      <div class="table-responsive">
+                          <table id="tableExport"
+                              class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                              <thead>
+                                  <tr>
+                                      <th>S.No</th>
+                                      <th>VNO</th>
+                                      <th>Expenses</th>
+                                      <th>Date</th>
+                                      <th>Amount</th>
+                                      <th>Notes</th>
+
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let expenseEntry of expensesEntries; let i=index">
+                                      <td>{{i +1 }}</td>
+                                      <td>{{expenseEntry.VehicleDetails[0].vehicleNo}}</td>
+                                      <td>{{expenseEntry.ExpenseDetails[0].expense}}</td>
+                                      <td>{{expenseEntry?.date}}</td>
+                                      <td>{{expenseEntry?.amount}}</td>
+                                      <td>{{expenseEntry?.notes}}</td>
+
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Table End -->
+
+</section>

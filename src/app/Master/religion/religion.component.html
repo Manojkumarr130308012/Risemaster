@@ -74,7 +74,7 @@
                     <form [formGroup]="registerForm" (ngSubmit)="onAddSubmit()">
                         <div class="form-group">
                                 <label>Religion</label>
-                                <input type="text" value=" " formControlName="religion" class="form-control" placeholder="Enter religion"
+                                <input type="text"  formControlName="religion" class="form-control" placeholder="Enter religion"
                                     [ngClass]="{ 'is-invalid': submitted && f.religion.errors }" />
                                 <div *ngIf="submitted && f.religion.errors" class="invalid-feedback">
                                     <div *ngIf="f.religion.errors.required">Religion is required</div>
@@ -106,7 +106,7 @@
                     <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
                         <div class="form-group">
                                 <label>Religion</label>
-                                <input type="text" value=" " formControlName="religion2" class="form-control" placeholder="Enter religion"
+                                <input type="text"  formControlName="religion2" class="form-control" placeholder="Enter religion"
                                     [ngClass]="{ 'is-invalid': submitted && f2.religion2.errors }" />
                                 <div *ngIf="submitted && f2.religion2.errors" class="invalid-feedback">
                                     <div *ngIf="f2.religion2.errors.required">Religion is required</div>

@@ -1,20 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
-import { RequestService } from '../../services/request.service';
-import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
-import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
-const URL = 'http://localhost:3000/driverFileUpload/upload';
-const url = 'http://localhost:3000/driverFileUpload/fileupload';
+import { Component, OnInit } from "@angular/core";
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControl
+} from "@angular/forms";
+import { Router } from "@angular/router";
+import { RequestService } from "../../services/request.service";
+import { DynamicScriptLoaderService } from "../../services/dynamic-script-loader.service";
+import { FileSelectDirective, FileUploader } from "ng2-file-upload";
+const URL = "http://localhost:3000/driverFileUpload/upload";
+const url = "http://localhost:3000/driverFileUpload/fileupload";
 declare const $: any;
 declare const M: any;
 declare const swal: any;
 
-
 @Component({
-  selector: 'app-driver-master',
-  templateUrl: './driver-master.component.html',
-  styleUrls: ['./driver-master.component.scss']
+  selector: "app-driver-master",
+  templateUrl: "./driver-master.component.html",
+  styleUrls: ["./driver-master.component.scss"]
 })
 export class DriverMasterComponent implements OnInit {
   public driver: any;
@@ -73,14 +77,20 @@ export class DriverMasterComponent implements OnInit {
   referencePersonNameValue: any;
   referencePersonContactNoValue: any;
   photoValue: any;
-  public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'photo' });
+  public uploader: FileUploader = new FileUploader({
+    url: URL,
+    itemAlias: "photo"
+  });
   getfileLoc: any;
   photoLocation: any;
   photoLocationValue: any;
   photoLocation2: FormControl;
 
   fileValue: any;
-  public uploader2: FileUploader = new FileUploader({ url: url, itemAlias: 'file' });
+  public uploader2: FileUploader = new FileUploader({
+    url: url,
+    itemAlias: "file"
+  });
   getfileLoc2: any;
   fileLocation: any;
   fileLocationValue: any;
@@ -96,48 +106,45 @@ export class DriverMasterComponent implements OnInit {
     private router: Router
   ) {
     // Add Form
-    this.name = new FormControl('', Validators.required);
-    this.vehicleNo = new FormControl('', Validators.required);
-    this.fathersName = new FormControl('', Validators.required);
-    this.dob = new FormControl('', Validators.required);
-    this.joiningYear = new FormControl('', Validators.required);
-    this.personalContactNo = new FormControl('', Validators.required);
-    this.address = new FormControl('', Validators.required);
-    this.drivingLicenseNo = new FormControl('', Validators.required);
-    this.aadhaarNo = new FormControl('', Validators.required);
-    this.badgeNo = new FormControl('', Validators.required);
-    this.badgeExpiry = new FormControl('', Validators.required);
-    this.homeContactNo = new FormControl('', Validators.required);
-    this.licenseDOIDate = new FormControl('', Validators.required);
-    this.licenseExpDate = new FormControl('', Validators.required);
-    this.referencePersonName = new FormControl('', Validators.required);
-    this.referencePersonContactNo = new FormControl('', Validators.required);
-    this.photoLocation = new FormControl('', Validators.required);
-    this.fileLocation = new FormControl('', Validators.required);
+    this.name = new FormControl("", Validators.required);
+
+    this.vehicleNo = new FormControl("", Validators.required);
+    this.fathersName = new FormControl("", Validators.required);
+    this.dob = new FormControl("", Validators.required);
+    this.joiningYear = new FormControl("", Validators.required);
+    this.personalContactNo = new FormControl("", Validators.required);
+    this.address = new FormControl("", Validators.required);
+    this.drivingLicenseNo = new FormControl("", Validators.required);
+    this.aadhaarNo = new FormControl("", Validators.required);
+    this.badgeNo = new FormControl("", Validators.required);
+    this.badgeExpiry = new FormControl("", Validators.required);
+    this.homeContactNo = new FormControl("", Validators.required);
+    this.licenseDOIDate = new FormControl("", Validators.required);
+    this.licenseExpDate = new FormControl("", Validators.required);
+    this.referencePersonName = new FormControl("", Validators.required);
+    this.referencePersonContactNo = new FormControl("", Validators.required);
+    this.photoLocation = new FormControl("", Validators.required);
+    this.fileLocation = new FormControl("", Validators.required);
 
     // Edit Form
-    this.name2 = new FormControl('', Validators.required);
-    this.vehicleNo2 = new FormControl('', Validators.required);
-    this.fathersName2 = new FormControl('', Validators.required);
-    this.dob2 = new FormControl('', Validators.required);
-    this.joiningYear2 = new FormControl('', Validators.required);
-    this.personalContactNo2 = new FormControl('', Validators.required);
-    this.address2 = new FormControl('', Validators.required);
-    this.drivingLicenseNo2 = new FormControl('', Validators.required);
-    this.aadhaarNo2 = new FormControl('', Validators.required);
-    this.badgeNo2 = new FormControl('', Validators.required);
-    this.badgeExpiry2 = new FormControl('', Validators.required);
-    this.homeContactNo2 = new FormControl('', Validators.required);
-    this.licenseDOIDate2 = new FormControl('', Validators.required);
-    this.licenseExpDate2 = new FormControl('', Validators.required);
-    this.referencePersonName2 = new FormControl('', Validators.required);
-    this.referencePersonContactNo2 = new FormControl('', Validators.required);
-    this.photoLocation2 = new FormControl('', Validators.required);
-    this.fileLocation2 = new FormControl('', Validators.required);
-  }
-
-  public setMessage(message) {
-    return this.message = message;
+    this.name2 = new FormControl("", Validators.required);
+    this.vehicleNo2 = new FormControl("", Validators.required);
+    this.fathersName2 = new FormControl("", Validators.required);
+    this.dob2 = new FormControl("", Validators.required);
+    this.joiningYear2 = new FormControl("", Validators.required);
+    this.personalContactNo2 = new FormControl("", Validators.required);
+    this.address2 = new FormControl("", Validators.required);
+    this.drivingLicenseNo2 = new FormControl("", Validators.required);
+    this.aadhaarNo2 = new FormControl("", Validators.required);
+    this.badgeNo2 = new FormControl("", Validators.required);
+    this.badgeExpiry2 = new FormControl("", Validators.required);
+    this.homeContactNo2 = new FormControl("", Validators.required);
+    this.licenseDOIDate2 = new FormControl("", Validators.required);
+    this.licenseExpDate2 = new FormControl("", Validators.required);
+    this.referencePersonName2 = new FormControl("", Validators.required);
+    this.referencePersonContactNo2 = new FormControl("", Validators.required);
+    this.photoLocation2 = new FormControl("", Validators.required);
+    this.fileLocation2 = new FormControl("", Validators.required);
   }
 
   photosubmit() {
@@ -150,12 +157,15 @@ export class DriverMasterComponent implements OnInit {
 
   // Bind vehicle data
   loadVehicle() {
-    this.request.getVehicle().subscribe((response: any) => {
-      console.log(response);
-      this.vehicles = response;
-    }, (error) => {
-      console.log(error);
-    });
+    this.request.getVehicle().subscribe(
+      (response: any) => {
+        console.log(response);
+        this.vehicles = response;
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   //Add form validation and function
@@ -181,31 +191,35 @@ export class DriverMasterComponent implements OnInit {
       fileLocation: this.getfileLoc2
     };
 
-    this.request.addDriver(newDriver).subscribe((res: any) => {
-      if (res.status == 'success') {
-        swal("Added Sucessfully");
-        this.getfileLoc2="";
-        this.getfileLoc="";
-        this.loadModal();
-        this.viewData();
+    this.request.addDriver(newDriver).subscribe(
+      (res: any) => {
+        if (res.status == "success") {
+          swal("Added Sucessfully");
+          this.getfileLoc2 = "";
+          this.getfileLoc = "";
+          this.loadModal();
+          this.viewData();
+        } else if (res.status == "error") {
+          swal(res.error);
+        }
+      },
+      error => {
+        console.log(error);
       }
-      else if (res.status == 'error') {
-        this.setMessage(res.error);
-      }
-    }, (error) => {
-      this.setMessage(error);
-    });
-    console.log(newDriver);
+    );
   }
 
   // To display driver
   viewData() {
-    this.request.getDriver().subscribe((response) => {
-      this.drivers = response;
-      console.log(this.drivers);
-    }, (error) => {
-      console.log(error);
-    });
+    this.request.getDriver().subscribe(
+      response => {
+        this.drivers = response;
+        // console.log(this.drivers);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   // To delete driver
@@ -213,15 +227,15 @@ export class DriverMasterComponent implements OnInit {
     this.request.deleteDriver(id).subscribe(res => {
       console.log(id);
       this.viewData();
-      console.log('Deleted');
-      this.router.navigate(['driver']);
+      console.log("Deleted");
+      // this.router.navigate(['driver']);
     });
   }
 
   // To edit driver
   onEdit(driver) {
     this.Id = driver._id;
-    this.request.fetchDriverBy(this.Id).subscribe((response) => {
+    this.request.fetchDriverBy(this.Id).subscribe(response => {
       this.editDriver = response[0];
       console.log(response);
       this.nameValue = this.editDriver.name;
@@ -244,109 +258,159 @@ export class DriverMasterComponent implements OnInit {
       this.fileLocationValue = this.editDriver.fileLocation;
       this.IdValue = this.editDriver._id;
 
-
       this.name2 = new FormControl(this.nameValue, [Validators.required]);
-      this.vehicleNo2 = new FormControl(this.vehicleNoValue, [Validators.required]);
-      this.fathersName2 = new FormControl(this.fathersNameValue, [Validators.required]);
+      this.vehicleNo2 = new FormControl(this.vehicleNoValue, [
+        Validators.required
+      ]);
+      this.fathersName2 = new FormControl(this.fathersNameValue, [
+        Validators.required
+      ]);
       this.address2 = new FormControl(this.addressValue, [Validators.required]);
       this.dob2 = new FormControl(this.dobValue, [Validators.required]);
-      this.joiningYear2 = new FormControl(this.joiningYearValue, [Validators.required]);
-      this.personalContactNo2 = new FormControl(this.personalContactNoValue, [Validators.required]);
+      this.joiningYear2 = new FormControl(this.joiningYearValue, [
+        Validators.required
+      ]);
+      this.personalContactNo2 = new FormControl(this.personalContactNoValue, [
+        Validators.required
+      ]);
       this.address2 = new FormControl(this.addressValue, [Validators.required]);
-      this.drivingLicenseNo2 = new FormControl(this.drivingLicenseNoValue, [Validators.required]);
-      this.aadhaarNo2 = new FormControl(this.aadhaarNoValue, [Validators.required]);
+      this.drivingLicenseNo2 = new FormControl(this.drivingLicenseNoValue, [
+        Validators.required
+      ]);
+      this.aadhaarNo2 = new FormControl(this.aadhaarNoValue, [
+        Validators.required
+      ]);
       this.badgeNo2 = new FormControl(this.badgeNoValue, [Validators.required]);
-      this.badgeExpiry2 = new FormControl(this.badgeExpiryValue, [Validators.required]);
-      this.homeContactNo2 = new FormControl(this.homeContactNoValue, [Validators.required]);
-      this.licenseDOIDate2 = new FormControl(this.licenseDOIDateValue, [Validators.required]);
-      this.licenseExpDate2 = new FormControl(this.licenseExpDateValue, [Validators.required]);
-      this.referencePersonName2 = new FormControl(this.referencePersonNameValue, [Validators.required]);
-      this.referencePersonContactNo2 = new FormControl(this.referencePersonContactNoValue, [Validators.required]);
-//this.photoLocation2 = new FormControl(this.photoLocationValue, [Validators.required]);
-     //this.fileLocation2 = new FormControl(this.fileLocationValue, [Validators.required]);
+      this.badgeExpiry2 = new FormControl(this.badgeExpiryValue, [
+        Validators.required
+      ]);
+      this.homeContactNo2 = new FormControl(this.homeContactNoValue, [
+        Validators.required
+      ]);
+      this.licenseDOIDate2 = new FormControl(this.licenseDOIDateValue, [
+        Validators.required
+      ]);
+      this.licenseExpDate2 = new FormControl(this.licenseExpDateValue, [
+        Validators.required
+      ]);
+      this.referencePersonName2 = new FormControl(
+        this.referencePersonNameValue,
+        [Validators.required]
+      );
+      this.referencePersonContactNo2 = new FormControl(
+        this.referencePersonContactNoValue,
+        [Validators.required]
+      );
+      //this.photoLocation2 = new FormControl(this.photoLocationValue, [Validators.required]);
+      //this.fileLocation2 = new FormControl(this.fileLocationValue, [Validators.required]);
     });
   }
   updateDriver() {
-
-    if (this.name2.value != '' && this.vehicleNo2.value != '' && this.fathersName2.value !='' &&
-    this.dob2.value !="" && this.joiningYear2.value != '' && this.personalContactNo2.value!='' && this.address2.value!='' &&
-    this.drivingLicenseNo2.value !='' &&  this.aadhaarNo2.value!='' && this.badgeNo2.value !='' && this.badgeExpiry2.value !=''
-    && this.homeContactNo2.value !='' && this.licenseDOIDate2.value !='' && this.licenseExpDate2.value !='' && this.referencePersonName2.value !=''
-    && this.referencePersonContactNo2.value !='' ) {
-    const edata = {
-      name: this.name2.value,
-      vehicleNo: this.vehicleNo2.value,
-      fathersName: this.fathersName2.value,
-      dob: this.dob2.value,
-      joiningYear: this.joiningYear2.value,
-      personalContactNo: this.personalContactNo2.value,
-      address: this.address2.value,
-      drivingLicenseNo: this.drivingLicenseNo2.value,
-      aadhaarNo: this.aadhaarNo2.value,
-      badgeNo: this.badgeNo2.value,
-      badgeExpiry: this.badgeExpiry2.value,
-      homeContactNo: this.homeContactNo2.value,
-      licenseDOIDate: this.licenseDOIDate2.value,
-      licenseExpDate: this.licenseExpDate2.value,
-      referencePersonName: this.referencePersonName2.value,
-      referencePersonContactNo: this.referencePersonContactNo2.value,
-      photoLocation: this.getfileLoc,
-      fileLocation: this.getfileLoc2
-
-    };
-    this.request.updateDriver(this.IdValue, edata).subscribe((res: any) => {
-      if (res.status == 'success') {
-        swal("Updated Successfully");
-        this.getfileLoc2="";
-        this.getfileLoc="";
-        this.loadModal();
-        this.viewData();
-      }
-      else if (res.status == 'error') {
-        this.setMessage(res.error);
-      }
-
-    }, (error) => {
-      console.log(error);
-      this.setMessage(error);
-    });
-  }
+    if (
+      this.name2.value != "" &&
+      this.vehicleNo2.value != "" &&
+      this.fathersName2.value != "" &&
+      this.dob2.value != "" &&
+      this.joiningYear2.value != "" &&
+      this.personalContactNo2.value != "" &&
+      this.address2.value != "" &&
+      this.drivingLicenseNo2.value != "" &&
+      this.aadhaarNo2.value != "" &&
+      this.badgeNo2.value != "" &&
+      this.badgeExpiry2.value != "" &&
+      this.homeContactNo2.value != "" &&
+      this.licenseDOIDate2.value != "" &&
+      this.licenseExpDate2.value != "" &&
+      this.referencePersonName2.value != "" &&
+      this.referencePersonContactNo2.value != ""
+    ) {
+      const edata = {
+        name: this.name2.value,
+        vehicleNo: this.vehicleNo2.value,
+        fathersName: this.fathersName2.value,
+        dob: this.dob2.value,
+        joiningYear: this.joiningYear2.value,
+        personalContactNo: this.personalContactNo2.value,
+        address: this.address2.value,
+        drivingLicenseNo: this.drivingLicenseNo2.value,
+        aadhaarNo: this.aadhaarNo2.value,
+        badgeNo: this.badgeNo2.value,
+        badgeExpiry: this.badgeExpiry2.value,
+        homeContactNo: this.homeContactNo2.value,
+        licenseDOIDate: this.licenseDOIDate2.value,
+        licenseExpDate: this.licenseExpDate2.value,
+        referencePersonName: this.referencePersonName2.value,
+        referencePersonContactNo: this.referencePersonContactNo2.value,
+        photoLocation: this.getfileLoc,
+        fileLocation: this.getfileLoc2
+      };
+      this.request.updateDriver(this.IdValue, edata).subscribe(
+        (res: any) => {
+          if (res.status == "success") {
+            swal("Updated Successfully");
+            this.getfileLoc2 = "";
+            this.getfileLoc = "";
+            this.loadModal();
+            this.viewData();
+          } else if (res.status == "error") {
+            swal(res.error);
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
   }
 
   async startScript() {
-    await this.dynamicScriptLoader.load('dataTables.buttons', 'buttons.flash', 'jszip', 'pdfmake', 'vfs_fonts', 'pdfmake', 'buttons.html5', 'buttons.print', 'form.min').then(data => {
-      this.loadData();
-    }).catch(error => console.log(error));
+    await this.dynamicScriptLoader
+      .load(
+        "dataTables.buttons",
+        "buttons.flash",
+        "jszip",
+        "pdfmake",
+        "vfs_fonts",
+        "pdfmake",
+        "buttons.html5",
+        "buttons.print",
+        "form.min"
+      )
+      .then(data => {
+        this.loadData();
+      })
+      .catch(error => console.log(error));
   }
   private loadData() {
-    $('#tableExport').DataTable({
-      dom: 'Bfrtip',
-      buttons: [
-        'copy', 'csv', 'excel', 'pdf', 'print'
-      ]
+    $("#tableExport").DataTable({
+      dom: "Bfrtip",
+      buttons: ["copy", "csv", "excel", "pdf", "print"]
     });
   }
 
   private loadModal() {
-    $('#addModal').modal('hide'); //or  $('#IDModal').modal('hide');
-    $('#addModal').on('hidden.bs.modal', function () {
-      $(this).find('form').trigger('reset');
+    $("#addModal").modal("hide"); //or  $('#IDModal').modal('hide');
+    $("#addModal").on("hidden.bs.modal", function() {
+      $(this)
+        .find("form")
+        .trigger("reset");
       //$('#form_advanced_validation').trigger('reset');
-      var v = $('#form_advanced_validation').validate();
+      var v = $("#form_advanced_validation").validate();
       v.resetForm();
 
-      $('.progress .progress-bar').css('width', 0);
-        $('.progress .progress-bar').html('');
-
-    })
-    $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
-    $('#editModal ').on('hidden.bs.modal', function () {
-      $(this).find('form').trigger('reset');
-      var v = $('#form_advanced_validation1').validate();
+      $(".progress .progress-bar").css("width", 0);
+      $(".progress .progress-bar").html("");
+    });
+    $("#editModal").modal("hide"); //or  $('#IDModal').modal('hide');
+    $("#editModal ").on("hidden.bs.modal", function() {
+      $(this)
+        .find("form")
+        .trigger("reset");
+      var v = $("#form_advanced_validation1").validate();
       v.resetForm();
-      $('.progress .progress-bar').css('width', 0);
-        $('.progress .progress-bar').html('');
-    })
+      $(".progress .progress-bar").css("width", 0);
+      $(".progress .progress-bar").html("");
+    });
   }
 
   ngOnInit() {
@@ -356,50 +420,72 @@ export class DriverMasterComponent implements OnInit {
     this.loadModal();
     this.loadVehicle();
 
-    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
-    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      console.log('ImageUpload:uploaded:', item, status, response);
+    this.uploader.onAfterAddingFile = file => {
+      file.withCredentials = false;
+    };
+    this.uploader.onCompleteItem = (
+      item: any,
+      response: any,
+      status: any,
+      headers: any
+    ) => {
+      console.log("ImageUpload:uploaded:", item, status, response);
       const resPath = JSON.parse(response);
-    this.getfileLoc = resPath.driverFileResult1;
+      this.getfileLoc = resPath.driverFileResult1;
     };
 
-    this.uploader2.onAfterAddingFile = (file) => { file.withCredentials = false; };
-    this.uploader2.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      console.log('ImageUpload:uploaded:', item, status, response);
-      const resPath = JSON.parse(response);
-     this.getfileLoc2 = resPath.driverFileResult2;
+    this.uploader2.onAfterAddingFile = file => {
+      file.withCredentials = false;
     };
-
+    this.uploader2.onCompleteItem = (
+      item: any,
+      response: any,
+      status: any,
+      headers: any
+    ) => {
+      console.log("ImageUpload:uploaded:", item, status, response);
+      const resPath = JSON.parse(response);
+      this.getfileLoc2 = resPath.driverFileResult2;
+    };
 
     //jQuery Validation
-    $(function () {
-      $('#form_advanced_validation').validate({
-
-        highlight: function (input) {
-          $(input).parents('.form-line').addClass('error');
+    $(function() {
+      $("#form_advanced_validation").validate({
+        highlight: function(input) {
+          $(input)
+            .parents(".form-line")
+            .addClass("error");
         },
-        unhighlight: function (input) {
-          $(input).parents('.form-line').removeClass('error');
+        unhighlight: function(input) {
+          $(input)
+            .parents(".form-line")
+            .removeClass("error");
         },
-        errorPlacement: function (error, element) {
-          $(element).parents('.form-group').append(error);
+        errorPlacement: function(error, element) {
+          $(element)
+            .parents(".form-group")
+            .append(error);
         }
       });
     });
-    $(function () {
-      $('#form_advanced_validation1').validate({
-
-        highlight: function (input) {
-          $(input).parents('.form-line').addClass('error');
+    $(function() {
+      $("#form_advanced_validation1").validate({
+        highlight: function(input) {
+          $(input)
+            .parents(".form-line")
+            .addClass("error");
         },
-        unhighlight: function (input) {
-          $(input).parents('.form-line').removeClass('error');
+        unhighlight: function(input) {
+          $(input)
+            .parents(".form-line")
+            .removeClass("error");
         },
-        errorPlacement: function (error, element) {
-          $(element).parents('.form-group').append(error);
+        errorPlacement: function(error, element) {
+          $(element)
+            .parents(".form-group")
+            .append(error);
         }
       });
     });
-
   }
 }

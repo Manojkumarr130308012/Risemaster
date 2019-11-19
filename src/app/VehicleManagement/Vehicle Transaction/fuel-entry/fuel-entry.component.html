@@ -21,54 +21,6 @@
                         </div>
                     </div>
 
-                    <div class="modal-body">
-                        <div class="body">
-                            <div class="row clearfix">
-
-                                <div class="col-md-3">
-                                    <label for="vehiclefuelReport">Choose Vehicle</label>
-
-                                    <select id="select" [(ngModel)]="selectedVehicleforFuelReport"
-                                        [formControl]="fuelReportVehicleNo" name="fuelReportVehicleNo"
-                                        class="browser-default form-control"
-                                        (change)="onVehicleChangeforFuelReport($event.target.value)">
-                                        <option>Choose Vehicle</option>
-                                        <option *ngFor="let vehicle of vehicles" [value]="vehicle._id">
-                                            {{vehicle?.vehicleNo}}</option>
-                                    </select>
-
-                                </div>
-
-                                <div class="col-md-3">
-                                    <label>From Date</label>
-                                    <input type="date" name="FRFromDate" id="FRFromDate" [formControl]="FRFromDate"
-                                        class="form-control" placeholder="Enter From Date" />
-                                </div>
-
-                                <div class="col-md-3">
-                                    <label>To Date</label>
-
-                                    <input type="date" name="FRToDate" id="FRToDate" [formControl]="FRToDate"
-                                        class="form-control" placeholder="Enter To Date" />
-                                </div>
-
-                                <!-- <div class="col-lg-3 header-dropdown m-r--5">
-                                        <div class="form-line input-field">
-                                            <input class="form-control" type="text" name="search" [(ngModel)]="filter"
-                                                placeholder="Search">
-                                        </div>
-                                    </div> -->
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-default"
-                                        (click)="filterFuelReport()">Filter</button>
-                                    <button  class="btn btn-border-radius bg-green waves-effect"
-                                        (click)="exportExcel()">Export to Excel</button>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
 
                     <div class="body">
                         <div class="table-responsive">
