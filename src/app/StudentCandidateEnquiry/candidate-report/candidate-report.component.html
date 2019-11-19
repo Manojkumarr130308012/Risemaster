@@ -1,0 +1,142 @@
+<section class="content">
+    <div class="container-fluid">
+        <!-- Table Start-->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            <strong>Candidate Enquiry Program Wise </strong>
+                        </h2>
+                    </div>
+                    <div class="body">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group form-float">
+                                    <label for="institution">Institution<span class="asterisk">*</span></label>
+                                    <div class="form-line">
+                                        <select class="browser-default" id="select1" [formControl]="institution" name="institution"
+                                            class="form-control" (change)="onInstitutionChange($event.target.value)" required>
+                                            <option>Choose your Institution</option>
+                                            <option *ngFor="let institution of institutions" [value]="institution._id">
+                                                {{institution?.institution_name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <label for="coursecategory">Course Category</label>
+                                    <select class="browser-default" id="select6" [formControl]="coursecategory" name="coursecategory"
+                                        class="form-control" (change)="onCourseCategoryChange($event.target.value)">
+                                        <option>Choose your Course Category
+                                        </option>
+                                        <option *ngFor="let coursecategory of coursecategories?.response" [value]="coursecategory._id">
+                                            {{coursecategory?.coursecategory}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group form-float">
+                                    <label for="fromDate">From Date<span class="asterisk">*</span></label>
+                                    <div class="form-line">
+                                        <input type="date" class="form-control" name="fromDate" [formControl]="fromDate"
+                                            required />
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <label for="admissiontype">Admission Type<span class="asterisk">*</span></label>
+                                    <select class="browser-default" [formControl]="admissiontype" class="form-control" required>
+                                        <option>Choose your Admission Type
+                                        </option>
+                                        <option *ngFor="let admissiontype of admissiontypes?.response" [value]="admissiontype._id">
+                                            {{admissiontype?.admissiontype}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-float">
+                                    <label for="academicYear">Academic Year<span class="asterisk">*</span></label>
+                                    <select class="browser-default" [formControl]="academicYear" class="form-control" required>
+                                        <option>Choose your AcademicYear
+                                        </option>
+                                        <option *ngFor="let academicYear of academicYears?.response" [value]="academicYear._id">
+                                            {{academicYear?.year}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group form-float">
+                                    <label for="courseprogram">Course/Program</label>
+                                    <select class="browser-default" id="select8" [formControl]="courseprogram" class="form-control">
+                                        <option default>Choose your Course/Program
+                                        </option>
+                                        <option *ngFor="let courseprogram of courseprograms?.response" [value]="courseprogram._id">
+                                            {{courseprogram?.courseprogram}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group form-float">
+                                    <label for="toDate">To Date<span class="asterisk">*</span></label>
+                                    <div class="form-line">
+                                        <input type="date" class="form-control" name="toDate" [formControl]="toDate" required />
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <label for="confirmedStatus">Course Confirmed Status<span class="asterisk">*</span></label>
+                                    <select class="browser-default" [formControl]="confirmedStatus" class="form-control" required>
+                                        <option value="">Choose your Admission Type </option>
+                                        <option value="Confirmed">Confirmed</option>
+                                        <option value="NotConfirmed">Not Confirmed</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                     </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            <strong>Candidate Enquiry List</strong>
+                        </h2>
+                    </div>
+                    <div class="body">
+                            <table id="tableExport"
+                            class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                            <thead>
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Application No.</th>
+                                    <th>Unique No.</th>
+                                    <th>Last Enquiry DAte</th>
+                                    <th>Candidate Name</th>
+                                    <th>Degree Name</th>
+                                    <th>Gender</th>
+                                    <th>Phone No.</th>
+                                    <th>Mobile No.</th>
+                                    <th>Admission Type</th>
+                                    <th>Amount Paid</th> 
+                                    <th>Date</th>
+                                    <th>Is Admitted?</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let courseprogram of cecourseprograms; let i=index">
+                                    <td>{{ i +1 }} </td>
+                                    <td>{{courseprogram.coursecategory[0].coursecategory}}</td>
+                                    <td>{{courseprogram.courseprogram[0].courseprogram}}</td>
+                                    <div class="noprint">
+                                        <td>
+                                          <div class="btn btn-tbl-delete">
+                                                <i class="material-icons"
+                                                    (click)="deleteCEcourseProgram(courseprogram?._id)">delete_forever</i>
+                                            </div>
+                                        </td>
+                                    </div>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

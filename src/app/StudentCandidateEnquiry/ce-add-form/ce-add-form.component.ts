@@ -234,6 +234,8 @@ amountValue: any;
   basic: any;
   ID : any;
   banks: any;
+  paymentStatus: any;
+  status: any;
 
 
   constructor(private dynamicScriptLoader: DynamicScriptLoaderService,
@@ -404,6 +406,7 @@ this.followupseditform = this.formBuilder.group({
 // To add the basicDetails
 addbasicdetails() {
   this.enquiryDate = this.datePipe.transform(new Date(),"dd-MM-yyyy");
+  this.status = "Not Confirmed"
   const newBasicDetails = {
     firstName: this.firstName.value,
     lastName: this.lastName.value,
@@ -443,11 +446,10 @@ addbasicdetails() {
     pAadharNumber: this.pAadharNumber.value,
     relativeName: this.relativeName.value,
     sPhoto: this.getfileLoc,
-    enquiryDate: this.enquiryDate
+    enquiryDate: this.enquiryDate,
+    status: this.status
   };
   if(this.canId == 0) {
-    console.log('AAAAAddddddDDDDDDD');
-
   this.request.addBasicDetails(newBasicDetails).subscribe((response: any) => {
     if (response.status == 'error') {
       this.setMessage(response.error);
@@ -469,7 +471,6 @@ addbasicdetails() {
     this.setMessage(error);
   });
   } else {
-    console.log('UUUUUUUUUUUPppppppppppppppppppdate');
     this.router.navigate(['editCandidate'], {
       queryParams: {  
           edit: true,      
@@ -796,7 +797,7 @@ addpaymentdetails() {
   if (this.paymentAddForm.invalid) {
     return;
   }
-
+  this.paymentStatus = "YES";
    let newpaymentdetails ={
     paymentDate: this.paymentAddForm.get('paymentDate').value,
     paymentmethod: this.paymentAddForm.get('paymentmethod').value,
@@ -805,6 +806,7 @@ addpaymentdetails() {
     chequeDDNumber: this.paymentAddForm.get('chequeDDNumber').value,
     advanceFeeType: this.paymentAddForm.get('advanceFeeType').value,
     amount: this.paymentAddForm.get('amount').value,
+    paymentStatus: this.paymentStatus,
     canId: this.canId
   }
   this.request.addPaymentDetails(newpaymentdetails).subscribe((res: any) => {

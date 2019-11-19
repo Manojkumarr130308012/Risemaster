@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestService } from 'src/app/services/request.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Validators, FormControl } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload';
 
 const URL = 'http://localhost:3000/uploadStudentPhoto/upload';
@@ -146,7 +146,6 @@ export class StudentEditComponent implements OnInit {
   constructor(
     private request: RequestService,
     private router: Router,
-    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
   ) {
     this.route.queryParams.subscribe((params: any) => {

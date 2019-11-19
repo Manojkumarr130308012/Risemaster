@@ -216,7 +216,8 @@ export class ConvertToStudentComponent implements OnInit {
   referalType: this.basicDet[0].referenceType,
   referal: this.basicDet[0].referenceBy,
   motherTongue: this.basicDet[0].motherTongue,
-  sPhoto: this.basicDet[0].sPhoto
+  sPhoto: this.basicDet[0].sPhoto,
+  status: "Confirmed"
 }
 this.request.addStudentDetails(newStudentDetail).subscribe((response: any) => { 
  console.log(response);
