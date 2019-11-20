@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +10,6 @@ export class RequestService {
 
   url: string;
   endPoint = 'http://localhost:3000';
-
-  //   const headers = new HttpHeaders({
-  //    Authorization: this.storage.get('token')
-  //  });
 
   public getDesignation() {
     this.url = `${this.endPoint}/user-designation/fetch`;
@@ -1684,6 +1679,39 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/ce-qualificationdetails/fetchqualification?canId=` + canId;
     return this.http.get(this.url);
   }
+    // CandiadateEnquiry - ConvertToStudnet
+    public getConvertToStudent() {
+      this.url = `${this.endPoint}/ce-converttostudent/aggregation`;
+      return this.http.get(this.url);
+    }
+  
+    public addConvertToStudent(newadressdetails: {}) {
+      this.url = `${this.endPoint}/ce-converttostudent/add`;
+      return this.http.post(this.url, newadressdetails);
+    }
+  
+    public deleteConvertToStudent(id) {
+      this.url = `${this.endPoint}/ce-converttostudent/delete?id=` + id;
+      return this.http.delete(this.url);
+    }
+  
+    updateConvertToStudent(id, body) {
+      this.url = `${this.endPoint}/ce-converttostudent/update?id=${id}`;
+      return this.http.put(this.url, body);
+    }
+  
+    fetchConvertToStudent() {
+      this.url = `${this.endPoint}/ce-converttostudent/`;
+      return this.http.get(this.url);
+    }
+    fetchConvertToStudentById(id) {
+      this.url = `${this.endPoint}/ce-converttostudent/fetchdata?id=` + id;
+      return this.http.get(this.url);
+    }
+    getConvertToStudentById(canId) {
+      this.url = `${this.endPoint}/ce-converttostudent/fetchconvert?canId=` + canId;
+      return this.http.get(this.url);
+    }
   // CandiadateEnquiry - CourseProgram
   public getCEcourseprogram() {
     this.url = `${this.endPoint}/addCEcourseProgram/aggregation`;

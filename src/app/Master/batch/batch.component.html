@@ -124,7 +124,8 @@
                 <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
                         <div class="row clearfix">
                                 <div class="col-md-12">
-                                    <label> Program</label>
+                                        <div class="form-group">
+                                    <label> Degree/Program</label>
                                     <select  id="select2" class="browser-default form-control" formControlName="degree2"
                                     [ngClass]="{ 'is-invalid': submitted && f2.degree2.errors }" >
                                     <option >Choose your Degree</option>
@@ -132,6 +133,7 @@
                                     </select>
                                     <div *ngIf="submitted && f2.degree2.errors" class="invalid-feedback">
                                         <div *ngIf="f2.degree2.errors.required">Degree is required</div>
+                                    </div>
                                     </div>
                                        </div>
                               </div>

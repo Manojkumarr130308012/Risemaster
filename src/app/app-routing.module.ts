@@ -32,6 +32,7 @@ import { QualificationTypeComponent } from './StudentMaster/qualification-type/q
 import { RelationshipComponent } from './StudentMaster/relationship/relationship.component';
 import { ActivityCategoryComponent } from './StudentMaster/activity-category/activity-category.component';
 import { SubCategoryComponent } from './StudentMaster/sub-category/sub-category.component';
+import { BatchComponent } from './Master/batch/batch.component';
 // Staff Master
 import { GenderComponent } from './StaffMaster/gender/gender.component';
 import { MaritalStatusComponent } from './StaffMaster/marital-status/marital-status.component';
@@ -43,9 +44,6 @@ import { SalutationComponent } from './StaffMaster/salutation/salutation.compone
 import { FeeTypeComponent } from './StaffMaster/fee-type/fee-type.component';
 import { ModeOfEnquiryComponent } from './StaffMaster/mode-of-enquiry/mode-of-enquiry.component';
 
-
-// import { CandidateEnquiryComponent } from './Student/candidate-enquiry/candidate-enquiry.component';
-
 // Vehicle Management
 import { VehicleMasterComponent } from './VehicleManagement/vehicle-master/vehicle-master.component';
 import { DriverMasterComponent } from './VehicleManagement/driver-master/driver-master.component';
@@ -55,23 +53,24 @@ import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-d
 import { FuelEntryComponent } from './VehicleManagement/Vehicle Transaction/fuel-entry/fuel-entry.component';
 import { ExpensesEntryComponent } from './VehicleManagement/Vehicle Transaction/expenses-entry/expenses-entry.component';
 import { FuelEntryReportComponent } from './VehicleManagement/Vehicle Transaction/fuel-entry-report/fuel-entry-report.component';
-
 import { ExpenseEntryReportComponent } from './VehicleManagement/Vehicle Transaction/Expense-entry-report/Expense-entry-report.component';
 
 // Staff Management
 import { StaffProfileComponent } from './StaffManagement/staff-profile/staff-profile.component';
 import { StaffDetailsComponent } from './StaffManagement/staff-details/staff-details.component';
 //CandidateEnquiry
-import { BatchComponent } from './Master/batch/batch.component';
-import { StudentProfileComponent } from './StudentManagement/student-profile/student-profile.component';
-import { StudentEntryComponent } from './StudentManagement/student-entry/student-entry.component';
 import { CEMainPageComponent } from './StudentCandidateEnquiry/ce-main-page/ce-main-page.component';
 import { CEAddFormComponent } from './StudentCandidateEnquiry/ce-add-form/ce-add-form.component';
 import { CEEditFormComponent } from './StudentCandidateEnquiry/ce-edit-form/ce-edit-form.component';
 import { ConvertToStudentComponent } from './StudentCandidateEnquiry/convert-to-student/convert-to-student.component';
+import { CandidateReportComponent } from './StudentCandidateEnquiry/candidate-report/candidate-report.component';
+//Student Management
 import { StudentDetailComponent } from './StudentManagement/student-detail/student-detail.component';
 import { CertificateTypeComponent } from './StudentMaster/certificate-type/certificate-type.component';
 import { StudentEditComponent } from './StudentManagement/student-edit/student-edit.component';
+import { StudentProfileComponent } from './StudentManagement/student-profile/student-profile.component';
+import { StudentEntryComponent } from './StudentManagement/student-entry/student-entry.component';
+
 
 const routes: Routes = [
   // { path: '', component: LoginComponent },
@@ -153,8 +152,6 @@ const routes: Routes = [
     path: 'course-category',
     component: CourseCategoryComponent
   },
-
-
   {
     path: 'course-program',
     component: CourseProgramComponent
@@ -316,7 +313,8 @@ const routes: Routes = [
   component: CEEditFormComponent },
   { path: 'convertToStudent',
   component: ConvertToStudentComponent },
-
+  { path: 'candidateEnquiryReport',
+  component: CandidateReportComponent },
   //StudentManagemnat
   { path: 'studentProfile',
   component: StudentProfileComponent },

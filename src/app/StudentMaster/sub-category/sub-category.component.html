@@ -76,6 +76,7 @@
                     <form [formGroup]="registerForm" (ngSubmit)="onAddSubmit()">
                             <div class="row clearfix">
                                     <div class="col-md-12">
+                                        <div class="form-group">
                                         <label>Acitvity Category</label>
                                         <select  id="select"  class="browser-default form-control" formControlName="activityCategory"
                                         [ngClass]="{ 'is-invalid': submitted && f.activityCategory.errors }">
@@ -86,6 +87,7 @@
                                         <div *ngIf="submitted && f.activityCategory.errors" class="invalid-feedback">
                                             <div *ngIf="f.activityCategory.errors.required">ActivityCategory is required</div>
                                         </div>
+                                           </div>
                                            </div>
                                   </div>
                                   <br>
@@ -124,6 +126,7 @@
                     <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
                             <div class="row clearfix">
                                     <div class="col-md-12">
+                                            <div class="form-group">
                                         <label>Acitvity Category</label>
                                         <select  id="select2"  class="browser-default form-control" formControlName="activityCategory2"
                                         [ngClass]="{ 'is-invalid': submitted && f2.activityCategory2.errors }" >
@@ -134,6 +137,7 @@
                                         <div *ngIf="submitted && f2.activityCategory2.errors" class="invalid-feedback">
                                             <div *ngIf="f2.activityCategory2.errors.required">ActivityCategory is required</div>
                                         </div>
+                                           </div>
                                            </div>
                                   </div>
                                   <br>

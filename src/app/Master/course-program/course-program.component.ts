@@ -37,6 +37,8 @@ export class CourseProgramComponent implements OnInit {
   institutions;
   coursecategories: {};
   public message: string;
+  institutionId: any;
+  coursecategoriesbyIns: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -65,9 +67,8 @@ export class CourseProgramComponent implements OnInit {
   // Bind institution data
   loadInstitution() {
     this.request.getInstitution().subscribe((response: any) => {
-      console.log(response);
       this.institutions = response;
-     // this.coursecategories = response;
+      console.log('Institution', this.institutions);
     }, (error) => {
       console.log(error);
     });
@@ -136,6 +137,8 @@ export class CourseProgramComponent implements OnInit {
   // To edit Courseprogram
   onEdit(courseprogram) {
     this.Id = courseprogram._id;
+    this.institutionId = courseprogram.institution[0]._id;
+    this.loadCourseCategoryByIns(this.institutionId); 
     this.request.fetchCourseprogramBy(this.Id).subscribe((response) => {
       this.editCourseprogram = response[0];
       console.log(response);
@@ -150,6 +153,14 @@ export class CourseProgramComponent implements OnInit {
         courseprogram2: [this.courseprogramValue, Validators.required]
       });
       console.log(this.editForm.value);
+    });
+  }
+  loadCourseCategoryByIns(institution) {
+    this.request.getCoursecategorybyIns(institution).subscribe((response: any) => {
+      this.coursecategoriesbyIns = response;
+      console.log('CourseCategoryByIns', this.coursecategoriesbyIns);
+    }, (error) => {
+      console.log(error);
     });
   }
   onEditSubmit() {

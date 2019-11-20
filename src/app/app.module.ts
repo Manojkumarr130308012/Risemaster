@@ -105,6 +105,7 @@ import { ActivityCategoryComponent } from './StudentMaster/activity-category/act
 import { SubCategoryComponent } from './StudentMaster/sub-category/sub-category.component';
 import { CertificateTypeComponent } from './StudentMaster/certificate-type/certificate-type.component';
 import { StudentEditComponent } from './StudentManagement/student-edit/student-edit.component';
+import { CandidateReportComponent } from './StudentCandidateEnquiry/candidate-report/candidate-report.component';
 
 
 
@@ -190,6 +191,7 @@ ActivityCategoryComponent,
 SubCategoryComponent,
 CertificateTypeComponent,
 StudentEditComponent,
+CandidateReportComponent,
 
 
   ],

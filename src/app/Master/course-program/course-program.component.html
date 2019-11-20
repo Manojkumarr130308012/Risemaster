@@ -158,7 +158,7 @@
                               class="browser-default form-control" formControlName="coursecategory2"
                               [ngClass]="{ 'is-invalid': submitted && f2.coursecategory2.errors }">
                               <option disabled selected>Choose your course-category</option>
-                              <option *ngFor="let coursecategory of coursecategories?.response"
+                              <option *ngFor="let coursecategory of coursecategoriesbyIns?.response"
                                   [value]="coursecategory._id">{{coursecategory?.coursecategory}}</option>
                               </select>
                               <div *ngIf="submitted && f2.coursecategory2.errors" class="invalid-feedback">

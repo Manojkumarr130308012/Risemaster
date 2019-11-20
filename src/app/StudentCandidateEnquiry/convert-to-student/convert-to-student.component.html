@@ -1,182 +1,182 @@
 <section class="content">
-        <div class="container-fluid">
-            <!-- Table Start-->
-            <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="header">
-                            <h1>
-                                <strong *ngFor="let basicdetail of basicdetails">{{basicdetail.institutiond[0].tagline}}</strong>
-                            </h1>
+    <div class="container-fluid">
+        <!-- Table Start-->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h1>
+                            <strong *ngFor="let basicdetail of basicdetails">{{basicdetail.institutiond[0].tagline}}</strong>
+                        </h1>
+                    </div>
+                    <div class="body">
+                        <h5 *ngFor="let courseprogram of cecourseprograms">
+                            {{courseprogram.coursecategory[0].coursecategory}}  : {{courseprogram.courseprogram[0].courseprogram}} 
+                        </h5>
                         </div>
-                        <div class="body">
-                            <h5 *ngFor="let courseprogram of cecourseprograms">
-                                {{courseprogram.coursecategory[0].coursecategory}}  : {{courseprogram.courseprogram[0].courseprogram}} 
-                            </h5>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
+                    <div class="card">
+                        <div class="body" *ngFor="let basicdetail of basicdetails">
+                                <div class="row">
+                                        <div class="col-md-4">
+                                            <h6> Name :</h6> {{basicdetail?.firstName}} {{basicdetail?.lastName}}</div>
+                                            <div class="col-md-4">
+                                            <h6> Enquiry No. :</h6> -</div>
+                                            <div class="col-md-4">
+                                            <h6> Application No. :</h6> {{basicdetail?.applicatonNo}}</div>
+                                            </div>
+                                            <div class="row">
+                                            <div class="col-md-4">
+                                            <h6> Admission Category :</h6> {{basicdetail?.admissionCategoryd[0].admissionCategory}}</div>
+                                            <div class="col-md-4">
+                                            <h6> Admission Type :</h6> {{basicdetail?.admissiontyped[0].admissiontype}}</div>
+
+                                        </div>
+                                    </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="card">
+                            <div class="body">
+                                <form [formGroup]="convertToStudent">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group form-float">
+                                                <label>Degree Program<span class="asterisk">*</span></label>
+                                                <div class="form-line">
+                                                    <select class="browser-default" formControlName="degree" name="degree"
+                                                    (change)="onDegreeChange($event.target.value)" class="form-control" required>
+                                                        <option value="">Choose your Degree</option>
+                                                        <option *ngFor="let degree of degrees?.response" [value]="degree._id">{{degree?.degree}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group form-float">
+                                                <label>Batch<span class="asterisk">*</span></label>
+                                                <div class="form-line">
+                                                    <select class="browser-default" formControlName="batch" name="batch" class="form-control"
+                                                        required>
+                                                        <option value="">Choose your Batch</option>
+                                                        <option *ngFor="let batch of batcheByDegrees?.response" [value]="batch._id">{{batch?.batch}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group default-select">
+                                                <label for="semester">Semester</label>
+                                                <div class="form-line">
+                                                    <input type="text" class="select2 form-control" name="semester" placeholder="Enter Semester"
+                                                    formControlName="semester" disabled/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group form-float">
+                                                <label>Language Subject</label>
+                                                <div class="form-line">
+                                                    <select class="browser-default" formControlName="languageSubject" class="form-control">
+                                                        <option value="">Choose your Language Subject</option>
+                                                        <option value="Tamil">Tamil</option>
+                                                        <option value="English">English</option>
+                                                        <option value="Telugu">Telugu</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group form-float">
+                                                <label>Boarding Type<span class="asterisk">*</span></label>
+                                                <div class="form-line">
+                                                    <select class="browser-default"  formControlName="boardingType" class="form-control">
+                                                        <option value="">Choose your BoardingType</option>
+                                                        <option value="DayScholler">Day Scholar</option>
+                                                        <option value="Hosteller"> Hosteller</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-check m-l-10  m-t-25">
+                                                <label class="form-check-label">
+                                                    <input formControlName="checkbox1" class="form-check-input" type="checkbox">
+                                                     is Trasport Needed?
+                                                    <span class="form-check-sign">
+                                                        <span class="check"></span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group form-float">
+                                                <label>Financial Category<span class="asterisk">*</span></label>
+                                                <div class="form-line">
+                                                    <select class="browser-default" formControlName="financialCategory" class="form-control">
+                                                        <option value="">Choose your Financial Category</option>
+                                                        <option value="Self">Self</option>
+                                                        <option value="Loan">Loan</option>
+                                                        <option value="Sponsor">Sponsor</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group form-float">
+                                                <label for="joiningDate">Joining Date<span class="asterisk">*</span></label>
+                                                <div class="form-line">
+                                                    <input type="date" class="form-control" name="joiningDate" formControlName="joiningDate" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group form-float">
+                                                <label>Hostel</label>
+                                                <div class="form-line">
+                                                    <select class="browser-default" formControlName="hostel" class="form-control">
+                                                        <option value="">Choose your Hostel</option>
+                                                        <option value="DayScholler">GIRLS HOSTEL</option>
+                                                        <option value="Hosteller"> Vellalar Educational Trust Hostel 2 - Girls</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group form-float">
+                                                <label for="rout">Route</label>
+                                                <div class="form-line">
+                                                    <input type="text" class=" form-control" name="rout" placeholder="Enter Route"
+                                                    formControlName ="rout"  />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group form-float">
+                                                <label for="busstop">Busstop</label>
+                                                <div class="form-line">
+                                                    <input type="text" class="select2 form-control" name="busstop" placeholder="Enter BusStop"
+                                                    formControlName ="busstop"  disabled/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center" *ngFor="let basicdetail of basicdetails">
+                                        <button type="button" class="btn btn-border-radius bg-teal waves-effect" (click)="addToStudentDetail(basicdetail?._id)">Convert To Student</button>
+                                        <button type="button" class="btn btn-border-radius bg-red waves-effect"  (click)="cancel()">Cancel</button>
+                                    </div>
+                                </form>
                             </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
-                        <div class="card">
-                            <div class="body" *ngFor="let basicdetail of basicdetails">
-                                    <div class="row">
-                                            <div class="col-md-4">
-                                                <h6> Name :</h6> {{basicdetail?.firstName}} {{basicdetail?.lastName}}</div>
-                                                <div class="col-md-4">
-                                                <h6> Enquiry No. :</h6> -</div>
-                                                <div class="col-md-4">
-                                                <h6> Application No. :</h6> {{basicdetail?.applicatonNo}}</div>
-                                                </div>
-                                                <div class="row">
-                                                <div class="col-md-4">
-                                                <h6> Admission Category :</h6> {{basicdetail?.admissionCategoryd[0].admissionCategory}}</div>
-                                                <div class="col-md-4">
-                                                <h6> Admission Type :</h6> {{basicdetail?.admissiontyped[0].admissiontype}}</div>
-
-                                            </div>
-                                        </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="card">
-                                <div class="body">
-                                    <form [formGroup]="convertToStudent">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <div class="form-group form-float">
-                                                    <label>Degree Program</label>
-                                                    <div class="form-line">
-                                                        <select class="browser-default" formControlName="degree" name="degree"
-                                                        (change)="onDegreeChange($event.target.value)" class="form-control" required>
-                                                            <option value="">Choose your Degree</option>
-                                                            <option *ngFor="let degree of degrees?.response" [value]="degree._id">{{degree?.degree}}
-                                                            </option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group form-float">
-                                                    <label>Batch</label>
-                                                    <div class="form-line">
-                                                        <select class="browser-default" formControlName="batch" name="batch" class="form-control"
-                                                            required>
-                                                            <option value="">Choose your Batch</option>
-                                                            <option *ngFor="let batch of batcheByDegrees?.response" [value]="batch._id">{{batch?.batch}}
-                                                            </option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group form-float">
-                                                    <label for="semester">Semester</label>
-                                                    <div class="form-line">
-                                                        <input type="text" class="form-control" name="semester" placeholder="Enter Semester"
-                                                        formControlName="semester" required />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group form-float">
-                                                    <label>Language Subject</label>
-                                                    <div class="form-line">
-                                                        <select class="browser-default" formControlName="languageSubject" class="form-control">
-                                                            <option value="">Choose your Language Subject</option>
-                                                            <option value="Tamil">Tamil</option>
-                                                            <option value="English">English</option>
-                                                            <option value="Telugu">Telugu</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <div class="form-group form-float">
-                                                    <label>Boarding Type</label>
-                                                    <div class="form-line">
-                                                        <select class="browser-default"  formControlName="boardingType" class="form-control">
-                                                            <option value="">Choose your BoardingType</option>
-                                                            <option value="DayScholler">Day Scholar</option>
-                                                            <option value="Hosteller"> Hosteller</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-check m-l-10  m-t-25">
-                                                    <label class="form-check-label">
-                                                        <input formControlName="checkbox1" class="form-check-input" type="checkbox" (change)="triggerSomeEvent()">
-                                                         is Trasport Needed?
-                                                        <span class="form-check-sign">
-                                                            <span class="check"></span>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group form-float">
-                                                    <label>Financial Category</label>
-                                                    <div class="form-line">
-                                                        <select class="browser-default" formControlName="financialCategory" class="form-control">
-                                                            <option value="">Choose your Financial Category</option>
-                                                            <option value="Self">Self</option>
-                                                            <option value="Loan">Loan</option>
-                                                            <option value="Sponsor">Sponsor</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group form-float">
-                                                    <label for="joiningDate">Joining Date</label>
-                                                    <div class="form-line">
-                                                        <input type="date" class="form-control" name="joiningDate" formControlName="joiningDate" required />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <div class="form-group form-float">
-                                                    <label>Hostel</label>
-                                                    <div class="form-line">
-                                                        <select class="browser-default" formControlName="hostel" class="form-control">
-                                                            <option value="">Choose your Hostel</option>
-                                                            <option value="DayScholler">GIRLS HOSTEL</option>
-                                                            <option value="Hosteller"> Vellalar Educational Trust Hostel 2 - Girls</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group form-float">
-                                                    <label for="rout">Route</label>
-                                                    <div class="form-line">
-                                                        <input type="text" class="form-control" name="rout" placeholder="Enter Route"
-                                                        formControlName ="rout" [disabled]="isDisabled" required />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group form-float">
-                                                    <label for="busstop">Busstop</label>
-                                                    <div class="form-line">
-                                                        <input type="text" class="form-control" name="busstop" placeholder="Enter BusStop"
-                                                        formControlName ="busstop" required />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="text-center">
-                                            <button type="button" class="btn btn-border-radius bg-teal waves-effect" (click)="goBackToMain()">Convert To Student</button>
-                                            <button type="button" class="btn btn-border-radius bg-red waves-effect"  (click)="cancel()">Cancel</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-    </section>
+        </div>
+</section>

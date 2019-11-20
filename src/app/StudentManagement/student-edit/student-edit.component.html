@@ -28,7 +28,7 @@
                                         <label for="batch">Batch</label>
                                         <select class="browser-default form-control" [formControl]="batch" name="batch" required>
                                             <option>Choose your Batch</option>
-                                            <option *ngFor="let batch of batcheByDegrees?.response" [value]="batch._id">
+                                            <option *ngFor="let batch of batchbydeg?.response" [value]="batch._id">
                                                 {{batch?.batch}}
                                             </option>
                                         </select>
