@@ -39,7 +39,7 @@ export class RequestService {
   }
 
   public getAcademicYear() {
-    this.url = `${this.endPoint}/academic-year`;
+    this.url = `${this.endPoint}/academic-year/aggregation`;
     return this.http.get(this.url);
 
   }
@@ -59,7 +59,10 @@ export class RequestService {
     return this.http.put(this.url, body);
 
   }
-
+  public getAcademicYearbyIns(institution) {
+    this.url = `${this.endPoint}/academic-year/fetchbyIns/?institution=` + institution;
+    return this.http.get(this.url);
+    }
   fetchAcademicYear() {
     this.url = `${this.endPoint}/academic-year`;
     return this.http.get(this.url);
@@ -1542,7 +1545,11 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/ce-basicdetails/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
-
+  public fetchReportbyDate(filterReportbyDate) {
+     this.url = `${this.endPoint}/ce-basicdetails/fetchReportbyDate`;
+     return this.http.post(this.url,filterReportbyDate);
+   }
+   
   // CandiadateEnquiry - AddressDetails
   public getAddressDetails() {
     this.url = `${this.endPoint}/ce-addressdetails/aggregation`;

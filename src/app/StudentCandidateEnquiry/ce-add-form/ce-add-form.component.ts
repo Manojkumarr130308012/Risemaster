@@ -405,7 +405,7 @@ this.followupseditform = this.formBuilder.group({
   }
 // To add the basicDetails
 addbasicdetails() {
-  this.enquiryDate = this.datePipe.transform(new Date(),"dd-MM-yyyy");
+  this.enquiryDate = this.datePipe.transform(new Date(),"yyyy-MM-dd");
   this.status = "Not Confirmed"
   const newBasicDetails = {
     firstName: this.firstName.value,
