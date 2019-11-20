@@ -18,6 +18,8 @@ import { DynamicScriptLoaderService } from './services/dynamic-script-loader.ser
 import { RequestService } from './../app/services/request.service';
 import { HttpClientModule } from '@angular/common/http';
 import {FileUploadModule} from 'ng2-file-upload';
+import { NgxDatatableModule } from "@swimlane/ngx-datatable";
+
 
 
 import * as moment from 'moment';
@@ -204,7 +206,7 @@ StudentEditComponent,
     NgxPaginationModule,
     OrderModule,
     ArchwizardModule,
-    MatSnackBarModule
+    MatSnackBarModule,NgxDatatableModule
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
