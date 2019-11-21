@@ -48,6 +48,7 @@ export class ConvertToStudentComponent implements OnInit {
   admissionNo: any;
   joinDate: any;
   secondLanguage: any;
+  Idvalue1: any;
   constructor(
     private request: RequestService,
     private router: Router,
@@ -178,6 +179,7 @@ export class ConvertToStudentComponent implements OnInit {
     });
   }
   conToStudent(id) {
+    this.Idvalue1 = id;
     this.request.fetchBasicDetailsById(id).subscribe((response) => {
       this.basicDet = response;
       console.log('ForConvertTOStudnet', this.basicDet);
@@ -225,6 +227,13 @@ if (response.status == 'success') {
   swal("Converted To Student Successfully");
   this.router.navigate(['studentProfile']);
   this.viewData();
+  //update status in basic details as Confirmed 
+  const updatestatus = {
+    status: "Confirmed"
+  }
+  this.request.updateBasicDetails(this.Idvalue1,updatestatus).subscribe((response: any) => {
+    console.log('UpdateStatus', response);
+  });
 }
 else if (response.status == 'error') {
   this.setMessage(response.error);

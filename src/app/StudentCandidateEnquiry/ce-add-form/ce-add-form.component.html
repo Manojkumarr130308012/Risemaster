@@ -88,6 +88,11 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group form-float">
+                                                                <label for="referenceBy">Reference By</label>
+                                                                    <input type="text" class="form-control" name="referenceBy" placeholder="Enter Reference By"
+                                                                        [formControl]="referenceBy" />
+                                                            </div>
+                                                            <div class="form-group form-float">
                                                                 <label for="nationality">Nationality</label>
                                                                     <select class="browser-default" id="select7" [formControl]="nationality"
                                                                         class="form-control">
@@ -130,11 +135,19 @@
                                                                 <div class="form-line">
                                                                     <select class="browser-default" id="select1" [formControl]="institution" name="institution" class="form-control"
                                                                         (change)="onInstitutionChange($event.target.value)" required>
-                                                                        <option >Choose your Institution</option>
+                                                                        <option value="">Choose your Institution</option>
                                                                         <option *ngFor="let institution of institutions" [value]="institution._id">
                                                                             {{institution?.institution_name}}</option>
                                                                     </select>
                                                                 </div>
+                                                            </div>
+                                                            <div class="form-group form-float">
+                                                                <label for="academicYear">Academic Year<span class="asterisk">*</span></label>
+                                                                <select class="browser-default" [formControl]="academicYear" class="form-control" required>
+                                                                    <option value="">Choose your AcademicYear</option>
+                                                                    <option *ngFor="let academicYear of academicYears?.response" [value]="academicYear._id">
+                                                                        {{academicYear?.year}}</option>
+                                                                </select>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="board">Board Of Education</label>
@@ -183,11 +196,6 @@
                                                                             {{scholarshipCategory?.scholarshipCategory}}
                                                                         </option>
                                                                     </select>
-                                                            </div>
-                                                            <div class="form-group form-float">
-                                                                <label for="referenceBy">Reference By</label>
-                                                                    <input type="text" class="form-control" name="referenceBy" placeholder="Enter Reference By"
-                                                                        [formControl]="referenceBy" />
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="community">Community</label>
@@ -286,6 +294,7 @@
                                                     </div>
                                                     <!--///////////////////////////Course Program//////////////////////////////-->
                                                     <h3><Strong>Select Course</Strong></h3>
+                                                    <form id="course">
                                                     <div class="row">
                                                         <div class="col-md-5">
                                                             <div class="form-group form-float">
@@ -317,6 +326,7 @@
                                                             <button  class="btn bg-cyan" (click)="addCEcourseProgram()">Add</button>
                                                         </div>
                                                         </div>
+                                                    </form>
                                                         <div class="row">
                                                                 <div class="col-md-12">
                                                                     <table id="tableExport"
@@ -1584,17 +1594,19 @@
                                  <!--//Cerificate Upload-->
                                  <div class="row">
                                         <div class="col-md-12">
-                                                <label for="file">MarkSheet</label>
-                                                <a href="{{getfileLoc}}">MarkSheet</a><br><br>
+                                                <label for="file">Attach MarkSheet</label>
+                                                <br>
+                                                
                                             <div class="col-sm-12">
                                                 <input type="file" name="photo" ng2FileSelect [uploader]="uploader2" />
                                                 <div class="progress">
-                                                    <div class="progress-bar width-per-45" role="progressbar" aria-valuenow="60"
+                                                    <div class="progress-bar width-per-45" role="progressbar" aria-valuenow="50"
                                                         [ngStyle]="{'width':uploader2.progress+'%'}" aria-valuemin="0" aria-valuemax="100">
                                                     </div>
                                                 </div>
                                                 <div class="row" *ngIf="uploader2?.queue?.length > 0">
                                                     <button class="btn bg-teal waves-effect" (click)="filesubmit()">Upload File</button>
+                                                    <a href="{{getfileLoc2}}">Attached MarkSheet</a><br>
                                                 </div>
                                             </div>
                                         </div>

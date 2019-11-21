@@ -270,6 +270,9 @@ export class CEEditFormComponent implements OnInit {
   feetypes: any;
   institutiond: any;
   banks: any;
+  academicYear: FormControl;
+  academicYearValue: any;
+  academicyears: any;
 
   constructor(
     private request: RequestService,
@@ -319,6 +322,7 @@ export class CEEditFormComponent implements OnInit {
     this.pPanNumber = new FormControl('', Validators.required);
     this.pAadharNumber = new FormControl('', Validators.required);
     this.relativeName = new FormControl('', Validators.required);
+    this.academicYear = new FormControl({value:'', disabled: true});
     this.sPhoto = new FormControl('', Validators.required);
 
     //Edit Basic Details
@@ -483,6 +487,7 @@ export class CEEditFormComponent implements OnInit {
   this.pPanNumberValue = this.editbasicDetails.pPanNumber;
   this.pAadharNumberValue = this.editbasicDetails.pAadharNumber;
   this.relativeNameValue = this.editbasicDetails.relativeName;
+  this.academicYearValue = this.editbasicDetails.academicYear;
   this.sPhotoValue = this.editbasicDetails.sPhoto;
   this.IdValue = this.editbasicDetails._id;
 
@@ -524,6 +529,7 @@ export class CEEditFormComponent implements OnInit {
   this.pPanNumber = new FormControl(this.pPanNumberValue, Validators.required);
   this.pAadharNumber = new FormControl(this.pAadharNumberValue, Validators.required);
   this.relativeName = new FormControl(this.relativeNameValue, Validators.required);
+  this.academicYear = new FormControl(this.academicYearValue, Validators.required);
   this.sPhoto = new FormControl(this.sPhotoValue, Validators.required);
   });
   }
@@ -566,7 +572,8 @@ export class CEEditFormComponent implements OnInit {
         pPanNumber: this.pPanNumber.value,
         pAadharNumber: this.pAadharNumber.value,
         relativeName: this.relativeName.value,
-        sphoto: this.getfileLoc
+        academicYear: this.academicYear.value,
+        sPhoto: this.getfileLoc
       };
       this.request.updateBasicDetails(this.IdValue, edata).subscribe((response: any) => {
         if (response.status == 'success') {
@@ -1356,6 +1363,14 @@ this.followups = null;
       console.log(error);
     });
   }
+  loadAcademicYear() {
+    this.request.getAcademicYear().subscribe((response: any) => {
+      this.academicyears = response;
+      console.log('AcademicYear',this.academicyears);
+    }, (error) => {
+      console.log(error);
+    });
+  }
   private loadModal() {
     $('#addModaladdress').modal('hide'); //or $('#IDModal').modal('hide');
     $('#addModaladdress').on('hidden.bs.modal', function () {
@@ -1408,6 +1423,7 @@ this.followups = null;
     this.viewQualificationDetails(this.canId);
     this.viewFollowupsData(this.canId);
     this.viewCEcourseprogram(this.canId);
+    this.loadAcademicYear();
     this.loadPaymentMethod();
     this.loadAddressType();
     this.loadQualificationType();
@@ -1445,6 +1461,51 @@ this.followups = null;
     //jQuery Validation form BasicDetails (Form-Control)
     $(function () {
       $('#form_advanced_validation').validate({
+
+        highlight: function (input) {
+          $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+          $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+          $(element).parents('.form-group').append(error);
+        }
+      });
+    });
+    //jQuery Validation form qdadd (Form-Control)
+    $(function () {
+      $('#qdAddForm').validate({
+
+        highlight: function (input) {
+          $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+          $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+          $(element).parents('.form-group').append(error);
+        }
+      });
+    });
+     //jQuery Validation form qdEdit (Form-Control)
+     $(function () {
+      $('#qdEditForm').validate({
+
+        highlight: function (input) {
+          $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+          $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+          $(element).parents('.form-group').append(error);
+        }
+      });
+    });
+    //jQuery Validation form Course (Form-Control)
+    $(function () {
+      $('#course').validate({
 
         highlight: function (input) {
           $(input).parents('.form-line').addClass('error');

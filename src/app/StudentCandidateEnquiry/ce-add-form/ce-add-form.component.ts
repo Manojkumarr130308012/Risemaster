@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
-import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
 import { RequestService } from '../../services/request.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FileUploader } from 'ng2-file-upload';
@@ -66,7 +65,7 @@ export class CEAddFormComponent implements OnInit {
   message: any;
   admissiontypes: any;
   basicdetails: any;
-
+  academicYear: any;
   ///////////////////////Address Details//////////////////////////
   addresstype: any;
   flatNo: any;
@@ -152,7 +151,7 @@ export class CEAddFormComponent implements OnInit {
   getfileLoc2: any;
   fileLocation: any;
   fileLocationValue: any;
-  fileLocation2: FormControl;
+  fileLocation2: any;
   admissionCatgeories: any;
   // qdEditForm: any;
   editqualificationDetails: any;
@@ -200,12 +199,13 @@ amountValue: any;
   followups: any;
   paymentmethodValue: any;
   editfollowupsdata: any;
+  //////////////////////////////////////////Enquiry Details//////////////////
+  //Enquiry details
   dateOfEnquiryValue: any;
   modeOfEnquiryValue: any;
   descriptionValue: any;
   nextEnquiryDateValue: any;
   nextEnquiryTimeValue: any;
-
   dateOfEnquiry: any;
   modeOfEnquiry: any;
   description: any;
@@ -228,18 +228,18 @@ amountValue: any;
   modeOfEnquiries: any;
   feestypes: any;
   feetypes: any;
-  photoLocation: FormControl;
-  photoLocation2: FormControl;
+  photoLocation: any;
+  photoLocation2: any;
   photoLocationValue: any;
   basic: any;
   ID : any;
   banks: any;
   paymentStatus: any;
   status: any;
+  academicYears: any;
 
 
-  constructor(private dynamicScriptLoader: DynamicScriptLoaderService,
-    private request: RequestService,
+  constructor(private request: RequestService,
     private router: Router,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -283,6 +283,7 @@ amountValue: any;
     this.pPanNumber = new FormControl('');
     this.pAadharNumber = new FormControl('');
     this.relativeName = new FormControl('');
+    this.academicYear = new FormControl('', Validators.required);
     this.sPhoto = new FormControl('');
 
     this.route.queryParams.subscribe((params: any) => {
@@ -445,6 +446,7 @@ addbasicdetails() {
     pPanNumber: this.pPanNumber.value,
     pAadharNumber: this.pAadharNumber.value,
     relativeName: this.relativeName.value,
+    academicYear: this.academicYear.value,
     sPhoto: this.getfileLoc,
     enquiryDate: this.enquiryDate,
     status: this.status
@@ -1027,6 +1029,12 @@ onEditFollowupsSubmit() {
       }, (error) => {
         console.log(error);
       });
+      this.request.getAcademicYearbyIns(Institution).subscribe((response: any) => {
+        console.log('AcademicYear', response);
+        this.academicYears = response;
+      }, (error) => {
+        console.log(error);
+      });
     } else
 
     this.coursecategories = null;
@@ -1354,6 +1362,21 @@ onEditFollowupsSubmit() {
      //jQuery Validation form qdEdit (Form-Control)
      $(function () {
       $('#qdEditForm').validate({
+
+        highlight: function (input) {
+          $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+          $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+          $(element).parents('.form-group').append(error);
+        }
+      });
+    });
+    //jQuery Validation form Course (Form-Control)
+    $(function () {
+      $('#course').validate({
 
         highlight: function (input) {
           $(input).parents('.form-line').addClass('error');
