@@ -78,17 +78,7 @@ export class AdmissionTypeComponent implements OnInit {
     //}
   }
 
-  // To delete admission type
-  /*deleteAdmissiontype(id: any) {
-    alert("hi");
-    console.log(id);
-    this.request.deleteAdmissiontype(id).subscribe(res => {
-      console.log('deleteAdmissiontype',id);
-      this.loadData();
-      console.log('Deleted');
-      this.router.navigate(['admission-type']);
-    });
-  }*/
+
 
   // To edit admission type
   /*onEdit(id) {
@@ -153,6 +143,18 @@ export class AdmissionTypeComponent implements OnInit {
       .catch(error => console.log(error));
   }
 
+   // To delete admission type
+  /*deleteAdmissiontype(id: any) {
+    alert("hi");
+    console.log(id);
+    this.request.deleteAdmissiontype(id).subscribe(res => {
+      console.log('deleteAdmissiontype',id);
+      this.loadData();
+      console.log('Deleted');
+      this.router.navigate(['admission-type']);
+    });
+  }*/
+
   private loadData() {
     this.request.getAdmissiontype().subscribe(
       response => {
@@ -162,6 +164,8 @@ export class AdmissionTypeComponent implements OnInit {
         var i = 1;
         var table = $("#tableExport").DataTable({
           data: response,
+
+
           columns: [
             {
               render: function(data, type, full, meta) {
@@ -216,7 +220,9 @@ export class AdmissionTypeComponent implements OnInit {
 
          // this.deleteAdmission(id);
 
-          console.log('Admissiontype1',deleteAdmission(id));
+         deleteAdmission(id);
+
+          //console.log('Admissiontype1',deleteAdmission(id));
 
         });
 

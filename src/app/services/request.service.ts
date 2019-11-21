@@ -239,6 +239,7 @@ export class RequestService {
   }
 
  deleteAdmissiontype(id) {
+   console.log('id',id);
     this.url = `${this.endPoint}/admission-type/delete?id=` + id;
     return this.http.delete(this.url);
   }
@@ -1691,22 +1692,22 @@ fetchBankById(id) {
       this.url = `${this.endPoint}/ce-converttostudent/aggregation`;
       return this.http.get(this.url);
     }
-  
+
     public addConvertToStudent(newadressdetails: {}) {
       this.url = `${this.endPoint}/ce-converttostudent/add`;
       return this.http.post(this.url, newadressdetails);
     }
-  
+
     public deleteConvertToStudent(id) {
       this.url = `${this.endPoint}/ce-converttostudent/delete?id=` + id;
       return this.http.delete(this.url);
     }
-  
+
     updateConvertToStudent(id, body) {
       this.url = `${this.endPoint}/ce-converttostudent/update?id=${id}`;
       return this.http.put(this.url, body);
     }
-  
+
     fetchConvertToStudent() {
       this.url = `${this.endPoint}/ce-converttostudent/`;
       return this.http.get(this.url);
