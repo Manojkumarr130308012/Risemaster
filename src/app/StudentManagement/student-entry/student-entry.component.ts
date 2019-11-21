@@ -89,6 +89,7 @@ export class StudentEntryComponent implements OnInit {
   batcheByDegrees: any;
   batches: any;
   degrees: any;
+  degreeByIns: any;
   constructor(
     private request: RequestService,
     private router: Router,
@@ -384,6 +385,12 @@ export class StudentEntryComponent implements OnInit {
       }, (error) => {
         console.log(error);
       });
+      this.request.getDegreeByIns(Institution).subscribe((response: any) => {
+        this.degreeByIns = response;
+        console.log('DegreeByIns',  this.degreeByIns);
+      }, (error) => {
+        console.log(error);
+      });
       this.request.getAdmissionCategoryByIns(Institution).subscribe((response: any) => {
         // console.log('admissionCategory', response);
         this.admissioncategories = response;
@@ -394,6 +401,7 @@ export class StudentEntryComponent implements OnInit {
 
     this.admissiontypes = null;
     this.admissioncategories = null;
+    this.degreeByIns = null;
   }
    // Filter Batch by Degree
   onDegreeChange(degree: any) {

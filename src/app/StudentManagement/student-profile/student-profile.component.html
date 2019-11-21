@@ -24,8 +24,8 @@
                                     <div class="row clearfix">
                                         <div class="col-md-3">
                                             <label for="institution">Institution</label>
-                                            <select id="select" [(ngModel)]="selectedinstitution" class="browser-default form-control">
-                                                <!-- (change)="onInstitutionChange($event.target.value)" -->
+                                            <select id="select" [(ngModel)]="selectedinstitution" class="browser-default form-control"
+                                            (change)="onInstitutionChange($event.target.value)">
                                                 <option>Choose your institution</option>
                                                 <option *ngFor="let institution of institutions" [value]="institution._id">
                                                     {{institution.institution_name}}</option>
@@ -36,7 +36,7 @@
                                             <select id="select" [(ngModel)]="selectedDegree" class="browser-default form-control"
                                                 (change)="onDegreeChange($event.target.value)">
                                                 <option>Choose your Degree</option>
-                                                <option *ngFor="let degree of degrees?.response" [value]="degree._id">{{degree?.degree}}</option>
+                                                <option *ngFor="let degree of degreeByIns?.response" [value]="degree._id">{{degree?.degree}}</option>
                                             </select>
                                         </div>
                                         <div class="col-md-3">

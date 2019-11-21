@@ -19,9 +19,13 @@ export class DegreeComponent implements OnInit {
    public Id: any;
    public degree: any;
    public degree2: any;
+   public institution: any;
+   public institution2: any;
    editDegreedata;
    public degreeValue: any;
    public IdValue: any;
+   institutionValue: any;
+   institutions;
    degrees;
   editForm: FormGroup;
   message: any;
@@ -32,10 +36,12 @@ export class DegreeComponent implements OnInit {
       //Add Form Group
       this.registerForm = this.formBuilder.group({
         degree:['', Validators.required],
+        institution: ["", Validators.required],
     });
     //Edit Form Group
     this.editForm = this.formBuilder.group({
       degree2:['', Validators.required],
+      institution2: ["", Validators.required],
   });
 }
 // To display  degree
@@ -89,10 +95,12 @@ export class DegreeComponent implements OnInit {
     this.request.fetchDegreeById(this.Id).subscribe((response) => {
       this.editDegreedata = response[0];
       // console.log(response);
+      this.institutionValue = this.editDegreedata.institution;
       this.degreeValue = this.editDegreedata.degree;
       this.IdValue = this.editDegreedata._id;
 
       this.editForm = this.formBuilder.group({
+        institution2: [this.institutionValue, Validators.required],
         degree2:[this.degreeValue, Validators.required],
     });
     // console.log(this.editForm.value);
@@ -106,8 +114,8 @@ export class DegreeComponent implements OnInit {
     }
 
     const edata = {
-      degree: this.editForm.get('degree2').value
-
+      degree: this.editForm.get('degree2').value,
+      institution: this.editForm.get("institution2").value
   }
 
   this.request.updateDegree(this.IdValue, edata).subscribe((response: any) => {
@@ -151,10 +159,22 @@ export class DegreeComponent implements OnInit {
         $(this).find('form').trigger('reset');
      })
     }
-
+// Bind institution data
+loadInstitution() {
+  this.request.getInstitution().subscribe(
+    (response: any) => {
+      this.institutions = response;
+      console.log('Institution', this.institutions);
+    },
+    error => {
+      console.log(error);
+    }
+  );
+}
   ngOnInit() {
     this.viewData();
     this.startScript();
+    this.loadInstitution()
   }
 }
 

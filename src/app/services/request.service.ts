@@ -254,10 +254,7 @@ export class RequestService {
     this.url = `${this.endPoint}/admission-type/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
-  loadAdmissiontype() {
-    this.url = `${this.endPoint}/institution/`;
-    return this.http.get(this.url);
-  }
+
 
   // Institution
   public getInstitution() {
@@ -347,10 +344,7 @@ export class RequestService {
     this.url = `${this.endPoint}/admissionCategory/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
-  loadInstitution() {
-    this.url = `${this.endPoint}/institution/`;
-    return this.http.get(this.url);
-  }
+
 
 // batch
 public getbatch() {
@@ -375,6 +369,10 @@ fetchBatch() {
 
 fetchBatchById(id) {
   this.url = `${this.endPoint}/batch/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+fetchBatchByIns(institution) {
+  this.url = `${this.endPoint}/batch/fetchbyIns?institution=` + institution;
   return this.http.get(this.url);
 
 }
@@ -416,10 +414,7 @@ fetchBatchById(id) {
     this.url = `${this.endPoint}/course-category/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
-  loadCoursecategory() {
-    this.url = `${this.endPoint}/institution/`;
-    return this.http.get(this.url);
-  }
+
 
   // course-program
   public getCourseprogram() {
@@ -519,7 +514,7 @@ getCoursetypebyQua(QualificationType) {
 
 // Degree
 public getDegree() {
-  this.url = `${this.endPoint}/degree`;
+  this.url = `${this.endPoint}/degree/aggregation`;
   return this.http.get(this.url);
 }
 public addDegree(newDegree: { }) {
@@ -1061,10 +1056,6 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/driver/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
-  loadDriver() {
-    this.url = `${this.endPoint}/vehicle/`;
-    return this.http.get(this.url);
-  }
 
    // Vehicle
    public getVehicle() {
@@ -1095,10 +1086,6 @@ fetchBankById(id) {
     this.url = `${this.endPoint}/vehicle/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
-  loadVehicle() {
-    this.url = `${this.endPoint}/institution/`;
-    return this.http.get(this.url);
-    }
 
     // vehicle expenses
     public getExpenseType() {
@@ -2151,6 +2138,31 @@ fetchStudentCertificateById(id) {
 }
 getStudentCertificateById(stuId) {
   this.url = `${this.endPoint}/student-certificate/fetchbyId?stuId=` + stuId;
+  return this.http.get(this.url);
+}
+//Hostel
+getHostel() {
+  this.url = `${this.endPoint}/hostel/aggregation`;
+  return this.http.get(this.url);
+}
+addHostel(newdetail: any) {
+  this.url = `${this.endPoint}/hostel/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteHostel(id) {
+  this.url = `${this.endPoint}/hostel/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateHostel(id, body) {
+  this.url = `${this.endPoint}/hostel/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchHostelById(id) {
+  this.url = `${this.endPoint}/hostel/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+public getHostelbyIns(institution) {
+  this.url = `${this.endPoint}/hostel/fetchbyIns/?institution=` + institution;
   return this.http.get(this.url);
 }
 }

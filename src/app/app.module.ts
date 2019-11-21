@@ -18,7 +18,7 @@ import { DynamicScriptLoaderService } from './services/dynamic-script-loader.ser
 import { RequestService } from './../app/services/request.service';
 import { HttpClientModule } from '@angular/common/http';
 import {FileUploadModule} from 'ng2-file-upload';
-import { NgxDatatableModule } from "@swimlane/ngx-datatable";
+
 
 
 
@@ -106,6 +106,7 @@ import { SubCategoryComponent } from './StudentMaster/sub-category/sub-category.
 import { CertificateTypeComponent } from './StudentMaster/certificate-type/certificate-type.component';
 import { StudentEditComponent } from './StudentManagement/student-edit/student-edit.component';
 import { CandidateReportComponent } from './StudentCandidateEnquiry/candidate-report/candidate-report.component';
+import { HostelComponent } from './Master/hostel/hostel.component';
 
 
 
@@ -192,6 +193,7 @@ SubCategoryComponent,
 CertificateTypeComponent,
 StudentEditComponent,
 CandidateReportComponent,
+HostelComponent,
 
 
   ],
@@ -208,7 +210,7 @@ CandidateReportComponent,
     NgxPaginationModule,
     OrderModule,
     ArchwizardModule,
-    MatSnackBarModule,NgxDatatableModule
+    MatSnackBarModule,
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},

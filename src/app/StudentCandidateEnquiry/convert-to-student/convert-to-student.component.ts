@@ -49,6 +49,9 @@ export class ConvertToStudentComponent implements OnInit {
   joinDate: any;
   secondLanguage: any;
   Idvalue1: any;
+  hostels: any;
+  hostelsbyIns: any;
+  degreesbyIns: any;
   constructor(
     private request: RequestService,
     private router: Router,
@@ -92,10 +95,34 @@ export class ConvertToStudentComponent implements OnInit {
       console.log(error);
     });
   }
+  loadHostel() {
+    this.request.getHostel().subscribe((response: any) => {
+      this.hostels = response;
+      console.log('Hostel' ,this.hostels);
+    }, (error) => {
+      console.log(error);
+    });
+  }
   loadCourseCategoryByIns(institution) {
     this.request.getCoursecategorybyIns(institution).subscribe((response: any) => {
       this.coursecategoriesbyIns = response;
       console.log('CourseCategoryByIns', this.coursecategoriesbyIns);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  loadHostelByIns(institution) {
+    this.request.getHostelbyIns(institution).subscribe((response: any) => {
+      this.hostelsbyIns = response;
+      console.log('HostelByIns', this.hostelsbyIns);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  loadDegreeByIns(institution) {
+    this.request.getDegreeByIns(institution).subscribe((response: any) => {
+      this.degreesbyIns = response;
+      console.log('DegreeByIns', this.degreesbyIns);
     }, (error) => {
       console.log(error);
     });
@@ -106,6 +133,8 @@ export class ConvertToStudentComponent implements OnInit {
       this.institutiond = response[0].institutiond[0]._id;
       console.log('Institution' , this.institutiond); 
       this.loadCourseCategoryByIns(this.institutiond);
+      this.loadHostelByIns(this.institutiond);
+      this.loadDegreeByIns(this.institutiond);
       console.log('BasicDetailsById', this.basicdetails);
     }, (error) => {
       console.log(error);
@@ -271,6 +300,7 @@ else if (response.status == 'error') {
     this.viewConvertData(this.canId);
     this.loadDegree();
     this.loadBatch();
+    this.loadHostel();
   }
 
 }

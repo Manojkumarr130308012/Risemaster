@@ -143,6 +143,8 @@ export class StudentEditComponent implements OnInit {
   degrees: any;
   degreed: any;
   batchbydeg: any;
+  degreeByIns: any;
+  degreebyIns: any;
   constructor(
     private request: RequestService,
     private router: Router,
@@ -546,6 +548,12 @@ export class StudentEditComponent implements OnInit {
       }, (error) => {
         console.log(error);
       });
+      this.request.getDegreeByIns(Institution).subscribe((response: any) => {
+        this.degreeByIns = response;
+        console.log('DegreeByIns',  this.degreeByIns);
+      }, (error) => {
+        console.log(error);
+      });
       this.request.getAdmissionCategoryByIns(Institution).subscribe((response: any) => {
         console.log('admissionCategory', response);
         this.admissioncategories = response;
@@ -556,6 +564,7 @@ export class StudentEditComponent implements OnInit {
 
     this.admissiontypes = null;
     this.admissioncategories = null;
+    this.degreeByIns = null;
   }
 
   //Student Details Edit 
@@ -565,12 +574,22 @@ export class StudentEditComponent implements OnInit {
         this.studentDetails = response;
         this.institutiond = response[0].institution;
         this.loadAdmissionCategoryByIns(this.institutiond);
+        this.loadDegreeByIns(this.institutiond); 
+        this.degreed = response[0].degree;
+        this.loadBatchByDegree(this.degreed);
         console.log('StudentDetailById', this.studentDetails);
       }, (error) => {
         console.log(error);
       });
     }
-    
+  }
+  loadDegreeByIns(institution) {
+    this.request.getDegreeByIns(institution).subscribe((response: any) => {
+      this.degreebyIns = response;
+      console.log('DegreeByIns', this.degreebyIns);
+    }, (error) => {
+      console.log(error);
+    });
   }
   loadBatchByDegree(degree) {
     this.request.getBatchByDegree(degree).subscribe((response: any) => {

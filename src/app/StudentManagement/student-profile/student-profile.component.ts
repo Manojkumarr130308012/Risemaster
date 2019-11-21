@@ -16,6 +16,7 @@ export class StudentProfileComponent implements OnInit {
   batcheByDegrees: any;
   stuId: any;
   studentDets: Object;
+  degreeByIns: any;
 
   constructor(
     private request: RequestService,
@@ -90,6 +91,22 @@ export class StudentProfileComponent implements OnInit {
       });
       } else
       this.studentDets = null;
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Filter CourseCategory, AdmissionType, AdmissionCategory by Institution
+  onInstitutionChange(Institution: any) {
+    console.log('institution', Institution)
+    if (Institution) {
+      this.request.getDegreeByIns(Institution).subscribe((response: any) => {
+        this.degreeByIns = response;
+        console.log('DegreeByIns',  this.degreeByIns);
+      }, (error) => {
+        console.log(error);
+      });
+      
+    } else
+
+    this.degreeByIns = null;
   }
   ngOnInit() {
     this.loadBatch();

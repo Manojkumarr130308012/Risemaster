@@ -70,6 +70,7 @@ import { CertificateTypeComponent } from './StudentMaster/certificate-type/certi
 import { StudentEditComponent } from './StudentManagement/student-edit/student-edit.component';
 import { StudentProfileComponent } from './StudentManagement/student-profile/student-profile.component';
 import { StudentEntryComponent } from './StudentManagement/student-entry/student-entry.component';
+import { HostelComponent } from './Master/hostel/hostel.component';
 
 
 const routes: Routes = [
@@ -96,7 +97,10 @@ const routes: Routes = [
     path: 'user-designation',
     component: UserDesignationComponent
   },
-
+  {
+    path: 'hostel',
+    component: HostelComponent
+  },
   {
     path: 'nationality',
     component: NationalityComponent

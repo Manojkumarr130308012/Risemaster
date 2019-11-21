@@ -31,12 +31,12 @@ export class CandidateReportComponent implements OnInit {
     private route: ActivatedRoute,) {
 
     this.institution = new FormControl('', Validators.required);
-   this.coursecategory = new FormControl('', Validators.required);
+  //  this.coursecategory = new FormControl('', Validators.required);
     this.admissiontype = new FormControl('', Validators.required);
     this.fromDate = new FormControl('', Validators.required);
     this.toDate = new FormControl('', Validators.required);
     // this.courseprogram = new FormControl('', Validators.required);
-    // this.academicYear = new FormControl('', Validators.required);
+    this.academicYear = new FormControl('', Validators.required);
     this.confirmedStatus = new FormControl('', Validators.required);
      }
   loadInstitution() {
@@ -133,12 +133,12 @@ export class CandidateReportComponent implements OnInit {
   generateReport() {
     const filterReportbyDate = {
       institution: this.institution.value,
-     coursecategory: this.coursecategory.value,
+    //  coursecategory: this.coursecategory.value,
       admissiontype: this.admissiontype.value,
       fromDate: this.fromDate.value,
       toDate: this.toDate.value,
       // courseprogram: this.courseprogram.value,
-      // academicYear: this.academicYear.value,
+      academicYear: this.academicYear.value,
       confirmedStatus: this.confirmedStatus.value
     };
 console.log('Reporttt', filterReportbyDate);

@@ -13,30 +13,43 @@
                         <form id="studentEntry">
                             <div class="row">
                                 <div class="col-md-4">
-                                        <div class="form-group form-float">
-                                    <label for="degree">Degree/Program<span class="asterisk">*</span></label>
-                                    <div class="form-line">
-                                    <select class="browser-default form-control" name="degree" [formControl]="degree"
-                                        (change)="onDegreeChange($event.target.value)"  required>
-                                        <option value="">Choose your Degree</option>
-                                        <option *ngFor="let degree of degrees?.response" [value]="degree._id">
-                                            {{degree?.degree}}</option>
-                                    </select>
+                                    <div class="form-group form-float">
+                                        <label for="institution">Institution<span class="asterisk">*</span></label>
+                                        <div class="form-line">
+                                            <select class="browser-default form-control" id="select1" [formControl]="institution" name="institution"
+                                                (change)="onInstitutionChange($event.target.value)" required>
+                                                <option value="">Choose your Institution</option>
+                                                <option *ngFor="let institution of institutions" [value]="institution._id">
+                                                    {{institution?.institution_name}}</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
                                 <div class="col-md-4">
-                                     <div class="form-group form-float">
-                                    <label for="batch">Batch<span class="asterisk">*</span></label>
-                                    <div class="form-line">
-                                    <select class="browser-default form-control"  name="batch" [formControl]="batch" required>
-                                        <option value="">Choose your Batch</option>
-                                        <option *ngFor="let batch of batcheByDegrees?.response" [value]="batch._id">
-                                            {{batch?.batch}}
-                                        </option>
-                                    </select>
+                                    <div class="form-group form-float">
+                                        <label for="degree">Degree/Program<span class="asterisk">*</span></label>
+                                        <div class="form-line">
+                                            <select class="browser-default form-control" name="degree" [formControl]="degree"
+                                                (change)="onDegreeChange($event.target.value)" required>
+                                                <option value="">Choose your Degree</option>
+                                                <option *ngFor="let degree of degreeByIns?.response" [value]="degree._id">
+                                                    {{degree?.degree}}</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="col-md-4">
+                                    <div class="form-group form-float">
+                                        <label for="batch">Batch<span class="asterisk">*</span></label>
+                                        <div class="form-line">
+                                            <select class="browser-default form-control" name="batch" [formControl]="batch" required>
+                                                <option value="">Choose your Batch</option>
+                                                <option *ngFor="let batch of batcheByDegrees?.response" [value]="batch._id">
+                                                    {{batch?.batch}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -66,10 +79,9 @@
                                     <div class="form-group form-float">
                                         <label for="bloodGroup">Blood Group</label>
                                         <div class="form-line">
-                                            <select class="browser-default form-control"  [formControl]="bloodGroup">
+                                            <select class="browser-default form-control" name="bloodGroup" [formControl]="bloodGroup">
                                                 <option value="">Choose your Blood Group</option>
-                                                <option *ngFor="let bloodgroup of bloodgroups?.response"
-                                                    [value]="bloodgroup._id">
+                                                <option *ngFor="let bloodgroup of bloodgroups?.response" [value]="bloodgroup._id">
                                                     {{bloodgroup?.bloodgroup}}</option>
                                             </select>
                                         </div>
@@ -235,27 +247,19 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
-                                        <label for="institution">Institution<span class="asterisk">*</span></label>
-                                        <div class="form-line">
-                                            <select class="browser-default form-control" id="select1"
-                                                [formControl]="institution" name="institution"
-                                                (change)="onInstitutionChange($event.target.value)" required>
-                                                <option value="">Choose your Institution</option>
-                                                <option *ngFor="let institution of institutions"
-                                                    [value]="institution._id">
-                                                    {{institution?.institution_name}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-float">
                                         <label>Boarding<span class="asterisk">*</span></label>
                                         <div class="form-line">
-                                            <select class="browser-default" name="boarding" [formControl]="boarding"
-                                                class="form-control" required>
+                                            <select class="browser-default" name="boarding" [formControl]="boarding" class="form-control" required>
                                                 <option value="">Choose your BoardingType</option>
                                                 <option value="DayScholler">Day Scholar</option>
                                                 <option value="Hosteller"> Hosteller</option>
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <label for="boardingStartDate">Boarding Start Date</label>
+                                        <div class="form-line">
+                                            <input type="date" class="form-control" name="boardingStartDate" [formControl]="boardingStartDate" />
                                         </div>
                                     </div>
                                 </div>
@@ -274,12 +278,16 @@
                                             </select>
                                         </div>
                                     </div>
-
                                     <div class="form-group form-float">
-                                        <label for="boardingStartDate">Boarding Start Date</label>
+                                        <label>Financial Category<span class="asterisk">*</span></label>
                                         <div class="form-line">
-                                            <input type="date" class="form-control" name="boardingStartDate"
-                                                [formControl]="boardingStartDate" />
+                                            <select class="browser-default" name="financialCategory" [formControl]="financialCategory" class="form-control"
+                                                required>
+                                                <option value="">Choose your Financial Category</option>
+                                                <option value="Self">Self</option>
+                                                <option value="Loan">Loan</option>
+                                                <option value="Sponsor">Sponsor</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -296,18 +304,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group form-float">
-                                        <label>Financial Category<span class="asterisk">*</span></label>
-                                        <div class="form-line">
-                                            <select class="browser-default" name="financialCategory"
-                                                [formControl]="financialCategory" class="form-control" required>
-                                                <option value="">Choose your Financial Category</option>
-                                                <option value="Self">Self</option>
-                                                <option value="Loan">Loan</option>
-                                                <option value="Sponsor">Sponsor</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="row">
@@ -391,23 +388,23 @@
                             <!--////Other///-->
                             <h3>Others</h3>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                     <div class="form-group form-float">
                                         <label for="nationality">Nationality</label>
                                         <div class="form-line">
-                                        <select class="browser-default" [formControl]="nationality"
-                                            class="form-control">
+                                        <select class="browser-default" [formControl]="nationality" class="form-control">
                                             <option value="">Choose your Nationality</option>
-                                            <option *ngFor="let nationality of nationalities?.response"
-                                                [value]="nationality._id">
+                                            <option *ngFor="let nationality of nationalities?.response" [value]="nationality._id">
                                                 {{nationality?.nationality}}</option>
                                         </select>
                                     </div>
                                 </div>
+                                </div>
+                                <div class="col-md-3">
                                     <div class="form-group form-float">
                                         <label for="religion">Religion</label>
                                         <div class="form-line">
-                                        <select class="browser-default" [formControl]="religion" class="form-control">
+                                        <select class="browser-default" [formControl]="religion" name="religion" class="form-control">
                                             <option value="">Choose your Religion</option>
                                             <option *ngFor="let religion of religions?.response" [value]="religion._id">
                                                 {{religion?.religion}}
@@ -416,19 +413,20 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                     <div class="form-group form-float">
                                         <label for="community">Community<span class="asterisk">*</span></label>
                                         <div class="form-line">
                                         <select class="browser-default" [formControl]="community" name="community" class="form-control" required>
                                             <option value="">Choose your Community</option>
-                                            <option *ngFor="let community of communities?.response"
-                                                [value]="community._id">
+                                            <option *ngFor="let community of communities?.response" [value]="community._id">
                                                 {{community?.community}}
                                             </option>
                                         </select>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="col-md-3">
                                     <div class="form-group form-float">
                                         <label for="caste">Caste</label>
                                         <div class="form-line">
