@@ -43,15 +43,17 @@
                                 <form [formGroup]="convertToStudent">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <div class="form-group form-float">
-                                                <label>Degree Program<span class="asterisk">*</span></label>
-                                                <div class="form-line">
-                                                    <select class="browser-default" formControlName="degree" name="degree"
-                                                    (change)="onDegreeChange($event.target.value)" class="form-control" required>
-                                                        <option value="">Choose your Degree</option>
-                                                        <option *ngFor="let degree of degreesbyIns?.response" [value]="degree._id">{{degree?.degree}}
-                                                        </option>
-                                                    </select>
+                                            <div class="form-group">
+                                                <label>Course Program</label>
+                                                <select id="select" class="browser-default form-control" formControlName="courseprogram"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.courseprogram.errors }"
+                                                    (change)="onCourseProgramChange($event.target.value)">
+                                                    <option default value>Choose your Course Program</option>
+                                                    <option *ngFor="let courseprogram of courseprogrambyIns?.response" [value]="courseprogram._id">
+                                                        {{courseprogram.courseprogram}}</option>
+                                                </select>
+                                                <div *ngIf="submitted && f.courseprogram.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.courseprogram.errors.required">Course Program is required</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -62,7 +64,7 @@
                                                     <select class="browser-default" formControlName="batch" name="batch" class="form-control"
                                                         required>
                                                         <option value="">Choose your Batch</option>
-                                                        <option *ngFor="let batch of batcheByDegrees?.response" [value]="batch._id">{{batch?.batch}}
+                                                        <option *ngFor="let batch of batcheBycourseprograms?.response" [value]="batch._id">{{batch?.batch}}
                                                         </option>
                                                     </select>
                                                 </div>

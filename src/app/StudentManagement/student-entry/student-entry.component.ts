@@ -14,7 +14,7 @@ declare const swal: any;
 })
 export class StudentEntryComponent implements OnInit {
 
-  degree: any;
+  courseprogram: any;
   batch: any;
   rollNo: any;
   regNo: any;
@@ -86,17 +86,18 @@ export class StudentEntryComponent implements OnInit {
   institution: any;
   institutions: any;
   id: any;
-  batcheByDegrees: any;
+  batcheBycourseprograms: any;
   batches: any;
-  degrees: any;
-  degreeByIns: any;
+  courseprograms: any;
+  courseprogramByIns: any;
+  courseprogrambyIns: any;
   constructor(
     private request: RequestService,
     private router: Router,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
   ) {
-    this.degree = new FormControl('', Validators.required);
+    this.courseprogram = new FormControl('', Validators.required);
     this.batch = new FormControl('', Validators.required);
     this.rollNo = new FormControl('', Validators.required);
     this.regNo = new FormControl('');
@@ -179,7 +180,7 @@ export class StudentEntryComponent implements OnInit {
   }
   addStudentDetails() {
     const newStudentDetail = {
-      degree: this.degree.value,
+      courseprogram: this.courseprogram.value,
       batch: this.batch.value,
       rollNo: this.rollNo.value,
       regNo: this.regNo.value,
@@ -366,14 +367,7 @@ export class StudentEntryComponent implements OnInit {
       console.log(error);
     });
   }
-  loadDegree() {
-    this.request.getDegree().subscribe((response: any) => {
-      this.degrees = response;
-      // console.log('DegreeProgram' ,this.degrees);
-    }, (error) => {
-      console.log(error);
-    });
-  }
+  
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Filter AdmissionType, AdmissionCategory by Institution
   onInstitutionChange(Institution: any) {
@@ -385,9 +379,9 @@ export class StudentEntryComponent implements OnInit {
       }, (error) => {
         console.log(error);
       });
-      this.request.getDegreeByIns(Institution).subscribe((response: any) => {
-        this.degreeByIns = response;
-        console.log('DegreeByIns',  this.degreeByIns);
+      this.request.getCourseprogramByIns(Institution).subscribe((response: any) => {
+        this.courseprogrambyIns = response;
+        console.log('CourseProgramByIns',  this.courseprogrambyIns);
       }, (error) => {
         console.log(error);
       });
@@ -401,19 +395,20 @@ export class StudentEntryComponent implements OnInit {
 
     this.admissiontypes = null;
     this.admissioncategories = null;
-    this.degreeByIns = null;
+    this.courseprogrambyIns = null;
   }
    // Filter Batch by Degree
-  onDegreeChange(degree: any) {
-    if (degree) {
-      this.request.getBatchByDegree(degree).subscribe((response: any) => {
-        this.batcheByDegrees = response;
-        // console.log('BatchByDegree',  this.batcheByDegrees);
+   onCourseProgramChange(courseprogram: any) {
+    console.log('courseprogram' ,courseprogram)
+    if (courseprogram) {
+      this.request.getBatchByCoursePrgram(courseprogram).subscribe((response: any) => {
+        this.batcheBycourseprograms = response;
+        console.log('BatchBycourseprogram',  this.batcheBycourseprograms);
       }, (error) => {
         console.log(error);
       });
     } else
-      this.batcheByDegrees = null;
+      this.batcheBycourseprograms = null;
   }
   ngOnInit() { 
     this.viewData();
@@ -430,7 +425,6 @@ export class StudentEntryComponent implements OnInit {
     this.loadMaritalstatus();
     this.loadBloodgroup();
     this.loadInstitution();
-    this.loadDegree();
     this.loadBatch();
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
