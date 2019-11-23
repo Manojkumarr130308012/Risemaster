@@ -614,6 +614,16 @@ addCEcourseProgram() {
   this.request.addCEcourseprogram(newcourseProgram).subscribe((response: any) => {
     console.log(response);
       swal("Added Sucessfully");
+      //update status in basic details as Confirmed 
+      const courseCate = response.res.coursecategory;
+      const coursePro = response.res.courseprogram;
+  const updatestatus = {
+    courseprogram: coursePro,
+    coursecategory: courseCate
+  }
+  this.request.updateBasicDetails(this.canId,updatestatus).subscribe((response: any) => {
+    console.log('UpdateStatus', response);
+  });
       this.viewCEcourseprogram(this.canId);
   }, (error) => {
     this.setMessage(error);

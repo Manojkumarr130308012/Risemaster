@@ -237,6 +237,8 @@ amountValue: any;
   paymentStatus: any;
   status: any;
   academicYears: any;
+  courseCate: any;
+  coursePro: any;
 
 
   constructor(private request: RequestService,
@@ -492,11 +494,22 @@ addbasicdetails() {
   this.request.addCEcourseprogram(newcourseProgram).subscribe((response: any) => {
     if (response.status == 'success') {
       swal("Added Sucessfully");
-      this.viewCEcourseprogram(this.canId);
+      //update status in basic details as Confirmed 
+      const courseCate = response.res.coursecategory;
+      const coursePro = response.res.courseprogram;
+  const updatestatus = {
+    courseprogram: coursePro,
+    coursecategory: courseCate
+  }
+  this.request.updateBasicDetails(this.canId,updatestatus).subscribe((response: any) => {
+    console.log('UpdateStatus', response);
+  });
+  this.viewCEcourseprogram(this.canId);
     }
     else if (response.status == 'error') {
       this.setMessage(response.error);
     }
+
   }, (error) => {
     this.setMessage(error);
   });
