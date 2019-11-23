@@ -11,10 +11,20 @@ export class RequestService {
   url: string;
   endPoint = 'http://localhost:3000';
 
+
+
+
+  public login(credentials) {
+    console.log('credentials2',credentials);
+    this.url = `${this.endPoint}/user/login`;
+    return this.http.get(this.url,credentials);
+  }
+
   public getDesignation() {
     this.url = `${this.endPoint}/user-designation/fetch`;
     return this.http.get(this.url);
   }
+
 
   public addNewDesignation(newDesignation) {
     this.url = `${this.endPoint}/user-designation/add`;
@@ -1536,7 +1546,7 @@ fetchBankById(id) {
      this.url = `${this.endPoint}/ce-basicdetails/fetchReportbyDate`;
      return this.http.post(this.url,filterReportbyDate);
    }
-   
+
   // CandiadateEnquiry - AddressDetails
   public getAddressDetails() {
     this.url = `${this.endPoint}/ce-addressdetails/aggregation`;

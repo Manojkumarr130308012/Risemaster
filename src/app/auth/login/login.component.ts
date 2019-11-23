@@ -1,119 +1,174 @@
+import { Component, OnInit } from "@angular/core";
 
-import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 
-import { Router } from '@angular/router';
-import { FormControl, Validators } from '@angular/forms';
-
-
+import { RequestService } from "./../../services/request.service";
+import { StorageService } from "./../../services/storage.service";
+import { AuthService } from "./../../services/auth.service";
 
 declare const jQuery: any;
 declare const $: any;
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit {
-  public email = new FormControl('', Validators.email);
-  public password = new FormControl('', Validators.required);
+  public username : any;
+  public password : any;
 
-  constructor(private router: Router) {
+  constructor(
+    private request: RequestService,
+    private storage: StorageService,
+    private router: Router,
+    private auth: AuthService
+  ) {
+
+
 
   }
 
   onSubmit() {
-    console.log('login');
-    this.router.navigate(['/dashboard/main']);
+    const credentials = {
+      username: this.username.value,
+      password: this.password.value
+    };
+
+    console.log("credentials", credentials);
+
+    this.request.login(credentials).subscribe((response: any) => {
+      if (!response) {
+        console.log("something went wrong");
+        return;
+      }
+
+      if (response.status === "error") {
+        console.log("error", response.msg);
+        this.storage.clear();
+        return;
+      }
+      console.log("response", response);
+      this.storage.set(response.data);
+      this.router.navigate(["/dashboard/main"]);
+    });
+
+    console.log("login");
+    //this.router.navigate(['/dashboard/main']);
   }
 
   ngOnInit() {
-    (function ($) {
-        "use strict";
-        /*==================================================================
+
+    this.username= new FormControl('', Validators.required);
+    this.password = new FormControl('', Validators.required);
+
+     if (!this.auth.isValidUser(true)) {
+      return;
+    }
+
+    (function($) {
+      "use strict";
+      /*==================================================================
         [ Focus input ]*/
-        $('.input100').each(function () {
-            $(this).on('blur', function () {
-                if ($(this).val().trim() != "") {
-                    $(this).addClass('has-val');
-                }
-                else {
-                    $(this).removeClass('has-val');
-                }
-            })
-        })
+      $(".input100").each(function() {
+        $(this).on("blur", function() {
+          if (
+            $(this)
+              .val()
+              .trim() != ""
+          ) {
+            $(this).addClass("has-val");
+          } else {
+            $(this).removeClass("has-val");
+          }
+        });
+      });
 
-
-        /*==================================================================
+      /*==================================================================
         [ Validate ]*/
-        var input = $('.validate-input .input100');
+      var input = $(".validate-input .input100");
 
-        $('.validate-form').on('submit', function () {
-            var check = true;
+      $(".validate-form").on("submit", function() {
+        var check = true;
 
-            for (var i = 0; i < input.length; i++) {
-                if (validate(input[i]) == false) {
-                    showValidate(input[i]);
-                    check = false;
-                }
-            }
+        for (var i = 0; i < input.length; i++) {
+          if (validate(input[i]) == false) {
+            showValidate(input[i]);
+            check = false;
+          }
+        }
 
-            return check;
+        return check;
+      });
+
+      $(".validate-form .input100").each(function() {
+        $(this).focus(function() {
+          hideValidate(this);
         });
+      });
 
-
-        $('.validate-form .input100').each(function () {
-            $(this).focus(function () {
-                hideValidate(this);
-            });
-        });
-
-        function validate(input) {
-            if ($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
-                if ($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
-                    return false;
-                }
-            }
-            else {
-                if ($(input).val().trim() == '') {
-                    return false;
-                }
-            }
+      function validate(input) {
+        if (
+          $(input).attr("type") == "email" ||
+          $(input).attr("name") == "email"
+        ) {
+          if (
+            $(input)
+              .val()
+              .trim()
+              .match(
+                /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/
+              ) == null
+          ) {
+            return false;
+          }
+        } else {
+          if (
+            $(input)
+              .val()
+              .trim() == ""
+          ) {
+            return false;
+          }
         }
+      }
 
-        function showValidate(input) {
-            var thisAlert = $(input).parent();
+      function showValidate(input) {
+        var thisAlert = $(input).parent();
 
-            $(thisAlert).addClass('alert-validate');
-            $(".erroe_dis").remove();
-            $(".alert-validate").append('<i class="material-icons erroe_dis">error</i>');
-        }
+        $(thisAlert).addClass("alert-validate");
+        $(".erroe_dis").remove();
+        $(".alert-validate").append(
+          '<i class="material-icons erroe_dis">error</i>'
+        );
+      }
 
-        function hideValidate(input) {
-            var thisAlert = $(input).parent();
+      function hideValidate(input) {
+        var thisAlert = $(input).parent();
 
-            $(thisAlert).removeClass('alert-validate');
-            $(".erroe_dis").remove();
-        }
+        $(thisAlert).removeClass("alert-validate");
+        $(".erroe_dis").remove();
+      }
 
-        /*==================================================================
+      /*==================================================================
         [ Show pass ]*/
-        var showPass = 0;
-        $('.btn-show-pass').on('click', function () {
-            if (showPass == 0) {
-                $(this).next('input').attr('type', 'text');
-                $(this).addClass('active');
-                showPass = 1;
-            }
-            else {
-                $(this).next('input').attr('type', 'password');
-                $(this).removeClass('active');
-                showPass = 0;
-            }
-
-        });
-
-
+      var showPass = 0;
+      $(".btn-show-pass").on("click", function() {
+        if (showPass == 0) {
+          $(this)
+            .next("input")
+            .attr("type", "text");
+          $(this).addClass("active");
+          showPass = 1;
+        } else {
+          $(this)
+            .next("input")
+            .attr("type", "password");
+          $(this).removeClass("active");
+          showPass = 0;
+        }
+      });
     })(jQuery);
-}
+  }
 }
