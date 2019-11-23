@@ -380,6 +380,14 @@ fetchBatchByIns(institution) {
     this.url = `${this.endPoint}/batch/update?id=` + id, body;
     return this.http.put(this.url, body);
   }
+  public getBatchByCoursePrgram(courseprogram) {
+    this.url = `${this.endPoint}/batch/fetchByCour/?courseprogram=` + courseprogram;
+    return this.http.get(this.url);
+  }
+  public getBatchByDegree(degree) {
+    this.url = `${this.endPoint}/batch/fetchByCour/?degree=` + degree;
+    return this.http.get(this.url);
+  }
   // course-category
   public getCoursecategory() {
     this.url = `${this.endPoint}/course-category/aggregation`;
@@ -447,6 +455,10 @@ fetchBatchByIns(institution) {
   }
   public getCoursecategorybycourPro(coursecategory) {
     this.url = `${this.endPoint}/course-program/fetchByCouCate/?coursecategory=` + coursecategory;
+    return this.http.get(this.url);
+  }
+  public getCourseprogramByIns(institution) {
+    this.url = `${this.endPoint}/course-program/fetchbyIns/?institution=` + institution;
     return this.http.get(this.url);
   }
 // Address Type
@@ -1737,7 +1749,7 @@ fetchBankById(id) {
     return this.http.get(this.url);
   }
 
-
+  
   public getAdmissionCategoryByIns(institution) {
     this.url = `${this.endPoint}/admissionCategory/fetchbyIns/?institution=` + institution;
     return this.http.get(this.url);
@@ -1758,9 +1770,14 @@ public getStudentDetails() {
   return this.http.get(this.url);
 }
 
-public addStudentDetails(newadressdetails: {}) {
+public addStudentDetails(newdetails: {}) {
   this.url = `${this.endPoint}/student-details/add`;
-  return this.http.post(this.url, newadressdetails);
+  return this.http.post(this.url, newdetails);
+}
+
+public convertToStudentDetail(newdetails: {}) {
+  this.url = `${this.endPoint}/student-details/convert`;
+  return this.http.post(this.url, newdetails);
 }
 public getStudentDetailByBatch(batch) {
   this.url = `${this.endPoint}/student-details/fetchbyBatch?batch=` + batch;
@@ -1784,10 +1801,7 @@ fetchStudentDetailsById(id) {
   this.url = `${this.endPoint}/student-details/fetchbyId?id=` + id;
   return this.http.get(this.url);
 }
-public getBatchByDegree(degree) {
-  this.url = `${this.endPoint}/batch/fetchByDeg/?degree=` + degree;
-  return this.http.get(this.url);
-}
+
 // StudentManagment - StudentContact
 public getStudentcontact() {
   this.url = `${this.endPoint}/student-contact/aggregation`;

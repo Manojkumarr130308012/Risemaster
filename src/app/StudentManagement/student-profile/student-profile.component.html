@@ -32,19 +32,20 @@
                                             </select>
                                         </div>
                                         <div class="col-md-3">
-                                            <label for="degree">Degree/Program</label>
-                                            <select id="select" [(ngModel)]="selectedDegree" class="browser-default form-control"
-                                                (change)="onDegreeChange($event.target.value)">
-                                                <option>Choose your Degree</option>
-                                                <option *ngFor="let degree of degreeByIns?.response" [value]="degree._id">{{degree?.degree}}</option>
-                                            </select>
-                                        </div>
+                                                <label>Course Program</label>
+                                                <select id="select" class="browser-default form-control" [formControl]="courseprogram"  (change)="onCourseProgramChange($event.target.value)">
+                                                    <option default value>Choose your Course Program</option>
+                                                    <option *ngFor="let courseprogram of courseprogrambyIns?.response" [value]="courseprogram._id">
+                                                        {{courseprogram.courseprogram}}</option>
+                                                </select>
+                                              
+                                            </div>
                                         <div class="col-md-3">
                                             <label for="batch">Batch</label>
                                             <select id="select" [(ngModel)]="selectedbatch" class="browser-default form-control"
                                             (change)="onBatchChange($event.target.value)">
                                                 <option>Choose your Batch</option>
-                                                <option *ngFor="let batch of batcheByDegrees?.response" [value]="batch._id">{{batch?.batch}}
+                                                <option *ngFor="let batch of batcheBycourseprograms?.response" [value]="batch._id">{{batch?.batch}}
                                                 </option>
                                             </select>
                                         </div>

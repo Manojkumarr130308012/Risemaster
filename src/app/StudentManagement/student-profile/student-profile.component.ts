@@ -9,14 +9,15 @@ import { FormBuilder} from '@angular/forms';
 })
 export class StudentProfileComponent implements OnInit {
   batches: any;
-  degrees: any;
+  courseprograms: any;
   institutions: any;
-  degreesbyIns: any;
+  courseprogramsbyIns: any;
   studentDetails: any;
-  batcheByDegrees: any;
+  batcheBycourseprograms: any;
   stuId: any;
   studentDets: Object;
-  degreeByIns: any;
+  courseprogramByIns: any;
+  courseprogrambyIns: any;
 
   constructor(
     private request: RequestService,
@@ -32,14 +33,7 @@ export class StudentProfileComponent implements OnInit {
       console.log(error);
     });
   }
-  loadDegree() {
-    this.request.getDegree().subscribe((response: any) => {
-      this.degrees = response;
-      console.log('DegreeProgram' ,this.degrees);
-    }, (error) => {
-      console.log(error);
-    });
-  }
+  
   loadInstitution() {
     this.request.getInstitution().subscribe((response: any) => {
       this.institutions = response;
@@ -59,16 +53,17 @@ export class StudentProfileComponent implements OnInit {
   addNew() {
     this.router.navigate(['studentEntry']);
   }
-  onDegreeChange(degree: any) {
-    if (degree) {
-      this.request.getBatchByDegree(degree).subscribe((response: any) => {
-        this.batcheByDegrees = response;
-        console.log('BatchByDegree',  this.batcheByDegrees);
+  onCourseProgramChange(courseprogram: any) {
+    console.log('courseprogram' ,courseprogram)
+    if (courseprogram) {
+      this.request.getBatchByCoursePrgram(courseprogram).subscribe((response: any) => {
+        this.batcheBycourseprograms = response;
+        console.log('BatchBycourseprogram',  this.batcheBycourseprograms);
       }, (error) => {
         console.log(error);
       });
     } else
-      this.batcheByDegrees = null;
+      this.batcheBycourseprograms = null;
   }
   open(studentdetail) {
     this.stuId=studentdetail._id;
@@ -97,20 +92,19 @@ export class StudentProfileComponent implements OnInit {
   onInstitutionChange(Institution: any) {
     console.log('institution', Institution)
     if (Institution) {
-      this.request.getDegreeByIns(Institution).subscribe((response: any) => {
-        this.degreeByIns = response;
-        console.log('DegreeByIns',  this.degreeByIns);
+      this.request.getCourseprogramByIns(Institution).subscribe((response: any) => {
+        this.courseprogrambyIns = response;
+        console.log('CourseProgramByIns',  this.courseprogrambyIns);
       }, (error) => {
         console.log(error);
       });
       
     } else
 
-    this.degreeByIns = null;
+    this.courseprogrambyIns = null;
   }
   ngOnInit() {
     this.loadBatch();
-    this.loadDegree();
     this.loadInstitution();
     this.viewData();
   

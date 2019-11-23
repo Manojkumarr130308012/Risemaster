@@ -17,11 +17,11 @@ export class ConvertToStudentComponent implements OnInit {
   canId: any;
   id: any;
   convertToStudent: any;
-  degrees: any;
+  courseprograms: any;
   batches: any;
   coursecategoriesbyIns: any;
   institution: any;
-  degree: any;
+  courseprogram: any;
   batch: any;
   semester: any;
   languageSubject: any;
@@ -32,8 +32,8 @@ export class ConvertToStudentComponent implements OnInit {
   hostel: any;
   rout: any;
   busstop: any;
-  batcheByDegree: any;
-  batcheByDegrees: any;
+  batcheBycourseprogram: any;
+  batcheBycourseprograms: any;
   institutiond: any;
   cecourseprograms: Object;
   message: any;
@@ -51,7 +51,8 @@ export class ConvertToStudentComponent implements OnInit {
   Idvalue1: any;
   hostels: any;
   hostelsbyIns: any;
-  degreesbyIns: any;
+  courseprogramsbyIns: any;
+  courseprogrambyIns: any;
   constructor(
     private request: RequestService,
     private router: Router,
@@ -66,7 +67,7 @@ export class ConvertToStudentComponent implements OnInit {
 
     //add Form Group - addressDetails
  this.convertToStudent = this.formBuilder.group({
-  degree: ['', Validators.required],
+  courseprogram: ['', Validators.required],
   batch: ['', Validators.required],
   semester: [''],
   languageSubject: [''],
@@ -79,10 +80,10 @@ export class ConvertToStudentComponent implements OnInit {
   checkbox1: ['', Validators.required],
 });
   }
-  loadDegree() {
-    this.request.getDegree().subscribe((response: any) => {
-      this.degrees = response;
-      console.log('DegreeProgram' ,this.degrees);
+  loadInstitution() {
+    this.request.getInstitution().subscribe((response: any) => {
+      this.institutions = response;
+      console.log('Institution', this.institutions);
     }, (error) => {
       console.log(error);
     });
@@ -119,10 +120,10 @@ export class ConvertToStudentComponent implements OnInit {
       console.log(error);
     });
   }
-  loadDegreeByIns(institution) {
-    this.request.getDegreeByIns(institution).subscribe((response: any) => {
-      this.degreesbyIns = response;
-      console.log('DegreeByIns', this.degreesbyIns);
+  loadCourseProgramByIns(institution) {
+    this.request.getCourseprogramByIns(institution).subscribe((response: any) => {
+      this.courseprogrambyIns = response;
+      console.log('CourseProgramByIns', this.courseprogrambyIns);
     }, (error) => {
       console.log(error);
     });
@@ -134,23 +135,23 @@ export class ConvertToStudentComponent implements OnInit {
       console.log('Institution' , this.institutiond); 
       this.loadCourseCategoryByIns(this.institutiond);
       this.loadHostelByIns(this.institutiond);
-      this.loadDegreeByIns(this.institutiond);
+      this.loadCourseProgramByIns(this.institutiond);
       console.log('BasicDetailsById', this.basicdetails);
     }, (error) => {
       console.log(error);
     });
    }
-   onDegreeChange(degree: any) {
-    console.log('Degree' ,degree)
-    if (degree) {
-      this.request.getBatchByDegree(degree).subscribe((response: any) => {
-        this.batcheByDegrees = response;
-        console.log('BatchByDegree',  this.batcheByDegrees);
+   onCourseProgramChange(courseprogram: any) {
+    console.log('courseprogram' ,courseprogram)
+    if (courseprogram) {
+      this.request.getBatchByCoursePrgram(courseprogram).subscribe((response: any) => {
+        this.batcheBycourseprograms = response;
+        console.log('BatchBycourseprogram',  this.batcheBycourseprograms);
       }, (error) => {
         console.log(error);
       });
     } else
-      this.batcheByDegree = null;
+      this.batcheBycourseprograms = null;
   }
   viewCEcourseprogram(canId) {
     if (canId){
@@ -182,7 +183,7 @@ export class ConvertToStudentComponent implements OnInit {
 
   addToStudentDetail(id) {
     const newDetails = {
-      degree: this.convertToStudent.get('degree').value,
+      courseprogram: this.convertToStudent.get('courseprogram').value,
       batch: this.convertToStudent.get('batch').value,
      semester: this.convertToStudent.get('semester').value,
       languageSubject: this.convertToStudent.get('languageSubject').value,
@@ -214,7 +215,7 @@ export class ConvertToStudentComponent implements OnInit {
       console.log('ForConvertTOStudnet', this.basicDet);
  ///////////////////////////////////////////////
  const newStudentDetail = {
-  degree: this.basicDet[0].ConvertToStudentDetails[0].degree,
+  courseprogram: this.basicDet[0].ConvertToStudentDetails[0].courseprogram,
   batch: this.basicDet[0].ConvertToStudentDetails[0].batch,
   firstName: this.basicDet[0].firstName,
   lastName: this.basicDet[0].lastName,
@@ -250,7 +251,7 @@ export class ConvertToStudentComponent implements OnInit {
   sPhoto: this.basicDet[0].sPhoto,
   status: "Confirmed"
 }
-this.request.addStudentDetails(newStudentDetail).subscribe((response: any) => { 
+this.request.convertToStudentDetail(newStudentDetail).subscribe((response: any) => { 
  console.log(response);
 if (response.status == 'success') {
   swal("Converted To Student Successfully");
@@ -298,7 +299,7 @@ else if (response.status == 'error') {
     this.viewBasicDetailsById(this.id);
     this.viewCEcourseprogram(this.canId);
     this.viewConvertData(this.canId);
-    this.loadDegree();
+    this.loadInstitution();
     this.loadBatch();
     this.loadHostel();
   }

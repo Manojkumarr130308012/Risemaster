@@ -32,13 +32,13 @@ export class BatchComponent implements OnInit {
   Id: any;
   editBatch: any;
   batchValue: any;
-  degrees: any;
-  degreeValue: any;
-  degree: any;
-  degree2: any;
+  courseprograms: any;
+  courseprogramValue: any;
+  courseprogram: any;
+  courseprogram2: any;
   institutionId: any;
-  degreebyIns: any;
-  degreesIns: any;
+  courseprogrambyIns: any;
+  courseprogramIns: any;
   constructor(
     private formBuilder: FormBuilder,
     private dynamicScriptLoader: DynamicScriptLoaderService,
@@ -47,13 +47,13 @@ export class BatchComponent implements OnInit {
       // Add Form
     this.addBatchForm = this.formBuilder.group({
       institution: ["", Validators.required],
-      degree: ["", Validators.required],
+      courseprogram: ["", Validators.required],
       batch: ["", Validators.required]
     });
     // Edit Form
     this.editForm = this.formBuilder.group({
       institution2: ["", Validators.required],
-      degree2: ["", Validators.required],
+      courseprogram2: ["", Validators.required],
       batch2: ["", Validators.required]
     });
   
@@ -62,10 +62,10 @@ export class BatchComponent implements OnInit {
       return (this.message = message);
     }
   
-    loadDegree() {
-      this.request.getDegree().subscribe((response: any) => {
-        this.degrees = response;
-        console.log('DegreeProgram' ,this.degrees);
+    loadCourseprogram() {
+      this.request.getCourseprogram().subscribe((response: any) => {
+        this.courseprograms = response;
+        console.log('CourseProgram' ,this.courseprograms);
       }, (error) => {
         console.log(error);
       });
@@ -120,18 +120,18 @@ export class BatchComponent implements OnInit {
     onEdit(batch) {
       this.Id = batch._id;
       this.institutionId = batch.institution[0]._id;
-      this.loadDegreeByIns(this.institutionId); 
+      this.loadCourseProgramByIns(this.institutionId); 
       this.request.fetchBatchById(this.Id).subscribe(response => {
         this.editBatch = response[0];
         console.log(response);
         this.institutionValue = this.editBatch.institution;
-        this.degreeValue = this.editBatch.degree;
+        this.courseprogramValue = this.editBatch.courseprogram;
         this.batchValue = this.editBatch.batch;
         this.IdValue = this.editBatch._id;
   
         this.editForm = this.formBuilder.group({
           institution2: [this.institutionValue, Validators.required],
-          degree2: [this.degreeValue, Validators.required],
+          courseprogram2: [this.courseprogramValue, Validators.required],
           batch2: [this.batchValue, Validators.required]
         });
         console.log(this.editForm.value);
@@ -146,7 +146,7 @@ export class BatchComponent implements OnInit {
   
       const edata = {
         institution: this.editForm.get("institution2").value,
-        degree: this.editForm.get("degree2").value,
+        courseprogram: this.editForm.get("courseprogram2").value,
         batch: this.editForm.get("batch2").value
       };
   
@@ -166,10 +166,10 @@ export class BatchComponent implements OnInit {
         }
       );
     }
-    loadDegreeByIns(institution) {
-      this.request.getDegreeByIns(institution).subscribe((response: any) => {
-        this.degreebyIns = response;
-        console.log('DegreeByIns', this.degreebyIns);
+    loadCourseProgramByIns(institution) {
+      this.request.getCourseprogramByIns(institution).subscribe((response: any) => {
+        this.courseprogrambyIns = response;
+        console.log('courseprogramByIns', this.courseprogrambyIns);
       }, (error) => {
         console.log(error);
       });
@@ -187,16 +187,17 @@ export class BatchComponent implements OnInit {
   onInstitutionChange(Institution: string) {
     console.log('institution', Institution);
     if (Institution) {
-       this.request.getDegreeByIns(Institution).subscribe((response: any) => {
+       this.request.getCourseprogramByIns(Institution).subscribe((response: any) => {
          console.log(response);
-         this.degreesIns = response;
+         this.courseprogramIns = response;
+         console.log('CourseProgramByIns', this.courseprogramIns);
        }, (error) => {
          console.log(error);
        });
 
      } else
 
-       this.degreesIns = null;
+       this.courseprogramIns = null;
     }
     // convenience getter for easy access to form fields
     get f() {
@@ -251,7 +252,7 @@ export class BatchComponent implements OnInit {
       M.updateTextFields();
       this.viewData();
       this.loadModal();
-      this.loadDegree();
+      this.loadCourseprogram();
       this.loadInstitution();
     }
   }

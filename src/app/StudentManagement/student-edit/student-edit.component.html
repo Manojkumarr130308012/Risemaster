@@ -26,14 +26,16 @@
                                             </div>
                                         </div>
                                     <div class="col-md-4">
-                                            <div class="form-group form-float">
-                                        <label for="degree">Degree/Program</label>
-                                        <select class="browser-default form-control" (change)="onDegreeChange($event.target.value)"
-                                            [formControl]="degree" name="degree" required>
-                                            <option>Choose your Degree</option>
-                                            <option *ngFor="let degree of degreebyIns?.response" [value]="degree._id">
-                                                {{degree?.degree}}</option>
-                                        </select>
+                                        <div class="form-group form-float">
+                                            <label>Course/Program<span class="asterisk">*</span></label>
+                                            <div class="form-line">
+                                                <select id="select" class="browser-default form-control" [formControl]="courseprogram"
+                                                    (change)="onCourseProgramChange($event.target.value)">
+                                                    <option default value>Choose your Course Program</option>
+                                                    <option *ngFor="let courseprogram of courseprogrambyIns?.response" [value]="courseprogram._id">
+                                                        {{courseprogram.courseprogram}}</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -41,7 +43,7 @@
                                         <label for="batch">Batch</label>
                                         <select class="browser-default form-control" [formControl]="batch" name="batch" required>
                                                 <option>Choose your Degree</option>
-                                            <option *ngFor="let batch of batchbydeg?.response" [value]="batch._id">
+                                            <option *ngFor="let batch of batcheBycourseprograms?.response" [value]="batch._id">
                                                 {{batch?.batch}}
                                             </option>
                                         </select>
