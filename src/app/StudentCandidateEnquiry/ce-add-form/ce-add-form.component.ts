@@ -239,6 +239,8 @@ amountValue: any;
   academicYears: any;
   courseCate: any;
   coursePro: any;
+  res: any;
+  institutiond: any;
 
 
   constructor(private request: RequestService,
@@ -486,7 +488,15 @@ addbasicdetails() {
 
 //Add CourseProgram
  addCEcourseProgram() {
+  this.Id = this.canId;
+  this.request.fetchBasicDetailsById(this.Id).subscribe((response: any) => {
+    this.res = response;
+    console.log('REs', this.res);
+    this.institutiond = response[0].institution;
+    console.log('Ins' ,this.institutiond);
+
   const newcourseProgram = {
+    institution: this.institutiond,
     coursecategory: this.coursecategory.value,
     courseprogram:this.courseprogram.value,
     canId: this.canId
@@ -494,16 +504,6 @@ addbasicdetails() {
   this.request.addCEcourseprogram(newcourseProgram).subscribe((response: any) => {
     if (response.status == 'success') {
       swal("Added Sucessfully");
-      //update status in basic details as Confirmed 
-      const courseCate = response.res.coursecategory;
-      const coursePro = response.res.courseprogram;
-  const updatestatus = {
-    courseprogram: coursePro,
-    coursecategory: courseCate
-  }
-  this.request.updateBasicDetails(this.canId,updatestatus).subscribe((response: any) => {
-    console.log('UpdateStatus', response);
-  });
   this.viewCEcourseprogram(this.canId);
     }
     else if (response.status == 'error') {
@@ -514,7 +514,9 @@ addbasicdetails() {
     this.setMessage(error);
   });
   console.log(newcourseProgram);
+});
 }
+
 //Display courseProogram
 viewCEcourseprogram(canId) {
   if (canId){

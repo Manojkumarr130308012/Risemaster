@@ -273,6 +273,7 @@ export class CEEditFormComponent implements OnInit {
   academicYear: FormControl;
   academicYearValue: any;
   academicyears: any;
+  res: any;
 
   constructor(
     private request: RequestService,
@@ -606,6 +607,13 @@ export class CEEditFormComponent implements OnInit {
 
 //Add CourseProgram
 addCEcourseProgram() {
+  this.Id = this.canId;
+  this.request.fetchBasicDetailsById(this.Id).subscribe((response: any) => {
+    this.res = response;
+    console.log('REs', this.res);
+    this.institutiond = response[0].institution;
+    console.log('Ins' ,this.institutiond);
+
   const newcourseProgram = {
     coursecategory: this.coursecategory.value,
     courseprogram:this.courseprogram.value,
@@ -614,21 +622,12 @@ addCEcourseProgram() {
   this.request.addCEcourseprogram(newcourseProgram).subscribe((response: any) => {
     console.log(response);
       swal("Added Sucessfully");
-      //update status in basic details as Confirmed 
-      const courseCate = response.res.coursecategory;
-      const coursePro = response.res.courseprogram;
-  const updatestatus = {
-    courseprogram: coursePro,
-    coursecategory: courseCate
-  }
-  this.request.updateBasicDetails(this.canId,updatestatus).subscribe((response: any) => {
-    console.log('UpdateStatus', response);
-  });
       this.viewCEcourseprogram(this.canId);
   }, (error) => {
     this.setMessage(error);
   });
   console.log(newcourseProgram);
+});
 }
 //Display courseProogram
 viewCEcourseprogram(canId) {
