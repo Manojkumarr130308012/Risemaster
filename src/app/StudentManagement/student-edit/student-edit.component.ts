@@ -134,17 +134,18 @@ export class StudentEditComponent implements OnInit {
   institutionValue: any;
   institutiond: any;
   admissioncategoriesbyIns: any;
-  batcheByDegrees: any;
-  degreeValue: any;
+  courseprogramValue: any;
   batchValue: any;
   paadharNO: FormControl;
   paadharNOValue: any;
   batches: any;
-  degrees: any;
-  degreed: any;
+  courseprograms: any;
+  courseprogramd: any;
   batchbydeg: any;
-  degreeByIns: any;
-  degreebyIns: any;
+  coursecategoriesbyIns: any;
+  batcheBycourseprograms: any;
+  courseprogrambyIns: any;
+  courseprogram: any;
   constructor(
     private request: RequestService,
     private router: Router,
@@ -152,10 +153,9 @@ export class StudentEditComponent implements OnInit {
   ) {
     this.route.queryParams.subscribe((params: any) => {
       this.id = params.id;
-      console.log('ParamId', this.id);
     })
-    this.degree = new FormControl('', Validators.required);
-    this.batch = new FormControl('', Validators.required);
+    this.courseprogram = new FormControl({value:'', disabled: true});
+    this.batch = new FormControl({value:'', disabled: true});
     this.rollNo = new FormControl('', Validators.required);
     this.regNo = new FormControl('');
     this.firstName = new FormControl('', Validators.required);
@@ -181,7 +181,7 @@ export class StudentEditComponent implements OnInit {
     this.religion = new FormControl();
     this.caste = new FormControl();
     this.community = new FormControl('', Validators.required);
-    this.institution = new FormControl('', Validators.required);
+    this.institution = new FormControl({value:'', disabled: true});
     this.admissionCategory = new FormControl('', Validators.required);
     this.admissionType = new FormControl('', Validators.required);
     this.financialCategory = new FormControl('', Validators.required);
@@ -243,10 +243,8 @@ export class StudentEditComponent implements OnInit {
     // console.log('ID', this.Id);
     this.request.fetchStudentDetailsById(this.Id).subscribe((response) => {
     this.editStudentDetails = response[0];
-    this.degreed = this.editStudentDetails.degree;
-    this.loadBatchByDegree(this.degreed);
     // console.log('FetchStudentDetailsById',this.editStudentDetails);
-    this.degreeValue = this.editStudentDetails.degree;
+    this.courseprogramValue = this.editStudentDetails.courseprogram;
     this.batchValue = this.editStudentDetails.batch;
     this.rollNoValue = this.editStudentDetails.rollNo;
     this.regNoValue = this.editStudentDetails.regNo;
@@ -296,7 +294,7 @@ export class StudentEditComponent implements OnInit {
     this.andhamanAndNicobarNativeValue = this.editStudentDetails.andhamanAndNicobarNative;
     this.IdValue = this.editStudentDetails._id;
   
-    this.degree = new FormControl(this.degreeValue, Validators.required);
+    this.courseprogram = new FormControl(this.courseprogramValue, Validators.required);
     this.batch = new FormControl(this.batchValue, Validators.required);
     this.rollNo = new FormControl(this.rollNoValue, Validators.required);
     this.regNo = new FormControl(this.regNoValue);
@@ -348,7 +346,7 @@ export class StudentEditComponent implements OnInit {
   }
   editStudentDetailSubmit() {
     const editStudentDetail = {
-      degree: this.degree.value,
+      courseprogram: this.courseprogram.value,
       batch: this.batch.value,
       rollNo: this.rollNo.value,
       regNo: this.regNo.value,
@@ -413,17 +411,6 @@ export class StudentEditComponent implements OnInit {
     }, (error) => {
       this.setMessage(error);
     });
-  }
-  onDegreeChange(degree: any) {
-    if (degree) {
-      this.request.getBatchByDegree(degree).subscribe((response: any) => {
-        this.batcheByDegrees = response;
-        console.log('BatchByDegree',  this.batcheByDegrees);
-      }, (error) => {
-        console.log(error);
-      });
-    } else
-      this.batcheByDegrees = null;
   }
   loadGender() {
     this.request.getGender().subscribe((response: any) => {
@@ -529,14 +516,7 @@ export class StudentEditComponent implements OnInit {
       console.log(error);
     });
   }
-  loadDegree() {
-    this.request.getDegree().subscribe((response: any) => {
-      this.degrees = response;
-      console.log('DegreeProgram' ,this.degrees);
-    }, (error) => {
-      console.log(error);
-    });
-  }
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Filter CourseCategory, AdmissionType, AdmissionCategory by Institution
   onInstitutionChange(Institution: any) {
@@ -545,12 +525,6 @@ export class StudentEditComponent implements OnInit {
       this.request.getAdmissionTypeByIns(Institution).subscribe((response: any) => {
         console.log('admissionType', response);
         this.admissiontypes = response;
-      }, (error) => {
-        console.log(error);
-      });
-      this.request.getDegreeByIns(Institution).subscribe((response: any) => {
-        this.degreeByIns = response;
-        console.log('DegreeByIns',  this.degreeByIns);
       }, (error) => {
         console.log(error);
       });
@@ -564,9 +538,8 @@ export class StudentEditComponent implements OnInit {
 
     this.admissiontypes = null;
     this.admissioncategories = null;
-    this.degreeByIns = null;
   }
-
+  
   //Student Details Edit 
   viewStudentDetailById(id: any) {
     if(id) {
@@ -574,35 +547,24 @@ export class StudentEditComponent implements OnInit {
         this.studentDetails = response;
         this.institutiond = response[0].institution;
         this.loadAdmissionCategoryByIns(this.institutiond);
-        this.loadDegreeByIns(this.institutiond); 
-        this.degreed = response[0].degree;
-        this.loadBatchByDegree(this.degreed);
         console.log('StudentDetailById', this.studentDetails);
       }, (error) => {
         console.log(error);
       });
     }
   }
-  loadDegreeByIns(institution) {
-    this.request.getDegreeByIns(institution).subscribe((response: any) => {
-      this.degreebyIns = response;
-      console.log('DegreeByIns', this.degreebyIns);
-    }, (error) => {
-      console.log(error);
-    });
-  }
-  loadBatchByDegree(degree) {
-    this.request.getBatchByDegree(degree).subscribe((response: any) => {
-      this.batchbydeg = response;
-      console.log('BATCHBYDEGREE', this.batchbydeg);
-    }, (error) => {
-      console.log(error);
-    });
-  }
   loadAdmissionCategoryByIns(institution) {
     this.request.getAdmissionCategoryByIns(institution).subscribe((response: any) => {
       this.admissioncategories = response;
       console.log('AdmissionCategoryByIns', this.admissioncategories);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  loadCourseProgram() {
+    this.request.getCourseprogram().subscribe((response: any) => {
+      this.courseprograms = response;
+      console.log('CourseProgram' ,this.courseprograms);
     }, (error) => {
       console.log(error);
     });
@@ -620,7 +582,7 @@ export class StudentEditComponent implements OnInit {
     this.loadMaritalstatus();
     this.loadBloodgroup();
     this.loadInstitution();
-    this.loadDegree();
+    this.loadCourseProgram();
     this.loadBatch();
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {

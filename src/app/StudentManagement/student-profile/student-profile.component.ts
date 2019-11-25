@@ -15,7 +15,7 @@ export class StudentProfileComponent implements OnInit {
   studentDetails: any;
   batcheBycourseprograms: any;
   stuId: any;
-  studentDets: Object;
+  studentDets: any;
   courseprogramByIns: any;
   courseprogrambyIns: any;
 

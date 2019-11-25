@@ -16,11 +16,11 @@
                                             <div class="form-group form-float">
                                                 <label for="institution">Institution<span class="asterisk">*</span></label>
                                                 <div class="form-line">
-                                                    <select class="browser-default form-control" id="select1" [formControl]="institution" name="institution"
-                                                        (change)="onInstitutionChange($event.target.value)" required>
+                                                    <select class="browser-default form-control"  [formControl]="institution" name="institution" required>
                                                         <option value="">Choose your Institution</option>
-                                                        <option *ngFor="let institution of institutions" [value]="institution._id">
-                                                            {{institution?.institution_name}}</option>
+                                                        <option  *ngFor="let studentdetail of studentDetails" [value]="studentdetail.institutiond[0]._id"
+                                                        [selected]="studentdetail.institutiond[0].institution_name">
+                                                            {{studentdetail.institutiond[0].institution_name}}</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -29,24 +29,25 @@
                                         <div class="form-group form-float">
                                             <label>Course/Program<span class="asterisk">*</span></label>
                                             <div class="form-line">
-                                                <select id="select" class="browser-default form-control" [formControl]="courseprogram"
-                                                    (change)="onCourseProgramChange($event.target.value)">
-                                                    <option default value>Choose your Course Program</option>
-                                                    <option *ngFor="let courseprogram of courseprogrambyIns?.response" [value]="courseprogram._id">
-                                                        {{courseprogram.courseprogram}}</option>
+                                                <select class="browser-default form-control" [formControl]="courseprogram" name="courseprogram" required>
+                                                    <option value="">Choose your Course Program</option>
+                                                    <option *ngFor="let studentdetail of studentDetails" [value]="studentdetail.courseprogramd[0]._id" 
+                                                    [selected]="studentdetail.courseprogramd[0].courseprogram">
+                                                        {{studentdetail.courseprogramd[0].courseprogram}}</option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                            <div class="form-group form-float">
-                                        <label for="batch">Batch</label>
-                                        <select class="browser-default form-control" [formControl]="batch" name="batch" required>
-                                                <option>Choose your Degree</option>
-                                            <option *ngFor="let batch of batcheBycourseprograms?.response" [value]="batch._id">
-                                                {{batch?.batch}}
-                                            </option>
-                                        </select>
+                                        <div class="form-group form-float">
+                                            <label for="batch">Batch</label>
+                                            <select class="browser-default form-control" [formControl]="batch" name="batch" required>
+                                                <option>Choose your Batch</option>
+                                                <option *ngFor="let studentdetail of studentDetails" [value]="studentdetail.batchd[0]._id"
+                                                    [selected]="studentdetail.batchd[0].batch">
+                                                    {{studentdetail.batchd[0].batch}}
+                                                </option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
