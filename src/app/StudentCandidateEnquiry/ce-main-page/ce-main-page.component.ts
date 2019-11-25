@@ -11,9 +11,6 @@ export class CEMainPageComponent implements OnInit {
   basicdetails: any;
   ce_basicdetails: any;
   Id: any;
-  paymentdetails: any;
-  followups: any;
-  enquiryDate: any;
 
   constructor( private router: Router,
     private request: RequestService) {
@@ -58,5 +55,4 @@ viewData() {
   ngOnInit() {
     this.viewData();
   }
-
 }

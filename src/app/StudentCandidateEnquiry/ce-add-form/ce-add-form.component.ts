@@ -216,7 +216,7 @@ amountValue: any;
   description2: any;
   nextEnquiryDate2: any;
   nextEnquiryTime2: any;
-  cecourseprograms: Object;
+  cecourseprograms: any;
   editqdDetailsdata: any;
   city2: any;
   district2: any;
@@ -241,6 +241,8 @@ amountValue: any;
   coursePro: any;
   res: any;
   institutiond: any;
+  id: any;
+  coursecategoriesbyIns: any;
 
 
   constructor(private request: RequestService,
@@ -477,22 +479,50 @@ addbasicdetails() {
     this.setMessage(error);
   });
   } else {
-    this.router.navigate(['editCandidate'], {
-      queryParams: {  
-          edit: true,      
-          id: this.canId,
-        }
-       });
+    //Update the details
+    this.id =  this.canId;
+    this.IdValue = this.canId;
+    this.request.updateBasicDetails(this.IdValue, newBasicDetails).subscribe((response: any) => {
+      if (response.status == 'success') {
+        swal("Updated Sucessfully");
+        this.viewData1(this.id);
+      }
+      else if (response.status == 'error') {
+        this.setMessage(response.error);
+        console.log(response.error);
+      }
+
+    }, (error) => {
+      console.log(error);
+      this.setMessage(error);
+    });
   }
 }
-
+viewData1(id) {
+  this.request.fetchBasicDetailsById(id).subscribe((response: any) => {
+    this.basicdetails = response;
+    this.institutiond = response[0].institution;
+    this.loadCourseCategoryByIns(this.institutiond);
+    console.log('BasicDetailsById',  this.basicdetails);
+  }, (error) => {
+    console.log(error);
+  });
+}
+loadCourseCategoryByIns(institution) {
+  this.request.getCoursecategorybyIns(institution).subscribe((response: any) => {
+    this.coursecategoriesbyIns = response;
+    console.log('CourseCategoryByIns', this.coursecategoriesbyIns);
+  }, (error) => {
+    console.log(error);
+  });
+}
 //Add CourseProgram
  addCEcourseProgram() {
   this.Id = this.canId;
-  this.request.fetchBasicDetailsById(this.Id).subscribe((response: any) => {
-    this.res = response;
-    console.log('REs', this.res);
-    this.institutiond = response[0].institution;
+  this.request.fetchBasicDetailsById(this.Id).subscribe((response) => {
+  this.res = response;
+     console.log('REs', this.res);
+    this.institutiond = this.res[0].institution;
     console.log('Ins' ,this.institutiond);
 
   const newcourseProgram = {
@@ -1303,6 +1333,7 @@ onEditFollowupsSubmit() {
     }
   ngOnInit() {
     this.viewData();
+    this.viewData1(this.id);
     this.viewAddressData(this.canId);
     this.viewQualificationDetails(this.canId);
     this.viewPaymentData(this.canId);
