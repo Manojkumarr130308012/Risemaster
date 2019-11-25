@@ -9,20 +9,20 @@ import { RequestService } from 'src/app/services/request.service';
 })
 export class CEMainPageComponent implements OnInit {
   basicdetails: any;
-  ce_basicdetails: Object;
+  ce_basicdetails: any;
   Id: any;
-  paymentdetails: Object;
-  followups: Object;
+  paymentdetails: any;
+  followups: any;
   enquiryDate: any;
-  
+
   constructor( private router: Router,
-    private request: RequestService) { 
-    
+    private request: RequestService) {
+
     }
 
 openNew(){
     this.router.navigate(['addCandidate'], {
-      queryParams: {     
+      queryParams: {
           id:0
         }
        });
@@ -31,8 +31,8 @@ openNew(){
     this.Id=basicdetail._id;
     console.log(this.Id);
     this.router.navigate(['editCandidate'], {
-       queryParams: {  
-           edit: true,      
+       queryParams: {
+           edit: true,
            id: basicdetail._id,
          }
         });
@@ -41,7 +41,7 @@ openNew(){
     this.Id=basicdetail._id;
     console.log(this.Id);
     this.router.navigate(['convertToStudent'], {
-       queryParams: {      
+       queryParams: {
            id: basicdetail._id,
          }
         });
