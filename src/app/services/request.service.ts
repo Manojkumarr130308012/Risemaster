@@ -1759,7 +1759,7 @@ fetchBankById(id) {
     return this.http.get(this.url);
   }
 
-  
+
   public getAdmissionCategoryByIns(institution) {
     this.url = `${this.endPoint}/admissionCategory/fetchbyIns/?institution=` + institution;
     return this.http.get(this.url);

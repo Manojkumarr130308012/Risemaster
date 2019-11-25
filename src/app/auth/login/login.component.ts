@@ -63,9 +63,9 @@ export class LoginComponent implements OnInit {
     this.username= new FormControl('', Validators.required);
     this.password = new FormControl('', Validators.required);
 
-     if (!this.auth.isValidUser(true)) {
+    /* if (!this.auth.isValidUser(true)) {
       return;
-    }
+    }*/
 
     (function($) {
       "use strict";
