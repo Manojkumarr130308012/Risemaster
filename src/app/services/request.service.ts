@@ -16,8 +16,8 @@ export class RequestService {
 
   public login(credentials) {
     console.log('credentials2',credentials);
-    this.url = `${this.endPoint}/user/login`;
-    return this.http.get(this.url,credentials);
+    this.url = `${this.endPoint}/userLogin/login`;
+    return this.http.post(this.url, credentials);
   }
 
   public getDesignation() {

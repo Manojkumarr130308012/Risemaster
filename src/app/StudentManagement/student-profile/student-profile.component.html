@@ -38,7 +38,7 @@
                                                     <option *ngFor="let courseprogram of courseprogrambyIns?.response" [value]="courseprogram._id">
                                                         {{courseprogram.courseprogram}}</option>
                                                 </select>
-                                              
+
                                             </div>
                                         <div class="col-md-3">
                                             <label for="batch">Batch</label>
@@ -59,7 +59,7 @@
                             </div>
                        <div class="body">
                                 <div class="table-responsive">
-                                     <table id="tableExport" 
+                                     <table id="tableExport"
                                      class="display table table-hover table-checkable order-column m-t-20 width-per-100">
                                         <thead>
                                             <tr>
@@ -82,7 +82,8 @@
                                                 <td>{{studentdetail?.firstName}}{{studentdetail?.lastName}}</td>
                                                 <td>{{studentdetail.genderd[0].gender}}</td>
                                                 <td>{{studentdetail?.dob}}</td>
-                                                <td>{{studentdetail.bloodGroupd[0].bloodgroup}}</td>
+                                                <td *ngIf="studentdetail.bloodGroupd[0]">{{studentdetail.bloodGroupd[0].bloodgroup}}</td>
+                                                <td *ngIf="!studentdetail.bloodGroupd[0]">-</td>
                                                 <td>{{studentdetail?.fmobileNo}}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-default" (click)="open(studentdetail)">View</button>
@@ -91,11 +92,11 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                 </div>
-            
+
             <!-- Table End -->
         </div>
     </section>

@@ -326,7 +326,7 @@ const routes: Routes = [
   component: StudentEntryComponent},
   { path: 'studentDetail',
   component: StudentDetailComponent},
-  { path: 'studentEdit', 
+  { path: 'studentEdit',
   component: StudentEditComponent},
 ];
 

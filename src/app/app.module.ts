@@ -29,6 +29,8 @@ import { OrderModule } from 'ngx-order-pipe';
 
 import { ArchwizardModule } from 'angular-archwizard';
 
+
+
 import { AcademicYearComponent } from './Master/academic-year/academic-year.component';
 import { UserDesignationComponent } from './Master/user-designation/user-designation.component';
 import { BloodgroupComponent } from './Master/bloodgroup/bloodgroup.component';
@@ -117,6 +119,8 @@ import { HostelComponent } from './Master/hostel/hostel.component';
     PageLoaderComponent,
     SidebarComponent,
     RightSidebarComponent,
+
+
 
     BloodgroupComponent,
     CasteComponent,

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
 import { RequestService } from '../../services/request.service';
+import { AuthService } from "../../services/auth.service";
 
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -47,7 +48,7 @@ export class AcademicYearComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private dynamicScriptLoader: DynamicScriptLoaderService,
               private request: RequestService,
-              private router: Router) {
+              private router: Router,private auth: AuthService) {
       //Add Form Group
       this.registerForm = this.formBuilder.group({
         institution:['', Validators.required],
@@ -200,6 +201,8 @@ export class AcademicYearComponent implements OnInit {
     }
 
   ngOnInit() {
+
+    this.auth.isValidUser();
     this.viewData();
     this.startScript();
     M.updateTextFields();

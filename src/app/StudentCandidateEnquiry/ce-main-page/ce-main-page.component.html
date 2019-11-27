@@ -23,7 +23,7 @@
                                     class="display table table-hover table-checkable order-column m-t-50 width-per-100">
                                        <thead>
                                            <tr>
-
+                                              <th>#</th>
                                                <th>Enquiry Date</th>
                                                <th>App No.</th>
                                                <th>Name</th>
@@ -39,7 +39,7 @@
                                        </thead>
                                        <tbody>
                                            <tr *ngFor="let basicdetail of ce_basicdetails; let i=index">
-
+                                              {{ i +1 }}
                                                <td>{{basicdetail?.enquiryDate}}</td>
                                                <td>{{basicdetail?.applicatonNo}}</td>
                                                <td>{{basicdetail?.firstName}} {{basicdetail?.lastName}}</td>

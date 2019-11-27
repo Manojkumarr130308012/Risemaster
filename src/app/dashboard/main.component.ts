@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicScriptLoaderService } from './../services/dynamic-script-loader.service';
+import { AuthService } from "./../services/auth.service";
 declare var $: any;
 declare var Chart: any;
 declare var ApexCharts: any;
@@ -7,11 +8,13 @@ declare var ApexCharts: any;
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
+
+
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
 
-	constructor(private dynamicScriptLoader: DynamicScriptLoaderService) { }
+	constructor(private dynamicScriptLoader: DynamicScriptLoaderService, private auth: AuthService) { }
 
 
 	// area chart start
@@ -152,6 +155,8 @@ export class MainComponent implements OnInit {
 
 	ngOnInit() {
 
+    this.auth.isValidUser();
+
 		'use strict';
 		$('#new-orders').slimscroll({
 			height: '500px',
@@ -272,7 +277,7 @@ export class MainComponent implements OnInit {
 			}])
 		}, 2000)
 
-		// every 60 seconds, we reset the data 
+		// every 60 seconds, we reset the data
 		window.setInterval(function () {
 			resetData()
 			chart.updateSeries([{

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { RequestService } from '../../services/request.service';
 import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { AuthService } from "../../services/auth.service";
 declare const M: any;
 declare const $: any;
 declare const swal: any;
@@ -32,7 +33,7 @@ export class AdmissionCategoryComponent implements OnInit {
     constructor(private formBuilder: FormBuilder,
         private dynamicScriptLoader: DynamicScriptLoaderService,
         private request: RequestService,
-        private router: Router) {
+        private router: Router,private auth: AuthService) {
         //Add Form Group
         this.registerForm = this.formBuilder.group({
             institution: ['', Validators.required],
@@ -184,6 +185,7 @@ export class AdmissionCategoryComponent implements OnInit {
     }
 
     ngOnInit() {
+      this.auth.isValidUser();
         this.startScript();
         M.updateTextFields();
         this.viewData();
