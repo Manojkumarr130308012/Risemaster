@@ -1736,17 +1736,17 @@ onEditCertificate(id: any){
 this.request.fetchStudentCertificateById(id).subscribe((response) => {
   this.editCertificate=response[0];
   // console.log(response);
-      this.certificateTypeValue = this.editCertificate.identityType;
-      this.registerNoValue = this.editCertificate.markDetail;
+      this.certificateTypeValue = this.editCertificate.certificateType;
+      this.registerNoValue = this.editCertificate.registerNo;
       this.certificateNoValue = this.editCertificate.certificateNo;
       this.fileUploadValue = this.editCertificate.fileUpload;
       this.IdValue = this.editCertificate._id;
 
  
-    this.certificateType2= [this.certificateTypeValue, Validators.required],
-    this.registerNo2= [this.registerNoValue, Validators.required],
-    this.certificateNo2= [this.certificateNoValue, Validators.required],
-    this.fileUpload2= [this.fileUploadValue, Validators.required]
+    this.certificateType2= new FormControl(this.certificateTypeValue, Validators.required),
+    this.registerNo2= new FormControl(this.registerNoValue, Validators.required),
+    this.certificateNo2= new FormControl(this.certificateNoValue, Validators.required),
+    this.fileUpload2= new FormControl(this.fileUploadValue, Validators.required)
 });
 }
 onEditCertificateSubmit() {
@@ -1774,13 +1774,13 @@ this.setMessage(error);
 
 
 private loadStudentCertificate(){
-$('#addIdentityDetail').modal('hide'); //or  $('#IDModal').modal('hide');
-$('#addIdentityDetail').on('hidden.bs.modal', function () {
+$('#addCertificateModal').modal('hide'); //or  $('#IDModal').modal('hide');
+$('#addCertificateModal').on('hidden.bs.modal', function () {
 $(this).find('form').trigger('reset');
 });
 
-$('#editIdentityDetail').modal('hide'); //or  $('#IDModal').modal('hide');
-$('#editIdentityDetail').on('hidden.bs.modal', function () {
+$('#editCertificateModal').modal('hide'); //or  $('#IDModal').modal('hide');
+$('#editCertificateModal').on('hidden.bs.modal', function () {
 $(this).find('form').trigger('reset');
 });
 }
@@ -1851,6 +1851,34 @@ loadCertificateType() {
     });
     $(function () {
       $('#qualificationDetailEdit').validate({
+
+        highlight: function (input) {
+          $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+          $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+          $(element).parents('.form-group').append(error);
+        }
+      });
+    });
+     $(function () {
+      $('#certificateadd').validate({
+
+        highlight: function (input) {
+          $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+          $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+          $(element).parents('.form-group').append(error);
+        }
+      });
+    });
+    $(function () {
+      $('#certificateedit').validate({
 
         highlight: function (input) {
           $(input).parents('.form-line').addClass('error');

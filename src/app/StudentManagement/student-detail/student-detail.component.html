@@ -23,20 +23,24 @@
                                 <h6> Campus :</h6><span>{{studentdetail.institutiond[0].tagline}}</span>
                                 <h6> Date Of Birth :</h6><span>{{studentdetail?.dob}}</span>
                                 <h6> Date Of Joining :</h6><span>{{studentdetail?.joinDate}}</span>
-                                <h6> Nationality:</h6><span>{{studentdetail?.nationalityd[0].nationality}}</span>
+                                <h6> Nationality:</h6><span *ngIf="studentdetail?.nationalityd[0]">{{studentdetail?.nationalityd[0].nationality}}</span>
+                               <span *ngIf="!studentdetail?.nationalityd[0]">-</span>
                                 <h6> Mobile No. :</h6><span>{{studentdetail?.mobileNo}}</span>
                             </div>
                             <div class="col-md-3" *ngFor="let studentdetail of studentDetails;let i=index">
                                     <h6>Grade :</h6>-
-                                    <h6>Gender :</h6>{{studentdetail?.genderd[0].gender}}
-                                    <h6>Boarding :</h6>{{studentdetail?.boarding}}
-                                    <h6>EmailId :</h6>{{studentdetail?.emailId}}
+                                    <h6>Gender :</h6><span *ngIf="studentdetail?.genderd[0]">{{studentdetail?.genderd[0].gender}}</span>
+                                    <span *ngIf="!studentdetail?.genderd[0]">-</span>
+                                    <h6>Boarding :</h6><span>{{studentdetail?.boarding}}</span>
+                                    <h6>EmailId :</h6><span>{{studentdetail?.emailId}}</span>
                             </div>
                             <div class="col-md-3" *ngFor="let studentdetail of studentDetails;let i=index">
                                 <h6 >Reg No. :</h6>{{studentdetail?.regNo}}
-                                <h6>Blood Group :</h6>{{studentdetail?.bloodGroupd[0].bloodgroup}}
+                                <h6>Blood Group :</h6><span *ngIf="studentdetail?.bloodGroupd[0]">{{studentdetail?.bloodGroupd[0].bloodgroup}}</span>
+                                <span *ngIf="!studentdetail?.bloodGroupd[0]">-</span>
                                 <h6>Route Name :</h6>-
-                                <h6>AdmissionCategory :</h6>{{studentdetail?.admissionCategoryd[0].admissionCategory}}
+                                <h6>AdmissionCategory :</h6><span *ngIf="studentdetail?.admissionCategoryd[0]">{{studentdetail?.admissionCategoryd[0].admissionCategory}}</span>
+                                <span *ngIf="!studentdetail?.admissionCategoryd[0]">-</span>
                             </div>
                         </div>
                         <div class="row">
@@ -2324,7 +2328,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id ="certificateadd">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group form-float">
@@ -2386,7 +2390,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id ="certificateedit">
                         <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group form-float">

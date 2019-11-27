@@ -30,7 +30,7 @@
                                             <label>Course/Program<span class="asterisk">*</span></label>
                                             <div class="form-line">
                                                 <select class="browser-default form-control" [formControl]="courseprogram" name="courseprogram" required>
-                                                    <option value="">Choose your Course Program</option>
+                                                    <!-- <option value="">Choose your Course Program</option> -->
                                                     <option *ngFor="let studentdetail of studentDetails" [value]="studentdetail.courseprogramd[0]._id" 
                                                     [selected]="studentdetail.courseprogramd[0].courseprogram">
                                                         {{studentdetail.courseprogramd[0].courseprogram}}</option>
@@ -42,7 +42,7 @@
                                         <div class="form-group form-float">
                                             <label for="batch">Batch</label>
                                             <select class="browser-default form-control" [formControl]="batch" name="batch" required>
-                                                <option>Choose your Batch</option>
+                                                <!-- <option>Choose your Batch</option> -->
                                                 <option *ngFor="let studentdetail of studentDetails" [value]="studentdetail.batchd[0]._id"
                                                     [selected]="studentdetail.batchd[0].batch">
                                                     {{studentdetail.batchd[0].batch}}

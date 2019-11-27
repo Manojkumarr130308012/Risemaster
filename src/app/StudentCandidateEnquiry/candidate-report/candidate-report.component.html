@@ -10,7 +10,7 @@
                         </h2>
                     </div>
                     <div class="body">
-                        <form>
+                        <form id ="convertToStudent">
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group form-float">
@@ -34,11 +34,13 @@
                                 <div class="col-md-3">
                                     <div class="form-group form-float">
                                         <label for="academicYear">Academic Year<span class="asterisk">*</span></label>
-                                        <select class="browser-default" [formControl]="academicYear" class="form-control" required>
+                                        <div class="form-line">
+                                        <select class="browser-default" [formControl]="academicYear" name="academicYear" class="form-control" required>
                                             <option value="">Choose your AcademicYear</option>
                                             <option *ngFor="let academicYear of academicYears?.response" [value]="academicYear._id">
                                                 {{academicYear?.year}}</option>
                                         </select>
+                                    </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <label for="toDate">To Date<span class="asterisk">*</span></label>
@@ -49,43 +51,51 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group form-float">
-                                        <label for="coursecategory">Course Category</label>
+                                        <label for="coursecategory">Course Category<span class="asterisk">*</span></label>
+                                        <div class="form-line">
                                         <select class="browser-default" [formControl]="coursecategory" name="coursecategory" class="form-control"
-                                            (change)="onCourseCategoryChange($event.target.value)">
+                                            (change)="onCourseCategoryChange($event.target.value)" required>
                                             <option>Choose your Course Category
                                             </option>
                                             <option *ngFor="let coursecategory of coursecategories?.response" [value]="coursecategory._id">
                                                 {{coursecategory?.coursecategory}}</option>
                                         </select>
                                     </div>
+                                </div>
                                     <div class="form-group form-float">
                                         <label for="admissiontype">Admission Type<span class="asterisk">*</span></label>
-                                        <select class="browser-default" [formControl]="admissiontype" class="form-control" required>
-                                            <option>Choose your Admission Type
+                                        <div class="form-line">
+                                        <select class="browser-default" [formControl]="admissiontype" name="admissiontype" class="form-control" required>
+                                            <option value="">Choose your Admission Type
                                             </option>
                                             <option *ngFor="let admissiontype of admissiontypes?.response" [value]="admissiontype._id">
                                                 {{admissiontype?.admissiontype}}</option>
                                         </select>
                                     </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group form-float">
-                                        <label for="courseprogram">Course/Program</label>
-                                        <select class="browser-default" [formControl]="courseprogram" class="form-control">
-                                            <option default>Choose your Course/Program
+                                        <label for="courseprogram">Course/Program<span class="asterisk">*</span></label>
+                                        <div class="form-line">
+                                        <select class="browser-default" [formControl]="courseprogram" name="courseprogram" class="form-control" required>
+                                            <option value=" ">Choose your Course/Program
                                             </option>
                                             <option *ngFor="let courseprogram of courseprograms?.response" [value]="courseprogram._id">
                                                 {{courseprogram?.courseprogram}}</option>
                                         </select>
+                                        </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <label for="confirmedStatus">Course Confirmed Status<span class="asterisk">*</span></label>
-                                        <select class="browser-default" [formControl]="confirmedStatus" class="form-control"
+                                        <div class="form-line">
+                                        <select class="browser-default" [formControl]="confirmedStatus" name="confirmedStatus" class="form-control"
                                             required>
                                             <option value="">Choose your Admission Type </option>
                                             <option value="Confirmed">Confirmed</option>
                                             <option value="Not Confirmed">Not Confirmed</option>
                                         </select>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -114,14 +124,14 @@
                                     <th>Unique No.</th>
                                     <th>Last Enquiry Date</th>
                                     <th>Candidate Name</th>
-                                    <th>Degree Name</th>
+                                    <th>Course/Program</th>
                                     <th>Gender</th>
                                     <th>Phone No.</th>
                                     <th>Mobile No.</th>
                                     <th>Admission Type</th>
                                     <th>Amount Paid</th> 
                                     <th>Date</th>
-                                    <th>Is Admitted?</th>
+                                    <th>Is Confirmed?</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -131,14 +141,14 @@
                                     <td>-</td>
                                     <td>{{report?.enquiryDate}}</td>
                                     <td>{{report?.firstName}}.{{report?.lastName}}</td>
-                                    <td>-</td>
+                                    <td>{{report.CourseDetails.course_programs[0].courseprogram}}</td>
                                     <td>{{report?.genderd[0].gender}}</td>
                                     <td>-</td>
                                     <td>{{report?.sMobileNumber}}</td>
                                     <td>{{report.AdmissiontypeDetails[0].admissiontype}}</td>
                                     <td>-</td>
                                     <td>-</td>
-                                    <td>-</td>
+                                    <td>{{report?.status}}</td>
 
                                 </tr>
                             </tbody>
