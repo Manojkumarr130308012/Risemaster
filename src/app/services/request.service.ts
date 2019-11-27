@@ -14,9 +14,9 @@ export class RequestService {
 
 
 
-  public login(credentials) {
+  public stafflogin(credentials) {
     console.log('credentials2',credentials);
-    this.url = `${this.endPoint}/userLogin/login`;
+    this.url = `${this.endPoint}/staffLogin/login`;
     return this.http.post(this.url, credentials);
   }
 

@@ -42,7 +42,7 @@ export class StaffLoginComponent implements OnInit {
 
       console.log("credentials", credentials);
 
-      this.request.login(credentials).subscribe((response: any) => {
+      this.request.stafflogin(credentials).subscribe((response: any) => {
         if (!response) {
           console.log("something went wrong");
           return;
