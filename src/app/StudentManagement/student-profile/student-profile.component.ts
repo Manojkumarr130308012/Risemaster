@@ -18,7 +18,9 @@ export class StudentProfileComponent implements OnInit {
   studentDets: any;
   courseprogramByIns: any;
   courseprogrambyIns: any;
-
+batch: any;
+courseprogram: any;
+institution: any;
   constructor(
     private request: RequestService,
     private router: Router,

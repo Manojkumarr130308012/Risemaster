@@ -11,10 +11,11 @@ declare const $: any;
   styleUrls: ['./convert-to-student.component.scss']
 })
 export class ConvertToStudentComponent implements OnInit {
+  disabled = true;
   institutions: any;
   basicdetails: any;
   basicDet: any;
-  canId: any;
+  canId: any; 
   id: any;
   convertToStudent: any;
   courseprograms: any;
@@ -53,6 +54,7 @@ export class ConvertToStudentComponent implements OnInit {
   hostelsbyIns: any;
   courseprogramsbyIns: any;
   courseprogrambyIns: any;
+  transport: any;
   constructor(
     private request: RequestService,
     private router: Router,
@@ -153,6 +155,7 @@ export class ConvertToStudentComponent implements OnInit {
     } else
       this.batcheBycourseprograms = null;
   }
+  
   viewCEcourseprogram(canId) {
     if (canId){
     this.request.getCEcourseprogramById(canId).subscribe((response) => {
@@ -180,7 +183,9 @@ export class ConvertToStudentComponent implements OnInit {
    	//Select2
 		$(".select2").select2();
 	}
-
+  transport1(event1: any) {
+    this.transport = event1;
+  }
   addToStudentDetail(id) {
     const newDetails = {
       courseprogram: this.convertToStudent.get('courseprogram').value,
@@ -193,7 +198,7 @@ export class ConvertToStudentComponent implements OnInit {
      hostel: this.convertToStudent.get('hostel').value,
      rout: this.convertToStudent.get('rout').value,
      busstop: this.convertToStudent.get('busstop').value,
-     checkbox1: this.convertToStudent.get('checkbox1').value,
+     checkbox1: this.transport,
      canId: this.canId
     }
     this.request.addConvertToStudent(newDetails).subscribe((response: any) => {
@@ -273,9 +278,11 @@ else if (response.status == 'error') {
 }, (error) => {
   this.setMessage(error);
 });
+
 ///////////////////////////////////////////////////////////////
     });
   }
+  
   viewData() {
     this.request.getStudentDetails().subscribe((response) => {
       this.studentDetails = response;
@@ -295,6 +302,9 @@ else if (response.status == 'error') {
   } else
   this.converts = null;
   }
+
+
+
   ngOnInit() {
     this.viewBasicDetailsById(this.id);
     this.viewCEcourseprogram(this.canId);
@@ -302,6 +312,30 @@ else if (response.status == 'error') {
     this.loadInstitution();
     this.loadBatch();
     this.loadHostel();
+    $('select').change(function() {
+      const $this = $(this);
+      const myId = $this.attr('id');
+      const myVal = $(this).val();
+      if (myId == 'boardingType') {
+          $('select').prop('disabled',false);
+          if (myVal == 'DayScholar') {
+              $('#hostel').prop('disabled', true);
+          }else if (myVal == 'Hosteller') {
+              $('#checkbox1').prop('disabled', true);
+          }else if (myVal == 3) {
+              $('#').prop('disabled', true);
+          }
+      }
+  });
+  $(document).ready(function() {
+    $("#checkbox1").click(function() {
+       if ($(this).is(":checked")) { 
+          $("#rout").prop("disabled", false);
+       } else {
+          $("#rout").prop("disabled", true);  
+       }
+    });
+});
   }
 
 }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormControl, Validators} from '@angular/forms';
 import { RequestService } from '../../services/request.service';
 import { Router, ActivatedRoute } from '@angular/router';
-
+declare const $: any;
+declare const swal: any;
 @Component({
   selector: 'app-candidate-report',
   templateUrl: './candidate-report.component.html',
@@ -25,6 +26,7 @@ export class CandidateReportComponent implements OnInit {
   academicYear: any;
   confirmedStatus: any;
   reports: Object;
+  rep: any;
 
   constructor( private request: RequestService,
     private router: Router,
@@ -146,7 +148,9 @@ console.log('Reporttt', filterReportbyDate);
       .fetchReportbyDate(filterReportbyDate)
       .subscribe(response => {
         this.reports = response;
-        console.log('filterReportbyDate', this.reports)
+        console.log('filterReportbyDate', this.reports);
+       this.rep = this.reports[0].CourseDetails.course_programs;
+      //  console.log('TestTTTT', this.rep);
       });
   }
   cancel() {
@@ -158,6 +162,21 @@ console.log('Reporttt', filterReportbyDate);
     this.loadInstitution();
     this.loadCourseType();
     this.loadAcademicYear();
-  }
+    //jQuery Validation form convertToStudent (Form-Control)
+   //jQuery Validation form BasicDetails (Form-Control)
+   $(function () {
+    $('#convertToStudent').validate({
 
+      highlight: function (input) {
+        $(input).parents('.form-line').addClass('error');
+      },
+      unhighlight: function (input) {
+        $(input).parents('.form-line').removeClass('error');
+      },
+      errorPlacement: function (error, element) {
+        $(element).parents('.form-group').append(error);
+      }
+    });
+  });
+  }
 }
