@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { Router,  ActivatedRoute  } from '@angular/router';
 import { RequestService } from '../../services/request.service';
 import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
+import { AuthService } from "../../services/auth.service";
 declare const $: any;
 declare const M: any;
 declare const swal: any;
@@ -31,7 +32,8 @@ export class CasteComponent implements OnInit {
     private dynamicScriptLoader: DynamicScriptLoaderService,
     private request: RequestService,
     private router: Router,
-    private activeRoute:  ActivatedRoute)
+    private activeRoute:  ActivatedRoute,
+    private auth: AuthService)
     {
        // Add Form
       this.registerForm = this.formBuilder.group({
@@ -166,6 +168,7 @@ get f2() { return this.editForm.controls; }
   }
 
   ngOnInit() {
+    this.auth.isValidUser();
   this.startScript();
   M.updateTextFields();
  this.viewData();

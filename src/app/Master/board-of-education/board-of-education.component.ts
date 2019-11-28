@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { RequestService } from '../../services/request.service';
 import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
 import { Validators, FormGroup, FormBuilder} from '@angular/forms';
@@ -8,6 +8,7 @@ declare const $: any;
 declare const swal: any;
 import * as moment from 'moment';
 import { Angular5Csv } from 'angular5-csv/dist/Angular5-csv';
+import { AuthService } from "../../services/auth.service";
 // import * as jsPDF from 'jspdf';
 declare let jsPDF: any ;
 
@@ -38,7 +39,9 @@ export class BoardOfEducationComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private dynamicScriptLoader: DynamicScriptLoaderService,
     private request: RequestService,
-    private router: Router) {
+    private router: Router,
+    private activeRoute:  ActivatedRoute,
+    private auth: AuthService) {
       //Add Form Group
       this.registerForm = this.formBuilder.group({
         board:['', Validators.required],
@@ -222,6 +225,7 @@ export class BoardOfEducationComponent implements OnInit {
       doc.save('Boards' + moment().unix() + '.pdf');
       }
   ngOnInit() {
+    this.auth.isValidUser();
     this.viewData();
   }
   key: string = 'name'; //set default
