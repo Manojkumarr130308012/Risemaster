@@ -5,13 +5,14 @@
         <span class="login100-form-title p-b-45">
           Login
         </span>
-        <div class="wrap-input100 validate-input" data-validate="Valid username is required">
-          <input class="input100 form-control" type="text" name="username" [formControl]="username">
+        <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+          <input type="text" name="username" id="username" [formControl]="username" class="form-control"
+          placeholder="Enter Username"  required />
           <span class="focus-input100"></span>
-          <span class="label-input100">UserName</span>
         </div>
         <div class="wrap-input100 validate-input" data-validate="Password is required">
-          <input class="input100 form-control" type="password" name="password" [formControl]="password">
+          <input type="text" name="password" id="password" [formControl]="password" class="form-control"
+            placeholder="Enter Password" required />
           <span class="focus-input100"></span>
         </div>
         <div class="flex-sb-m w-full p-t-15 p-b-20">

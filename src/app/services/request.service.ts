@@ -12,11 +12,12 @@ export class RequestService {
   endPoint = 'http://localhost:3000';
 
 
- 
-  public login(credentials) {
+
+
+  public stafflogin(credentials) {
     console.log('credentials2',credentials);
-    this.url = `${this.endPoint}/user/login`;
-    return this.http.get(this.url,credentials);
+    this.url = `${this.endPoint}/staffLogin/login`;
+    return this.http.post(this.url, credentials);
   }
 
   public StuLogin(credentials) {
