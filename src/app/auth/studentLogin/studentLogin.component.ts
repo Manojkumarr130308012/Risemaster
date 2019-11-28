@@ -3,19 +3,19 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 
-import { RequestService } from "./../../services/request.service";
-import { StorageService } from "./../../services/storage.service";
-import { AuthService } from "./../../services/auth.service";
+import { RequestService } from "../../services/request.service";
+import { StorageService } from "../../services/storage.service";
+import { AuthService } from "../../services/auth.service";
 
 declare const jQuery: any;
 declare const $: any;
 
 @Component({
   selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"]
+  templateUrl: "./studentLogin.component.html",
+  styleUrls: ["./studentLogin.component.scss"]
 })
-export class LoginComponent implements OnInit {
+export class StudentLoginComponent implements OnInit {
   public username : any;
   public password : any;
 
@@ -25,8 +25,6 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private auth: AuthService
   ) {
-
-
 
   }
 
@@ -38,9 +36,10 @@ export class LoginComponent implements OnInit {
 
     console.log("credentials", credentials);
 
-    this.request.login(credentials).subscribe((response: any) => {
+    this.request.StuLogin(credentials).subscribe((response: any) => {
       if (!response) {
         console.log("something went wrong");
+        // swal('Enter UserName and Password');
         return;
       }
 

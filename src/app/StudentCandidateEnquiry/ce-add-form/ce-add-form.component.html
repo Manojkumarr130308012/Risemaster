@@ -455,7 +455,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label>Address Type</label>
+                                                                        <label>Address Type<span class="asterisk">*</span></label>
                                                                         <select class="browser-default" id="select13" [(ngModel)]="selectedaddresstype" formControlName="addresstype"
                                                                              class="form-control" placeholder="Enter addresstype "
                                                                             [ngClass]="{ 'is-invalid': submitted && f.addresstype.errors }">
@@ -468,7 +468,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label>Street/Lane</label>
+                                                                        <label>Street/Lane<span class="asterisk">*</span></label>
                                                                         <input type="text"  formControlName="streetLane" class="form-control" placeholder="Enter Street/Lane"
                                                                             [ngClass]="{ 'is-invalid': submitted && f.streetLane.errors }" />
                                                                         <div *ngIf="submitted && f.streetLane.errors" class="invalid-feedback">
@@ -477,7 +477,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label>City</label>
+                                                                        <label>City<span class="asterisk">*</span></label>
                                                                         <input type="text"  formControlName="city" class="form-control" placeholder="Enter City"
                                                                             [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
                                                                         <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
@@ -486,7 +486,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                            <label>Pincode</label>
+                                                                            <label>Pincode<span class="asterisk">*</span></label>
                                                                         <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.pincode.errors }"
                                                                             formControlName="pincode" placeholder="Enter Pincode">
                                                                         <div *ngIf="submitted && f.pincode.errors" class="invalid-feedback">
@@ -494,7 +494,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                            <label>Country</label>
+                                                                            <label>Country<span class="asterisk">*</span></label>
                                                                         <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.country.errors }"
                                                                             formControlName="country" placeholder="Enter Country">
                                                                         <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
@@ -504,7 +504,7 @@
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label>Flat/Door/BlockNo.</label>
+                                                                        <label>Flat/Door/BlockNo.<span class="asterisk">*</span></label>
                                                                         <input type="text"  formControlName="flatNo" class="form-control" placeholder="Enter Flat/Door/BlockNo."
                                                                             [ngClass]="{ 'is-invalid': submitted && f.flatNo.errors }" />
                                                                         <div *ngIf="submitted && f.flatNo.errors" class="invalid-feedback">
@@ -513,7 +513,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label>Area/Locality</label>
+                                                                        <label>Area/Locality<span class="asterisk">*</span></label>
                                                                         <input type="text"  formControlName="area" class="form-control" placeholder="Enter Area/Locality"
                                                                             [ngClass]="{ 'is-invalid': submitted && f.area.errors }" />
                                                                         <div *ngIf="submitted && f.area.errors" class="invalid-feedback">
@@ -521,7 +521,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label>District</label>
+                                                                        <label>District<span class="asterisk">*</span></label>
                                                                         <input type="text"  formControlName="district" class="form-control" placeholder="Enter District"
                                                                             [ngClass]="{ 'is-invalid': submitted && f.district.errors }" />
                                                                         <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
@@ -529,7 +529,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label>State</label>
+                                                                        <label>State<span class="asterisk">*</span></label>
                                                                         <input type="text"  formControlName="state" class="form-control" placeholder="Enter State"
                                                                             [ngClass]="{ 'is-invalid': submitted && f.state.errors }" />
                                                                         <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
@@ -567,7 +567,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-6">
                                                                     <div class="form-group ">
-                                                                        <label>Address Type</label>
+                                                                        <label>Address Type<span class="asterisk">*</span></label>
                                                                         <select class="browser-default" id="select20" formControlName="addresstype3" class="form-control"
                                                                             [ngClass]="{ 'is-invalid': submitted && f2.addresstype3.errors }">
                                                                             <option >Choose your Address Type
@@ -581,7 +581,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label>Street/Lane</label>
+                                                                        <label>Street/Lane<span class="asterisk">*</span></label>
                                                                         <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f2.streetLane3.errors }"
                                                                             formControlName="streetLane3">
                                                                         <div *ngIf="submitted && f2.streetLane3.errors" class="invalid-feedback">
@@ -590,7 +590,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label>City</label>
+                                                                        <label>City<span class="asterisk">*</span></label>
                                                                         <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f2.city3.errors }"
                                                                             formControlName="city3">
                                                                         <div *ngIf="submitted && f2.city3.errors" class="invalid-feedback">
@@ -599,7 +599,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label>Pincode</label>
+                                                                        <label>Pincode<span class="asterisk">*</span></label>
                                                                         <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f2.pincode3.errors }"
                                                                             formControlName="pincode3">
                                                                         <div *ngIf="submitted && f2.pincode3.errors" class="invalid-feedback">
@@ -608,7 +608,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label>Country</label>
+                                                                        <label>Country<span class="asterisk">*</span></label>
                                                                         <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f2.country3.errors }"
                                                                             formControlName="country3">
                                                                         <div *ngIf="submitted && f2.country3.errors" class="invalid-feedback">
@@ -618,7 +618,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <label>Flat/Door/BlockNo.</label>
+                                                                    <label>Flat/Door/BlockNo.<span class="asterisk">*</span></label>
                                                                     <div class="form-group">
                                                                         <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f2.flatNo3.errors }"
                                                                             formControlName="flatNo3" placeholder="Enter Flat/Door/BlockNo.">
@@ -628,7 +628,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label>Area/Locality</label>
+                                                                        <label>Area/Locality<span class="asterisk">*</span></label>
                                                                         <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f2.area3.errors }"
                                                                             formControlName="area3">
                                                                         <div *ngIf="submitted && f2.area3.errors" class="invalid-feedback">
@@ -637,7 +637,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label>District</label>
+                                                                        <label>District<span class="asterisk">*</span></label>
                                                                         <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f2.district3.errors }"
                                                                             formControlName="district3">
                                                                         <div *ngIf="submitted && f2.district3.errors" class="invalid-feedback">
