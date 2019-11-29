@@ -11,21 +11,14 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: '',
-    redirectTo: 'studentLogin',
-    pathMatch: 'full'
-  },
-  {
 
     path: 'staff-login',
     component: StaffLoginComponent
 
   },
   {
-
     path: 'studentLogin',
     component: StudentLoginComponent
-
   },
 ];
 

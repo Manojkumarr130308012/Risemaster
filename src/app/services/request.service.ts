@@ -2195,4 +2195,249 @@ public getHostelbyIns(institution) {
   this.url = `${this.endPoint}/hostel/fetchbyIns/?institution=` + institution;
   return this.http.get(this.url);
 }
+
+//SubjectType
+getSubjectType() {
+  this.url = `${this.endPoint}/subject-type/aggregation`;
+  return this.http.get(this.url);
+}
+addSubjectType(newdetail: any) {
+  this.url = `${this.endPoint}/subject-type/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteSubjectType(id) {
+  this.url = `${this.endPoint}/subject-type/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateSubjectType(id, body) {
+  this.url = `${this.endPoint}/subject-type/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchSubjectTypeById(id) {
+  this.url = `${this.endPoint}/subject-type/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+public getSubjectTypebyIns(institution) {
+  this.url = `${this.endPoint}/subject-type/fetchbyIns/?institution=` + institution;
+  return this.http.get(this.url);
+}
+
+//SubjectCategory
+getSubjectCategory() {
+  this.url = `${this.endPoint}/subject-category/aggregation`;
+  return this.http.get(this.url);
+}
+addSubjectCategory(newdetail: any) {
+  this.url = `${this.endPoint}/subject-category/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteSubjectCategory(id) {
+  this.url = `${this.endPoint}/subject-category/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateSubjectCategory(id, body) {
+  this.url = `${this.endPoint}/subject-category/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchSubjectCategoryById(id) {
+  this.url = `${this.endPoint}/subject-category/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+public getSubjectCategorybyIns(institution) {
+  this.url = `${this.endPoint}/subject-category/fetchbyIns/?institution=` + institution;
+  return this.http.get(this.url);
+}
+//SubjectClassification
+getSubjectClassification() {
+  this.url = `${this.endPoint}/subject-classification/aggregation`;
+  return this.http.get(this.url);
+}
+addSubjectClassification(newdetail: any) {
+  this.url = `${this.endPoint}/subject-classification/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteSubjectClassification(id) {
+  this.url = `${this.endPoint}/subject-classification/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateSubjectClassification(id, body) {
+  this.url = `${this.endPoint}/subject-classification/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchSubjectClassificationById(id) {
+  this.url = `${this.endPoint}/subject-classification/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+public getSubjectClassificationbyIns(institution) {
+  this.url = `${this.endPoint}/subject-classification/fetchbyIns/?institution=` + institution;
+  return this.http.get(this.url);
+}
+//Subject TopicCoverage
+getTopicCoverage() {
+  this.url = `${this.endPoint}/subject-topic-coverage/aggregation`;
+  return this.http.get(this.url);
+}
+addTopicCoverage(newdetail: any) {
+  this.url = `${this.endPoint}/subject-topic-coverage/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteTopicCoverage(id) {
+  this.url = `${this.endPoint}/subject-topic-coverage/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateTopicCoverage(id, body) {
+  this.url = `${this.endPoint}/subject-topic-coverage/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchTopicCoverageById(id) {
+  this.url = `${this.endPoint}/subject-topic-coverage/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+public getTopicCoveragebyIns(institution) {
+  this.url = `${this.endPoint}/subject-topic-coverage/fetchbyIns/?institution=` + institution;
+  return this.http.get(this.url);
+}
+//Subject MarkDefinition
+getMarkDefinition() {
+  this.url = `${this.endPoint}/subject-mark-definition/aggregation`;
+  return this.http.get(this.url);
+}
+addMarkDefinition(newdetail: any) {
+  this.url = `${this.endPoint}/subject-mark-definition/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteMarkDefinition(id) {
+  this.url = `${this.endPoint}/subject-mark-definition/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateMarkDefinition(id, body) {
+  this.url = `${this.endPoint}/subject-mark-definition/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchMarkDefinitionById(id) {
+  this.url = `${this.endPoint}/subject-mark-definition/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+public getMarkDefinitionbyIns(institution) {
+  this.url = `${this.endPoint}/subject-mark-definition/fetchbyIns/?institution=` + institution;
+  return this.http.get(this.url);
+}
+//Subject Internal Mark Category
+getIntMarkCat() {
+  this.url = `${this.endPoint}/subject-intMarkCat/aggregation`;
+  return this.http.get(this.url);
+}
+addIntMarkCat(newdetail: any) {
+  this.url = `${this.endPoint}/subject-intMarkCat/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteIntMarkCat(id) {
+  this.url = `${this.endPoint}/subject-intMarkCat/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateIntMarkCat(id, body) {
+  this.url = `${this.endPoint}/subject-intMarkCat/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchIntMarkCatById(id) {
+  this.url = `${this.endPoint}/subject-intMarkCat/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+public getIntMarkCatbyIns(institution) {
+  this.url = `${this.endPoint}/subject-intMarkCat/fetchbyIns/?institution=` + institution;
+  return this.http.get(this.url);
+}
+public fetchIntMarkbymarkDef(markDefinition) {
+  this.url = `${this.endPoint}/subject-intMarkCat/fetchByMarkDef?markDefinition=` + markDefinition;
+  return this.http.get(this.url);
+}
+//Subject External Mark Category
+getExtMarkCat() {
+  this.url = `${this.endPoint}/subject-extMarkCat/aggregation`;
+  return this.http.get(this.url);
+}
+addExtMarkCat(newdetail: any) {
+  this.url = `${this.endPoint}/subject-extMarkCat/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteExtMarkCat(id) {
+  this.url = `${this.endPoint}/subject-extMarkCat/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateExtMarkCat(id, body) {
+  this.url = `${this.endPoint}/subject-extMarkCat/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchExtMarkCatById(id) {
+  this.url = `${this.endPoint}/subject-extMarkCat/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+public getExtMarkCatbyIns(institution) {
+  this.url = `${this.endPoint}/subject-extMarkCat/fetchbyIns/?institution=` + institution;
+  return this.http.get(this.url);
+}
+public fetchExtMarkbymarkDef(markDefinition) {
+  this.url = `${this.endPoint}/subject-extMarkCat/fetchByMarkDef?markDefinition=` + markDefinition;
+  return this.http.get(this.url);
+}
+
+//Subject Add
+getSubject() {
+  this.url = `${this.endPoint}/subject-add/aggregation`;
+  return this.http.get(this.url);
+}
+addSubject(newdetail: any) {
+  this.url = `${this.endPoint}/subject-add/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteSubject(id) {
+  this.url = `${this.endPoint}/subject-add/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateSubject(id, body) {
+  this.url = `${this.endPoint}/subject-add/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchSubjectById(id) {
+  this.url = `${this.endPoint}/subject-add/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+public getSubjectbyIns(institution) {
+  this.url = `${this.endPoint}/subject-add/fetchbyIns/?institution=` + institution;
+  return this.http.get(this.url);
+}
+public fetchSubjectbymarkDef(markDefinition) {
+  this.url = `${this.endPoint}/subject-add/fetchByMarkDef?markDefinition=` + markDefinition;
+  return this.http.get(this.url);
+}
+public fetchByDepartment(department) {
+  this.url = `${this.endPoint}/subject-add/fetchByDep/?department=` + department;
+  return this.http.get(this.url);
+}
+//Semester
+getSemester() {
+  this.url = `${this.endPoint}/semester/aggregation`;
+  return this.http.get(this.url);
+}
+addSemester(newdetail: any) {
+  this.url = `${this.endPoint}/semester/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteSemester(id) {
+  this.url = `${this.endPoint}/semester/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateSemester(id, body) {
+  this.url = `${this.endPoint}/semester/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchSemesterById(id) {
+  this.url = `${this.endPoint}/semester/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+ getSemesterbyIns(institution) {
+  this.url = `${this.endPoint}/semester/fetchbyIns/?institution=` + institution;
+  return this.http.get(this.url);
+}
+
 }

@@ -37,7 +37,7 @@
                                             <select id="selectDepartment" [(ngModel)]="selectedDepartment" class="browser-default form-control"
                                             (change)="onDepartmentChange($event.target.value)">
                                                 <option>Choose your Department</option>
-                                                <option *ngFor="let department of departments?.response"
+                                                <option *ngFor="let department of departmentsdrop"
                                                     [value]="department._id">{{department?.department}}</option>
                                                 </select>
                                         </div>

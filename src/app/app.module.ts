@@ -38,7 +38,7 @@ import { CasteComponent } from './Master/caste/caste.component';
 import { CommunityComponent } from './Master/community/community.component';
 import { NationalityComponent } from './Master/nationality/nationality.component';
 import { ReligionComponent } from './Master/religion/religion.component';
-
+import { BatchComponent } from './Master/batch/batch.component';
 
 
 import { AdmissionTypeComponent } from './Master/admission-type/admission-type.component';
@@ -47,7 +47,7 @@ import { AdmissionCategoryComponent } from './Master/admission-category/admissio
 import { BoardOfEducationComponent } from './Master/board-of-education/board-of-education.component';
 import { CourseProgramComponent } from './Master/course-program/course-program.component';
 import { CourseCategoryComponent } from './Master/course-category/course-category.component';
-
+import { SemesterComponent } from './Master/semester/semester.component';
 // Student Master
 import { DegreeComponent } from './StudentMaster/degree/degree.component';
 import { MotherTongueComponent } from './StudentMaster/mother-tongue/mother-tongue.component';
@@ -60,6 +60,9 @@ import { MediumComponent } from './StudentMaster/medium/medium.component';
 import { ScholarshipCategoryComponent } from './StudentMaster/scholarship-category/scholarship-category.component';
 import { BankComponent } from './StudentMaster/bank/bank.component';
 import { QualificationTypeComponent } from './StudentMaster/qualification-type/qualification-type.component';
+import { RelationshipComponent } from './StudentMaster/relationship/relationship.component';
+import { ActivityCategoryComponent } from './StudentMaster/activity-category/activity-category.component';
+import { SubCategoryComponent } from './StudentMaster/sub-category/sub-category.component';
 
 // Staff Master
 import { GenderComponent } from './StaffMaster/gender/gender.component';
@@ -79,36 +82,39 @@ import { DriverMasterComponent } from './VehicleManagement/driver-master/driver-
 import { FillingStationsComponent } from './VehicleManagement/filling-stations/filling-stations.component';
 import { VehicleExpensesComponent } from './VehicleManagement/vehicle-expenses/vehicle-expenses.component';
 import { StageDetailsComponent } from './VehicleManagement/stage-details/stage-details.component';
-
 import { ExpensesEntryComponent } from './VehicleManagement/Vehicle Transaction/expenses-entry/expenses-entry.component';
 import { FuelEntryComponent } from './VehicleManagement/Vehicle Transaction/fuel-entry/fuel-entry.component';
-
 import { ExpenseEntryReportComponent } from './VehicleManagement/Vehicle Transaction/Expense-entry-report/Expense-entry-report.component';
 import { FuelEntryReportComponent } from './VehicleManagement/Vehicle Transaction/fuel-entry-report/fuel-entry-report.component';
-
-
-
 
 // Staff Management
 import { StaffProfileComponent } from './StaffManagement/staff-profile/staff-profile.component';
 import { StaffDetailsComponent } from './StaffManagement/staff-details/staff-details.component';
 
-
-import { BatchComponent } from './Master/batch/batch.component';
-import { ConvertToStudentComponent } from './StudentCandidateEnquiry/convert-to-student/convert-to-student.component';
-import { StudentProfileComponent } from './StudentManagement/student-profile/student-profile.component';
-import { StudentEntryComponent } from './StudentManagement/student-entry/student-entry.component';
+//CandidateEnquiry
+import { CEMainPageComponent } from './StudentCandidateEnquiry/ce-main-page/ce-main-page.component';
 import { CEAddFormComponent } from './StudentCandidateEnquiry/ce-add-form/ce-add-form.component';
 import { CEEditFormComponent } from './StudentCandidateEnquiry/ce-edit-form/ce-edit-form.component';
-import { CEMainPageComponent } from './StudentCandidateEnquiry/ce-main-page/ce-main-page.component';
+import { ConvertToStudentComponent } from './StudentCandidateEnquiry/convert-to-student/convert-to-student.component';
+import { CandidateReportComponent } from './StudentCandidateEnquiry/candidate-report/candidate-report.component';
+
+//Student Management
 import { StudentDetailComponent } from './StudentManagement/student-detail/student-detail.component';
-import { RelationshipComponent } from './StudentMaster/relationship/relationship.component';
-import { ActivityCategoryComponent } from './StudentMaster/activity-category/activity-category.component';
-import { SubCategoryComponent } from './StudentMaster/sub-category/sub-category.component';
 import { CertificateTypeComponent } from './StudentMaster/certificate-type/certificate-type.component';
 import { StudentEditComponent } from './StudentManagement/student-edit/student-edit.component';
-import { CandidateReportComponent } from './StudentCandidateEnquiry/candidate-report/candidate-report.component';
+import { StudentProfileComponent } from './StudentManagement/student-profile/student-profile.component';
+import { StudentEntryComponent } from './StudentManagement/student-entry/student-entry.component';
 import { HostelComponent } from './Master/hostel/hostel.component';
+
+//Subject Master
+import { SubjectTypeComponent } from './SubjectMaster/subject-type/subject-type.component';
+import { SubjectCategoryComponent } from './SubjectMaster/subject-category/subject-category.component';
+import { SubjectClassificationComponent } from './SubjectMaster/subject-classification/subject-classification.component';
+import { SubjectMarkdefinitionComponent } from './SubjectMaster/subject-markdefinition/subject-markdefinition.component';
+import { SubjectTopiccoverageComponent } from './SubjectMaster/subject-topiccoverage/subject-topiccoverage.component';
+import { SubjectMarkviewComponent } from './SubjectMaster/subject-markview/subject-markview.component';
+import { AddSubjectComponent } from './SubjectMaster/add-subject/add-subject.component';
+import { EditSubjectComponent } from './SubjectMaster/edit-subject/edit-subject.component';
 
 
 
@@ -120,21 +126,18 @@ import { HostelComponent } from './Master/hostel/hostel.component';
     SidebarComponent,
     RightSidebarComponent,
 
-
-
     BloodgroupComponent,
     CasteComponent,
     CommunityComponent,
     NationalityComponent,
     ReligionComponent,
-
     AcademicYearComponent,
     UserDesignationComponent,
     AdmissionTypeComponent,
     InstitutionComponent,
     AdmissionCategoryComponent,
     BoardOfEducationComponent,
-   CourseProgramComponent,
+    CourseProgramComponent,
     CourseCategoryComponent,
 
     // Student Master
@@ -161,10 +164,6 @@ import { HostelComponent } from './Master/hostel/hostel.component';
     FeeTypeComponent,
     ModeOfEnquiryComponent,
 
-
-
-    QualificationTypeComponent,
-
     // Vehicle Management
     VehicleMasterComponent,
     DriverMasterComponent,
@@ -173,8 +172,6 @@ import { HostelComponent } from './Master/hostel/hostel.component';
     StageDetailsComponent,
     StaffProfileComponent,
     StaffDetailsComponent,
-
-
     ExpensesEntryComponent,
     FuelEntryComponent,
     FuelEntryReportComponent,
@@ -198,6 +195,17 @@ CertificateTypeComponent,
 StudentEditComponent,
 CandidateReportComponent,
 HostelComponent,
+
+//Subject Master
+SubjectTypeComponent,
+SubjectCategoryComponent,
+SubjectClassificationComponent,
+SubjectMarkdefinitionComponent,
+SubjectTopiccoverageComponent,
+SubjectMarkviewComponent,
+AddSubjectComponent,
+SemesterComponent,
+EditSubjectComponent,
 
 
   ],
