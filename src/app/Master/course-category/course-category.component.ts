@@ -4,9 +4,10 @@ import {
   FormGroup,
   Validators,
 } from "@angular/forms";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { RequestService } from "../../services/request.service";
 import { DynamicScriptLoaderService } from "../../services/dynamic-script-loader.service";
+import { AuthService } from "../../services/auth.service";
 declare const $: any;
 declare const M: any;
 declare const swal: any;
@@ -37,7 +38,9 @@ export class CourseCategoryComponent implements OnInit {
     private formBuilder: FormBuilder,
     private dynamicScriptLoader: DynamicScriptLoaderService,
     private request: RequestService,
-    private router: Router
+    private router: Router,
+    private activeRoute:  ActivatedRoute,
+    private auth: AuthService
   ) {
     // Add Form
     this.registerForm = this.formBuilder.group({
@@ -210,6 +213,7 @@ export class CourseCategoryComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.auth.isValidUser();
     this.startScript();
     M.updateTextFields();
     this.viewData();

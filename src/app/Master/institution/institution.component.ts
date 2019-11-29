@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
 import { RequestService } from '../../services/request.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FileUploader } from 'ng2-file-upload';
+import { AuthService } from "../../services/auth.service";
 const URL = 'http://localhost:3000/upload/upload';
 declare const $: any;
 declare const swal: any;
@@ -59,7 +60,9 @@ export class InstitutionComponent implements OnInit {
   constructor(
     private dynamicScriptLoader: DynamicScriptLoaderService,
     private request: RequestService,
-    private router: Router
+    private router: Router,
+    private activeRoute:  ActivatedRoute,
+    private auth: AuthService
   ) {
     // Add Form
     this.institution_name = new FormControl('', Validators.required);
@@ -249,6 +252,7 @@ export class InstitutionComponent implements OnInit {
     });
   }
 ngOnInit() {
+  this.auth.isValidUser();
     this.startScript();
     this.viewData();
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };

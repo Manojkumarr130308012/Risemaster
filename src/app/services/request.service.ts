@@ -20,6 +20,12 @@ export class RequestService {
     return this.http.post(this.url, credentials);
   }
 
+  public StuLogin(credentials) {
+    this.url = `${this.endPoint}/studentLogin/StuLogin`;
+    return this.http.post(this.url,credentials);
+  }
+
+
   public getDesignation() {
     this.url = `${this.endPoint}/user-designation/fetch`;
     return this.http.get(this.url);

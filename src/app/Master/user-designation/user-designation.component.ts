@@ -3,8 +3,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
 import { RequestService } from '../../services/request.service';
-import { Router } from '@angular/router';
-
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from "../../services/auth.service";
 
 declare const $: any;
 declare const swal: any;
@@ -32,7 +32,12 @@ export class UserDesignationComponent implements OnInit {
   public designationNameValue: any;
   public IdValue: any;
 
-  constructor(private request: RequestService, private router: Router, private dynamicScriptLoader: DynamicScriptLoaderService, public snackBar: MatSnackBar, ) {
+  constructor(private request: RequestService, 
+    private router: Router, 
+    private dynamicScriptLoader: DynamicScriptLoaderService, 
+    public snackBar: MatSnackBar, 
+    private activeRoute:  ActivatedRoute,
+    private auth: AuthService) {
 
   }
 
@@ -174,7 +179,7 @@ export class UserDesignationComponent implements OnInit {
     })
   }
   ngOnInit() {
-
+    this.auth.isValidUser();
     this.startScript();
     this.viewDesignation();
 
