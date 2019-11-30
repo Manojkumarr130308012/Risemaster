@@ -397,6 +397,14 @@ onEditSubjectStaff() {
     }
   );
 }
+// To delete Subject Syllabus
+onDeleteStaff(id: any) {
+  this.request.deleteSubjectStaff(id).subscribe(res => {
+    console.log(id);
+    this.viewSubjectStaff(this.id);
+    swal("Deleted");
+  });
+}
 //Add Subject-Staff
 onAddSubjectSyllabus() {
   this.submitted = true;
@@ -499,6 +507,14 @@ onEditSubjectSyllabus() {
       swal(error);
     }
   );
+}
+ // To delete Subject Syllabus
+ onDeleteSyllabus(id: any) {
+  this.request.deleteSubjectSyllabus(id).subscribe(res => {
+    console.log(id);
+    this.viewSubjectSyllabus(this.id);
+    swal("Deleted");
+  });
 }
   // Bind institution data
   loadInstitution() {
