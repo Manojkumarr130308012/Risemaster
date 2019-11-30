@@ -10,11 +10,11 @@ const routes: Routes = [
     redirectTo: 'staff-login',
     pathMatch: 'full'
   },
-  {
-    path: '',
-    redirectTo: 'studentLogin',
-    pathMatch: 'full'
-  },
+
+
+
+
+
   {
 
     path: 'staff-login',
