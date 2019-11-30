@@ -16,7 +16,7 @@ import { BoardOfEducationComponent } from './Master/board-of-education/board-of-
 import { AdmissionCategoryComponent } from './Master/admission-category/admission-category.component';
 import { CourseProgramComponent } from './Master/course-program/course-program.component';
 import { CourseCategoryComponent } from './Master/course-category/course-category.component';
-
+import { SemesterComponent } from './Master/semester/semester.component';
 // Student Master
 import { AddressTypeComponent } from './StudentMaster/address-type/address-type.component';
 import { CourseTypeComponent } from './StudentMaster/course-type/course-type.component';
@@ -71,7 +71,15 @@ import { StudentEditComponent } from './StudentManagement/student-edit/student-e
 import { StudentProfileComponent } from './StudentManagement/student-profile/student-profile.component';
 import { StudentEntryComponent } from './StudentManagement/student-entry/student-entry.component';
 import { HostelComponent } from './Master/hostel/hostel.component';
-
+//subject MAster
+import { SubjectTypeComponent } from './SubjectMaster/subject-type/subject-type.component';
+import { SubjectCategoryComponent } from './SubjectMaster/subject-category/subject-category.component';
+import { SubjectClassificationComponent } from './SubjectMaster/subject-classification/subject-classification.component';
+import { SubjectMarkdefinitionComponent } from './SubjectMaster/subject-markdefinition/subject-markdefinition.component';
+import { SubjectTopiccoverageComponent } from './SubjectMaster/subject-topiccoverage/subject-topiccoverage.component';
+import { SubjectMarkviewComponent } from './SubjectMaster/subject-markview/subject-markview.component';
+import { AddSubjectComponent } from './SubjectMaster/add-subject/add-subject.component';
+import { EditSubjectComponent } from './SubjectMaster/edit-subject/edit-subject.component';
 
 const routes: Routes = [
   // { path: '', component: LoginComponent },
@@ -159,6 +167,10 @@ const routes: Routes = [
   {
     path: 'course-program',
     component: CourseProgramComponent
+  },
+   {
+    path: 'semester',
+    component: SemesterComponent
   },
 
   // Student Master
@@ -328,6 +340,23 @@ const routes: Routes = [
   component: StudentDetailComponent},
   { path: 'studentEdit',
   component: StudentEditComponent},
+   //StudentManagemnat
+   { path: 'subjectType',
+   component: SubjectTypeComponent },
+   { path: 'subjectCategory',
+   component: SubjectCategoryComponent},
+   { path: 'subjectClassification',
+   component: SubjectClassificationComponent},
+   { path: 'markDefinition',
+   component: SubjectMarkdefinitionComponent},
+   { path: 'topicCoverage',
+   component: SubjectTopiccoverageComponent},
+   { path: 'markCategory',
+   component: SubjectMarkviewComponent},
+   { path: 'addSubject',
+   component: AddSubjectComponent},
+   { path: 'editSubject',
+   component: EditSubjectComponent},
 ];
 
 @NgModule({

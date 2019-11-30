@@ -11,10 +11,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
 
-
-
-
-
   {
 
     path: 'staff-login',
@@ -22,10 +18,8 @@ const routes: Routes = [
 
   },
   {
-
     path: 'studentLogin',
     component: StudentLoginComponent
-
   },
 ];
 
