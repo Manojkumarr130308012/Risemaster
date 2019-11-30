@@ -68,7 +68,39 @@ export class EditSubjectComponent implements OnInit {
   markDefinitionId: any;
   internalByMarkDef: any;
   externalByMarkDef: any;
-
+  //Subject-Staff
+  addStaffForm: FormGroup;
+  editStaffForm: FormGroup;
+  staffName: any;
+  department2: any;
+  staffName2: any;
+  effectiveTo2: any;
+  effectiveFrom2: any;
+  staffNameValue: any;
+  //Subject-Syllabus
+  addSyllabusForm: FormGroup;
+  editSyllabusForm: FormGroup;
+  unitNo: any;
+  title: any;
+  lecturePeriod: any;
+  tutorialPeriod: any;
+  unitDescription: any;
+  unitNo2: any;
+  title2: any;
+  lecturePeriod2: any;
+  tutorialPeriod2: any;
+  unitDescription2: any;
+  subjectstaffs: Object;
+  subjectSyllabuses: Object;
+  staffprofiles: Object;
+  editSubjectStaff: any;
+  subjectValue: any;
+  editSubjectSyllabus: any;
+  unitNoValue: any;
+  titleValue: any;
+  lecturePeriodValue: any;
+  tutorialPeriodValue: any;
+  unitDescriptionValue: any;
   constructor(
     private formBuilder: FormBuilder,
     private dynamicScriptLoader: DynamicScriptLoaderService,
@@ -90,7 +122,7 @@ export class EditSubjectComponent implements OnInit {
  
     this.institution = new FormControl(this.institutionValue);
     this.department = new FormControl( this.departmentValue);
-    // Add Form
+    // Edit Form - subject details
     this.editForm = this.formBuilder.group({
       courseprogram: ["", Validators.required],
       department: ["", Validators.required],
@@ -107,171 +139,42 @@ export class EditSubjectComponent implements OnInit {
       topicCoverage : ["", Validators.required],
       lessonPlan: ["", Validators.required],
     });
+    // Add Form - subject Staff
+    this.addStaffForm = this.formBuilder.group({
+      department: ["", Validators.required],
+      staffName: ["", Validators.required],
+      effectiveTo: ["", Validators.required],
+      effectiveFrom: ["", Validators.required],
+    });
+     // Edit Form - subject Staff
+    this.editStaffForm = this.formBuilder.group({
+      department2: ["", Validators.required],
+      staffName2: ["", Validators.required],
+      effectiveTo2: ["", Validators.required],
+      effectiveFrom2: ["", Validators.required],
+    });
+    // Add Form - subject Staff
+    this.addSyllabusForm = this.formBuilder.group({
+      unitNo: ["", Validators.required],
+      title: ["", Validators.required],
+      lecturePeriod: ["", Validators.required],
+      tutorialPeriod: ["", Validators.required],
+      unitDescription: ["", Validators.required],
+    });
+     // Edit Form - subject Staff
+    this.editSyllabusForm = this.formBuilder.group({
+      unitNo2: ["", Validators.required],
+      title2: ["", Validators.required],
+      lecturePeriod2: ["", Validators.required],
+      tutorialPeriod2: ["", Validators.required],
+      unitDescription2: ["", Validators.required],
+    });
   }
-
 
   public setMessage(message) {
     return (this.message = message);
   }
 
-  // Bind institution data
-  loadInstitution() {
-    this.request.getInstitution().subscribe((response: any) => {
-        this.institutions = response;
-        console.log('Institution', this.institutions);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-  
-  loadSubjectType() {
-    this.request.getSubjectType().subscribe((response: any) => {
-        this.subjectTypes = response;
-        console.log('subjectTypes',  this.subjectTypes);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-  loadSubjectClassification() {
-    this.request.getSubjectClassification().subscribe((response: any) => {
-        this.subjectclassifications = response;
-        console.log('SubjectClassification',  this.subjectclassifications);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-  loadSubjectCategory() {
-    this.request.getSubjectCategory().subscribe((response: any) => {
-        this.subjectCategories = response;
-        console.log('subjectCategories',  this.subjectCategories);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-  // loadMarkDefinition() {
-  //   this.request.getMarkDefinition().subscribe((response: any) => {
-  //       this.markDefinitions = response;
-  //       console.log('markDefinitions',  this.markDefinitions);
-  //     },
-  //     error => {
-  //       console.log(error);
-  //     }
-  //   );
-  // }
-  loadMarkDefinitionById(id: any) {
-    this.request.fetchMarkDefinitionById(id).subscribe((response: any) => {
-        this.markDefinitionsById = response;
-        console.log('markDefinitionsById',  this.markDefinitionsById);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-  //
-  loadInternalBymarkDef(markDefinition: any) {
-    this.request.fetchIntMarkbymarkDef(markDefinition).subscribe((response: any) => {
-        this.internalByMarkDef = response;
-        console.log('InternalMarkByMarkDef',  this.internalByMarkDef);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-  loadExternalBymarkDef(markDefinition: any) {
-    this.request.fetchExtMarkbymarkDef(markDefinition).subscribe((response: any) => {
-        this.externalByMarkDef = response;
-        console.log('ExternalMarkByMarkDef',  this.externalByMarkDef);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-  //
-  loadtopicCoverage() {
-    this.request.getTopicCoverage().subscribe((response: any) => {
-        this.topicCoverages = response;
-        console.log('TopicCoverage',  this.topicCoverages);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
- // convenience getter for easy access to form fields
- get f() {
-  return this.registerForm.controls;
-}
-  
-
-loadDepartmentByIns(Institution: any) {
-  if (Institution) {
-    this.request.getDetartmentbyIns(Institution).subscribe((response: any) => {
-      this.departmentByIns = response;
-      console.log('departmentByIns',  this.departmentByIns);
-    }, (error) => {
-      console.log(error);
-    });
-  } else
-  this.departmentByIns = null;
-}
-loadSemesterByIns(Institution: any) {
-  if (Institution) {
-    this.request.getSemesterbyIns(Institution).subscribe((response: any) => {
-      this.semestersByIns = response;
-      console.log('semesterByIns',  this.semestersByIns);
-    }, (error) => {
-      console.log(error);
-    });
-  } else
-  this.semestersByIns = null;
-}
-loadCourseProgramByIns(Institution: any) {
-  if (Institution) {
-    this.request.getCourseprogramByIns(Institution).subscribe((response: any) => {
-      this.courseprogrambyIns = response;
-      console.log('CourseProgramByIns',  this.courseprogrambyIns);
-    }, (error) => {
-      console.log(error);
-    });
-  } else
-  this.courseprogrambyIns = null;
-}
-  onInstitutionChange(Institution: any) {
-    // console.log('institution', Institution)
-    if (Institution) {
-      this.request.getCourseprogramByIns(Institution).subscribe((response: any) => {
-        this.courseprogrambyIns = response;
-        console.log('CourseProgramByIns',  this.courseprogrambyIns);
-      }, (error) => {
-        console.log(error);
-      });
-    } else
-    this.courseprogrambyIns = null;
-  }
-  onDetpartmentChange(department: any) {
-    // console.log('institution', Institution)
-    if (department) {
-      this.request.fetchByDepartment(department).subscribe((response: any) => {
-        this.subjects = response;
-        console.log('subjectsByDept',  this.subjects);
-      }, (error) => {
-        console.log(error);
-      });
-    } else
-    this.courseprogrambyIns = null;
-  }
- 
   // To display Subject Type
   viewData(id: any) {
     this.request.fetchSubjectById(id).subscribe(
@@ -289,9 +192,22 @@ loadCourseProgramByIns(Institution: any) {
       }
     );
   }
-
-  get f2() {
+// convenience getter for easy access to form fields
+ 
+  get f() {
     return this.editForm.controls;
+  }
+  get a() {
+    return this.addStaffForm.controls;
+  } 
+  get a2() {
+    return this.editStaffForm.controls;
+  }
+  get e() {
+    return this.addSyllabusForm.controls;
+  } 
+  get e2() {
+    return this.editSyllabusForm.controls;
   }
   onEdit() {
     this.Id = this.id;
@@ -368,6 +284,373 @@ loadCourseProgramByIns(Institution: any) {
       this.setMessage(error);
     });
   }
+
+//Add Subject-Staff
+onAddSubjectStaff() {
+  this.submitted = true;
+  if (this.addStaffForm.invalid) {
+    return;
+  }
+  const newSubjectstaff ={
+    institution: this.institutionValue,
+    subject: this.id,
+    department: this.addStaffForm.get('department').value,
+    staffName: this.addStaffForm.get('staffName').value,
+    effectiveTo:  this.addStaffForm.get('effectiveTo').value,
+    effectiveFrom:  this.addStaffForm.get('effectiveFrom').value,
+  }
+  this.request.addSubjectStaff(newSubjectstaff).subscribe(
+    (res: any) => {
+      if (res.status == "success") {
+        swal("Added Sucessfully");
+        this.loadModal();
+        this.viewSubjectStaff(this.id);
+      } else if (res.status == "error") {
+        swal(res.error);
+      }
+    },
+    error => {
+      swal(error);
+    }
+  );
+  console.log(this.addStaffForm.value);
+}
+
+// To display Subject Staff
+viewSubjectStaff(subject: any) {
+  this.request.getStaffBySubject(subject).subscribe(
+    response => {
+      this.subjectstaffs = response;
+      console.log('SubjectStaffs', this.subjectstaffs);
+    },
+    error => {
+      console.log(error);
+    }
+  );
+}
+//staff details based on department
+onDepartmentChange(department : string) { 
+  if (department){
+    console.log(department);
+  this.request.getStaffProfileByDep(department).subscribe((response) => {
+    this.staffprofiles = response;
+    console.log('StaffDetails',this.staffprofiles);
+  }, (error) => {
+    console.log(error);
+  });
+  } else
+  this.staffprofiles = null;
+}
+
+//Edit Subject-staff
+onEditStaff(subjectStaff) {
+  this.Id = subjectStaff._id;
+  this.request.fetchSubjectStaffById(this.Id).subscribe(response => {
+    this.editSubjectStaff = response[0];
+    console.log(response);
+    this.institutionValue = this.editSubjectStaff.institution;
+    this.departmentValue = this.editSubjectStaff.department;
+    this.subjectValue = this.editSubjectStaff.subject;
+    this.effectiveFromValue = this.editSubjectStaff.effectiveFrom;
+    this.effectiveToValue = this.editSubjectStaff.effectiveTo;
+    this.staffNameValue = this.editSubjectStaff.staffName;
+    this.IdValue = this.editSubjectStaff._id;
+
+    this.editStaffForm = this.formBuilder.group({
+      department2: [this.departmentValue, Validators.required],
+      effectiveFrom2: [this.effectiveFromValue, Validators.required],
+      effectiveTo2: [this.effectiveToValue, Validators.required],
+      staffName2: [this.staffNameValue, Validators.required],
+    });
+    console.log(this.editStaffForm.value);
+  });
+}
+onEditSubjectStaff() {
+  this.submitted = true;
+  console.log(this.editStaffForm.value);
+  if (this.editStaffForm.invalid) {
+    return;
+  }
+
+  const edata = {
+    institution: this.institutionValue,
+    subject: this.id,
+    department: this.editStaffForm.get('department2').value,
+    staffName: this.editStaffForm.get('staffName2').value,
+    effectiveTo:  this.editStaffForm.get('effectiveTo2').value,
+    effectiveFrom:  this.editStaffForm.get('effectiveFrom2').value,
+  };
+
+  this.request.updateSubjectStaff(this.IdValue, edata).subscribe(
+    (res: any) => {
+      if (res.status == "success") {
+        swal("Updated Sucessfully");
+        this.loadModal();
+        this.viewSubjectStaff(this.id);
+      } else if (res.status == "error") {
+        swal(res.error);
+      }
+    },
+    error => {
+      console.log(error);
+      swal(error);
+    }
+  );
+}
+//Add Subject-Staff
+onAddSubjectSyllabus() {
+  this.submitted = true;
+  if (this.addSyllabusForm.invalid) {
+    return;
+  }
+  const newSubjectsyllabus ={
+    institution: this.institutionValue,
+    subject: this.id,
+    unitNo: this.addSyllabusForm.get('unitNo').value,
+    title: this.addSyllabusForm.get('title').value,
+    lecturePeriod:  this.addSyllabusForm.get('lecturePeriod').value,
+    tutorialPeriod:  this.addSyllabusForm.get('tutorialPeriod').value,
+    unitDescription:  this.addSyllabusForm.get('unitDescription').value,
+  }
+  this.request.addSubjectSyllabus(newSubjectsyllabus).subscribe(
+    (res: any) => {
+      if (res.status == "success") {
+        swal("Added Sucessfully");
+        this.loadModal();
+        this.viewSubjectSyllabus(this.id);
+      } else if (res.status == "error") {
+        swal(res.error);
+      }
+    },
+    error => {
+      swal(error);
+    }
+  );
+  console.log(this.addSyllabusForm.value);
+}
+
+// To display Subject Staff
+viewSubjectSyllabus(subject: any) {
+  this.request.getSyllabusBySubject(subject).subscribe(
+    response => {
+      this.subjectSyllabuses = response;
+      console.log('Subject-Syllabus', this.subjectSyllabuses);
+    },
+    error => {
+      console.log(error);
+    }
+  );
+}
+//Edit Subject-staff
+onEditSyllabus(subjectSyllabus) {
+  this.Id = subjectSyllabus._id;
+  this.request.fetchSubjectSyllabusById(this.Id).subscribe(response => {
+    this.editSubjectSyllabus = response[0];
+    console.log(response);
+    this.institutionValue = this.editSubjectSyllabus.institution;
+    this.departmentValue = this.editSubjectSyllabus.department;
+    this.subjectValue = this.editSubjectSyllabus.subject;
+    this.unitNoValue = this.editSubjectSyllabus.unitNo;
+    this.titleValue = this.editSubjectSyllabus.title;
+    this.lecturePeriodValue = this.editSubjectSyllabus.lecturePeriod;
+    this.tutorialPeriodValue = this.editSubjectSyllabus.tutorialPeriod;
+    this.unitDescriptionValue = this.editSubjectSyllabus.unitDescription;
+    this.IdValue = this.editSubjectSyllabus._id;
+
+    this.editSyllabusForm = this.formBuilder.group({
+      unitNo2: [this.unitNoValue, Validators.required],
+      title2: [this.titleValue, Validators.required],
+      lecturePeriod2: [this.lecturePeriodValue, Validators.required],
+      tutorialPeriod2: [this.tutorialPeriodValue, Validators.required],
+      unitDescription2: [this.unitDescriptionValue, Validators.required],
+    });
+    console.log(this.editSyllabusForm.value);
+  });
+}
+onEditSubjectSyllabus() {
+  this.submitted = true;
+  console.log(this.editSyllabusForm.value);
+  if (this.editSyllabusForm.invalid) {
+    return;
+  }
+
+  const edata = {
+    institution: this.institutionValue,
+    subject: this.id,
+    unitNo: this.editSyllabusForm.get('unitNo2').value,
+    title: this.editSyllabusForm.get('title2').value,
+    lecturePeriod:  this.editSyllabusForm.get('lecturePeriod2').value,
+    tutorialPeriod:  this.editSyllabusForm.get('tutorialPeriod2').value,
+    unitDescription:  this.editSyllabusForm.get('unitDescription2').value,
+  };
+
+  this.request.updateSubjectSyllabus(this.IdValue, edata).subscribe(
+    (res: any) => {
+      if (res.status == "success") {
+        swal("Updated Sucessfully");
+        this.loadModal();
+        this.viewSubjectSyllabus(this.id);
+      } else if (res.status == "error") {
+        swal(res.error);
+      }
+    },
+    error => {
+      console.log(error);
+      swal(error);
+    }
+  );
+}
+  // Bind institution data
+  loadInstitution() {
+    this.request.getInstitution().subscribe((response: any) => {
+        this.institutions = response;
+        console.log('Institution', this.institutions);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  
+  loadSubjectType() {
+    this.request.getSubjectType().subscribe((response: any) => {
+        this.subjectTypes = response;
+        console.log('subjectTypes',  this.subjectTypes);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  loadSubjectClassification() {
+    this.request.getSubjectClassification().subscribe((response: any) => {
+        this.subjectclassifications = response;
+        console.log('SubjectClassification',  this.subjectclassifications);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  loadSubjectCategory() {
+    this.request.getSubjectCategory().subscribe((response: any) => {
+        this.subjectCategories = response;
+        console.log('subjectCategories',  this.subjectCategories);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  loadMarkDefinition() {
+    this.request.getMarkDefinition().subscribe((response: any) => {
+        this.markDefinitions = response;
+        console.log('markDefinitions',  this.markDefinitions);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  loadMarkDefinitionById(id: any) {
+    this.request.fetchMarkDefinitionById(id).subscribe((response: any) => {
+        this.markDefinitionsById = response;
+        console.log('markDefinitionsById',  this.markDefinitionsById);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  //
+  loadInternalBymarkDef(markDefinition: any) {
+    this.request.fetchIntMarkbymarkDef(markDefinition).subscribe((response: any) => {
+        this.internalByMarkDef = response;
+        console.log('InternalMarkByMarkDef',  this.internalByMarkDef);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  loadExternalBymarkDef(markDefinition: any) {
+    this.request.fetchExtMarkbymarkDef(markDefinition).subscribe((response: any) => {
+        this.externalByMarkDef = response;
+        console.log('ExternalMarkByMarkDef',  this.externalByMarkDef);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  //
+  loadtopicCoverage() {
+    this.request.getTopicCoverage().subscribe((response: any) => {
+        this.topicCoverages = response;
+        console.log('TopicCoverage',  this.topicCoverages);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  loadDepartmentByIns(Institution: any) {
+    if (Institution) {
+      this.request.getDetartmentbyIns(Institution).subscribe((response: any) => {
+        this.departmentByIns = response;
+        console.log('departmentByIns',  this.departmentByIns);
+      }, (error) => {
+        console.log(error);
+      });
+    } else
+    this.departmentByIns = null;
+  }
+  loadSemesterByIns(Institution: any) {
+    if (Institution) {
+      this.request.getSemesterbyIns(Institution).subscribe((response: any) => {
+        this.semestersByIns = response;
+        console.log('semesterByIns',  this.semestersByIns);
+      }, (error) => {
+        console.log(error);
+      });
+    } else
+    this.semestersByIns = null;
+  }
+  loadCourseProgramByIns(Institution: any) {
+    if (Institution) {
+      this.request.getCourseprogramByIns(Institution).subscribe((response: any) => {
+        this.courseprogrambyIns = response;
+        console.log('CourseProgramByIns',  this.courseprogrambyIns);
+      }, (error) => {
+        console.log(error);
+      });
+    } else
+    this.courseprogrambyIns = null;
+  }
+    onInstitutionChange(Institution: any) {
+      // console.log('institution', Institution)
+      if (Institution) {
+        this.request.getCourseprogramByIns(Institution).subscribe((response: any) => {
+          this.courseprogrambyIns = response;
+          console.log('CourseProgramByIns',  this.courseprogrambyIns);
+        }, (error) => {
+          console.log(error);
+        });
+      } else
+      this.courseprogrambyIns = null;
+    }
+    onDetpartmentChange(department: any) {
+      // console.log('institution', Institution)
+      if (department) {
+        this.request.fetchByDepartment(department).subscribe((response: any) => {
+          this.subjects = response;
+          console.log('subjectsByDept',  this.subjects);
+        }, (error) => {
+          console.log(error);
+        });
+      } else
+      this.courseprogrambyIns = null;
+    }
   async startScript() {
     await this.dynamicScriptLoader
       .load(
@@ -396,6 +679,32 @@ loadCourseProgramByIns(Institution: any) {
         .find("form")
         .trigger("reset");
     });
+    //Subject Staff
+    $("#addStaffModal").modal("hide"); //or  $('#IDModal').modal('hide');
+    $("#addStaffModal").on("hidden.bs.modal", function() {
+      $(this)
+        .find("form")
+        .trigger("reset");
+    });
+    $("#editStaffModal").modal("hide"); //or  $('#IDModal').modal('hide');
+    $("#editStaffModal").on("hidden.bs.modal", function() {
+      $(this)
+        .find("form")
+        .trigger("reset");
+    });
+    //Subject SYllabus
+    $("#addSyllabusModal").modal("hide"); //or  $('#IDModal').modal('hide');
+    $("#addSyllabusModal").on("hidden.bs.modal", function() {
+      $(this)
+        .find("form")
+        .trigger("reset");
+    });
+    $("#editSyllabusModal").modal("hide"); //or  $('#IDModal').modal('hide');
+    $("#editSyllabusModal").on("hidden.bs.modal", function() {
+      $(this)
+        .find("form")
+        .trigger("reset");
+    });
   }
 
   ngOnInit() {
@@ -405,12 +714,14 @@ loadCourseProgramByIns(Institution: any) {
     this.loadModal();
     this.loadInstitution();
     this.loadSubjectType();
-    //this.loadMarkDefinition();
+    this.loadMarkDefinition();
     this.loadSubjectCategory();
     this.loadSubjectClassification();
     this.loadtopicCoverage();
     this.loadDepartmentByIns(this.institutionValue);
     this.loadSemesterByIns(this.institutionValue);
     this.loadCourseProgramByIns(this.institutionValue);
+    this.viewSubjectSyllabus(this.id);
+    this.viewSubjectStaff(this.id);
   }
 }
