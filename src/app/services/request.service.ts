@@ -2439,5 +2439,62 @@ fetchSemesterById(id) {
   this.url = `${this.endPoint}/semester/fetchbyIns/?institution=` + institution;
   return this.http.get(this.url);
 }
-
+//Subject Staff
+getSubjectStaff() {
+  this.url = `${this.endPoint}/subject-staff/aggregation`;
+  return this.http.get(this.url);
+}
+addSubjectStaff(newdetail: any) {
+  this.url = `${this.endPoint}/subject-staff/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteSubjectStaff(id) {
+  this.url = `${this.endPoint}/subject-staff/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateSubjectStaff(id, body) {
+  this.url = `${this.endPoint}/subject-staff/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchSubjectStaffById(id) {
+  this.url = `${this.endPoint}/subject-staff/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+ getSubjectStaffbyIns(institution) {
+  this.url = `${this.endPoint}/subject-staff/fetchbyIns/?institution=` + institution;
+  return this.http.get(this.url);
+}
+public getStaffBySubject(subject) {
+  this.url = `${this.endPoint}/subject-staff/fetchBySubject/?subject=` + subject;
+  return this.http.get(this.url);
+}
+//Subject Syllabus
+getSubjectSyllabus() {
+  this.url = `${this.endPoint}/subject-syllabus/aggregation`;
+  return this.http.get(this.url);
+}
+addSubjectSyllabus(newdetail: any) {
+  this.url = `${this.endPoint}/subject-syllabus/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteSubjectSyllabus(id) {
+  this.url = `${this.endPoint}/subject-syllabus/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateSubjectSyllabus(id, body) {
+  this.url = `${this.endPoint}/subject-syllabus/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchSubjectSyllabusById(id) {
+  this.url = `${this.endPoint}/subject-syllabus/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+ getSubjectSyllabusbyIns(institution) {
+  this.url = `${this.endPoint}/subject-syllabus/fetchbyIns/?institution=` + institution;
+  return this.http.get(this.url);
+}
+public getSyllabusBySubject(subject) {
+  this.url = `${this.endPoint}/subject-syllabus/fetchBySubject/?subject=` + subject;
+  return this.http.get(this.url);
+}
 }
