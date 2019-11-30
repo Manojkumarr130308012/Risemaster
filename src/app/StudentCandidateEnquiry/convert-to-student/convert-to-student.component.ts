@@ -15,8 +15,11 @@ export class ConvertToStudentComponent implements OnInit {
   institutions: any;
   basicdetails: any;
   basicDet: any;
-  canId: any; 
+  canId: any;
   id: any;
+
+
+
   convertToStudent: any;
   courseprograms: any;
   batches: any;
@@ -134,7 +137,7 @@ export class ConvertToStudentComponent implements OnInit {
     this.request.fetchBasicDetailsById(id).subscribe((response) => {
       this.basicdetails = response;
       this.institutiond = response[0].institutiond[0]._id;
-      console.log('Institution' , this.institutiond); 
+      console.log('Institution' , this.institutiond);
       this.loadCourseCategoryByIns(this.institutiond);
       this.loadHostelByIns(this.institutiond);
       this.loadCourseProgramByIns(this.institutiond);
@@ -155,7 +158,7 @@ export class ConvertToStudentComponent implements OnInit {
     } else
       this.batcheBycourseprograms = null;
   }
-  
+
   viewCEcourseprogram(canId) {
     if (canId){
     this.request.getCEcourseprogramById(canId).subscribe((response) => {
@@ -256,13 +259,13 @@ export class ConvertToStudentComponent implements OnInit {
   sPhoto: this.basicDet[0].sPhoto,
   status: "Confirmed"
 }
-this.request.convertToStudentDetail(newStudentDetail).subscribe((response: any) => { 
+this.request.convertToStudentDetail(newStudentDetail).subscribe((response: any) => {
  console.log(response);
 if (response.status == 'success') {
   swal("Converted To Student Successfully");
   this.router.navigate(['studentProfile']);
   this.viewData();
-  //update status in basic details as Confirmed 
+  //update status in basic details as Confirmed
   const updatestatus = {
     status: "Confirmed"
   }
@@ -282,7 +285,7 @@ else if (response.status == 'error') {
 ///////////////////////////////////////////////////////////////
     });
   }
-  
+
   viewData() {
     this.request.getStudentDetails().subscribe((response) => {
       this.studentDetails = response;
@@ -290,7 +293,7 @@ else if (response.status == 'error') {
     }, (error) => {
       console.log(error);
     });
-  } 
+  }
   viewConvertData(canId) {
     if (canId){
     this.request.getConvertToStudentById(canId).subscribe((response) => {
@@ -329,10 +332,10 @@ else if (response.status == 'error') {
   });
   $(document).ready(function() {
     $("#checkbox1").click(function() {
-       if ($(this).is(":checked")) { 
+       if ($(this).is(":checked")) {
           $("#rout").prop("disabled", false);
        } else {
-          $("#rout").prop("disabled", true);  
+          $("#rout").prop("disabled", true);
        }
     });
 });
