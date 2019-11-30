@@ -64,6 +64,10 @@ export class EditSubjectComponent implements OnInit {
   lessonPlanValue: any;
   semester: any;
   lessonPlan: any;
+  markDefinitionsById: any;
+  markDefinitionId: any;
+  internalByMarkDef: any;
+  externalByMarkDef: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -152,16 +156,48 @@ export class EditSubjectComponent implements OnInit {
       }
     );
   }
-  loadMarkDefinition() {
-    this.request.getMarkDefinition().subscribe((response: any) => {
-        this.markDefinitions = response;
-        console.log('markDefinitions',  this.markDefinitions);
+  // loadMarkDefinition() {
+  //   this.request.getMarkDefinition().subscribe((response: any) => {
+  //       this.markDefinitions = response;
+  //       console.log('markDefinitions',  this.markDefinitions);
+  //     },
+  //     error => {
+  //       console.log(error);
+  //     }
+  //   );
+  // }
+  loadMarkDefinitionById(id: any) {
+    this.request.fetchMarkDefinitionById(id).subscribe((response: any) => {
+        this.markDefinitionsById = response;
+        console.log('markDefinitionsById',  this.markDefinitionsById);
       },
       error => {
         console.log(error);
       }
     );
   }
+  //
+  loadInternalBymarkDef(markDefinition: any) {
+    this.request.fetchIntMarkbymarkDef(markDefinition).subscribe((response: any) => {
+        this.internalByMarkDef = response;
+        console.log('InternalMarkByMarkDef',  this.internalByMarkDef);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  loadExternalBymarkDef(markDefinition: any) {
+    this.request.fetchExtMarkbymarkDef(markDefinition).subscribe((response: any) => {
+        this.externalByMarkDef = response;
+        console.log('ExternalMarkByMarkDef',  this.externalByMarkDef);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  //
   loadtopicCoverage() {
     this.request.getTopicCoverage().subscribe((response: any) => {
         this.topicCoverages = response;
@@ -242,6 +278,11 @@ loadCourseProgramByIns(Institution: any) {
       response => {
         this.subjects = response;
         console.log('SubjectById', this.subjects);
+        this.markDefinitionId = this.subjects[0].markDefinition;
+        console.log('MarkId', this.markDefinitionId);
+        this.loadMarkDefinitionById(this.markDefinitionId);
+        this.loadInternalBymarkDef(this.markDefinitionId);
+        this.loadExternalBymarkDef(this.markDefinitionId);
       },
       error => {
         console.log(error);
@@ -295,27 +336,27 @@ loadCourseProgramByIns(Institution: any) {
   onEditSubject() {
     const editDetail = {
       institution: this.institutionValue,
-      courseprogram: this.courseprogram.value,
-      department: this.department.value,
-      semester:  this.semester.value,
-      subjectCode: this.subjectCode.value,
-      subjectDescription: this.subjectDescription.value,
-      subjectType:  this.subjectType.value,
-      subjectClassification :  this.subjectClassification.value,
-      subjectCategory: this.subjectCategory.value,
-      abbreviation: this.abbreviation.value,
-      markDefinition: this.markDefinition.value,
-      effectiveTo: this.effectiveTo.value,
-      effectiveFrom: this.effectiveFrom.value,
-      topicCoverage :  this.topicCoverage.value,
-      lessonPlan: this.lessonPlan.value,
+      department: this.editForm.get('department').value,
+      semester: this.editForm.get('semester').value,
+      courseprogram:  this.editForm.get('courseprogram').value,
+      subjectCode:  this.editForm.get('subjectCode').value,
+      subjectDescription:  this.editForm.get('subjectDescription').value,
+      subjectType:  this.editForm.get('subjectType').value,
+      subjectClassification :  this.editForm.get('subjectClassification').value,
+      subjectCategory:  this.editForm.get('subjectCategory').value,
+      abbreviation:  this.editForm.get('abbreviation').value,
+      markDefinition:  this.editForm.get('markDefinition').value,
+      effectiveTo:  this.editForm.get('effectiveTo').value,
+      effectiveFrom:  this.editForm.get('effectiveFrom').value,
+      topicCoverage : this.editForm.get('topicCoverage').value,
+      lessonPlan : this.editForm.get('lessonPlan').value,
      
-
     };
     this.request.updateSubject(this.IdValue,editDetail).subscribe((response: any) => { 
      console.log(response);
     if (response.status == 'success') {
       swal("Updated Sucessfully");
+      this.loadModal();
       this.viewData(this.id);
     }
     else if (response.status == 'error') {
@@ -349,14 +390,8 @@ loadCourseProgramByIns(Institution: any) {
   // }
 
   loadModal() {
-    $("#addModal").modal("hide"); //or  $('#IDModal').modal('hide');
-    $("#addModal").on("hidden.bs.modal", function() {
-      $(this)
-        .find("form")
-        .trigger("reset");
-    });
-    $("#editModal").modal("hide"); //or  $('#IDModal').modal('hide');
-    $("#editModal").on("hidden.bs.modal", function() {
+    $("#editSubjectModal").modal("hide"); //or  $('#IDModal').modal('hide');
+    $("#editSubjectModal").on("hidden.bs.modal", function() {
       $(this)
         .find("form")
         .trigger("reset");
@@ -370,7 +405,7 @@ loadCourseProgramByIns(Institution: any) {
     this.loadModal();
     this.loadInstitution();
     this.loadSubjectType();
-    this.loadMarkDefinition();
+    //this.loadMarkDefinition();
     this.loadSubjectCategory();
     this.loadSubjectClassification();
     this.loadtopicCoverage();

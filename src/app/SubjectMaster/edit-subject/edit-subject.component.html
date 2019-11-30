@@ -41,7 +41,7 @@
                                 <div class="col-md-1">
                                     <div class="btn-group m-l-15">
                                         <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#editSubjectModal"
-                                        (click)="onEditSubject()"> Edit </button>
+                                        (click)="onEdit()"> Edit </button>
                                     </div>
                                 </div>
                             </div>
@@ -57,11 +57,25 @@
                                 </div>
                     
                                 <div class="body">
+                                    <div class="row">
+                                        <div class="col-md-4" *ngFor="let subject of subjects;let i=index">
+                                            <h6> Minimum Mark :</h6><span>{{subject?.markDefinitiond[0].minMark}}</span>
+                                            <h6> Maximum Mark :</h6><span>{{subject?.markDefinitiond[0].maxMark}}</span>
+                                        </div>
+                                        <div class="col-md-4" *ngFor="let internal of internalByMarkDef;let i=index">
+                                            <h6> Internal Minimum Mark :</h6><span>{{internal?.minMark}}</span>
+                                            <h6> External Maximum Mark :</h6><span>{{internal?.maxMark}}</span>
+                                        </div>
+                                        <div class="col-md-4" *ngFor="let external of externalByMarkDef;let i=index">
+                                            <h6> External Minimum Mark :</h6><span>{{external?.minMark}}</span>
+                                            <h6> External Maximum Mark :</h6><span>{{external?.maxMark}}</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row clearfix">
+                    <div class="row clearfix"> 
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="card">
                                     <div class="header">
@@ -284,7 +298,7 @@
                                 </div>
                             </div>
              <div class="modal-footer">
-                    <button type="submit" class="btn btn-default"  >Add</button >
+                    <button type="submit" class="btn btn-default" >Update</button >
                  <button type="button" class="btn btn-danger waves-effect"
                      data-dismiss="modal">Cancel</button>
              </div>
