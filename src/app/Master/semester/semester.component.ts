@@ -215,7 +215,7 @@ export class SemesterComponent implements OnInit {
     this.auth.isValidUser();
     this.startScript();
     this.viewData();
-    this.loadModal();
     this.loadInstitution();
+    this.loadModal();
   }
 }
