@@ -10,6 +10,7 @@ const routes: Routes = [
     redirectTo: 'staff-login',
     pathMatch: 'full'
   },
+
   {
 
     path: 'staff-login',

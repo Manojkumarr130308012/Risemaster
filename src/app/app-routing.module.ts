@@ -340,7 +340,7 @@ const routes: Routes = [
   component: StudentDetailComponent},
   { path: 'studentEdit',
   component: StudentEditComponent},
-   //StudentManagemnat
+   //Subject
    { path: 'subjectType',
    component: SubjectTypeComponent },
    { path: 'subjectCategory',
