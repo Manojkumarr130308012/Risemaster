@@ -116,6 +116,7 @@ import { SubjectMarkviewComponent } from './SubjectMaster/subject-markview/subje
 import { AddSubjectComponent } from './SubjectMaster/add-subject/add-subject.component';
 import { EditSubjectComponent } from './SubjectMaster/edit-subject/edit-subject.component';
 import { SectionComponent } from './StudentMaster/section/section.component';
+import { SectionStaffComponent } from './StudentMaster/section-staff/section-staff.component';
 
 
 
@@ -208,6 +209,7 @@ AddSubjectComponent,
 SemesterComponent,
 EditSubjectComponent,
 SectionComponent,
+SectionStaffComponent,
 
 
   ],

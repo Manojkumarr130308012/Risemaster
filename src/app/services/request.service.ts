@@ -2414,6 +2414,10 @@ public fetchByDepartment(department) {
   this.url = `${this.endPoint}/subject-add/fetchByDep/?department=` + department;
   return this.http.get(this.url);
 }
+public getSubjectbySem(semester) {
+  this.url = `${this.endPoint}/subject-add/fetchbySem/?semester=` + semester;
+  return this.http.get(this.url);
+}
 //Semester
 getSemester() {
   this.url = `${this.endPoint}/semester/aggregation`;
@@ -2495,6 +2499,60 @@ fetchSubjectSyllabusById(id) {
 }
 public getSyllabusBySubject(subject) {
   this.url = `${this.endPoint}/subject-syllabus/fetchBySubject/?subject=` + subject;
+  return this.http.get(this.url);
+}
+//Section
+getSection() {
+  this.url = `${this.endPoint}/section/aggregation`;
+  return this.http.get(this.url);
+}
+addSection(newdetail: any) {
+  this.url = `${this.endPoint}/section/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteSection(id) {
+  this.url = `${this.endPoint}/section/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateSection(id, body) {
+  this.url = `${this.endPoint}/section/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchSectionById(id) {
+  this.url = `${this.endPoint}/section/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+ getSectionbyIns(institution) {
+  this.url = `${this.endPoint}/section/fetchbyIns/?institution=` + institution;
+  return this.http.get(this.url);
+}
+//Staff-Section
+getSectionStaff() {
+  this.url = `${this.endPoint}/section-staff/aggregation`;
+  return this.http.get(this.url);
+}
+addSectionStaff(newdetail: any) {
+  this.url = `${this.endPoint}/section-staff/add`;
+  return this.http.post(this.url, newdetail);
+}
+deleteSectionStaff(id) {
+  this.url = `${this.endPoint}/section-staff/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updateSectionStaff(id, body) {
+  this.url = `${this.endPoint}/section-staff/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchSectionStaffById(id) {
+  this.url = `${this.endPoint}/section-staff/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+ getSectionStaffbyIns(institution) {
+  this.url = `${this.endPoint}/section-staff/fetchbyIns/?institution=` + institution;
+  return this.http.get(this.url);
+}
+getSectionStaffbySec(section) {
+  this.url = `${this.endPoint}/section-staff/fetchbySection?section=` + section;
   return this.http.get(this.url);
 }
 }
