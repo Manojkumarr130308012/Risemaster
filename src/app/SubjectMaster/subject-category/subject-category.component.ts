@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators,} from "@angular/forms";
+import { FormBuilder, FormGroup, Validators, FormControl,} from "@angular/forms";
 import { Router } from "@angular/router";
 import { RequestService } from "../../services/request.service";
 import { DynamicScriptLoaderService } from "../../services/dynamic-script-loader.service";
@@ -28,7 +28,7 @@ export class SubjectCategoryComponent implements OnInit {
   institutionValue: any;
   institutions;
   public message: string;
-
+  userInfo: any;
   constructor(
     private formBuilder: FormBuilder,
     private dynamicScriptLoader: DynamicScriptLoaderService,
@@ -36,14 +36,18 @@ export class SubjectCategoryComponent implements OnInit {
     private router: Router,
     private auth: AuthService
   ) {
+    //Get institution value from localstorage
+    this.userInfo = localStorage.getItem('userData');
+    this.userInfo = JSON.parse(this.userInfo);
+    this.IdValue = this.userInfo.institution;
+    this.institutionValue = this.IdValue;
+    this.institution = new FormControl({value:this.institutionValue, disabled: true});
     // Add Form
     this.registerForm = this.formBuilder.group({
-      institution: ["", Validators.required],
       subjectCategory: ["", Validators.required]
     });
     // Edit Form
     this.editForm = this.formBuilder.group({
-      institution2: ["", Validators.required],
       subjectCategory2: ["", Validators.required]
     });
   }
@@ -71,7 +75,11 @@ export class SubjectCategoryComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-    this.request.addSubjectCategory(this.registerForm.value).subscribe(
+    let newDetail = {
+      subjectCategory: this.registerForm.get('subjectCategory').value,
+      institution: this.institutionValue
+    }
+    this.request.addSubjectCategory(newDetail).subscribe(
       (res: any) => {
         if (res.status == "success") {
           swal("Added Sucessfully");
@@ -121,7 +129,6 @@ export class SubjectCategoryComponent implements OnInit {
       this.IdValue = this.editSubjectcategory._id;
 
       this.editForm = this.formBuilder.group({
-        institution2: [this.institutionValue, Validators.required],
         subjectCategory2: [this.subjectCategoryValue, Validators.required]
       });
       console.log(this.editForm.value);
@@ -136,7 +143,7 @@ export class SubjectCategoryComponent implements OnInit {
 
     const edata = {
       subjectCategory: this.editForm.get("subjectCategory2").value,
-      institution: this.editForm.get("institution2").value
+      institution: this.institutionValue
     };
 
     this.request.updateSubjectCategory(this.IdValue, edata).subscribe(

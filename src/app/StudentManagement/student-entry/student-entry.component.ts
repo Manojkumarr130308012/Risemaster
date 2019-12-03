@@ -91,6 +91,15 @@ export class StudentEntryComponent implements OnInit {
   courseprograms: any;
   courseprogramByIns: any;
   courseprogrambyIns: any;
+  section: any;
+  semester: any;
+  semestersByIns: any;
+  sectionByCoursePrograms: any;
+  transportRoute: FormControl;
+  hostel: FormControl;
+  hostelByIns: any;
+  hostels: any;
+  hostelsbyIns: any;
   constructor(
     private request: RequestService,
     private router: Router,
@@ -145,6 +154,10 @@ export class StudentEntryComponent implements OnInit {
     this.minoritygroup = new FormControl();
     this.physicallyChallengedPerson = new FormControl();
     this.andhamanAndNicobarNative = new FormControl();
+    this.section = new FormControl('', Validators.required);
+    this.semester = new FormControl('', Validators.required);
+    this.transportRoute = new FormControl();
+    this.hostel = new FormControl();
   }
      //to upload Photo
   submit() {
@@ -227,7 +240,11 @@ export class StudentEntryComponent implements OnInit {
       minoritygroup: this.mg,
       physicallyChallengedPerson: this.pcp,
       andhamanAndNicobarNative: this.aan,
-      sPhoto: this.getfileLoc
+      sPhoto: this.getfileLoc,
+      section: this.section.value,
+      semester: this.semester.value,
+      transportRoute: this.transportRoute.value,
+      hostel: this.hostel.value,
 
     };
     this.request.addStudentDetails(newStudentDetail).subscribe((response: any) => { 
@@ -368,6 +385,7 @@ export class StudentEntryComponent implements OnInit {
     });
   }
   
+  
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Filter AdmissionType, AdmissionCategory by Institution
   onInstitutionChange(Institution: any) {
@@ -391,11 +409,25 @@ export class StudentEntryComponent implements OnInit {
       }, (error) => {
         console.log(error);
       });
+      this.request.getSemesterbyIns(Institution).subscribe((response: any) => {
+        // console.log('admissionCategory', response);
+        this.semestersByIns = response;
+      }, (error) => {
+        console.log(error);
+      });
+      this.request.getHostelbyIns(Institution).subscribe((response: any) => {
+        // console.log('admissionCategory', response);
+        this.hostelByIns = response;
+      }, (error) => {
+        console.log(error);
+      });
     } else
 
     this.admissiontypes = null;
     this.admissioncategories = null;
     this.courseprogrambyIns = null;
+    this.semestersByIns = null;
+    this.hostelByIns = null;
   }
    // Filter Batch by Degree
    onCourseProgramChange(courseprogram: any) {
@@ -407,8 +439,15 @@ export class StudentEntryComponent implements OnInit {
       }, (error) => {
         console.log(error);
       });
+      this.request.getSectionbycourseprogram(courseprogram).subscribe((response: any) => {
+        this.sectionByCoursePrograms = response;
+        console.log('SectionByCoursePrograms',  this.sectionByCoursePrograms);
+      }, (error) => {
+        console.log(error);
+      });
     } else
       this.batcheBycourseprograms = null;
+      this.sectionByCoursePrograms = null;
   }
   ngOnInit() { 
     this.viewData();

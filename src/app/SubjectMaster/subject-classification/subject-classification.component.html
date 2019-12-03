@@ -8,6 +8,18 @@
                         <h2>
                             <strong>Subject Classification</strong>
                         </h2>
+                        <br>
+                        <div class="row clearfix">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Institution</label>
+                                    <select class="browser-default form-control" [formControl]="institution">
+                                        <option *ngFor="let institution of institutions" [value]="institution._id">
+                                            {{institution.institution_name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                         <div class="header-dropdown m-r--5">
                             <!-- Add button -->
                                 <div class="btn-group m-l-15">
@@ -27,7 +39,6 @@
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
-                                            <th>Institution</th>
                                             <th>Subject Classification</th>
                                             <th >Action</th>
                                         </tr>
@@ -35,7 +46,6 @@
                                     <tbody>
                                         <tr *ngFor="let subjectClassification of subjectClassifications; let i=index">
                                             <td>{{i +1 }}</td>
-                                            <td>{{subjectClassification?.InstitutionDetails[0].institution_name}}</td>
                                             <td>{{subjectClassification?.subjectClassification}}</td>
                                             <td>
                                                 <div class="btn btn-tbl-edit" data-toggle="modal"
@@ -75,29 +85,18 @@
          <div class="modal-body">
                 <form [formGroup]="registerForm" (ngSubmit)="onAddSubmit()">
                         <div class="row clearfix">
-                                <div class="col-md-12">
-                                        <div class="form-group">
-                                    <label>Institution</label>
-                                    <select  id="select" [(ngModel)]="selectedinstitution" class="browser-default form-control" formControlName="institution"
-                                    [ngClass]="{ 'is-invalid': submitted && f.institution.errors }">
-                                    <option disabled selected>Choose your institution</option>
-                                    <option  *ngFor="let institution of institutions" [value]="institution._id">{{institution.institution_name}}</option>
-                                    </select>
-                                    <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">
-                                        <div *ngIf="f.institution.errors.required">Institution is required</div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Subject Classification</label>
+                                    <input type="text" formControlName="subjectClassification" class="form-control"
+                                        placeholder="Enter Subject-Classification"
+                                        [ngClass]="{ 'is-invalid': submitted && f.subjectClassification.errors }" />
+                                    <div *ngIf="submitted && f.subjectClassification.errors" class="invalid-feedback">
+                                        <div *ngIf="f.subjectClassification.errors.required">Subject-Classification is required</div>
                                     </div>
-                                       </div>
-                            
-                    <div class="form-group">
-                            <label>Subject Classification</label>
-                            <input type="text"  formControlName="subjectClassification" class="form-control" placeholder="Enter Subject-Classification"
-                                [ngClass]="{ 'is-invalid': submitted && f.subjectClassification.errors }" />
-                            <div *ngIf="submitted && f.subjectClassification.errors" class="invalid-feedback">
-                                <div *ngIf="f.subjectClassification.errors.required">Subject-Classification is required</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    </div>
          <div class="modal-footer">
                 <button type="submit" class="btn btn-default"  >Add</button >
              <button type="button" class="btn btn-danger waves-effect"
@@ -124,18 +123,6 @@
                 <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
                         <div class="row clearfix">
                             <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Institution</label>
-                                    <select id="select2" [(ngModel)]="selectedinstitution2" class="browser-default form-control"
-                                        formControlName="institution2" [ngClass]="{ 'is-invalid': submitted && f2.institution2.errors }">
-                                        <option disabled selected>Choose your institution</option>
-                                        <option *ngFor="let institution of institutions" [value]="institution._id">
-                                            {{institution.institution_name}}</option>
-                                    </select>
-                                    <div *ngIf="submitted && f2.institution2.errors" class="invalid-feedback">
-                                        <div *ngIf="f2.institution2.errors.required">Institution is required</div>
-                                    </div>
-                                </div>
                                 <div class="form-group">
                                     <label>Subject Classification</label>
                                     <input type="text" formControlName="subjectClassification2" class="form-control"

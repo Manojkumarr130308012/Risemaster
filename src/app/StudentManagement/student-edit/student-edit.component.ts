@@ -146,6 +146,17 @@ export class StudentEditComponent implements OnInit {
   batcheBycourseprograms: any;
   courseprogrambyIns: any;
   courseprogram: any;
+  section: any;
+  semester: any;
+  semestersByIns: any;
+  sectionByCoursePrograms: any;
+  sectionValue: any;
+  semesterValue: any;
+  transportRoute: FormControl;
+  hostel: FormControl;
+  transportRouteValue: any;
+  hostelValue: any;
+  hostelByIns: any;
   constructor(
     private request: RequestService,
     private router: Router,
@@ -202,6 +213,10 @@ export class StudentEditComponent implements OnInit {
     this.minoritygroup = new FormControl();
     this.physicallyChallengedPerson = new FormControl();
     this.andhamanAndNicobarNative = new FormControl();
+    this.section = new FormControl('', Validators.required);
+    this.semester = new FormControl('', Validators.required);
+    this.transportRoute = new FormControl();
+    this.hostel = new FormControl();
      //Edit  Details
       this.onEditStudentDetail();
    
@@ -285,6 +300,10 @@ export class StudentEditComponent implements OnInit {
     this.referalValue = this.editStudentDetails.referal;
     this.motherTongueValue = this.editStudentDetails.motherTongue;
     this.secondLanguageValue = this.editStudentDetails.secondLanguage;
+    this.sectionValue = this.editStudentDetails.section;
+    this.semesterValue = this.editStudentDetails.semester;
+    this.transportRouteValue = this.editStudentDetails.transportRoute;
+    this.hostelValue = this.editStudentDetails.hostel;
     this.sPhotoValue = this.editStudentDetails.sPhoto;
     this.firstGraduateValue = this.editStudentDetails.firstGraduate;
     this.scholarshipApplicableValue = this.editStudentDetails.scholarshipApplicable;
@@ -342,7 +361,11 @@ export class StudentEditComponent implements OnInit {
     this.minoritygroup = new FormControl(this.minoritygroupValue);
     this.physicallyChallengedPerson = new FormControl(this.physicallyChallengedPersonValue);
     this.andhamanAndNicobarNative = new FormControl(this.andhamanAndNicobarNativeValue);
-    });
+    this.section = new FormControl(this.sectionValue, Validators.required);
+    this.semester = new FormControl(this.semesterValue, Validators.required);
+    this.transportRoute = new FormControl(this.transportRouteValue);
+    this.hostel = new FormControl(this.hostelValue);
+  });
   }
   editStudentDetailSubmit() {
     const editStudentDetail = {
@@ -393,8 +416,11 @@ export class StudentEditComponent implements OnInit {
       minoritygroup: this.mg,
       physicallyChallengedPerson: this.pcp,
       andhamanAndNicobarNative: this.aan,
-      sPhoto: this.getfileLoc
-
+      sPhoto: this.getfileLoc,
+      section: this.section.value,
+      semester: this.semester.value,
+      transportRoute: this.transportRoute.value,
+      hostel: this.hostel.value,
     };
     this.request.updateStudentDetails(this.IdValue,editStudentDetail).subscribe((response: any) => { 
      console.log(response);
@@ -534,10 +560,17 @@ export class StudentEditComponent implements OnInit {
       }, (error) => {
         console.log(error);
       });
+      this.request.getSemesterbyIns(Institution).subscribe((response: any) => {
+        // console.log('admissionCategory', response);
+        this.semestersByIns = response;
+      }, (error) => {
+        console.log(error);
+      });
     } else
 
     this.admissiontypes = null;
     this.admissioncategories = null;
+    this.semestersByIns = null;
   }
   
   //Student Details Edit 
@@ -547,11 +580,39 @@ export class StudentEditComponent implements OnInit {
         this.studentDetails = response;
         this.institutiond = response[0].institution;
         this.loadAdmissionCategoryByIns(this.institutiond);
+        this.loadSemesterByIns(this.institutiond);
+        this.loadHostelByIns(this.institutiond);
+        this.courseprogramd = response[0].courseprogram;
+        this.loadSectionByCourseProgram(this.courseprogramd);
         console.log('StudentDetailById', this.studentDetails);
       }, (error) => {
         console.log(error);
       });
     }
+  }
+  loadSectionByCourseProgram(courseprogram) {
+    this.request.getSectionbycourseprogram(courseprogram).subscribe((response: any) => {
+      this.sectionByCoursePrograms = response;
+      console.log('SectionByCoursePrograms', this.sectionByCoursePrograms);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  loadSemesterByIns(institution) {
+    this.request.getSemesterbyIns(institution).subscribe((response: any) => {
+      this.semestersByIns = response;
+      console.log('SemestersByIns', this.semestersByIns);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  loadHostelByIns(institution) {
+    this.request.getHostelbyIns(institution).subscribe((response: any) => {
+      this.hostelByIns = response;
+      console.log('HostelByIns', this.hostelByIns);
+    }, (error) => {
+      console.log(error);
+    });
   }
   loadAdmissionCategoryByIns(institution) {
     this.request.getAdmissionCategoryByIns(institution).subscribe((response: any) => {

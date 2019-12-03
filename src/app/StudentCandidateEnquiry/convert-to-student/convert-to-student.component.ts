@@ -275,6 +275,7 @@ export class ConvertToStudentComponent implements OnInit {
   referal: this.basicDet[0].referenceBy,
   motherTongue: this.basicDet[0].motherTongue,
   sPhoto: this.basicDet[0].sPhoto,
+  semester: this.basicDet[0].ConvertToStudentDetails[0].semester,
   status: "Confirmed"
 }
 this.request.convertToStudentDetail(newStudentDetail).subscribe((response: any) => {
@@ -293,7 +294,7 @@ if (response.status == 'success') {
 }
 else if (response.status == 'error') {
   this.setMessage(response.error);
-  swal(response.error);
+  swal(response.error, 'Cant update to student details');
   console.log(response.error);
 }
 }, (error) => {

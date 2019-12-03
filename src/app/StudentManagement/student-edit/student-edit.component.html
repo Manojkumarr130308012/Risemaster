@@ -24,6 +24,16 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="form-group form-float">
+                                                <label>Semester<span class="asterisk">*</span></label>
+                                                <div class="form-line">
+                                                    <select class="browser-default" [formControl]="semester" name="semester" class="form-control" required>
+                                                        <option value="">Choose your semester</option>
+                                                        <option *ngFor="let semester of semestersByIns?.response" [value]="semester._id">{{semester?.semester}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     <div class="col-md-4">
                                         <div class="form-group form-float">
@@ -34,6 +44,16 @@
                                                     <option *ngFor="let studentdetail of studentDetails" [value]="studentdetail.courseprogramd[0]._id" 
                                                     [selected]="studentdetail.courseprogramd[0].courseprogram">
                                                         {{studentdetail.courseprogramd[0].courseprogram}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-float">
+                                            <label>Section<span class="asterisk">*</span></label>
+                                            <div class="form-line">
+                                                <select class="browser-default" [formControl]="section" name="section" class="form-control" required>
+                                                    <option value="">Choose your Section</option>
+                                                    <option *ngFor="let section of sectionByCoursePrograms" [value]="section._id">{{section?.section}}
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>
@@ -239,7 +259,19 @@
                                     <!--Admission Details-->
                                     <h3>Admission Details</h3>
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
+                                            <div class="form-group form-float">
+                                                <label for="admissionCategory">Admission Category<span class="asterisk">*</span></label>
+                                                <div class="form-line">
+                                                    <select class="browser-default" [formControl]="admissionCategory" name="admissionCategory"
+                                                        class="form-control" required>
+                                                        <option>Choose your AdmissionCategory</option>
+                                                        <option *ngFor="let admissionCategory of admissioncategories?.response" [value]="admissionCategory._id">
+                                                            {{admissionCategory.admissionCategory}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                             <div class="form-group form-float">
                                                 <label>Boarding<span class="asterisk">*</span></label>
                                                 <div class="form-line">
@@ -250,27 +282,27 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="form-group form-float">
-                                                <label for="boardingStartDate">Boarding Start Date</label>
-                                                <div class="form-line">
-                                                    <input type="date" class="form-control" name="boardingStartDate" [formControl]="boardingStartDate" />
-                                                </div>
-                                            </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="form-group form-float">
-                                                <label for="admissionCategory">Admission Category<span class="asterisk">*</span></label>
+                                                <label for="admissionType">Admission Type<span class="asterisk">*</span></label>
                                                 <div class="form-line">
-                                                    <select class="browser-default" [formControl]="admissionCategory" name="admissionCategory"
-                                                        class="form-control" required>
-                                                        <option>Choose your AdmissionCategory</option>
-                                                        <option *ngFor="let admissionCategory of admissioncategories?.response"
-                                                            [value]="admissionCategory._id">
-                                                            {{admissionCategory.admissionCategory}}
-                                                        </option>
+                                                    <select class="browser-default" [formControl]="admissionType" class="form-control" name="admissionType"
+                                                        required>
+                                                        <option>Choose your Admission Type</option>
+                                                        <option *ngFor="let admissionType of admissiontypes" [value]="admissionType._id">
+                                                            {{admissionType?.admissiontype}}</option>
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="form-group form-float">
+                                                <label for="transportRoute">Transport Route</label>
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="transportRoute" [formControl]="transportRoute" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
                                             <div class="form-group form-float">
                                                 <label>Financial Category<span class="asterisk">*</span></label>
                                                 <div class="form-line">
@@ -283,17 +315,21 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-4">
                                             <div class="form-group form-float">
-                                                <label for="admissionType">Admission Type<span class="asterisk">*</span></label>
+                                                <label>Hostel</label>
                                                 <div class="form-line">
-                                                    <select class="browser-default" [formControl]="admissionType" class="form-control" name="admissionType"
-                                                        required>
-                                                        <option>Choose your Admission Type</option>
-                                                        <option *ngFor="let admissionType of admissiontypes" [value]="admissionType._id">
-                                                            {{admissionType?.admissiontype}}</option>
+                                                    <select id="hostel" class="browser-default" [formControl]="hostel" class="form-control">
+                                                        <option value="">Choose your Hostel</option>
+                                                        <option *ngFor="let hostel of hostelByIns?.response" [value]="hostel._id">{{hostel?.hostel}}</option>
                                                     </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group form-float">
+                                                <label for="boardingStartDate">Boarding Start Date</label>
+                                                <div class="form-line">
+                                                    <input type="date" class="form-control" name="boardingStartDate" [formControl]="boardingStartDate" />
                                                 </div>
                                             </div>
                                         </div>

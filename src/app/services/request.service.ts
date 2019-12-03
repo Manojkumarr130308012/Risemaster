@@ -2526,6 +2526,10 @@ fetchSectionById(id) {
   this.url = `${this.endPoint}/section/fetchbyIns/?institution=` + institution;
   return this.http.get(this.url);
 }
+getSectionbycourseprogram(courseprogram) {
+  this.url = `${this.endPoint}/section/fetchbycourseprogram/?courseprogram=` + courseprogram;
+  return this.http.get(this.url);
+}
 //Staff-Section
 getSectionStaff() {
   this.url = `${this.endPoint}/section-staff/aggregation`;

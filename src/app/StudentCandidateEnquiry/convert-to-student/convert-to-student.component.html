@@ -174,11 +174,11 @@
                                                 <div class="form-line">
                                                     <select id="hostel" class="browser-default" formControlName="hostel" class="form-control">
                                                         <option value="">Choose your Hostel</option>
-                                                        <option  *ngFor="let hostel of hostelsbyIns?.response" [value]="hostel._id">{{hostel?.hostel}}</option>
+                                                        <option *ngFor="let hostel of hostelsbyIns?.response" [value]="hostel._id">{{hostel?.hostel}}</option>
                                                     </select>
                                                     <div *ngIf="submitted && f.hostel.errors" class="invalid-feedback">
-                                                            <div *ngIf="f.hostel.errors.required">hostel is required</div>
-                                                        </div>
+                                                        <div *ngIf="f.hostel.errors.required">hostel is required</div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
