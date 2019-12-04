@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators,} from "@angular/forms";
+import { FormBuilder, FormGroup, Validators, FormControl,} from "@angular/forms";
 import { Router } from "@angular/router";
 import { RequestService } from "../../services/request.service";
 import { DynamicScriptLoaderService } from "../../services/dynamic-script-loader.service";
@@ -28,6 +28,7 @@ export class SubjectTypeComponent implements OnInit {
   institutionValue: any;
   institutions;
   public message: string;
+  userInfo: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,14 +37,18 @@ export class SubjectTypeComponent implements OnInit {
     private router: Router,
     private auth: AuthService
   ) {
+     //Get institution value from localstorage
+     this.userInfo = localStorage.getItem('userData');
+     this.userInfo = JSON.parse(this.userInfo);
+     this.IdValue = this.userInfo.institution;
+     this.institutionValue = this.IdValue;
+     this.institution = new FormControl({value:this.institutionValue, disabled: true});
     // Add Form
     this.registerForm = this.formBuilder.group({
-      institution: ["", Validators.required],
       subjectType: ["", Validators.required]
     });
     // Edit Form
     this.editForm = this.formBuilder.group({
-      institution2: ["", Validators.required],
       subjectType2: ["", Validators.required]
     });
   }
@@ -71,7 +76,12 @@ export class SubjectTypeComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-    this.request.addSubjectType(this.registerForm.value).subscribe(
+    let newDetail = {
+      subjectType: this.registerForm.get('subjectType').value,
+      institution: this.institutionValue
+    }
+    
+    this.request.addSubjectType(newDetail).subscribe(
       (res: any) => {
         if (res.status == "success") {
           swal("Added Sucessfully");
@@ -121,7 +131,6 @@ export class SubjectTypeComponent implements OnInit {
       this.IdValue = this.editSubjectType._id;
 
       this.editForm = this.formBuilder.group({
-        institution2: [this.institutionValue, Validators.required],
         subjectType2: [this.subjectTypeValue, Validators.required]
       });
       console.log(this.editForm.value);
@@ -136,7 +145,7 @@ export class SubjectTypeComponent implements OnInit {
 
     const edata = {
       subjectType: this.editForm.get("subjectType2").value,
-      institution: this.editForm.get("institution2").value
+      institution: this.institutionValue
     };
 
     this.request.updateSubjectType(this.IdValue, edata).subscribe(

@@ -8,6 +8,18 @@
                         <h2>
                             <strong>Subject Category</strong>
                         </h2>
+                        <br>
+                        <div class="row clearfix">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Institution</label>
+                                    <select class="browser-default form-control" [formControl]="institution">
+                                        <option *ngFor="let institution of institutions" [value]="institution._id">
+                                            {{institution.institution_name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                         <div class="header-dropdown m-r--5">
                             <!-- Add button -->
                                 <div class="btn-group m-l-15">
@@ -27,7 +39,6 @@
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
-                                            <th>Institution</th>
                                             <th>Subject Category</th>
                                             <th >Action</th>
                                         </tr>
@@ -35,7 +46,6 @@
                                     <tbody>
                                         <tr *ngFor="let subjectCategory of subjectCategories; let i=index">
                                             <td>{{i +1 }}</td>
-                                            <td>{{subjectCategory?.InstitutionDetails[0].institution_name}}</td>
                                             <td>{{subjectCategory?.subjectCategory}}</td>
                                             <td>
                                                 <div class="btn btn-tbl-edit" data-toggle="modal"
@@ -66,7 +76,7 @@
  <div class="modal-dialog" role="document">
      <div class="modal-content">
          <div class="modal-header">
-             <h5 class="modal-title" id="formModal">Add Details</h5>
+             <h5 class="modal-title" id="formModal">Add Subject Category</h5>
              <button type="button" class="close" data-dismiss="modal"
                  aria-label="Close">
                  <span aria-hidden="true">&times;</span>
@@ -76,19 +86,6 @@
                 <form [formGroup]="registerForm" (ngSubmit)="onAddSubmit()">
                         <div class="row clearfix">
                             <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Institution</label>
-                                    <select id="select" [(ngModel)]="selectedinstitution" class="browser-default form-control"
-                                        formControlName="institution" [ngClass]="{ 'is-invalid': submitted && f.institution.errors }">
-                                        <option disabled selected>Choose your institution</option>
-                                        <option *ngFor="let institution of institutions" [value]="institution._id">
-                                            {{institution.institution_name}}
-                                        </option>
-                                    </select>
-                                    <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">
-                                        <div *ngIf="f.institution.errors.required">Institution is required</div>
-                                    </div>
-                                </div>
                                 <div class="form-group">
                                     <label>Subject Category</label>
                                     <input type="text" formControlName="subjectCategory" class="form-control"
@@ -117,7 +114,7 @@
  <div class="modal-dialog" role="document">
      <div class="modal-content">
          <div class="modal-header">
-             <h5 class="modal-title" id="formModal">Edit Details</h5>
+             <h5 class="modal-title" id="formModal">Edit Subject Category</h5>
              <button type="button" class="close" data-dismiss="modal"
                  aria-label="Close">
                  <span aria-hidden="true">&times;</span>
@@ -126,33 +123,20 @@
          <div class="modal-body">
                 <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
                         <div class="row clearfix">
-                                <div class="col-md-12">
-                                        <div class="form-group">
-                                    <label>Institution</label>
-                                    <select  id="select2" [(ngModel)]="selectedinstitution2" class="browser-default form-control" formControlName="institution2"
-                                    [ngClass]="{ 'is-invalid': submitted && f2.institution2.errors }" >
-                                    <option disabled selected>Choose your institution</option>
-                                    <option  *ngFor="let institution of institutions" [value]="institution._id">{{institution.institution_name}}</option>
-                                    </select>
-
-                                    <div *ngIf="submitted && f2.institution2.errors" class="invalid-feedback">
-                                        <div *ngIf="f2.institution2.errors.required">Institution is required</div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Subject Category</label>
+                                    <input type="text" formControlName="subjectCategory2" class="form-control"
+                                        placeholder="Enter Subject-category"
+                                        [ngClass]="{ 'is-invalid': submitted && f2.subjectCategory2.errors }" />
+                                    <div *ngIf="submitted && f2.subjectCategory2.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.subjectCategory2.errors.required">Subject-category is required</div>
                                     </div>
-                                       </div>
-                              </div>
-                              </div>
-                              <br>
-
-                    <div class="form-group">
-                            <label>Subject Category</label>
-                            <input type="text"  formControlName="subjectCategory2" class="form-control" placeholder="Enter Subject-category"
-                                [ngClass]="{ 'is-invalid': submitted && f2.subjectCategory2.errors }" />
-                            <div *ngIf="submitted && f2.subjectCategory2.errors" class="invalid-feedback">
-                                <div *ngIf="f2.subjectCategory2.errors.required">Subject-category is required</div>
+                                </div>
                             </div>
                         </div>
          <div class="modal-footer">
-                <button type="submit" class="btn btn-default"  >Update</button >
+                <button type="submit" class="btn btn-default" >Update</button >
              <button type="button" class="btn btn-danger waves-effect"
                  data-dismiss="modal">Cancel</button>
          </div>

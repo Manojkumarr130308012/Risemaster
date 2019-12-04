@@ -73,110 +73,106 @@
                                                 </div>
                                             </div>
                                             <!--//////-->
-                                                <div role="tabpanel"  class="tab-pane fade" id="contact_with_icon_title">
-                                        
+                                                <div role="tabpanel" class="tab-pane fade" id="contact_with_icon_title">
                                                     <div class="header">
-                                                        <h2>
-                                                          <strong *ngFor="let markdefinition of markdefinitionsById"><span style="color: rgb(0, 52, 165)">Mark Definition : </span>{{markdefinition?.code}}</strong>
-                                                         
-                                                        </h2>
-                                                        <div class="header-dropdown m-r--5">  
+                                                            <h2>
+                                                                <strong *ngFor="let markdefinition of markdefinitionsById"><span style="color: rgb(0, 52, 165)">Mark
+                                                                        Definition : </span>{{markdefinition?.code}}</strong>
+                                                            
+                                                            </h2>
+                                                       
+                                                        <div class="header-dropdown m-r--5">
                                                             <!-- Add button -->
-                                                                <div class="btn-group m-l-15">
-                                                                        <button id="addRow" class="btn btn-info" data-toggle="modal"
-                                                                        data-target="#addInternalModal">
-                                                                            Add Internal Mark
-                                                                            <i class="fa fa-plus" style="color: white"></i>
-                                                                        </button>
-                                                                </div>
-                                                             <!-- Add button -->
+                                                            <div class="btn-group m-l-15">
+                                                                <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addExternalModal">
+                                                                    Add External Mark
+                                                                    <i class="fa fa-plus" style="color: white"></i>
+                                                                </button>
+                                                            </div>
+                                                            <!-- Add button -->
                                                         </div>
                                                     </div>
-                                                   
                                                     <div class="body">
-                                                            <h5><span style="color: rgb(0, 52, 165)">Internal Mark</span></h5>
-                                                        <div class="table-responsive">
-                                                                <table id="tableExport" class="display table table-hover table-checkable order-column m-t-20 width-per-100">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>S.No</th>
-                                                                            <th>Code</th>
-                                                                            <th>Name</th>
-                                                                            <th>Minimum Mark</th>
-                                                                            <th>Maximum Mark</th>
-                                                                            <th>Action</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr *ngFor="let internalmark of internals; let i=index">
-                                                                            <td>{{i +1 }}</td>
-                                                                            <td>{{internalmark?.code}}</td>
-                                                                            <td>{{internalmark?.name}}</td>
-                                                                            <td>{{internalmark?.minMark}}</td>
-                                                                            <td>{{internalmark?.maxMark}}</td>
-                                                                            <td>
-                                                                                <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editinternalModal">
-                                                                                    <i class="material-icons" (click)="onEditInternal(internalmark) ">create</i>
-                                                                                </div>
-                                                                                <div class="btn btn-tbl-delete">
-                                                                                    <i class="material-icons" (click)="onDeleteInternal(internalmark?._id)">delete</i>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                    </div>
-                                                    <div class="header">
-                                                        <h2>
                                                             <h5><span style="color: rgb(0, 52, 165)">External Mark</span></h5>
-                                                        </h2>
-                                                        <div class="header-dropdown m-r--5">  
-                                                            <!-- Add button -->
-                                                                <div class="btn-group m-l-15">
-                                                                        <button id="addRow" class="btn btn-info" data-toggle="modal"
-                                                                        data-target="#addExternalModal">
-                                                                            Add External Mark
-                                                                            <i class="fa fa-plus" style="color: white"></i>
-                                                                        </button>
-                                                                </div>
-                                                             <!-- Add button -->
+                                                        <div class="table-responsive">
+                                                            <table id="tableExport" class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>S.No</th>
+                                                                        <th>Code</th>
+                                                                        <th>Name</th>
+                                                                        <th>Minimum Mark</th>
+                                                                        <th>Maximum Mark</th>
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr *ngFor="let externalMark of externals; let i=index">
+                                                                        <td>{{i +1 }}</td>
+                                                                        <td>{{externalMark?.code}}</td>
+                                                                        <td>{{externalMark?.name}}</td>
+                                                                        <td>{{externalMark?.minMark}}</td>
+                                                                        <td>{{externalMark?.maxMark}}</td>
+                                                                        <td>
+                                                                            <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editexternalModal">
+                                                                                <i class="material-icons" (click)="onEditExternal(externalMark) ">create</i>
+                                                                            </div>
+                                                                            <div class="btn btn-tbl-delete">
+                                                                                <i class="material-icons" (click)="onDeleteExternal(externalMark?._id)">delete</i>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
                                                         </div>
                                                     </div>
-                                                    <div class="body">
-                                                        <div class="table-responsive">
-                                                                <table id="tableExport" class="display table table-hover table-checkable order-column m-t-20 width-per-100">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>S.No</th>
-                                                                            <th>Code</th>
-                                                                            <th>Name</th>
-                                                                            <th>Minimum Mark</th>
-                                                                            <th>Maximum Mark</th>
-                                                                            <th>Action</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr *ngFor="let externalMark of externals; let i=index">
-                                                                            <td>{{i +1 }}</td>
-                                                                            <td>{{externalMark?.code}}</td>
-                                                                            <td>{{externalMark?.name}}</td>
-                                                                            <td>{{externalMark?.minMark}}</td>
-                                                                            <td>{{externalMark?.maxMark}}</td>
-                                                                            <td>
-                                                                                <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editexternalModal">
-                                                                                    <i class="material-icons" (click)="onEditExternal(externalMark) ">create</i>
-                                                                                </div>
-                                                                                <div class="btn btn-tbl-delete">
-                                                                                    <i class="material-icons" (click)="onDeleteExternal(externalMark?._id)">delete</i>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
+                                                    <div class="header">
+                                                        <div class="header-dropdown m-r--5">
+                                                            <!-- Add button -->
+                                                            <div class="btn-group m-l-15">
+                                                                <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addInternalModal">
+                                                                    Add Internal Mark
+                                                                    <i class="fa fa-plus" style="color: white"></i>
+                                                                </button>
                                                             </div>
+                                                            <!-- Add button -->
+                                                        </div>
                                                     </div>
-                                        
+                                                
+                                                    <div class="body">
+                                                        <h5><span style="color: rgb(0, 52, 165)">Internal Mark</span></h5>
+                                                        <div class="table-responsive">
+                                                            <table id="tableExport" class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>S.No</th>
+                                                                        <th>Code</th>
+                                                                        <th>Name</th>
+                                                                        <th>Minimum Mark</th>
+                                                                        <th>Maximum Mark</th>
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr *ngFor="let internalmark of internals; let i=index">
+                                                                        <td>{{i +1 }}</td>
+                                                                        <td>{{internalmark?.code}}</td>
+                                                                        <td>{{internalmark?.name}}</td>
+                                                                        <td>{{internalmark?.minMark}}</td>
+                                                                        <td>{{internalmark?.maxMark}}</td>
+                                                                        <td>
+                                                                            <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editinternalModal">
+                                                                                <i class="material-icons" (click)="onEditInternal(internalmark) ">create</i>
+                                                                            </div>
+                                                                            <div class="btn btn-tbl-delete">
+                                                                                <i class="material-icons" (click)="onDeleteInternal(internalmark?._id)">delete</i>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div role="tabpanel" class="tab-pane fade" id="identity_with_icon_title">
                                                         <div class="row clearfix">
@@ -214,7 +210,7 @@
          <div class="modal-dialog" role="document">
              <div class="modal-content">
                  <div class="modal-header">
-                     <h5 class="modal-title" id="formModal">Edit Details</h5>
+                     <h5 class="modal-title" id="formModal">Edit Mark Definition</h5>
                      <button type="button" class="close" data-dismiss="modal"
                          aria-label="Close">
                          <span aria-hidden="true">&times;</span>
@@ -227,11 +223,21 @@
                                         <div class="form-group">
                                             <label>Code</label>
                                             <input type="text" formControlName="code" class="form-control" placeholder="Enter Code"
-                                            [ngClass]="{ 'is-invalid': submitted && f3.code.errors }" />
+                                                [ngClass]="{ 'is-invalid': submitted && f3.code.errors }" />
                                             <div *ngIf="submitted && f3.code.errors" class="invalid-feedback">
                                                 <div *ngIf="f3.code.errors.required">Code is required</div>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <label>Min Mark</label>
+                                            <input type="text" formControlName="minMark" class="form-control" placeholder="Enter minMark"
+                                                [ngClass]="{ 'is-invalid': submitted && f3.minMark.errors }" />
+                                            <div *ngIf="submitted && f3.minMark.errors" class="invalid-feedback">
+                                                <div *ngIf="f3.minMark.errors.required">MinMark is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Name</label>
                                         <input type="text" formControlName="name" class="form-control" placeholder="Enter Name"
@@ -240,22 +246,12 @@
                                             <div *ngIf="f3.name.errors.required">Name is required</div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Max Mark</label>
-                                            <input type="text" formControlName="maxMark" class="form-control" placeholder="Enter maxMark"
-                                            [ngClass]="{ 'is-invalid': submitted && f3.maxMark.errors }" />
-                                            <div *ngIf="submitted && f3.maxMark.errors" class="invalid-feedback">
-                                                <div *ngIf="f3.maxMark.errors.required">MaxMark is required</div>
-                                            </div>
-                                        </div>
                                     <div class="form-group">
-                                        <label>Min Mark</label>
-                                        <input type="text" formControlName="minMark" class="form-control" placeholder="Enter minMark"
-                                            [ngClass]="{ 'is-invalid': submitted && f3.minMark.errors }" />
-                                        <div *ngIf="submitted && f3.minMark.errors" class="invalid-feedback">
-                                            <div *ngIf="f3.minMark.errors.required">MinMark is required</div>
+                                        <label>Max Mark</label>
+                                        <input type="text" formControlName="maxMark" class="form-control" placeholder="Enter maxMark"
+                                            [ngClass]="{ 'is-invalid': submitted && f3.maxMark.errors }" />
+                                        <div *ngIf="submitted && f3.maxMark.errors" class="invalid-feedback">
+                                            <div *ngIf="f3.maxMark.errors.required">MaxMark is required</div>
                                         </div>
                                     </div>
                                 </div>
@@ -276,7 +272,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="formModal">Add Details</h5>
+                <h5 class="modal-title" id="formModal">Add Internal Mark Category</h5>
                 <button type="button" class="close" data-dismiss="modal"
                     aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -295,12 +291,11 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Max Mark</label>
-                                <input type="text" formControlName="maxMark" class="form-control"
-                                    placeholder="Enter maxMark"
-                                    [ngClass]="{ 'is-invalid': submitted && f.maxMark.errors }" />
-                                <div *ngIf="submitted && f.maxMark.errors" class="invalid-feedback">
-                                    <div *ngIf="f.maxMark.errors.required">MaxMark is required</div>
+                                <label>Min Mark</label>
+                                <input type="text" formControlName="minMark" class="form-control" placeholder="Enter minMark"
+                                    [ngClass]="{ 'is-invalid': submitted && f.minMark.errors }" />
+                                <div *ngIf="submitted && f.minMark.errors" class="invalid-feedback">
+                                    <div *ngIf="f.minMark.errors.required">MinMark is required</div>
                                 </div>
                             </div>
                         </div>
@@ -314,14 +309,14 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Min Mark</label>
-                                <input type="text" formControlName="minMark" class="form-control"
-                                    placeholder="Enter minMark"
-                                    [ngClass]="{ 'is-invalid': submitted && f.minMark.errors }" />
-                                <div *ngIf="submitted && f.minMark.errors" class="invalid-feedback">
-                                    <div *ngIf="f.minMark.errors.required">MinMark is required</div>
+                                <label>Max Mark</label>
+                                <input type="text" formControlName="maxMark" class="form-control" placeholder="Enter maxMark"
+                                    [ngClass]="{ 'is-invalid': submitted && f.maxMark.errors }" />
+                                <div *ngIf="submitted && f.maxMark.errors" class="invalid-feedback">
+                                    <div *ngIf="f.maxMark.errors.required">MaxMark is required</div>
                                 </div>
                             </div>
+                    
                         </div>
                     </div>
                    
@@ -341,7 +336,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="formModal">Edit Details</h5>
+                <h5 class="modal-title" id="formModal">Add External Mark Category</h5>
                 <button type="button" class="close" data-dismiss="modal"
                     aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -405,7 +400,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="formModal">Edit Details</h5>
+                <h5 class="modal-title" id="formModal">Edit Internal Mark Category</h5>
                 <button type="button" class="close" data-dismiss="modal"
                     aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -413,44 +408,45 @@
             </div>
             <div class="modal-body">
                    <form [formGroup]="internalFormEdit" (ngSubmit)="updateInternal()">
-                           <div class="row clearfix">
-                               <div class="col-md-6">
-                                   <div class="form-group">
-                                       <label>Code</label>
-                                       <input type="text" formControlName="code2" class="form-control" placeholder="Enter Code"
-                                       [ngClass]="{ 'is-invalid': submitted && e1.code2.errors }" />
-                                       <div *ngIf="submitted && e1.code2.errors" class="invalid-feedback">
-                                           <div *ngIf="e1.code2.errors.required">Code is required</div>
-                                       </div>
-                                   </div>
-                               <div class="form-group">
-                                   <label>Name</label>
-                                   <input type="text" formControlName="name2" class="form-control" placeholder="Enter Name"
-                                       [ngClass]="{ 'is-invalid': submitted && e1.name2.errors }" />
-                                   <div *ngIf="submitted && e1.name2.errors" class="invalid-feedback">
-                                       <div *ngIf="e1.name2.errors.required">Name is required</div>
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="col-md-6">
-                                   <div class="form-group">
-                                       <label>Max Mark</label>
-                                       <input type="text" formControlName="maxMark2" class="form-control" placeholder="Enter maxMark"
-                                       [ngClass]="{ 'is-invalid': submitted && e1.maxMark2.errors }" />
-                                       <div *ngIf="submitted && e1.maxMark2.errors" class="invalid-feedback">
-                                           <div *ngIf="e1.maxMark2.errors.required">MaxMark is required</div>
-                                       </div>
-                                   </div>
-                               <div class="form-group">
-                                   <label>Min Mark</label>
-                                   <input type="text" formControlName="minMark2" class="form-control" placeholder="Enter minMark"
-                                       [ngClass]="{ 'is-invalid': submitted && e1.minMark2.errors }" />
-                                   <div *ngIf="submitted && e1.minMark2.errors" class="invalid-feedback">
-                                       <div *ngIf="e1.minMark2.errors.required">MinMark is required</div>
-                                   </div>
-                               </div>
-                           </div>
-                           </div>
+                        <div class="row clearfix">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Code</label>
+                                    <input type="text" formControlName="code2" class="form-control" placeholder="Enter Code"
+                                        [ngClass]="{ 'is-invalid': submitted && e1.code2.errors }" />
+                                    <div *ngIf="submitted && e1.code2.errors" class="invalid-feedback">
+                                        <div *ngIf="e1.code2.errors.required">Code is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Min Mark</label>
+                                    <input type="text" formControlName="minMark2" class="form-control" placeholder="Enter minMark"
+                                        [ngClass]="{ 'is-invalid': submitted && e1.minMark2.errors }" />
+                                    <div *ngIf="submitted && e1.minMark2.errors" class="invalid-feedback">
+                                        <div *ngIf="e1.minMark2.errors.required">MinMark is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" formControlName="name2" class="form-control" placeholder="Enter Name"
+                                        [ngClass]="{ 'is-invalid': submitted && e1.name2.errors }" />
+                                    <div *ngIf="submitted && e1.name2.errors" class="invalid-feedback">
+                                        <div *ngIf="e1.name2.errors.required">Name is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Max Mark</label>
+                                    <input type="text" formControlName="maxMark2" class="form-control" placeholder="Enter maxMark"
+                                        [ngClass]="{ 'is-invalid': submitted && e1.maxMark2.errors }" />
+                                    <div *ngIf="submitted && e1.maxMark2.errors" class="invalid-feedback">
+                                        <div *ngIf="e1.maxMark2.errors.required">MaxMark is required</div>
+                                    </div>
+                                </div>
+                        
+                            </div>
+                        </div>
             <div class="modal-footer">
                    <button type="submit" class="btn btn-default" >Update</button >
                 <button type="button" class="btn btn-danger waves-effect"
@@ -467,7 +463,7 @@
          <div class="modal-dialog" role="document">
              <div class="modal-content">
                  <div class="modal-header">
-                     <h5 class="modal-title" id="formModal">Edit Details</h5>
+                     <h5 class="modal-title" id="formModal">Edit Enternal Mark Category</h5>
                      <button type="button" class="close" data-dismiss="modal"
                          aria-label="Close">
                          <span aria-hidden="true">&times;</span>

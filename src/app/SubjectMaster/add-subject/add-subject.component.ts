@@ -64,7 +64,7 @@ export class AddSubjectComponent implements OnInit {
      this.IdValue1 = this.userInfo.department;
      this.departmentValue = this.IdValue1;
  
-    this.institution = new FormControl(this.institutionValue);
+    this.institution = new FormControl({value:this.institutionValue, disabled: true});
     this.department = new FormControl( this.departmentValue);
     // Add Form
     this.registerForm = this.formBuilder.group({

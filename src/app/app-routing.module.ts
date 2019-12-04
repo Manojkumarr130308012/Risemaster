@@ -80,6 +80,8 @@ import { SubjectTopiccoverageComponent } from './SubjectMaster/subject-topiccove
 import { SubjectMarkviewComponent } from './SubjectMaster/subject-markview/subject-markview.component';
 import { AddSubjectComponent } from './SubjectMaster/add-subject/add-subject.component';
 import { EditSubjectComponent } from './SubjectMaster/edit-subject/edit-subject.component';
+import { SectionComponent } from './StudentMaster/section/section.component';
+import { SectionStaffComponent } from './StudentMaster/section-staff/section-staff.component';
 
 const routes: Routes = [
   // { path: '', component: LoginComponent },
@@ -233,6 +235,14 @@ const routes: Routes = [
   {
     path: 'certificateType',
     component: CertificateTypeComponent
+  },
+  {
+    path: 'section',
+    component: SectionComponent
+  },
+  {
+    path: 'section-staff',
+    component: SectionStaffComponent
   },
 
  // Staff Master

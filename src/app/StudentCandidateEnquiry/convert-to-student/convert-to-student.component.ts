@@ -19,7 +19,7 @@ export class ConvertToStudentComponent implements OnInit {
   id: any;
 
 
-
+  submitted = false;
   convertToStudent: any;
   courseprograms: any;
   batches: any;
@@ -58,6 +58,8 @@ export class ConvertToStudentComponent implements OnInit {
   courseprogramsbyIns: any;
   courseprogrambyIns: any;
   transport: any;
+  semestersByIns: any;
+
   constructor(
     private request: RequestService,
     private router: Router,
@@ -74,15 +76,15 @@ export class ConvertToStudentComponent implements OnInit {
  this.convertToStudent = this.formBuilder.group({
   courseprogram: ['', Validators.required],
   batch: ['', Validators.required],
-  semester: [''],
+  semester: ['', Validators.required],
   languageSubject: [''],
   boardingType: ['', Validators.required],
   financialCategory: ['', Validators.required],
   joiningDate: ['', Validators.required],
-  hostel: [''],
+  hostel: [],
   rout: [''],
   busstop: [''],
-  checkbox1: ['', Validators.required],
+  checkbox1: [],
 });
   }
   loadInstitution() {
@@ -133,6 +135,17 @@ export class ConvertToStudentComponent implements OnInit {
       console.log(error);
     });
   }
+  loadSemesterByIns(Institution: any) {
+    if (Institution) {
+      this.request.getSemesterbyIns(Institution).subscribe((response: any) => {
+        this.semestersByIns = response;
+        console.log('semesterByIns',  this.semestersByIns);
+      }, (error) => {
+        console.log(error);
+      });
+    } else
+    this.semestersByIns = null;
+  }
   viewBasicDetailsById(id) {
     this.request.fetchBasicDetailsById(id).subscribe((response) => {
       this.basicdetails = response;
@@ -140,6 +153,7 @@ export class ConvertToStudentComponent implements OnInit {
       console.log('Institution' , this.institutiond);
       this.loadCourseCategoryByIns(this.institutiond);
       this.loadHostelByIns(this.institutiond);
+      this.loadSemesterByIns(this.institutiond);
       this.loadCourseProgramByIns(this.institutiond);
       console.log('BasicDetailsById', this.basicdetails);
     }, (error) => {
@@ -190,19 +204,23 @@ export class ConvertToStudentComponent implements OnInit {
     this.transport = event1;
   }
   addToStudentDetail(id) {
+    this.submitted = true;
+  if (this.convertToStudent.invalid) {
+    return;
+  }
     const newDetails = {
       courseprogram: this.convertToStudent.get('courseprogram').value,
       batch: this.convertToStudent.get('batch').value,
-     semester: this.convertToStudent.get('semester').value,
+      semester: this.convertToStudent.get('semester').value,
       languageSubject: this.convertToStudent.get('languageSubject').value,
       boardingType: this.convertToStudent.get('boardingType').value,
-     financialCategory: this.convertToStudent.get('financialCategory').value,
-     joiningDate: this.convertToStudent.get('joiningDate').value,
-     hostel: this.convertToStudent.get('hostel').value,
-     rout: this.convertToStudent.get('rout').value,
-     busstop: this.convertToStudent.get('busstop').value,
-     checkbox1: this.transport,
-     canId: this.canId
+      financialCategory: this.convertToStudent.get('financialCategory').value,
+      joiningDate: this.convertToStudent.get('joiningDate').value,
+      hostel: this.convertToStudent.get('hostel').value,
+      rout: this.convertToStudent.get('rout').value,
+      busstop: this.convertToStudent.get('busstop').value,
+      checkbox1: this.transport,
+      canId: this.canId
     }
     this.request.addConvertToStudent(newDetails).subscribe((response: any) => {
       if (response.status == 'error') {
@@ -257,6 +275,7 @@ export class ConvertToStudentComponent implements OnInit {
   referal: this.basicDet[0].referenceBy,
   motherTongue: this.basicDet[0].motherTongue,
   sPhoto: this.basicDet[0].sPhoto,
+  semester: this.basicDet[0].ConvertToStudentDetails[0].semester,
   status: "Confirmed"
 }
 this.request.convertToStudentDetail(newStudentDetail).subscribe((response: any) => {
@@ -275,7 +294,7 @@ if (response.status == 'success') {
 }
 else if (response.status == 'error') {
   this.setMessage(response.error);
-  swal(response.error);
+  swal(response.error, 'Cant update to student details');
   console.log(response.error);
 }
 }, (error) => {
@@ -306,7 +325,9 @@ else if (response.status == 'error') {
   this.converts = null;
   }
 
-
+  get f() {
+    return this.convertToStudent.controls;
+  }
 
   ngOnInit() {
     this.viewBasicDetailsById(this.id);
