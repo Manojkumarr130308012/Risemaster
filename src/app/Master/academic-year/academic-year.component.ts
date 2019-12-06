@@ -1,21 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
-import { RequestService } from '../../services/request.service';
+import { Component, OnInit } from "@angular/core";
+import { DynamicScriptLoaderService } from "../../services/dynamic-script-loader.service";
+import { RequestService } from "../../services/request.service";
 import { AuthService } from "../../services/auth.service";
 
-import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import {
+  FormControl,
+  Validators,
+  FormGroup,
+  FormBuilder
+} from "@angular/forms";
+import { Router } from "@angular/router";
 declare const $: any;
 declare const M: any;
 declare const swal: any;
 
 @Component({
-  selector: 'app-academic-year',
-  templateUrl: './academic-year.component.html',
-  styleUrls: ['./academic-year.component.scss']
+  selector: "app-academic-year",
+  templateUrl: "./academic-year.component.html",
+  styleUrls: ["./academic-year.component.scss"]
 })
 export class AcademicYearComponent implements OnInit {
-
   registerForm: FormGroup;
   submitted = false;
   institution: any;
@@ -87,13 +91,11 @@ export class AcademicYearComponent implements OnInit {
       this.request.getAcademicYear().subscribe((response) => {
         this.academicyears = response;
         console.log(this.academicyears);
-      }, (error) => {
+      }),
+      error => {
         console.log(error);
-      });
       }
-      public setMessage(message) {
-        return this.message = message;
-      }
+    }
       onCourseProgramChange(courseprogram: any) {
         console.log('courseprogram' ,courseprogram)
         if (courseprogram) {
@@ -138,28 +140,37 @@ export class AcademicYearComponent implements OnInit {
    
   }
   // convenience getter for easy access to form fields
-  get f() { return this.registerForm.controls; }
-  get f2() { return this.editForm.controls; }
+  get f() {
+    return this.registerForm.controls;
+  }
+  get f2() {
+    return this.editForm.controls;
+  }
+  public setMessage(message) {
+    return (this.message = message);
+  }
+
   //Add form validation and function
   onAddSubmit() {
-      this.submitted = true;
-      if (this.registerForm.invalid) {
-          return;
-      }
-      this.request.addAcademicYear(this.registerForm.value).subscribe((res: any) => {
-      if (res.status == 'error') {
-        this.setMessage(res.error);
-      }
-      else if (res.status == 'success') {
-
-        swal("Added Sucessfully");
-        this.viewData();
-        this.loadModal();
-      }
-      }, (error) => {
+    this.submitted = true;
+    if (this.registerForm.invalid) {
+      return;
+    }
+    this.request.addAcademicYear(this.registerForm.value).subscribe(
+      (res: any) => {
+        if (res.status == "error") {
+          this.setMessage(res.error);
+        } else if (res.status == "success") {
+          swal("Added Sucessfully");
+          this.viewData();
+          this.loadModal();
+        }
+      },
+      error => {
         this.setMessage(error);
-      });
-      console.log(this.registerForm.value);
+      }
+    );
+    console.log(this.registerForm.value);
   }
 
   //To delete the data
@@ -170,10 +181,10 @@ export class AcademicYearComponent implements OnInit {
     });
   }
 
-//Edit Function
+  //Edit Function
   onEdit(academicyear) {
     this.Id = academicyear._id;
-    this.request.fetchAcademicyearById(this.Id).subscribe((response) => {
+    this.request.fetchAcademicyearById(this.Id).subscribe(response => {
       this.editAcademicyeardata = response[0];
       this.institution1 =  this.editAcademicyeardata.institution;
       this.loadCourseProgramByIns(this.institution1);
@@ -198,13 +209,13 @@ export class AcademicYearComponent implements OnInit {
         start_date2: [this.startDateValue, Validators.required],
         end_date2: [this.endDateValue, Validators.required],
         status2: [this.statusValue, Validators.required]
-    });
+      });
     });
   }
   onEditSubmit() {
     this.submitted = true;
     if (this.editForm.invalid) {
-        return;
+      return;
     }
     const edata = {
       institution: this.editForm.get('institution2').value,
@@ -235,43 +246,36 @@ export class AcademicYearComponent implements OnInit {
   });
 
       }
-      loadInstitution() {
-        this.request.getInstitution().subscribe((response: any) => {
-          console.log('Institution', response);
-          this.institutions = response;
-        }, (error) => {
-          console.log(error);
-        });
+  loadInstitution() {
+    this.request.getInstitution().subscribe(
+      (response: any) => {
+        console.log("Institution", response);
+        this.institutions = response;
+      },
+      error => {
+        console.log(error);
       }
-  async startScript() {
-    await this.dynamicScriptLoader.load('dataTables.buttons', 'buttons.flash', 'jszip', 'pdfmake', 'vfs_fonts', 'pdfmake', 'buttons.html5', 'buttons.print').then(data => {
-      this.loadData();
-    }).catch(error => console.log(error));
+    );
   }
-  private loadData() {
-    $('#tableExport').DataTable({
-            dom: 'Bfrtip',
-            buttons: [
-              'copy', 'csv', 'excel', 'pdf', 'print'
-            ]
-          });
-        };
-    private loadModal() {
-      $('#addModal').modal('hide'); //or  $('#IDModal').modal('hide');
-      $('#addModal').on('hidden.bs.modal', function () {
-        $(this).find('form').trigger('reset');
-     })
-      $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
-      $('#editModal ').on('hidden.bs.modal', function () {
-        $(this).find('form').trigger('reset');
-     })
-    }
+
+   loadModal() {
+    $("#addModal").modal("hide"); //or  $('#IDModal').modal('hide');
+    $("#addModal").on("hidden.bs.modal", function() {
+      $(this)
+        .find("form")
+        .trigger("reset");
+    });
+    $("#editModal").modal("hide"); //or  $('#IDModal').modal('hide');
+    $("#editModal ").on("hidden.bs.modal", function() {
+      $(this)
+        .find("form")
+        .trigger("reset");
+    });
+  }
 
   ngOnInit() {
-
     this.auth.isValidUser();
     this.viewData();
-    this.startScript();
     M.updateTextFields();
     this.loadInstitution();
   }
