@@ -112,37 +112,53 @@
                     <form [formGroup]="registerForm" (ngSubmit)="onAddSubmit()">
                             <div class="row clearfix">
                                 <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Department<span class="asterisk">*</span></label>
-                                            <select class="browser-default form-control" formControlName="department"
-                                                [ngClass]="{ 'is-invalid': submitted && f.department.errors }">
-                                                <option>Choose your Department</option>
-                                                <option *ngFor="let department of departmentByIns?.response" [value]="department._id">
-                                                    {{department?.department}}
+                                    <div class="form-group">
+                                        <label>Department<span class="asterisk">*</span></label>
+                                        <select class="browser-default form-control" formControlName="department"
+                                            [ngClass]="{ 'is-invalid': submitted && f.department.errors }">
+                                            <option>Choose your Department</option>
+                                            <option *ngFor="let department of departmentByIns?.response" [value]="department._id">
+                                                {{department?.department}}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="submitted && f.department.errors" class="invalid-feedback">
+                                            <div *ngIf="f.department.errors.required">Subject Code is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <label>Batch<span class="asterisk">*</span></label>
+                                        <div class="form-line">
+                                            <select class="browser-default" formControlName="batch" name="batch" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.batch.errors }"
+                                                (change)="onBatchChange($event.target.value)">
+                                                <option value="">Choose your Batch</option>
+                                                <option *ngFor="let batch of batcheBycourseprograms?.response" [value]="batch._id">{{batch?.batch}}
                                                 </option>
                                             </select>
-                                            <div *ngIf="submitted && f.department.errors" class="invalid-feedback">
-                                                <div *ngIf="f.department.errors.required">Subject Code is required</div>
+                                            <div *ngIf="submitted && f.batch.errors" class="invalid-feedback">
+                                                <div *ngIf="f.batch.errors.required">Batch is required</div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                                <label for="semester">Semester<span class="asterisk">*</span></label>
-                                                <select class="browser-default form-control" name="semester" placeholder="Enter semester"
-                                                    formControlName="semester" [ngClass]="{ 'is-invalid': submitted && f.semester.errors }">
-                                                    <option>Choose your Semester</option>
-                                                    <option *ngFor="let semester of semestersByIns?.response" [value]="semester._id">
-                                                        {{semester?.semester}}
-                                                    </option>
-                                                </select>
-                                                <div *ngIf="submitted && f.semester.errors" class="invalid-feedback">
-                                                    <div *ngIf="f.semester.errors.required">Semester is required</div>
-                                                </div>
-                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="semester">Semester<span class="asterisk">*</span></label>
+                                        <select class="browser-default form-control" name="semester" placeholder="Enter semester"
+                                            formControlName="semester" [ngClass]="{ 'is-invalid': submitted && f.semester.errors }">
+                                            <option>Choose your Semester</option>
+                                            <option *ngFor="let semester of semestersByIns?.response" [value]="semester._id">
+                                                {{semester?.semester}}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="submitted && f.semester.errors" class="invalid-feedback">
+                                            <div *ngIf="f.semester.errors.required">Semester is required</div>
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <label for="subjectDescription">Subject Description<span class="asterisk">*</span></label>
                                         <div class="form-line">
                                             <input type="text" class="form-control" name="subjectDescription" placeholder="Enter subjectDescription"
-                                                formControlName="subjectDescription" [ngClass]="{ 'is-invalid': submitted && f.subjectDescription.errors }" />
+                                                formControlName="subjectDescription"
+                                                [ngClass]="{ 'is-invalid': submitted && f.subjectDescription.errors }" />
                                             <div *ngIf="submitted && f.subjectDescription.errors" class="invalid-feedback">
                                                 <div *ngIf="f.subjectDescription.errors.required">Subject Description is required</div>
                                             </div>
@@ -151,7 +167,8 @@
                                     <div class="form-group">
                                         <label for="subjectClassification">Subject Classification<span class="asterisk">*</span></label>
                                         <select class="browser-default form-control" name="subjectClassification"
-                                            formControlName="subjectClassification" [ngClass]="{ 'is-invalid': submitted && f.subjectClassification.errors }">
+                                            formControlName="subjectClassification"
+                                            [ngClass]="{ 'is-invalid': submitted && f.subjectClassification.errors }">
                                             <option>Choose your subjectClassification</option>
                                             <option *ngFor="let subjectClassification of subjectclassifications" [value]="subjectClassification._id">
                                                 {{subjectClassification?.subjectClassification}}
@@ -196,18 +213,31 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                     <div class="form-group">
-                                            <label>Course Program<span class="asterisk">*</span></label>
-                                            <select class="browser-default form-control" formControlName="courseprogram" name="courseprogram"
-                                                [ngClass]="{ 'is-invalid': submitted && f.courseprogram.errors }">
-                                                <option>Choose your Course Program</option>
-                                                <option *ngFor="let courseprogram of courseprogrambyIns?.response" [value]="courseprogram._id">
-                                                    {{courseprogram.courseprogram}}</option>
-                                            </select>
-                                            <div *ngIf="submitted && f.courseprogram.errors" class="invalid-feedback">
-                                                    <div *ngIf="f.courseprogram.errors.required">Course Program is required</div>
-                                                </div>
+                                    <div class="form-group">
+                                        <label>Course Program<span class="asterisk">*</span></label>
+                                        <select class="browser-default form-control" formControlName="courseprogram" name="courseprogram"
+                                            [ngClass]="{ 'is-invalid': submitted && f.courseprogram.errors }"
+                                            (change)="onCourseProgramChange($event.target.value)">
+                                            <option>Choose your Course Program</option>
+                                            <option *ngFor="let courseprogram of courseprogrambyIns?.response" [value]="courseprogram._id">
+                                                {{courseprogram.courseprogram}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.courseprogram.errors" class="invalid-feedback">
+                                            <div *ngIf="f.courseprogram.errors.required">Course Program is required</div>
                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Academic Year</label>
+                                        <select class="browser-default form-control" formControlName="academicYear"
+                                            [ngClass]="{ 'is-invalid': submitted && f.academicYear.errors }">
+                                            <option value="">Choose your Academic Year</option>
+                                            <option *ngFor="let academicYear of academicyearByBatch" [value]="academicYear._id">
+                                                {{academicYear.year}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.academicYear.errors" class="invalid-feedback">
+                                            <div *ngIf="f.academicYear.errors.required">Academic Year is required</div>
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <label for="subjectCode">subject Code<span class="asterisk">*</span></label>
                                         <div class="form-line">
@@ -221,8 +251,7 @@
                                     <div class="form-group">
                                         <label for="subjectType">Subject Type<span class="asterisk">*</span></label>
                                         <select class="browser-default form-control" name="subjectType" placeholder="Enter subjectType"
-                                            formControlName="subjectType"
-                                            [ngClass]="{ 'is-invalid': submitted && f.subjectType.errors }">
+                                            formControlName="subjectType" [ngClass]="{ 'is-invalid': submitted && f.subjectType.errors }">
                                             <option>Choose your subjectType</option>
                                             <option *ngFor="let subjectType of subjectTypes" [value]="subjectType._id">
                                                 {{subjectType?.subjectType}}

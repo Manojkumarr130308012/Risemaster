@@ -355,12 +355,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Max Mark</label>
-                                <input type="text" formControlName="maxMark" class="form-control"
-                                    placeholder="Enter maxMark"
-                                    [ngClass]="{ 'is-invalid': submitted && f2.maxMark.errors }" />
-                                <div *ngIf="submitted && f2.maxMark.errors" class="invalid-feedback">
-                                    <div *ngIf="f2.maxMark.errors.required">MaxMark is required</div>
+                                <label>Min Mark</label>
+                                <input type="text" formControlName="minMark" class="form-control"
+                                    placeholder="Enter minMark"
+                                    [ngClass]="{ 'is-invalid': submitted && f2.minMark.errors }" />
+                                <div *ngIf="submitted && f2.minMark.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.minMark.errors.required">MinMark is required</div>
                                 </div>
                             </div>
                         </div>
@@ -374,12 +374,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Min Mark</label>
-                                <input type="text" formControlName="minMark" class="form-control"
-                                    placeholder="Enter minMark"
-                                    [ngClass]="{ 'is-invalid': submitted && f2.minMark.errors }" />
-                                <div *ngIf="submitted && f2.minMark.errors" class="invalid-feedback">
-                                    <div *ngIf="f2.minMark.errors.required">MinMark is required</div>
+                                <label>Max Mark</label>
+                                <input type="text" formControlName="maxMark" class="form-control"
+                                    placeholder="Enter maxMark"
+                                    [ngClass]="{ 'is-invalid': submitted && f2.maxMark.errors }" />
+                                <div *ngIf="submitted && f2.maxMark.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.maxMark.errors.required">MaxMark is required</div>
                                 </div>
                             </div>
                         </div>
@@ -476,38 +476,39 @@
                                         <div class="form-group">
                                             <label>Code</label>
                                             <input type="text" formControlName="code2" class="form-control" placeholder="Enter Code"
-                                            [ngClass]="{ 'is-invalid': submitted && e2.code2.errors }" />
+                                                [ngClass]="{ 'is-invalid': submitted && e2.code2.errors }" />
                                             <div *ngIf="submitted && e2.code2.errors" class="invalid-feedback">
                                                 <div *ngIf="e2.code2.errors.required">Code is required</div>
                                             </div>
                                         </div>
-                                    <div class="form-group">
-                                        <label>Name</label>
-                                        <input type="text" formControlName="name2" class="form-control" placeholder="Enter Name"
-                                            [ngClass]="{ 'is-invalid': submitted && e2.name2.errors }" />
-                                        <div *ngIf="submitted && e2.name2.errors" class="invalid-feedback">
-                                            <div *ngIf="e2.name2.errors.required">Name is required</div>
+                                        <div class="form-group">
+                                            <label>Min Mark</label>
+                                            <input type="text" formControlName="minMark2" class="form-control" placeholder="Enter minMark"
+                                                [ngClass]="{ 'is-invalid': submitted && e2.minMark2.errors }" />
+                                            <div *ngIf="submitted && e2.minMark2.errors" class="invalid-feedback">
+                                                <div *ngIf="e2.minMark2.errors.required">MinMark is required</div>
+                                            </div>
                                         </div>
+                                
                                     </div>
-                                </div>
-                                <div class="col-md-6">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input type="text" formControlName="name2" class="form-control" placeholder="Enter Name"
+                                                [ngClass]="{ 'is-invalid': submitted && e2.name2.errors }" />
+                                            <div *ngIf="submitted && e2.name2.errors" class="invalid-feedback">
+                                                <div *ngIf="e2.name2.errors.required">Name is required</div>
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <label>Max Mark</label>
                                             <input type="text" formControlName="maxMark2" class="form-control" placeholder="Enter maxMark"
-                                            [ngClass]="{ 'is-invalid': submitted && e2.maxMark2.errors }" />
+                                                [ngClass]="{ 'is-invalid': submitted && e2.maxMark2.errors }" />
                                             <div *ngIf="submitted && e2.maxMark2.errors" class="invalid-feedback">
                                                 <div *ngIf="e2.maxMark2.errors.required">MaxMark is required</div>
                                             </div>
                                         </div>
-                                    <div class="form-group">
-                                        <label>Min Mark</label>
-                                        <input type="text" formControlName="minMark2" class="form-control" placeholder="Enter minMark"
-                                            [ngClass]="{ 'is-invalid': submitted && e2.minMark2.errors }" />
-                                        <div *ngIf="submitted && e2.minMark2.errors" class="invalid-feedback">
-                                            <div *ngIf="e2.minMark2.errors.required">MinMark is required</div>
-                                        </div>
                                     </div>
-                                </div>
                                 </div>
                  <div class="modal-footer">
                         <button type="submit" class="btn btn-default" >Update</button >

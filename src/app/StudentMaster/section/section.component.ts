@@ -45,7 +45,17 @@ export class SectionComponent implements OnInit {
   userInfo: any;
   departmentByIns: any;
   courseprogrambyIns: any;
-  sections: Object;
+  sections: any;
+  semestersByIns: any;
+  semester: any
+  batch: any;
+  academicYear: any;
+  batcheBycourseprograms: any;
+  academicyearByBatch: any;
+  courseprogram1: any;
+  batch1: any;
+  batchValue: any;
+  academicYearValue: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -66,12 +76,18 @@ export class SectionComponent implements OnInit {
     this.addForm = this.formBuilder.group({
       department: ["", Validators.required],
       courseprogram: ["", Validators.required],
+      batch:['', Validators.required],
+      academicYear: ["", Validators.required],
+      semester: ["", Validators.required],
       section: ["", Validators.required]
     });
     // Edit Form
     this.editForm = this.formBuilder.group({
       department2: ["", Validators.required],
       courseprogram2: ["", Validators.required],
+      batch2:['', Validators.required],
+      academicYear2: ["", Validators.required],
+      semester2: ["", Validators.required],
       section2: ["", Validators.required]
     });
   }
@@ -92,7 +108,17 @@ export class SectionComponent implements OnInit {
       }
     );
   }
-
+  loadSemesterByIns(Institution: any) {
+    if (Institution) {
+      this.request.getSemesterbyIns(Institution).subscribe((response: any) => {
+        this.semestersByIns = response;
+        console.log('semesterByIns',  this.semestersByIns);
+      }, (error) => {
+        console.log(error);
+      });
+    } else
+    this.semestersByIns = null;
+  }
   //Add form validation and function
   onAddSubmit() {
     this.submitted = true;
@@ -103,6 +129,9 @@ export class SectionComponent implements OnInit {
       section: this.addForm.get("section").value,
       department: this.addForm.get("department").value,
       courseprogram: this.addForm.get("courseprogram").value,
+      batch: this.addForm.get('batch').value,
+      academicYear: this.addForm.get('academicYear').value,
+      semester: this.addForm.get('semester').value,
       institution: this.institutionValue
     };
     this.request.addSection(newdata).subscribe(
@@ -144,22 +173,71 @@ export class SectionComponent implements OnInit {
       swal("Deleted");
     });
   }
-
+  onCourseProgramChange(courseprogram: any) {
+    console.log('courseprogram' ,courseprogram)
+    if (courseprogram) {
+      this.request.getBatchByCoursePrgram(courseprogram).subscribe((response: any) => {
+        this.batcheBycourseprograms = response;
+        console.log('BatchBycourseprogram',  this.batcheBycourseprograms);
+      }, (error) => {
+        console.log(error);
+      });
+    } else
+      this.batcheBycourseprograms = null;
+  }
+  loadBatchByCourseprogram(courseprogram) {
+    this.request.getBatchByCoursePrgram(courseprogram).subscribe((response: any) => {
+      this.batcheBycourseprograms = response;
+      console.log('BatchBycourseprogram', this.batcheBycourseprograms);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  onBatchChange(batch: any) {
+    console.log('Batch' ,batch);
+    if (batch) {
+      this.request.fetchAcademicyearByBatch(batch).subscribe((response: any) => {
+        this.academicyearByBatch = response;
+        console.log('AcademicYearByBatch',  this.academicyearByBatch);
+      }, (error) => {
+        console.log(error);
+      });
+    } else
+      this.academicyearByBatch = null;
+  }
+  loadacademicYearByBatch(batch) {
+    this.request.fetchAcademicyearByBatch(batch).subscribe((response: any) => {
+      this.academicyearByBatch = response;
+      console.log('AcademicYearByBatch', this.academicyearByBatch);
+    }, (error) => {
+      console.log(error);
+    });
+  }
   // To edit course category
   onEdit(semester) {
     this.Id = semester._id;
     this.request.fetchSectionById(this.Id).subscribe(response => {
       this.editsection = response[0];
+      this.courseprogram1 = this.editsection.courseprogram;
+    this.loadBatchByCourseprogram(this.courseprogram1);
+    this.batch1 = this.editsection.batch;
+    this.loadacademicYearByBatch(this.batch1);
       console.log(response);
       this.institutionValue = this.editsection.institution;
       this.departmentValue = this.editsection.department;
+      this.batchValue = this.editsection.batch;
+      this.academicYearValue = this.editsection.academicYear;
       this.courseprogramValue = this.editsection.courseprogram;
+      this.semesterValue = this.editsection.semester;
       this.sectionValue = this.editsection.section;
       this.IdValue = this.editsection._id;
 
       this.editForm = this.formBuilder.group({
         department2: [this.departmentValue, Validators.required],
         courseprogram2: [ this.courseprogramValue, Validators.required],
+        batch2: [ this.batchValue, Validators.required],
+        academicYear2: [ this.academicYearValue, Validators.required],
+        semester2: [ this.semesterValue, Validators.required],
         section2: [this.sectionValue, Validators.required]
       });
       console.log(this.editForm.value);
@@ -176,6 +254,9 @@ export class SectionComponent implements OnInit {
       section: this.editForm.get("section2").value,
       department: this.editForm.get("department2").value,
       courseprogram: this.editForm.get("courseprogram2").value,
+      batch: this.editForm.get('batch2').value,
+      academicYear: this.editForm.get('academicYear2').value,
+      semester: this.editForm.get('semester2').value,
       institution: this.institutionValue
     };
 
@@ -195,6 +276,7 @@ export class SectionComponent implements OnInit {
       }
     );
   }
+  
   loadDepartmentByIns(Institution: any) {
     if (Institution) {
       this.request.getDetartmentbyIns(Institution).subscribe((response: any) => {
@@ -281,6 +363,7 @@ export class SectionComponent implements OnInit {
     this.loadModal();
     this.loadDepartmentByIns(this.institutionValue);
     this.loadCourseProgramByIns(this.institutionValue);
+    this.loadSemesterByIns(this.institutionValue);
   }
 }
 

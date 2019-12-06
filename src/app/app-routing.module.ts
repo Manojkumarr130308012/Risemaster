@@ -43,7 +43,7 @@ import { PayTypeComponent } from './StaffMaster/pay-type/pay-type.component';
 import { SalutationComponent } from './StaffMaster/salutation/salutation.component';
 import { FeeTypeComponent } from './StaffMaster/fee-type/fee-type.component';
 import { ModeOfEnquiryComponent } from './StaffMaster/mode-of-enquiry/mode-of-enquiry.component';
-
+import { PeriodComponent } from './StaffMaster/period/period.component';
 // Vehicle Management
 import { VehicleMasterComponent } from './VehicleManagement/vehicle-master/vehicle-master.component';
 import { DriverMasterComponent } from './VehicleManagement/driver-master/driver-master.component';
@@ -250,6 +250,10 @@ const routes: Routes = [
   path: 'staff-type',
   component: StaffTypeComponent
   },
+  {
+    path: 'period',
+    component: PeriodComponent
+    },
 
 {
   path: 'staff-role',

@@ -33,7 +33,22 @@ export class SemesterComponent implements OnInit {
   institutions;
   public message: string;
   semesters: any;
-
+  courseprogram : any;
+  batch: any;
+  courseprogram2 : any;
+  batch2: any;
+  semesterType: any;
+  semesterType2: any;
+  batcheBycourseprograms: any;
+  courseprogramValue: any;
+  batchValue: any;
+  courseprogrambyIns: any;
+  institution1: any;
+  courseprogram1: any;
+  academicYearValue: any;
+  semesterTypeValue: any;
+  academicyearByBatch: any;
+  batch1: any;
   constructor(
     private formBuilder: FormBuilder,
     private dynamicScriptLoader: DynamicScriptLoaderService,
@@ -44,12 +59,20 @@ export class SemesterComponent implements OnInit {
   ) {
     // Add Form
     this.addForm = this.formBuilder.group({
-      institution: ["", Validators.required],
+      institution:['', Validators.required],
+      courseprogram:['', Validators.required],
+      batch:['', Validators.required],
+      academicYear: ["", Validators.required],
+      semesterType: ["", Validators.required],
       semester: ["", Validators.required]
     });
     // Edit Form
     this.editForm = this.formBuilder.group({
       institution2: ["", Validators.required],
+      courseprogram2:['', Validators.required],
+      batch2:['', Validators.required],
+      academicYear2: ["", Validators.required],
+      semesterType2: ["", Validators.required],
       semester2: ["", Validators.required]
     });
   }
@@ -116,19 +139,94 @@ export class SemesterComponent implements OnInit {
       swal("Deleted");
     });
   }
-
+  onCourseProgramChange(courseprogram: any) {
+    console.log('courseprogram' ,courseprogram)
+    if (courseprogram) {
+      this.request.getBatchByCoursePrgram(courseprogram).subscribe((response: any) => {
+        this.batcheBycourseprograms = response;
+        console.log('BatchBycourseprogram',  this.batcheBycourseprograms);
+      }, (error) => {
+        console.log(error);
+      });
+    } else
+      this.batcheBycourseprograms = null;
+  }
+  loadBatchByCourseprogram(courseprogram) {
+    this.request.getBatchByCoursePrgram(courseprogram).subscribe((response: any) => {
+      this.batcheBycourseprograms = response;
+      console.log('BatchBycourseprogram', this.batcheBycourseprograms);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  loadCourseProgramByIns(institution) {
+    this.request.getCourseprogramByIns(institution).subscribe((response: any) => {
+      this.courseprogrambyIns = response;
+      console.log('CourseProgrambyIns', this.courseprogrambyIns);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  // Filter CourseCategory, AdmissionType, AdmissionCategory by Institution
+onInstitutionChange(Institution: any) {
+console.log('institution', Institution)
+if (Institution) {
+  this.request.getCourseprogramByIns(Institution).subscribe((response: any) => {
+    console.log('Courseprogram', response);
+    this.courseprogrambyIns = response;
+  }, (error) => {
+    console.log(error);
+  });
+ 
+} else
+this.courseprogrambyIns = null;
+}
+onBatchChange(batch: any) {
+  console.log('Batch' ,batch);
+  if (batch) {
+    this.request.fetchAcademicyearByBatch(batch).subscribe((response: any) => {
+      this.academicyearByBatch = response;
+      console.log('AcademicYearByBatch',  this.academicyearByBatch);
+    }, (error) => {
+      console.log(error);
+    });
+  } else
+    this.academicyearByBatch = null;
+}
+loadacademicYearByBatch(batch) {
+  this.request.fetchAcademicyearByBatch(batch).subscribe((response: any) => {
+    this.academicyearByBatch = response;
+    console.log('AcademicYearByBatch', this.academicyearByBatch);
+  }, (error) => {
+    console.log(error);
+  });
+}
   // To edit course category
   onEdit(semester) {
     this.Id = semester._id;
     this.request.fetchSemesterById(this.Id).subscribe(response => {
       this.editsemester = response[0];
+      this.institution1 =  this.editsemester.institution;
+      this.loadCourseProgramByIns(this.institution1);
+      this.courseprogram1 = this.editsemester.courseprogram;
+      this.loadBatchByCourseprogram(this.courseprogram1);
+      this.batch1 = this.editsemester.batch;
+      this.loadacademicYearByBatch(this.batch1);
       console.log(response);
       this.institutionValue = this.editsemester.institution;
+      this.courseprogramValue = this.editsemester.courseprogram;
+      this.batchValue = this.editsemester.batch;
+      this.academicYearValue = this.editsemester.academicYear;
+      this.semesterTypeValue = this.editsemester.semesterType;
       this.semesterValue = this.editsemester.semester;
       this.IdValue = this.editsemester._id;
 
       this.editForm = this.formBuilder.group({
         institution2: [this.institutionValue, Validators.required],
+        courseprogram2: [this.courseprogramValue, Validators.required],
+        batch2: [this.batchValue, Validators.required],
+        academicYear2: [this.academicYearValue, Validators.required],
+        semesterType2: [this.semesterTypeValue, Validators.required],
         semester2: [this.semesterValue, Validators.required]
       });
       console.log(this.editForm.value);
@@ -143,6 +241,10 @@ export class SemesterComponent implements OnInit {
 
     const edata = {
       semester: this.editForm.get("semester2").value,
+      semesterType: this.editForm.get("semesterType2").value,
+      batch: this.editForm.get("batch2").value,
+      courseprogram: this.editForm.get("courseprogram2").value,
+      academicYear: this.editForm.get("academicYear2").value,
       institution: this.editForm.get("institution2").value
     };
 

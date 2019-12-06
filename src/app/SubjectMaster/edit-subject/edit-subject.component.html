@@ -12,8 +12,10 @@
                     <div class="body">
                         <div class="row">
                             <div class="col-md-3" *ngFor="let subject of subjects;let i=index">
-                                <h6> CourseProgram :</h6><span>{{subject.courseprogramd[0].courseprogram}}</span>
                                 <h6> Department :</h6><span>{{subject.departmentd[0].department}}</span>
+                                <h6> CourseProgram :</h6><span>{{subject.courseprogramd[0].courseprogram}}</span>
+                                <h6> Batch :</h6><span>{{subject.batchd[0].batch}}</span>
+                                <h6> Academic Year :</h6><span>{{subject.academicYeard[0].year}}</span>
                                 <h6> Semester :</h6><span>{{subject.semesterd[0].semester}}</span>
                             </div>
                             <div class="col-md-3" *ngFor="let subject of subjects;let i=index">
@@ -114,7 +116,7 @@
                                             <tr *ngFor="let subjectStaff of subjectstaffs; let i=index">
                                                 <td>{{i +1 }}</td>
                                                 <td>{{subjectStaff.staffdetails[0].firstName}}
-                                                    {{subjectStaff?.staffdetails[0].firstName}}</td>
+                                                    {{subjectStaff?.staffdetails[0].lastName}}</td>
                                                 <td>{{subjectStaff.institutiond[0].tagline}}
                                                     {{subjectStaff?.departmentd[0].department}}</td>
                                                 <td>{{subjectStaff?.effectiveFrom}}</td>
@@ -233,6 +235,21 @@
                                     <div *ngIf="f.department.errors.required">Department is required</div>
                                 </div>
                             </div>
+                            <div class="form-group form-float">
+                                    <label>Batch<span class="asterisk">*</span></label>
+                                    <div class="form-line">
+                                        <select class="browser-default" formControlName="batch" name="batch" class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted && f.batch.errors }"
+                                            (change)="onBatchChange($event.target.value)">
+                                            <option value="">Choose your Batch</option>
+                                            <option *ngFor="let batch of batcheBycourseprograms?.response" [value]="batch._id">{{batch?.batch}}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="submitted && f.batch.errors" class="invalid-feedback">
+                                            <div *ngIf="f.batch.errors.required">Batch is required</div>
+                                        </div>
+                                    </div>
+                                </div>
                             <div class="form-group">
                                 <label for="semester">Semester<span class="asterisk">*</span></label>
                                 <select class="browser-default form-control" name="semester"
@@ -327,6 +344,18 @@
                                 </select>
                                 <div *ngIf="submitted && f.courseprogram.errors" class="invalid-feedback">
                                     <div *ngIf="f.courseprogram.errors.required">Course Program is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Academic Year</label>
+                                <select class="browser-default form-control" formControlName="academicYear"
+                                    [ngClass]="{ 'is-invalid': submitted && f.academicYear.errors }">
+                                    <option value="">Choose your Academic Year</option>
+                                    <option *ngFor="let academicYear of academicyearByBatch" [value]="academicYear._id">
+                                        {{academicYear.year}}</option>
+                                </select>
+                                <div *ngIf="submitted && f.academicYear.errors" class="invalid-feedback">
+                                    <div *ngIf="f.academicYear.errors.required">Academic Year is required</div>
                                 </div>
                             </div>
                             <div class="form-group">

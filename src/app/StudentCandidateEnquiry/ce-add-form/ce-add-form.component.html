@@ -19,121 +19,129 @@
                                                             <div class="form-group form-float">
                                                                 <label for="firstName">First Name<span class="asterisk">*</span></label>
                                                                 <div class="form-line">
-                                                                    <input type="text" class="form-control" name="firstName" placeholder="Enter First Name"
-                                                                        [formControl]="firstName" required />
+                                                                    <input type="text" class="form-control" name="firstName"
+                                                                        placeholder="Enter First Name" [formControl]="firstName" required />
                                                                 </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="lastName">Last Name<span class="asterisk">*</span></label>
                                                                 <div class="form-line">
-                                                                    <input type="text" class="form-control" name="lastName" placeholder="Enter Last Name" [formControl]="lastName"
-                                                                        required />
+                                                                    <input type="text" class="form-control" name="lastName"
+                                                                        placeholder="Enter Last Name" [formControl]="lastName" required />
                                                                 </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="gender">Gender<span class="asterisk">*</span></label>
                                                                 <div class="form-line">
-                                                                    <select class="browser-default" id="select" [formControl]="gender" name="gender" class="form-control" required>
-                                                                        <option >Choose your Gender</option>
-                                                                        <option *ngFor="let gender of genders?.response" [value]="gender._id">{{gender?.gender}}</option>
+                                                                    <select class="browser-default" id="select" [formControl]="gender" name="gender"
+                                                                        class="form-control" required>
+                                                                        <option>Choose your Gender</option>
+                                                                        <option *ngFor="let gender of genders?.response" [value]="gender._id">
+                                                                            {{gender?.gender}}</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="dob">Date Of Birth<span class="asterisk">*</span></label>
                                                                 <div class="form-line">
-                                                                    <input type="date" class="form-control" name="dob" placeholder="Enter DateOfBirth" [formControl]="dob"
-                                                                        required />
+                                                                    <input type="date" class="form-control" name="dob" placeholder="Enter DateOfBirth"
+                                                                        [formControl]="dob" required />
                                                                 </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="aadharNo">Aadhar Number</label>
-                                                                    <input type="text" class="form-control" name="aadharNo" placeholder="Enter AadharNumber"
-                                                                        [formControl]="aadharNo" />
+                                                                <input type="text" class="form-control" name="aadharNo" placeholder="Enter AadharNumber"
+                                                                    [formControl]="aadharNo" />
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="fFirstName">Father's FirstName</label>
-                                                                    <input type="text" class="form-control" name="fFirstName" placeholder="Enter Father's FirstName"
-                                                                        [formControl]="fFirstName" />
+                                                                <input type="text" class="form-control" name="fFirstName"
+                                                                    placeholder="Enter Father's FirstName" [formControl]="fFirstName" />
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="fLastName">Father's LastName</label>
-                                                                    <input type="text" class="form-control" name="fLastName" placeholder="Enter Father's LastName"
-                                                                        [formControl]="fLastName" />
+                                                                <input type="text" class="form-control" name="fLastName"
+                                                                    placeholder="Enter Father's LastName" [formControl]="fLastName" />
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="fMobileNumber">Father's MobileNumber</label>
-                                                                    <input type="text" class="form-control" name="fMobileNumber" placeholder="Enter Father's MobileNumber"
-                                                                        [formControl]="fMobileNumber" />
+                                                                <input type="text" class="form-control" name="fMobileNumber"
+                                                                    placeholder="Enter Father's MobileNumber" [formControl]="fMobileNumber" />
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="sMobileNumber">Student MobileNumber</label>
-                                                                    <input type="text" class="form-control" name="sMobileNumber" placeholder="Enter Student Mobile Number"
-                                                                        [formControl]="sMobileNumber" />
+                                                                <input type="text" class="form-control" name="sMobileNumber"
+                                                                    placeholder="Enter Student Mobile Number" [formControl]="sMobileNumber" />
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="email">Email Id</label>
-                                                                    <input type="email" class="form-control" name="email" placeholder="Enter Email Id" [formControl]="email" />
+                                                                <input type="email" class="form-control" name="email" placeholder="Enter Email Id"
+                                                                    [formControl]="email" />
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="referenceType">Reference Type<span class="asterisk">*</span></label>
                                                                 <div class="form-line">
-                                                                    <select class="browser-default" id="select4" [formControl]="referenceType" name="referenceType"
-                                                                        class="form-control" required>
-                                                                        <option >Choose your ReferenceType
+                                                                    <select class="browser-default" id="select4" [formControl]="referenceType"
+                                                                        name="referenceType" class="form-control" required>
+                                                                        <option>Choose your ReferenceType
                                                                         </option>
-                                                                        <option *ngFor="let  referralType of referralTypes?.response" [value]="referralType._id">
+                                                                        <option *ngFor="let  referralType of referralTypes?.response"
+                                                                            [value]="referralType._id">
                                                                             {{referralType?.referralType}}</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="referenceBy">Reference By</label>
-                                                                    <input type="text" class="form-control" name="referenceBy" placeholder="Enter Reference By"
-                                                                        [formControl]="referenceBy" />
+                                                                <input type="text" class="form-control" name="referenceBy"
+                                                                    placeholder="Enter Reference By" [formControl]="referenceBy" />
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="nationality">Nationality</label>
-                                                                    <select class="browser-default" id="select7" [formControl]="nationality"
-                                                                        class="form-control">
-                                                                        <option defult >Choose your Nationality</option>
-                                                                        <option *ngFor="let nationality of nationalities?.response" [value]="nationality._id">
-                                                                            {{nationality?.nationality}}</option>
-                                                                    </select>
+                                                                <select class="browser-default" id="select7" [formControl]="nationality"
+                                                                    class="form-control">
+                                                                    <option defult>Choose your Nationality</option>
+                                                                    <option *ngFor="let nationality of nationalities?.response"
+                                                                        [value]="nationality._id">
+                                                                        {{nationality?.nationality}}</option>
+                                                                </select>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="religion">Religion</label>
-                                                                    <select class="browser-default" id="select9" [formControl]="religion" class="form-control">
-                                                                        <option defult >Choose your Religion</option>
-                                                                        <option *ngFor="let religion of religions?.response" [value]="religion._id">{{religion?.religion}}
-                                                                        </option>
-                                                                    </select>
+                                                                <select class="browser-default" id="select9" [formControl]="religion"
+                                                                    class="form-control">
+                                                                    <option defult>Choose your Religion</option>
+                                                                    <option *ngFor="let religion of religions?.response" [value]="religion._id">
+                                                                        {{religion?.religion}}
+                                                                    </option>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-1"></div>
                                                         <div class="col-md-5">
                                                             <label for="sphoto">Student Photo</label>
                                                             <div class="col-sm-12">
-                                                            <img style="margin:0 auto" src="{{getfileLoc}}" width="100px">
-                                                        </div>
+                                                                <img style="margin:0 auto" src="{{getfileLoc}}" width="100px">
+                                                            </div>
                                                             <div class="form-group form-float">
-                                                                    <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
-                                                                    <button class="btn bg-indigo waves-effect" (click)="submit()">Upload Image</button>
-                                                                </div>
+                                                                <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+                                                                <button class="btn bg-indigo waves-effect" (click)="submit()">Upload Image</button>
+                                                            </div>
                                                             <div class="form-group form-float">
                                                                 <label for="regNo12th">12th RegisterNumber</label>
-                                                                    <input type="text" class="form-control" name="regNo12th" placeholder="Enter 12th RegisterNumber"
-                                                                        [formControl]="regNo12th" />
+                                                                <input type="text" class="form-control" name="regNo12th"
+                                                                    placeholder="Enter 12th RegisterNumber" [formControl]="regNo12th" />
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="mark12th">12th Mark</label>
-                                                                    <input type="text" class="form-control" name="mark12th" placeholder="Enter 12th Mark"
-                                                                        [formControl]="mark12th" />
+                                                                <input type="text" class="form-control" name="mark12th" placeholder="Enter 12th Mark"
+                                                                    [formControl]="mark12th" />
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="institution">Institution<span class="asterisk">*</span></label>
                                                                 <div class="form-line">
-                                                                    <select class="browser-default" id="select1" [formControl]="institution" name="institution" class="form-control"
+                                                                    <select class="browser-default" id="select1" [formControl]="institution"
+                                                                        name="institution" class="form-control"
                                                                         (change)="onInstitutionChange($event.target.value)" required>
                                                                         <option value="">Choose your Institution</option>
                                                                         <option *ngFor="let institution of institutions" [value]="institution._id">
@@ -143,230 +151,254 @@
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="academicYear">Academic Year<span class="asterisk">*</span></label>
-                                                                <select class="browser-default" [formControl]="academicYear" class="form-control" required>
+                                                                <select class="browser-default" [formControl]="academicYear" class="form-control"
+                                                                    required>
                                                                     <option value="">Choose your AcademicYear</option>
-                                                                    <option *ngFor="let academicYear of academicYears?.response" [value]="academicYear._id">
+                                                                    <option *ngFor="let academicYear of academicYears?.response"
+                                                                        [value]="academicYear._id">
                                                                         {{academicYear?.year}}</option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="board">Board Of Education</label>
-                                                                    <select class="browser-default" id="select2" [formControl]="board" class="form-control">
-                                                                        <option defult >Choose your BoardOfEducation</option>
-                                                                        <option *ngFor="let board of boards?.response" [value]="board._id">{{board?.board}}</option>
-                                                                    </select>
+                                                                <select class="browser-default" id="select2" [formControl]="board" class="form-control">
+                                                                    <option defult>Choose your BoardOfEducation</option>
+                                                                    <option *ngFor="let board of boards?.response" [value]="board._id">{{board?.board}}
+                                                                    </option>
+                                                                </select>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="applicatonNo">Application Number<span class="asterisk">*</span></label>
                                                                 <div class="form-line">
-                                                                    <input type="text" class="form-control" name="applicatonNo" placeholder="Enter Application Number"
-                                                                        [formControl]="applicatonNo" required />
+                                                                    <input type="text" class="form-control" name="applicatonNo"
+                                                                        placeholder="Enter Application Number" [formControl]="applicatonNo" required />
                                                                 </div>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="admissiontype">Admission Type<span class="asterisk">*</span></label>
-                                                                <select class="browser-default" [formControl]="admissiontype" class="form-control" required>
+                                                                <select class="browser-default" [formControl]="admissiontype" class="form-control"
+                                                                    required>
                                                                     <option>Choose your Admission Type
                                                                     </option>
-                                                                    <option *ngFor="let admissiontype of admissiontypes?.response" [value]="admissiontype._id">
+                                                                    <option *ngFor="let admissiontype of admissiontypes?.response"
+                                                                        [value]="admissiontype._id">
                                                                         {{admissiontype?.admissiontype}}</option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="admissionCategory">Admission Category<span class="asterisk">*</span></label>
-                                                                <select class="browser-default" [formControl]="admissionCategory" class="form-control" required>
+                                                                <select class="browser-default" [formControl]="admissionCategory" class="form-control"
+                                                                    required>
                                                                     <option>Choose your AdmissionCategory </option>
-                                                                    <option *ngFor="let admissionCategory of admissioncategories?.response" [value]="admissionCategory._id">
+                                                                    <option *ngFor="let admissionCategory of admissioncategories?.response"
+                                                                        [value]="admissionCategory._id">
                                                                         {{admissionCategory?.admissionCategory}}
                                                                     </option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="remark">Remark</label>
-                                                                    <input type="text" class="form-control" name="remark" value="-" placeholder="Enter Remark"
-                                                                        [formControl]="remark" />
+                                                                <input type="text" class="form-control" name="remark" value="-"
+                                                                    placeholder="Enter Remark" [formControl]="remark" />
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="scholarshipCategory">ScholarshipCategory</label>
-                                                                    <select class="browser-default" id="select5" [formControl]="scholarshipCategory" class="form-control">
-                                                                        <option >Choose your scholarshipCategory
-                                                                        </option>
-                                                                        <option *ngFor="let scholarshipCategory of scholarshipCategories?.response"
-                                                                            [value]="scholarshipCategory._id">
-                                                                            {{scholarshipCategory?.scholarshipCategory}}
-                                                                        </option>
-                                                                    </select>
+                                                                <select class="browser-default" id="select5" [formControl]="scholarshipCategory"
+                                                                    class="form-control">
+                                                                    <option>Choose your scholarshipCategory
+                                                                    </option>
+                                                                    <option *ngFor="let scholarshipCategory of scholarshipCategories?.response"
+                                                                        [value]="scholarshipCategory._id">
+                                                                        {{scholarshipCategory?.scholarshipCategory}}
+                                                                    </option>
+                                                                </select>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="community">Community</label>
-                                                                    <select class="browser-default" id="select10" [formControl]="community" class="form-control">
-                                                                        <option >Choose your Community</option>
-                                                                        <option *ngFor="let community of communities?.response" [value]="community._id">{{community?.community}}
-                                                                        </option>
-                                                                    </select>
+                                                                <select class="browser-default" id="select10" [formControl]="community"
+                                                                    class="form-control">
+                                                                    <option>Choose your Community</option>
+                                                                    <option *ngFor="let community of communities?.response" [value]="community._id">
+                                                                        {{community?.community}}
+                                                                    </option>
+                                                                </select>
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="caste">Caste</label>
-                                                                    <select class="browser-default" id="select12" [formControl]="caste" class="form-control">
-                                                                        <option >Choose your Caste</option>
-                                                                        <option *ngFor="let caste of castes?.response" [value]="caste._id">{{caste?.caste}}</option>
-                                                                    </select>
+                                                                <select class="browser-default" id="select12" [formControl]="caste"
+                                                                    class="form-control">
+                                                                    <option>Choose your Caste</option>
+                                                                    <option *ngFor="let caste of castes?.response" [value]="caste._id">{{caste?.caste}}
+                                                                    </option>
+                                                                </select>
                                                             </div>
-                                                            </div>
+                                                        </div>
                                                     </div>
-
-    <!--///////////////////////////////////////////////////Parent Details////////////////////////////////////////////////////////////-->
+                                
+                                                    <!--///////////////////////////////////////////////////Parent Details////////////////////////////////////////////////////////////-->
                                                     <h3><Strong>Parent Details</Strong></h3>
                                                     <div class="row">
                                                         <div class="col-md-5">
                                                             <div class="form-group form-float">
                                                                 <label for="fEmail">Father's EmailID</label>
-                                                                    <input type="email" class="form-control" name="fEmail" placeholder="Enter Father's EmailId"
-                                                                        [formControl]="fEmail" />
+                                                                <input type="email" class="form-control" name="fEmail"
+                                                                    placeholder="Enter Father's EmailId" [formControl]="fEmail" />
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="fOccupation">Father's Occupation</label>
-                                                                    <input type="text" class="form-control" name="fOccupation" placeholder="Enter Father's Occupation"
-                                                                        [formControl]="fOccupation" />
+                                                                <input type="text" class="form-control" name="fOccupation"
+                                                                    placeholder="Enter Father's Occupation" [formControl]="fOccupation" />
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="fAnnualIncome">Father's AnnualIncome</label>
-                                                                    <input type="text" class="form-control" name="fAnnualIncome" placeholder="Enter Father's AnnualIncome"
-                                                                        [formControl]="fAnnualIncome" />
+                                                                <input type="text" class="form-control" name="fAnnualIncome"
+                                                                    placeholder="Enter Father's AnnualIncome" [formControl]="fAnnualIncome" />
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="pPanNumber">Parent PAN Number</label>
-                                                                    <input type="text" class="form-control" name="pPanNumber" placeholder="Enter Parent PAN Number"
-                                                                        [formControl]="pPanNumber" />
+                                                                <input type="text" class="form-control" name="pPanNumber"
+                                                                    placeholder="Enter Parent PAN Number" [formControl]="pPanNumber" />
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="pAadharNumber">Parent AadharNumber</label>
-                                                                    <input type="text" class="form-control" name="pAadharNumber" placeholder="Enter Parent AadharNumber"
-                                                                        [formControl]="pAadharNumber" />
+                                                                <input type="text" class="form-control" name="pAadharNumber"
+                                                                    placeholder="Enter Parent AadharNumber" [formControl]="pAadharNumber" />
                                                             </div>
                                                             <div class="form-group default-select">
                                                                 <label for="motherTongue">Mother Tongue</label>
-                                                                    <select class="form-control select2"  [formControl]="motherTongue" >
-                                                                        <option default>Choose your MotherTongue
-                                                                        </option>
-                                                                        <option *ngFor="let motherTongue of motherTongues?.response" [value]="motherTongue._id" selected>
-                                                                            {{motherTongue?.motherTongue}}</option>
-                                                                    </select>
+                                                                <select class="form-control select2" [formControl]="motherTongue">
+                                                                    <option default>Choose your MotherTongue
+                                                                    </option>
+                                                                    <option *ngFor="let motherTongue of motherTongues?.response"
+                                                                        [value]="motherTongue._id" selected>
+                                                                        {{motherTongue?.motherTongue}}</option>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-1"></div>
                                                         <div class="col-md-5">
                                                             <div class="form-group form-float">
                                                                 <label for="mName">Mothers's Name</label>
-                                                                    <input type="text" class="form-control" name="mName" placeholder="Enter Mother's Name"
-                                                                        [formControl]="mName" />
+                                                                <input type="text" class="form-control" name="mName" placeholder="Enter Mother's Name"
+                                                                    [formControl]="mName" />
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="mEmail">Mothers's EmailID</label>
-                                                                    <input type="email" class="form-control" name="mEmail" placeholder="Enter Mother's EmailId"
-                                                                        [formControl]="mEmail" />
+                                                                <input type="email" class="form-control" name="mEmail"
+                                                                    placeholder="Enter Mother's EmailId" [formControl]="mEmail" />
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="mOccupation">Mothers's Occupation</label>
-                                                                    <input type="text" class="form-control" name="mOccupation" placeholder="Enter Mother's Occupation"
-                                                                        [formControl]="mOccupation" />
+                                                                <input type="text" class="form-control" name="mOccupation"
+                                                                    placeholder="Enter Mother's Occupation" [formControl]="mOccupation" />
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="mMobileNo">Mothers's MobileNumber</label>
-                                                                    <input type="text" class="form-control" name="mMobileNo" placeholder="Enter Mother's MobileNumber"
-                                                                        [formControl]="mMobileNo" />
+                                                                <input type="text" class="form-control" name="mMobileNo"
+                                                                    placeholder="Enter Mother's MobileNumber" [formControl]="mMobileNo" />
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="mAnnualIncome">Mothers's AnnualIncome</label>
-                                                                    <input type="text" class="form-control" name="mAnnualIncome" placeholder="Enter Mother's AnnualIncome"
-                                                                        [formControl]="mAnnualIncome" />
+                                                                <input type="text" class="form-control" name="mAnnualIncome"
+                                                                    placeholder="Enter Mother's AnnualIncome" [formControl]="mAnnualIncome" />
                                                             </div>
                                                             <div class="form-group form-float">
                                                                 <label for="relativeName">Name of the Relative Studing in This Institution</label>
-                                                                    <input type="text" class="form-control" name="relativeName" placeholder="Enter Relative Name"
-                                                                        [formControl]="relativeName" />
+                                                                <input type="text" class="form-control" name="relativeName"
+                                                                    placeholder="Enter Relative Name" [formControl]="relativeName" />
                                                             </div>
-                                                         </div>
+                                                        </div>
                                                     </div>
                                                     <div class="text-right">
-                                                        <button type="submit" class="btn btn-info waves-effect"
-                                                            (click)="addbasicdetails()">Add BasicDetails</button>
+                                                        <button type="submit" class="btn btn-info waves-effect" (click)="addbasicdetails()">Add
+                                                            BasicDetails</button>
                                                     </div>
-                                                    <!--///////////////////////////Course Program//////////////////////////////-->
-                                                    <h3><Strong>Select Course</Strong></h3>
-                                                    <form id="course">
-                                                    <div class="row">
-                                                        <div class="col-md-5">
-                                                            <div class="form-group form-float">
-                                                                <label for="coursecategory">Course Category</label>
-                                                                    <select class="browser-default" id="select6" [formControl]="coursecategory" name="coursecategory"
-                                                                        class="form-control" (change)="onCourseCategoryChange($event.target.value)" >
-                                                                        <option >Choose your Course Category
-                                                                        </option>
-                                                                        <option *ngFor="let coursecategory of coursecategories?.response" [value]="coursecategory._id">
-                                                                            {{coursecategory?.coursecategory}}</option>
-                                                                    </select>
-                                                                </div>
-                                                        </div>
-                                                        <div class="col-md-5">
-                                                            <div class="form-group form-float">
-                                                                <label for="courseprogram">Course/Program</label>
-                                                                    <select class="browser-default" id="select8"
-                                                                        [formControl]="courseprogram" class="form-control" >
-                                                                        <option default >Choose your Course/Program
-                                                                        </option>
-                                                                        <option
-                                                                            *ngFor="let courseprogram of courseprograms?.response"
-                                                                            [value]="courseprogram._id">
-                                                                            {{courseprogram?.courseprogram}}</option>
-                                                                    </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-1">
-                                                            <button  class="btn bg-cyan" (click)="addCEcourseProgram()">Add</button>
-                                                        </div>
-                                                        </div>
-                                                    </form>
-                                                        <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <table id="tableExport"
-                                                                        class="display table table-hover table-checkable order-column m-t-20 width-per-100">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th>#</th>
-                                                                                <th>CourseCategory</th>
-                                                                                <th>Course/program</th>
-                                                                                <th>Action</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr
-                                                                                *ngFor="let courseprogram of cecourseprograms; let i=index">
-                                                                                <td>{{ i +1 }} </td>
-                                                                                <td>{{courseprogram.coursecategory[0].coursecategory}}</td>
-                                                                                <td>{{courseprogram.courseprogram[0].courseprogram}}</td>
-                                                                                <div class="noprint">
-                                                                                    <td>
-                                                                                      <div class="btn btn-tbl-delete">
-                                                                                            <i class="material-icons"
-                                                                                                (click)="deleteCEcourseProgram(courseprogram?._id)">delete_forever</i>
-                                                                                        </div>
-                                                                                    </td>
+                                                    <!--////////////////////////////////////////////////////////Course Program///////////////////////////////////////////////////////-->
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="card">
+                                                                    <!-- <div class="header bg-silver">
+                                                                            <h2>
+                                                                                Red - Title
+                                                                            </h2>
+                                                                            </div> -->
+                                                                <div class="body">
+                                                                    <h3><Strong>Select Course</Strong></h3>
+                                                                    <form id="course">
+                                                                        <div class="row">
+                                                                            <div class="col-md-5">
+                                                                                <div class="form-group form-float">
+                                                                                    <label for="coursecategory">Course Category</label>
+                                                                                    <select class="browser-default" id="select6"
+                                                                                        [formControl]="coursecategory" name="coursecategory"
+                                                                                        class="form-control"
+                                                                                        (change)="onCourseCategoryChange($event.target.value)">
+                                                                                        <option>Choose your Course Category
+                                                                                        </option>
+                                                                                        <option
+                                                                                            *ngFor="let coursecategory of coursecategories?.response"
+                                                                                            [value]="coursecategory._id">
+                                                                                            {{coursecategory?.coursecategory}}</option>
+                                                                                    </select>
                                                                                 </div>
-                                                                            </tr>
-                                                                        </tbody>
-
-                                                                    </table>
+                                                                            </div>
+                                                                            <div class="col-md-5">
+                                                                                <div class="form-group form-float">
+                                                                                    <label for="courseprogram">Course/Program</label>
+                                                                                    <select class="browser-default" id="select8"
+                                                                                        [formControl]="courseprogram" class="form-control">
+                                                                                        <option default>Choose your Course/Program
+                                                                                        </option>
+                                                                                        <option *ngFor="let courseprogram of courseprograms?.response"
+                                                                                            [value]="courseprogram._id">
+                                                                                            {{courseprogram?.courseprogram}}</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-1">
+                                                                                <button class="btn bg-cyan" (click)="addCEcourseProgram()">Add</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <table id="tableExport"
+                                                                                class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>#</th>
+                                                                                        <th>CourseCategory</th>
+                                                                                        <th>Course/program</th>
+                                                                                        <th>Action</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr *ngFor="let courseprogram of cecourseprograms; let i=index">
+                                                                                        <td>{{ i +1 }} </td>
+                                                                                        <td>{{courseprogram.coursecategory[0].coursecategory}}</td>
+                                                                                        <td>{{courseprogram.courseprogram[0].courseprogram}}</td>
+                                                                                        <div class="noprint">
+                                                                                            <td>
+                                                                                                <div class="btn btn-tbl-delete">
+                                                                                                    <i class="material-icons"
+                                                                                                        (click)="deleteCEcourseProgram(courseprogram?._id)">delete_forever</i>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                        </div>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-
-
+                                                        </div>
+                                                    </div>
+                                
                                                 </form>
-
+                                
                                             </div>
                                             <div class="text-right">
                                                 <button class="btn-hover btn-border-radius color-10" (click)="goBackToMain()">Back</button>
-                                                <button class="btn-hover btn-border-radius color-8"  awNextStep>Next</button>
+                                                <button class="btn-hover btn-border-radius color-8" awNextStep>Next</button>
                                             </div>
                                         </div>
                                     </aw-wizard-step>
@@ -717,7 +749,8 @@
                                                                     <td>{{qualificationdetail?.maxMark}}</td>
                                                                     <td>{{qualificationdetail?.percentage}}</td>
                                                                     <td>{{qualificationdetail?.organisationType}}</td>
-                                                                    <td><a href="{{qualificationdetail?.photoLocation}}">MarksheetLink</a></td>
+                                                                    <td *ngIf="!qualificationdetail?.photoLocation">-</td>
+                                                                    <td *ngIf="qualificationdetail?.photoLocation"><a href="{{qualificationdetail?.photoLocation}}">{{qualificationdetail.qualificationType[0].qualificationType}}</a></td>
                                                                     <div class="noprint">
                                                                         <td>
                                                                             <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editModalqd">
@@ -899,10 +932,10 @@
                                                          </div>
                                                            <!--//Cerificate Upload-->
                                                            <div class="row">
-                                                                <div class="col-sm-12">
+                                                                <div class="col-sm-12" *ngFor="let qualificationdetail of qualificationdetails">
                                                                     <h6>MarkSheet</h6>
-                                                                     <!-- <a href="{{getfileLoc2}}">MarkSheet</a> -->
-                                                                    <a href="{{photoLocationValue}}">MarkSheet</a><br><br>
+                                                                    <span *ngIf="!getfileLoc2"><a href="{{qualificationdetail?.photoLoctaion}}">MarkSheet</a></span>
+                                                                    <span *ngIf="getfileLoc2"><a href="{{getfileLoc2}}"> Updated MarkSheet</a></span><br><br>
                                                                     <input type="file" name="photo" ng2FileSelect [uploader]="uploader2" />
                                                                     <div class="progress">
                                                                         <div class="progress-bar width-per-45" role="progressbar" aria-valuenow="60"
@@ -1596,7 +1629,8 @@
                                         <div class="col-md-12">
                                                 <label for="file">Attach MarkSheet</label>
                                                 <br>
-                                                
+                                                <span *ngIf="!getfileLoc2">-</span>
+                                                <span *ngIf="getfileLoc2"><a href="{{getfileLoc2}}">MarkSheet</a></span><br><br>
                                             <div class="col-sm-12">
                                                 <input type="file" name="photo" ng2FileSelect [uploader]="uploader2" />
                                                 <div class="progress">
@@ -1606,7 +1640,6 @@
                                                 </div>
                                                 <div class="row" *ngIf="uploader2?.queue?.length > 0">
                                                     <button class="btn bg-teal waves-effect" (click)="filesubmit()">Upload File</button>
-                                                    <a href="{{getfileLoc2}}">Attached MarkSheet</a><br>
                                                 </div>
                                             </div>
                                         </div>

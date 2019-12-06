@@ -48,6 +48,10 @@ export class AddSubjectComponent implements OnInit {
   IdValue1: any;
   departmentValue: any;
   semestersByIns: any;
+  batch: any;
+  academicYear: any;
+  batcheBycourseprograms: any;
+  academicyearByBatch: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -70,6 +74,8 @@ export class AddSubjectComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       courseprogram: ["", Validators.required],
       department: ["", Validators.required],
+      batch:['', Validators.required],
+      academicYear: ["", Validators.required],
       semester: ["", Validators.required],
       subjectCode: ["", Validators.required],
       subjectDescription: ["", Validators.required],
@@ -100,7 +106,46 @@ export class AddSubjectComponent implements OnInit {
       }
     );
   }
-  
+  onCourseProgramChange(courseprogram: any) {
+    console.log('courseprogram' ,courseprogram)
+    if (courseprogram) {
+      this.request.getBatchByCoursePrgram(courseprogram).subscribe((response: any) => {
+        this.batcheBycourseprograms = response;
+        console.log('BatchBycourseprogram',  this.batcheBycourseprograms);
+      }, (error) => {
+        console.log(error);
+      });
+    } else
+      this.batcheBycourseprograms = null;
+  }
+  loadBatchByCourseprogram(courseprogram) {
+    this.request.getBatchByCoursePrgram(courseprogram).subscribe((response: any) => {
+      this.batcheBycourseprograms = response;
+      console.log('BatchBycourseprogram', this.batcheBycourseprograms);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  onBatchChange(batch: any) {
+    console.log('Batch' ,batch);
+    if (batch) {
+      this.request.fetchAcademicyearByBatch(batch).subscribe((response: any) => {
+        this.academicyearByBatch = response;
+        console.log('AcademicYearByBatch',  this.academicyearByBatch);
+      }, (error) => {
+        console.log(error);
+      });
+    } else
+      this.academicyearByBatch = null;
+  }
+  loadacademicYearByBatch(batch) {
+    this.request.fetchAcademicyearByBatch(batch).subscribe((response: any) => {
+      this.academicyearByBatch = response;
+      console.log('AcademicYearByBatch', this.academicyearByBatch);
+    }, (error) => {
+      console.log(error);
+    });
+  }
   loadSubjectType() {
     this.request.getSubjectType().subscribe((response: any) => {
         this.subjectTypes = response;
@@ -170,6 +215,8 @@ export class AddSubjectComponent implements OnInit {
     let newDetail = {
       institution: this.institutionValue,
       department: this.registerForm.get('department').value,
+      batch: this.registerForm.get('batch').value,
+      academicYear: this.registerForm.get('academicYear').value,
       semester: this.registerForm.get('semester').value,
       courseprogram:  this.registerForm.get('courseprogram').value,
       subjectCode:  this.registerForm.get('subjectCode').value,

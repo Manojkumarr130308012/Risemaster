@@ -88,7 +88,10 @@ export class RequestService {
     this.url = `${this.endPoint}/academic-year/fetchdata?id=` + id;
     return this.http.get(this.url);
   }
-
+  fetchAcademicyearByBatch(batch) {
+    this.url = `${this.endPoint}/academic-year/fetchbybatch?batch=` + batch;
+    return this.http.get(this.url);
+  }
   // nationality
   public getNationality() {
     this.url = `${this.endPoint}/nationality`;
@@ -2559,4 +2562,34 @@ getSectionStaffbySec(section) {
   this.url = `${this.endPoint}/section-staff/fetchbySection?section=` + section;
   return this.http.get(this.url);
 }
+getSectionStaffbySubject(subject) {
+  this.url = `${this.endPoint}/section-staff/fetchbySubject?subject=` + subject;
+  return this.http.get(this.url);
+}
+//Period
+getPeriod() {
+  this.url = `${this.endPoint}/period`;
+  return this.http.get(this.url);
+}
+addPeriod(newdetail: any) {
+  this.url = `${this.endPoint}/period/add`;
+  return this.http.post(this.url, newdetail);
+}
+deletePeriod(id) {
+  this.url = `${this.endPoint}/period/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updatePeriod(id, body) {
+  this.url = `${this.endPoint}/period/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchPeriodById(id) {
+  this.url = `${this.endPoint}/period/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+ getPeriodbyIns(institution) {
+  this.url = `${this.endPoint}/period/fetchbyIns/?institution=` + institution;
+  return this.http.get(this.url);
+}
+
 }

@@ -28,6 +28,10 @@
                                         <tr>
                                             <th>S.No</th>
                                             <th>Institution</th>
+                                            <th>Course Program</th>
+                                            <th>Batch</th>
+                                            <th>Academic Year</th>
+                                            <th>Semester Type</th>
                                             <th>Semester</th>
                                             <th >Action</th>
                                         </tr>
@@ -35,7 +39,11 @@
                                     <tbody>
                                         <tr *ngFor="let semester of semesters; let i=index">
                                             <td>{{i +1 }}</td>
-                                            <td>{{semester?.InstitutionDetails[0].institution_name}}</td>
+                                            <td>{{semester?.institutiond[0].institution_name}}</td>
+                                            <td>{{semester?.courseprogramd[0].courseprogram}}</td>
+                                            <td>{{semester?.batchd[0].batch}}</td>
+                                            <td>{{semester?.academicYeard[0].year}}</td>
+                                            <td>{{semester?.semesterType}}</td>
                                             <td>{{semester?.semester}}</td>
                                             <td>
                                                 <div class="btn btn-tbl-edit" data-toggle="modal"
@@ -75,11 +83,12 @@
          <div class="modal-body">
                 <form [formGroup]="addForm" (ngSubmit)="onAddSubmit()">
                         <div class="row clearfix">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Institution</label>
                                     <select id="select" [(ngModel)]="selectedinstitution" class="browser-default form-control"
-                                        formControlName="institution" [ngClass]="{ 'is-invalid': submitted && f.institution.errors }">
+                                        formControlName="institution" [ngClass]="{ 'is-invalid': submitted && f.institution.errors }"
+                                        (change)="onInstitutionChange($event.target.value)">
                                         <option disabled selected>Choose your institution</option>
                                         <option *ngFor="let institution of institutions" [value]="institution._id">
                                             {{institution.institution_name}}
@@ -89,14 +98,70 @@
                                         <div *ngIf="f.institution.errors.required">Institution is required</div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Semester</label>
-                                    <input type="text" formControlName="semester" class="form-control" placeholder="Enter Semester"
-                                        [ngClass]="{ 'is-invalid': submitted && f.semester.errors }" />
-                                    <div *ngIf="submitted && f.semester.errors" class="invalid-feedback">
-                                        <div *ngIf="f.semester.errors.required">Semester is required</div>
+                                <div class="form-group form-float">
+                                    <label>Batch<span class="asterisk">*</span></label>
+                                    <div class="form-line">
+                                        <select class="browser-default" formControlName="batch" name="batch" class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted && f.batch.errors }"
+                                            (change)="onBatchChange($event.target.value)">
+                                            <option value="">Choose your Batch</option>
+                                            <option *ngFor="let batch of batcheBycourseprograms?.response" [value]="batch._id">{{batch?.batch}}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="submitted && f.batch.errors" class="invalid-feedback">
+                                            <div *ngIf="f.batch.errors.required">Batch is required</div>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="form-group form-float">
+                                    <label>Semester Type<span class="asterisk">*</span></label>
+                                    <div class="form-line">
+                                        <select class="browser-default" formControlName="semesterType" name="semesterType" class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted && f.semesterType.errors }">
+                                            <option value="">Choose your semesterType</option>
+                                            <option value="ODD">ODD</option>
+                                            <option value="EVEN">EVEN</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.semesterType.errors" class="invalid-feedback">
+                                            <div *ngIf="f.semesterType.errors.required">semesterType is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Course Program</label>
+                                        <select id="select" class="browser-default form-control" formControlName="courseprogram"
+                                            [ngClass]="{ 'is-invalid': submitted && f.courseprogram.errors }"
+                                            (change)="onCourseProgramChange($event.target.value)">
+                                            <option default value>Choose your Course Program</option>
+                                            <option *ngFor="let courseprogram of courseprogrambyIns?.response" [value]="courseprogram._id">
+                                                {{courseprogram.courseprogram}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.courseprogram.errors" class="invalid-feedback">
+                                            <div *ngIf="f.courseprogram.errors.required">Course Program is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Academic Year</label>
+                                        <select id="select" class="browser-default form-control" formControlName="academicYear"
+                                            [ngClass]="{ 'is-invalid': submitted && f.academicYear.errors }">
+                                            <option default value>Choose your Course Program</option>
+                                            <option *ngFor="let academicYear of academicyearByBatch" [value]="academicYear._id">
+                                                {{academicYear.year}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.academicYear.errors" class="invalid-feedback">
+                                            <div *ngIf="f.academicYear.errors.required">Course Program is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Semester</label>
+                                        <input type="text" formControlName="semester" class="form-control" placeholder="Enter Semester"
+                                            [ngClass]="{ 'is-invalid': submitted && f.semester.errors }" />
+                                        <div *ngIf="submitted && f.semester.errors" class="invalid-feedback">
+                                            <div *ngIf="f.semester.errors.required">Semester is required</div>
+                                        </div>
+                                    </div>
                             </div>
                         </div>
          <div class="modal-footer">
@@ -124,17 +189,74 @@
          <div class="modal-body">
                 <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
                         <div class="row clearfix">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Institution</label>
                                     <select id="select2" [(ngModel)]="selectedinstitution2" class="browser-default form-control"
-                                        formControlName="institution2" [ngClass]="{ 'is-invalid': submitted && f2.institution2.errors }">
-                                        <option disabled selected>Choose your institution</option>
+                                        formControlName="institution2" [ngClass]="{ 'is-invalid': submitted && f2.institution2.errors }"
+                                        (change)="onInstitutionChange($event.target.value)">
+                                        <option value="">Choose your institution</option>
                                         <option *ngFor="let institution of institutions" [value]="institution._id">
                                             {{institution.institution_name}}</option>
                                     </select>
                                     <div *ngIf="submitted && f2.institution2.errors" class="invalid-feedback">
                                         <div *ngIf="f2.institution2.errors.required">Institution is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <label>Batch<span class="asterisk">*</span></label>
+                                    <div class="form-line">
+                                        <select class="browser-default" formControlName="batch2" name="batch2" class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted && f2.batch2.errors }"
+                                            (change)="onBatchChange($event.target.value)">
+                                            <option value="">Choose your Batch</option>
+                                            <option *ngFor="let batch of batcheBycourseprograms?.response" [value]="batch._id">{{batch?.batch}}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="submitted && f2.batch2.errors" class="invalid-feedback">
+                                            <div *ngIf="f2.batch2.errors.required">Batch is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <label>Semester Type<span class="asterisk">*</span></label>
+                                    <div class="form-line">
+                                        <select class="browser-default" formControlName="semesterType2" name="semesterType2" class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted && f2.semesterType2.errors }">
+                                            <option value="">Choose your semesterType</option>
+                                            <option value="ODD">ODD</option>
+                                            <option value="EVEN">EVEN</option>
+                                        </select>
+                                        <div *ngIf="submitted && f2.semesterType2.errors" class="invalid-feedback">
+                                            <div *ngIf="f2.semesterType2.errors.required">semesterType is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Course Program</label>
+                                    <select id="select" class="browser-default form-control" formControlName="courseprogram2"
+                                        [ngClass]="{ 'is-invalid': submitted && f2.courseprogram2.errors }"
+                                        (change)="onCourseProgramChange($event.target.value)">
+                                        <option default value>Choose your Course Program</option>
+                                        <option *ngFor="let courseprogram of courseprogrambyIns?.response" [value]="courseprogram._id">
+                                            {{courseprogram.courseprogram}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f2.courseprogram2.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.courseprogram2.errors.required">Course Program is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Academic Year</label>
+                                    <select  class="browser-default form-control" formControlName="academicYear2"
+                                        [ngClass]="{ 'is-invalid': submitted && f2.academicYear2.errors }">
+                                        <option value="">Choose your Academic Year</option>
+                                        <option *ngFor="let academicYear of academicyearByBatch" [value]="academicYear._id">
+                                            {{academicYear.year}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f2.academicYear2.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.academicYear2.errors.required">Academic Year is required</div>
                                     </div>
                                 </div>
                                 <div class="form-group">
