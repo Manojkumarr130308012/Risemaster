@@ -43,8 +43,18 @@ export class AcademicYearComponent implements OnInit {
   endDateValue: any;
   IdValue: any;
   message: any;
+  courseprogram : any;
+  batch: any;
+  courseprogram2 : any;
+  batch2: any;
   institutions: any;
   institutionValue: any;
+  batcheBycourseprograms: any;
+  courseprogramValue: any;
+  batchValue: any;
+  courseprogrambyIns: any;
+  institution1: any;
+  courseprogram1: any;
   constructor(private formBuilder: FormBuilder,
               private dynamicScriptLoader: DynamicScriptLoaderService,
               private request: RequestService,
@@ -52,6 +62,8 @@ export class AcademicYearComponent implements OnInit {
       //Add Form Group
       this.registerForm = this.formBuilder.group({
         institution:['', Validators.required],
+        courseprogram:['', Validators.required],
+        batch:['', Validators.required],
         year:['', Validators.required],
         short_code: ['', Validators.required],
         start_date: ['', Validators.required],
@@ -60,12 +72,14 @@ export class AcademicYearComponent implements OnInit {
     });
     //Edit Form Group
       this.editForm = this.formBuilder.group({
-        institution2:['', Validators.required],
-      year2:['', Validators.required],
-      short_code2: ['', Validators.required],
-      start_date2: ['', Validators.required],
-      end_date2: ['', Validators.required],
-      status2: ['', Validators.required]
+        institution2: ['', Validators.required],
+        courseprogram2: ['', Validators.required],
+        batch2: ['', Validators.required],
+        year2: ['', Validators.required],
+        short_code2: ['', Validators.required],
+        start_date2: ['', Validators.required],
+        end_date2: ['', Validators.required],
+        status2: ['', Validators.required]
   });
 }
 // To display Academic Year
@@ -80,6 +94,49 @@ export class AcademicYearComponent implements OnInit {
       public setMessage(message) {
         return this.message = message;
       }
+      onCourseProgramChange(courseprogram: any) {
+        console.log('courseprogram' ,courseprogram)
+        if (courseprogram) {
+          this.request.getBatchByCoursePrgram(courseprogram).subscribe((response: any) => {
+            this.batcheBycourseprograms = response;
+            console.log('BatchBycourseprogram',  this.batcheBycourseprograms);
+          }, (error) => {
+            console.log(error);
+          });
+        } else
+          this.batcheBycourseprograms = null;
+      }
+      loadBatchByCourseprogram(courseprogram) {
+        this.request.getBatchByCoursePrgram(courseprogram).subscribe((response: any) => {
+          this.batcheBycourseprograms = response;
+          console.log('BatchBycourseprogram', this.batcheBycourseprograms);
+        }, (error) => {
+          console.log(error);
+        });
+      }
+      loadCourseProgramByIns(institution) {
+        this.request.getCourseprogramByIns(institution).subscribe((response: any) => {
+          this.courseprogrambyIns = response;
+          console.log('CourseProgrambyIns', this.courseprogrambyIns);
+        }, (error) => {
+          console.log(error);
+        });
+      }
+      // Filter CourseCategory, AdmissionType, AdmissionCategory by Institution
+  onInstitutionChange(Institution: any) {
+    console.log('institution', Institution)
+    if (Institution) {
+      this.request.getCourseprogramByIns(Institution).subscribe((response: any) => {
+        console.log('Courseprogram', response);
+        this.courseprogrambyIns = response;
+      }, (error) => {
+        console.log(error);
+      });
+     
+    } else
+    this.courseprogrambyIns = null;
+   
+  }
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
   get f2() { return this.editForm.controls; }
@@ -118,7 +175,13 @@ export class AcademicYearComponent implements OnInit {
     this.Id = academicyear._id;
     this.request.fetchAcademicyearById(this.Id).subscribe((response) => {
       this.editAcademicyeardata = response[0];
+      this.institution1 =  this.editAcademicyeardata.institution;
+      this.loadCourseProgramByIns(this.institution1);
+      this.courseprogram1 = this.editAcademicyeardata.courseprogram;
+      this.loadBatchByCourseprogram(this.courseprogram1);
       this.institutionValue = this.editAcademicyeardata.institution;
+      this.courseprogramValue = this.editAcademicyeardata.courseprogram;
+      this.batchValue = this.editAcademicyeardata.batch;
       this.yearValue = this.editAcademicyeardata.year;
       this.shortCodeValue = this.editAcademicyeardata.short_code;
       this.startDateValue = this.editAcademicyeardata.start_date;
@@ -128,6 +191,8 @@ export class AcademicYearComponent implements OnInit {
 
       this.editForm = this.formBuilder.group({
         institution2: [this.institutionValue, Validators.required],
+        courseprogram2: [this.courseprogramValue, Validators.required],
+        batch2: [this.batchValue, Validators.required],
         year2: [this.yearValue, Validators.required],
         short_code2: [this.shortCodeValue, Validators.required],
         start_date2: [this.startDateValue, Validators.required],
@@ -143,6 +208,8 @@ export class AcademicYearComponent implements OnInit {
     }
     const edata = {
       institution: this.editForm.get('institution2').value,
+      courseprogram: this.editForm.get('courseprogram2').value,
+      batch: this.editForm.get('batch2').value,
       year: this.editForm.get('year2').value,
       short_code: this.editForm.get('short_code2').value,
       start_date: this.editForm.get('start_date2').value,

@@ -20,21 +20,12 @@ export class SectionStaffComponent implements OnInit {
 
   addForm: FormGroup;
   editForm: FormGroup;
-  submitted = false;
-  section: any;
-  courseprogram: any;
-  department: any;
   institution: any;
-  subject: any;
-  staff: any;
-  batch: any;
-  section2: any;
-  courseprogram2: any;
-  department2: any;
-  institution2: any;
-  subject2: any;
-  staff2: any;
-  batch2: any;
+  subject: FormControl;
+  staff: FormControl;
+  institution2: FormControl;
+  subject2: FormControl;
+  staff2: FormControl;
   coursecategories: any;
   Id: any;
   IdValue: any;
@@ -61,6 +52,11 @@ export class SectionStaffComponent implements OnInit {
   staffprofiles: any;
   subjectBySemesters: any;
   sectionStaffs: any;
+  staffBysubjects: any;
+  semester: any;
+  semester2: any;
+  semesterValue1: any;
+  subjectValue1: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -79,26 +75,23 @@ export class SectionStaffComponent implements OnInit {
     this.userInfo = JSON.parse(this.userInfo);
     this.IdValue = this.userInfo.institution;
     this.institutionValue = this.IdValue;
-    
-   this.institution = new FormControl(this.institutionValue);
-    // Add Form
-    this.addForm = this.formBuilder.group({
-      department: ["", Validators.required],
-      courseprogram: ["", Validators.required],
-      batch: ["", Validators.required],
-      semester: ["", Validators.required],
-      staff: ["", Validators.required],
-      subject: ["", Validators.required],
-    });
-    // Edit Form
-    this.editForm = this.formBuilder.group({
-      department2: ["", Validators.required],
-      courseprogram2: ["", Validators.required],
-      batch2: ["", Validators.required],
-      semester2: ["", Validators.required],
-      staff2: ["", Validators.required],
-      subject2: ["", Validators.required],
-    });
+    /////////
+   let ID = this.id;
+   this.request.fetchSectionById(ID).subscribe(response => {
+    this.sections = response;
+    this.semesterValue =  this.sections[0].semester;
+
+    //Add Form
+   this.semester= new FormControl({value: this.semesterValue , disabled: true});
+   this.staff= new FormControl('', Validators.required);
+   this.subject= new FormControl('', Validators.required);
+
+   //Edit Form 
+   this.semester2= new FormControl({value: this.semesterValue , disabled: true});
+   this.staff2= new FormControl('', Validators.required);
+   this.subject2= new FormControl('', Validators.required);
+  });
+  
   }
 
   public setMessage(message) {
@@ -107,10 +100,9 @@ export class SectionStaffComponent implements OnInit {
 
   // Bind institution data
   loadInstitution() {
-    this.request.getInstitution().subscribe(
-      (response: any) => {
-        console.log(response);
+    this.request.getInstitution().subscribe((response: any) => {
         this.institutions = response;
+        console.log('Institution', this.institutions);
       },
       error => {
         console.log(error);
@@ -120,23 +112,14 @@ export class SectionStaffComponent implements OnInit {
 
   //Add form validation and function
   onAddSubmit() {
-    this.submitted = true;
-    if (this.addForm.invalid) {
-      return;
-    }
     const newdata = {
       section:  this.id,
-      institution: this.institutionValue,
-      department: this.addForm.get("department").value,
-      courseprogram: this.addForm.get("courseprogram").value,
-      semester: this.addForm.get("semester").value,
-      staff: this.addForm.get("staff").value,
-      subject: this.addForm.get("subject").value,
-      batch: this.addForm.get("batch").value,
+      semester:  this.semesterValue,
+      staff: this.staff.value,
+      subject: this.subject.value
       
     };
-    this.request.addSectionStaff(newdata).subscribe(
-      (res: any) => {
+    this.request.addSectionStaff(newdata).subscribe((res: any) => {
         if (res.status == "success") {
           swal("Added Sucessfully");
           this.loadModal();
@@ -149,23 +132,24 @@ export class SectionStaffComponent implements OnInit {
         swal(error);
       }
     );
-    console.log(this.addForm.value);
   }
 
   // To display course category
   viewData(section: any) {
     this.request.getSectionStaffbySec(section).subscribe(response => {
         this.sectionStaffs = response;
-        this.departmentValue =  this.sectionStaffs[0].department;
-        console.log('Department', this.departmentValue);
-        this.loadStaffProfileByDept(this.departmentValue);
-        this.semesterValue = this.sectionStaffs[0].semester;
-        console.log('Semester', this.semesterValue);
-        this.loadSubjectBySem( this.semesterValue);
-        this.courseprogramValue = this.sectionStaffs[0].courseprogram;
-        console.log('CourseProgram', this.courseprogramValue);
-        this.loadBatchByCourseprogram(this.courseprogramValue);
-        console.log('Section_Staff-B-Section', this.sectionStaffs);
+        console.log('Section_Staff-By-Section', this.sectionStaffs);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  // To display course category
+  viewSectionDetails(section: any) {
+    this.request.fetchSectionById(section).subscribe(response => {
+        this.sections = response;
+        console.log('Section', this.sections);
       },
       error => {
         console.log(error);
@@ -189,43 +173,23 @@ export class SectionStaffComponent implements OnInit {
     this.request.fetchSectionStaffById(this.Id).subscribe(response => {
       this.editsection = response[0];
       console.log(response);
-      this.institutionValue = this.editsection.institution;
-      this.departmentValue = this.editsection.department;
-      this.courseprogramValue = this.editsection.courseprogram;
       this.sectionValue = this.editsection.section;
-      this.batchValue = this.editsection.batch;
       this.semesterValue = this.editsection.semester;
       this.staffValue = this.editsection.staff;
       this.subjectValue = this.editsection.subject;
       this.IdValue = this.editsection._id;
 
-      this.editForm = this.formBuilder.group({
-        department2: [ this.departmentValue, Validators.required],
-        courseprogram2: [this.courseprogramValue, Validators.required],
-        batch2: [this.batchValue, Validators.required],
-        semester2: [this.semesterValue, Validators.required],
-        staff2: [this.staffValue, Validators.required],
-        subject2: [this.subjectValue, Validators.required],
-      });
-      console.log(this.editForm.value);
+      this.staff2 = new FormControl(this.staffValue, Validators.required);
+      this.subject2 = new FormControl(this.subjectValue, Validators.required);
     });
   }
   onEditSubmit() {
-    this.submitted = true;
-    console.log(this.editForm.value);
-    if (this.editForm.invalid) {
-      return;
-    }
-
+    if (this.staff2.value !="" && this.subject2.value != '') {
     const edata = {
       section:  this.id,
-      institution: this.institutionValue,
-      department: this.editForm.get("department2").value,
-      courseprogram: this.editForm.get("courseprogram2").value,
-      semester: this.editForm.get("semester2").value,
-      staff: this.editForm.get("staff2").value,
-      subject: this.editForm.get("subject2").value,
-      batch: this.editForm.get("batch2").value,
+      semester:  this.semesterValue,
+      staff: this.staff2.value,
+      subject: this.subject2.value,
     };
 
     this.request.updateSectionStaff(this.IdValue, edata).subscribe(
@@ -244,27 +208,6 @@ export class SectionStaffComponent implements OnInit {
       }
     );
   }
-  loadDepartmentByIns(Institution: any) {
-    if (Institution) {
-      this.request.getDetartmentbyIns(Institution).subscribe((response: any) => {
-        this.departmentByIns = response;
-        console.log('departmentByIns',  this.departmentByIns);
-      }, (error) => {
-        console.log(error);
-      });
-    } else
-    this.departmentByIns = null;
-  }
-  loadCourseProgramByIns(Institution: any) {
-    if (Institution) {
-      this.request.getCourseprogramByIns(Institution).subscribe((response: any) => {
-        this.courseprogrambyIns = response;
-        console.log('CourseProgramByIns',  this.courseprogrambyIns);
-      }, (error) => {
-        console.log(error);
-      });
-    } else
-    this.courseprogrambyIns = null;
   }
   loadSemesterByIns(Institution: any) {
     if (Institution) {
@@ -277,68 +220,35 @@ export class SectionStaffComponent implements OnInit {
     } else
     this.semestersByIns = null;
   }
-  onCourseProgramChange(courseprogram: any) {
-    console.log('courseprogram' ,courseprogram)
-    if (courseprogram) {
-      this.request.getBatchByCoursePrgram(courseprogram).subscribe((response: any) => {
-        this.batcheBycourseprograms = response;
-        console.log('BatchBycourseprogram',  this.batcheBycourseprograms);
+  onSubjectChange(subject: any) {
+    console.log('subject' ,subject)
+    if (subject) {
+      this.request.getStaffBySubject(subject).subscribe((response: any) => {
+        this.staffBysubjects = response;
+        console.log('BySubject1',  this.staffBysubjects);
       }, (error) => {
         console.log(error);
       });
     } else
-      this.batcheBycourseprograms = null;
+      this.staffBysubjects = null;
   }
-   loadBatchByCourseprogram(courseprogram: any) {
-    if (courseprogram) {
-      this.request.getBatchByCoursePrgram(courseprogram).subscribe((response) => {
-        this.batcheBycourseprograms = response;
-        console.log('batcheBycourseprograms',  this.batcheBycourseprograms);
+  loadStaffBySubject(subject: any) {
+    if (subject) {
+      this.request.getStaffBySubject(subject).subscribe((response) => {
+        this.staffBysubjects = response;
+        console.log('BySubject2',  this.staffBysubjects);
       }, (error) => {
         console.log(error);
       });
     } else
-    this.batcheBycourseprograms = null;
+    this.staffBysubjects = null;
   }
-  onDepartmentChange(department : any) { 
-    if (department){
-    this.request.getStaffProfileByDep(department).subscribe((response) => {
-      this.staffprofiles = response;
-      console.log('StaffDetails',this.staffprofiles);
-    }, (error) => {
-      console.log(error);
-    });
-    } else
-    this.staffprofiles = null;
-  }
-  loadStaffProfileByDept(department: any) {
-    if (department) {
-      this.request.getStaffProfileByDep(department).subscribe((response) => {
-        this.staffprofiles = response;
-        console.log('StaffDetails',  this.staffprofiles);
-      }, (error) => {
-        console.log(error);
-      });
-    } else
-    this.staffprofiles = null;
-  }
-  onSemesterChange(semester : any) { 
-    if (semester){
-      console.log(semester);
-    this.request.getSubjectbySem(semester).subscribe((response) => {
-      this.subjectBySemesters = response;
-      console.log('SubjectBySemester',this.subjectBySemesters);
-    }, (error) => {
-      console.log(error);
-    });
-    } else
-    this.staffprofiles = null;
-  }
+
   loadSubjectBySem(semester: any) {
     if (semester) {
       this.request.getSubjectbySem(semester).subscribe((response: any) => {
         this.subjectBySemesters = response;
-        console.log('SubjectBySemester',  this.subjectBySemesters);
+        console.log('SubjectBySemester2',  this.subjectBySemesters);
       }, (error) => {
         console.log(error);
       });
@@ -353,30 +263,8 @@ export class SectionStaffComponent implements OnInit {
     return this.editForm.controls;
   }
 
-  async startScript() {
-    await this.dynamicScriptLoader
-      .load(
-        "dataTables.buttons",
-        "buttons.flash",
-        "jszip",
-        "pdfmake",
-        "vfs_fonts",
-        "pdfmake",
-        "buttons.html5",
-        "buttons.print",
-        "form.min"
-      )
-      .then(data => {
-        this.loadData();
-      })
-      .catch(error => console.log(error));
-  }
-  private loadData() {
-    $("#tableExport").DataTable({
-      dom: "Bfrtip",
-      buttons: ["copy", "csv", "excel", "pdf", "print"]
-    });
-  }
+  
+  
 
   loadModal() {
     $("#addModal").modal("hide"); //or  $('#IDModal').modal('hide');
@@ -395,13 +283,39 @@ export class SectionStaffComponent implements OnInit {
 
   ngOnInit() {
     // this.auth.isValidUser();
-    this.startScript();
     this.viewData(this.id);
+    // this.viewSectionDetails(this.id);
     this.loadInstitution();
     this.loadModal();
-    this.loadDepartmentByIns(this.institutionValue);
-    this.loadCourseProgramByIns(this.institutionValue);
     this.loadSemesterByIns(this.institutionValue);
+    $(function() {
+      $('#addForm').validate({
+
+        highlight (input) {
+          $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight (input) {
+          $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement (error, element) {
+          $(element).parents('.form-group').append(error);
+        }
+      });
+    });
+    $(function() {
+      $('#editForm').validate({
+
+        highlight (input) {
+          $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight (input) {
+          $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement (error, element) {
+          $(element).parents('.form-group').append(error);
+        }
+      });
+    });
   }
 }
 
