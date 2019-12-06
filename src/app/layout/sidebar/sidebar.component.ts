@@ -42,7 +42,7 @@ export class SidebarComponent implements OnInit {
     });
 
     //Collapse or Expand Menu
-    $('.menu-toggle').on('click', function (e) {
+   /* $('.menu-toggle').on('click', function (e) {
       var $this = $(this);
       var $content = $this.next();
 
@@ -59,7 +59,7 @@ export class SidebarComponent implements OnInit {
 
       $this.toggleClass('toggled');
       $content.slideToggle(320);
-    });
+    });*/
 
     //Set menu height
     _this.setMenuHeight(true);
