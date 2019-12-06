@@ -783,7 +783,8 @@
                                                                     <td>{{qualificationdetail?.maxMark}}</td>
                                                                     <td>{{qualificationdetail?.percentage}}</td>
                                                                     <td>{{qualificationdetail?.organisationType}}</td>
-                                                                    <td><a href="{{qualificationdetail?.photoLocation}}">MarksheetLink</a></td>
+                                                                    <td *ngIf="!qualificationdetail?.photoLocation">-</td>
+                                                                    <td *ngIf="qualificationdetail?.photoLocation"><a href="{{qualificationdetail?.photoLocation}}">{{qualificationdetail.qualificationType[0].qualificationType}}</a></td>
                                                                     <div class="noprint">
                                                                         <td>
                                                                             <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editModalqd">
@@ -848,7 +849,7 @@
                                                                 <div class="form-group form-float">
                                                                     <label>Institution Type</label>
                                                                     <div class="form-line">
-                                                                        <select class="browser-default" id="select03" name="institutionType2" [formControl]="institutionType2"
+                                                                        <select class="browser-default"  name="institutionType2" [formControl]="institutionType2"
                                                                             class="form-control" required>
                                                                             <option >Choose your Address Type
                                                                             </option>
@@ -965,10 +966,10 @@
                                                          </div>
                                                            <!--//Cerificate Upload-->
                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                        <label for="file">MarkSheet</label>
-                                                                      <!-- <a href="{{getfileLoc2}}">MarkSheet</a> -->
-                                                                      <a href="{{photoLocationValue}}">MarkSheet</a><br><br>
+                                                                <div class="col-sm-12" *ngFor="let qualificationdetail of qualificationdetails">
+                                                                        <h6>MarkSheet</h6>
+                                                                        <span *ngIf="!getfileLoc2"><a href="{{qualificationdetail?.photoLoctaion}}">MarkSheet</a></span>
+                                                                        <span *ngIf="getfileLoc2"><a href="{{getfileLoc2}}"> Updated MarkSheet</a></span><br><br>
                                                                     <div class="col-sm-12">
                                                                         <input type="file" name="photo" ng2FileSelect [uploader]="uploader2" />
                                                                         <div class="progress">
@@ -1657,18 +1658,23 @@
                                     </div>
                                 </div>
                                      <!--//Cerificate Upload-->
-                                     <div class="row">
-                                        <div class="col-sm-12">
-                                            <h6>MarkSheet</h6>
-                                            <a href="{{getfileLoc2}}">MarkSheet</a><br><br>
-                                            <input type="file" name="photo" ng2FileSelect [uploader]="uploader2" />
-                                            <div class="progress">
-                                                <div class="progress-bar width-per-45" role="progressbar" aria-valuenow="60"
-                                                    [ngStyle]="{'width':uploader2.progress+'%'}" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label for="file">Attach MarkSheet</label>
+                                            <br>
+                                            <span *ngIf="!getfileLoc2">-</span>
+                                            <span *ngIf="getfileLoc2"><a href="{{getfileLoc2}}">MarkSheet</a></span><br><br>
+                                            <div class="col-sm-12">
+                                                <input type="file" name="photo" ng2FileSelect [uploader]="uploader2" />
+                                                <div class="progress">
+                                                    <div class="progress-bar width-per-45" role="progressbar" aria-valuenow="50"
+                                                        [ngStyle]="{'width':uploader2.progress+'%'}" aria-valuemin="0" aria-valuemax="100">
+                                                    </div>
+                                                </div>
+                                                <div class="row" *ngIf="uploader2?.queue?.length > 0">
+                                                    <button class="btn bg-teal waves-effect" (click)="filesubmit()">Upload File</button>
                                                 </div>
                                             </div>
-                                            <div class="row" *ngIf="uploader2?.queue?.length > 0">
-                                                <button type="button" class="btn bg-teal waves-effect" (click)="filesubmit()">Upload File</button></div>
                                         </div>
                                     </div>
                                 <div class="modal-footer">

@@ -1518,6 +1518,7 @@ if (res.status == 'error') {
 }
 else if (res.status == 'success') {
   swal("Added Sucessfully");
+  this.getfileLoc="";
   this.viewStudentQualificationById(this.id);
   this.loadStudentQualification();
 }
@@ -1625,6 +1626,7 @@ onEditQualificationSubmit() {
     }
 this.request.updateStudentQualification(this.IdValue9,edata).subscribe((res : any) => {
 if (res.status == 'success') {
+  this.getfileLoc="";
   swal("Updated Sucessfully");
   console.log(res);
   this.viewStudentQualificationById(this.id);
@@ -1723,6 +1725,7 @@ if (res.status == 'error') {
 }
 else if (res.status == 'success') {
   swal("Added Sucessfully");
+  this.getfileLoc2="";
   this.viewStudentCertificateById(this.id);
   this.loadStudentCertificate();
 }
@@ -1759,6 +1762,7 @@ onEditCertificateSubmit() {
 this.request.updateStudentCertificate(this.IdValue,edata).subscribe((res : any) => {
 if (res.status == 'success') {
   swal("Updated Sucessfully");
+   this.getfileLoc2="";
   this.viewStudentCertificateById(this.id);
   this.loadStudentCertificate();
 }

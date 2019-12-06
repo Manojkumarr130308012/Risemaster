@@ -405,7 +405,8 @@
                                                                 <td>{{studentQualification.courseType[0].courseType}}</td>
                                                                 <td>{{studentQualification?.yearOfPassing}}</td>
                                                                 <td>{{studentQualification?.markObtained}}</td>
-                                                                <td><a href="{{studentQualification?.photoLoctaion}}">MarksheetLink</a></td>
+                                                                <td *ngIf="!studentQualification?.photoLoctaion">-</td>
+                                                                <td *ngIf="studentQualification?.photoLoctaion"><a href="{{studentQualification?.photoLoctaion}}">{{studentQualification.qualificationType[0].qualificationType}}</a></td>
                                                                 <td>
                                                                     <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editQualificationModal">
                                                                         <i class="material-icons" (click)="onEditQualification(studentQualification?._id) ">create</i>
@@ -457,7 +458,8 @@
                                                                     <td>{{studentCertificate.certificateType[0].certificateType}}</td>
                                                                     <td>{{studentCertificate?.registerNo}}</td>
                                                                     <td>{{studentCertificate?.certificateNo}}</td>
-                                                                    <td><a href="{{studentCertificate?.fileUpload}}">CertificateLink</a></td>
+                                                                    <td *ngIf="!studentCertificate?.fileUpload">-</td>
+                                                                    <td *ngIf="studentCertificate?.fileUpload"><a href="{{studentCertificate?.fileUpload}}">CertificateLink</a></td>
                                                                     <td>
                                                                         <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editCertificateModal">
                                                                             <i class="material-icons"
@@ -2080,7 +2082,8 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <h6>MarkSheet</h6>
-                        <a href="{{photoLoctaionValue}}">MarkSheet</a><br><br>
+                        <span *ngIf="!getfileLoc"><a href="{{getfileLoc}}">-</a></span>
+                        <span *ngIf="getfileLoc"><a href="{{getfileLoc}}">MarkSheet</a></span><br><br>
                         <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
                         <div class="progress">
                             <div class="progress-bar width-per-45" role="progressbar" aria-valuenow="60"
@@ -2295,9 +2298,10 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-12" *ngFor="let studentQualification of studentQualifications">
                                 <h6>MarkSheet</h6>
-                                <a href="{{getfileLoc}}">MarkSheet</a><br><br>
+                                <span *ngIf="!getfileLoc"><a href="{{studentQualification?.photoLoctaion}}">MarkSheet</a></span>
+                                 <span *ngIf="getfileLoc"><a href="{{getfileLoc}}"> Updated MarkSheet</a></span><br><br>
                                 <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
                                 <div class="progress">
                                     <div class="progress-bar width-per-45" role="progressbar" aria-valuenow="60"
@@ -2305,7 +2309,8 @@
                                     </div>
                                 </div>
                                 <div class="row" *ngIf="uploader?.queue?.length > 0">
-                                    <button type="button" class="btn bg-teal waves-effect" (click)="submit()">Upload File</button></div>
+                                    <button type="button" class="btn bg-teal waves-effect" (click)="submit()">Upload File</button>
+                                </div>
                             </div>
                         </div>
                     <div class="modal-footer">
@@ -2359,7 +2364,8 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h6>Attach Certificate<span class="asterisk">*</span></h6>
-                            <a href="{{getfileLoc2}}">Certificate Link</a><br><br>
+                             <span *ngIf="!getfileLoc2"><a href="{{getfileLoc2}}">-</a></span>
+                             <span *ngIf="getfileLoc2"><a href="{{getfileLoc2}}">Certificate Link</a></span><br><br>
                             <input type="file" name="photo" ng2FileSelect [uploader]="uploader2" />
                             <div class="progress">
                                 <div class="progress-bar width-per-45" role="progressbar" aria-valuenow="60"
@@ -2419,10 +2425,10 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-12">
+                                <div class="col-sm-12" *ngFor="let studentCertificate of studentCertificates">
                                     <h6>Attach Certificate<span class="asterisk">*</span></h6>
-                                    <a href="{{fileLocationValue}}">Previous Certificate</a>
-                                    <a href="{{getfileLoc2}}">New Certificate</a><br><br>
+                                    <span *ngIf="!getfileLoc2"><a href="{{studentCertificate?.fileUpload}}">Certificate</a></span>
+                                    <span *ngIf="getfileLoc2"><a href="{{getfileLoc2}}"> Updated Certificate</a></span><br><br>
                                     <input type="file" name="photo" ng2FileSelect [uploader]="uploader2" />
                                     <div class="progress">
                                         <div class="progress-bar width-per-45" role="progressbar" aria-valuenow="60"

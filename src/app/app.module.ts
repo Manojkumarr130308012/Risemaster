@@ -117,6 +117,7 @@ import { AddSubjectComponent } from './SubjectMaster/add-subject/add-subject.com
 import { EditSubjectComponent } from './SubjectMaster/edit-subject/edit-subject.component';
 import { SectionComponent } from './StudentMaster/section/section.component';
 import { SectionStaffComponent } from './StudentMaster/section-staff/section-staff.component';
+import { PeriodComponent } from './StaffMaster/period/period.component';
 
 
 
@@ -210,6 +211,7 @@ SemesterComponent,
 EditSubjectComponent,
 SectionComponent,
 SectionStaffComponent,
+PeriodComponent,
 
 
   ],

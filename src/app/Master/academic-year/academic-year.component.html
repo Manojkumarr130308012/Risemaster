@@ -8,7 +8,6 @@
                         <h2>
                             <strong>Academic Year</strong>
                         </h2>
-                        </div>
                         <div class="header-dropdown m-r--5">
                             <div class="btn-group m-l-15">
                                 <button id="addRow" class="btn btn-info" data-toggle="modal" data-target="#addModal">
@@ -16,6 +15,7 @@
                                     <i class="fa fa-plus" style="color: white"></i>
                                 </button>
                             </div>
+                        </div>
                         </div>
                                 <!--Add Form-->
                                 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="formModal" aria-hidden="true">
@@ -34,26 +34,39 @@
                                                             <div class="form-group form-float">
                                                                 <label for="institution">Institution</label>
                                                                 <div class="form-line">
-                                                                    <select class="browser-default" formControlName="institution" name="institution"
-                                                                        class="form-control" required>
+                                                                    <select class="browser-default" formControlName="institution" name="institution" class="form-control"
+                                                                    (change)="onInstitutionChange($event.target.value)"    required>
                                                                         <option>Choose your Institution</option>
                                                                         <option *ngFor="let institution of institutions" [value]="institution._id">
                                                                             {{institution?.institution_name}}</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
+                                                            <div class="form-group form-float">
+                                                                <label>Batch<span class="asterisk">*</span></label>
+                                                                <div class="form-line">
+                                                                    <select class="browser-default" formControlName="batch" name="batch" class="form-control"
+                                                                        [ngClass]="{ 'is-invalid': submitted && f.batch.errors }">
+                                                                        <option value="">Choose your Batch</option>
+                                                                        <option *ngFor="let batch of batcheBycourseprograms?.response" [value]="batch._id">{{batch?.batch}}
+                                                                        </option>
+                                                                    </select>
+                                                                    <div *ngIf="submitted && f.batch.errors" class="invalid-feedback">
+                                                                        <div *ngIf="f.batch.errors.required">Batch is required</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                             <div class="form-group">
                                                                 <label>Year</label>
-                                                                <input type="text" value="" formControlName="year" class="form-control"
-                                                                    placeholder="Enter year" [ngClass]="{ 'is-invalid': submitted && f.year.errors }" />
+                                                                <input type="text" value="" formControlName="year" class="form-control" placeholder="Enter year"
+                                                                    [ngClass]="{ 'is-invalid': submitted && f.year.errors }" />
                                                                 <div *ngIf="submitted && f.year.errors" class="invalid-feedback">
                                                                     <div *ngIf="f.year.errors.required">Year is required</div>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Start Date</label>
-                                                                <input type="date" value="" formControlName="start_date" class="form-control"
-                                                                    placeholder="Enter StarDate"
+                                                                <input type="date" value="" formControlName="start_date" class="form-control" placeholder="Enter StarDate"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.start_date.errors }" />
                                                                 <div *ngIf="submitted && f.start_date.errors" class="invalid-feedback">
                                                                     <div *ngIf="f.start_date.errors.required">StartDate is required</div>
@@ -62,9 +75,21 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
+                                                                <label>Course Program</label>
+                                                                <select id="select" class="browser-default form-control" formControlName="courseprogram"
+                                                                    [ngClass]="{ 'is-invalid': submitted && f.courseprogram.errors }"
+                                                                    (change)="onCourseProgramChange($event.target.value)">
+                                                                    <option default value>Choose your Course Program</option>
+                                                                    <option *ngFor="let courseprogram of courseprogrambyIns?.response" [value]="courseprogram._id">
+                                                                        {{courseprogram.courseprogram}}</option>
+                                                                </select>
+                                                                <div *ngIf="submitted && f.courseprogram.errors" class="invalid-feedback">
+                                                                    <div *ngIf="f.courseprogram.errors.required">Course Program is required</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
                                                                 <label>Short Code</label>
-                                                                <input type="text" value="" formControlName="short_code" class="form-control"
-                                                                    placeholder="Enter ShortCode"
+                                                                <input type="text" value="" formControlName="short_code" class="form-control" placeholder="Enter ShortCode"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.short_code.errors }" />
                                                                 <div *ngIf="submitted && f.short_code.errors" class="invalid-feedback">
                                                                     <div *ngIf="f.short_code.errors.required">Short Code is required</div>
@@ -73,8 +98,7 @@
                                                             <div class="form-group">
                                                                 <label>Status</label>
                                                                 <select class="browser-default" formControlName="status" value=" " class="form-control"
-                                                                    placeholder="Enter Status"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                                                                    placeholder="Enter Status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
                                                                     <option value="">Choose your option</option>
                                                                     <option value="active">Active</option>
                                                                     <option value="inactive">Inactive</option>
@@ -85,8 +109,7 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>End Date</label>
-                                                                <input type="date" value="" formControlName="end_date" class="form-control"
-                                                                    placeholder="Enter EndDate"
+                                                                <input type="date" value="" formControlName="end_date" class="form-control" placeholder="Enter EndDate"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.end_date.errors }" />
                                                                 <div *ngIf="submitted && f.end_date.errors" class="invalid-feedback">
                                                                     <div *ngIf="f.end_date.errors.required">EndDate is required</div>
@@ -110,6 +133,8 @@
                                     <tr>
                                         <th>S.No</th>
                                         <th>Institution</th>
+                                        <th>Course Program</th>
+                                        <th>Batch</th>
                                         <th>Year</th>
                                         <th>Short code</th>
                                         <th>Start date</th>
@@ -121,7 +146,9 @@
                                 <tbody>
                                     <tr *ngFor="let academicyear of academicyears; let i=index">
                                         <td>{{i +1 }}</td>
-                                        <td>{{academicyear?.institution[0].institution_name}}</td>
+                                        <td>{{academicyear?.institutiond[0].institution_name}}</td>
+                                        <td>{{academicyear?.courseprogramd[0].courseprogram}}</td>
+                                        <td>{{academicyear?.batchd[0].batch}}</td>
                                         <td>{{academicyear?.year}}</td>
                                         <td>{{academicyear?.short_code}}</td>
                                         <td>{{academicyear?.start_date}}</td>
@@ -167,13 +194,28 @@
                                          <label for="institution">Institution</label>
                                          <div class="form-line">
                                              <select class="browser-default" formControlName="institution2" name="institution2"
-                                                 class="form-control" required>
+                                                 class="form-control"
+                                                 (change)="onInstitutionChange($event.target.value)" required>
                                                  <option value="">Choose your Institution</option>
                                                  <option *ngFor="let institution of institutions" [value]="institution._id">
                                                      {{institution?.institution_name}}</option>
                                              </select>
                                          </div>
                                      </div>
+                                    <div class="form-group form-float">
+                                        <label>Batch<span class="asterisk">*</span></label>
+                                        <div class="form-line">
+                                            <select class="browser-default" formControlName="batch2" name="batch2" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f2.batch2.errors }">
+                                                <option value="">Choose your Batch</option>
+                                                <option *ngFor="let batch of batcheBycourseprograms?.response" [value]="batch._id">{{batch?.batch}}
+                                                </option>
+                                            </select>
+                                            <div *ngIf="submitted && f2.batch2.errors" class="invalid-feedback">
+                                                <div *ngIf="f2.batch2.errors.required">Batch is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                      <div class="form-group">
                                          <label>Year</label>
                                          <input type="text" value="" formControlName="year2" class="form-control" placeholder="Enter year"
@@ -191,36 +233,49 @@
                                          </div>
                                      </div>
                                  </div>
-                                 <div class="col-md-6">
-                                     <div class="form-group">
-                                         <label>Short Code</label>
-                                         <input type="text" value="" formControlName="short_code2" class="form-control" placeholder="Enter ShortCode"
-                                             [ngClass]="{ 'is-invalid': submitted && f2.short_code2.errors }" />
-                                         <div *ngIf="submitted && f2.short_code2.errors" class="invalid-feedback">
-                                             <div *ngIf="f2.short_code2.errors.required">Short Code is required</div>
-                                         </div>
-                                     </div>
-                                     <div class="form-group">
-                                         <label>Status</label>
-                                         <select class="browser-default" formControlName="status2"  class="form-control"
-                                             placeholder="Enter Status" [ngClass]="{ 'is-invalid': submitted && f2.status2.errors }">                            
-                                             <option value="">Choose your option</option>
-                                             <option value="active">Active</option>
-                                             <option value="inactive">Inactive</option>
-                                         </select>
-                                         <div *ngIf="submitted && f2.status2.errors" class="invalid-feedback">
-                                             <div *ngIf="f2.status2.errors.required">Status is required</div>
-                                         </div>
-                                     </div>
-                                     <div class="form-group">
-                                         <label>End Date</label>
-                                         <input type="date" value="" formControlName="end_date2" class="form-control" placeholder="Enter EndDate"
-                                             [ngClass]="{ 'is-invalid': submitted && f2.end_date2.errors }" />
-                                         <div *ngIf="submitted && f2.end_date2.errors" class="invalid-feedback">
-                                             <div *ngIf="f2.end_date2.errors.required">EndDate is required</div>
-                                         </div>
-                                     </div>
-                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Course Program</label>
+                                        <select id="select" class="browser-default form-control" formControlName="courseprogram2"
+                                            [ngClass]="{ 'is-invalid': submitted && f2.courseprogram2.errors }"
+                                            (change)="onCourseProgramChange($event.target.value)">
+                                            <option default value>Choose your Course Program</option>
+                                            <option *ngFor="let courseprogram of courseprogrambyIns?.response" [value]="courseprogram._id">
+                                                {{courseprogram.courseprogram}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && f2.courseprogram2.errors" class="invalid-feedback">
+                                            <div *ngIf="f2.courseprogram2.errors.required">Course Program is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Short Code</label>
+                                        <input type="text" value="" formControlName="short_code2" class="form-control" placeholder="Enter ShortCode"
+                                            [ngClass]="{ 'is-invalid': submitted && f2.short_code2.errors }" />
+                                        <div *ngIf="submitted && f2.short_code2.errors" class="invalid-feedback">
+                                            <div *ngIf="f2.short_code2.errors.required">Short Code is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <select class="browser-default" formControlName="status2" class="form-control" placeholder="Enter Status"
+                                            [ngClass]="{ 'is-invalid': submitted && f2.status2.errors }">
+                                            <option value="">Choose your option</option>
+                                            <option value="active">Active</option>
+                                            <option value="inactive">Inactive</option>
+                                        </select>
+                                        <div *ngIf="submitted && f2.status2.errors" class="invalid-feedback">
+                                            <div *ngIf="f2.status2.errors.required">Status is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>End Date</label>
+                                        <input type="date" value="" formControlName="end_date2" class="form-control" placeholder="Enter EndDate"
+                                            [ngClass]="{ 'is-invalid': submitted && f2.end_date2.errors }" />
+                                        <div *ngIf="submitted && f2.end_date2.errors" class="invalid-feedback">
+                                            <div *ngIf="f2.end_date2.errors.required">EndDate is required</div>
+                                        </div>
+                                    </div>
+                                </div>
                              </div>
              <div class="modal-footer">
                  <button type="button" class="btn btn-default"

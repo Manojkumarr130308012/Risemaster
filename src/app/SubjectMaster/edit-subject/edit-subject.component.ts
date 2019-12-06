@@ -101,6 +101,15 @@ export class EditSubjectComponent implements OnInit {
   lecturePeriodValue: any;
   tutorialPeriodValue: any;
   unitDescriptionValue: any;
+  departmentvalue: any;
+  batcheBycourseprograms: any;
+  academicyearByBatch: any;
+  academicYearValue: any;
+  batchValue: any;
+  courseprogram1: any;
+  batch1: any;
+  batch: any;
+  academicYear: any;
   constructor(
     private formBuilder: FormBuilder,
     private dynamicScriptLoader: DynamicScriptLoaderService,
@@ -126,6 +135,8 @@ export class EditSubjectComponent implements OnInit {
     this.editForm = this.formBuilder.group({
       courseprogram: ["", Validators.required],
       department: ["", Validators.required],
+      batch:['', Validators.required],
+      academicYear: ["", Validators.required],
       semester: ["", Validators.required],
       subjectCode: ["", Validators.required],
       subjectDescription: ["", Validators.required],
@@ -214,8 +225,14 @@ export class EditSubjectComponent implements OnInit {
     // console.log('ID', this.Id);
     this.request.fetchSubjectById(this.Id).subscribe((response) => {
     this.editSubject = response[0];
+    this.courseprogram1 = this.editSubject.courseprogram;
+    this.loadBatchByCourseprogram(this.courseprogram1);
+    this.batch1 = this.editSubject.batch;
+    this.loadacademicYearByBatch(this.batch1);
     this.institutionValue = this.editSubject.institution;
     this.departmentValue = this.editSubject.department;
+    this.batchValue = this.editSubject.batch;
+    this.academicYearValue = this.editSubject.academicYear;
     this.courseprogramValue = this.editSubject.courseprogram;
     this.semesterValue = this.editSubject.semester;
     this.subjectTypeValue = this.editSubject.subjectType;
@@ -234,6 +251,8 @@ export class EditSubjectComponent implements OnInit {
     this.editForm = this.formBuilder.group({
       courseprogram: [this.courseprogramValue, Validators.required],
       department: [ this.departmentValue, Validators.required],
+      batch: [ this.batchValue, Validators.required],
+      academicYear: [ this.academicYearValue, Validators.required],
       semester: [ this.semesterValue, Validators.required],
       subjectCode: [this.subjectCodeValue, Validators.required],
       subjectDescription: [this.subjectDescriptionValue, Validators.required],
@@ -253,6 +272,8 @@ export class EditSubjectComponent implements OnInit {
     const editDetail = {
       institution: this.institutionValue,
       department: this.editForm.get('department').value,
+      batch: this.editForm.get('batch').value,
+      academicYear: this.editForm.get('academicYear').value,
       semester: this.editForm.get('semester').value,
       courseprogram:  this.editForm.get('courseprogram').value,
       subjectCode:  this.editForm.get('subjectCode').value,
@@ -328,8 +349,19 @@ viewSubjectStaff(subject: any) {
     }
   );
 }
+loadstaffByDepartment(department: any) {
+  if (department) {
+    this.request.getStaffProfileByDep(department).subscribe((response: any) => {
+      this.staffprofiles = response;
+      console.log('StaffDetails',  this.staffprofiles);
+    }, (error) => {
+      console.log(error);
+    });
+  } else
+  this.staffprofiles = null;
+}
 //staff details based on department
-onDepartmentChange(department : string) { 
+onDepartmentChange(department : any) { 
   if (department){
     console.log(department);
   this.request.getStaffProfileByDep(department).subscribe((response) => {
@@ -347,6 +379,8 @@ onEditStaff(subjectStaff) {
   this.Id = subjectStaff._id;
   this.request.fetchSubjectStaffById(this.Id).subscribe(response => {
     this.editSubjectStaff = response[0];
+    this.departmentvalue = this.editSubjectStaff.department;
+    this.loadstaffByDepartment(this.departmentvalue);
     console.log(response);
     this.institutionValue = this.editSubjectStaff.institution;
     this.departmentValue = this.editSubjectStaff.department;
@@ -642,6 +676,46 @@ onEditSubjectSyllabus() {
       });
     } else
     this.courseprogrambyIns = null;
+  }
+  onCourseProgramChange(courseprogram: any) {
+    console.log('courseprogram' ,courseprogram)
+    if (courseprogram) {
+      this.request.getBatchByCoursePrgram(courseprogram).subscribe((response: any) => {
+        this.batcheBycourseprograms = response;
+        console.log('BatchBycourseprogram',  this.batcheBycourseprograms);
+      }, (error) => {
+        console.log(error);
+      });
+    } else
+      this.batcheBycourseprograms = null;
+  }
+  loadBatchByCourseprogram(courseprogram) {
+    this.request.getBatchByCoursePrgram(courseprogram).subscribe((response: any) => {
+      this.batcheBycourseprograms = response;
+      console.log('BatchBycourseprogram', this.batcheBycourseprograms);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  onBatchChange(batch: any) {
+    console.log('Batch' ,batch);
+    if (batch) {
+      this.request.fetchAcademicyearByBatch(batch).subscribe((response: any) => {
+        this.academicyearByBatch = response;
+        console.log('AcademicYearByBatch',  this.academicyearByBatch);
+      }, (error) => {
+        console.log(error);
+      });
+    } else
+      this.academicyearByBatch = null;
+  }
+  loadacademicYearByBatch(batch) {
+    this.request.fetchAcademicyearByBatch(batch).subscribe((response: any) => {
+      this.academicyearByBatch = response;
+      console.log('AcademicYearByBatch', this.academicyearByBatch);
+    }, (error) => {
+      console.log(error);
+    });
   }
     onInstitutionChange(Institution: any) {
       // console.log('institution', Institution)
