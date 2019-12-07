@@ -2421,6 +2421,11 @@ public getSubjectbySem(semester) {
   this.url = `${this.endPoint}/subject-add/fetchbySem/?semester=` + semester;
   return this.http.get(this.url);
 }
+public fetchSubjectByDetails(filterSubject) {
+   this.url = `${this.endPoint}/subject-add/fetchsubject`;
+   return this.http.post(this.url,filterSubject);
+ }
+
 //Semester
 getSemester() {
   this.url = `${this.endPoint}/semester/aggregation`;

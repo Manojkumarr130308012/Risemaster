@@ -14,8 +14,8 @@ export class SidebarComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.sidemenuCollapse();
-    this.initLeftSidebar();
+   // this.sidemenuCollapse();
+    //this.initLeftSidebar();
 
   }
 

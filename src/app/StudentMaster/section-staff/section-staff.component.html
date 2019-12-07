@@ -6,7 +6,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            <strong>Section</strong>
+                            <strong>Section-Staff</strong>
                         </h2>
                         <div class="header-dropdown m-r--5">
                             <!-- Add button -->
@@ -35,7 +35,7 @@
                                 <tbody>
                                     <tr *ngFor="let sectionStaff of sectionStaffs; let i=index">
                                         <td>{{i +1 }}</td>
-                                        <td>{{sectionStaff?.semesterd[0].semester}}</td>
+                                        <td *ngFor="let section of sections; let i=index">{{section?.semesterd[0].semester}}</td>
                                         <td>{{sectionStaff?.staffd[0].firstName}} .{{sectionStaff?.staffd[0].lastName}}</td>
                                         <td>{{sectionStaff?.subjectd[0].subjectDescription}}</td>
 
@@ -78,30 +78,6 @@
                     <div class="row clearfix">
                         <div class="col-md-6">
                             <div class="form-group form-float">
-                                <label>Semester<span class="asterisk">*</span></label>
-                                <div class="form-line">
-                                    <select class="browser-default" [formControl]="semester" name="semester" class="form-control" required>
-                                        <option value="">Choose your semester</option>
-                                        <option *ngFor="let semester of semestersByIns?.response" [value]="semester._id">
-                                            {{semester?.semester}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group form-float">
-                                <label>Staff<span class="asterisk">*</span></label>
-                                <div class="form-line">
-                                    <select class="browser-default form-control" [formControl]="staff" name="staff" required>
-                                        <option>Choose your staff</option>
-                                        <option *ngFor="let staff of staffBysubjects" [value]="staff.staffdetails[0]._id">
-                                            {{staff.staffdetails[0].firstName}} {{staff.staffdetails[0].lastName}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group form-float">
                                 <label>Subject<span class="asterisk">*</span></label>
                                 <div class="form-line">
                                     <select class="browser-default form-control" [formControl]="subject" name="subject"
@@ -109,6 +85,20 @@
                                         <option>Choose your subject</option>
                                         <option *ngFor="let subject of subjectBySemesters" [value]="subject._id">
                                             {{subject?.subjectDescription}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                    
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-float">
+                                <label>Staff<span class="asterisk">*</span></label>
+                                <div class="form-line">
+                                    <select class="browser-default form-control" [formControl]="staff" name="staff" required>
+                                        <option>Choose your staff</option>
+                                        <option *ngFor="let staff of staffBysubjects" [value]="staff.staffdetails[0]._id">
+                                            {{staff.staffdetails[0].firstName}} {{staff.staffdetails[0].lastName}}
                                         </option>
                                     </select>
                                 </div>
@@ -139,34 +129,10 @@
                     <div class="row clearfix">
                         <div class="col-md-6">
                             <div class="form-group form-float">
-                                <label>Department<span class="asterisk">*</span></label>
-                                <div class="form-line">
-                                    <select class="browser-default form-control" [formControl]="department2" required>
-                                        <option>Choose your Department</option>
-                                        <option *ngFor="let department of departmentByIns?.response"
-                                            [value]="department._id">
-                                            {{department?.department}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group form-float">
-                                <label>Batch<span class="asterisk">*</span></label>
-                                <div class="form-line">
-                                    <select class="browser-default form-control" name="batch2" [formControl]="batch2"
-                                        required>
-                                        <option value="">Choose your Batch</option>
-                                        <option *ngFor="let batch of batcheBycourseprograms?.response"
-                                            [value]="batch._id">{{batch?.batch}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group form-float">
                                 <label>Subject<span class="asterisk">*</span></label>
                                 <div class="form-line">
-                                    <select class="browser-default form-control" [formControl]="subject2"
-                                        name="subject2" (change)="onSubjectChange($event.target.value)" required>
+                                    <select class="browser-default form-control" [formControl]="subject2" name="subject2"
+                                        (change)="onSubjectChange($event.target.value)" required>
                                         <option>Choose your subject</option>
                                         <option *ngFor="let subject of subjectBySemesters" [value]="subject._id">
                                             {{subject?.subjectDescription}}
@@ -177,39 +143,11 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group form-float">
-                                <label>Course Program<span class="asterisk">*</span></label>
-                                <div class="form-line">
-                                    <select class="browser-default form-control" [formControl]="courseprogram2"
-                                        name="courseprogram2" (change)="onCourseProgramChange($event.target.value)"
-                                        required>
-                                        <option>Choose your Course Program</option>
-                                        <option *ngFor="let courseprogram of courseprogrambyIns?.response"
-                                            [value]="courseprogram._id">
-                                            {{courseprogram.courseprogram}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group form-float">
-                                <label>Semester<span class="asterisk">*</span></label>
-                                <div class="form-line">
-                                    <select class="browser-default" [formControl]="semester2" name="semester2"
-                                        class="form-control" (change)="onSemesterChange($event.target.value)" required>
-                                        <option value="">Choose your semester</option>
-                                        <option *ngFor="let semester of semestersByIns?.response"
-                                            [value]="semester._id">
-                                            {{semester?.semester}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group form-float">
                                 <label>Staff<span class="asterisk">*</span></label>
                                 <div class="form-line">
-                                    <select class="browser-default form-control" [formControl]="staff2" name="staff2"
-                                        required>
+                                    <select class="browser-default form-control" [formControl]="staff2" name="staff2" required>
                                         <option>Choose your staff</option>
-                                        <option *ngFor="let staff of staffBysubjects"
-                                            [value]="staff.staffdetails[0]._id">
+                                        <option *ngFor="let staff of staffBysubjects" [value]="staff.staffdetails[0]._id">
                                             {{staff.staffdetails[0].firstName}} {{staff.staffdetails[0].lastName}}
                                         </option>
                                     </select>

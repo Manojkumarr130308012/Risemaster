@@ -57,6 +57,12 @@ export class SectionStaffComponent implements OnInit {
   semester2: any;
   semesterValue1: any;
   subjectValue1: any;
+  institutionId: any;
+  departmentId: any;
+  courseprogramId: any;
+  batchId: any;
+  academicYearId: any;
+  semesterId: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -78,20 +84,45 @@ export class SectionStaffComponent implements OnInit {
     /////////
    let ID = this.id;
    this.request.fetchSectionById(ID).subscribe(response => {
-    this.sections = response;
-    this.semesterValue =  this.sections[0].semester;
+     this.sections = response;
+     console.log('SectionDetails', this.sections)
+     this.semesterValue = this.sections[0].semester;
 
+     //Filter subject//
+     this.institutionId = this.sections[0].institution;
+     this.departmentId = this.sections[0].department;
+     this.courseprogramId = this.sections[0].courseprogram;
+     this.batchId = this.sections[0].batch;
+     this.academicYearId = this.sections[0].academicYear;
+     this.semesterId = this.sections[0].semester;
+     const filterSubject ={
+       institution: this.institutionId,
+       department:  this.departmentId,
+       courseprogram:  this.courseprogramId,
+       batch:  this.batchId,
+       academicYear:  this.academicYearId,
+       semester:this.semesterId
+     }
+     console.log('ForFilterSubject', filterSubject);
+     this.request.fetchSubjectByDetails(filterSubject).subscribe(response => {
+        this.subjectBySemesters = response;
+        console.log('SubjectByFilter', this.subjectBySemesters);
+      });
     //Add Form
-   this.semester= new FormControl({value: this.semesterValue , disabled: true});
    this.staff= new FormControl('', Validators.required);
    this.subject= new FormControl('', Validators.required);
 
    //Edit Form 
-   this.semester2= new FormControl({value: this.semesterValue , disabled: true});
    this.staff2= new FormControl('', Validators.required);
    this.subject2= new FormControl('', Validators.required);
   });
-  
+  //Add Form
+   this.staff= new FormControl('', Validators.required);
+   this.subject= new FormControl('', Validators.required);
+
+   //Edit Form 
+   this.staff2= new FormControl('', Validators.required);
+   this.subject2= new FormControl('', Validators.required);
   }
 
   public setMessage(message) {
@@ -114,7 +145,6 @@ export class SectionStaffComponent implements OnInit {
   onAddSubmit() {
     const newdata = {
       section:  this.id,
-      semester:  this.semesterValue,
       staff: this.staff.value,
       subject: this.subject.value
       
@@ -174,7 +204,6 @@ export class SectionStaffComponent implements OnInit {
       this.editsection = response[0];
       console.log(response);
       this.sectionValue = this.editsection.section;
-      this.semesterValue = this.editsection.semester;
       this.staffValue = this.editsection.staff;
       this.subjectValue = this.editsection.subject;
       this.IdValue = this.editsection._id;
@@ -187,7 +216,6 @@ export class SectionStaffComponent implements OnInit {
     if (this.staff2.value !="" && this.subject2.value != '') {
     const edata = {
       section:  this.id,
-      semester:  this.semesterValue,
       staff: this.staff2.value,
       subject: this.subject2.value,
     };
@@ -243,28 +271,12 @@ export class SectionStaffComponent implements OnInit {
     } else
     this.staffBysubjects = null;
   }
-
-  loadSubjectBySem(semester: any) {
-    if (semester) {
-      this.request.getSubjectbySem(semester).subscribe((response: any) => {
-        this.subjectBySemesters = response;
-        console.log('SubjectBySemester2',  this.subjectBySemesters);
-      }, (error) => {
-        console.log(error);
-      });
-    } else
-    this.subjectBySemesters = null;
-  }
-  // convenience getter for easy access to form fields
   get f() {
     return this.addForm.controls;
   }
   get f2() {
     return this.editForm.controls;
   }
-
-  
-  
 
   loadModal() {
     $("#addModal").modal("hide"); //or  $('#IDModal').modal('hide');
@@ -284,7 +296,6 @@ export class SectionStaffComponent implements OnInit {
   ngOnInit() {
     // this.auth.isValidUser();
     this.viewData(this.id);
-    // this.viewSectionDetails(this.id);
     this.loadInstitution();
     this.loadModal();
     this.loadSemesterByIns(this.institutionValue);
