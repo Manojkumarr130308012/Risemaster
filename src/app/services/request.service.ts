@@ -2576,6 +2576,11 @@ getPeriod() {
   this.url = `${this.endPoint}/period`;
   return this.http.get(this.url);
 }
+
+fetchPeriods() {
+  this.url = `${this.endPoint}/period/fetchPeriods`;
+  return this.http.get(this.url);
+}
 addPeriod(newdetail: any) {
   this.url = `${this.endPoint}/period/add`;
   return this.http.post(this.url, newdetail);
@@ -2594,6 +2599,11 @@ fetchPeriodById(id) {
 }
  getPeriodbyIns(institution) {
   this.url = `${this.endPoint}/period/fetchbyIns/?institution=` + institution;
+  return this.http.get(this.url);
+}
+
+fetchweekdays() {
+  this.url = `${this.endPoint}/weekDay/fetchweekdays`;
   return this.http.get(this.url);
 }
 

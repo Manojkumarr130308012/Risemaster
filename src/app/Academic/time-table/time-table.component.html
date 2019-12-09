@@ -1,0 +1,47 @@
+<!-- Bordered Table -->
+
+<section class="content">
+  <div class="container-fluid">
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    <strong>Time Table</strong></h2>
+
+            </div>
+            <div class="body table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th *ngFor="let period of periods">{{period.periodName}} <br /> {{period.fromTime}} - {{period.toTime}}</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let weekday of weekdays">
+                            <td>{{weekday.day}}</td>
+                            <td *ngFor="let period of periods">
+                              <div data-toggle="modal"  data-target="#editModal" (click)="onSelect(weekday?.day,period?.periodName )"><i class="material-icons">add_circle_outline</i></div>
+                            </td>
+                            <!-- <td> <div data-toggle="modal"  data-target="#editModal" (click)="onSelect(weekday?.day)"><i class="material-icons">add_circle_outline</i></div></td>
+                            <td> <div data-toggle="modal"  data-target="#editModal" (click)="onSelect(weekday?.day)"><i class="material-icons">add_circle_outline</i></div></td>
+                            <td> <div data-toggle="modal"  data-target="#editModal" (click)="onSelect(weekday?.day)"><i class="material-icons">add_circle_outline</i></div></td>
+                            <td> <div data-toggle="modal"  data-target="#editModal" (click)="onSelect()"><i class="material-icons">add_circle_outline</i></div></td>
+                            <td> <div data-toggle="modal"  data-target="#editModal" (click)="onSelect()"><i class="material-icons">add_circle_outline</i></div></td>
+                            <td> <div data-toggle="modal"  data-target="#editModal" (click)="onSelect()"><i class="material-icons">add_circle_outline</i></div></td> -->
+                        </tr>
+                        <!-- <tr *ngFor="let item of items">
+
+                        </tr> -->
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+<!-- #END# Bordered Table -->
