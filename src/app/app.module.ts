@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {   MatSnackBarModule} from '@angular/material';
+import { MatSnackBarModule} from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,18 +18,12 @@ import { DynamicScriptLoaderService } from './services/dynamic-script-loader.ser
 import { RequestService } from './../app/services/request.service';
 import { HttpClientModule } from '@angular/common/http';
 import {FileUploadModule} from 'ng2-file-upload';
-
-
-
-
 import * as moment from 'moment';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { OrderModule } from 'ngx-order-pipe';
 
 import { ArchwizardModule } from 'angular-archwizard';
-
-
 
 import { AcademicYearComponent } from './Master/academic-year/academic-year.component';
 import { UserDesignationComponent } from './Master/user-designation/user-designation.component';
@@ -119,7 +113,7 @@ import { SectionComponent } from './StudentMaster/section/section.component';
 import { SectionStaffComponent } from './StudentMaster/section-staff/section-staff.component';
 import { PeriodComponent } from './StaffMaster/period/period.component';
 
-
+import { TimeTableComponent } from './Academic/time-table/time-table.component';
 
 @NgModule({
   declarations: [
@@ -212,6 +206,7 @@ EditSubjectComponent,
 SectionComponent,
 SectionStaffComponent,
 PeriodComponent,
+TimeTableComponent
 
 
   ],

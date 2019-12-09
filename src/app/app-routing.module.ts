@@ -83,6 +83,8 @@ import { EditSubjectComponent } from './SubjectMaster/edit-subject/edit-subject.
 import { SectionComponent } from './StudentMaster/section/section.component';
 import { SectionStaffComponent } from './StudentMaster/section-staff/section-staff.component';
 
+import { TimeTableComponent } from './Academic/time-table/time-table.component';
+
 const routes: Routes = [
   // { path: '', component: LoginComponent },
   {
@@ -371,6 +373,11 @@ const routes: Routes = [
    component: AddSubjectComponent},
    { path: 'editSubject',
    component: EditSubjectComponent},
+
+   { path: 'time-table',
+   component: TimeTableComponent},
+
+
 ];
 
 @NgModule({
