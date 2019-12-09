@@ -82,6 +82,8 @@ import { AddSubjectComponent } from './SubjectMaster/add-subject/add-subject.com
 import { EditSubjectComponent } from './SubjectMaster/edit-subject/edit-subject.component';
 import { SectionComponent } from './StudentMaster/section/section.component';
 import { SectionStaffComponent } from './StudentMaster/section-staff/section-staff.component';
+import { TimetableEntryComponent } from './StaffMaster/TimeTable/timetable-entry/timetable-entry.component';
+import { TimetableAddComponent } from './StaffMaster/TimeTable/timetable-add/timetable-add.component';
 
 const routes: Routes = [
   // { path: '', component: LoginComponent },
@@ -294,7 +296,16 @@ const routes: Routes = [
   path: 'mode-of-enquiry',
   component: ModeOfEnquiryComponent
   },
-
+  //TimeTable
+  {
+    path: 'timetable-entry',
+    component: TimetableEntryComponent
+    },
+    {
+      path: 'timetable-add',
+      component: TimetableAddComponent
+      },
+  
     //  Vehicle Management
   { path: 'vehicle',
   component: VehicleMasterComponent },

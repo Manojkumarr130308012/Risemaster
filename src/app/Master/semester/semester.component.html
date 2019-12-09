@@ -33,6 +33,8 @@
                                             <th>Academic Year</th>
                                             <th>Semester Type</th>
                                             <th>Semester</th>
+                                            <th>From Date</th>
+                                            <th>To Date</th>
                                             <th >Action</th>
                                         </tr>
                                     </thead>
@@ -45,6 +47,8 @@
                                             <td>{{semester?.academicYeard[0].year}}</td>
                                             <td>{{semester?.semesterType}}</td>
                                             <td>{{semester?.semester}}</td>
+                                            <td>{{semester?.fromDate}}</td>
+                                            <td>{{semester?.toDate}}</td>
                                             <td>
                                                 <div class="btn btn-tbl-edit" data-toggle="modal"
                                                 data-target="#editModal">
@@ -127,6 +131,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label>From Date</label>
+                                    <input type="date" formControlName="fromDate" class="form-control" 
+                                        [ngClass]="{ 'is-invalid': submitted && f.fromDate.errors }" />
+                                    <div *ngIf="submitted && f.fromDate.errors" class="invalid-feedback">
+                                        <div *ngIf="f.fromDate.errors.required">From Date is required</div>
+                                    </div>
+                                </div>
                             </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -160,6 +172,14 @@
                                             [ngClass]="{ 'is-invalid': submitted && f.semester.errors }" />
                                         <div *ngIf="submitted && f.semester.errors" class="invalid-feedback">
                                             <div *ngIf="f.semester.errors.required">Semester is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>To Date</label>
+                                        <input type="date" formControlName="toDate" class="form-control" 
+                                            [ngClass]="{ 'is-invalid': submitted && f.toDate.errors }" />
+                                        <div *ngIf="submitted && f.toDate.errors" class="invalid-feedback">
+                                            <div *ngIf="f.toDate.errors.required">To Date is required</div>
                                         </div>
                                     </div>
                             </div>
@@ -232,6 +252,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label>From Date</label>
+                                    <input type="date" formControlName="fromDate2" class="form-control" 
+                                        [ngClass]="{ 'is-invalid': submitted && f2.fromDate2.errors }" />
+                                    <div *ngIf="submitted && f2.fromDate2.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.fromDate2.errors.required">From Date is required</div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -265,6 +293,14 @@
                                         [ngClass]="{ 'is-invalid': submitted && f2.semester2.errors }" />
                                     <div *ngIf="submitted && f2.semester2.errors" class="invalid-feedback">
                                         <div *ngIf="f2.semester2.errors.required">Semester is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>To Date</label>
+                                    <input type="date" formControlName="toDate2" class="form-control" 
+                                        [ngClass]="{ 'is-invalid': submitted && f2.toDate2.errors }" />
+                                    <div *ngIf="submitted && f2.toDate2.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.toDate2.errors.required">To Date is required</div>
                                     </div>
                                 </div>
                             </div>

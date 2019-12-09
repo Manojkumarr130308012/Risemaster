@@ -49,6 +49,8 @@ export class SemesterComponent implements OnInit {
   semesterTypeValue: any;
   academicyearByBatch: any;
   batch1: any;
+  fromDateValue: any;
+  toDateValue: any;
   constructor(
     private formBuilder: FormBuilder,
     private dynamicScriptLoader: DynamicScriptLoaderService,
@@ -64,7 +66,9 @@ export class SemesterComponent implements OnInit {
       batch:['', Validators.required],
       academicYear: ["", Validators.required],
       semesterType: ["", Validators.required],
-      semester: ["", Validators.required]
+      semester: ["", Validators.required],
+      fromDate: ["", Validators.required],
+      toDate: ["", Validators.required],
     });
     // Edit Form
     this.editForm = this.formBuilder.group({
@@ -73,7 +77,9 @@ export class SemesterComponent implements OnInit {
       batch2:['', Validators.required],
       academicYear2: ["", Validators.required],
       semesterType2: ["", Validators.required],
-      semester2: ["", Validators.required]
+      semester2: ["", Validators.required],
+      fromDate2: ["", Validators.required],
+      toDate2: ["", Validators.required],
     });
   }
 
@@ -219,6 +225,8 @@ loadacademicYearByBatch(batch) {
       this.academicYearValue = this.editsemester.academicYear;
       this.semesterTypeValue = this.editsemester.semesterType;
       this.semesterValue = this.editsemester.semester;
+      this.fromDateValue = this.editsemester.fromDate;
+      this.toDateValue = this.editsemester.toDate;
       this.IdValue = this.editsemester._id;
 
       this.editForm = this.formBuilder.group({
@@ -227,7 +235,9 @@ loadacademicYearByBatch(batch) {
         batch2: [this.batchValue, Validators.required],
         academicYear2: [this.academicYearValue, Validators.required],
         semesterType2: [this.semesterTypeValue, Validators.required],
-        semester2: [this.semesterValue, Validators.required]
+        semester2: [this.semesterValue, Validators.required],
+        fromDate2: [this.fromDateValue, Validators.required],
+        toDate2: [this.toDateValue, Validators.required]
       });
       console.log(this.editForm.value);
     });
@@ -240,6 +250,8 @@ loadacademicYearByBatch(batch) {
     }
 
     const edata = {
+      fromDate: this.editForm.get("fromDate2").value,
+      toDate: this.editForm.get("toDate2").value,
       semester: this.editForm.get("semester2").value,
       semesterType: this.editForm.get("semesterType2").value,
       batch: this.editForm.get("batch2").value,
