@@ -2451,6 +2451,10 @@ fetchSemesterById(id) {
   this.url = `${this.endPoint}/semester/fetchbyIns/?institution=` + institution;
   return this.http.get(this.url);
 }
+getSemesterbyYear(academicYear) {
+  this.url = `${this.endPoint}/semester/fetchbyAcademic/?academicYear=` + academicYear;
+  return this.http.get(this.url);
+}
 //Subject Staff
 getSubjectStaff() {
   this.url = `${this.endPoint}/subject-staff/aggregation`;
@@ -2536,6 +2540,14 @@ fetchSectionById(id) {
 }
 getSectionbycourseprogram(courseprogram) {
   this.url = `${this.endPoint}/section/fetchbycourseprogram/?courseprogram=` + courseprogram;
+  return this.http.get(this.url);
+}
+getSectionbyAcademicYear(academicYear) {
+  this.url = `${this.endPoint}/section/fetchbyAcademic/?academicYear=` + academicYear;
+  return this.http.get(this.url);
+}
+getSectionbySemester(semester) {
+  this.url = `${this.endPoint}/section/fetchbySemester/?semester=` + semester;
   return this.http.get(this.url);
 }
 //Staff-Section

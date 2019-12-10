@@ -86,6 +86,7 @@ import { TimetableEntryComponent } from './StaffMaster/TimeTable/timetable-entry
 import { TimetableAddComponent } from './StaffMaster/TimeTable/timetable-add/timetable-add.component';
 
 import { TimeTableComponent } from './Academic/time-table/time-table.component';
+import { TimetableMainComponent } from './Academic/timetable-main/timetable-main.component';
 
 const routes: Routes = [
   // { path: '', component: LoginComponent },
@@ -302,11 +303,11 @@ const routes: Routes = [
   {
     path: 'timetable-entry',
     component: TimetableEntryComponent
-    },
-    {
-      path: 'timetable-add',
-      component: TimetableAddComponent
-      },
+  },
+  {
+    path: 'timetable-add',
+    component: TimetableAddComponent
+  },
   
     //  Vehicle Management
   { path: 'vehicle',
@@ -384,9 +385,10 @@ const routes: Routes = [
    component: AddSubjectComponent},
    { path: 'editSubject',
    component: EditSubjectComponent},
-
    { path: 'time-table',
    component: TimeTableComponent},
+   { path: 'timetable-main',
+   component: TimetableMainComponent},
 
 
 ];

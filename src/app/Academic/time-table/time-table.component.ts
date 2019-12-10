@@ -9,7 +9,7 @@ import {
   FormGroup,
   FormBuilder
 } from "@angular/forms";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 declare const $: any;
 declare const M: any;
 declare const swal: any;
@@ -23,10 +23,18 @@ export class TimeTableComponent implements OnInit {
 
   periods : any;
   weekdays : any;
-
   items: any;
+  section: any;
 
-  constructor( private request: RequestService, private router: Router,private auth: AuthService) { }
+  constructor( private request: RequestService,
+     private router: Router,
+     private auth: AuthService,
+     private route: ActivatedRoute) {
+     this.route.queryParams.subscribe((params: any) => {
+      this.section = params.section;
+    });
+    console.log('SectionId-Timetable', this.section);
+   }
 
   viewTimeTablePeriods() {
     this.request.fetchPeriods().subscribe((response) => {
@@ -51,9 +59,16 @@ export class TimeTableComponent implements OnInit {
   }
 
   onSelect(item1, item2){
+    //timetable-entry
     console.log('item',item1);
     console.log('item2',item2);
-
+    this.router.navigate(['timetable-entry'], {
+      queryParams: {
+        section: this.section,
+        day: item1,
+        period: item2
+      }
+    });
   }
 
   ngOnInit() {

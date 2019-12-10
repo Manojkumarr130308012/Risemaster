@@ -18,7 +18,7 @@ declare const swal: any;
 })
 export class SectionComponent implements OnInit {
 
-  addForm: FormGroup;
+  addForm: FormGroup; 
   editForm: FormGroup;
   submitted = false;
   public section: any;

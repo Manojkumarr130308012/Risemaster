@@ -23,7 +23,7 @@
                         <tr *ngFor="let weekday of weekdays">
                             <td>{{weekday.day}}</td>
                             <td *ngFor="let period of periods">
-                              <div data-toggle="modal"  data-target="#editModal" (click)="onSelect(weekday?.day,period?.periodName )"><i class="material-icons">add_circle_outline</i></div>
+                              <div (click)="onSelect(weekday?.day,period?.periodName )"><i class="material-icons">add_circle_outline</i></div>
                             </td>
                             <!-- <td> <div data-toggle="modal"  data-target="#editModal" (click)="onSelect(weekday?.day)"><i class="material-icons">add_circle_outline</i></div></td>
                             <td> <div data-toggle="modal"  data-target="#editModal" (click)="onSelect(weekday?.day)"><i class="material-icons">add_circle_outline</i></div></td>

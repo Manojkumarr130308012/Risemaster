@@ -46,11 +46,22 @@
                                                                     <div class="table-responsive">
                                                                             <table id="tableExport"
                                                                             class="display table table-hover table-checkable order-column m-t-20 width-per-100">
-                                                                             
+                                                                            <!-- <thead>
+                                                                                    <tr>
+                                                                                    <th>S.No</th>
+                                                                                    <th>Subject Code</th>
+                                                                                    <th>Subject Name</th>
+                                                                                    <th>Faculty Name</th>
+                                                                                    <th>Action</th>
+                                                                                    </tr>
+                                                                                </thead> -->
                                                                                <tbody>
-                                                                                   <tr *ngFor="let feetype of feetypes?.response; let i=index">
+                                                                                   <tr *ngFor="let section of sections; let i=index">
                                                                                        <td>{{i +1 }}</td>
-                                                                                       <td>{{feetype?.feetype}}</td>
+                                                                                       <td><span style="font-weight: bold;">{{section.subjectd[0].subjectCode}}</span>-{{section.subjectd[0].subjectDescription}}handledBy{{section.staffd[0].firstName}}.{{section.staffd[0].lastName}} 
+                                                                                            <div (click)="onSelect()"></div>
+                                                                                       </td>
+                                                                                    
                                                                                        <!-- <td>
                                                                                            <div class="btn btn-tbl-edit" data-toggle="modal"
                                                                                            data-target="#editModal">
