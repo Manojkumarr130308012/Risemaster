@@ -2542,8 +2542,8 @@ getSectionbycourseprogram(courseprogram) {
   this.url = `${this.endPoint}/section/fetchbycourseprogram/?courseprogram=` + courseprogram;
   return this.http.get(this.url);
 }
-getSectionbyAcademicYear(academicYear) {
-  this.url = `${this.endPoint}/section/fetchbyAcademic/?academicYear=` + academicYear;
+getSemesterbyAcademicYear(academicYear) {
+  this.url = `${this.endPoint}/semester/fetchbyAcademic/?academicYear=` + academicYear;
   return this.http.get(this.url);
 }
 getSectionbySemester(semester) {
@@ -2618,5 +2618,17 @@ fetchweekdays() {
   this.url = `${this.endPoint}/weekDay/fetchweekdays`;
   return this.http.get(this.url);
 }
+
+
+addSubjecttoTimeTable(newPeriodData: any) {
+  this.url = `${this.endPoint}/time-table/add`;
+  return this.http.post(this.url, newPeriodData);
+}
+
+public getTimeTablebySec(filterSubjectStaff) {
+  this.url = `${this.endPoint}/time-table/fetchSubjectStaff`;
+  return this.http.post(this.url,filterSubjectStaff);
+}
+
 
 }

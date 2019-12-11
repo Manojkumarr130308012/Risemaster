@@ -17,11 +17,22 @@ export class StorageService {
     }
   }
 
+  getTimeTable(key: string) {
+    const rawTimeTableData = localStorage.getItem('getTimeTable');
+    try {
+      const TimeTableData = JSON.parse(rawTimeTableData);
+      return TimeTableData[key] ? TimeTableData[key] : null;
+    } catch (error) {
+      return '';
+    }
+  }
+
   set(userData) {
     localStorage.setItem('userData', JSON.stringify(userData));
   }
 
   clear() {
     localStorage.removeItem('userData');
+    localStorage.removeItem('getTimetTable');
   }
 }

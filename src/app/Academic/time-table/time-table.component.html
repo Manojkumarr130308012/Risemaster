@@ -1,47 +1,163 @@
 <!-- Bordered Table -->
 
 <section class="content">
-  <div class="container-fluid">
-<div class="row clearfix">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="card">
-            <div class="header">
-                <h2>
-                    <strong>Time Table</strong></h2>
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            <strong>Time Table</strong></h2>
 
-            </div>
-            <div class="body table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Day</th>
-                            <th *ngFor="let period of periods">{{period.periodName}} <br /> {{period.fromTime}} - {{period.toTime}}</th>
+                    </div>
+                    <div class="body table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Day</th>
+                                    <th *ngFor="let period of periods">{{period.periodName}} <br /> {{period.fromTime}}
+                                        - {{period.toTime}}</th>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let weekday of weekdays">
-                            <td>{{weekday.day}}</td>
-                            <td *ngFor="let period of periods">
-                              <div (click)="onSelect(weekday?.day,period?.periodName )"><i class="material-icons">add_circle_outline</i></div>
-                            </td>
-                            <!-- <td> <div data-toggle="modal"  data-target="#editModal" (click)="onSelect(weekday?.day)"><i class="material-icons">add_circle_outline</i></div></td>
-                            <td> <div data-toggle="modal"  data-target="#editModal" (click)="onSelect(weekday?.day)"><i class="material-icons">add_circle_outline</i></div></td>
-                            <td> <div data-toggle="modal"  data-target="#editModal" (click)="onSelect(weekday?.day)"><i class="material-icons">add_circle_outline</i></div></td>
-                            <td> <div data-toggle="modal"  data-target="#editModal" (click)="onSelect()"><i class="material-icons">add_circle_outline</i></div></td>
-                            <td> <div data-toggle="modal"  data-target="#editModal" (click)="onSelect()"><i class="material-icons">add_circle_outline</i></div></td>
-                            <td> <div data-toggle="modal"  data-target="#editModal" (click)="onSelect()"><i class="material-icons">add_circle_outline</i></div></td> -->
-                        </tr>
-                        <!-- <tr *ngFor="let item of items">
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let weekday of weekdays">
+                                    <td>{{weekday.day}}</td>
+                                    <td *ngFor="let period of periods">
+                                            <!-- {{weekday._id}}
+                                            <br />{{period._id}} -->
+                                        <div *ngFor="let SubjectStaff of SubjectStaffs">
+                                            
+                                            {{SubjectStaff?.subjectDetails[0].subjectDescription}} </div> 
+                                        <div data-toggle="modal" data-target="#addModal"
+                                            (click)="onSelect(weekday?._id,period?._id )"><i
+                                                class="material-icons">add_circle_outline</i></div>
+                                    </td>
+                                    <!-- <td> <div data-toggle="modal"  data-target="#editModal" (click)="onSelect(weekday?.day)"><i class="material-icons">add_circle_outline</i></div></td> -->
+                        
+                                </tr>
+                                <!-- <tr *ngFor="let item of items">
 
                         </tr> -->
 
-                    </tbody>
-                </table>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- #END# Bordered Table -->
+
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="formModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="formModal">Add Subject & Staff</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addForm">
+                    <div class="row">
+                        <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+                            <div class="panel-group" id="accordion_17" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-col-teal">
+                                    <div class="panel-heading" role="tab" id="headingFour_17">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse"
+                                                data-parent="#accordion_17" href="#collapseFour_17"
+                                                aria-expanded="false" aria-controls="collapseFour_17">
+                                                Division Subject
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseFour_17" class="panel-collapse collapse" role="tabpanel"
+                                        aria-labelledby="headingFour_17">
+                                        <div class="panel-body">
+                                            <!--///-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-col-cyan">
+                                    <div class="panel-heading" role="tab" id="headingTwo_17">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse"
+                                                data-parent="#accordion_17" href="#collapseTwo_17"
+                                                aria-controls="collapseTwo_17">Class Section Subject
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo_17" class="panel-collapse collapse" role="tabpanel"
+                                        aria-labelledby="headingTwo_17">
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table id="tableExport"
+                                                    class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                                    <!-- <thead>
+                                                                            <tr>
+                                                                            <th>S.No</th>
+                                                                            <th>Subject Code</th>
+                                                                            <th>Subject Name</th>
+                                                                            <th>Faculty Name</th>
+                                                                            <th>Action</th>
+                                                                            </tr>
+                                                                        </thead> -->
+                                                    <tbody>
+                                                        <tr *ngFor="let section of sections; let i=index">
+                                                            <td>{{i +1 }}</td>
+                                                            <td
+                                                                (click)="onSelectSubjectwithStaff(section?.subject,section?.staff)">
+                                                                <span
+                                                                    style="font-weight: bold;">{{section.subjectd[0].subjectCode}}</span>
+                                                                - {{section.subjectd[0].subjectDescription}} handled By
+                                                                {{section.staffd[0].firstName}}.{{section.staffd[0].lastName}}
+
+                                                            </td>
+
+                                                            <!-- <td>
+                                                                                   <div class="btn btn-tbl-edit" data-toggle="modal"
+                                                                                   data-target="#editModal">
+                                                                                           <i class="material-icons"
+                                                                                           (click)="onEdit(feetype) ">create</i>
+                                                                                   </div>
+                                                                                      
+                                                                                   </td> -->
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-col-grey">
+                                    <div class="panel-heading" role="tab" id="headingThree_17">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse"
+                                                data-parent="#accordion_17" href="#collapseThree_17"
+                                                aria-controls="collapseThree_17">OE/CBCE Subject
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseThree_17" class="panel-collapse collapse" role="tabpanel"
+                                        aria-labelledby="headingThree_17">
+                                        <div class="panel-body">
+                                            <!--/////-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default" (click)="addPeriodSubject()">Add</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
-</div>
-</section>
-<!-- #END# Bordered Table -->

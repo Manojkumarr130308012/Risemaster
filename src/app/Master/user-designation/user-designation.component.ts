@@ -138,7 +138,7 @@ export class UserDesignationComponent implements OnInit {
 
   viewDesignation() {
     this.request.getDesignation().subscribe((response: any) => {
-      localStorage.setItem('storeDesignation', JSON.stringify(response));
+     // localStorage.setItem('storeDesignation', JSON.stringify(response));
       this.designations = response;
 
     }, (error) => {

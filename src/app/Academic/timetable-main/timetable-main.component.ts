@@ -33,6 +33,7 @@ export class TimetableMainComponent implements OnInit {
   courseprogrambyIns: any;
   semestersByIns: any;
   semestersByYear: any;
+  institution: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -102,7 +103,7 @@ export class TimetableMainComponent implements OnInit {
     onAcademicYearChange(academicYear: any) {
       console.log('AcademicYear' ,academicYear);
       if (academicYear) {
-        this.request.getSectionbyAcademicYear(academicYear).subscribe((response: any) => {
+        this.request.getSemesterbyAcademicYear(academicYear).subscribe((response: any) => {
           this.semestersByYear = response;
           console.log('SemesterByYear',  this.semestersByYear);
         }, (error) => {
@@ -129,11 +130,12 @@ export class TimetableMainComponent implements OnInit {
     batch: this.batch.value,
     academicYear:  this.academicYear.value,
     semester:this.semester.value,
-    section:this.section.value
+    section:this.section.value,
+    institution: this.institutionValue
   }
   console.log('TimeTable', timetable);
   console.log('SectionId...', timetable.section);
-  localStorage.setItem('timetable', JSON.stringify(timetable));
+  localStorage.setItem('getTimetTable', JSON.stringify(timetable));
   this.router.navigate(['time-table'], {
     queryParams: {
       section: timetable.section
