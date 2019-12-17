@@ -89,7 +89,7 @@
                                     </select>
                                 </div>
                             </div>
-                    
+
                         </div>
                         <div class="col-md-6">
                             <div class="form-group form-float">
@@ -97,7 +97,7 @@
                                 <div class="form-line">
                                     <select class="browser-default form-control" [formControl]="staff" name="staff" required>
                                         <option>Choose your staff</option>
-                                        <option *ngFor="let staff of staffBysubjects" [value]="staff.staffdetails[0]._id">
+                                        <option *ngFor="let staff of staffBysubjects" [value]="staff.staffName">
                                             {{staff.staffdetails[0].firstName}} {{staff.staffdetails[0].lastName}}
                                         </option>
                                     </select>
@@ -146,9 +146,9 @@
                                 <label>Staff<span class="asterisk">*</span></label>
                                 <div class="form-line">
                                     <select class="browser-default form-control" [formControl]="staff2" name="staff2" required>
-                                        <option>Choose your staff</option>
+                                        <option value="">Choose your staff</option>
                                         <option *ngFor="let staff of staffBysubjects" [value]="staff.staffdetails[0]._id">
-                                            {{staff.staffdetails[0].firstName}} {{staff.staffdetails[0].lastName}}
+                                            {{staff.staffdetails[0].firstName}}
                                         </option>
                                     </select>
                                 </div>

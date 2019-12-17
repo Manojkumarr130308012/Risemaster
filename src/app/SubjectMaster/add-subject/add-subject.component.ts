@@ -13,7 +13,7 @@ declare const swal: any;
 })
 export class AddSubjectComponent implements OnInit {
 
-  
+
   registerForm: FormGroup;
   editForm: FormGroup;
   submitted = false;
@@ -36,7 +36,7 @@ export class AddSubjectComponent implements OnInit {
   markDefinition: any;
   effectiveTo: any;
   effectiveFrom: any;
-  topicCoverage : any; 
+  topicCoverage : any;
   subjects: any;
   subjectTypes: any;
   subjectclassifications: any;
@@ -67,7 +67,7 @@ export class AddSubjectComponent implements OnInit {
      this.institutionValue = this.IdValue;
      this.IdValue1 = this.userInfo.department;
      this.departmentValue = this.IdValue1;
- 
+
     this.institution = new FormControl({value:this.institutionValue, disabled: true});
     this.department = new FormControl( this.departmentValue);
     // Add Form
@@ -237,7 +237,7 @@ export class AddSubjectComponent implements OnInit {
         if (res.status == "success") {
           swal("Added Sucessfully");
           this.loadModal();
-          this.viewData();
+          this.viewData(this.institutionValue);
         } else if (res.status == "error") {
           swal(res.error);
         }
@@ -307,8 +307,8 @@ loadCourseProgramByIns(Institution: any) {
     this.courseprogrambyIns = null;
   }
   // To display Subject Type
-  viewData() {
-    this.request.getSubject().subscribe(
+  viewData(institutionValue) {
+    this.request.getSubject(institutionValue).subscribe(
       response => {
         this.subjects = response;
         console.log(this.subjects);
@@ -332,6 +332,15 @@ loadCourseProgramByIns(Institution: any) {
            id: subject._id,
          }
         });
+  }
+
+  onDelete(subjectid){
+    this.request.deleteSubject(subjectid).subscribe(res => {
+      console.log('subjectid',subjectid);
+      this.viewData(this.institutionValue);
+      swal("Deleted");
+    });
+
   }
 
   async startScript() {
@@ -373,7 +382,7 @@ loadCourseProgramByIns(Institution: any) {
   ngOnInit() {
     //this.auth.isValidUser();
     this.startScript();
-    this.viewData();
+    this.viewData(this.institutionValue);
     this.loadModal();
     this.loadInstitution();
     this.loadSubjectType();

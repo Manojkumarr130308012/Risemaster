@@ -23,23 +23,15 @@
                             <tbody>
                                 <tr *ngFor="let weekday of weekdays">
                                     <td>{{weekday.day}}</td>
-                                    <td *ngFor="let period of periods">
-                                            <!-- {{weekday._id}}
-                                            <br />{{period._id}} -->
-                                        <div *ngFor="let SubjectStaff of SubjectStaffs">
-                                            
-                                            {{SubjectStaff?.subjectDetails[0].subjectDescription}} </div> 
-                                        <div data-toggle="modal" data-target="#addModal"
-                                            (click)="onSelect(weekday?._id,period?._id )"><i
-                                                class="material-icons">add_circle_outline</i></div>
-                                    </td>
-                                    <!-- <td> <div data-toggle="modal"  data-target="#editModal" (click)="onSelect(weekday?.day)"><i class="material-icons">add_circle_outline</i></div></td> -->
-                        
+                                    <td *ngFor="let period of Getperiods(periods,weekday)">
+                                      <div *ngFor="let SubjectStaff of GetSubjectDetails(period._id,weekday._id)">
+                                        {{SubjectStaff?.subjectDetails[0].subjectDescription}} <br />  {{SubjectStaff?.staffDetails[0].firstName}}</div>
+                                    <div data-toggle="modal" data-target="#addModal"
+                                        (click)="onSelect(weekday?._id,period?._id )"><i
+                                            class="material-icons">add_circle_outline</i></div>
+
+                                          </td>
                                 </tr>
-                                <!-- <tr *ngFor="let item of items">
-
-                        </tr> -->
-
                             </tbody>
                         </table>
                     </div>
@@ -96,20 +88,12 @@
                                             <div class="table-responsive">
                                                 <table id="tableExport"
                                                     class="display table table-hover table-checkable order-column m-t-20 width-per-100">
-                                                    <!-- <thead>
-                                                                            <tr>
-                                                                            <th>S.No</th>
-                                                                            <th>Subject Code</th>
-                                                                            <th>Subject Name</th>
-                                                                            <th>Faculty Name</th>
-                                                                            <th>Action</th>
-                                                                            </tr>
-                                                                        </thead> -->
+
                                                     <tbody>
                                                         <tr *ngFor="let section of sections; let i=index">
-                                                            <td>{{i +1 }}</td>
-                                                            <td
-                                                                (click)="onSelectSubjectwithStaff(section?.subject,section?.staff)">
+                                                            <td>
+                                                              {{i +1 }}</td>
+                                                            <td (click)="onSelectSubjectwithStaff(section?.subject,section?.staff)">
                                                                 <span
                                                                     style="font-weight: bold;">{{section.subjectd[0].subjectCode}}</span>
                                                                 - {{section.subjectd[0].subjectDescription}} handled By
@@ -117,14 +101,6 @@
 
                                                             </td>
 
-                                                            <!-- <td>
-                                                                                   <div class="btn btn-tbl-edit" data-toggle="modal"
-                                                                                   data-target="#editModal">
-                                                                                           <i class="material-icons"
-                                                                                           (click)="onEdit(feetype) ">create</i>
-                                                                                   </div>
-                                                                                      
-                                                                                   </td> -->
                                                         </tr>
                                                     </tbody>
                                                 </table>

@@ -2385,8 +2385,8 @@ public fetchExtMarkbymarkDef(markDefinition) {
 }
 
 //Subject Add
-getSubject() {
-  this.url = `${this.endPoint}/subject-add/aggregation`;
+getSubject(id) {
+  this.url = `${this.endPoint}/subject-add/aggregation?id=` + id;
   return this.http.get(this.url);
 }
 addSubject(newdetail: any) {
@@ -2628,6 +2628,18 @@ addSubjecttoTimeTable(newPeriodData: any) {
 public getTimeTablebySec(filterSubjectStaff) {
   this.url = `${this.endPoint}/time-table/fetchSubjectStaff`;
   return this.http.post(this.url,filterSubjectStaff);
+}
+
+
+public filterSubExist(filterSubExist) {
+  this.url = `${this.endPoint}/time-table/fetchSubjectExist`;
+  return this.http.post(this.url,filterSubExist);
+}
+
+deleteExistSubject(id) {
+  console.log('id',id);
+  this.url = `${this.endPoint}/time-table/delete?id=` + id;
+  return this.http.delete(this.url);
 }
 
 

@@ -29,14 +29,15 @@ export class TimeTableComponent implements OnInit {
   sectionid: any;
   day: any;
   period: any;
-  id: any;
+
   staff: any;
   subject: any;
   subjectName: any;
-  SubjectStaffs: any;
+  subjectStaffs: any;
 
-  timetableInfo:  any;
-  timetable:  any;
+  timetableInfo: any;
+  timetableInfo2: any;
+  timetable: any;
   insValue: any;
   courseProgramValue: any;
   academicYearValue: any;
@@ -45,44 +46,44 @@ export class TimeTableComponent implements OnInit {
 
   ins: any;
 
+  subjectCheckbox: any;
+  subjectExist: any;
+
+  subjectIDExist: any;
+
 
   constructor(private request: RequestService,
     private router: Router,
     private auth: AuthService,
     private route: ActivatedRoute, private formBuilder: FormBuilder) {
 
-      this.timetableInfo = localStorage.getItem('getTimeTable');
-      
-      this.timetableInfo = JSON.parse(this.timetableInfo);
-      
-      this.insValue = this.timetableInfo.institution;
-      this.ins= this.insValue;
-      //this.courseProgramValue = this.timetableInfo.courseprogram;
-      //this.academicYearValue = this.timetableInfo.academicYear;
-      //this.sectionValue = this.timetableInfo.section;
-      //this.semesterValue = this.timetableInfo.semester;
+    this.timetableInfo = localStorage.getItem('getTimeTable');
+
+    this.timetableInfo = JSON.parse(this.timetableInfo);
+
+    this.insValue = this.timetableInfo.institution;
+    //this.ins= this.insValue;
+    this.courseProgramValue = this.timetableInfo.courseprogram;
+    this.academicYearValue = this.timetableInfo.academicYear;
+    this.sectionValue = this.timetableInfo.section;
+    this.semesterValue = this.timetableInfo.semester;
 
     this.route.queryParams.subscribe((params: any) => {
-      this.sectionid = params.section;      
-    this.day = params.day;
-    this.period = params.period;
+      this.sectionid = params.section;
+      this.day = params.day;
+      this.period = params.period;
       // this.day = params.day;
       //this.period = params.period;
       // this.id = params.id;
     });
 
-    console.log('SectionId-Timetable', this.sectionid);
-
-  console.log('this.ins',this.ins);
-   
-
   }
 
   viewTimeTablePeriods() {
     this.request.fetchPeriods().subscribe((response) => {
-      console.log('fetchPeriods', response);
+
       this.periods = response;
-      console.log(this.periods);
+      // console.log(this.periods);
     }),
       error => {
         console.log(error);
@@ -91,20 +92,49 @@ export class TimeTableComponent implements OnInit {
 
   viewWeekdays() {
     this.request.fetchweekdays().subscribe((response) => {
-      console.log('fetchweekdays', response);
+
       this.weekdays = response;
-      console.log(this.weekdays);
+      // console.log(this.weekdays);
     }),
       error => {
         console.log(error);
       }
   }
 
+  Getperiods(period, weekday) {
+
+    return period;
+
+
+  }
+
+  GetSubjectDetails( period: any, weekday: any): any {
+    let result = this.subjectStaffs.filter(x => x.period == period && x.day == weekday);
+    return result;
+
+  }
+
+
+  fetchtimeTablebySection(sectionid) {
+    //fetch subject / staff and bind map to time table cell
+    const filterSubjectStaff = {
+      sectionid: sectionid
+    };
+    this.request.getTimeTablebySec(filterSubjectStaff).subscribe(response => {
+      this.subjectStaffs = response;
+       //console.log('Section_Staff-By-Section', this.subjectStaffs);
+    },
+      error => {
+        console.log(error);
+      }
+    );
+
+  }
 
   loadSubjectWithStaff(sectionid) {
     this.request.getSectionStaffbySec(sectionid).subscribe((response: any) => {
       this.sections = response;
-      console.log('SectionsDetails BySection', this.sections);
+      // console.log('SectionsDetails BySection', this.sections);
     }, (error) => {
       console.log(error);
     });
@@ -114,9 +144,7 @@ export class TimeTableComponent implements OnInit {
 
     this.day = day;
     this.period = period;
-    // //timetable-entry
-    // console.log('item', day);
-    // console.log('item2', period);
+
     this.router.navigate([], {
       queryParams: {
         section: this.sectionid,
@@ -128,14 +156,14 @@ export class TimeTableComponent implements OnInit {
   }
 
   onSelectSubjectwithStaff(subjectCode, staff) {
-    this.subject = subjectCode;  
-    this.staff = staff;   
+    this.subject = subjectCode;
+    this.staff = staff;
   }
 
   addPeriodSubject() {
     const newPeriodData = {
       sectionid: this.sectionid,
-      staff: this.staff,     
+      staff: this.staff,
       subject: this.subject,
       period: this.period,
       day: this.day,
@@ -144,50 +172,97 @@ export class TimeTableComponent implements OnInit {
       academicYear: this.academicYearValue,
       semester: this.semesterValue
     };
-    
-    
-    console.log('newPeriodData',newPeriodData);
-    this.request.addSubjecttoTimeTable(newPeriodData).subscribe((response: any) => {
-      if (response.status == 'error') {
-        console.log(response.error);
-        swal(response.error);
-      
+
+    let period = this.period;
+    let day = this.day;
+
+
+    const filterSubjectExist = {
+      period: period,
+      day: day
+    };
+
+   // console.log('filterSubjectExist', filterSubjectExist);
+
+    this.request.filterSubExist(filterSubjectExist).subscribe(response => {
+      this.subjectExist=response[0];
+      if(response[0] != undefined){
+      this.subjectIDExist=response[0]._id;}
+      else{this.subjectIDExist= null}
+
+      if(this.subjectIDExist != null || this.subjectIDExist != ''){
+      this.DeleteExistOne(this.subjectIDExist);
       }
-      else if (response.status == 'success') {
-        console.log(response);
-        swal("Added Sucessfully");
-        //  this.viewPeriod();
-        this.loadModal();
+      else if(this.subjectIDExist == null) {
+
+      this.request.addSubjecttoTimeTable(newPeriodData).subscribe((response: any) => {
+        if (response.status == 'error') {
+          console.log(response.error);
+          swal(response.error);
+        }
+        else if (response.status == 'success') {
+
+          swal("Added Sucessfully");
+          this.fetchtimeTablebySection(this.sectionid);
+          this.loadModal();
+        }
+
+      }, (error) => {
+        console.log(error);
+      });
       }
 
-    }, (error) => {
+    },
+      error => {
+        console.log(error);
+      }
+    );
+  }
 
-    console.log(error);
+    DeleteExistOne(subjectIDExist: any){
+
+      this.request.deleteExistSubject(subjectIDExist).subscribe((res : any) => {
+        if (res.status == 'success') {
+        swal(" Deleted Successfully ");
+        }
+       // this.fetchtimeTablebySection(this.sectionid);
+
+       const newPeriodData = {
+        sectionid: this.sectionid,
+        staff: this.staff,
+        subject: this.subject,
+        period: this.period,
+        day: this.day,
+        institution: this.insValue,
+        courseProgram: this.courseProgramValue,
+        academicYear: this.academicYearValue,
+        semester: this.semesterValue
+      };
+     // console.log('newPeriodData',newPeriodData);
+      this.request.addSubjecttoTimeTable(newPeriodData).subscribe((response: any) => {
+        if (response.status == 'error') {
+          console.log(response.error);
+          swal(response.error);
+        }
+        else if (response.status == 'success') {
+         // console.log(response);
+          swal("Added Sucessfully");
+          this.fetchtimeTablebySection(this.sectionid);
+          this.loadModal();
+        }
+
+      }, (error) => {
+        console.log(error);
+      });
 
     });
   }
-fetchtimeTablebySection(sectionid, day, period){
-//fetch subjaect / staff and bind to time table cell
-const filterSubjectStaff = {
-  sectionid: sectionid
 
-};
-
-  this.request.getTimeTablebySec(filterSubjectStaff).subscribe(response => {
-    this.SubjectStaffs = response;
-    console.log('Section_Staff-By-Section', this.SubjectStaffs);
-  },
-  error => {
-    console.log(error);
-  }
-);
-
-}
 
 
   loadModal() {
     $("#addModal").modal("hide"); //or  $('#IDModal').modal('hide');
-    $("#addModal").on("hidden.bs.modal", function() {
+    $("#addModal").on("hidden.bs.modal", function () {
       $(this)
         .find("form")
         .trigger("reset");
@@ -200,7 +275,7 @@ const filterSubjectStaff = {
     this.viewTimeTablePeriods();
 
     this.viewWeekdays();
-    this.fetchtimeTablebySection(this.sectionid, this.day,this.period);
+    this.fetchtimeTablebySection(this.sectionid);
   }
 
 }

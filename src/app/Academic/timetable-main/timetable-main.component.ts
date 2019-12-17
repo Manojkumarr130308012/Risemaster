@@ -40,7 +40,7 @@ export class TimetableMainComponent implements OnInit {
     private dynamicScriptLoader: DynamicScriptLoaderService,
     private request: RequestService,
     private router: Router,
-  ) { 
+  ) {
      //Get institution & department  value from localstorage
      this.userInfo = localStorage.getItem('userData');
      this.userInfo = JSON.parse(this.userInfo);
@@ -135,7 +135,7 @@ export class TimetableMainComponent implements OnInit {
   }
   console.log('TimeTable', timetable);
   console.log('SectionId...', timetable.section);
-  localStorage.setItem('getTimetTable', JSON.stringify(timetable));
+  localStorage.setItem('getTimeTable', JSON.stringify(timetable));
   this.router.navigate(['time-table'], {
     queryParams: {
       section: timetable.section

@@ -77,7 +77,7 @@
                           <select  id="select" [(ngModel)]="selectedinstitution" class="browser-default form-control"
                               formControlName="institution"  (change)="onInstitutionChange($event.target.value)"
                               [ngClass]="{ 'is-invalid': submitted && f.institution.errors }">
-                              <option  disabled selected>Choose your institution</option>
+                              <option  selected>Choose your institution</option>
                               <option  *ngFor="let institution of institutions" [value]="institution._id">{{institution.institution_name}}</option>
                               </select>
                               <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">
@@ -93,7 +93,7 @@
                           <select id="select2" [(ngModel)]="selectedcoursecategory"
                               class="browser-default form-control" formControlName="coursecategory"
                               [ngClass]="{ 'is-invalid': submitted && f.coursecategory.errors }">
-                              <option disabled selected>Choose your course-category</option>
+                              <option selected>Choose your course-category</option>
                               <option *ngFor="let coursecategory of coursecategories?.response"
                                   [value]="coursecategory._id">{{coursecategory?.coursecategory}}</option>
                               </select>

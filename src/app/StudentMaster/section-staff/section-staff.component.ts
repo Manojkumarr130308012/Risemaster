@@ -112,17 +112,11 @@ export class SectionStaffComponent implements OnInit {
    this.staff= new FormControl('', Validators.required);
    this.subject= new FormControl('', Validators.required);
 
-   //Edit Form 
+   //Edit Form
    this.staff2= new FormControl('', Validators.required);
    this.subject2= new FormControl('', Validators.required);
   });
-  //Add Form
-   this.staff= new FormControl('', Validators.required);
-   this.subject= new FormControl('', Validators.required);
 
-   //Edit Form 
-   this.staff2= new FormControl('', Validators.required);
-   this.subject2= new FormControl('', Validators.required);
   }
 
   public setMessage(message) {
@@ -147,7 +141,7 @@ export class SectionStaffComponent implements OnInit {
       section:  this.id,
       staff: this.staff.value,
       subject: this.subject.value
-      
+
     };
     this.request.addSectionStaff(newdata).subscribe((res: any) => {
         if (res.status == "success") {
@@ -202,14 +196,15 @@ export class SectionStaffComponent implements OnInit {
     this.Id = semester._id;
     this.request.fetchSectionStaffById(this.Id).subscribe(response => {
       this.editsection = response[0];
-      console.log(response);
+      console.log('this.editsection',this.editsection);
       this.sectionValue = this.editsection.section;
       this.staffValue = this.editsection.staff;
+      console.log('this.staffValue',this.staffValue);
       this.subjectValue = this.editsection.subject;
       this.IdValue = this.editsection._id;
-
-      this.staff2 = new FormControl(this.staffValue, Validators.required);
       this.subject2 = new FormControl(this.subjectValue, Validators.required);
+      this.staff2 = new FormControl(this.staffValue, Validators.required);
+
     });
   }
   onEditSubmit() {
@@ -260,7 +255,7 @@ export class SectionStaffComponent implements OnInit {
     } else
       this.staffBysubjects = null;
   }
-  loadStaffBySubject(subject: any) {
+ /* loadStaffBySubject(subject: any) {
     if (subject) {
       this.request.getStaffBySubject(subject).subscribe((response) => {
         this.staffBysubjects = response;
@@ -270,7 +265,7 @@ export class SectionStaffComponent implements OnInit {
       });
     } else
     this.staffBysubjects = null;
-  }
+  }*/
   get f() {
     return this.addForm.controls;
   }
