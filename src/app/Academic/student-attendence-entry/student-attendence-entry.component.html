@@ -1,0 +1,66 @@
+<section class="content">
+    <div class="container-fluid">
+        <!-- Table Start-->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            <strong>Attendence Entry</strong>
+                        </h2>
+
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table id="tableExport"
+                                class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Roll. No</th>
+                                        <th>Reg. No</th>
+                                        <th>Student Name</th>
+                                        <th>Attendence</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let studentDetail of studentDetails; let i=index">
+                                        <td>{{i +1 }}</td>
+                                        <td>{{studentDetail?.rollNo}}</td>
+                                        <td>{{studentDetail?.regNo}}</td>
+                                        <td>{{studentDetail?.studentDetails[0].firstName}} {{studentDetail?.studentDetails[0].lastName}}</td>
+
+                                        <td >
+                                          <!-- <div *ngFor="let attendenceDetail of attendenceDetails; let idx=index" class="radio-inline">
+                                              <input type="radio" name="attendencegroup" [checked]="studentDetail?.studentAttendence === Present" (change)="onChange($event,studentDetail?._id)"  value={{attendenceDetail.attendencePresent}}/>
+                                          </div> -->
+                                              <label>
+                                                <input type="radio" name="attendencegroup{{i+1}}" (change)="onChange($event, studentDetail?._id)" value="Present" [ngModel]="studentDetail?.studentAttendence" />
+                                              <span>Present</span>
+                                            </label>
+                                            <label>
+                                                <input  type="radio" name="attendencegroup{{i+1}}" (change)="onChange($event, studentDetail?._id)" value="Absent" [ngModel]="studentDetail?.studentAttendence" />
+                                                <span>Absent</span>
+                                            </label>
+                                                 <!-- <label>
+                                                    <input type="radio" name="attendencegroup{{i+1}}"  (change)="onChange($event,studentDetail?._id)"  value={{attendenceDetail}}/>
+                                                    <span>{{attendenceDetail}}</span>
+                                                </label> -->
+                                                <!-- <label>
+                                                    <input name="attendencegroup{{i+1}}"  type="radio" id="absent" value="attendenceDetail.attendenceAbsent"/>
+                                                    <span>Absent</span>
+                                                </label> -->
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table End -->
+    </div>
+</section>

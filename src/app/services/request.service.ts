@@ -2636,10 +2636,48 @@ public filterSubExist(filterSubExist) {
   return this.http.post(this.url,filterSubExist);
 }
 
+public filterPeriodSubject(filterPeriodExist) {
+  this.url = `${this.endPoint}/time-table/filterPeriodExist`;
+  return this.http.post(this.url,filterPeriodExist);
+}
+
+
+
+getStudentDetailsbySection(sectionId) {
+  this.url = `${this.endPoint}/time-table/fetchStudentDetails?sectionId=` + sectionId;
+  return this.http.get(this.url);
+}
+
+
 deleteExistSubject(id) {
-  console.log('id',id);
+  //console.log('id',id);
   this.url = `${this.endPoint}/time-table/delete?id=` + id;
   return this.http.delete(this.url);
+}
+
+
+addStudentstoAttendenceEntry(newData: any) {
+  console.log('newData',newData);
+  this.url = `${this.endPoint}/studentAttendence/add`;
+  return this.http.post(this.url, newData);
+}
+
+public filterStudentAttendenceEntryExist(filterAttendenceEntryExist) {
+  this.url = `${this.endPoint}/studentAttendence/fetchAttendenceEntryExist`;
+  return this.http.post(this.url,filterAttendenceEntryExist);
+}
+
+public getStudentAttendenceDetails(attendenceDetails) {
+  this.url = `${this.endPoint}/studentAttendence/fetchStudentAttendenceDetails`;
+  return this.http.post(this.url, attendenceDetails);
+}
+
+
+updateAttedenceDetails(id, body) {
+
+  this.url = `${this.endPoint}/studentAttendence/update?id=${id}`;
+  return this.http.put(this.url, body);
+
 }
 
 

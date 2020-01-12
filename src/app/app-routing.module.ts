@@ -87,6 +87,10 @@ import { TimetableAddComponent } from './StaffMaster/TimeTable/timetable-add/tim
 
 import { TimeTableComponent } from './Academic/time-table/time-table.component';
 import { TimetableMainComponent } from './Academic/timetable-main/timetable-main.component';
+import { StudentAttendenceEntryComponent } from './Academic/student-attendence-entry/student-attendence-entry.component';
+import { StudentAttendenceComponent } from './Academic/student-attendence/student-attendence.component';
+
+
 
 const routes: Routes = [
   // { path: '', component: LoginComponent },
@@ -308,7 +312,7 @@ const routes: Routes = [
     path: 'timetable-add',
     component: TimetableAddComponent
   },
-  
+
     //  Vehicle Management
   { path: 'vehicle',
   component: VehicleMasterComponent },
@@ -390,6 +394,14 @@ const routes: Routes = [
    { path: 'timetable-main',
    component: TimetableMainComponent},
 
+   {
+     path:'student-attendence',
+     component: StudentAttendenceComponent
+   },
+   {
+    path:'student-attendence-entry',
+    component: StudentAttendenceEntryComponent
+   }
 
 ];
 

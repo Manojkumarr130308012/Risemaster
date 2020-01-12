@@ -117,6 +117,9 @@ import { TimetableAddComponent } from './StaffMaster/TimeTable/timetable-add/tim
 
 import { TimeTableComponent } from './Academic/time-table/time-table.component';
 import { TimetableMainComponent } from './Academic/timetable-main/timetable-main.component';
+import { StudentAttendenceEntryComponent } from './Academic/student-attendence-entry/student-attendence-entry.component';
+import { StudentAttendenceComponent } from './Academic/student-attendence/student-attendence.component';
+
 
 @NgModule({
   declarations: [
@@ -212,7 +215,8 @@ PeriodComponent,
 TimetableEntryComponent,
 TimetableAddComponent,
 TimeTableComponent,
-TimetableMainComponent
+TimetableMainComponent,StudentAttendenceEntryComponent,
+StudentAttendenceComponent
 
   ],
   imports: [
