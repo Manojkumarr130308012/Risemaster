@@ -132,7 +132,7 @@
                                 <label>Subject<span class="asterisk">*</span></label>
                                 <div class="form-line">
                                     <select class="browser-default form-control" [formControl]="subject2" name="subject2"
-                                        (change)="onSubjectChange($event.target.value)" required>
+                                         required>
                                         <option>Choose your subject</option>
                                         <option *ngFor="let subject of subjectBySemesters" [value]="subject._id">
                                             {{subject?.subjectDescription}}
@@ -146,9 +146,9 @@
                                 <label>Staff<span class="asterisk">*</span></label>
                                 <div class="form-line">
                                     <select class="browser-default form-control" [formControl]="staff2" name="staff2" required>
-                                        <option value="">Choose your staff</option>
+                                        <option>Choose your staff</option>
                                         <option *ngFor="let staff of staffBysubjects" [value]="staff.staffdetails[0]._id">
-                                            {{staff.staffdetails[0].firstName}}
+                                            {{staff.staffdetails[0].firstName}}  {{staff.staffdetails[0].lastName}}
                                         </option>
                                     </select>
                                 </div>

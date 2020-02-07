@@ -82,14 +82,16 @@ import { AddSubjectComponent } from './SubjectMaster/add-subject/add-subject.com
 import { EditSubjectComponent } from './SubjectMaster/edit-subject/edit-subject.component';
 import { SectionComponent } from './StudentMaster/section/section.component';
 import { SectionStaffComponent } from './StudentMaster/section-staff/section-staff.component';
-import { TimetableEntryComponent } from './StaffMaster/TimeTable/timetable-entry/timetable-entry.component';
-import { TimetableAddComponent } from './StaffMaster/TimeTable/timetable-add/timetable-add.component';
+
 
 import { TimeTableComponent } from './Academic/time-table/time-table.component';
 import { TimetableMainComponent } from './Academic/timetable-main/timetable-main.component';
 import { StudentAttendenceEntryComponent } from './Academic/student-attendence-entry/student-attendence-entry.component';
 import { StudentAttendenceComponent } from './Academic/student-attendence/student-attendence.component';
+import { AcademicSubjectComponent } from './Academic/academic-subject/academic-subject.component';
+import { AcademicSubjectInternalsComponent } from './Academic/academic-subject-internals/academic-subject-internals.component';
 
+import { StudentAttendenceReportComponent } from './Academic/student-attendence-report/student-attendence-report.component';
 
 
 const routes: Routes = [
@@ -116,6 +118,11 @@ const routes: Routes = [
     path: 'user-designation',
     component: UserDesignationComponent
   },
+  {
+    path: 'student-attendence-report',
+    component: StudentAttendenceReportComponent
+  },
+
   {
     path: 'hostel',
     component: HostelComponent
@@ -303,15 +310,8 @@ const routes: Routes = [
   path: 'mode-of-enquiry',
   component: ModeOfEnquiryComponent
   },
-  //TimeTable
-  {
-    path: 'timetable-entry',
-    component: TimetableEntryComponent
-  },
-  {
-    path: 'timetable-add',
-    component: TimetableAddComponent
-  },
+
+
 
     //  Vehicle Management
   { path: 'vehicle',
@@ -401,7 +401,15 @@ const routes: Routes = [
    {
     path:'student-attendence-entry',
     component: StudentAttendenceEntryComponent
-   }
+   },
+   {
+    path:'academic-subjects',
+    component: AcademicSubjectComponent
+  },
+  {
+   path:'academic-internals',
+   component: AcademicSubjectInternalsComponent
+  }
 
 ];
 

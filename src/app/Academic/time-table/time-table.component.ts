@@ -71,17 +71,13 @@ export class TimeTableComponent implements OnInit {
     this.route.queryParams.subscribe((params: any) => {
       this.sectionid = params.section;
       this.day = params.day;
-      this.period = params.period;
-      // this.day = params.day;
-      //this.period = params.period;
-      // this.id = params.id;
+      this.period = params.period;    
     });
 
   }
 
   viewTimeTablePeriods() {
     this.request.fetchPeriods().subscribe((response) => {
-
       this.periods = response;
       // console.log(this.periods);
     }),

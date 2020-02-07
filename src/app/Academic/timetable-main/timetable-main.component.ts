@@ -47,11 +47,13 @@ export class TimetableMainComponent implements OnInit {
      this.IdValue = this.userInfo.institution;
      this.institutionValue = this.IdValue;
 
-     this.courseprogram = new FormControl('');
-     this.batch = new FormControl('');
-     this.academicYear = new FormControl('');
-     this.section = new FormControl('');
-     this.semester = new FormControl('');
+         this.courseprogram = new FormControl("", Validators.required);
+     this.semester = new FormControl("", Validators.required);
+     this.batch = new FormControl("", Validators.required);
+     this.section = new FormControl("", Validators.required);
+     this.academicYear = new FormControl("", Validators.required);
+
+
   }
   loadCourseProgramByIns(Institution: any) {
     if (Institution) {
@@ -145,6 +147,27 @@ export class TimetableMainComponent implements OnInit {
   ngOnInit() {
     // this.loadAcademicYear();
     this.loadCourseProgramByIns(this.institutionValue);
+
+      //jQuery Validation
+      $(function () {
+        $("#form_advanced_validation").validate({
+          highlight: function (input) {
+            $(input)
+              .parents(".form-line")
+              .addClass("error");
+          },
+          unhighlight: function (input) {
+            $(input)
+              .parents(".form-line")
+              .removeClass("error");
+          },
+          errorPlacement: function (error, element) {
+            $(element)
+              .parents(".form-group")
+              .append(error);
+          }
+        });
+      });
   }
 
 }

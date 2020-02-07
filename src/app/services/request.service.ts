@@ -92,6 +92,13 @@ export class RequestService {
     this.url = `${this.endPoint}/academic-year/fetchbybatch?batch=` + batch;
     return this.http.get(this.url);
   }
+
+  fetchAcademicyearbyCourseProgram(courseprogram) {
+    this.url = `${this.endPoint}/academic-year/fetchbycourseprogram?courseprogram=` + courseprogram;
+    return this.http.get(this.url);
+  }
+
+
   // nationality
   public getNationality() {
     this.url = `${this.endPoint}/nationality`;
@@ -2426,6 +2433,7 @@ public fetchSubjectByDetails(filterSubject) {
    return this.http.post(this.url,filterSubject);
  }
 
+
 //Semester
 getSemester() {
   this.url = `${this.endPoint}/semester/aggregation`;
@@ -2641,10 +2649,13 @@ public filterPeriodSubject(filterPeriodExist) {
   return this.http.post(this.url,filterPeriodExist);
 }
 
-
-
 getStudentDetailsbySection(sectionId) {
   this.url = `${this.endPoint}/time-table/fetchStudentDetails?sectionId=` + sectionId;
+  return this.http.get(this.url);
+}
+
+filterattendenceDayId(attendenceDay) {
+  this.url = `${this.endPoint}/weekDay/fetchattendenceDayId?day=` + attendenceDay;
   return this.http.get(this.url);
 }
 
@@ -2667,10 +2678,34 @@ public filterStudentAttendenceEntryExist(filterAttendenceEntryExist) {
   return this.http.post(this.url,filterAttendenceEntryExist);
 }
 
+
+
 public getStudentAttendenceDetails(attendenceDetails) {
   this.url = `${this.endPoint}/studentAttendence/fetchStudentAttendenceDetails`;
   return this.http.post(this.url, attendenceDetails);
 }
+
+fetchstudentList() {
+  this.url = `${this.endPoint}/studentAttendence/fetchweekdays`;
+  return this.http.get(this.url);
+}
+
+public getStudentAttendencebySec(filterStudentAttendence) {
+  this.url = `${this.endPoint}/studentAttendence/fetchStudentAttendence`;
+  return this.http.post(this.url,filterStudentAttendence);
+}
+
+public getAttendenceCountDetails(filterAttendence) {
+  this.url = `${this.endPoint}/studentAttendence/fetchAttendence`;
+  return this.http.post(this.url,filterAttendence);
+}
+
+
+public getPeriodSubjectStaff(filterSubjectStaff) {
+  this.url = `${this.endPoint}/time-table/fetchPeriodSubjectStaff`;
+  return this.http.post(this.url,filterSubjectStaff);
+}
+
 
 
 updateAttedenceDetails(id, body) {

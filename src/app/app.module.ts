@@ -112,13 +112,17 @@ import { EditSubjectComponent } from './SubjectMaster/edit-subject/edit-subject.
 import { SectionComponent } from './StudentMaster/section/section.component';
 import { SectionStaffComponent } from './StudentMaster/section-staff/section-staff.component';
 import { PeriodComponent } from './StaffMaster/period/period.component';
-import { TimetableEntryComponent } from './StaffMaster/TimeTable/timetable-entry/timetable-entry.component';
-import { TimetableAddComponent } from './StaffMaster/TimeTable/timetable-add/timetable-add.component';
+
 
 import { TimeTableComponent } from './Academic/time-table/time-table.component';
 import { TimetableMainComponent } from './Academic/timetable-main/timetable-main.component';
 import { StudentAttendenceEntryComponent } from './Academic/student-attendence-entry/student-attendence-entry.component';
 import { StudentAttendenceComponent } from './Academic/student-attendence/student-attendence.component';
+import { AcademicSubjectComponent } from './Academic/academic-subject/academic-subject.component';
+import { AcademicSubjectInternalsComponent } from './Academic/academic-subject-internals/academic-subject-internals.component';
+
+import { StudentAttendenceReportComponent } from './Academic/student-attendence-report/student-attendence-report.component';
+
 
 
 @NgModule({
@@ -212,11 +216,14 @@ EditSubjectComponent,
 SectionComponent,
 SectionStaffComponent,
 PeriodComponent,
-TimetableEntryComponent,
-TimetableAddComponent,
+
 TimeTableComponent,
 TimetableMainComponent,StudentAttendenceEntryComponent,
-StudentAttendenceComponent
+StudentAttendenceComponent,
+AcademicSubjectComponent,
+AcademicSubjectInternalsComponent,
+
+StudentAttendenceReportComponent
 
   ],
   imports: [

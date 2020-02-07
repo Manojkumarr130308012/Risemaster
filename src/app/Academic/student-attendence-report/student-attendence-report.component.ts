@@ -12,13 +12,15 @@ import { DynamicScriptLoaderService } from "../../services/dynamic-script-loader
 import { AuthService } from "../../services/auth.service";
 declare const $: any;
 declare const swal: any;
+
 @Component({
-  selector: 'app-student-attendence',
-  templateUrl: './student-attendence.component.html',
-  styleUrls: ['./student-attendence.component.css'],
+  selector: 'app-student-attendence-report',
+  templateUrl: './student-attendence-report.component.html',
+  styleUrls: ['./student-attendence-report.component.scss'],
   providers: [DatePipe]
 })
-export class StudentAttendenceComponent implements OnInit {
+export class StudentAttendenceReportComponent implements OnInit {
+
 
   userInfo: any;
   IdValue: any;
@@ -35,6 +37,7 @@ export class StudentAttendenceComponent implements OnInit {
   academicYears: any;
   batcheBycourseprograms: any;
   academicyearByBatch: any;
+  academicYearBycourseprogram: any;
   courseprogram: FormControl;
   batch: FormControl;
   courseprogrambyIns: any;
@@ -52,13 +55,19 @@ export class StudentAttendenceComponent implements OnInit {
   attendenceInfo: any;
   attendenceIDExist: any;
   attendenceExist: any;
+  attendenceDayId: any;
 
-  constructor(
-    private formBuilder: FormBuilder,
+  period: any;
+  periods: any;
+  studentList: any;
+  studentAttendenceDetails: any;
+  AttendenceCountDetails: any;
+  staffSubjects: any;
+
+  constructor(private formBuilder: FormBuilder,
     private dynamicScriptLoader: DynamicScriptLoaderService,
     private request: RequestService,
-    private router: Router, private datePipe: DatePipe
-  ) {
+    private router: Router, private datePipe: DatePipe) {
 
     this.courseprogram = new FormControl("", Validators.required);
     this.semester = new FormControl("", Validators.required);
@@ -80,6 +89,7 @@ export class StudentAttendenceComponent implements OnInit {
     this.attendenceInfo = localStorage.getItem('userData');
 
   }
+
   loadCourseProgramByIns(Institution: any) {
     if (Institution) {
       this.request.getCourseprogramByIns(Institution).subscribe((response: any) => {
@@ -91,42 +101,20 @@ export class StudentAttendenceComponent implements OnInit {
     } else
       this.courseprogrambyIns = null;
   }
-  // Bind institution data
-  // loadAcademicYear() {
-  //   this.request.getAcademicYear().subscribe(
-  //     (response: any) => {
-  //       console.log(response);
-  //       this.academicYears = response;
-  //     },
-  //     error => {
-  //       console.log(error);
-  //     }
-  //   );
-  // }
+
   onCourseProgramChange(courseprogram: any) {
     // console.log('courseprogram', courseprogram);
     if (courseprogram) {
-      this.request.getBatchByCoursePrgram(courseprogram).subscribe((response: any) => {
-        this.batcheBycourseprograms = response;
+      this.request.fetchAcademicyearbyCourseProgram(courseprogram).subscribe((response: any) => {
+        this.academicYearBycourseprogram = response;
         //  console.log('BatchBycourseprogram', this.batcheBycourseprograms);
       }, (error) => {
         console.log(error);
       });
     } else
-      this.batcheBycourseprograms = null;
+      this.academicYearBycourseprogram = null;
   }
-  onBatchChange(batch: any) {
-    //console.log('Batch', batch);
-    if (batch) {
-      this.request.fetchAcademicyearByBatch(batch).subscribe((response: any) => {
-        this.academicyearByBatch = response;
-        //  console.log('AcademicYearByBatch', this.academicyearByBatch);
-      }, (error) => {
-        console.log(error);
-      });
-    } else
-      this.academicyearByBatch = null;
-  }
+
   onAcademicYearChange(academicYear: any) {
     // console.log('AcademicYear', academicYear);
     if (academicYear) {
@@ -153,115 +141,21 @@ export class StudentAttendenceComponent implements OnInit {
   }
 
 
-
-  open(filteredDetail) {
-    let sectionid = filteredDetail.sectionid;
-    let subjectid = filteredDetail.subject;
-    let period = filteredDetail.period;
-    let attendenceDate = this.attendenceDate.value;
-
-    // console.log('sectionid', sectionid);
-    this.viewStudenceAttendenceDetails(sectionid, subjectid, period);
-
-
-  }
-
-  viewStudenceAttendenceDetails(sectionId: string, subjectid: string, period) {
-
-    if (sectionId) {
-      this.request.getStudentDetailsbySection(sectionId).subscribe((response) => {
-        // console.log('studentDetails', response);
-        this.studentsAttendenceEntry1 = response;
-        this.studentsAttendenceEntry2 = [{
-          attendenceDate: this.attendenceDate.value,
-          attendenceDay: this.attendenceDay,
-          period: period,
-          staffId: this.id,
-          subjectId: subjectid,
-          academicYear: this.academicYear.value,
-          studentAttendence: 'Present',
-        }];
-        // console.log('studentsAttendenceEntry1', this.studentsAttendenceEntry1);
-        const newStudentsAttendenceEntry = this.studentsAttendenceEntry1.map(o => {
-          return {
-            courseprogram: o.courseprogram, batch: o.batch, institution: o.institution,
-            semester: o.semester, section: o.section, regNo: o.regNo, rollNo: o.rollNo, studentId: o._id, attendenceDate: this.studentsAttendenceEntry2[0].attendenceDate, attendenceDay: this.studentsAttendenceEntry2[0].attendenceDay,
-            period: this.studentsAttendenceEntry2[0].period,
-            staffId: this.studentsAttendenceEntry2[0].staffId,
-            subjectId: this.studentsAttendenceEntry2[0].subjectId,
-            academicYear: this.studentsAttendenceEntry2[0].academicYear,
-            studentAttendence: this.studentsAttendenceEntry2[0].studentAttendence
-          }
-        });
-
-        // console.log('newArray', newStudentsAttendenceEntry);
-
-
-        this.studentsAttendenceEntry = newStudentsAttendenceEntry;
-        // console.log('this.studentsAttendenceEntry', this.studentsAttendenceEntry);
-
-        this.request.filterStudentAttendenceEntryExist(this.studentsAttendenceEntry2).subscribe(response => {
-          // console.log('filterStudentAttendenceEntryExist', response);
-          this.attendenceExist = response[0];
-          // console.log('this.attendenceExist', this.attendenceExist);
-          if (response[0] != undefined) {
-            this.attendenceIDExist = response[0]._id;
-            this.router.navigate(['student-attendence-entry'], {
-              queryParams: {
-                section: sectionId,
-                date: this.attendenceDate.value,
-                period: period
-
-              }
-            });
-          }
-          else {
-          this.attendenceIDExist = null;
-
-
-          }
-
-          if (this.attendenceIDExist == null) {
-            //  console.log('this.studentsAttendenceEntry2', this.studentsAttendenceEntry);
-            this.request.addStudentstoAttendenceEntry(this.studentsAttendenceEntry).subscribe((response2: any) => {
-              if (response2.status == 'error') {
-                console.log(response2.error);
-                swal(response2.error);
-              }
-              else if (response2.status == 'success') {
-                swal("Added Sucessfully");
-                // console.log('added to attendence', response2);
-
-                this.router.navigate(['student-attendence-entry'], {
-                  queryParams: {
-                    section: sectionId,
-                    date: this.attendenceDate.value,
-                    period: period
-
-                  }
-                });
-              }
-
-            }, (error) => {
-              console.log(error);
-            });
-          }
-
-        },
-          error => {
-            console.log(error);
-          }
-        );
-      });
-    }
-
-
-  }
-
   loadTimeTabledata() {
     let attendenceDate = this.attendenceDate.value;
     //console.log('attendenceDate', attendenceDate);
     this.attendenceDay = this.datePipe.transform(attendenceDate, "EEEE");
+    this.request.filterattendenceDayId(this.attendenceDay).subscribe(response => {
+    this.attendenceDayId = response[0]._id;
+     // console.log('this.attendenceDayId', this.attendenceDayId);
+
+    },
+      error => {
+        console.log(error);
+      }
+    );
+
+
     const filterPeriodSubject = {
       sectionid: this.section.value,
       day: this.attendenceDay,
@@ -280,7 +174,7 @@ export class StudentAttendenceComponent implements OnInit {
 
   }
 
-  openAttendenceEntry() {
+  openAttendenceReport() {
     this.loadTimeTabledata();
 
     const AttendenceEntry = {
@@ -298,19 +192,139 @@ export class StudentAttendenceComponent implements OnInit {
     }
     //console.log('AttendenceEntry', AttendenceEntry);
     // console.log('SectionId...', AttendenceEntry.section);
-    localStorage.setItem('getAttendence', JSON.stringify(AttendenceEntry));
+    localStorage.setItem('getAttendenceReport', JSON.stringify(AttendenceEntry));
     /* this.router.navigate(['student-attendence-entry'], {
        queryParams: {
          section: AttendenceEntry.section
        }
      });*/
+    this.viewstudentList(this.section.value);
+    this.fetchStudentAttendencebySection(this.section.value);
 
+  }
+
+  viewTimeTablePeriods() {
+    this.request.fetchPeriods().subscribe((response) => {
+      this.periods = response;
+      // console.log(this.periods);
+    }),
+      error => {
+        console.log(error);
+      }
+  }
+
+
+  viewstudentList(section) {
+    this.request.getStudentDetailsbySection(section).subscribe((response) => {
+      console.log('getStudentDetailsbySection', response);
+      this.studentList = response;
+
+    }),
+      error => {
+        console.log(error);
+      }
+  }
+
+  Getperiods(period, student) {
+    return period;
+  }
+
+
+
+  fetchStudentAttendencebySection(sectionid) {
+    const filterStudentAttendence = {
+      section: sectionid,
+      attendenceDate: this.attendenceDate.value
+
+    };
+    this.request.getStudentAttendencebySec(filterStudentAttendence).subscribe(response => {
+      this.studentAttendenceDetails = response;
+      console.log('StudentAttendencebySec', this.studentAttendenceDetails);
+      this.fetchSubjectStaffDetails(this.semester.value, this.section.value, this.attendenceDayId );
+      this.fetchAttendenceCount(this.semester.value,this.section.value,this.attendenceDay, this.attendenceDate.value);
+
+    },
+      error => {
+        console.log(error);
+      }
+    );
+
+  }
+
+  fetchAttendenceCount(semester,section,attendenceDay, attendenceDate){
+
+    console.log('fetchCount', semester,section,attendenceDay);
+
+    const filterAttendence = {
+      semester: semester,
+      section: section,
+      attendenceDay:attendenceDay,
+      attendenceDate: attendenceDate
+    };
+
+
+    this.request.getAttendenceCountDetails(filterAttendence).subscribe(response => {
+      this.AttendenceCountDetails = response;
+      console.log('AttendenceCount', this.AttendenceCountDetails);
+
+    },
+      error => {
+        console.log(error);
+      }
+    );
+
+  }
+
+
+  GetStudentAttendenceDetails(period: any, student: any): any {
+    let result = this.studentAttendenceDetails.filter(x => x.period == period && x.studentId == student);
+    return result;
+  }
+
+  GetAttendencePresentCount(period: any, staff: any, subject: any){
+    console.log('GetAttendencePresentCount',period,staff,  subject);
+    let result2 = this.AttendenceCountDetails.filter(x => x.periodDetails[0].periodName == period && x.staffDetails[0].staffCode == staff && x.subjectDetails[0].subjectCode == subject && x.studentAttendence =='Present');
+    console.log('AttendenceCountDetails', this.AttendenceCountDetails);
+    console.log('Presentresult',result2);
+    let count=Object.keys(result2).length;
+    return count;
+    console.log('GetAttendencePresentCount2',count);
+  }
+
+  GetAttendenceAbsentCount(period: any, staff: any, subject: any){
+    let result = this.AttendenceCountDetails.filter(x => x.periodDetails[0].periodName == period && x.staffDetails[0].staffCode == staff && x.subjectDetails[0].subjectCode == subject && x.studentAttendence =='Absent');
+    console.log('AttendenceCountAbsentDetails', this.AttendenceCountDetails);
+    console.log('Absentresult',result);
+    let count=Object.keys(result).length;
+    return count;
+  }
+
+  fetchSubjectStaffDetails(semester: any, section: any, day: any) {
+    const filterSubjectStaff = {
+      semester: semester,
+      section: section,
+      attendenceDay: day
+
+    };
+    this.request.getPeriodSubjectStaff(filterSubjectStaff).subscribe(response => {
+      this.staffSubjects = response;
+      console.log('staffSubjects', this.staffSubjects);
+    },
+      error => {
+        console.log(error);
+      }
+    );
 
 
   }
+
+
+
   ngOnInit() {
     // this.loadAcademicYear();
     this.loadCourseProgramByIns(this.institutionValue);
+    this.viewTimeTablePeriods();
+
 
     //jQuery Validation
     $(function () {

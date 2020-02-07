@@ -34,5 +34,8 @@ export class StorageService {
   clear() {
     localStorage.removeItem('userData');
     localStorage.removeItem('getTimetTable');
+    localStorage.removeItem('getAttendence');
+    localStorage.removeItem('getAttendenceReport');
+
   }
 }

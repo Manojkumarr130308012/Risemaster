@@ -81,7 +81,7 @@ export class SectionStaffComponent implements OnInit {
     this.userInfo = JSON.parse(this.userInfo);
     this.IdValue = this.userInfo.institution;
     this.institutionValue = this.IdValue;
-    /////////
+
    let ID = this.id;
    this.request.fetchSectionById(ID).subscribe(response => {
      this.sections = response;
@@ -108,6 +108,9 @@ export class SectionStaffComponent implements OnInit {
         this.subjectBySemesters = response;
         console.log('SubjectByFilter', this.subjectBySemesters);
       });
+
+
+
     //Add Form
    this.staff= new FormControl('', Validators.required);
    this.subject= new FormControl('', Validators.required);
@@ -117,6 +120,28 @@ export class SectionStaffComponent implements OnInit {
    this.subject2= new FormControl('', Validators.required);
   });
 
+  }
+
+  onSubjectChange(subject: any) {
+    console.log('subject' ,subject)
+    if (subject) {
+      this.request.getStaffBySubject(subject).subscribe((response: any) => {
+        this.staffBysubjects = response;
+        console.log('BySubject1',  this.staffBysubjects);
+      }, (error) => {
+        console.log(error);
+      });
+    } else
+      this.staffBysubjects = null;
+  }
+
+  loadStaffBySubject(subject) {
+    this.request.getStaffBySubject(subject).subscribe((response: any) => {
+      this.staffBysubjects = response;
+      console.log('BySubject2',  this.staffBysubjects);
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   public setMessage(message) {
@@ -191,6 +216,8 @@ export class SectionStaffComponent implements OnInit {
     });
   }
 
+
+
   // To edit course category
   onEdit(semester) {
     this.Id = semester._id;
@@ -243,29 +270,7 @@ export class SectionStaffComponent implements OnInit {
     } else
     this.semestersByIns = null;
   }
-  onSubjectChange(subject: any) {
-    console.log('subject' ,subject)
-    if (subject) {
-      this.request.getStaffBySubject(subject).subscribe((response: any) => {
-        this.staffBysubjects = response;
-        console.log('BySubject1',  this.staffBysubjects);
-      }, (error) => {
-        console.log(error);
-      });
-    } else
-      this.staffBysubjects = null;
-  }
- /* loadStaffBySubject(subject: any) {
-    if (subject) {
-      this.request.getStaffBySubject(subject).subscribe((response) => {
-        this.staffBysubjects = response;
-        console.log('BySubject2',  this.staffBysubjects);
-      }, (error) => {
-        console.log(error);
-      });
-    } else
-    this.staffBysubjects = null;
-  }*/
+
   get f() {
     return this.addForm.controls;
   }
