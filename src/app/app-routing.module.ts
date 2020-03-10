@@ -92,6 +92,7 @@ import { AcademicSubjectComponent } from './Academic/academic-subject/academic-s
 import { AcademicSubjectInternalsComponent } from './Academic/academic-subject-internals/academic-subject-internals.component';
 
 import { StudentAttendenceReportComponent } from './Academic/student-attendence-report/student-attendence-report.component';
+import { StudentLeaveFormComponent } from './StudentManagement/student-leave-form/student-leave-form.component';
 
 
 const routes: Routes = [
@@ -372,6 +373,11 @@ const routes: Routes = [
   component: StudentDetailComponent},
   { path: 'studentEdit',
   component: StudentEditComponent},
+
+  {
+    path: 'student-leave-form',
+    component: StudentLeaveFormComponent
+  },
    //Subject
    { path: 'subjectType',
    component: SubjectTypeComponent },

@@ -2088,6 +2088,15 @@ fetchRelationshipById(id) {
   this.url = `${this.endPoint}/relationship/fetchdata?id=` + id;
   return this.http.get(this.url);
 }
+
+// student leave
+
+public addStudentLeaveDetails(leaveDetails: {}) {
+  this.url = `${this.endPoint}/student-leave/add`;
+  return this.http.post(this.url, leaveDetails);
+}
+
+
 //ActivityCategory
 getActivityCat() {
   this.url = `${this.endPoint}/activityCategory/`;

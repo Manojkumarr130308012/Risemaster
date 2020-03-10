@@ -17,10 +17,10 @@ const routes: Routes = [
     component: StaffLoginComponent
 
   },
-  // {
-  //   path: 'studentLogin',
-  //   component: StudentLoginComponent
-  // },
+ {
+    path: 'student-login',
+    component: StudentLoginComponent
+  },
 ];
 
 
