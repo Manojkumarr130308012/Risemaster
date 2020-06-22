@@ -225,7 +225,7 @@ export class BoardOfEducationComponent implements OnInit {
       doc.save('Boards' + moment().unix() + '.pdf');
       }
   ngOnInit() {
-    this.auth.isValidUser();
+    //this.auth.isValidUser();
     this.viewData();
   }
   key: string = 'name'; //set default

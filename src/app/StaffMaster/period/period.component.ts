@@ -62,7 +62,7 @@ export class PeriodComponent implements OnInit {
     this.userInfo = JSON.parse(this.userInfo);
     this.IdValue = this.userInfo.institution;
     this.institutionValue = this.IdValue;
-    
+
     this.institution = new FormControl({value:this.institutionValue, disabled: true});
     // Add Form
     this.addForm = this.formBuilder.group({
@@ -203,7 +203,7 @@ export class PeriodComponent implements OnInit {
       }
     );
   }
- 
+
   // convenience getter for easy access to form fields
   get f() {
     return this.addForm.controls;
@@ -211,7 +211,7 @@ export class PeriodComponent implements OnInit {
   get f2() {
     return this.editForm.controls;
   }
- 
+
   async startScript() {
     await this.dynamicScriptLoader
       .load(
@@ -253,7 +253,7 @@ export class PeriodComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.auth.isValidUser();
+    // //this.auth.isValidUser();
     this.startScript();
     this.viewData();
     this.loadInstitution();

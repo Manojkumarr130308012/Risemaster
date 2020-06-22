@@ -32,10 +32,10 @@ export class UserDesignationComponent implements OnInit {
   public designationNameValue: any;
   public IdValue: any;
 
-  constructor(private request: RequestService, 
-    private router: Router, 
-    private dynamicScriptLoader: DynamicScriptLoaderService, 
-    public snackBar: MatSnackBar, 
+  constructor(private request: RequestService,
+    private router: Router,
+    private dynamicScriptLoader: DynamicScriptLoaderService,
+    public snackBar: MatSnackBar,
     private activeRoute:  ActivatedRoute,
     private auth: AuthService) {
 
@@ -179,7 +179,7 @@ export class UserDesignationComponent implements OnInit {
     })
   }
   ngOnInit() {
-    this.auth.isValidUser();
+    //this.auth.isValidUser();
     this.startScript();
     this.viewDesignation();
 

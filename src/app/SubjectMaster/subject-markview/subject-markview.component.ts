@@ -44,7 +44,7 @@ export class SubjectMarkviewComponent implements OnInit {
   maxMarkValue: any;
   institutionValue1: any;
   markDefinitionValue: any;
- 
+
   constructor(
     private formBuilder: FormBuilder,
     private dynamicScriptLoader: DynamicScriptLoaderService,
@@ -310,7 +310,7 @@ loadModal1() {
       .trigger("reset");
   });
 }
-  
+
   //Add form validation and function
   onAddExternal() {
     this.submitted = true;
@@ -442,7 +442,7 @@ loadModal2() {
       .trigger("reset");
   });
 }
-  
+
   viewData(id: any) {
     this.request.fetchMarkDefinitionById(id).subscribe(
       response => {
@@ -496,7 +496,7 @@ loadModal2() {
   // }
 
   ngOnInit() {
-    //this.auth.isValidUser();
+    ////this.auth.isValidUser();
     this.startScript();
     this.viewExternal(this.id);
     this.viewInternal(this.id);

@@ -277,7 +277,7 @@ export class AdmissionTypeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.auth.isValidUser();
+    //this.auth.isValidUser();
      // Add Form
      this.registerForm = this.formBuilder.group({
       institution: ['', Validators.required],

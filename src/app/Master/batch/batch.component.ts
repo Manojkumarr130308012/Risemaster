@@ -59,12 +59,12 @@ export class BatchComponent implements OnInit {
       courseprogram2: ["", Validators.required],
       batch2: ["", Validators.required]
     });
-  
+
      }
      public setMessage(message) {
       return (this.message = message);
     }
-  
+
     loadCourseprogram() {
       this.request.getCourseprogram().subscribe((response: any) => {
         this.courseprograms = response;
@@ -73,7 +73,7 @@ export class BatchComponent implements OnInit {
         console.log(error);
       });
     }
-  
+
     //Add form validation and function
     onAddSubmit() {
       this.submitted = true;
@@ -96,7 +96,7 @@ export class BatchComponent implements OnInit {
       );
       console.log(this.addBatchForm.value);
     }
-  
+
     // To display course category
     viewData() {
       this.request.getbatch().subscribe(
@@ -109,7 +109,7 @@ export class BatchComponent implements OnInit {
         }
       );
     }
-  
+
     // To delete course category
     deleteBatch(id: any) {
       this.request.deleteBatch(id).subscribe(res => {
@@ -118,12 +118,12 @@ export class BatchComponent implements OnInit {
         console.log("Deleted");
       });
     }
-  
+
     // To edit course category
     onEdit(batch) {
       this.Id = batch._id;
       this.institutionId = batch.institution[0]._id;
-      this.loadCourseProgramByIns(this.institutionId); 
+      this.loadCourseProgramByIns(this.institutionId);
       this.request.fetchBatchById(this.Id).subscribe(response => {
         this.editBatch = response[0];
         console.log(response);
@@ -131,7 +131,7 @@ export class BatchComponent implements OnInit {
         this.courseprogramValue = this.editBatch.courseprogram;
         this.batchValue = this.editBatch.batch;
         this.IdValue = this.editBatch._id;
-  
+
         this.editForm = this.formBuilder.group({
           institution2: [this.institutionValue, Validators.required],
           courseprogram2: [this.courseprogramValue, Validators.required],
@@ -146,13 +146,13 @@ export class BatchComponent implements OnInit {
       if (this.editForm.invalid) {
         return;
       }
-  
+
       const edata = {
         institution: this.editForm.get("institution2").value,
         courseprogram: this.editForm.get("courseprogram2").value,
         batch: this.editForm.get("batch2").value
       };
-  
+
       this.request.updateBatch(this.IdValue, edata).subscribe(
         (res: any) => {
           if (res.status == "success") {
@@ -209,7 +209,7 @@ export class BatchComponent implements OnInit {
     get f2() {
       return this.editForm.controls;
     }
-  
+
     async startScript() {
       await this.dynamicScriptLoader
         .load(
@@ -234,7 +234,7 @@ export class BatchComponent implements OnInit {
         buttons: ["copy", "csv", "excel", "pdf", "print"]
       });
     }
-  
+
     loadModal() {
       $("#addModal").modal("hide"); //or  $('#IDModal').modal('hide');
       $("#addModal").on("hidden.bs.modal", function() {
@@ -249,9 +249,9 @@ export class BatchComponent implements OnInit {
           .trigger("reset");
       });
     }
-  
+
     ngOnInit() {
-      this.auth.isValidUser();
+      //this.auth.isValidUser();
       this.startScript();
       M.updateTextFields();
       this.viewData();
@@ -260,4 +260,3 @@ export class BatchComponent implements OnInit {
       this.loadInstitution();
     }
   }
-  

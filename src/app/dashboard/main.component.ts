@@ -155,7 +155,7 @@ export class MainComponent implements OnInit {
 
 	ngOnInit() {
 
-    this.auth.isValidUser();
+    //this.auth.isValidUser();
 
 		'use strict';
 		$('#new-orders').slimscroll({

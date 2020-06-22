@@ -134,10 +134,10 @@ export class AcademicYearComponent implements OnInit {
       }, (error) => {
         console.log(error);
       });
-     
+
     } else
     this.courseprogrambyIns = null;
-   
+
   }
   // convenience getter for easy access to form fields
   get f() {
@@ -274,7 +274,7 @@ export class AcademicYearComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.auth.isValidUser();
+    ////this.auth.isValidUser();
     this.viewData();
     M.updateTextFields();
     this.loadInstitution();

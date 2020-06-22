@@ -18,7 +18,7 @@ declare const swal: any;
 })
 export class SectionComponent implements OnInit {
 
-  addForm: FormGroup; 
+  addForm: FormGroup;
   editForm: FormGroup;
   submitted = false;
   public section: any;
@@ -70,7 +70,7 @@ export class SectionComponent implements OnInit {
     this.userInfo = JSON.parse(this.userInfo);
     this.IdValue = this.userInfo.institution;
     this.institutionValue = this.IdValue;
-    
+
    this.institution = new FormControl(this.institutionValue);
     // Add Form
     this.addForm = this.formBuilder.group({
@@ -276,7 +276,7 @@ export class SectionComponent implements OnInit {
       }
     );
   }
-  
+
   loadDepartmentByIns(Institution: any) {
     if (Institution) {
       this.request.getDetartmentbyIns(Institution).subscribe((response: any) => {
@@ -356,7 +356,7 @@ export class SectionComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.auth.isValidUser();
+    // //this.auth.isValidUser();
     this.startScript();
     this.viewData();
     this.loadInstitution();

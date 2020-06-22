@@ -29,7 +29,7 @@ export class SubjectClassificationComponent implements OnInit {
   institutions;
   public message: string;
   userInfo: any;
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private dynamicScriptLoader: DynamicScriptLoaderService,
@@ -213,7 +213,7 @@ export class SubjectClassificationComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.auth.isValidUser();
+    ////this.auth.isValidUser();
     this.startScript();
     this.viewData();
     this.loadModal();

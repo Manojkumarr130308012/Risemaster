@@ -294,7 +294,7 @@ export class SectionStaffComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.auth.isValidUser();
+    // //this.auth.isValidUser();
     this.viewData(this.id);
     this.loadInstitution();
     this.loadModal();

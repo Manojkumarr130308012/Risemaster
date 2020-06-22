@@ -212,7 +212,7 @@ export class HostelComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.auth.isValidUser();
+    //this.auth.isValidUser();
     this.startScript();
     this.viewData();
     this.loadModal();

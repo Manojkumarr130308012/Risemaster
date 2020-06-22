@@ -80,7 +80,7 @@ export class SubjectTypeComponent implements OnInit {
       subjectType: this.registerForm.get('subjectType').value,
       institution: this.institutionValue
     }
-    
+
     this.request.addSubjectType(newDetail).subscribe(
       (res: any) => {
         if (res.status == "success") {
@@ -214,7 +214,7 @@ export class SubjectTypeComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.auth.isValidUser();
+    ////this.auth.isValidUser();
     this.startScript();
     this.viewData();
     this.loadModal();

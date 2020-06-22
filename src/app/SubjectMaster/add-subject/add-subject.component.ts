@@ -380,7 +380,7 @@ loadCourseProgramByIns(Institution: any) {
   }
 
   ngOnInit() {
-    //this.auth.isValidUser();
+    ////this.auth.isValidUser();
     this.startScript();
     this.viewData(this.institutionValue);
     this.loadModal();

@@ -168,7 +168,7 @@ get f2() { return this.editForm.controls; }
   }
 
   ngOnInit() {
-    this.auth.isValidUser();
+    //this.auth.isValidUser();
   this.startScript();
   M.updateTextFields();
  this.viewData();

@@ -141,7 +141,7 @@ export class CourseProgramComponent implements OnInit {
   onEdit(courseprogram) {
     this.Id = courseprogram._id;
     this.institutionId = courseprogram.institution[0]._id;
-    this.loadCourseCategoryByIns(this.institutionId); 
+    this.loadCourseCategoryByIns(this.institutionId);
     this.request.fetchCourseprogramBy(this.Id).subscribe((response) => {
       this.editCourseprogram = response[0];
       console.log(response);
@@ -227,7 +227,7 @@ export class CourseProgramComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.auth.isValidUser();
+    //this.auth.isValidUser();
     this.startScript();
     M.updateTextFields();
     this.viewData();

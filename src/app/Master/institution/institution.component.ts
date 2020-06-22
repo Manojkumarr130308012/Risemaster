@@ -252,7 +252,7 @@ export class InstitutionComponent implements OnInit {
     });
   }
 ngOnInit() {
-  this.auth.isValidUser();
+  //this.auth.isValidUser();
     this.startScript();
     this.viewData();
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };

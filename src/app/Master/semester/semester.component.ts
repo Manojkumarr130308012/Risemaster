@@ -183,7 +183,7 @@ if (Institution) {
   }, (error) => {
     console.log(error);
   });
- 
+
 } else
 this.courseprogrambyIns = null;
 }
@@ -326,7 +326,7 @@ loadacademicYearByBatch(batch) {
   }
 
   ngOnInit() {
-    this.auth.isValidUser();
+    //this.auth.isValidUser();
     this.startScript();
     this.viewData();
     this.loadInstitution();

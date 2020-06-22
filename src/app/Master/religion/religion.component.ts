@@ -166,7 +166,7 @@ async startScript() {
   }
 
   ngOnInit() {
-    this.auth.isValidUser();
+    //this.auth.isValidUser();
   this.startScript();
   M.updateTextFields();
  this.viewData();

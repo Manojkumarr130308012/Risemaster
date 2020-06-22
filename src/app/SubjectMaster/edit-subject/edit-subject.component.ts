@@ -35,7 +35,7 @@ export class EditSubjectComponent implements OnInit {
   markDefinition: any;
   effectiveTo: any;
   effectiveFrom: any;
-  topicCoverage : any; 
+  topicCoverage : any;
   subjects: any;
   subjectTypes: any;
   subjectclassifications: any;
@@ -128,7 +128,7 @@ export class EditSubjectComponent implements OnInit {
      this.institutionValue = this.IdValue;
      this.IdValue1 = this.userInfo.department;
      this.departmentValue = this.IdValue1;
- 
+
     this.institution = new FormControl(this.institutionValue);
     this.department = new FormControl( this.departmentValue);
     // Edit Form - subject details
@@ -204,19 +204,19 @@ export class EditSubjectComponent implements OnInit {
     );
   }
 // convenience getter for easy access to form fields
- 
+
   get f() {
     return this.editForm.controls;
   }
   get a() {
     return this.addStaffForm.controls;
-  } 
+  }
   get a2() {
     return this.editStaffForm.controls;
   }
   get e() {
     return this.addSyllabusForm.controls;
-  } 
+  }
   get e2() {
     return this.editSyllabusForm.controls;
   }
@@ -247,7 +247,7 @@ export class EditSubjectComponent implements OnInit {
     this.effectiveToValue = this.editSubject.effectiveTo;
     this.lessonPlanValue = this.editSubject.lessonPlan;
     this.IdValue = this.editSubject._id;
-  
+
     this.editForm = this.formBuilder.group({
       courseprogram: [this.courseprogramValue, Validators.required],
       department: [ this.departmentValue, Validators.required],
@@ -287,9 +287,9 @@ export class EditSubjectComponent implements OnInit {
       effectiveFrom:  this.editForm.get('effectiveFrom').value,
       topicCoverage : this.editForm.get('topicCoverage').value,
       lessonPlan : this.editForm.get('lessonPlan').value,
-     
+
     };
-    this.request.updateSubject(this.IdValue,editDetail).subscribe((response: any) => { 
+    this.request.updateSubject(this.IdValue,editDetail).subscribe((response: any) => {
      console.log(response);
     if (response.status == 'success') {
       swal("Updated Sucessfully");
@@ -361,7 +361,7 @@ loadstaffByDepartment(department: any) {
   this.staffprofiles = null;
 }
 //staff details based on department
-onDepartmentChange(department : any) { 
+onDepartmentChange(department : any) {
   if (department){
     console.log(department);
   this.request.getStaffProfileByDep(department).subscribe((response) => {
@@ -561,7 +561,7 @@ onEditSubjectSyllabus() {
       }
     );
   }
-  
+
   loadSubjectType() {
     this.request.getSubjectType().subscribe((response: any) => {
         this.subjectTypes = response;
@@ -798,7 +798,7 @@ onEditSubjectSyllabus() {
   }
 
   ngOnInit() {
-    //this.auth.isValidUser();
+    ////this.auth.isValidUser();
     this.startScript();
     this.viewData(this.id);
     this.loadModal();
