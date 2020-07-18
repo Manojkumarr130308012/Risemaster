@@ -129,6 +129,8 @@ export class AdmissionCategoryComponent implements OnInit {
             institution: this.editForm.get('institution2').value
         }
 
+       // console.log('edata',edata);
+
         this.request.updateAdmissionCategory(this.IdValue, edata).subscribe((response: any) => {
             if (response.status == 'success') {
                 swal("Updated Sucessfully");
@@ -187,7 +189,7 @@ export class AdmissionCategoryComponent implements OnInit {
     ngOnInit() {
       //this.auth.isValidUser();
         this.startScript();
-        M.updateTextFields();
+       // M.updateTextFields();
         this.viewData();
         this.loadInstitution();
     }

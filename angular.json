@@ -31,6 +31,7 @@
             ],
             "styles": [
               "src/assets/js/bundles/rangeSlider/css/ion.rangeSlider.css",
+              "node_modules/angular-archwizard/archwizard.css",
               "src/assets/js/bundles/rangeSlider/css/ion.rangeSlider.skinFlat.css",
               "src/assets/js/bundles/lightgallery/dist/css/lightgallery.min.css",
               "src/assets/js/bundles/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css",

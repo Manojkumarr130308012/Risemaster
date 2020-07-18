@@ -9,7 +9,7 @@ export class RequestService {
   constructor(private http: HttpClient) { }
 
   url: string;
-  endPoint = 'http://localhost:3000';
+  endPoint = 'https://i-campusbackendapi.herokuapp.com';
 
 
 
