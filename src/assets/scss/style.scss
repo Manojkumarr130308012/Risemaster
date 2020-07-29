@@ -5,24 +5,24 @@
  *
  *  Structure (with shortcodes):
                  [1. Variables ]
-                 [2. Animations ]                   
-                 [3. Components ]                   
-                 [4. General Styles ]                   
-                 [5. Media Queries ]                   
-                 [6. Icons ]                   
-                 [7. Form Components ]                   
-                 [8. Left Sidebar ]                   
-                 [9. Navbar ]                   
-                 [10. Slider ]                   
-                 [11. Search Bar ]                   
-                 [12. Todo ]                   
-                 [13. Notice Board ]                   
-                 [14. Apps]                   
-                 [15. Pages ]                   
-                 [16. Pugins ]                   
-                 [17. Ecommerce ]                   
-                 [18. Material Components ]                   
-                 [19. Browser ]                              
+                 [2. Animations ]
+                 [3. Components ]
+                 [4. General Styles ]
+                 [5. Media Queries ]
+                 [6. Icons ]
+                 [7. Form Components ]
+                 [8. Left Sidebar ]
+                 [9. Navbar ]
+                 [10. Slider ]
+                 [11. Search Bar ]
+                 [12. Todo ]
+                 [13. Notice Board ]
+                 [14. Apps]
+                 [15. Pages ]
+                 [16. Pugins ]
+                 [17. Ecommerce ]
+                 [18. Material Components ]
+                 [19. Browser ]
 
 
 
@@ -134,3 +134,6 @@
 /*                 [19. Browser ]                   			*/
 @import "browser/_ie10.scss";
 @import "browser/_ie11.scss";
+
+
+@import '../../../node_modules/angular-archwizard/archwizard.css';

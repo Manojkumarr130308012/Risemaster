@@ -5,7 +5,7 @@ import { RequestService } from '../../services/request.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FileUploader } from 'ng2-file-upload';
 import { AuthService } from "../../services/auth.service";
-const URL = 'http://localhost:3000/upload/upload';
+const URL = 'https://i-campusbackendapi.herokuapp.com/upload/upload';
 declare const $: any;
 declare const swal: any;
 @Component({
