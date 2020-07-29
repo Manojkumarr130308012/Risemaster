@@ -7,6 +7,8 @@ import { CommunityComponent } from './Master/community/community.component';
 import { NationalityComponent } from './Master/nationality/nationality.component';
 import { ReligionComponent } from './Master/religion/religion.component';
 
+
+
 import { AcademicYearComponent } from './Master/academic-year/academic-year.component';
 import { UserDesignationComponent } from './Master/user-designation/user-designation.component';
 
@@ -93,6 +95,7 @@ import { AcademicSubjectInternalsComponent } from './Academic/academic-subject-i
 
 import { StudentAttendenceReportComponent } from './Academic/student-attendence-report/student-attendence-report.component';
 import { StudentLeaveFormComponent } from './StudentManagement/student-leave-form/student-leave-form.component';
+import { CalenderdataComponent } from './Master/calenderdata/calenderdata.component';
 
 
 const routes: Routes = [
@@ -191,6 +194,11 @@ const routes: Routes = [
     path: 'semester',
     component: SemesterComponent
   },
+  {
+    path: 'calender',
+    component: CalenderdataComponent
+  },
+
 
   // Student Master
 {

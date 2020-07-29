@@ -9,7 +9,7 @@ export class RequestService {
   constructor(private http: HttpClient) { }
 
   url: string;
-  endPoint = 'http://localhost:3000';
+  endPoint = 'https://i-campusbackendapi.herokuapp.com';
 
 
 
@@ -253,7 +253,9 @@ export class RequestService {
     return this.http.get(this.url);
   }
 
+
   // admission-type
+
   public getAdmissiontype() {
     this.url = `${this.endPoint}/admission-type/aggregation`;
     return this.http.get(this.url);
@@ -281,6 +283,16 @@ export class RequestService {
     return this.http.get(this.url);
   }
 
+//dashboard data
+
+public getstudentcount() {
+  this.url = `${this.endPoint}/student-details/countdtu`;
+  return this.http.get(this.url);
+}
+public getstudentcountchart() {
+  this.url = `${this.endPoint}/student-details/countstuchart`;
+  return this.http.get(this.url);
+}
 
   // Institution
   public getInstitution() {
@@ -340,6 +352,40 @@ export class RequestService {
     this.url = `${this.endPoint}/boardOfEducation/`;
     return this.http.get(this.url);
   }
+
+
+  //calenderdata
+  public calenderdata() {
+    this.url = `${this.endPoint}/calenderdata/aggregation`;
+    return this.http.get(this.url);
+  }
+
+  public addcalenderdata(newcalenderdata: { time: any; institution: any; Date: any;eventname: any;description:any;location:any;photoLocation:any }) {
+    this.url = `${this.endPoint}/calenderdata/add`;
+    return this.http.post(this.url, newcalenderdata);
+  }
+  public deletecalederdata(id) {
+    this.url = `${this.endPoint}/calenderdata/delete?id=` + id;
+    return this.http.delete(this.url);
+  }
+  fetchcalenderById(id) {
+    this.url = `${this.endPoint}/calenderdata/fetchdata?id=` + id;
+    return this.http.get(this.url);
+  }
+  updatecalender(id, body) {
+    this.url = `${this.endPoint}/calenderdata/update?id=${id}`;
+    return this.http.put(this.url, body);
+  }
+  fetchcalender() {
+    this.url = `${this.endPoint}/calenderdata/`;
+    return this.http.get(this.url);
+  }
+  fetchcalenderdata() {
+    this.url = `${this.endPoint}/calenderdta/`;
+    return this.http.get(this.url);
+  }
+
+
 
   //Admission Category
   public getAdmissionCategory() {
@@ -2095,7 +2141,10 @@ public addStudentLeaveDetails(leaveDetails: {}) {
   this.url = `${this.endPoint}/student-leave/add`;
   return this.http.post(this.url, leaveDetails);
 }
-
+fetchleaveById(id) {
+  this.url = `${this.endPoint}/student-leave/fetchdata?studentId=` + id;
+  return this.http.get(this.url);
+}
 
 //ActivityCategory
 getActivityCat() {

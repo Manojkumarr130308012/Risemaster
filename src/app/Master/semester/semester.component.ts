@@ -67,7 +67,8 @@ export class SemesterComponent implements OnInit {
       academicYear: ["", Validators.required],
       semesterType: ["", Validators.required],
       semester: ["", Validators.required],
-      fromDate: ["", Validators.required],
+
+
       toDate: ["", Validators.required],
     });
     // Edit Form

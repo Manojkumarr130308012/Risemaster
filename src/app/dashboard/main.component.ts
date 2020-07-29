@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicScriptLoaderService } from './../services/dynamic-script-loader.service';
 import { AuthService } from "./../services/auth.service";
+import { RequestService } from '../services/request.service';
 declare var $: any;
 declare var Chart: any;
 declare var ApexCharts: any;
@@ -14,7 +15,18 @@ declare var ApexCharts: any;
 })
 export class MainComponent implements OnInit {
 
-	constructor(private dynamicScriptLoader: DynamicScriptLoaderService, private auth: AuthService) { }
+	constructor(private dynamicScriptLoader: DynamicScriptLoaderService, private auth: AuthService,  private request: RequestService,) { }
+
+  stucount;
+  stucountchart;
+  stucalenderchart;
+
+   array=[];
+   array1=[];
+
+
+   events:any;
+
 
 
 	// area chart start
@@ -162,11 +174,74 @@ export class MainComponent implements OnInit {
 			height: '500px',
 			size: '5px'
 		});
+this. loadstucount();
+
+this.loadstucountchart();
+
+this.loadcalender();
 
 		this.chart1();
 		this.chart2();
-		this.desktopCalendar();
+
 	}
+
+  loadstucount()  {
+    this.request.getstudentcount().subscribe((response : any) => {
+      console.log(response);
+    this.stucount =response.result;
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  loadcalender()  {
+    this.request.fetchcalender().subscribe((response : any) => {
+      console.log('hfjdhfjdhjhsjkdfjkdkj',response);
+         this.stucalenderchart=response.response;
+         console.log('hfjdhfjdhjhsjkdfjkdkj', this.stucalenderchart);
+  const events = this.stucalenderchart.map(o => {
+          return {
+            title: o.eventname,
+            start: o.Date,
+            backgroundColor:"#00bcd4",
+          }
+        });
+
+
+
+        console.log("dgfjhdfjhsjhsh",events);
+
+    this.desktopCalendar(events);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  loadstucountchart()  {
+    this.request.getstudentcountchart().subscribe((response : any) => {
+      console.log(response);
+    this.stucountchart =response.result;
+	console.log('chartdata',this.stucountchart);
+	this.stucountchart.map((item, i) =>
+	this.array[i]=item.numOfStudent
+	);
+	this.stucountchart.map((item, i) =>
+	this.array1[i]=item._id
+	);
+	console.log('chartdadfdfdfta',this.array);
+	console.log('chartdadfdfdfta',this.array1);
+
+    // var objCount = response.result.length;
+    // for ( var x=0; x < objCount ; x++ ) {
+    //     var curitem = response.result.[x];
+    // }
+    // console.log('chartdddddata',curitem);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+
 
 	// Chart 1
 	private chart1() {
@@ -313,7 +388,7 @@ export class MainComponent implements OnInit {
 			},
 			series: [{
 				name: 'Servings',
-				data: [44, 55, 41, 67, 22, 43],
+				data: this.array,
 			}],
 			grid: {
 				row: {
@@ -328,8 +403,7 @@ export class MainComponent implements OnInit {
 					}
 				},
 
-				categories: ['jan', 'feb', 'march', 'april', 'may', 'june'
-				],
+				categories: this.array1,
 			},
 			yaxis: {
 				title: {
@@ -366,13 +440,17 @@ export class MainComponent implements OnInit {
 		chart.render();
 	}
 
-	private desktopCalendar() {
+	private desktopCalendar(events) {
 		var startdate: any;
 		var enddate: any;
 		var today = new Date();
 		var year = today.getFullYear();
 		var month = today.getMonth();
-		var day = today.getDate();
+	var day = today.getDate();
+
+
+console.log("dsdfdfsdfdsfds",events);
+
 		$('#desktopCal').fullCalendar({
 			defaultDate: today,
 			defaultView: 'month',
@@ -382,54 +460,11 @@ export class MainComponent implements OnInit {
 			editable: true,
 			header: {
 				right: 'prev,today,next'
-			},
-			events: [{
-				title: "Holiday",
-				start: new Date(year, month, day - 10),
-				end: new Date(year, month, day - 8),
-				backgroundColor: "#00bcd4"
-			}, {
-				title: "Priya Sarma",
-				start: new Date(year, month, day - 3, 13, 30),
-				end: new Date(year, month, day - 3, 14, 10),
-				backgroundColor: "#fe9701"
-			}, {
-				title: "Meeting",
-				start: new Date(year, month, day - 6, 17, 30),
-				end: new Date(year, month, day - 6, 18, 10),
-				backgroundColor: "#F3565D"
-			}, {
-				title: "Sarah Smith",
-				start: new Date(year, month, day, 19, 10),
-				end: new Date(year, month, day, 19, 30),
-				backgroundColor: "#1bbc9b"
-			}, {
-				title: "Airi Satou",
-				start: new Date(year, month, day + 1, 19, 10),
-				end: new Date(year, month, day + 1, 19, 30),
-				backgroundColor: "#DC35A9",
-			}, {
-				title: "Angelica Ramos",
-				start: new Date(year, month, day + 3, 21, 10),
-				end: new Date(year, month, day + 3, 21, 30),
-				backgroundColor: "#fe9701",
-			}, {
-				title: "Palak Jani",
-				start: new Date(year, month, day + 10, 11, 30),
-				end: new Date(year, month, day + 10, 12, 10),
-				backgroundColor: "#00bcd4"
-			}, {
-				title: "Priya Sarma",
-				start: new Date(year, month, day + 5, 2, 30),
-				end: new Date(year, month, day + 7, 3, 10),
-				backgroundColor: "#9b59b6"
-			},
-			{
-				title: "Jay Soni",
-				start: new Date(year, month, day + 17, 2, 30),
-				end: new Date(year, month, day + 19, 3, 10),
-				backgroundColor: "#1bbc9b"
-			}]
+      },events
+
+
+
+
 
 		});
 	}

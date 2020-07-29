@@ -36,6 +36,7 @@ export class StudentLeaveFormComponent implements OnInit {
   section: any;
   semester: any;
   courseProgram: any;
+  leaveTypes: any;
 
   constructor(  private formBuilder: FormBuilder,
     private request: RequestService,
@@ -88,6 +89,8 @@ export class StudentLeaveFormComponent implements OnInit {
         console.log(response);
        if (response.status == 'success') {
          swal("Added Sucessfully");
+         this.viewData();
+         this.loadModal();
          this.router.navigate(['student-leave-form']);
 
        }
@@ -101,8 +104,29 @@ export class StudentLeaveFormComponent implements OnInit {
        });
     }
 
+    viewData() {
+      this.request.fetchleaveById(this.studentId).subscribe((response: any) => {
+          this.leaveTypes = response;
+          console.log(this.leaveTypes);
+      }, (error) => {
+          console.log(error);
+      });
+    }
+
+    private loadModal() {
+      $('#addModal').modal('hide'); //or $('#IDModal').modal('hide');
+      $('#addModal').on('hidden.bs.modal', function () {
+          $(this).find('form').trigger('reset');
+      })
+      $('#editModal').modal('hide'); //or $('#IDModal').modal('hide');
+      $('#editModal ').on('hidden.bs.modal', function () {
+          $(this).find('form').trigger('reset');
+      })
+  }
+
   ngOnInit() {
      //jQuery Validation
+     this.viewData();
      $(function () {
       $("#form_advanced_validation").validate({
         highlight: function (input) {

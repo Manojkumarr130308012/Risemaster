@@ -62,6 +62,7 @@ export class AdmissionCategoryComponent implements OnInit {
     get f() { return this.registerForm.controls; }
     get f2() { return this.editForm.controls; }
     //Add form validation and function
+
     onAddSubmit() {
         this.submitted = true;
         if (this.registerForm.invalid) {

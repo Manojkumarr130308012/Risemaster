@@ -105,12 +105,42 @@
           </form>
         </div>
 
+        <div class="body">
+          <div class="table-responsive">
 
+            <table id="tableExport"
+              class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+              <thead>
+                <tr>
+                  <th>S.No</th>
+                  <th>FromDate</th>
+                  <th>ToDate</th>
+                  <th>leaveType</th>
+                  <th>Session</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let leaveType of leaveTypes; let i=index">
+                  <td>{{i +1 }}</td>
+
+                  <td>{{leaveType?.fromDate}}</td>
+                  <td>{{leaveType?.requestDate}}</td>
+                  <td>{{leaveType?.leaveType}}</td>
+                  <td>{{leaveType?.session}}</td>
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
       </div>
     </div>
   </div>
 
   <!-- Table End -->
+
+
   </div>
 </section>
