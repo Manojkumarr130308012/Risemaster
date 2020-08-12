@@ -21,6 +21,7 @@ export class StudentProfileComponent implements OnInit {
   batch: any;
   courseprogram: any;
   institution: any;
+  filter:any;
   constructor(
     private request: RequestService,
     private router: Router
@@ -57,7 +58,7 @@ export class StudentProfileComponent implements OnInit {
   addNew() {
     this.router.navigate(['studentEntry']);
   }
- 
+
   open(studentdetail) {
     this.stuId = studentdetail._id;
     console.log('StudentID', this.stuId);
@@ -67,7 +68,7 @@ export class StudentProfileComponent implements OnInit {
       }
     });
   }
-  
+
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Filter by Institution
   onInstitutionChange(Institution: any) {

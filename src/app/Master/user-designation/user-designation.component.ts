@@ -16,11 +16,11 @@ declare const swal: any;
 })
 export class UserDesignationComponent implements OnInit {
 
-  private designations: any;
+  public designations: any;
   public Id: any;
   public designationId: any;
   public designationName: any;
-
+  selectedinstitution:any;
   public designationId2: any;
   public designationName2: any;
   public message: string;

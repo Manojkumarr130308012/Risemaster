@@ -24,7 +24,7 @@ export class SubCategoryComponent implements OnInit {
   public activityCategory: any;
   public subCategory2: any;
   public activityCategory2: any;
-  private subcategories: any;
+  public subcategories: any;
   Id: any;
   IdValue: any;
   editSubCategory: any;

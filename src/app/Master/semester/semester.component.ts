@@ -24,7 +24,9 @@ export class SemesterComponent implements OnInit {
   public institution: any;
   public semester2: any;
   public institution2: any;
-  private coursecategories: any;
+  public coursecategories: any;
+  selectedinstitution :any;
+  selectedinstitution2 :any;
   Id: any;
   IdValue: any;
   editsemester: any;

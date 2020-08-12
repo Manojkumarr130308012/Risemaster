@@ -115,7 +115,7 @@ export class StudentEditComponent implements OnInit {
   andhamanAndNicobarNative: any;
   fg: any;
   sa: any;
-  pxsm: any; 
+  pxsm: any;
   mg: any;
   pcp: any;
   aan: any;
@@ -157,6 +157,11 @@ export class StudentEditComponent implements OnInit {
   transportRouteValue: any;
   hostelValue: any;
   hostelByIns: any;
+  isChecked5:any;
+  isChecked4:any;
+  isChecked3:any;
+  isChecked2:any;
+  isChecked:any;
   constructor(
     private request: RequestService,
     private router: Router,
@@ -219,13 +224,13 @@ export class StudentEditComponent implements OnInit {
     this.hostel = new FormControl();
      //Edit  Details
       this.onEditStudentDetail();
-   
+
    }
      //to upload Photo
   submit() {
     this.uploader.uploadAll();
   }
-  // Error Message 
+  // Error Message
   public setMessage(message) {
     return this.message = message;
   }
@@ -312,7 +317,7 @@ export class StudentEditComponent implements OnInit {
     this.physicallyChallengedPersonValue = this.editStudentDetails.physicallyChallengedPerson;
     this.andhamanAndNicobarNativeValue = this.editStudentDetails.andhamanAndNicobarNative;
     this.IdValue = this.editStudentDetails._id;
-  
+
     this.courseprogram = new FormControl(this.courseprogramValue, Validators.required);
     this.batch = new FormControl(this.batchValue, Validators.required);
     this.rollNo = new FormControl(this.rollNoValue, Validators.required);
@@ -422,7 +427,7 @@ export class StudentEditComponent implements OnInit {
       transportRoute: this.transportRoute.value,
       hostel: this.hostel.value,
     };
-    this.request.updateStudentDetails(this.IdValue,editStudentDetail).subscribe((response: any) => { 
+    this.request.updateStudentDetails(this.IdValue,editStudentDetail).subscribe((response: any) => {
      console.log(response);
     if (response.status == 'success') {
       swal("Updated Sucessfully");
@@ -572,8 +577,8 @@ export class StudentEditComponent implements OnInit {
     this.admissioncategories = null;
     this.semestersByIns = null;
   }
-  
-  //Student Details Edit 
+
+  //Student Details Edit
   viewStudentDetailById(id: any) {
     if(id) {
       this.request.fetchStudentDetailsById(id).subscribe((response) => {
@@ -630,7 +635,7 @@ export class StudentEditComponent implements OnInit {
       console.log(error);
     });
   }
-  ngOnInit() { 
+  ngOnInit() {
     this.loadAdmissionType();
     this.loadCaste();
     this.loadMotherTongue();
@@ -667,6 +672,6 @@ export class StudentEditComponent implements OnInit {
         }
       });
     });
-   
+
   }
 }

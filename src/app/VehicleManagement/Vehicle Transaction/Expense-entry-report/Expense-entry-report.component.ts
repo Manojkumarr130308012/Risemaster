@@ -28,7 +28,8 @@ export class ExpenseEntryReportComponent implements OnInit {
   public ERFromDate: any;
   public ERToDate: any;
   expense: any;
-
+  selectedExpenseType:any;
+  selectedVehicleforExpenseReport:any;
   constructor(
     private formBuilder: FormBuilder,
     private request: RequestService

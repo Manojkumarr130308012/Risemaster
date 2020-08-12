@@ -19,7 +19,7 @@ export class ReligionComponent implements OnInit {
   editForm: FormGroup;
   submitted = false;
   public religion: any;
-  private religions: any;
+  public religions: any;
   Id: any;
   IdValue: any;
   religion2: FormControl;

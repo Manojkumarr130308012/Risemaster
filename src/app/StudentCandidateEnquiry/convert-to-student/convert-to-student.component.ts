@@ -59,7 +59,7 @@ export class ConvertToStudentComponent implements OnInit {
   courseprogrambyIns: any;
   transport: any;
   semestersByIns: any;
-
+  isChecked1:any;
   constructor(
     private request: RequestService,
     private router: Router,

@@ -20,7 +20,7 @@ export class CommunityComponent implements OnInit {
   submitted = false;
   public community: any;
 
-  private communities: any;
+  public communities: any;
   Id: any;
   IdValue: any;
   community2: FormControl;

@@ -25,7 +25,7 @@ export class NationalityComponent implements OnInit {
   submitted = false;
   public nationality: any;
   public nationality2: any;
-  private nationalities: any;
+  public nationalities: any;
   Id: any;
   IdValue: any;
   editNationality: any;

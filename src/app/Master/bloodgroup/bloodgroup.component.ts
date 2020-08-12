@@ -20,7 +20,7 @@ export class BloodgroupComponent implements OnInit {
   editForm: FormGroup;
   submitted = false;
   public bloodgroup: any; public bloodgroup2: any;
-  private bloodgroups: any;
+  public bloodgroups: any;
   Id: any;
   IdValue: any;
   editBloodgroup: any;

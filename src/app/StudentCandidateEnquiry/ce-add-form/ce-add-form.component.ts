@@ -243,6 +243,9 @@ amountValue: any;
   institutiond: any;
   id: any;
   coursecategoriesbyIns: any;
+  selectedModeOfEnquiry:any;
+  selectedadvanceFeeType:any;
+  selectedaddresstype:any;
 
 
   constructor(private request: RequestService,

@@ -100,6 +100,15 @@ export class StudentEntryComponent implements OnInit {
   hostelByIns: any;
   hostels: any;
   hostelsbyIns: any;
+  isChecked5:any;
+  isChecked4:any;
+  isChecked3:any;
+  isChecked2:any;
+  isChecked1:any;
+  isChecked:any;
+
+
+
   constructor(
     private request: RequestService,
     private router: Router,
@@ -163,7 +172,7 @@ export class StudentEntryComponent implements OnInit {
   submit() {
     this.uploader.uploadAll();
   }
-  // Error Message 
+  // Error Message
   public setMessage(message) {
     return this.message = message;
   }
@@ -247,7 +256,7 @@ export class StudentEntryComponent implements OnInit {
       hostel: this.hostel.value,
 
     };
-    this.request.addStudentDetails(newStudentDetail).subscribe((response: any) => { 
+    this.request.addStudentDetails(newStudentDetail).subscribe((response: any) => {
      console.log(response);
     if (response.status == 'success') {
       swal("Added Sucessfully");
@@ -270,7 +279,7 @@ export class StudentEntryComponent implements OnInit {
     }, (error) => {
       console.log(error);
     });
-  } 
+  }
  //Load the data from database
   loadGender() {
     this.request.getGender().subscribe((response: any) => {
@@ -384,8 +393,8 @@ export class StudentEntryComponent implements OnInit {
       console.log(error);
     });
   }
-  
-  
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Filter AdmissionType, AdmissionCategory by Institution
   onInstitutionChange(Institution: any) {
@@ -449,7 +458,7 @@ export class StudentEntryComponent implements OnInit {
       this.batcheBycourseprograms = null;
       this.sectionByCoursePrograms = null;
   }
-  ngOnInit() { 
+  ngOnInit() {
     this.viewData();
     this.loadAdmissionCategory();
     this.loadAdmissionType();

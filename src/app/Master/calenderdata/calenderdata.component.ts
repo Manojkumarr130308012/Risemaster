@@ -45,7 +45,8 @@ export class CalenderdataComponent implements OnInit {
     editForm: FormGroup;
     getData: any;
     message: any;
-
+    selectedinstitution2:any;
+    selectedinstitution:any;
 
     photoValue: any;
     public uploader: FileUploader = new FileUploader({
@@ -70,7 +71,7 @@ export class CalenderdataComponent implements OnInit {
   eventname: ["", Validators.required],
   description: ["", Validators.required],
   location: ["", Validators.required],
-  photoLocation: ["", Validators.required]
+  // photoLocation: ["", Validators.required]
 
 });
 //Edit Form Group
@@ -81,7 +82,7 @@ this.editForm = this.formBuilder.group({
   eventname2: ["", Validators.required],
   description2: ["", Validators.required],
   location2: ["", Validators.required],
-  photoLocation2: ["", Validators.required]
+  // photoLocation2: ["", Validators.required]
 });
 
 
@@ -176,8 +177,8 @@ this.editForm = this.formBuilder.group({
         Date: this.registerForm.get("Date").value,
         eventname: this.registerForm.get("eventname").value,
         description: this.registerForm.get("description").value,
-        location: this.registerForm.get("location").value,
-        photoLocation: this.getfileLoc
+        location: this.registerForm.get("location").value
+        // photoLocation: this.getfileLoc
     })
 
 
@@ -225,7 +226,7 @@ onEdit(Id) {
       this.calendereventValue = this.editcalenderdatadata.eventname;
       this.calenderdescripValue = this.editcalenderdatadata.description;
       this.calenderlocValue = this.editcalenderdatadata.location;
-      this.photoLocationValue = this.editcalenderdatadata.photoLocation;
+      // this.photoLocationValue = this.editcalenderdatadata.photoLocation;
       this.IdValue = this.editcalenderdatadata._id;
 
       this.editForm = this.formBuilder.group({

@@ -208,7 +208,7 @@ export class StudentDetailComponent implements OnInit {
   activitycats: any;
   subcats: any;
   subcategories: any;
-  //Qualification 
+  //Qualification
   studentQualifications: Object;
   addQualificationForm: any;
   editQualification: any;
@@ -303,8 +303,8 @@ export class StudentDetailComponent implements OnInit {
   Id: any;
   editDetails: any;
   stuDetail: any;
+  isChecked:any;
 
-  
   constructor(
     private request: RequestService,
     private router: Router,
@@ -359,7 +359,7 @@ this.addMedicalForm = this.formBuilder.group({
   bloodGroup: [''],
   colorBlind: [''],
   medicallyFit: [''],
- 
+
 });
 //EditForm - StudentMedical
 this.editMedicalForm = this.formBuilder.group({
@@ -548,7 +548,7 @@ this.fileUpload2 = new FormControl('');
       });
     }
   }
-  
+
   public setMessage(message) {
     return this.message = message;
   }
@@ -565,7 +565,7 @@ this.fileUpload2 = new FormControl('');
      } else
         this.studentContacts = null;
    }
- 
+
    deletecontact(id: any) {
      this.request.deleteStaffContact(id).subscribe(res => {
       //  console.log(id);
@@ -573,7 +573,7 @@ this.fileUpload2 = new FormControl('');
      console.log('Deleted');
      });
    }
- 
+
  onAddContact() {
        this.submitted = true;
        if (this.addContactForm.invalid) {
@@ -606,7 +606,7 @@ this.fileUpload2 = new FormControl('');
        });
          console.log(newstudentContact);
    }
- 
+
    onEditContact(id: any){
      this.request.fetchStudentcontactById(id).subscribe((response) => {
        this.editContact=response[0];
@@ -622,8 +622,8 @@ this.fileUpload2 = new FormControl('');
            this.countryValue=this.editContact.country;
            this.pinValue=this.editContact.pin;
            this.IdValue2=this.editContact._id;
- 
- 
+
+
        this.editContactForm = this.formBuilder.group({
          addressType2:[this.addressTypeValue, Validators.required],
          address12:[this.address1Value, Validators.required],
@@ -665,7 +665,7 @@ this.fileUpload2 = new FormControl('');
      else if (res.status == 'error') {
        this.setMessage(res.error);
      }
- 
+
    }, (error) => {
      console.log(error);
      this.setMessage(error);
@@ -682,13 +682,13 @@ this.fileUpload2 = new FormControl('');
  // convenience getter for easy access to form fields
  get f() { return this.addContactForm.controls; }
  get f2() { return this.editContactForm.controls; }
- 
+
  private loadstudentContact(){
    $('#addcontactModal').modal('hide'); //or  $('#IDModal').modal('hide');
    $('#addcontactModal').on('hidden.bs.modal', function () {
    $(this).find('form').trigger('reset');
   });
- 
+
   $('#editcontactModal').modal('hide'); //or  $('#IDModal').modal('hide');
   $('#editcontactModal').on('hidden.bs.modal', function () {
   $(this).find('form').trigger('reset');
@@ -1054,7 +1054,7 @@ if (this.addOtherForm.invalid) {
 }
 let newstudentOther = {
   motherAge: this.addOtherForm.get('motherAge').value,
-  placeOfBirth:this.addOtherForm.get('placeOfBirth').value, 
+  placeOfBirth:this.addOtherForm.get('placeOfBirth').value,
   dateOfLeave: this.addOtherForm.get('dateOfLeave').value,
   overAllRank: this.addOtherForm.get('overAllRank').value,
   universityAppNo: this.addOtherForm.get('universityAppNo').value,
@@ -1116,7 +1116,7 @@ this.submitted = true;
 console.log(this.editOtherForm.value);
 let edata6 = {
   motherAge: this.editOtherForm.get('motherAge2').value,
-  placeOfBirth:this.editOtherForm.get('placeOfBirth2').value, 
+  placeOfBirth:this.editOtherForm.get('placeOfBirth2').value,
   dateOfLeave: this.editOtherForm.get('dateOfLeave2').value,
   overAllRank: this.editOtherForm.get('overAllRank2').value,
   universityAppNo: this.editOtherForm.get('universityAppNo2').value,
@@ -1363,7 +1363,7 @@ else if (res.status == 'success') {
 onEditExtra(id: any){
 this.request.fetchStudentExtraById(id).subscribe((response) => {
   this.editExtra = response[0];
- 
+
   this.activityCateValue = this.editExtra.activityCate;
   this.subCateValue = this.editExtra.subCate;
   this.levelValue = this.editExtra.level;
@@ -1531,7 +1531,7 @@ else if (res.status == 'success') {
 onEditQualification(id: any){
 this.request.fetchStudentQualificationById(id).subscribe((response) => {
   this.editQualification = response[0];
- 
+
   this.qualificationTypeValue = this.editQualification.qualificationType;
   this.courseTypeValue = this.editQualification.courseType;
   this.courseNameValue = this.editQualification.courseName;
@@ -1706,7 +1706,7 @@ swal("Deleted");
 });
 }
 
-//Fileupolad 
+//Fileupolad
 filesubmit() {
   this.uploader2.uploadAll();
 }
@@ -1745,7 +1745,7 @@ this.request.fetchStudentCertificateById(id).subscribe((response) => {
       this.fileUploadValue = this.editCertificate.fileUpload;
       this.IdValue = this.editCertificate._id;
 
- 
+
     this.certificateType2= new FormControl(this.certificateTypeValue, Validators.required),
     this.registerNo2= new FormControl(this.registerNoValue, Validators.required),
     this.certificateNo2= new FormControl(this.certificateNoValue, Validators.required),

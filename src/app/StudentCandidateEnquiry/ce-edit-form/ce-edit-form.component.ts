@@ -274,7 +274,9 @@ export class CEEditFormComponent implements OnInit {
   academicYearValue: any;
   academicyears: any;
   res: any;
-
+  selectedModeOfEnquiry:any;
+  selectedadvanceFeeType:any;
+  selectedaddresstype:any;
   constructor(
     private request: RequestService,
     private router: Router,
@@ -596,7 +598,7 @@ export class CEEditFormComponent implements OnInit {
     this.request.fetchBasicDetailsById(id).subscribe((response: any) => {
       this.basicdetails = response;
       this.institutiond = response[0].institution;
-      this.loadCourseCategoryByIns(this.institutiond); 
+      this.loadCourseCategoryByIns(this.institutiond);
       this.loadAdmissionCategoryByIns(this.institutiond);
       console.log('BasicDetailsById',  this.basicdetails);
     }, (error) => {
