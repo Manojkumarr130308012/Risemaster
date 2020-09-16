@@ -147,11 +147,13 @@ export class BoardOfEducationComponent implements OnInit {
 
 
     private loadModal() {
-      $('#addModal').modal('hide'); //or  $('#IDModal').modal('hide');
+      $('#addModal').modal('hide'); 
+      //or  $('#IDModal').modal('hide');
       $('#addModal').on('hidden.bs.modal', function () {
         $(this).find('form').trigger('reset');
      })
-     $('#editModal').modal('hide'); //or  $('#IDModal').modal('hide');
+     $('#editModal').modal('hide'); 
+     //or  $('#IDModal').modal('hide');
       $('#editModal ').on('hidden.bs.modal', function () {
         $(this).find('form').trigger('reset');
      })
