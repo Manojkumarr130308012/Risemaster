@@ -124,7 +124,7 @@ import { AcademicSubjectInternalsComponent } from './Academic/academic-subject-i
 import { StudentAttendenceReportComponent } from './Academic/student-attendence-report/student-attendence-report.component';
 import { StudentLeaveFormComponent } from './StudentManagement/student-leave-form/student-leave-form.component';
 import { CalenderdataComponent } from './Master/calenderdata/calenderdata.component';
-import { ExamtypeComponent } from './examtype/examtype.component';
+
 
 
 @NgModule({
@@ -230,7 +230,7 @@ AcademicSubjectInternalsComponent,
 
 StudentAttendenceReportComponent,
 StudentLeaveFormComponent,
-ExamtypeComponent
+
 
   ],
   imports: [
