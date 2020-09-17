@@ -354,6 +354,42 @@ public getstudentcountchart() {
   }
 
 
+   //examtype
+   public getexamtype() {
+    this.url = `${this.endPoint}/examtype/`;
+    return this.http.get(this.url);
+  }
+
+  public addexamtype(newBoard: {}) {
+    this.url = `${this.endPoint}/examtype/add`;
+    return this.http.post(this.url, newBoard);
+  }
+
+  public deleteexamtype(id) {
+    this.url = `${this.endPoint}/examtype/delete?id=` + id;
+    return this.http.delete(this.url);
+  }
+
+  updateexamtype(id, body) {
+    this.url = `${this.endPoint}/examtype/update?id=${id}`;
+    return this.http.put(this.url, body);
+  }
+
+  fetchexamtype() {
+    this.url = `${this.endPoint}/examtype/`;
+    return this.http.get(this.url);
+  }
+  fetchexamtypeById(id) {
+    this.url = `${this.endPoint}/examtype/fetchdata?id=` + id;
+    return this.http.get(this.url);
+  }
+  fetchexamtypes() {
+    this.url = `${this.endPoint}/examtype/`;
+    return this.http.get(this.url);
+  }
+
+
+
   //calenderdata
   public calenderdata() {
     this.url = `${this.endPoint}/calenderdata/aggregation`;
@@ -417,6 +453,35 @@ public getstudentcountchart() {
     return this.http.get(this.url);
   }
 
+//exam
+public getexam() {
+  this.url = `${this.endPoint}/exam/aggregation`;
+  return this.http.get(this.url);
+}
+
+public addexam(newexam: { examtype: any; examname: any; }) {
+  this.url = `${this.endPoint}/exam/add`;
+  return this.http.post(this.url, newexam);
+}
+
+public deleteexam(id) {
+  this.url = `${this.endPoint}/exam/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+
+updateexam(id, body) {
+  this.url = `${this.endPoint}/exam/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetchexam() {
+  this.url = `${this.endPoint}/exam/`;
+  return this.http.get(this.url);
+}
+fetchexamById(id) {
+  this.url = `${this.endPoint}/exam/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
 
 // batch
 public getbatch() {

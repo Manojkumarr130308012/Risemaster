@@ -96,6 +96,8 @@ import { AcademicSubjectInternalsComponent } from './Academic/academic-subject-i
 import { StudentAttendenceReportComponent } from './Academic/student-attendence-report/student-attendence-report.component';
 import { StudentLeaveFormComponent } from './StudentManagement/student-leave-form/student-leave-form.component';
 import { CalenderdataComponent } from './Master/calenderdata/calenderdata.component';
+import { ExamtypeComponent } from './Master/examtype/examtype.component';
+import { ExamComponent } from './Master/exam/exam.component';
 
 
 const routes: Routes = [
@@ -121,6 +123,14 @@ const routes: Routes = [
  {
     path: 'user-designation',
     component: UserDesignationComponent
+  },
+  {
+    path: 'examtype',
+    component: ExamtypeComponent
+  },
+  {
+    path: 'exam',
+    component: ExamComponent
   },
   {
     path: 'student-attendence-report',

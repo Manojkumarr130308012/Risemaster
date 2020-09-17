@@ -6,7 +6,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            <strong>Exam Type</strong>
+                            <strong>Examtype</strong>
                         </h2>
 
                         <div class="row clearfix" style="margin-top: 4%">
@@ -58,13 +58,13 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <label>Board</label>
-                                                                <input type="text"  formControlName="board"
-                                                                    class="form-control" placeholder="Enter board"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.board.errors }" />
-                                                                <div *ngIf="submitted && f.board.errors"
+                                                                <label>Exam Type</label>
+                                                                <input type="text"  formControlName="examtype"
+                                                                    class="form-control" placeholder="Enter Examtype"
+                                                                    [ngClass]="{ 'is-invalid': submitted && f.examtype.errors }" />
+                                                                <div *ngIf="submitted && f.examtype.errors"
                                                                     class="invalid-feedback">
-                                                                    <div *ngIf="f.board.errors.required">Board is
+                                                                    <div *ngIf="f.examtype.errors.required">Examtype is
                                                                         required</div>
                                                                 </div>
                                                             </div>
@@ -92,7 +92,7 @@
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
-                                            <th (click)="sort('board')">Board Of Education
+                                            <th (click)="sort('board')">ExamType
                                                 <i class="menu-icon ti-exchange-vertical noprint"></i>
                                             </th>
                                             <th class="noprint">Action</th>
@@ -100,18 +100,18 @@
                                     </thead>
                                     <tbody>
                                         <tr
-                                            *ngFor="let board of boards?.response | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 5, currentPage: p }; let i=index">
+                                            *ngFor="let examtype of examtypes | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 5, currentPage: p }; let i=index">
                                             <td>{{(p - 1) * 5 + i +1 }}</td>
-                                            <td>{{board?.board}}</td>
+                                            <td>{{examtype?.examtype}}</td>
                                             <div class="noprint">
                                                 <td>
                                                     <div class="btn btn-tbl-edit" data-toggle="modal"
                                                         data-target="#editModal">
-                                                        <i class="material-icons" (click)="onEdit(board)">create</i>
+                                                        <i class="material-icons" (click)="onEdit(examtype)">create</i>
                                                     </div>
                                                     <div class="btn btn-tbl-delete">
                                                         <i class="material-icons"
-                                                            (click)="deleteBoard(board?._id)">delete_forever</i>
+                                                            (click)="deleteBoard(examtype?._id)">delete_forever</i>
                                                     </div>
                                                 </td>
                                             </div>
@@ -142,12 +142,12 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Board</label>
-                                            <input type="text" formControlName="board2" class="form-control" name="board"
-                                                placeholder="Enter board"
-                                                [ngClass]="{ 'is-invalid': submitted && f2.board2.errors }" />
-                                            <div *ngIf="submitted && f2.board2.errors" class="invalid-feedback">
-                                                <div *ngIf="f2.board2.errors.required">Board is required</div>
+                                            <label>ExamType</label>
+                                            <input type="text" formControlName="examtype2" class="form-control" name="examtype"
+                                                placeholder="Enter Examtype"
+                                                [ngClass]="{ 'is-invalid': submitted && f2.examtype2.errors }" />
+                                            <div *ngIf="submitted && f2.examtype2.errors" class="invalid-feedback">
+                                                <div *ngIf="f2.examtype2.errors.required">examtype is required</div>
                                             </div>
                                         </div>
                                     </div>
