@@ -193,20 +193,18 @@ export class SectionComponent implements OnInit {
       console.log(error);
     });
   }
-  onBatchChange(batch: any) {
-    console.log('Batch' ,batch);
-    if (batch) {
-      this.request.fetchAcademicyearByBatch(batch).subscribe((response: any) => {
+  loadacadmicyear() {
+      this.request.fetchAcademicYear().subscribe((response: any) => {
         this.academicyearByBatch = response;
         console.log('AcademicYearByBatch',  this.academicyearByBatch);
       }, (error) => {
         console.log(error);
       });
-    } else
-      this.academicyearByBatch = null;
+    
+     
   }
-  loadacademicYearByBatch(batch) {
-    this.request.fetchAcademicyearByBatch(batch).subscribe((response: any) => {
+  loadacademicYearByBatch() {
+    this.request.fetchAcademicYear().subscribe((response: any) => {
       this.academicyearByBatch = response;
       console.log('AcademicYearByBatch', this.academicyearByBatch);
     }, (error) => {
@@ -221,7 +219,7 @@ export class SectionComponent implements OnInit {
       this.courseprogram1 = this.editsection.courseprogram;
     this.loadBatchByCourseprogram(this.courseprogram1);
     this.batch1 = this.editsection.batch;
-    this.loadacademicYearByBatch(this.batch1);
+    this.loadacademicYearByBatch();
       console.log(response);
       this.institutionValue = this.editsection.institution;
       this.departmentValue = this.editsection.department;
@@ -361,6 +359,7 @@ export class SectionComponent implements OnInit {
     this.viewData();
     this.loadInstitution();
     this.loadModal();
+    this.loadacadmicyear();
     this.loadDepartmentByIns(this.institutionValue);
     this.loadCourseProgramByIns(this.institutionValue);
     this.loadSemesterByIns(this.institutionValue);

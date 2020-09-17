@@ -66,8 +66,8 @@ export class AcademicYearComponent implements OnInit {
       //Add Form Group
       this.registerForm = this.formBuilder.group({
         institution:['', Validators.required],
-        courseprogram:['', Validators.required],
-        batch:['', Validators.required],
+        // courseprogram:['', Validators.required],
+        // batch:['', Validators.required],
         year:['', Validators.required],
         short_code: ['', Validators.required],
         start_date: ['', Validators.required],
@@ -77,8 +77,8 @@ export class AcademicYearComponent implements OnInit {
     //Edit Form Group
       this.editForm = this.formBuilder.group({
         institution2: ['', Validators.required],
-        courseprogram2: ['', Validators.required],
-        batch2: ['', Validators.required],
+        // courseprogram2: ['', Validators.required],
+        // batch2: ['', Validators.required],
         year2: ['', Validators.required],
         short_code2: ['', Validators.required],
         start_date2: ['', Validators.required],
@@ -188,8 +188,8 @@ export class AcademicYearComponent implements OnInit {
       this.editAcademicyeardata = response[0];
       this.institution1 =  this.editAcademicyeardata.institution;
       this.loadCourseProgramByIns(this.institution1);
-      this.courseprogram1 = this.editAcademicyeardata.courseprogram;
-      this.loadBatchByCourseprogram(this.courseprogram1);
+      // this.courseprogram1 = this.editAcademicyeardata.courseprogram;
+      // this.loadBatchByCourseprogram(this.courseprogram1);
       this.institutionValue = this.editAcademicyeardata.institution;
       this.courseprogramValue = this.editAcademicyeardata.courseprogram;
       this.batchValue = this.editAcademicyeardata.batch;
@@ -202,8 +202,8 @@ export class AcademicYearComponent implements OnInit {
 
       this.editForm = this.formBuilder.group({
         institution2: [this.institutionValue, Validators.required],
-        courseprogram2: [this.courseprogramValue, Validators.required],
-        batch2: [this.batchValue, Validators.required],
+        // courseprogram2: [this.courseprogramValue, Validators.required],
+        // batch2: [this.batchValue, Validators.required],
         year2: [this.yearValue, Validators.required],
         short_code2: [this.shortCodeValue, Validators.required],
         start_date2: [this.startDateValue, Validators.required],
@@ -219,8 +219,8 @@ export class AcademicYearComponent implements OnInit {
     }
     const edata = {
       institution: this.editForm.get('institution2').value,
-      courseprogram: this.editForm.get('courseprogram2').value,
-      batch: this.editForm.get('batch2').value,
+      // courseprogram: this.editForm.get('courseprogram2').value,
+      // batch: this.editForm.get('batch2').value,
       year: this.editForm.get('year2').value,
       short_code: this.editForm.get('short_code2').value,
       start_date: this.editForm.get('start_date2').value,

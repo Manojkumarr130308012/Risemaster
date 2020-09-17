@@ -65,7 +65,6 @@
                         </div>
                     </div>
                 </div>
-    
             <!-- Table End -->
         </div>
     </section>
@@ -149,7 +148,7 @@
                                     <select class="browser-default form-control" formControlName="academicYear"
                                         [ngClass]="{ 'is-invalid': submitted && f.academicYear.errors }">
                                         <option value="">Choose your Academic Year</option>
-                                        <option *ngFor="let academicYear of academicyearByBatch" [value]="academicYear._id">
+                                        <option *ngFor="let academicYear of academicyearByBatch?.response" [value]="academicYear._id">
                                             {{academicYear.year}}</option>
                                     </select>
                                     <div *ngIf="submitted && f.academicYear.errors" class="invalid-feedback">
@@ -253,7 +252,7 @@
                                         <select class="browser-default form-control" formControlName="academicYear2"
                                             [ngClass]="{ 'is-invalid': submitted && f2.academicYear2.errors }">
                                             <option value="">Choose your Academic Year</option>
-                                            <option *ngFor="let academicYear of academicyearByBatch" [value]="academicYear._id">
+                                            <option *ngFor="let academicYear of academicyearByBatch?.response" [value]="academicYear._id">
                                                 {{academicYear.year}}</option>
                                         </select>
                                         <div *ngIf="submitted && f2.academicYear2.errors" class="invalid-feedback">

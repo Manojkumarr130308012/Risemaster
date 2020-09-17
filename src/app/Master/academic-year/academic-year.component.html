@@ -43,7 +43,7 @@
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group form-float">
+                                                            <!-- <div class="form-group form-float">
                                                                 <label>Batch<span class="asterisk">*</span></label>
                                                                 <div class="form-line">
                                                                     <select class="browser-default" formControlName="batch" name="batch" class="form-control"
@@ -56,7 +56,7 @@
                                                                         <div *ngIf="f.batch.errors.required">Batch is required</div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            </div> -->
                                                             <div class="form-group">
                                                                 <label>Year</label>
                                                                 <input type="text" value="" formControlName="year" class="form-control" placeholder="Enter year"
@@ -75,7 +75,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <div class="form-group">
+                                                            <!-- <div class="form-group">
                                                                 <label>Course Program</label>
                                                                 <select id="select" class="browser-default form-control" formControlName="courseprogram"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.courseprogram.errors }"
@@ -87,7 +87,7 @@
                                                                 <div *ngIf="submitted && f.courseprogram.errors" class="invalid-feedback">
                                                                     <div *ngIf="f.courseprogram.errors.required">Course Program is required</div>
                                                                 </div>
-                                                            </div>
+                                                            </div> -->
                                                             <div class="form-group">
                                                                 <label>Short Code</label>
                                                                 <input type="text" value="" formControlName="short_code" class="form-control" placeholder="Enter ShortCode"
@@ -134,8 +134,8 @@
                                     <tr>
                                         <th>S.No</th>
                                         <th>Institution</th>
-                                        <th>Course Program</th>
-                                        <th>Batch</th>
+                                        <!-- <th>Course Program</th>
+                                        <th>Batch</th> -->
                                         <th>Year</th>
                                         <th>Short code</th>
                                         <th>Start date</th>
@@ -148,9 +148,9 @@
                                     <tr *ngFor="let academicyear of academicyears; let i=index">
                                         <td>{{i +1 }}</td>
                                         <td>{{academicyear?.institutiond[0].institution_name}}</td>
-                                        <td>{{academicyear?.courseprogramd[0].courseprogram}}</td>
-                                        <td>{{academicyear?.batchd[0].batch}}</td>
-                                        <td>{{academicyear?.year}}</td>
+                                        <!-- <td>{{academicyear?.courseprogramd[0].courseprogram}}</td>
+                                        <td>{{academicyear?.batchd[0].batch}}</td> -->
+                                        <td>{{academicyear?.year}}</td> 
                                         <td>{{academicyear?.short_code}}</td>
                                         <td>{{academicyear?.start_date}}</td>
                                         <td>{{academicyear?.end_date}}</td>
@@ -203,7 +203,7 @@
                                              </select>
                                          </div>
                                      </div>
-                                    <div class="form-group form-float">
+                                    <!-- <div class="form-group form-float">
                                         <label>Batch<span class="asterisk">*</span></label>
                                         <div class="form-line">
                                             <select class="browser-default" formControlName="batch2" name="batch2" class="form-control"
@@ -216,7 +216,7 @@
                                                 <div *ngIf="f2.batch2.errors.required">Batch is required</div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                      <div class="form-group">
                                          <label>Year</label>
                                          <input type="text" value="" formControlName="year2" class="form-control" placeholder="Enter year"
@@ -235,7 +235,7 @@
                                      </div>
                                  </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label>Course Program</label>
                                         <select id="select" class="browser-default form-control" formControlName="courseprogram2"
                                             [ngClass]="{ 'is-invalid': submitted && f2.courseprogram2.errors }"
@@ -247,7 +247,7 @@
                                         <div *ngIf="submitted && f2.courseprogram2.errors" class="invalid-feedback">
                                             <div *ngIf="f2.courseprogram2.errors.required">Course Program is required</div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group">
                                         <label>Short Code</label>
                                         <input type="text" value="" formControlName="short_code2" class="form-control" placeholder="Enter ShortCode"
