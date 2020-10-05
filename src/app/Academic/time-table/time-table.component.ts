@@ -128,9 +128,11 @@ export class TimeTableComponent implements OnInit {
   }
 
   loadSubjectWithStaff(sectionid) {
+
+    console.log('SectionsDetails BySection', sectionid);
     this.request.getSectionStaffbySec(sectionid).subscribe((response: any) => {
       this.sections = response;
-      // console.log('SectionsDetails BySection', this.sections);
+     console.log('SectionsDetails BySection', this.sections);
     }, (error) => {
       console.log(error);
     });

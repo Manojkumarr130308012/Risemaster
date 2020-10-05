@@ -90,6 +90,7 @@ import { TimeTableComponent } from './Academic/time-table/time-table.component';
 import { TimetableMainComponent } from './Academic/timetable-main/timetable-main.component';
 import { StudentAttendenceEntryComponent } from './Academic/student-attendence-entry/student-attendence-entry.component';
 import { StudentAttendenceComponent } from './Academic/student-attendence/student-attendence.component';
+import { AttendancedetailsComponent } from './Academic/attendancedetails/attendancedetails.component';
 import { AcademicSubjectComponent } from './Academic/academic-subject/academic-subject.component';
 import { AcademicSubjectInternalsComponent } from './Academic/academic-subject-internals/academic-subject-internals.component';
 
@@ -422,6 +423,10 @@ const routes: Routes = [
      path:'student-attendence',
      component: StudentAttendenceComponent
    },
+   {
+    path:'attendancedetails',
+    component: AttendancedetailsComponent
+  },
    {
     path:'student-attendence-entry',
     component: StudentAttendenceEntryComponent

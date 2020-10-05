@@ -69,8 +69,7 @@ export class SemesterComponent implements OnInit {
       academicYear: ["", Validators.required],
       semesterType: ["", Validators.required],
       semester: ["", Validators.required],
-
-
+      fromDate: ["", Validators.required],
       toDate: ["", Validators.required],
     });
     // Edit Form
@@ -193,7 +192,7 @@ this.courseprogrambyIns = null;
 onBatchChange(batch: any) {
   console.log('Batch' ,batch);
   if (batch) {
-    this.request.fetchAcademicyearByBatch(batch).subscribe((response: any) => {
+    this.request.fetchAcademicYear().subscribe((response: any) => {
       this.academicyearByBatch = response;
       console.log('AcademicYearByBatch',  this.academicyearByBatch);
     }, (error) => {

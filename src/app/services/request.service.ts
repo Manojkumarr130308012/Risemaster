@@ -2801,6 +2801,10 @@ public filterStudentAttendenceEntryExist(filterAttendenceEntryExist) {
   return this.http.post(this.url,filterAttendenceEntryExist);
 }
 
+public fetchStudentAttendenceDetails2(filterAttendenceEntryExist) {
+  this.url = `${this.endPoint}/studentAttendence/fetchStudentAttendenceDetails2`;
+  return this.http.post(this.url,filterAttendenceEntryExist);
+}
 
 
 public getStudentAttendenceDetails(attendenceDetails) {
@@ -2834,7 +2838,7 @@ public getPeriodSubjectStaff(filterSubjectStaff) {
 updateAttedenceDetails(id, body) {
 
   this.url = `${this.endPoint}/studentAttendence/update?id=${id}`;
-  return this.http.put(this.url, body);
+  return this.http.put(this.url,body);
 
 }
 

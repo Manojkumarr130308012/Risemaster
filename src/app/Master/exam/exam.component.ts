@@ -18,13 +18,19 @@ export class ExamComponent implements OnInit {
   submitted = false;
   examtype: FormControl;
   exam: FormControl;
+  start_date: FormControl;
+  end_date: FormControl;
   examtype2: FormControl;
   exam2: FormControl;
+  start_date2: FormControl;
+  end_date2: FormControl;
   exams: any;
   Id: any;
   editexamdata;
   examValue: any;
   examtypeValue: any;
+  startDateValue: any;
+  endDateValue: any;
   IdValue: any;
   examtypes;
   registerForm: FormGroup;
@@ -38,12 +44,16 @@ export class ExamComponent implements OnInit {
       //Add Form Group
       this.registerForm = this.formBuilder.group({
           examtype: ['', Validators.required],
-          exam: ['', Validators.required]
+          exam: ['', Validators.required],
+          start_date: ['', Validators.required],
+          end_date: ['', Validators.required],
       });
       //Edit Form Group
       this.editForm = this.formBuilder.group({
         examtype2: ['', Validators.required],
-        exam2: ['', Validators.required]
+        exam2: ['', Validators.required],
+        start_date2: ['', Validators.required],
+        end_date2: ['', Validators.required],
       });
   }
 
@@ -102,11 +112,15 @@ onEdit(Id) {
       console.log(response);
       this.examValue = this.editexamdata.exam;
       this.examtypeValue = this.editexamdata.examtype;
+      this.startDateValue = this.editexamdata.start_date;
+      this.endDateValue = this.editexamdata.end_date;
       this.IdValue = this.editexamdata._id;
 
       this.editForm = this.formBuilder.group({
           exam2: [this.examValue, Validators.required],
-          examtype2: [this.examtypeValue, Validators.required]
+          examtype2: [this.examtypeValue, Validators.required],
+          start_date2: [this.startDateValue, Validators.required],
+          end_date2: [this.endDateValue, Validators.required]
       });
       // console.log('get edit data',this.editForm.value);
   });
@@ -129,7 +143,9 @@ onEditSubmit() {
 
   const edata = {
       exam: this.editForm.get('exam2').value,
-      examtype: this.editForm.get('examtype2').value
+      examtype: this.editForm.get('examtype2').value,
+      start_date: this.editForm.get('start_date2').value,
+      end_date: this.editForm.get('end_date2').value
   }
 
  // console.log('edata',edata);

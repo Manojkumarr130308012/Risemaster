@@ -69,7 +69,7 @@
                       <select class="browser-default" [formControl]="academicYear" name="academicYear"
                         class="form-control" (change)="onAcademicYearChange($event.target.value)" required>
                         <option>Choose your Academic Year</option>
-                        <option *ngFor="let academicYear of academicyearByBatch" [value]="academicYear._id">
+                        <option *ngFor="let academicYear of academicyearByBatch?.response" [value]="academicYear._id">
                           {{academicYear.year}}</option>
                       </select>
                     </div>

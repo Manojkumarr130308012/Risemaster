@@ -93,7 +93,7 @@ export class TimetableMainComponent implements OnInit {
     onBatchChange(batch: any) {
       console.log('Batch' ,batch);
       if (batch) {
-        this.request.fetchAcademicyearByBatch(batch).subscribe((response: any) => {
+        this.request.fetchAcademicYear().subscribe((response: any) => {
           this.academicyearByBatch = response;
           console.log('AcademicYearByBatch',  this.academicyearByBatch);
         }, (error) => {
