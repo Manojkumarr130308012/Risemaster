@@ -1,0 +1,169 @@
+<section class="content">
+    <div class="container-fluid">
+      <!-- Example -->
+      <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="card">
+            <div class="header">
+              <h2>
+                <strong>Student Mark Report</strong>
+              </h2>
+            </div>
+            <form id="form_advanced_validation">
+              <div class="body">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group form-float">
+                      <label>Course Program<span class="asterisk">*</span></label>
+                      <div class="form-line">
+                        <select class="browser-default form-control" [formControl]="courseprogram" name="courseprogram"
+                          (change)="onCourseProgramChange($event.target.value)" required>
+                          <option disabled>Choose your Course Program</option>
+                          <option *ngFor="let courseprogram of courseprogrambyIns?.response" [value]="courseprogram._id">
+                            {{courseprogram.courseprogram}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group form-float">
+                      <label for="section">Section<span class="asterisk">*</span></label>
+                      <div class="form-line">
+                        <select class="browser-default" [formControl]="section" name="section" class="form-control"
+                          required>
+                          <option>Choose your Section</option>
+                          <option *ngFor="let section of sections" [value]="section._id">
+                            {{section?.section}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group form-float">
+                      <label for="academicYear">Academic Year<span class="asterisk">*</span></label>
+                      <div class="form-line">
+                        <select class="browser-default" [formControl]="academicYear" name="academicYear"
+                          class="form-control" (change)="onAcademicYearChange($event.target.value)" required>
+                          <option>Choose your Academic Year</option>
+                          <option *ngFor="let academicYear of academicYearBycourseprogram?.response" [value]="academicYear._id">
+                            {{academicYear.year}}</option>
+                        </select>
+                      </div>
+                    </div>
+                
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group form-float">
+                      <label for="exam">Exam<span class="asterisk">*</span></label>
+                      <div class="form-line">
+                        <select class="browser-default" [formControl]="exam" name="exam"
+                          class="form-control"  required>
+                          <option>Choose your Exam</option>
+                          <option *ngFor="let examcourseprogram of examcourseprogram?.response" [value]="examcourseprogram._id">
+                            {{examcourseprogram.exam}}</option>
+                        </select>
+                      </div>
+                    </div>
+                
+                  </div>
+                  <div class="col-md-3">
+  
+                    <div class="form-group form-float">
+                      <label for="semester">Semester<span class="asterisk">*</span></label>
+                      <div class="form-line">
+                        <select class="browser-default" [formControl]="semester" name="semester" class="form-control"
+                          (change)="onSemesterChange($event.target.value)" required>
+                          <option>Choose your Semester</option>
+                          <option *ngFor="let semester of semestersByYear" [value]="semester._id">{{semester?.semester}}
+                          </option>
+                        </select>
+                      </div>
+  
+                    </div>
+  
+                    <div class="form-group form-float">
+  
+                    </div>
+                    <button type="submit" class="btn btn-info" (click)="openAttendenceReport()">Submit</button>
+                  </div>
+  
+                  <!-- <div class="col-md-3">
+                                <button type="submit" class="btn btn-info" (click)="openTimeTable()">Submit</button>
+                            </div> -->
+                </div>
+              </div>
+            </form>
+            <div class="body table-responsive">
+              <div class="row">
+                <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+                  <div class="panel-group" id="accordion_17" role="tablist" aria-multiselectable="true">
+  
+                    <div class="panel panel-col-cyan">
+                      <div class="panel-heading" role="tab" id="headingTwo_17">
+                        <h4 class="panel-title">
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_17"
+                            href="#collapseTwo_17" aria-controls="collapseTwo_17">Student Period Attendance
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseTwo_17" class="panel-collapse collapse" role="tabpanel"
+                        aria-labelledby="headingTwo_17">
+                        <div class="panel-body">
+                          <div class="table-responsive">
+                            <table class="table table-bordered">
+                              <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>Roll No.</th>
+                                  <th>Reg No.</th>
+                                  <th>Name</th>
+                                  <th *ngFor="let period of periods">{{period.periodName}} </th>
+  
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let student of studentList; let i=index">
+                                  <td>{{i +1 }}</td>
+                                  <td>{{student.rollNo}}</td>
+                                  <td>{{student.regNo}}</td>
+                                  <td>{{student.firstName}} {{student.lastName}}</td>
+                                  <td *ngFor="let period of Getperiods(periods,student)">
+                                    <div
+                                      *ngFor="let StudentAttendence of GetStudentAttendenceDetails(period._id,student._id)">
+                                      {{StudentAttendence.studentAttendence}} </div>
+  
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+  
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th *ngFor="let stumarkdetail of stumarkdetails">{{stumarkdetail.subjectd[0].abbreviation}} <br /> ({{stumarkdetail.subjectd[0].subjectDescription}})</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let studentAttendence of studentAttendenceDetails">
+                    <!-- <td>{{i +1 }}</td> -->
+                    <td>{{studentAttendence?.listOfStudentsname[0]}}</td>
+                    <td>{{studentAttendence?.listOfStudents[0]}}</td>
+                    <td>{{studentAttendence?.listOfStudents[1]}}</td>
+                  
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

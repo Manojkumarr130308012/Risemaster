@@ -127,6 +127,8 @@ import { CalenderdataComponent } from './Master/calenderdata/calenderdata.compon
 import { ExamtypeComponent } from './Master/examtype/examtype.component';
 import { ExamComponent } from './Master/exam/exam.component';
 import { AttendancedetailsComponent } from './Academic/attendancedetails/attendancedetails.component';
+import { ExammarkreportComponent } from './Master/exammarkreport/exammarkreport.component';
+import { LecturePlanComponent } from './SubjectMaster/lecture-plan/lecture-plan.component';
 
 
 @NgModule({
@@ -234,7 +236,9 @@ StudentAttendenceReportComponent,
 StudentLeaveFormComponent,
 ExamtypeComponent,
 ExamComponent,
-AttendancedetailsComponent
+AttendancedetailsComponent,
+ExammarkreportComponent,
+LecturePlanComponent
 
   ],
   imports: [

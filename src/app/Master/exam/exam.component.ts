@@ -20,18 +20,32 @@ export class ExamComponent implements OnInit {
   exam: FormControl;
   start_date: FormControl;
   end_date: FormControl;
+  status: FormControl;
+  courseprogram : any;
+  public institution: any;
+  institutionValue: any;
+  courseprogramValue: any;
   examtype2: FormControl;
   exam2: FormControl;
   start_date2: FormControl;
   end_date2: FormControl;
+  status2: FormControl;
+  public institution2: any;
+  courseprogram2 : any;
   exams: any;
   Id: any;
   editexamdata;
+  courseprogram1:any;
+  courseprogrambyIns: any;
   examValue: any;
   examtypeValue: any;
   startDateValue: any;
   endDateValue: any;
+  statusValue: any;
   IdValue: any;
+  institution1: any;
+  institutions:any;
+  degree1: any;
   examtypes;
   registerForm: FormGroup;
   editForm: FormGroup;
@@ -43,17 +57,23 @@ export class ExamComponent implements OnInit {
       private router: Router,private auth: AuthService) {
       //Add Form Group
       this.registerForm = this.formBuilder.group({
+        institution:['', Validators.required],
+        courseprogram:['', Validators.required],
           examtype: ['', Validators.required],
           exam: ['', Validators.required],
           start_date: ['', Validators.required],
           end_date: ['', Validators.required],
+          status: ['', Validators.required]
       });
       //Edit Form Group
       this.editForm = this.formBuilder.group({
+        institution2: ["", Validators.required],
+        courseprogram2:['', Validators.required],
         examtype2: ['', Validators.required],
         exam2: ['', Validators.required],
         start_date2: ['', Validators.required],
         end_date2: ['', Validators.required],
+        status2: ['', Validators.required]
       });
   }
 
@@ -74,6 +94,7 @@ public setMessage(message) {
 get f() { return this.registerForm.controls; }
 get f2() { return this.editForm.controls; }
 //Add form validation and function
+ 
 
 onAddSubmit() {
   this.submitted = true;
@@ -110,17 +131,26 @@ onEdit(Id) {
   this.request.fetchexamById(Id).subscribe((response) => {
       this.editexamdata = response[0];
       console.log(response);
+      this.institution1 =  this.editexamdata.institution;
+      this.loadCourseProgramByIns(this.institution1);
+      this.courseprogram1 = this.editexamdata.courseprogram;
       this.examValue = this.editexamdata.exam;
+      this.institutionValue = this.editexamdata.institution;
+      this.courseprogramValue = this.editexamdata.courseprogram;
       this.examtypeValue = this.editexamdata.examtype;
       this.startDateValue = this.editexamdata.start_date;
       this.endDateValue = this.editexamdata.end_date;
+      this.statusValue = this.editexamdata.status;
       this.IdValue = this.editexamdata._id;
 
       this.editForm = this.formBuilder.group({
+        institution2: [this.institutionValue, Validators.required],
+        courseprogram2: [this.courseprogramValue, Validators.required],
           exam2: [this.examValue, Validators.required],
           examtype2: [this.examtypeValue, Validators.required],
           start_date2: [this.startDateValue, Validators.required],
-          end_date2: [this.endDateValue, Validators.required]
+          end_date2: [this.endDateValue, Validators.required],
+          status2: [this.statusValue, Validators.required]
       });
       // console.log('get edit data',this.editForm.value);
   });
@@ -134,6 +164,42 @@ loadInstitution() {
       console.log(error);
   });
 }
+
+
+ // Bind institution data
+ loadInstitution1() {
+  this.request.getInstitution().subscribe(
+    (response: any) => {
+      console.log(response);
+      this.institutions = response;
+    },
+    error => {
+      console.log(error);
+    }
+  );
+}
+onInstitutionChange(Institution: any) {
+  console.log('institution', Institution)
+  if (Institution) {
+    this.request.getCourseprogramByIns(Institution).subscribe((response: any) => {
+      console.log('Courseprogram', response);
+      this.courseprogrambyIns = response;
+    }, (error) => {
+      console.log(error);
+    });
+  
+  } else
+  this.courseprogrambyIns = null;
+  }
+loadCourseProgramByIns(institution) {
+  this.request.getCourseprogramByIns(institution).subscribe((response: any) => {
+    this.courseprogrambyIns = response;
+    
+    console.log('CourseProgrambyIns', this.courseprogrambyIns);
+  }, (error) => {
+    console.log(error);
+  });
+}
 onEditSubmit() {
   this.submitted = true;
   // console.log('edited data',this.editForm.value);
@@ -145,7 +211,10 @@ onEditSubmit() {
       exam: this.editForm.get('exam2').value,
       examtype: this.editForm.get('examtype2').value,
       start_date: this.editForm.get('start_date2').value,
-      end_date: this.editForm.get('end_date2').value
+      end_date: this.editForm.get('end_date2').value,
+      status: this.editForm.get('status2').value,
+      courseprogram: this.editForm.get("courseprogram2").value,
+      institution: this.editForm.get("institution2").value
   }
 
  // console.log('edata',edata);
@@ -211,5 +280,6 @@ ngOnInit() {
  // M.updateTextFields();
   this.viewData();
   this.loadInstitution();
+  this.loadInstitution1();
 }
 }

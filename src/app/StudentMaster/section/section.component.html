@@ -34,6 +34,7 @@
                                                 <th>Semester</th>
                                                 <th>Section</th>
                                                 <th>Staff</th>
+                                                <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -49,6 +50,7 @@
                                                 <td>
                                                     <button type="button" (click)="open(section)" class="btn btn-default">View</button>
                                                </td>
+                                               <td>{{section?.status}}</td>
                                                 <td>
                                                     <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editModal">
                                                         <i class="material-icons" (click)="onEdit(section) ">create</i>
@@ -166,6 +168,21 @@
                                         <div *ngIf="f.section.errors.required">Section is required</div>
                                     </div>
                                 </div>
+
+
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <select class="browser-default" formControlName="status" value=" " class="form-control"
+                                        placeholder="Enter Status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                                        <option value="">Choose your option</option>
+                                        <option value="active">Active</option>
+                                        <option value="inactive">Inactive</option>
+                                    </select>
+                                    <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                                        <div *ngIf="f.status.errors.required">Status is required</div>
+                                    </div>
+                                </div>
+      
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -267,10 +284,23 @@
                                             <div *ngIf="f2.section2.errors.required">Section is required</div>
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                     <label>Status</label>
+                                             <select class="browser-default" formControlName="status2" class="form-control" placeholder="Enter Status"
+                                          [ngClass]="{ 'is-invalid': submitted && f2.status2.errors }">
+                                           <option value="">Choose your option</option>
+                                          <option value="active">Active</option>
+                                          <option value="inactive">Inactive</option>
+                                       </select>
+                                        <div *ngIf="submitted && f2.status2.errors" class="invalid-feedback">
+                                            <div *ngIf="f2.status2.errors.required">Status is required</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
              <div class="modal-footer">
-                    <button type="submit" class="btn btn-default"  >Update</button >
+                    <button type="submit" class="btn btn-default" >Update</button >
                  <button type="button" class="btn btn-danger waves-effect"
                      data-dismiss="modal">Cancel</button>
              </div>

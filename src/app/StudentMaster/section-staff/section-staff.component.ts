@@ -31,6 +31,8 @@ export class SectionStaffComponent implements OnInit {
   IdValue: any;
   editsemester: any;
   semesterValue: any;
+  status: FormControl;
+  status2: FormControl;
   institutionValue: any;
   institutions;
   message: string;
@@ -59,6 +61,7 @@ export class SectionStaffComponent implements OnInit {
   subjectValue1: any;
   institutionId: any;
   departmentId: any;
+  statusValue: any;
   courseprogramId: any;
   batchId: any;
   academicYearId: any;
@@ -114,10 +117,12 @@ export class SectionStaffComponent implements OnInit {
     //Add Form
    this.staff= new FormControl('', Validators.required);
    this.subject= new FormControl('', Validators.required);
-
-   //Edit Form
+   this.status=new FormControl('',Validators.required);
+ 
+    //Edit Form
    this.staff2= new FormControl('', Validators.required);
    this.subject2= new FormControl('', Validators.required);
+   this.status2=new FormControl('',Validators.required);
   });
 
   }
@@ -165,8 +170,8 @@ export class SectionStaffComponent implements OnInit {
     const newdata = {
       section:  this.id,
       staff: this.staff.value,
-      subject: this.subject.value
-
+      subject: this.subject.value,
+      status:this.status.value
     };
     this.request.addSectionStaff(newdata).subscribe((res: any) => {
         if (res.status == "success") {
@@ -231,7 +236,6 @@ export class SectionStaffComponent implements OnInit {
       this.IdValue = this.editsection._id;
       this.subject2 = new FormControl(this.subjectValue, Validators.required);
       this.staff2 = new FormControl(this.staffValue, Validators.required);
-
     });
   }
   onEditSubmit() {
@@ -239,7 +243,7 @@ export class SectionStaffComponent implements OnInit {
     const edata = {
       section:  this.id,
       staff: this.staff2.value,
-      subject: this.subject2.value,
+      subject: this.subject2.value, 
     };
 
     this.request.updateSectionStaff(this.IdValue, edata).subscribe(

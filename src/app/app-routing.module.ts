@@ -100,7 +100,8 @@ import { CalenderdataComponent } from './Master/calenderdata/calenderdata.compon
 import { ExamtypeComponent } from './Master/examtype/examtype.component';
 import { ExamComponent } from './Master/exam/exam.component';
 
-
+import { ExammarkreportComponent } from './Master/exammarkreport/exammarkreport.component';
+import { LecturePlanComponent } from './SubjectMaster/lecture-plan/lecture-plan.component';
 const routes: Routes = [
   // { path: '', component: LoginComponent },
   {
@@ -132,6 +133,10 @@ const routes: Routes = [
   {
     path: 'exam',
     component: ExamComponent
+  },
+  {
+    path: 'examreport',
+    component: ExammarkreportComponent
   },
   {
     path: 'student-attendence-report',
@@ -438,6 +443,10 @@ const routes: Routes = [
   {
    path:'academic-internals',
    component: AcademicSubjectInternalsComponent
+  },
+  {
+   path:'lecture-plan',
+   component: LecturePlanComponent
   }
 
 ];

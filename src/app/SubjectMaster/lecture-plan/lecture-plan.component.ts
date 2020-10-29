@@ -9,27 +9,36 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { RequestService } from "../../services/request.service";
 import { DynamicScriptLoaderService } from "../../services/dynamic-script-loader.service";
 import { AuthService } from "../../services/auth.service";
+import { touches } from 'd3';
 declare const $: any;
 declare const swal: any;
-@Component({
-  selector: 'app-section',
-  templateUrl: './section.component.html',
-  styleUrls: ['./section.component.scss']
-})
-export class SectionComponent implements OnInit {
 
+@Component({
+  selector: 'app-lecture-plan',
+  templateUrl: './lecture-plan.component.html',
+  styleUrls: ['./lecture-plan.component.scss']
+})
+export class LecturePlanComponent implements OnInit {
   addForm: FormGroup;
   editForm: FormGroup;
   submitted = false;
   public section: any;
+  public subject: any;
+  public unit: any;
   public courseprogram: any;
   public department: any;
   public institution: any;
+  public teachingkid:any;
+  public start_date:any;
   status: FormControl;
   public section2: any;
+  public subject2: any;
+   public unit2: any;
   public courseprogram2: any;
   public department2: any;
   public institution2: any;
+  public teachingkid2:any;
+  public start_date2:any;
   status2: FormControl;
  coursecategories: any;
   Id: any;
@@ -43,6 +52,7 @@ export class SectionComponent implements OnInit {
   editsection: any;
   departmentValue: any;
   courseprogramValue: any;
+  subtBysemester:any;
   sectionValue: any;
   statusValue: any;
   userInfo: any;
@@ -50,16 +60,28 @@ export class SectionComponent implements OnInit {
   courseprogrambyIns: any;
   sections: any;
   semestersByIns: any;
+  subjectValue:any;
+  unitvalue:any;
+  unitValue:any;
+  teachingkidvalue:any;
+  start_datevalue :any;
+  sectionBysemester:any;
   semester: any
   batch: any;
+  syllbusBysemester:any;
   academicYear: any;
   batcheBycourseprograms: any;
   academicyearByBatch: any;
   courseprogram1: any;
+  subject1: any;
+  semester1: any;
+  section1: any;
+  unit1: any;
   batch1: any;
   batchValue: any;
   academicYearValue: any;
-
+  subjectbysems:any;
+  units:any;
   constructor(
     private formBuilder: FormBuilder,
     private dynamicScriptLoader: DynamicScriptLoaderService,
@@ -83,7 +105,10 @@ export class SectionComponent implements OnInit {
       academicYear: ["", Validators.required],
       semester: ["", Validators.required],
       section: ["", Validators.required],
-      status: ['', Validators.required]
+      subject: ["", Validators.required],
+      unit: ["", Validators.required],
+      teachingkid: ["", Validators.required],
+      start_date: ["", Validators.required]
     });
     // Edit Form
     this.editForm = this.formBuilder.group({
@@ -93,7 +118,10 @@ export class SectionComponent implements OnInit {
       academicYear2: ["", Validators.required],
       semester2: ["", Validators.required],
       section2: ["", Validators.required],
-      status2: ['', Validators.required]
+      subject2: ["", Validators.required],
+      unit2: ["", Validators.required],
+      teachingkid2: ["", Validators.required],
+      start_date2: ["", Validators.required]
     });
   }
 
@@ -124,6 +152,40 @@ export class SectionComponent implements OnInit {
     } else
     this.semestersByIns = null;
   }
+  onsemesterChange(semester: any) {
+    console.log('Semester', semester);
+    if (semester) {
+      this.request.getSectionbySemester(semester).subscribe((response: any) => {
+        this.sections = response;
+       console.log('SectionBySemester', this.sections);
+      }, (error) => {
+        console.log(error);
+      });
+    } else
+      this.sections = null;
+
+      if (semester) {
+        this.request.getSubjectbySem(semester).subscribe((response: any) => {
+          this.subjectbysems = response;
+          console.log('getSubjectbySem', this.subjectbysems);
+        }, (error) => {
+          console.log(error);
+        });
+      } else
+        this.subjectbysems = null;
+  }
+  onsubjectChange(subject: any) {
+    console.log('subject', subject);
+    if (subject) {
+      this.request.getSyllabusBySubject(subject).subscribe((response: any) => {
+        this.units = response;
+        // console.log('SectionBySemester', this.sections);
+      }, (error) => {
+        console.log(error);
+      });
+    } else
+      this.units = null;
+  }
   //Add form validation and function
   onAddSubmit() {
     this.submitted = true;
@@ -137,10 +199,13 @@ export class SectionComponent implements OnInit {
       batch: this.addForm.get('batch').value,
       academicYear: this.addForm.get('academicYear').value,
       semester: this.addForm.get('semester').value,
-      status: this.addForm.get('status').value,
+      subject: this.addForm.get('subject').value,
+      unit: this.addForm.get('unit').value,
+      start_date: this.addForm.get('start_date').value,
+      teachingkid: this.addForm.get('teachingkid').value,
       institution: this.institutionValue
     };
-    this.request.addSection(newdata).subscribe(
+    this.request.addlectureplan(newdata).subscribe(
       (res: any) => {
         if (res.status == "success") {
           swal("Added Sucessfully");
@@ -159,7 +224,7 @@ export class SectionComponent implements OnInit {
 
   // To display course category
   viewData() {
-    this.request.getSection().subscribe(
+    this.request.getlectureplan().subscribe(
       response => {
         this.sections = response;
         console.log('Section', this.sections);
@@ -172,7 +237,7 @@ export class SectionComponent implements OnInit {
 
   // To delete course category
   onDelete(id: any) {
-    this.request.deleteSection(id).subscribe(res => {
+    this.request.deletelectureplan(id).subscribe(res => {
       console.log(id);
       this.viewData();
       console.log("Deleted");
@@ -199,6 +264,30 @@ export class SectionComponent implements OnInit {
       console.log(error);
     });
   }
+  loadsectionbysemester(semester) {
+    this.request.getSectionbySemester(semester).subscribe((response: any) => {
+      this.sectionBysemester = response;
+      console.log('BatchBycourseprogram', this.sectionBysemester);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  loadsubjectibysemester(semester) {
+    this.request.getSubtbySem(semester).subscribe((response: any) => {
+      this.subtBysemester = response;
+      console.log('SubtBysemester', this.subtBysemester);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  loadunitbysubject(subject) {
+    this.request.getSyllabusBySubject(subject).subscribe((response: any) => {
+      this.syllbusBysemester = response;
+      console.log('syllbusBysemester', this.syllbusBysemester);
+    }, (error) => {
+      console.log(error);
+    });
+  }
   loadacadmicyear() {
       this.request.fetchAcademicYear().subscribe((response: any) => {
         this.academicyearByBatch = response;
@@ -220,10 +309,17 @@ export class SectionComponent implements OnInit {
   // To edit course category
   onEdit(semester) {
     this.Id = semester._id;
-    this.request.fetchSectionById(this.Id).subscribe(response => {
+    this.request.fetchlectureplanId(this.Id).subscribe(response => {
       this.editsection = response[0];
       this.courseprogram1 = this.editsection.courseprogram;
+      this.section1 = this.editsection.section;
+      this.subject1 = this.editsection.subject;
+      this.unit1 = this.editsection.unit;
+      this.semester1 = this.editsection.semester;
     this.loadBatchByCourseprogram(this.courseprogram1);
+    this.loadsectionbysemester(this.semester1);
+    this.loadsubjectibysemester(this.semester1);
+    this.loadunitbysubject(this.subject1);
     this.batch1 = this.editsection.batch;
     this.loadacademicYearByBatch();
       console.log(response);
@@ -234,7 +330,10 @@ export class SectionComponent implements OnInit {
       this.courseprogramValue = this.editsection.courseprogram;
       this.semesterValue = this.editsection.semester;
       this.sectionValue = this.editsection.section;
-      this.statusValue = this.editsection.status;
+      this.subjectValue = this.editsection.subject;
+      this.unitValue = this.editsection.unit;
+      this.teachingkidvalue = this.editsection.teachingkid;
+      this.start_datevalue = this.editsection.start_date;
       this.IdValue = this.editsection._id;
 
       this.editForm = this.formBuilder.group({
@@ -244,7 +343,10 @@ export class SectionComponent implements OnInit {
         academicYear2: [ this.academicYearValue, Validators.required],
         semester2: [ this.semesterValue, Validators.required],
         section2: [this.sectionValue, Validators.required],
-        status2: [this.statusValue, Validators.required]
+        subject2: [this.subjectValue, Validators.required],
+        unit2: [this.unitValue, Validators.required],
+        teachingkid2: [this.teachingkidvalue, Validators.required],
+        start_date2: [this.start_datevalue, Validators.required]
       });
       console.log(this.editForm.value);
     });
@@ -264,12 +366,13 @@ export class SectionComponent implements OnInit {
       academicYear: this.editForm.get('academicYear2').value,
       semester: this.editForm.get('semester2').value,
       institution: this.institutionValue,
-      status: this.editForm.get('status2').value
+      subject: this.editForm.get('subject2').value,
+      unit: this.editForm.get('unit2').value,
+      teachingkid: this.editForm.get('teachingkid2').value,
+      start_date:this.editForm.get('start_date2').value
     };
-    const sdata = {
-      status: this.editForm.get('status2').value
-    };
-    this.request.updateSection(this.IdValue, edata).subscribe(
+    
+    this.request.updatelectureplan(this.IdValue, edata).subscribe(
       (res: any) => {
         if (res.status == "success") {
           swal("Updated Sucessfully");
@@ -286,19 +389,6 @@ export class SectionComponent implements OnInit {
     );
 
 
-    this.request.updateSectionStaff1(this.IdValue, sdata).subscribe(
-      (res: any) => {
-        if (res.status == "success") {
-     
-        } else if (res.status == "error") {
-          swal(res.error);
-        }
-      },
-      error => {
-        console.log(error);
-        swal(error);
-      }
-    );
   }
 
   loadDepartmentByIns(Institution: any) {

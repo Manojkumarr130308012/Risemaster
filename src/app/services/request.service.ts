@@ -2551,6 +2551,10 @@ public getSubjectbySem(semester) {
   this.url = `${this.endPoint}/subject-add/fetchbySem/?semester=` + semester;
   return this.http.get(this.url);
 }
+public getSubtbySem(semester) {
+  this.url = `${this.endPoint}/subject-add/fetchsubBySem/?semester=` + semester;
+  return this.http.get(this.url);
+}
 public fetchSubjectByDetails(filterSubject) {
    this.url = `${this.endPoint}/subject-add/fetchsubject`;
    return this.http.post(this.url,filterSubject);
@@ -2681,6 +2685,50 @@ getSectionbySemester(semester) {
   this.url = `${this.endPoint}/section/fetchbySemester/?semester=` + semester;
   return this.http.get(this.url);
 }
+
+
+
+//lectureplan
+
+getlectureplan() {
+  this.url = `${this.endPoint}/lecture-sub/aggregation`;
+  return this.http.get(this.url);
+}
+addlectureplan(newdetail: any) {
+  this.url = `${this.endPoint}/lecture-sub/add`;
+  return this.http.post(this.url, newdetail);
+}
+deletelectureplan(id) {
+  this.url = `${this.endPoint}/lecture-sub/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+updatelectureplan(id, body) {
+  this.url = `${this.endPoint}/lecture-sub/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+fetchlectureplanId(id) {
+  this.url = `${this.endPoint}/lecture-sub/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+ getlectureplanbyIns(institution) {
+  this.url = `${this.endPoint}/lecture-sub/fetchbyIns/?institution=` + institution;
+  return this.http.get(this.url);
+}
+getlectureplanbycourseprogram(courseprogram) {
+  this.url = `${this.endPoint}/lecture-sub/fetchbycourseprogram/?courseprogram=` + courseprogram;
+  return this.http.get(this.url);
+}
+getlectureplanbyAcademicYear(academicYear) {
+  this.url = `${this.endPoint}/lecture-sub/fetchbyAcademic/?academicYear=` + academicYear;
+  return this.http.get(this.url);
+}
+getlectureplanbySemester(semester) {
+  this.url = `${this.endPoint}/lecture-sub/fetchbySemester/?semester=` + semester;
+  return this.http.get(this.url);
+}
+
+
+
 //Staff-Section
 getSectionStaff() {
   this.url = `${this.endPoint}/section-staff/aggregation`;
@@ -2696,6 +2744,10 @@ deleteSectionStaff(id) {
 }
 updateSectionStaff(id, body) {
   this.url = `${this.endPoint}/section-staff/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+updateSectionStaff1(id, body) {
+  this.url = `${this.endPoint}/section-staff/update1?section=${id}`;
   return this.http.put(this.url, body);
 }
 fetchSectionStaffById(id) {
@@ -2805,13 +2857,24 @@ public fetchStudentAttendenceDetails2(filterAttendenceEntryExist) {
   this.url = `${this.endPoint}/studentAttendence/fetchStudentAttendenceDetails2`;
   return this.http.post(this.url,filterAttendenceEntryExist);
 }
-
+public fetchStudentmarkDetails2(filterAttendenceEntryExist) {
+  this.url = `${this.endPoint}/section-staff/sectionbymark`;
+  return this.http.post(this.url,filterAttendenceEntryExist);
+}
 
 public getStudentAttendenceDetails(attendenceDetails) {
   this.url = `${this.endPoint}/studentAttendence/fetchStudentAttendenceDetails`;
   return this.http.post(this.url, attendenceDetails);
 }
+public getStudentmarkDetails(attendenceDetails) {
+  this.url = `${this.endPoint}/studentAttendence/fetchStudentmarkDetails2`;
+  return this.http.post(this.url, attendenceDetails);
+}
 
+public getStudentmarkDetails2(attendenceDetails) {
+  this.url = `${this.endPoint}/marks-ent/fetchStudentmarkDetails2`;
+  return this.http.post(this.url, attendenceDetails);
+}
 fetchstudentList() {
   this.url = `${this.endPoint}/studentAttendence/fetchweekdays`;
   return this.http.get(this.url);

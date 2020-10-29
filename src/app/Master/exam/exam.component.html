@@ -29,9 +29,37 @@
                           <form [formGroup]="registerForm">
                             <div class="row">
                               <div class="col-md-12">
+
+                                <div class="form-group">
+                                  <label>Institution</label>
+                                  <select id="select" [(ngModel)]="selectedinstitution" class="browser-default form-control"
+                                      formControlName="institution" [ngClass]="{ 'is-invalid': submitted && f.institution.errors }"
+                                      (change)="onInstitutionChange($event.target.value)">
+                                      <option disabled selected>Choose your institution</option>
+                                      <option *ngFor="let institution of institutions" [value]="institution._id">
+                                          {{institution.institution_name}}
+                                      </option>
+                                  </select>
+                                  <div *ngIf="submitted && f.institution.errors" class="invalid-feedback">
+                                      <div *ngIf="f.institution.errors.required">Institution is required</div>
+                                  </div>
+                               </div>
+
+                               <div class="form-group">
+                                <label>Courseprogram</label>
+                                <select id="select" class="browser-default form-control" formControlName="courseprogram"
+                                    [ngClass]="{ 'is-invalid': submitted && f.courseprogram.errors }">
+                                    <option default value>Choose your Courseprogram</option>
+                                    <option *ngFor="let courseprogram of courseprogrambyIns?.response" [value]="courseprogram._id">
+                                        {{courseprogram.courseprogram}}</option>
+                                </select>
+                                <div *ngIf="submitted && f.courseprogram.errors" class="invalid-feedback">
+                                    <div *ngIf="f.courseprogram.errors.required">Courseprogram is required</div>
+                                </div>
+                            </div>
                                 <div class="form-group">
                                   <label>Examtype</label>
-                                  <select class="browser-default" id="select" [(ngModel)]="selectedinstitution"
+                                  <select class="browser-default" id="select" [(ngModel)]="selectedinstitution1"
                                     formControlName="examtype"  class="form-control"
                                     placeholder="Enter examtype"
                                     [ngClass]="{ 'is-invalid': submitted && f.examtype.errors }">
@@ -53,7 +81,7 @@
                                     <div *ngIf="submitted && f.start_date.errors" class="invalid-feedback">
                                         <div *ngIf="f.start_date.errors.required">StartDate is required</div>
                                     </div>
-                                </div>
+                                  </div>
 
                                 <div class="form-group">
                                   <label>End Date</label>
@@ -62,10 +90,10 @@
                                   <div *ngIf="submitted && f.end_date.errors" class="invalid-feedback">
                                       <div *ngIf="f.end_date.errors.required">EndDate is required</div>
                                   </div>
-                              </div>
+                               </div>
 
 
-                                </div>
+                             </div>
                               </div>
                             </div>
                             <div class="row">
@@ -82,6 +110,21 @@
                                 </div>
                               </div>
                             </div>
+
+                            <div class="form-group">
+                              <label>Status</label>
+                              <select class="browser-default" formControlName="status" value=" " class="form-control"
+                                  placeholder="Enter Status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                                  <option value="">Choose your option</option>
+                                  <option value="active">Active</option>
+                                  <option value="inactive">Inactive</option>
+                              </select>
+                              <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                                  <div *ngIf="f.status.errors.required">Status is required</div>
+                              </div>
+                          </div>
+
+
                             <div class="modal-footer">
                               <button type="submit" (click)="onAddSubmit()" class="btn btn-default">Add</button>
                               <button type="button" class="btn btn-danger waves-effect"
@@ -104,21 +147,24 @@
                     <thead>
                       <tr>
                         <th>S.No</th>
+                        <th>Courseprogram</th>
                         <th>Examtype</th>
                         <th>Examname</th>
                         <th>Startdate</th>
                         <th>Enddate</th>
+                        <th>Status</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr *ngFor="let exam of exams; let i=index">
                         <td>{{i +1 }}</td>
-  
+                        <td>{{exam.courseprogrambyIns[0].courseprogram}}</td>
                         <td>{{exam.examtypeDetails[0].examtype}}</td>
                         <td>{{exam?.exam}}</td>
                         <td>{{exam?.start_date}}</td>
                         <td>{{exam?.end_date}}</td>
+                        <td>{{exam?.status}}</td>
                         <td>
                           <div class="btn btn-tbl-edit" data-toggle="modal" data-target="#editModal">
                             <i class="material-icons" (click)="onEdit(exam?._id)">create</i>
@@ -148,10 +194,35 @@
               <div class="modal-body">
                 <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
                   <div class="row">
-  
+                    <div class="form-group">
+                      <label>Institution</label>
+                      <select id="select2" [(ngModel)]="selectedinstitution2" class="browser-default form-control"
+                          formControlName="institution2" [ngClass]="{ 'is-invalid': submitted && f2.institution2.errors }"
+                          (change)="onInstitutionChange($event.target.value)">
+                          <option value="">Choose your institution</option>
+                          <option *ngFor="let institution of institutions" [value]="institution._id">
+                              {{institution.institution_name}}</option>
+                      </select>
+                      <div *ngIf="submitted && f2.institution2.errors" class="invalid-feedback">
+                          <div *ngIf="f2.institution2.errors.required">Institution is required</div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Courseprogram</label>
+                    <select id="select" class="browser-default form-control" formControlName="courseprogram2"
+                        [ngClass]="{ 'is-invalid': submitted && f2.courseprogram2.errors }">
+                        <option default value>Choose your Courseprogram</option>
+                        <option *ngFor="let courseprogram of courseprogrambyIns?.response" [value]="courseprogram._id">
+                            {{courseprogram.courseprogram}}</option>
+                    </select>
+                    <div *ngIf="submitted && f2.courseprogram2.errors" class="invalid-feedback">
+                        <div *ngIf="f2.courseprogram2.errors.required">Courseprogram is required</div>
+                    </div>
+                </div>
+
                     <div class="form-group">
                       <label>Examtype</label>
-                      <select class="browser-default" id="select2" [(ngModel)]="selectedinstitution2"
+                      <select class="browser-default" id="select2" [(ngModel)]="selectedinstitution3"
                         formControlName="examtype2" class="form-control"
                         [ngClass]="{ 'is-invalid': submitted && f2.examtype2.errors }">
   
@@ -195,6 +266,19 @@
                         <div *ngIf="f2.end_date2.errors.required">EndDate is required</div>
                     </div>
                 </div>
+
+                <div class="form-group">
+                  <label>Status</label>
+                  <select class="browser-default" formControlName="status2" class="form-control" placeholder="Enter Status"
+                      [ngClass]="{ 'is-invalid': submitted && f2.status2.errors }">
+                      <option value="">Choose your option</option>
+                      <option value="active">Active</option>
+                      <option value="inactive">Inactive</option>
+                  </select>
+                  <div *ngIf="submitted && f2.status2.errors" class="invalid-feedback">
+                      <div *ngIf="f2.status2.errors.required">Status is required</div>
+                  </div>
+              </div>
 
                   </div>
                   <div class="modal-footer">
