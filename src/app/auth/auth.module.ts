@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {   MatSnackBarModule} from '@angular/material';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { DynamicScriptLoaderService } from '../services/dynamic-script-loader.service';
