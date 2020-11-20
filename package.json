@@ -1,5 +1,5 @@
 {
-  "name": "icampus-master",
+  "name": "tamilrise",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -104,7 +104,7 @@
     "path": "^0.12.7",
     "popper.js": "^1.16.1",
     "raphael": "^2.3.0",
-    "rxjs": "^6.6.0",
+    "rxjs": "^6.6.3",
     "select2": "^4.0.13",
     "simple-line-icons": "^2.4.1",
     "tslib": "^1.13.0",
