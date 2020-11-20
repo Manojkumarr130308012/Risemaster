@@ -20,7 +20,7 @@ export class MainComponent implements OnInit {
   stucount;
   stucountchart;
   stucalenderchart;
-
+  partycount;
    array=[];
    array1=[];
 
@@ -174,7 +174,7 @@ export class MainComponent implements OnInit {
 			height: '500px',
 			size: '5px'
 		});
-this. loadstucount();
+this. loadpartycount();
 
 this.loadstucountchart();
 
@@ -185,10 +185,11 @@ this.loadcalender();
 
 	}
 
-  loadstucount()  {
-    this.request.getstudentcount().subscribe((response : any) => {
+  loadpartycount()  {
+    this.request.getcountry().subscribe((response : any) => {
       console.log(response);
-    this.stucount =response.result;
+	this.partycount =response.count;
+	console.log('partycount',this.partycount);
     }, (error) => {
       console.log(error);
     });

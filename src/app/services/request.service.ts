@@ -9,7 +9,110 @@ export class RequestService {
   constructor(private http: HttpClient) { }
 
   url: string;
-  endPoint = 'https://i-campusbackendapi.herokuapp.com';
+  endPoint = 'https://tamilrise.herokuapp.com';
+
+
+
+
+
+
+
+  public adminlogin(credentials) {
+    console.log('credentials2',credentials);
+    this.url = `${this.endPoint}/user/login`;
+    return this.http.post(this.url, credentials);
+  }
+
+
+
+//country
+public getcountry() {
+  this.url = `${this.endPoint}/country/`;
+  return this.http.get(this.url);
+}
+
+public addcountry(newexam: { CountryName: any; }) {
+  this.url = `${this.endPoint}/country/add`;
+  return this.http.post(this.url, newexam);
+}
+
+public deletecountry(id) {
+  this.url = `${this.endPoint}/country/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+
+updatecountry(id, body) {
+  this.url = `${this.endPoint}/country/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetchcountry() {
+  this.url = `${this.endPoint}/country/`;
+  return this.http.get(this.url);
+}
+fetchcountryById(id) {
+  this.url = `${this.endPoint}/country/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+
+
+//state
+public getstate() {
+  this.url = `${this.endPoint}/state/`;
+  return this.http.get(this.url);
+}
+
+public addstate(newexam: { Country: any;StateName: any; }) {
+  this.url = `${this.endPoint}/state/add`;
+  return this.http.post(this.url, newexam);
+}
+
+public deletestate(id) {
+  this.url = `${this.endPoint}/state/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+
+updatestate(id, body) {
+  this.url = `${this.endPoint}/state/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetchstate() {
+  this.url = `${this.endPoint}/state/`;
+  return this.http.get(this.url);
+}
+fetchstateById(id) {
+  this.url = `${this.endPoint}/state/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+
+public getaggstate() {
+  this.url = `${this.endPoint}/state/aggregation`;
+  return this.http.get(this.url);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -223,35 +326,8 @@ export class RequestService {
     return this.http.get(this.url);
   }
 
-  // bloodgroup
-  public getBloodgroup() {
-    this.url = `${this.endPoint}/bloodgroup`;
-    return this.http.get(this.url);
-  }
 
-  public addBloodgroup(newBloodgroup: { bloodgroup: any; }) {
-    this.url = `${this.endPoint}/bloodgroup/add`;
-    return this.http.post(this.url, newBloodgroup);
-  }
-
-  public deleteBloodgroup(id) {
-    this.url = `${this.endPoint}/bloodgroup/delete?id=` + id;
-    return this.http.delete(this.url);
-  }
-
-  updateBloodgroup(id, body) {
-    this.url = `${this.endPoint}/bloodgroup/update?id=${id}`;
-    return this.http.put(this.url, body);
-  }
-
-  fetchBloodgroup() {
-    this.url = `${this.endPoint}/bloodgroup/`;
-    return this.http.get(this.url);
-  }
-  fetchBloodgroupBy(id) {
-    this.url = `${this.endPoint}/bloodgroup/fetchdata?id=` + id;
-    return this.http.get(this.url);
-  }
+  
 
 
   // admission-type

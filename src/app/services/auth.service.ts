@@ -14,7 +14,7 @@ export class AuthService {
 
   isValidUser(redirectToHome = false) {
     if (!this.storage.get('token')) {
-      this.router.navigate(['auth/staff-login']);
+      this.router.navigate(['auth/loginadmin']);
       return false;
     }
 
@@ -23,6 +23,6 @@ export class AuthService {
 
   public logout() {
     this.storage.clear();
-    this.router.navigate(['auth/staff-login']);
+    this.router.navigate(['auth/loginadmin']);
   }
 }

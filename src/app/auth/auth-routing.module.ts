@@ -1,25 +1,24 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { StudentLoginComponent } from './studentLogin/studentLogin.component';
-import { StaffLoginComponent } from '../auth/StaffLogin/StaffLogin.component';
+import { LoginadminComponent } from '../auth/loginadmin/loginadmin.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'staff-login',
+    redirectTo: 'loginadmin',
     pathMatch: 'full'
   },
 
   {
 
-    path: 'staff-login',
-    component: StaffLoginComponent
+    path: 'loginadmin',
+    component: LoginadminComponent
 
   },
  {
-    path: 'student-login',
-    component: StudentLoginComponent
+    path: 'loginadmin',
+    component: LoginadminComponent
   },
 ];
 
