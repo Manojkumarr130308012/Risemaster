@@ -15,6 +15,8 @@ declare const swal: any;
 export class StateComponent implements OnInit {
   submitted = false;
   Country: FormControl;
+  selectedinstitution:any;
+  selectedinstitution2:any;
   StateName: FormControl;
   Country2: FormControl;
   StateName2: FormControl;

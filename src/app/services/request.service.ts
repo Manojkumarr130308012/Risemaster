@@ -91,15 +91,173 @@ public getaggstate() {
   return this.http.get(this.url);
 
 }
+public loadcountrybyins(id) {
+  this.url = `${this.endPoint}/state/fetchBycountry?Country=`+id;
+  return this.http.get(this.url);
+
+}
+
+//city
+public getcity() {
+  this.url = `${this.endPoint}/city/`;
+  return this.http.get(this.url);
+}
+
+public addcity(newexam: { Country:any;State:any;CityName:any; }) {
+  this.url = `${this.endPoint}/city/add`;
+  return this.http.post(this.url, newexam);
+}
+
+public deletecity(id) {
+  this.url = `${this.endPoint}/city/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+
+updatecity(id, body) {
+  this.url = `${this.endPoint}/city/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetchcity() {
+  this.url = `${this.endPoint}/city/`;
+  return this.http.get(this.url);
+}
+fetchcityById(id) {
+  this.url = `${this.endPoint}/city/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+
+public getaggcity() {
+  this.url = `${this.endPoint}/city/aggregation`;
+  return this.http.get(this.url);
+
+}
+
+
+//gender
+public getgender() {
+  this.url = `${this.endPoint}/gender/`;
+  return this.http.get(this.url);
+}
+
+public addgender(newexam: { CountryName: any; }) {
+  this.url = `${this.endPoint}/gender/add`;
+  return this.http.post(this.url, newexam);
+}
+
+public deletegender(id) {
+  this.url = `${this.endPoint}/gender/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+
+updategender(id, body) {
+  this.url = `${this.endPoint}/gender/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetchgender() {
+  this.url = `${this.endPoint}/gender/`;
+  return this.http.get(this.url);
+}
+fetchgenderById(id) {
+  this.url = `${this.endPoint}/gender/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
 
 
 
+//Interests
+public getInterests() {
+  this.url = `${this.endPoint}/interests/`;
+  return this.http.get(this.url);
+}
+
+public addInterests(newexam: { Interests: any; }) {
+  this.url = `${this.endPoint}/interests/add`;
+  return this.http.post(this.url, newexam);
+}
+
+public deleteInterests(id) {
+  this.url = `${this.endPoint}/interests/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+
+updateInterests(id, body) {
+  this.url = `${this.endPoint}/interests/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetchInterests() {
+  this.url = `${this.endPoint}/interests/`;
+  return this.http.get(this.url);
+}
+fetchInterestsById(id) {
+  this.url = `${this.endPoint}/interests/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+
+
+//membershipcatgory
+public getmembershipcatgory() {
+  this.url = `${this.endPoint}/bussinesscategory/`;
+  return this.http.get(this.url);
+}
+
+public addmembershipcatgory(newexam: { Interests: any; }) {
+  this.url = `${this.endPoint}/bussinesscategory/add`;
+  return this.http.post(this.url, newexam);
+}
+
+public deletemembershipcatgory(id) {
+  this.url = `${this.endPoint}/bussinesscategory/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+
+updatemembershipcatgory(id, body) {
+  this.url = `${this.endPoint}/bussinesscategory/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetchmembershipcatgory() {
+  this.url = `${this.endPoint}/bussinesscategory/`;
+  return this.http.get(this.url);
+}
+fetchmembershipcatgoryById(id) {
+  this.url = `${this.endPoint}/bussinesscategory/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
 
 
 
+//membershiptype
+public getmembershiptype() {
+  this.url = `${this.endPoint}/membershiptype/`;
+  return this.http.get(this.url);
+}
 
+public addmembershiptype(newexam: { MembershipType: any;Amount: any;WomenOffer: any;Status: any; }) {
+  this.url = `${this.endPoint}/membershiptype/add`;
+  return this.http.post(this.url, newexam);
+}
 
+public deletemembershiptype(id) {
+  this.url = `${this.endPoint}/membershiptype/delete?id=` + id;
+  return this.http.delete(this.url);
+}
 
+updatemembershiptype(id, body) {
+  this.url = `${this.endPoint}/membershiptype/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetchmembershiptype() {
+  this.url = `${this.endPoint}/membershiptype/`;
+  return this.http.get(this.url);
+}
+fetchmembershiptypeById(id) {
+  this.url = `${this.endPoint}/membershiptype/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
 
 
 

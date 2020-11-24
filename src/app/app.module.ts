@@ -27,6 +27,12 @@ import { ArchwizardModule } from 'angular-archwizard';
 
 import { CountryComponent } from './Master/country/country.component';
 import { StateComponent } from './Master/state/state.component';
+import { CityComponent } from './Master/city/city.component';
+import { GenderComponent } from './Master/gender/gender.component';
+import { InterestedComponent } from './Master/interested/interested.component';
+import { MembershipCategoryComponent } from './Master/membership-category/membership-category.component';
+import { MembershipTypeComponent } from './Master/membership-type/membership-type.component';
+
 
 
 @NgModule({
@@ -37,9 +43,12 @@ import { StateComponent } from './Master/state/state.component';
     SidebarComponent,
     RightSidebarComponent,
     CountryComponent,
-    StateComponent
-
-
+    StateComponent,
+    CityComponent,
+    GenderComponent,
+    InterestedComponent,
+    MembershipCategoryComponent,
+    MembershipTypeComponent
   ],
   imports: [
     BrowserModule,
