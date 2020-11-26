@@ -15,20 +15,14 @@ declare const swal: any;
 export class MembershipTypeComponent implements OnInit {
   submitted = false;
   MembershipType: FormControl;
-  Amount:FormControl;
-  WomenOffer: FormControl;
-  Status:FormControl;
+  Desription:FormControl;
   MembershipType2: FormControl;
-  Amount2:FormControl;
-  Status2: FormControl;
-  WomenOffer2:FormControl;
+  Desription2:FormControl;
   memtypes: any;
   Id: any;
   editmemtypedata;
   MembershipTypeValue: any;
-  AmountValue: any;
-  WomenOfferValue: any;
-  StatusValue: any;
+  DesriptionValue: any;
   IdValue: any;
   memtypetypes;
   registerForm: FormGroup;
@@ -42,16 +36,12 @@ export class MembershipTypeComponent implements OnInit {
     //Add Form Group
     this.registerForm = this.formBuilder.group({
       MembershipType: ['', Validators.required],
-      Amount: ['', Validators.required],
-      WomenOffer: ['', Validators.required],
-      Status: ['', Validators.required]
+      Desription: ['', Validators.required]
     });
     //Edit Form Group
     this.editForm = this.formBuilder.group({
       MembershipType2: ['', Validators.required],
-      Amount2: ['', Validators.required],
-      WomenOffer2: ['', Validators.required],
-      Status2: ['', Validators.required]
+      Desription2: ['', Validators.required]
     });
 }
 
@@ -110,16 +100,12 @@ this.request.fetchmembershiptypeById(Id).subscribe((response) => {
     this.editmemtypedata = response[0];
     console.log(response);
     this.MembershipTypeValue = this.editmemtypedata.MembershipType;
-    this.AmountValue = this.editmemtypedata.Amount;
-    this.WomenOfferValue= this.editmemtypedata.WomenOffer;
-    this.StatusValue= this.editmemtypedata.Status;
+    this.DesriptionValue = this.editmemtypedata.Desription;
     this.IdValue = this.editmemtypedata._id;
 
     this.editForm = this.formBuilder.group({
          MembershipType2: [this.MembershipTypeValue, Validators.required],
-        Amount2: [this.AmountValue, Validators.required],
-        WomenOffer2: [this.WomenOfferValue, Validators.required],
-        Status2: [this.StatusValue, Validators.required]
+         Desription2: [this.DesriptionValue, Validators.required]
     });
     // console.log('get edit data',this.editForm.value);
 });
@@ -141,9 +127,7 @@ if (this.editForm.invalid) {
 
 const edata = {
   MembershipType: this.editForm.get('MembershipType2').value,
-  Amount: this.editForm.get('Amount2').value,
-  WomenOffer: this.editForm.get('WomenOffer2').value,
-  Status: this.editForm.get('Status2').value,
+  Desription: this.editForm.get('Desription2').value,
 }
 
 // console.log('edata',edata);

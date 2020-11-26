@@ -1,0 +1,201 @@
+<section class="content">
+    <div class="container-fluid">
+        <!-- Table Start-->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            <strong>Membershipcost</strong>
+                        </h2>
+                        <div class="header-dropdown m-r--5">
+                            <!-- Add button -->
+                                <div class="btn-group m-l-15">
+                                        <button id="addRow" class="btn btn-info" data-toggle="modal"
+                                        data-target="#addModal">
+                                            Add New
+                                            <i class="fa fa-plus" style="color: white"></i>
+                                        </button>
+                                </div>
+                             <!-- Add button -->
+                        </div>
+                    </div>
+                   <div class="body">
+                            <div class="table-responsive">
+                                 <table id="tableExport"
+                                 class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Membershiptype</th>
+                                            <th>Membershipclassification</th>
+                                            <th>Amount</th>
+                                            <th>Validity</th>
+                                            <th >Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let membershipcost of membershipcosts; let i=index">
+                                            <td>{{i +1 }}</td>
+                                            <td>{{membershipcost?.membershipclassificationDetails[0].Membershipclassfication}}</td>
+                                            <td>{{membershipcost?.membershiptypeDetails[0].MembershipType}}</td>
+                                            <td>{{membershipcost?.amount}}</td>
+                                            <td>{{membershipcost?.validity}}</td>
+                                            <td>
+                                                <div class="btn btn-tbl-edit" data-toggle="modal"
+                                                data-target="#editModal">
+                                                        <i class="material-icons"
+                                                        (click)="onEdit(membershipcost) ">create</i>
+                                                </div>
+                                                    <div class="btn btn-tbl-delete">
+                                                        <i class="material-icons"
+                                                        (click) = "deleteBatch(membershipcost?._id)" >delete</i>
+                                                    </div>
+                                                </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Table End -->
+    </div>
+</section>
+ <!-- Add form -->
+ <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
+ aria-labelledby="formModal" aria-hidden="true">
+ <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h5 class="modal-title" id="formModal">Add Details</h5>
+             <button type="button" class="close" data-dismiss="modal"
+                 aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+         </div>
+         <div class="modal-body">
+                <form [formGroup]="addBatchForm" (ngSubmit)="onAddSubmit()">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Membershiptype</label>
+                                    <select class="browser-default form-control" formControlName="membershiptype"
+                                        [ngClass]="{ 'is-invalid': submitted && f.membershiptype.errors }">
+                                        <option disabled selected>Choose your membershiptype</option>
+                                        <option *ngFor="let membershiptype of membershiptypes?.response" [value]="membershiptype._id">
+                                            {{membershiptype.MembershipType}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f.membershiptype.errors" class="invalid-feedback">
+                                        <div *ngIf="f.membershiptype.errors.required">membershiptype is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>membershipclassification</label>
+                                    <select id="select" class="browser-default form-control" formControlName="membershipclassification"
+                                        [ngClass]="{ 'is-invalid': submitted && f.membershipclassification.errors }">
+                                        <option default value>Choose your membershipclassification</option>
+                                        <option *ngFor="let membershipclassification of membershipclassifications?.response" [value]="membershipclassification._id">{{membershipclassification.Membershipclassfication}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f.membershipclassification.errors" class="invalid-feedback">
+                                        <div *ngIf="f.membershipclassification.errors.required">membershipclassification is required</div>
+                                    </div>
+                                </div>
+                            <div class="form-group">
+                                <label>Amount</label>
+                                <input type="text" formControlName="amount" class="form-control" placeholder="Enter amount"
+                                    [ngClass]="{ 'is-invalid': submitted && f.amount.errors }" />
+                                <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                                    <div *ngIf="f.amount.errors.required">Amount is required</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>validity</label>
+                                <input type="text" formControlName="validity" class="form-control" placeholder="Enter validity"
+                                    [ngClass]="{ 'is-invalid': submitted && f.validity.errors }" />
+                                <div *ngIf="submitted && f.validity.errors" class="invalid-feedback">
+                                    <div *ngIf="f.validity.errors.required">validity is required</div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+         <div class="modal-footer">
+                <button type="submit" (click)="onAddSubmit()" class="btn btn-default" >Add</button >
+             <button type="button" class="btn btn-danger waves-effect"
+                 data-dismiss="modal">Cancel</button>
+         </div>
+        </form>
+     </div>
+ </div>
+</div>
+</div>
+<!-- Edit Form -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+ aria-labelledby="formModal" aria-hidden="true">
+ <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h5 class="modal-title" id="formModal">Edit Details</h5>
+             <button type="button" class="close" data-dismiss="modal"
+                 aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+         </div>
+         <div class="modal-body">
+                <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
+                        <div class="row clearfix">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>membershiptype</label>
+                                    <select class="browser-default form-control" formControlName="membershiptype2"
+                                        [ngClass]="{ 'is-invalid': submitted && f2.membershiptype2.errors }">
+                                        <option disabled selected>Choose your membershiptypes</option>
+                                        <option *ngFor="let membershiptype of membershiptypes?.response" [value]="membershiptype._id">
+                                            {{membershiptype.MembershipType}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f2.membershiptype2.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.membershiptype2.errors.required">membershiptype is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>membershipclassification</label>
+                                    <select id="select2" class="browser-default form-control" formControlName="membershipclassification2"
+                                        [ngClass]="{ 'is-invalid': submitted && f2.membershipclassification2.errors }">
+                                        <option>Choose your membershipclassification</option>
+                                        <option *ngFor="let membershipclassification of membershipclassifications?.response" [value]="membershipclassification._id">{{membershipclassification.Membershipclassfication}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f2.membershipclassification2.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.membershipclassification2.errors.required">membershipclassification is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>amount</label>
+                                    <input type="text" formControlName="amount2" class="form-control" placeholder="Enter amount"
+                                        [ngClass]="{ 'is-invalid': submitted && f2.amount2.errors }" />
+                                    <div *ngIf="submitted && f2.amount2.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.amount2.errors.required">amount is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>validity</label>
+                                    <input type="text" formControlName="validity2" class="form-control" placeholder="Enter validity"
+                                        [ngClass]="{ 'is-invalid': submitted && f2.validity2.errors }" />
+                                    <div *ngIf="submitted && f2.validity2.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.validity2.errors.required">validity is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+         <div class="modal-footer">
+                <button type="submit" class="btn btn-default"  >Update</button >
+             <button type="button" class="btn btn-danger waves-effect"
+                 data-dismiss="modal">Cancel</button>
+         </div>
+        </form>
+     </div>
+ </div>
+</div>
+</div>

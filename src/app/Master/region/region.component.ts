@@ -12,11 +12,11 @@ declare const $: any;
 declare const M: any;
 declare const swal: any;
 @Component({
-  selector: 'app-city',
-  templateUrl: './city.component.html',
-  styleUrls: ['./city.component.scss']
+  selector: 'app-region',
+  templateUrl: './region.component.html',
+  styleUrls: ['./region.component.scss']
 })
-export class CityComponent implements OnInit {
+export class RegionComponent implements OnInit {
   addBatchForm: any;
   editForm: any;
   message: any;
@@ -30,14 +30,10 @@ export class CityComponent implements OnInit {
   IdValue: any;
   region: any;
   region2: any;
-  CityName:any;
-  CityName2:any;
   Id: any;
   editBatch: any;
   regionValue: any;
-  CityNameValue:any;
   regionNames: any;
-  CityNameValues:any;
   courseprogramValue: any;
   State: any;
   State2: any;
@@ -45,10 +41,8 @@ export class CityComponent implements OnInit {
   StatebyIns: any;
   StateIns: any;
   states:any;
-  cities:any;
+  regiones:any;
   countrybyins:any;
-  statebyins:any;
-  stateid:any;
   constructor(
     private formBuilder: FormBuilder,
     private dynamicScriptLoader: DynamicScriptLoaderService,
@@ -60,15 +54,13 @@ export class CityComponent implements OnInit {
     this.addBatchForm = this.formBuilder.group({
       Country: ["", Validators.required],
       State: ["", Validators.required],
-      region: ["", Validators.required],
-      CityName: ["", Validators.required]
+      region: ["", Validators.required]
     });
     // Edit Form
     this.editForm = this.formBuilder.group({
       Country2: ["", Validators.required],
       State2: ["", Validators.required],
-      region2: ["", Validators.required],
-      CityName2: ["", Validators.required]
+      region2: ["", Validators.required]
     });
 
      }
@@ -91,7 +83,7 @@ export class CityComponent implements OnInit {
       if (this.addBatchForm.invalid) {
         return;
       }
-      this.request.addcity(this.addBatchForm.value).subscribe(
+      this.request.addregion(this.addBatchForm.value).subscribe(
         (res: any) => {
           if (res.status == "success") {
             swal("Added Sucessfully");
@@ -110,10 +102,10 @@ export class CityComponent implements OnInit {
 
     // To display course category
     viewData() {
-      this.request.getaggcity().subscribe(
+      this.request.getaggregion().subscribe(
         response => {
-          this.cities = response;
-          console.log("cities",this.cities);
+          this.regiones = response;
+          console.log("regiones",this.regiones);
         },
         error => {
           console.log(error);
@@ -123,7 +115,7 @@ export class CityComponent implements OnInit {
 
     // To delete course category
     deleteBatch(id: any) {
-      this.request.deletecity(id).subscribe(res => {
+      this.request.deleteregion(id).subscribe(res => {
         console.log(id);
         this.viewData();
         console.log("Deleted");
@@ -134,23 +126,19 @@ export class CityComponent implements OnInit {
     onEdit(city) {
       this.Id = city._id;
       this.countryId = city.CountryDetails[0]._id;
-      this.stateid = city.StateDetails[0]._id;
       this.loadcountryIns(this.countryId);
-      this.loadstateIns(this.stateid);
-      this.request.fetchcityById(this.Id).subscribe(response => {
+      this.request.fetchregionById(this.Id).subscribe(response => {
         this.editBatch = response[0];
         console.log(response);
         this.CountryValue = this.editBatch.Country;
         this.StateValue = this.editBatch.State;
         this.regionValue = this.editBatch.region;
-        this.CityNameValue = this.editBatch.CityName;
         this.IdValue = this.editBatch._id;
 
         this.editForm = this.formBuilder.group({
           Country2: [this.CountryValue, Validators.required],
           State2: [this.StateValue, Validators.required],
-          region2: [this.regionValue, Validators.required],
-          CityName2: [this.CityNameValue, Validators.required]
+          region2: [this.regionValue, Validators.required]
         });
         console.log(this.editForm.value);
       });
@@ -165,11 +153,10 @@ export class CityComponent implements OnInit {
       const edata = {
         Country: this.editForm.get("Country2").value,
         State: this.editForm.get("State2").value,
-        region: this.editForm.get("region2").value,
-        CityName: this.editForm.get("CityName2").value
+        region: this.editForm.get("region2").value
       };
 
-      this.request.updatecity(this.IdValue, edata).subscribe(
+      this.request.updateregion(this.IdValue, edata).subscribe(
         (res: any) => {
           if (res.status == "success") {
             swal("Updated Sucessfully");
@@ -189,14 +176,6 @@ export class CityComponent implements OnInit {
       this.request.loadcountrybyins(Country).subscribe((response: any) => {
         this.countrybyins = response;
         console.log('countrybyins', this.countrybyins);
-      }, (error) => {
-        console.log(error);
-      });
-    }
-    loadstateIns(state) {
-      this.request.loadstatebyins(state).subscribe((response: any) => {
-        this.statebyins = response;
-        console.log('statebyins', this.statebyins);
       }, (error) => {
         console.log(error);
       });
@@ -226,21 +205,6 @@ export class CityComponent implements OnInit {
 
        this.countrybyins = null;
     }
-
-    onstateChange(state: string) {
-      console.log('state', state);
-      if (state) {
-         this.request.loadstatebyins(state).subscribe((response: any) => {
-           console.log(response);
-           this.statebyins = response;
-           console.log('statebyins', this.statebyins);
-         }, (error) => {
-           console.log(error);
-         });
-  
-       } else
-         this.statebyins = null;
-      }
     // convenience getter for easy access to form fields
     get f() {
       return this.addBatchForm.controls;

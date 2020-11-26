@@ -6,7 +6,7 @@
           <div class="card">
             <div class="header">
               <h2>
-                <strong>MembershipType</strong>
+                <strong>Membershipclassfication</strong>
               </h2>
               <div class="header-dropdown m-r--5">
                 <!-- Add button -->
@@ -29,18 +29,18 @@
                           <form [formGroup]="registerForm">
                             <div class="row">
                               <div class="col-md-12">
-
+  
                                       <div class="form-group">
-                                         <label>MembershipType</label>
-                                          <input type="text"  formControlName="MembershipType" class="form-control"
-                                           placeholder="Enter MembershipType"
-                                           [ngClass]="{ 'is-invalid': submitted && f.MembershipType.errors }" />
-                                         <div *ngIf="submitted && f.MembershipType.errors" class="invalid-feedback">
-                                           <div *ngIf="f.MembershipType.errors.required">
-                                            MembershipType is required</div>
+                                         <label>Membershipclassfication</label>
+                                          <input type="text"  formControlName="Membershipclassfication" class="form-control"
+                                           placeholder="Enter Membershipclassfication"
+                                           [ngClass]="{ 'is-invalid': submitted && f.Membershipclassfication.errors }" />
+                                         <div *ngIf="submitted && f.Membershipclassfication.errors" class="invalid-feedback">
+                                           <div *ngIf="f.Membershipclassfication.errors.required">
+                                            Membershipclassfication is required</div>
                                          </div>
                                        </div>
-
+  
                                        <div class="form-group">
                                         <label>Desription</label>
                                          <input type="text"  formControlName="Desription" class="form-control"
@@ -51,9 +51,9 @@
                                             Desription is required</div>
                                         </div>
                                       </div>
-
-
-
+  
+  
+  
                                 </div>
                             </div>
                               
@@ -89,7 +89,7 @@
                     <tbody>
                       <tr *ngFor="let memtype of memtypes.response; let i=index">
                         <td>{{i +1 }}</td>
-                        <td>{{memtype?.MembershipType}}</td>
+                        <td>{{memtype?.Membershipclassfication}}</td>
                         <td>{{memtype?.Desription}}</td>
                     
                         <td>
@@ -123,12 +123,12 @@
                   <div class="row">
                    
                     <div class="form-group">
-                        <label>MembershipType</label>
-                        <input type="text"  formControlName="MembershipType2" class="form-control"
-                          placeholder="Enter MembershipType"
-                          [ngClass]="{ 'is-invalid': submitted && f2.MembershipType2.errors }" />
-                        <div *ngIf="submitted && f2.MembershipType2.errors" class="invalid-feedback">
-                          <div *ngIf="f2.MembershipType2.errors.required">MembershipType is
+                        <label>Membershipclassfication</label>
+                        <input type="text"  formControlName="Membershipclassfication2" class="form-control"
+                          placeholder="Enter Membershipclassfication"
+                          [ngClass]="{ 'is-invalid': submitted && f2.Membershipclassfication2.errors }" />
+                        <div *ngIf="submitted && f2.Membershipclassfication2.errors" class="invalid-feedback">
+                          <div *ngIf="f2.Membershipclassfication2.errors.required">Membershipclassfication is
                             required</div>
                         </div>
                       </div>
@@ -143,7 +143,7 @@
                             required</div>
                         </div>
                       </div>
-
+  
                   </div>
                   <div class="modal-footer">
                     <button type="submit" class="btn btn-default">Update</button>
@@ -155,22 +155,23 @@
           </div>
         </div>
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

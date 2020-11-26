@@ -3,11 +3,17 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { CountryComponent } from './Master/country/country.component';
 import { StateComponent } from './Master/state/state.component';
-import { CityComponent } from './Master/city/city.component';
+import { RegionComponent } from './Master/region/region.component';
 import { GenderComponent } from './Master/gender/gender.component';
 import { InterestedComponent } from './Master/interested/interested.component';
 import { MembershipCategoryComponent } from './Master/membership-category/membership-category.component';
 import { MembershipTypeComponent } from './Master/membership-type/membership-type.component';
+import { CitymasterComponent } from './Master/citymaster/citymaster.component';
+import { MemberclassComponent } from './Master/memberclass/memberclass.component';
+import { MembershipcostComponent } from './Master/membershipcost/membershipcost.component';
+import { CountrymasComponent } from './Master/countrymas/countrymas.component';
+// import { MembershipclassificationComponent } from './Master/membershipclassification/membershipclassification.component';
+
 // Student Master
 
 // Staff Master
@@ -57,8 +63,8 @@ const routes: Routes = [
     component: StateComponent
   },
   {
-    path: 'city',
-    component: CityComponent
+    path: 'region',
+    component: RegionComponent
   },
   {
     path: 'gender',
@@ -69,13 +75,31 @@ const routes: Routes = [
     component: InterestedComponent
   },
   {
-    path: 'membarshipcategory',
+    path: 'membershipcategory',
     component: MembershipCategoryComponent
   },
   {
-    path: 'membarshiptype',
+    path: 'membershiptype',
     component: MembershipTypeComponent
+  },
+  {
+    path: 'city',
+    component: CitymasterComponent
+  },
+  {
+    path: 'memberclassification',
+    component: MemberclassComponent
+  },
+  {
+    path: 'membershipcost',
+    component: MembershipcostComponent
+  },
+  {
+    path: 'countrymas',
+    component: CountrymasComponent
   }
+
+
 ];
 
 @NgModule({

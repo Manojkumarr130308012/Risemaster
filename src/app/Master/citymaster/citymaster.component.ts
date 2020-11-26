@@ -12,11 +12,11 @@ declare const $: any;
 declare const M: any;
 declare const swal: any;
 @Component({
-  selector: 'app-city',
-  templateUrl: './city.component.html',
-  styleUrls: ['./city.component.scss']
+  selector: 'app-citymaster',
+  templateUrl: './citymaster.component.html',
+  styleUrls: ['./citymaster.component.scss']
 })
-export class CityComponent implements OnInit {
+export class CitymasterComponent implements OnInit {
   addBatchForm: any;
   editForm: any;
   message: any;
@@ -56,7 +56,7 @@ export class CityComponent implements OnInit {
     private router: Router,
     private activeRoute:  ActivatedRoute,
     private auth: AuthService) {
-      // Add Form
+    // Add Form
     this.addBatchForm = this.formBuilder.group({
       Country: ["", Validators.required],
       State: ["", Validators.required],
@@ -107,7 +107,6 @@ export class CityComponent implements OnInit {
       );
       console.log(this.addBatchForm.value);
     }
-
     // To display course category
     viewData() {
       this.request.getaggcity().subscribe(

@@ -27,11 +27,18 @@ import { ArchwizardModule } from 'angular-archwizard';
 
 import { CountryComponent } from './Master/country/country.component';
 import { StateComponent } from './Master/state/state.component';
-import { CityComponent } from './Master/city/city.component';
+import { RegionComponent } from './Master/region/region.component';
 import { GenderComponent } from './Master/gender/gender.component';
 import { InterestedComponent } from './Master/interested/interested.component';
 import { MembershipCategoryComponent } from './Master/membership-category/membership-category.component';
 import { MembershipTypeComponent } from './Master/membership-type/membership-type.component';
+import { CityComponent } from './Master/city/city.component';
+import { MemberclassComponent } from './Master/memberclass/memberclass.component';
+import { CitymasterComponent } from './Master/citymaster/citymaster.component';
+import { MembershipcostComponent } from './Master/membershipcost/membershipcost.component';
+import { CountrymasComponent } from './Master/countrymas/countrymas.component';
+
+// import { MembershipclassificationComponent } from './Master/membershipclassification/membershipclassification.component';
 
 
 
@@ -44,11 +51,16 @@ import { MembershipTypeComponent } from './Master/membership-type/membership-typ
     RightSidebarComponent,
     CountryComponent,
     StateComponent,
-    CityComponent,
+    RegionComponent,
     GenderComponent,
     InterestedComponent,
     MembershipCategoryComponent,
-    MembershipTypeComponent
+    MembershipTypeComponent,
+    CityComponent,
+    MemberclassComponent,
+    CitymasterComponent,
+    MembershipcostComponent,
+    CountrymasComponent
   ],
   imports: [
     BrowserModule,

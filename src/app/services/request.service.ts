@@ -103,7 +103,7 @@ public getcity() {
   return this.http.get(this.url);
 }
 
-public addcity(newexam: { Country:any;State:any;CityName:any; }) {
+public addcity(newexam: { Country:any;State:any;region:any;CityName:any; }) {
   this.url = `${this.endPoint}/city/add`;
   return this.http.post(this.url, newexam);
 }
@@ -132,6 +132,88 @@ public getaggcity() {
   return this.http.get(this.url);
 
 }
+
+
+
+
+//region
+public getregion() {
+  this.url = `${this.endPoint}/region/`;
+  return this.http.get(this.url);
+}
+
+public addregion(newexam: { Country:any;State:any;region:any; }) {
+  this.url = `${this.endPoint}/region/add`;
+  return this.http.post(this.url, newexam);
+}
+
+public deleteregion(id) {
+  this.url = `${this.endPoint}/region/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+
+updateregion(id, body) {
+  this.url = `${this.endPoint}/region/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetchregion() {
+  this.url = `${this.endPoint}/region/`;
+  return this.http.get(this.url);
+}
+fetchregionById(id) {
+  this.url = `${this.endPoint}/region/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+
+public getaggregion() {
+  this.url = `${this.endPoint}/region/aggregation`;
+  return this.http.get(this.url);
+
+}
+public loadstatebyins(id) {
+  this.url = `${this.endPoint}/region/fetchBystate?State=`+id;
+  return this.http.get(this.url);
+
+}
+
+//membershipcost
+public getmembershipcost() {
+  this.url = `${this.endPoint}/membershipcost/`;
+  return this.http.get(this.url);
+}
+
+public addmembershipcost(newexam: { Country:any;State:any;region:any;region1:any; }) {
+  this.url = `${this.endPoint}/membershipcost/add`;
+  return this.http.post(this.url, newexam);
+}
+
+public deletemembershipcost(id) {
+  this.url = `${this.endPoint}/membershipcost/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+
+updatemembershipcost(id, body) {
+  this.url = `${this.endPoint}/membershipcost/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetchmembershipcost() {
+  this.url = `${this.endPoint}/membershipcost/`;
+  return this.http.get(this.url);
+}
+fetchmembershipcostById(id) {
+  this.url = `${this.endPoint}/membershipcost/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+
+public getmembershipcostaggregion() {
+  this.url = `${this.endPoint}/membershipcost/aggregation`;
+  return this.http.get(this.url);
+
+}
+
+
 
 
 //gender
@@ -235,7 +317,7 @@ public getmembershiptype() {
   return this.http.get(this.url);
 }
 
-public addmembershiptype(newexam: { MembershipType: any;Amount: any;WomenOffer: any;Status: any; }) {
+public addmembershiptype(newexam: { MembershipType: any;Amount: any; }) {
   this.url = `${this.endPoint}/membershiptype/add`;
   return this.http.post(this.url, newexam);
 }
@@ -260,6 +342,36 @@ fetchmembershiptypeById(id) {
 }
 
 
+
+//membershipclassification
+public getmembershipclassification() {
+  this.url = `${this.endPoint}/membershipclass/`;
+  return this.http.get(this.url);
+}
+
+public addmembershipclassification(newexam: { MembershipType: any;Amount: any;}) {
+  this.url = `${this.endPoint}/membershipclass/add`;
+  return this.http.post(this.url, newexam);
+}
+
+public deletemembershipclassification(id) {
+  this.url = `${this.endPoint}/membershipclass/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+
+updatemembershipclassification(id, body) {
+  this.url = `${this.endPoint}/membershipclass/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetchmembershipclassification() {
+  this.url = `${this.endPoint}/membershipclass/`;
+  return this.http.get(this.url);
+}
+fetchmembershipclassificationById(id) {
+  this.url = `${this.endPoint}/membershipclass/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
 
 
 

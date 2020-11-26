@@ -20,44 +20,44 @@
                              <!-- Add button -->
                         </div>
                     </div>
-                   <div class="body">
-                            <div class="table-responsive">
-                                 <table id="tableExport"
-                                 class="display table table-hover table-checkable order-column m-t-20 width-per-100">
-                                    <thead>
-                                        <tr>
-                                            <th>S.No</th>
-                                            <th>Country</th>
-                                            <th>State</th>
-                                            <th>Region</th>
-                                            <th>City</th>
-                                            <th >Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let city of cities; let i=index">
-                                            <td>{{i +1 }}</td>
-                                            <td>{{city?.CountryDetails[0].CountryName}}</td>
-                                            <td>{{city?.StateDetails[0].StateName}}</td>
-                                            <td>{{city?.regionsDetails[0].region}}</td>
-                                            <td>{{city?.CityName}}</td>
-                                            <td>
-                                                <div class="btn btn-tbl-edit" data-toggle="modal"
-                                                data-target="#editModal">
-                                                        <i class="material-icons"
-                                                        (click)="onEdit(city) ">create</i>
+                    <div class="body">
+                        <div class="table-responsive">
+                             <table id="tableExport"
+                             class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Country</th>
+                                        <th>State</th>
+                                        <th>Region</th>
+                                        <th>City</th>
+                                        <th >Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let city of cities; let i=index">
+                                        <td>{{i +1 }}</td>
+                                        <td>{{city?.CountryDetails[0].CountryName}}</td>
+                                        <td>{{city?.StateDetails[0].StateName}}</td>
+                                        <td>{{city?.regionsDetails[0].region}}</td>
+                                        <td>{{city?.CityName}}</td>
+                                        <td>
+                                            <div class="btn btn-tbl-edit" data-toggle="modal"
+                                            data-target="#editModal">
+                                                    <i class="material-icons"
+                                                    (click)="onEdit(city) ">create</i>
+                                            </div>
+                                                <div class="btn btn-tbl-delete">
+                                                    <i class="material-icons"
+                                                    (click) = "deleteBatch(city?._id)" >delete</i>
                                                 </div>
-                                                    <div class="btn btn-tbl-delete">
-                                                        <i class="material-icons"
-                                                        (click) = "deleteBatch(city?._id)" >delete</i>
-                                                    </div>
-                                                </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                            </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
 
@@ -95,10 +95,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label>State</label>
-                                    <select id="select" class="browser-default form-control" formControlName="State"
+                                    <select class="browser-default form-control" formControlName="State"
                                         [ngClass]="{ 'is-invalid': submitted && f.State.errors }"
                                         (change)="loadstateIns($event.target.value)">
-                                        <option default value>Choose your State</option>
+                                        <option disabled selected>Choose your State</option>
                                         <option *ngFor="let state of countrybyins?.response" [value]="state._id">{{state.StateName}}</option>
                                     </select>
                                     <div *ngIf="submitted && f.State.errors" class="invalid-feedback">
@@ -107,9 +107,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Region</label>
-                                    <select id="select" class="browser-default form-control" formControlName="region"
+                                    <select class="browser-default form-control" formControlName="region"
                                         [ngClass]="{ 'is-invalid': submitted && f.region.errors }">
-                                        <option default value>Choose your region</option>
+                                        <option disabled selected>Choose your region</option>
                                         <option *ngFor="let region of statebyins?.response" [value]="region._id">{{region.region}}</option>
                                     </select>
                                     <div *ngIf="submitted && f.region.errors" class="invalid-feedback">
@@ -119,7 +119,7 @@
 
                                 <div class="form-group">
                                     <label>City</label>
-                                    <input type="text" formControlName="CityName" class="form-control" placeholder="Enter Cityname"
+                                    <input type="text" formControlName="CityName" class="form-control" placeholder="Enter CityName"
                                         [ngClass]="{ 'is-invalid': submitted && f.CityName.errors }" />
                                     <div *ngIf="submitted && f.CityName.errors" class="invalid-feedback">
                                         <div *ngIf="f.CityName.errors.required">CityName is required</div>
@@ -128,7 +128,7 @@
                             </div>
                         </div>
          <div class="modal-footer">
-                <button type="submit" class="btn btn-default" >Add</button >
+                <button type="submit" (click)="onAddSubmit()" class="btn btn-default" >Add</button >
              <button type="button" class="btn btn-danger waves-effect"
                  data-dismiss="modal">Cancel</button>
          </div>
@@ -168,9 +168,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label> State</label>
-                                    <select id="select2" class="browser-default form-control" formControlName="State2"
-                                        [ngClass]="{ 'is-invalid': submitted && f2.State2.errors }"(change)="loadstateIns($event.target.value)">
-                                        <option>Choose your State</option>
+                                    <select  class="browser-default form-control" formControlName="State2"
+                                        [ngClass]="{ 'is-invalid': submitted && f2.State2.errors }"
+                                        (change)="loadstateIns($event.target.value)">
+                                        <option disabled selected>Choose your State</option>
                                         <option *ngFor="let state of countrybyins?.response" [value]="state._id">{{state.StateName}}</option>
                                     </select>
                                     <div *ngIf="submitted && f2.State2.errors" class="invalid-feedback">
@@ -179,7 +180,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Region</label>
-                                    <select id="select" class="browser-default form-control" formControlName="region2"
+                                    <select  class="browser-default form-control" formControlName="region2"
                                         [ngClass]="{ 'is-invalid': submitted && f.region2.errors }">
                                         <option default value>Choose your region</option>
                                         <option *ngFor="let region of statebyins?.response" [value]="region._id">{{region.region}}</option>
