@@ -12,6 +12,9 @@ import { CitymasterComponent } from './Master/citymaster/citymaster.component';
 import { MemberclassComponent } from './Master/memberclass/memberclass.component';
 import { MembershipcostComponent } from './Master/membershipcost/membershipcost.component';
 import { CountrymasComponent } from './Master/countrymas/countrymas.component';
+import { ChapterComponent } from './Master/chapter/chapter.component';
+import { CityComponent } from './Master/city/city.component';
+import { DistrictComponent } from './Master/district/district.component';
 // import { MembershipclassificationComponent } from './Master/membershipclassification/membershipclassification.component';
 
 // Student Master
@@ -84,7 +87,7 @@ const routes: Routes = [
   },
   {
     path: 'city',
-    component: CitymasterComponent
+    component: CityComponent
   },
   {
     path: 'memberclassification',
@@ -97,6 +100,14 @@ const routes: Routes = [
   {
     path: 'countrymas',
     component: CountrymasComponent
+  },
+  {
+    path: 'chapter',
+    component: ChapterComponent
+  },
+  {
+    path: 'district',
+    component: DistrictComponent
   }
 
 

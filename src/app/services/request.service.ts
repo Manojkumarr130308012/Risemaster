@@ -132,6 +132,55 @@ public getaggcity() {
   return this.http.get(this.url);
 
 }
+public loadcitybyins(id) {
+  this.url = `${this.endPoint}/city/fetchBycity?region=`+id;
+  return this.http.get(this.url);
+
+}
+
+
+
+//district
+public getdistrict() {
+  this.url = `${this.endPoint}/district/`;
+  return this.http.get(this.url);
+}
+
+public adddistrict(newexam: { Country:any;State:any;region:any;district:any; }) {
+  this.url = `${this.endPoint}/district/add`;
+  return this.http.post(this.url, newexam);
+}
+
+public deletedistrict(id) {
+  this.url = `${this.endPoint}/district/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+
+updatedistrict(id, body) {
+  this.url = `${this.endPoint}/district/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetchdistrict() {
+  this.url = `${this.endPoint}/district/`;
+  return this.http.get(this.url);
+}
+fetchdistrictById(id) {
+  this.url = `${this.endPoint}/district/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+
+public getaggdistrict() {
+  this.url = `${this.endPoint}/district/aggregation`;
+  return this.http.get(this.url);
+
+}
+public loaddistrictbyins(id) {
+  this.url = `${this.endPoint}/district/fetchBycity?region=`+id;
+  return this.http.get(this.url);
+
+}
+
 
 
 

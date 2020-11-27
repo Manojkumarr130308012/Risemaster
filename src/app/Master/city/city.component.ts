@@ -30,14 +30,10 @@ export class CityComponent implements OnInit {
   IdValue: any;
   region: any;
   region2: any;
-  CityName:any;
-  CityName2:any;
   Id: any;
   editBatch: any;
   regionValue: any;
-  CityNameValue:any;
   regionNames: any;
-  CityNameValues:any;
   courseprogramValue: any;
   State: any;
   State2: any;
@@ -45,10 +41,16 @@ export class CityComponent implements OnInit {
   StatebyIns: any;
   StateIns: any;
   states:any;
-  cities:any;
+  regiones:any;
   countrybyins:any;
-  statebyins:any;
-  stateid:any;
+  citys:any;
+  regions:any;
+  cities:any;
+  CityName:any;
+  CityName2:any;
+  CityNameValue:any;
+  CityNameValues:any;
+  
   constructor(
     private formBuilder: FormBuilder,
     private dynamicScriptLoader: DynamicScriptLoaderService,
@@ -112,8 +114,8 @@ export class CityComponent implements OnInit {
     viewData() {
       this.request.getaggcity().subscribe(
         response => {
-          this.cities = response;
-          console.log("cities",this.cities);
+          this.citys = response;
+          console.log("citys",this.citys);
         },
         error => {
           console.log(error);
@@ -134,9 +136,7 @@ export class CityComponent implements OnInit {
     onEdit(city) {
       this.Id = city._id;
       this.countryId = city.CountryDetails[0]._id;
-      this.stateid = city.StateDetails[0]._id;
       this.loadcountryIns(this.countryId);
-      this.loadstateIns(this.stateid);
       this.request.fetchcityById(this.Id).subscribe(response => {
         this.editBatch = response[0];
         console.log(response);
@@ -193,19 +193,19 @@ export class CityComponent implements OnInit {
         console.log(error);
       });
     }
-    loadstateIns(state) {
-      this.request.loadstatebyins(state).subscribe((response: any) => {
-        this.statebyins = response;
-        console.log('statebyins', this.statebyins);
-      }, (error) => {
-        console.log(error);
-      });
-    }
   // Bind institution data
   loadCountry() {
     this.request.getcountry().subscribe((response: any) => {
       this.Countrys = response;
       console.log('Countrys', this.Countrys);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  loadregion() {
+    this.request.getregion().subscribe((response: any) => {
+      this.regions = response;
+      console.log('regions', this.regions);
     }, (error) => {
       console.log(error);
     });
@@ -226,21 +226,6 @@ export class CityComponent implements OnInit {
 
        this.countrybyins = null;
     }
-
-    onstateChange(state: string) {
-      console.log('state', state);
-      if (state) {
-         this.request.loadstatebyins(state).subscribe((response: any) => {
-           console.log(response);
-           this.statebyins = response;
-           console.log('statebyins', this.statebyins);
-         }, (error) => {
-           console.log(error);
-         });
-  
-       } else
-         this.statebyins = null;
-      }
     // convenience getter for easy access to form fields
     get f() {
       return this.addBatchForm.controls;
@@ -297,5 +282,6 @@ export class CityComponent implements OnInit {
       this.loadModal();
       this.loadstate();
       this.loadCountry();
+      this.loadregion();
     }
   }

@@ -37,6 +37,8 @@ import { MemberclassComponent } from './Master/memberclass/memberclass.component
 import { CitymasterComponent } from './Master/citymaster/citymaster.component';
 import { MembershipcostComponent } from './Master/membershipcost/membershipcost.component';
 import { CountrymasComponent } from './Master/countrymas/countrymas.component';
+import { ChapterComponent } from './Master/chapter/chapter.component';
+import { DistrictComponent } from './Master/district/district.component';
 
 // import { MembershipclassificationComponent } from './Master/membershipclassification/membershipclassification.component';
 
@@ -60,7 +62,9 @@ import { CountrymasComponent } from './Master/countrymas/countrymas.component';
     MemberclassComponent,
     CitymasterComponent,
     MembershipcostComponent,
-    CountrymasComponent
+    CountrymasComponent,
+    ChapterComponent,
+    DistrictComponent
   ],
   imports: [
     BrowserModule,

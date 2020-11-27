@@ -12,11 +12,11 @@ declare const $: any;
 declare const M: any;
 declare const swal: any;
 @Component({
-  selector: 'app-region',
-  templateUrl: './region.component.html',
-  styleUrls: ['./region.component.scss']
+  selector: 'app-district',
+  templateUrl: './district.component.html',
+  styleUrls: ['./district.component.scss']
 })
-export class RegionComponent implements OnInit {
+export class DistrictComponent implements OnInit {
   addBatchForm: any;
   editForm: any;
   message: any;
@@ -30,10 +30,14 @@ export class RegionComponent implements OnInit {
   IdValue: any;
   region: any;
   region2: any;
+  district:any;
+  district2:any;
   Id: any;
   editBatch: any;
   regionValue: any;
+  districtValue:any;
   regionNames: any;
+  districtValues:any;
   courseprogramValue: any;
   State: any;
   State2: any;
@@ -41,9 +45,10 @@ export class RegionComponent implements OnInit {
   StatebyIns: any;
   StateIns: any;
   states:any;
-  regiones:any;
+  districts:any;
   countrybyins:any;
-  cities:any;
+  statebyins:any;
+  stateid:any;
   constructor(
     private formBuilder: FormBuilder,
     private dynamicScriptLoader: DynamicScriptLoaderService,
@@ -51,17 +56,19 @@ export class RegionComponent implements OnInit {
     private router: Router,
     private activeRoute:  ActivatedRoute,
     private auth: AuthService) {
-      // Add Form
+    // Add Form
     this.addBatchForm = this.formBuilder.group({
       Country: ["", Validators.required],
       State: ["", Validators.required],
-      region: ["", Validators.required]
+      region: ["", Validators.required],
+      district: ["", Validators.required]
     });
     // Edit Form
     this.editForm = this.formBuilder.group({
       Country2: ["", Validators.required],
       State2: ["", Validators.required],
-      region2: ["", Validators.required]
+      region2: ["", Validators.required],
+      district2: ["", Validators.required]
     });
 
      }
@@ -84,7 +91,7 @@ export class RegionComponent implements OnInit {
       if (this.addBatchForm.invalid) {
         return;
       }
-      this.request.addregion(this.addBatchForm.value).subscribe(
+      this.request.adddistrict(this.addBatchForm.value).subscribe(
         (res: any) => {
           if (res.status == "success") {
             swal("Added Sucessfully");
@@ -100,13 +107,12 @@ export class RegionComponent implements OnInit {
       );
       console.log(this.addBatchForm.value);
     }
-
     // To display course category
     viewData() {
-      this.request.getaggregion().subscribe(
+      this.request.getaggdistrict().subscribe(
         response => {
-          this.regiones = response;
-          console.log("regiones",this.regiones);
+          this.districts = response;
+          console.log("districts",this.districts);
         },
         error => {
           console.log(error);
@@ -116,7 +122,7 @@ export class RegionComponent implements OnInit {
 
     // To delete course category
     deleteBatch(id: any) {
-      this.request.deleteregion(id).subscribe(res => {
+      this.request.deletedistrict(id).subscribe(res => {
         console.log(id);
         this.viewData();
         console.log("Deleted");
@@ -127,19 +133,23 @@ export class RegionComponent implements OnInit {
     onEdit(city) {
       this.Id = city._id;
       this.countryId = city.CountryDetails[0]._id;
+      this.stateid = city.StateDetails[0]._id;
       this.loadcountryIns(this.countryId);
-      this.request.fetchregionById(this.Id).subscribe(response => {
+      this.loadstateIns(this.stateid);
+      this.request.fetchdistrictById(this.Id).subscribe(response => {
         this.editBatch = response[0];
         console.log(response);
         this.CountryValue = this.editBatch.Country;
         this.StateValue = this.editBatch.State;
         this.regionValue = this.editBatch.region;
+        this.districtValue = this.editBatch.district;
         this.IdValue = this.editBatch._id;
 
         this.editForm = this.formBuilder.group({
           Country2: [this.CountryValue, Validators.required],
           State2: [this.StateValue, Validators.required],
-          region2: [this.regionValue, Validators.required]
+          region2: [this.regionValue, Validators.required],
+          district2: [this.districtValue, Validators.required]
         });
         console.log(this.editForm.value);
       });
@@ -154,10 +164,11 @@ export class RegionComponent implements OnInit {
       const edata = {
         Country: this.editForm.get("Country2").value,
         State: this.editForm.get("State2").value,
-        region: this.editForm.get("region2").value
+        region: this.editForm.get("region2").value,
+        district: this.editForm.get("district2").value
       };
 
-      this.request.updateregion(this.IdValue, edata).subscribe(
+      this.request.updatedistrict(this.IdValue, edata).subscribe(
         (res: any) => {
           if (res.status == "success") {
             swal("Updated Sucessfully");
@@ -177,6 +188,14 @@ export class RegionComponent implements OnInit {
       this.request.loadcountrybyins(Country).subscribe((response: any) => {
         this.countrybyins = response;
         console.log('countrybyins', this.countrybyins);
+      }, (error) => {
+        console.log(error);
+      });
+    }
+    loadstateIns(state) {
+      this.request.loadstatebyins(state).subscribe((response: any) => {
+        this.statebyins = response;
+        console.log('statebyins', this.statebyins);
       }, (error) => {
         console.log(error);
       });
@@ -206,6 +225,21 @@ export class RegionComponent implements OnInit {
 
        this.countrybyins = null;
     }
+
+    onstateChange(state: string) {
+      console.log('state', state);
+      if (state) {
+         this.request.loadstatebyins(state).subscribe((response: any) => {
+           console.log(response);
+           this.statebyins = response;
+           console.log('statebyins', this.statebyins);
+         }, (error) => {
+           console.log(error);
+         });
+  
+       } else
+         this.statebyins = null;
+      }
     // convenience getter for easy access to form fields
     get f() {
       return this.addBatchForm.controls;
