@@ -15,6 +15,15 @@ import { RightSidebarComponent } from './layout/right-sidebar/right-sidebar.comp
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { DynamicScriptLoaderService } from './services/dynamic-script-loader.service';
 
+//firebase
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+
+import { environment } from '../environments/environment';
+
+
+
 import { RequestService } from './../app/services/request.service';
 import { HttpClientModule } from '@angular/common/http';
 import {FileUploadModule} from 'ng2-file-upload';
@@ -39,6 +48,11 @@ import { MembershipcostComponent } from './Master/membershipcost/membershipcost.
 import { CountrymasComponent } from './Master/countrymas/countrymas.component';
 import { ChapterComponent } from './Master/chapter/chapter.component';
 import { DistrictComponent } from './Master/district/district.component';
+import { MemberComponent } from './Master/member/member.component';
+import { EventsComponent } from './Master/events/events.component';
+import { SpeakerComponent } from './Master/speaker/speaker.component';
+import { TrackerComponent } from './Master/tracker/tracker.component';
+import { AgendaComponent } from './Master/agenda/agenda.component';
 
 // import { MembershipclassificationComponent } from './Master/membershipclassification/membershipclassification.component';
 
@@ -64,7 +78,12 @@ import { DistrictComponent } from './Master/district/district.component';
     MembershipcostComponent,
     CountrymasComponent,
     ChapterComponent,
-    DistrictComponent
+    DistrictComponent,
+    MemberComponent,
+    EventsComponent,
+    SpeakerComponent,
+    TrackerComponent,
+    AgendaComponent
   ],
   imports: [
     BrowserModule,
@@ -80,6 +99,8 @@ import { DistrictComponent } from './Master/district/district.component';
     OrderModule,
     ArchwizardModule,
     MatSnackBarModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule, // for database
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
