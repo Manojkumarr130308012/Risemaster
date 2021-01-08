@@ -19,11 +19,13 @@ export class CountryComponent implements OnInit {
   editForm: FormGroup;
   submitted = false;
   public CountryName: any; public CountryName2: any;
+  public Countrycode: any; public Countrycode2: any;
   public Countrys: any;
   Id: any;
   IdValue: any;
   editCountrygroup: any;
   CountryValue: any;
+  CountrycodeValue:any;
   public message: string;
 
   constructor(
@@ -36,11 +38,13 @@ export class CountryComponent implements OnInit {
     {
       // Add Form
       this.registerForm = this.formBuilder.group({
-        CountryName:['', Validators.required]
+        CountryName:['', Validators.required],
+        Countrycode:['', Validators.required]
     });
     // Edit Form
       this.editForm = this.formBuilder.group({
-        CountryName2:['', Validators.required]
+        CountryName2:['', Validators.required],
+        Countrycode2:['', Validators.required]
     });
      }
 
@@ -97,10 +101,12 @@ export class CountryComponent implements OnInit {
       this.editCountrygroup=response[0];
       console.log(response);
         this.CountryValue=this.editCountrygroup.CountryName;
+        this.CountrycodeValue=this.editCountrygroup.Countrycode;
         this.IdValue=this.editCountrygroup._id;
 
         this.editForm = this.formBuilder.group({
-          CountryName2:[this.CountryValue, Validators.required]
+          CountryName2:[this.CountryValue, Validators.required],
+          Countrycode2:[this.CountrycodeValue, Validators.required]
       });
       console.log(this.editForm.value);
     });
@@ -112,7 +118,8 @@ export class CountryComponent implements OnInit {
         return;
       }
       const edata = {
-        CountryName: this.editForm.get('CountryName2').value
+        CountryName: this.editForm.get('CountryName2').value,
+        Countrycode: this.editForm.get('Countrycode2').value
 
     }
   this.request.updatecountry(this.IdValue,edata).subscribe((res : any) => {
@@ -145,7 +152,7 @@ get f2() { return this.editForm.controls; }
     $('#tableExport').DataTable({
       dom: 'Bfrtip',
       buttons: [
-        'copy', 'csv', 'excel', 'pdf', 'print'
+         'excel', 'pdf'
       ]
     });
   }

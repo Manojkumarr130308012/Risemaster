@@ -73,7 +73,7 @@
          <div class="modal-body">
                 <form [formGroup]="registerForm" (ngSubmit)="onAddSubmit()">
                     <div class="form-group">
-                            <label>Country</label>
+                            <label>Interests</label>
                             <input type="text"  formControlName="Interests" class="form-control" placeholder="Enter Interests"
                                 [ngClass]="{ 'is-invalid': submitted && f.Interests.errors }" />
                             <div *ngIf="submitted && f.Interests.errors" class="invalid-feedback">

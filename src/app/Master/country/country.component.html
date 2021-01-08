@@ -27,6 +27,7 @@
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
+                                            <th>Countrycode</th>
                                             <th>Country</th>
                                             <th >Action</th>
                                         </tr>
@@ -34,6 +35,7 @@
                                     <tbody>
                                         <tr *ngFor="let Country of Countrys?.response; let i=index">
                                             <td>{{i +1 }}</td>
+                                            <td>{{Country?.Countrycode}}</td>
                                             <td>{{Country?.CountryName}}</td>
                                             <td>
                                                 <div class="btn btn-tbl-edit" data-toggle="modal"
@@ -80,6 +82,16 @@
                                 <div *ngIf="f.CountryName.errors.required">Country is required</div>
                             </div>
                         </div>
+
+
+                        <div class="form-group">
+                            <label>Country Code</label>
+                            <input type="text"  formControlName="Countrycode" class="form-control" placeholder="Enter Countrycode"
+                                [ngClass]="{ 'is-invalid': submitted && f.Countrycode.errors }" />
+                            <div *ngIf="submitted && f.Countrycode.errors" class="invalid-feedback">
+                                <div *ngIf="f.Countrycode.errors.required">Countrycode is required</div>
+                            </div>
+                    </div>
          <div class="modal-footer">
                 <button type="submit" class="btn btn-default">Add</button >
              <button type="button" class="btn btn-danger waves-effect"
@@ -111,7 +123,16 @@
                             <div *ngIf="submitted && f2.CountryName2.errors" class="invalid-feedback">
                                 <div *ngIf="f2.CountryName2.errors.required">Country is required</div>
                             </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Country Code</label>
+                        <input type="text"  formControlName="Countrycode2" class="form-control" placeholder="Enter Countrycode2"
+                            [ngClass]="{ 'is-invalid': submitted && f2.Countrycode2.errors }" />
+                        <div *ngIf="submitted && f2.Countrycode2.errors" class="invalid-feedback">
+                            <div *ngIf="f2.Countrycode2.errors.required">Countrycode is required</div>
                         </div>
+                </div>
          <div class="modal-footer">
                 <button type="submit" class="btn btn-default">Update</button >
              <button type="button" class="btn btn-danger waves-effect"

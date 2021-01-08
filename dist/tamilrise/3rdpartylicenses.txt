@@ -57,6 +57,9 @@ MIT
 @angular/core
 MIT
 
+@angular/fire
+MIT
+
 @angular/forms
 MIT
 
@@ -90,6 +93,30 @@ MIT
 
 @angular/router
 MIT
+
+@firebase/app
+Apache-2.0
+
+@firebase/component
+Apache-2.0
+
+@firebase/database
+Apache-2.0
+
+@firebase/firestore
+Apache-2.0
+
+@firebase/logger
+Apache-2.0
+
+@firebase/storage
+Apache-2.0
+
+@firebase/util
+Apache-2.0
+
+@firebase/webchannel-wrapper
+Apache-2.0
 
 @ng-bootstrap/ng-bootstrap
 MIT
@@ -403,6 +430,14 @@ The following files embed [d3.js](https://github.com/d3/d3) BSD 3-Clause:
     `/src/scale/Time.js`,
 See `/licenses/LICENSE-d3` for details of the license.
 
+
+firebase/app
+
+firebase/database
+
+firebase/firestore
+
+firebase/storage
 
 ion-rangeslider
 MIT

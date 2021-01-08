@@ -30,10 +30,14 @@ export class CityComponent implements OnInit {
   IdValue: any;
   region: any;
   region2: any;
+  district:any;
+  district2:any;
   Id: any;
   editBatch: any;
   regionValue: any;
+  districtValue:any;
   regionNames: any;
+  districtValues:any;
   courseprogramValue: any;
   State: any;
   State2: any;
@@ -41,16 +45,16 @@ export class CityComponent implements OnInit {
   StatebyIns: any;
   StateIns: any;
   states:any;
-  regiones:any;
+  districts:any;
   countrybyins:any;
-  citys:any;
-  regions:any;
-  cities:any;
+  statebyins:any;
+  stateid:any;
+  regionbyins:any;
   CityName:any;
   CityName2:any;
+  regionid:any;
   CityNameValue:any;
-  CityNameValues:any;
-  
+  cities:any;
   constructor(
     private formBuilder: FormBuilder,
     private dynamicScriptLoader: DynamicScriptLoaderService,
@@ -58,11 +62,12 @@ export class CityComponent implements OnInit {
     private router: Router,
     private activeRoute:  ActivatedRoute,
     private auth: AuthService) {
-      // Add Form
+    // Add Form
     this.addBatchForm = this.formBuilder.group({
       Country: ["", Validators.required],
       State: ["", Validators.required],
       region: ["", Validators.required],
+      district: ["", Validators.required],
       CityName: ["", Validators.required]
     });
     // Edit Form
@@ -70,6 +75,7 @@ export class CityComponent implements OnInit {
       Country2: ["", Validators.required],
       State2: ["", Validators.required],
       region2: ["", Validators.required],
+      district2: ["", Validators.required],
       CityName2: ["", Validators.required]
     });
 
@@ -109,13 +115,12 @@ export class CityComponent implements OnInit {
       );
       console.log(this.addBatchForm.value);
     }
-
     // To display course category
     viewData() {
       this.request.getaggcity().subscribe(
         response => {
-          this.citys = response;
-          console.log("citys",this.citys);
+          this.cities = response;
+          console.log("cities",this.cities);
         },
         error => {
           console.log(error);
@@ -136,13 +141,18 @@ export class CityComponent implements OnInit {
     onEdit(city) {
       this.Id = city._id;
       this.countryId = city.CountryDetails[0]._id;
+      this.stateid = city.StateDetails[0]._id;
+      this.regionid = city.regionsDetails[0]._id;
       this.loadcountryIns(this.countryId);
+      this.loadstateIns(this.stateid);
+      this.loadregionIns(this.regionid);
       this.request.fetchcityById(this.Id).subscribe(response => {
         this.editBatch = response[0];
         console.log(response);
         this.CountryValue = this.editBatch.Country;
         this.StateValue = this.editBatch.State;
         this.regionValue = this.editBatch.region;
+        this.districtValue = this.editBatch.district;
         this.CityNameValue = this.editBatch.CityName;
         this.IdValue = this.editBatch._id;
 
@@ -150,6 +160,7 @@ export class CityComponent implements OnInit {
           Country2: [this.CountryValue, Validators.required],
           State2: [this.StateValue, Validators.required],
           region2: [this.regionValue, Validators.required],
+          district2: [this.districtValue, Validators.required],
           CityName2: [this.CityNameValue, Validators.required]
         });
         console.log(this.editForm.value);
@@ -166,6 +177,7 @@ export class CityComponent implements OnInit {
         Country: this.editForm.get("Country2").value,
         State: this.editForm.get("State2").value,
         region: this.editForm.get("region2").value,
+        district: this.editForm.get("district2").value,
         CityName: this.editForm.get("CityName2").value
       };
 
@@ -193,19 +205,27 @@ export class CityComponent implements OnInit {
         console.log(error);
       });
     }
+    loadstateIns(state) {
+      this.request.loadstatebyins(state).subscribe((response: any) => {
+        this.statebyins = response;
+        console.log('statebyins', this.statebyins);
+      }, (error) => {
+        console.log(error);
+      });
+    }
+    loadregionIns(region) {
+      this.request.loaddistrictbyins(region).subscribe((response: any) => {
+        this.regionbyins = response;
+        console.log('regionbyins', this.regionbyins);
+      }, (error) => {
+        console.log(error);
+      });
+    }
   // Bind institution data
   loadCountry() {
     this.request.getcountry().subscribe((response: any) => {
       this.Countrys = response;
       console.log('Countrys', this.Countrys);
-    }, (error) => {
-      console.log(error);
-    });
-  }
-  loadregion() {
-    this.request.getregion().subscribe((response: any) => {
-      this.regions = response;
-      console.log('regions', this.regions);
     }, (error) => {
       console.log(error);
     });
@@ -226,6 +246,21 @@ export class CityComponent implements OnInit {
 
        this.countrybyins = null;
     }
+
+    onstateChange(state: string) {
+      console.log('state', state);
+      if (state) {
+         this.request.loadstatebyins(state).subscribe((response: any) => {
+           console.log(response);
+           this.statebyins = response;
+           console.log('statebyins', this.statebyins);
+         }, (error) => {
+           console.log(error);
+         });
+  
+       } else
+         this.statebyins = null;
+      }
     // convenience getter for easy access to form fields
     get f() {
       return this.addBatchForm.controls;
@@ -282,6 +317,5 @@ export class CityComponent implements OnInit {
       this.loadModal();
       this.loadstate();
       this.loadCountry();
-      this.loadregion();
     }
   }

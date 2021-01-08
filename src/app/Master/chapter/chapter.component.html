@@ -1,318 +1,417 @@
-<!-- <section class="content"> -->
-    <!-- <div class="container-fluid"> -->
-        Table Start
-        <!-- <div class="row clearfix"> -->
-            <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> -->
-                <!-- <div class="card"> -->
-                    <!-- <div class="header"> -->
-                        <!-- <h2> -->
-                            <!-- <strong>Semester</strong> -->
-                        <!-- </h2> -->
-                        <!-- <div class="header-dropdown m-r--5"> -->
-                            Add button
-                                <!-- <div class="btn-group m-l-15"> -->
-                                        <!-- <button id="addRow" class="btn btn-info" data-toggle="modal" -->
-                                        <!-- data-target="#addModal"> -->
-                                            <!-- Add New -->
-                                            <!-- <i class="fa fa-plus" style="color: white"></i> -->
-                                        <!-- </button> -->
-                                <!-- </div> -->
-                             Add button
-                        <!-- </div> -->
-                    <!-- </div> -->
-                   <!-- <div class="body"> -->
-                            <!-- <div class="table-responsive"> -->
-                                 <!-- <table id="tableExport" -->
-                                 <!-- class="display table table-hover table-checkable order-column m-t-20 width-per-100"> -->
-                                    <!-- <thead> -->
-                                        <!-- <tr> -->
-                                            <!-- <th>S.No</th> -->
-                                            <!-- <th>Institution</th> -->
-                                            <!-- <th>Course Program</th> -->
-                                            <!-- <th>Batch</th> -->
-                                            <!-- <th>Academic Year</th> -->
-                                            <!-- <th>Semester Type</th> -->
-                                            <!-- <th>Semester</th> -->
-                                            <!-- <th>From Date</th> -->
-                                            <!-- <th>To Date</th> -->
-                                            <!-- <th >Action</th> -->
-                                        <!-- </tr> -->
-                                    <!-- </thead> -->
-                                    <!-- <tbody> -->
-                                        <!-- <tr *ngFor="let semester of semesters; let i=index"> -->
-                                            <!-- <td>{{i +1 }}</td> -->
-                                            <!-- <td>{{semester?.institutiond[0].institution_name}}</td> -->
-                                            <!-- <td>{{semester?.courseprogramd[0].courseprogram}}</td> -->
-                                            <!-- <td>{{semester?.batchd[0].batch}}</td> -->
-                                            <!-- <td>{{semester?.academicYeard[0].year}}</td> -->
-                                            <!-- <td>{{semester?.semesterType}}</td> -->
-                                            <!-- <td>{{semester?.semester}}</td> -->
-                                            <!-- <td>{{semester?.fromDate}}</td> -->
-                                            <!-- <td>{{semester?.toDate}}</td> -->
-                                            <!-- <td> -->
-                                                <!-- <div class="btn btn-tbl-edit" data-toggle="modal" -->
-                                                <!-- data-target="#editModal"> -->
-                                                        <!-- <i class="material-icons" -->
-                                                        <!-- (click)="onEdit(semester) ">create</i> -->
-                                                <!-- </div> -->
-                                                    <!-- <div class="btn btn-tbl-delete"> -->
-                                                        <!-- <i class="material-icons" -->
-                                                        <!-- (click) = "onDelete(semester?._id)" >delete</i> -->
-                                                    <!-- </div> -->
-                                                <!-- </td> -->
-                                        <!-- </tr> -->
-                                    <!-- </tbody> -->
-                                <!-- </table> -->
-                            <!-- </div> -->
-                        <!-- </div> -->
-                    <!-- </div> -->
-                <!-- </div> -->
-            <!-- </div> -->
-<!--  -->
-        Table End
-    <!-- </div> -->
-<!-- </section> -->
- Add form
- <!-- <div class="modal fade" id="addModal" tabindex="-1" role="dialog" -->
- <!-- aria-labelledby="formModal" aria-hidden="true"> -->
- <!-- <div class="modal-dialog" role="document"> -->
-     <!-- <div class="modal-content"> -->
-         <!-- <div class="modal-header"> -->
-             <!-- <h5 class="modal-title" id="formModal">Add Details</h5> -->
-             <!-- <button type="button" class="close" data-dismiss="modal" -->
-                 <!-- aria-label="Close"> -->
-                 <!-- <span aria-hidden="true">&times;</span> -->
-             <!-- </button> -->
-         <!-- </div> -->
-         <!-- <div class="modal-body"> -->
-                <!-- <form [formGroup]="addForm" (ngSubmit)="onAddSubmit()"> -->
-                        <!-- <div class="row clearfix"> -->
-                            <!-- <div class="col-md-6"> -->
-                                <!-- <div class="form-group"> -->
-                                    <!-- <label>Institution</label> -->
-                                    <!-- <select id="select" [(ngModel)]="selectedinstitution" class="browser-default form-control" -->
-                                        <!-- formControlName="institution" [ngClass]="{ 'is-invalid': submitted && f.institution.errors }" -->
-                                        <!-- (change)="onInstitutionChange($event.target.value)"> -->
-                                        <!-- <option disabled selected>Choose your institution</option> -->
-                                        <!-- <option *ngFor="let institution of institutions" [value]="institution._id"> -->
-                                            <!-- {{institution.institution_name}} -->
-                                        <!-- </option> -->
-                                    <!-- </select> -->
-                                    <!-- <div *ngIf="submitted && f.institution.errors" class="invalid-feedback"> -->
-                                        <!-- <div *ngIf="f.institution.errors.required">Institution is required</div> -->
-                                    <!-- </div> -->
-                                <!-- </div> -->
-                                <!-- <div class="form-group form-float"> -->
-                                    <!-- <label>Batch<span class="asterisk">*</span></label> -->
-                                    <!-- <div class="form-line"> -->
-                                        <!-- <select class="browser-default" formControlName="batch" name="batch" class="form-control" -->
-                                            <!-- [ngClass]="{ 'is-invalid': submitted && f.batch.errors }" -->
-                                            <!-- (change)="onBatchChange($event.target.value)"> -->
-                                            <!-- <option value="">Choose your Batch</option> -->
-                                            <!-- <option *ngFor="let batch of batcheBycourseprograms?.response" [value]="batch._id">{{batch?.batch}} -->
-                                            <!-- </option> -->
-                                        <!-- </select> -->
-                                        <!-- <div *ngIf="submitted && f.batch.errors" class="invalid-feedback"> -->
-                                            <!-- <div *ngIf="f.batch.errors.required">Batch is required</div> -->
-                                        <!-- </div> -->
-                                    <!-- </div> -->
-                                <!-- </div> -->
-                                <!-- <div class="form-group form-float"> -->
-                                    <!-- <label>Semester Type<span class="asterisk">*</span></label> -->
-                                    <!-- <div class="form-line"> -->
-                                        <!-- <select class="browser-default" formControlName="semesterType" name="semesterType" class="form-control" -->
-                                            <!-- [ngClass]="{ 'is-invalid': submitted && f.semesterType.errors }"> -->
-                                            <!-- <option value="">Choose your semesterType</option> -->
-                                            <!-- <option value="ODD">ODD</option> -->
-                                            <!-- <option value="EVEN">EVEN</option> -->
-                                        <!-- </select> -->
-                                        <!-- <div *ngIf="submitted && f.semesterType.errors" class="invalid-feedback"> -->
-                                            <!-- <div *ngIf="f.semesterType.errors.required">semesterType is required</div> -->
-                                        <!-- </div> -->
-                                    <!-- </div> -->
-                                <!-- </div> -->
-                                <!-- <div class="form-group"> -->
-                                    <!-- <label>From Date</label> -->
-                                    <!-- <input type="date" formControlName="fromDate" class="form-control"  -->
-                                        <!-- [ngClass]="{ 'is-invalid': submitted && f.fromDate.errors }" /> -->
-                                    <!-- <div *ngIf="submitted && f.fromDate.errors" class="invalid-feedback"> -->
-                                        <!-- <div *ngIf="f.fromDate.errors.required">From Date is required</div> -->
-                                    <!-- </div> -->
-                                <!-- </div> -->
-                            <!-- </div> -->
-                                <!-- <div class="col-md-6"> -->
-                                    <!-- <div class="form-group"> -->
-                                        <!-- <label>Course Program</label> -->
-                                        <!-- <select id="select" class="browser-default form-control" formControlName="courseprogram" -->
-                                            <!-- [ngClass]="{ 'is-invalid': submitted && f.courseprogram.errors }" -->
-                                            <!-- (change)="onCourseProgramChange($event.target.value)"> -->
-                                            <!-- <option default value>Choose your Course Program</option> -->
-                                            <!-- <option *ngFor="let courseprogram of courseprogrambyIns?.response" [value]="courseprogram._id"> -->
-                                                <!-- {{courseprogram.courseprogram}}</option> -->
-                                        <!-- </select> -->
-                                        <!-- <div *ngIf="submitted && f.courseprogram.errors" class="invalid-feedback"> -->
-                                            <!-- <div *ngIf="f.courseprogram.errors.required">Course Program is required</div> -->
-                                        <!-- </div> -->
-                                    <!-- </div> -->
-                                    <!-- <div class="form-group"> -->
-                                        <!-- <label>Academic Year</label> -->
-                                        <!-- <select id="select" class="browser-default form-control" formControlName="academicYear" -->
-                                            <!-- [ngClass]="{ 'is-invalid': submitted && f.academicYear.errors }"> -->
-                                            <!-- <option default value>Choose your Course Program</option> -->
-                                            <!-- <option *ngFor="let academicYear of academicyearByBatch?.response" [value]="academicYear._id"> -->
-                                                <!-- {{academicYear.year}}</option> -->
-                                        <!-- </select> -->
-                                        <!-- <div *ngIf="submitted && f.academicYear.errors" class="invalid-feedback"> -->
-                                            <!-- <div *ngIf="f.academicYear.errors.required">Course Program is required</div> -->
-                                        <!-- </div> -->
-                                    <!-- </div> -->
-                                    <!-- <div class="form-group"> -->
-                                        <!-- <label>Semester</label> -->
-                                        <!-- <input type="text" formControlName="semester" class="form-control" placeholder="Enter Semester" -->
-                                            <!-- [ngClass]="{ 'is-invalid': submitted && f.semester.errors }" /> -->
-                                        <!-- <div *ngIf="submitted && f.semester.errors" class="invalid-feedback"> -->
-                                            <!-- <div *ngIf="f.semester.errors.required">Semester is required</div> -->
-                                        <!-- </div> -->
-                                    <!-- </div> -->
-                                    <!-- <div class="form-group"> -->
-                                        <!-- <label>To Date</label> -->
-                                        <!-- <input type="date" formControlName="toDate" class="form-control"  -->
-                                            <!-- [ngClass]="{ 'is-invalid': submitted && f.toDate.errors }" /> -->
-                                        <!-- <div *ngIf="submitted && f.toDate.errors" class="invalid-feedback"> -->
-                                            <!-- <div *ngIf="f.toDate.errors.required">To Date is required</div> -->
-                                        <!-- </div> -->
-                                    <!-- </div> -->
-                            <!-- </div> -->
-                        <!-- </div> -->
-         <!-- <div class="modal-footer"> -->
-                <!-- <button type="submit" class="btn btn-default"  >Add</button > -->
-             <!-- <button type="button" class="btn btn-danger waves-effect" -->
-                 <!-- data-dismiss="modal">Cancel</button> -->
-         <!-- </div> -->
-        <!-- </form> -->
-     <!-- </div> -->
- <!-- </div> -->
-<!-- </div> -->
-<!-- </div> -->
-Edit Form
-<!-- <div class="modal fade" id="editModal" tabindex="-1" role="dialog" -->
- <!-- aria-labelledby="formModal" aria-hidden="true"> -->
- <!-- <div class="modal-dialog" role="document"> -->
-     <!-- <div class="modal-content"> -->
-         <!-- <div class="modal-header"> -->
-             <!-- <h5 class="modal-title" id="formModal">Edit Details</h5> -->
-             <!-- <button type="button" class="close" data-dismiss="modal" -->
-                 <!-- aria-label="Close"> -->
-                 <!-- <span aria-hidden="true">&times;</span> -->
-             <!-- </button> -->
-         <!-- </div> -->
-         <!-- <div class="modal-body"> -->
-                <!-- <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()"> -->
-                        <!-- <div class="row clearfix"> -->
-                            <!-- <div class="col-md-6"> -->
-                                <!-- <div class="form-group"> -->
-                                    <!-- <label>Institution</label> -->
-                                    <!-- <select id="select2" [(ngModel)]="selectedinstitution2" class="browser-default form-control" -->
-                                        <!-- formControlName="institution2" [ngClass]="{ 'is-invalid': submitted && f2.institution2.errors }" -->
-                                        <!-- (change)="onInstitutionChange($event.target.value)"> -->
-                                        <!-- <option value="">Choose your institution</option> -->
-                                        <!-- <option *ngFor="let institution of institutions" [value]="institution._id"> -->
-                                            <!-- {{institution.institution_name}}</option> -->
-                                    <!-- </select> -->
-                                    <!-- <div *ngIf="submitted && f2.institution2.errors" class="invalid-feedback"> -->
-                                        <!-- <div *ngIf="f2.institution2.errors.required">Institution is required</div> -->
-                                    <!-- </div> -->
-                                <!-- </div> -->
-                                <!-- <div class="form-group form-float"> -->
-                                    <!-- <label>Batch<span class="asterisk">*</span></label> -->
-                                    <!-- <div class="form-line"> -->
-                                        <!-- <select class="browser-default" formControlName="batch2" name="batch2" class="form-control" -->
-                                            <!-- [ngClass]="{ 'is-invalid': submitted && f2.batch2.errors }" -->
-                                            <!-- (change)="onBatchChange($event.target.value)"> -->
-                                            <!-- <option value="">Choose your Batch</option> -->
-                                            <!-- <option *ngFor="let batch of batcheBycourseprograms?.response" [value]="batch._id">{{batch?.batch}} -->
-                                            <!-- </option> -->
-                                        <!-- </select> -->
-                                        <!-- <div *ngIf="submitted && f2.batch2.errors" class="invalid-feedback"> -->
-                                            <!-- <div *ngIf="f2.batch2.errors.required">Batch is required</div> -->
-                                        <!-- </div> -->
-                                    <!-- </div> -->
-                                <!-- </div> -->
-                                <!-- <div class="form-group form-float"> -->
-                                    <!-- <label>Semester Type<span class="asterisk">*</span></label> -->
-                                    <!-- <div class="form-line"> -->
-                                        <!-- <select class="browser-default" formControlName="semesterType2" name="semesterType2" class="form-control" -->
-                                            <!-- [ngClass]="{ 'is-invalid': submitted && f2.semesterType2.errors }"> -->
-                                            <!-- <option value="">Choose your semesterType</option> -->
-                                            <!-- <option value="ODD">ODD</option> -->
-                                            <!-- <option value="EVEN">EVEN</option> -->
-                                        <!-- </select> -->
-                                        <!-- <div *ngIf="submitted && f2.semesterType2.errors" class="invalid-feedback"> -->
-                                            <!-- <div *ngIf="f2.semesterType2.errors.required">semesterType is required</div> -->
-                                        <!-- </div> -->
-                                    <!-- </div> -->
-                                <!-- </div> -->
-                                <!-- <div class="form-group"> -->
-                                    <!-- <label>From Date</label> -->
-                                    <!-- <input type="date" formControlName="fromDate2" class="form-control"  -->
-                                        <!-- [ngClass]="{ 'is-invalid': submitted && f2.fromDate2.errors }" /> -->
-                                    <!-- <div *ngIf="submitted && f2.fromDate2.errors" class="invalid-feedback"> -->
-                                        <!-- <div *ngIf="f2.fromDate2.errors.required">From Date is required</div> -->
-                                    <!-- </div> -->
-                                <!-- </div> -->
-                            <!-- </div> -->
-                            <!-- <div class="col-md-6"> -->
-                                <!-- <div class="form-group"> -->
-                                    <!-- <label>Course Program</label> -->
-                                    <!-- <select id="select" class="browser-default form-control" formControlName="courseprogram2" -->
-                                        <!-- [ngClass]="{ 'is-invalid': submitted && f2.courseprogram2.errors }" -->
-                                        <!-- (change)="onCourseProgramChange($event.target.value)"> -->
-                                        <!-- <option default value>Choose your Course Program</option> -->
-                                        <!-- <option *ngFor="let courseprogram of courseprogrambyIns?.response" [value]="courseprogram._id"> -->
-                                            <!-- {{courseprogram.courseprogram}}</option> -->
-                                    <!-- </select> -->
-                                    <!-- <div *ngIf="submitted && f2.courseprogram2.errors" class="invalid-feedback"> -->
-                                        <!-- <div *ngIf="f2.courseprogram2.errors.required">Course Program is required</div> -->
-                                    <!-- </div> -->
-                                <!-- </div> -->
-                                <!-- <div class="form-group"> -->
-                                    <!-- <label>Academic Year</label> -->
-                                    <!-- <select  class="browser-default form-control" formControlName="academicYear2" -->
-                                        <!-- [ngClass]="{ 'is-invalid': submitted && f2.academicYear2.errors }"> -->
-                                        <!-- <option value="">Choose your Academic Year</option> -->
-                                        <!-- <option *ngFor="let academicYear of academicyearByBatch?.response" [value]="academicYear._id"> -->
-                                            <!-- {{academicYear.year}}</option> -->
-                                    <!-- </select> -->
-                                    <!-- <div *ngIf="submitted && f2.academicYear2.errors" class="invalid-feedback"> -->
-                                        <!-- <div *ngIf="f2.academicYear2.errors.required">Academic Year is required</div> -->
-                                    <!-- </div> -->
-                                <!-- </div> -->
-                                <!-- <div class="form-group"> -->
-                                    <!-- <label>Semester</label> -->
-                                    <!-- <input type="text" formControlName="semester2" class="form-control" placeholder="Enter Semester" -->
-                                        <!-- [ngClass]="{ 'is-invalid': submitted && f2.semester2.errors }" /> -->
-                                    <!-- <div *ngIf="submitted && f2.semester2.errors" class="invalid-feedback"> -->
-                                        <!-- <div *ngIf="f2.semester2.errors.required">Semester is required</div> -->
-                                    <!-- </div> -->
-                                <!-- </div> -->
-                                <!-- <div class="form-group"> -->
-                                    <!-- <label>To Date</label> -->
-                                    <!-- <input type="date" formControlName="toDate2" class="form-control"  -->
-                                        <!-- [ngClass]="{ 'is-invalid': submitted && f2.toDate2.errors }" /> -->
-                                    <!-- <div *ngIf="submitted && f2.toDate2.errors" class="invalid-feedback"> -->
-                                        <!-- <div *ngIf="f2.toDate2.errors.required">To Date is required</div> -->
-                                    <!-- </div> -->
-                                <!-- </div> -->
-                            <!-- </div> -->
-                        <!-- </div> -->
-         <!-- <div class="modal-footer"> -->
-                <!-- <button type="submit" class="btn btn-default"  >Update</button > -->
-             <!-- <button type="button" class="btn btn-danger waves-effect" -->
-                 <!-- data-dismiss="modal">Cancel</button> -->
-         <!-- </div> -->
-        <!-- </form> -->
-     <!-- </div> -->
- <!-- </div> -->
-<!-- </div> -->
-<!-- </div> -->
-<!--  -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Table Start-->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            <strong>Chapter</strong>
+                        </h2>
+                        <div class="header-dropdown m-r--5">
+                            <!-- Add button -->
+                                <div class="btn-group m-l-15">
+                                        <button id="addRow" class="btn btn-info" data-toggle="modal"
+                                        data-target="#addModal">
+                                            Add New
+                                            <i class="fa fa-plus" style="color: white"></i>
+                                        </button>
+                                </div>
+                             <!-- Add button -->
+                        </div>
+                    </div>
+                   <div class="body">
+                            <div class="table-responsive">
+                                 <table id="tableExport"
+                                 class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>ChapterName</th>
+                                            <th>Address</th>
+                                            <th>Email</th>
+                                            <th>Mobile</th>
+                                            <th>ContactPerson</th>
+                                            <th >Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let chapter of chapters; let i=index">
+                                            <td>{{i +1 }}</td>
+                                            <td>{{chapter?.ChapterName}}</td>
+                                            <td>{{chapter?.Address}}</td>
+                                            <td>{{chapter?.Email}}</td>
+                                            <td>{{chapter?.Mobile}}</td>
+                                            <td>{{chapter?.ContactPerson}}</td>
+                                            <td>
+                                                <div class="btn btn-tbl-edit" data-toggle="modal"
+                                                data-target="#editModal">
+                                                        <i class="material-icons"
+                                                        (click)="onEdit(chapter)">create</i>
+                                                </div>
+                                                    <div class="btn btn-tbl-delete">
+                                                        <i class="material-icons"
+                                                        (click) = "deleteBatch(chapter?._id)" >delete</i>
+                                                    </div>
+                                                </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Table End -->
+    </div>
+</section>
+ <!-- Add form -->
+ <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
+ aria-labelledby="formModal" aria-hidden="true">
+ <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h5 class="modal-title" id="formModal">Add Details</h5>
+             <button type="button" class="close" data-dismiss="modal"
+                 aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+         </div>
+         <div class="modal-body">
+                <form [formGroup]="addBatchForm" (ngSubmit)="onAddSubmit()">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Country</label>
+                                    <select class="browser-default form-control" formControlName="Country"
+                                        [ngClass]="{ 'is-invalid': submitted && f.Country.errors }"
+                                        (change)="onCountryChange($event.target.value)">
+                                        <option disabled selected>Choose your Country</option>
+                                        <option *ngFor="let country of Countrys?.response" [value]="country._id">
+                                            {{country.CountryName}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f.Country.errors" class="invalid-feedback">
+                                        <div *ngIf="f.Country.errors.required">Country is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>State</label>
+                                    <select id="select" class="browser-default form-control" formControlName="State"
+                                        [ngClass]="{ 'is-invalid': submitted && f.State.errors }"
+                                        (change)="loadstateIns($event.target.value)">
+                                        <option default value>Choose your State</option>
+                                        <option *ngFor="let state of countrybyins?.response" [value]="state._id">{{state.StateName}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f.State.errors" class="invalid-feedback">
+                                        <div *ngIf="f.State.errors.required">State is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Region</label>
+                                    <select id="select" class="browser-default form-control" formControlName="region"
+                                        [ngClass]="{ 'is-invalid': submitted && f.region.errors }"
+                                        (change)="loadregionIns($event.target.value)">
+                                        <option default value>Choose your region</option>
+                                        <option *ngFor="let region of statebyins?.response" [value]="region._id">{{region.region}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f.region.errors" class="invalid-feedback">
+                                        <div *ngIf="f.region.errors.required">region is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>District</label>
+                                    <select id="select" class="browser-default form-control" formControlName="district"
+                                        [ngClass]="{ 'is-invalid': submitted && f.district.errors }"
+                                        (change)="loaddistrictIns($event.target.value)">
+                                        <option default value>Choose your district</option>
+                                        <option *ngFor="let district of regionbyins?.response" [value]="district._id">{{district.district}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
+                                        <div *ngIf="f.district.errors.required">District is required</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>CityName</label>
+                                    <select id="select" class="browser-default form-control" formControlName="CityName"
+                                        [ngClass]="{ 'is-invalid': submitted && f.CityName.errors }">
+                                        <option default value>Choose your CityName</option>
+                                        <option *ngFor="let city of districtbyins?.response" [value]="city._id">{{city.CityName}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f.CityName.errors" class="invalid-feedback">
+                                        <div *ngIf="f.CityName.errors.required">CityName is required</div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label>ChapterName</label>
+                                    <input type="text" formControlName="ChapterName" class="form-control" placeholder="Enter ChapterName"
+                                        [ngClass]="{ 'is-invalid': submitted && f.ChapterName.errors }" />
+                                    <div *ngIf="submitted && f.ChapterName.errors" class="invalid-feedback">
+                                        <div *ngIf="f.ChapterName.errors.required">ChapterName is required</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <input type="text" formControlName="Address" class="form-control" placeholder="Enter Address"
+                                        [ngClass]="{ 'is-invalid': submitted && f.Address.errors }" />
+                                    <div *ngIf="submitted && f.Address.errors" class="invalid-feedback">
+                                        <div *ngIf="f.Address.errors.required">Address is required</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="text" formControlName="Email" class="form-control" placeholder="Enter Email"
+                                        [ngClass]="{ 'is-invalid': submitted && f.Email.errors }" />
+                                    <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
+                                        <div *ngIf="f.Email.errors.required">Email is required</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Mobile</label>
+                                    <input type="text" formControlName="Mobile" class="form-control" placeholder="Enter Mobile"
+                                        [ngClass]="{ 'is-invalid': submitted && f.Mobile.errors }" />
+                                    <div *ngIf="submitted && f.Mobile.errors" class="invalid-feedback">
+                                        <div *ngIf="f.Mobile.errors.required">Mobile is required</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>ContactPerson</label>
+                                    <input type="text" formControlName="ContactPerson" class="form-control" placeholder="Enter ContactPerson"
+                                        [ngClass]="{ 'is-invalid': submitted && f.ContactPerson.errors }" />
+                                    <div *ngIf="submitted && f.ContactPerson.errors" class="invalid-feedback">
+                                        <div *ngIf="f.ContactPerson.errors.required">ContactPerson is required</div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <select class="browser-default" formControlName="status" value=" " class="form-control"
+                                        placeholder="Enter Status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                                        <option value="">Choose your option</option>
+                                        <option value="active">Active</option>
+                                        <option value="inactive">Inactive</option>
+                                    </select>
+                                    <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                                        <div *ngIf="f.status.errors.required">Status is required</div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-4">
+                                    <label>Chapter Photo</label>
+                                  
+                                        <img style="margin:0 auto" src="{{url}}" width="100px">
+                                  
+                                       <div *ngIf="currentFileUpload" class="progress">
+                                        <div class="progress-bar progress-bar-info progress-bar-striped"
+                                          role="progressbar" attr.aria-valuenow="{{percentage}}"
+                                          aria-valuemin="0" aria-valuemax="100"
+                                          [ngStyle]="{width:percentage+'%'}">
+                                          {{percentage}}%</div>
+                                      </div>
+                                       
+                                      <label class="btn btn-default"> <input type="file"
+                                        (change)="selectFile($event)">
+                                      </label>
+                                       
+                                      <button class="btn btn-success" [disabled]="!selectedFiles"
+                                        (click)="upload()">Upload</button>
+                                    </div>
+                                    
+
+                            </div>
+                        </div>
+         <div class="modal-footer">
+                <button type="submit" class="btn btn-default" >Add</button >
+             <button type="button" class="btn btn-danger waves-effect"
+                 data-dismiss="modal">Cancel</button>
+         </div>
+        </form>
+     </div>
+ </div>
+</div>
+</div>
+<!-- Edit Form -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+ aria-labelledby="formModal" aria-hidden="true">
+ <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h5 class="modal-title" id="formModal">Edit Details</h5>
+             <button type="button" class="close" data-dismiss="modal"
+                 aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+         </div>
+         <div class="modal-body">
+                <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
+                        <div class="row clearfix">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Country</label>
+                                    <select class="browser-default form-control" formControlName="Country2"
+                                        [ngClass]="{ 'is-invalid': submitted && f2.Country2.errors }"
+                                        (change)="onCountryChange($event.target.value)">
+                                        <option disabled selected>Choose your Country</option>
+                                        <option *ngFor="let country of Countrys?.response" [value]="country._id">
+                                            {{country.CountryName}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f2.Country2.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.Country2.errors.required">Country is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label> State</label>
+                                    <select id="select2" class="browser-default form-control" formControlName="State2"
+                                        [ngClass]="{ 'is-invalid': submitted && f2.State2.errors }"
+                                        (change)="loadstateIns($event.target.value)">
+                                        <option>Choose your State</option>
+                                        <option *ngFor="let state of countrybyins?.response" [value]="state._id">{{state.StateName}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f2.State2.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.State2.errors.required">state is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>region</label>
+                                    <select id="select2" class="browser-default form-control" formControlName="region2"
+                                        [ngClass]="{ 'is-invalid': submitted && f2.region2.errors }"
+                                        (change)="loadregionIns($event.target.value)">
+                                        <option>Choose your region</option>
+                                        <option *ngFor="let region of statebyins?.response" [value]="region._id">{{region.region}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f2.region2.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.region2.errors.required">region is required</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>District</label>
+                                    <select id="select" class="browser-default form-control" formControlName="district2"
+                                        [ngClass]="{ 'is-invalid': submitted && f2.district2.errors }"
+                                        (change)="loaddistrictIns($event.target.value)">
+                                        <option default value>Choose your district</option>
+                                        <option *ngFor="let district of regionbyins?.response" [value]="district._id">{{district.district}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f2.district2.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.district2.errors.required">District is required</div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label>CityName</label>
+                                    <select id="select" class="browser-default form-control" formControlName="CityName2"
+                                        [ngClass]="{ 'is-invalid': submitted && f2.CityName2.errors }">
+                                        <option default value>Choose your CityName</option>
+                                        <option *ngFor="let city of districtbyins?.response" [value]="city._id">{{city.CityName}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f2.CityName2.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.CityName2.errors.required">CityName is required</div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label>ChapterName</label>
+                                    <input type="text" formControlName="ChapterName2" class="form-control" placeholder="Enter ChapterName"
+                                        [ngClass]="{ 'is-invalid': submitted && f2.ChapterName2.errors }" />
+                                    <div *ngIf="submitted && f2.ChapterName2.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.ChapterName2.errors.required">ChapterName is required</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <input type="text" formControlName="Address2" class="form-control" placeholder="Enter Address"
+                                        [ngClass]="{ 'is-invalid': submitted && f2.Address2.errors }" />
+                                    <div *ngIf="submitted && f2.Address2.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.Address2.errors.required">Address is required</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="text" formControlName="Email2" class="form-control" placeholder="Enter Email"
+                                        [ngClass]="{ 'is-invalid': submitted && f2.Email2.errors }" />
+                                    <div *ngIf="submitted && f2.Email2.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.Email2.errors.required">Email is required</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Mobile</label>
+                                    <input type="text" formControlName="Mobile2" class="form-control" placeholder="Enter Mobile"
+                                        [ngClass]="{ 'is-invalid': submitted && f2.Mobile2.errors }" />
+                                    <div *ngIf="submitted && f2.Mobile2.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.Mobile2.errors.required">Mobile is required</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>ContactPerson</label>
+                                    <input type="text" formControlName="ContactPerson2" class="form-control" placeholder="Enter ContactPerson"
+                                        [ngClass]="{ 'is-invalid': submitted && f2.ContactPerson2.errors }" />
+                                    <div *ngIf="submitted && f2.ContactPerson2.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.ContactPerson2.errors.required">ContactPerson is required</div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <select class="browser-default" formControlName="status2" value=" " class="form-control"
+                                        placeholder="Enter Status" [ngClass]="{ 'is-invalid': submitted && f2.status2.errors }">
+                                        <option value="">Choose your option</option>
+                                        <option value="active">Active</option>
+                                        <option value="inactive">Inactive</option>
+                                    </select>
+                                    <div *ngIf="submitted && f2.status2.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.status2.errors.required">Status is required</div>
+                                    </div>
+                                </div>
+
+                                
+
+                                <div class="col-md-4">
+                                    <label>Chapter Photo</label>
+                                  
+                                        <img style="margin:0 auto" src="{{url}}" width="100px">
+                                  
+                                       <div *ngIf="currentFileUpload" class="progress">
+                                        <div class="progress-bar progress-bar-info progress-bar-striped"
+                                          role="progressbar" attr.aria-valuenow="{{percentage}}"
+                                          aria-valuemin="0" aria-valuemax="100"
+                                          [ngStyle]="{width:percentage+'%'}">
+                                          {{percentage}}%</div>
+                                      </div>
+                                       
+                                      <label class="btn btn-default"> <input type="file"
+                                        (change)="selectFile($event)">
+                                      </label>
+                                       
+                                      <button class="btn btn-success" [disabled]="!selectedFiles"
+                                        (click)="upload()">Upload</button>
+                                    </div>
+
+
+                            </div>
+                        </div>
+         <div class="modal-footer">
+                <button type="submit" class="btn btn-default"  >Update</button >
+             <button type="button" class="btn btn-danger waves-effect"
+                 data-dismiss="modal">Cancel</button>
+         </div>
+        </form>
+     </div>
+ </div>
+</div>
+</div>

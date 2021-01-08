@@ -30,16 +30,18 @@
                                             <th>Country</th>
                                             <th>State</th>
                                             <th>Region</th>
-                                            <th>City</th>
+                                            <th>District</th>
+                                            <th>CityName</th>
                                             <th >Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let city of citys; let i=index">
+                                        <tr *ngFor="let city of cities; let i=index">
                                             <td>{{i +1 }}</td>
                                             <td>{{city?.CountryDetails[0].CountryName}}</td>
                                             <td>{{city?.StateDetails[0].StateName}}</td>
                                             <td>{{city?.regionsDetails[0].region}}</td>
+                                            <td>{{city?.districtsDetails[0].district}}</td>
                                             <td>{{city?.CityName}}</td>
                                             <td>
                                                 <div class="btn btn-tbl-edit" data-toggle="modal"
@@ -96,7 +98,8 @@
                                 <div class="form-group">
                                     <label>State</label>
                                     <select id="select" class="browser-default form-control" formControlName="State"
-                                        [ngClass]="{ 'is-invalid': submitted && f.State.errors }">
+                                        [ngClass]="{ 'is-invalid': submitted && f.State.errors }"
+                                        (change)="loadstateIns($event.target.value)">
                                         <option default value>Choose your State</option>
                                         <option *ngFor="let state of countrybyins?.response" [value]="state._id">{{state.StateName}}</option>
                                     </select>
@@ -107,15 +110,26 @@
                                 <div class="form-group">
                                     <label>Region</label>
                                     <select id="select" class="browser-default form-control" formControlName="region"
-                                        [ngClass]="{ 'is-invalid': submitted && f.region.errors }">
+                                        [ngClass]="{ 'is-invalid': submitted && f.region.errors }"
+                                        (change)="loadregionIns($event.target.value)">
                                         <option default value>Choose your region</option>
-                                        <option *ngFor="let region of regions?.response" [value]="region._id">{{region.region}}</option>
+                                        <option *ngFor="let region of statebyins?.response" [value]="region._id">{{region.region}}</option>
                                     </select>
                                     <div *ngIf="submitted && f.region.errors" class="invalid-feedback">
                                         <div *ngIf="f.region.errors.required">region is required</div>
                                     </div>
                                 </div>
-
+                                <div class="form-group">
+                                    <label>District</label>
+                                    <select id="select" class="browser-default form-control" formControlName="district"
+                                        [ngClass]="{ 'is-invalid': submitted && f.district.errors }">
+                                        <option default value>Choose your district</option>
+                                        <option *ngFor="let district of regionbyins?.response" [value]="district._id">{{district.district}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
+                                        <div *ngIf="f.district.errors.required">District is required</div>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label>CityName</label>
                                     <input type="text" formControlName="CityName" class="form-control" placeholder="Enter CityName"
@@ -168,7 +182,8 @@
                                 <div class="form-group">
                                     <label> State</label>
                                     <select id="select2" class="browser-default form-control" formControlName="State2"
-                                        [ngClass]="{ 'is-invalid': submitted && f2.State2.errors }">
+                                        [ngClass]="{ 'is-invalid': submitted && f2.State2.errors }"
+                                        (change)="loadstateIns($event.target.value)">
                                         <option>Choose your State</option>
                                         <option *ngFor="let state of countrybyins?.response" [value]="state._id">{{state.StateName}}</option>
                                     </select>
@@ -179,15 +194,27 @@
                                 <div class="form-group">
                                     <label>region</label>
                                     <select id="select2" class="browser-default form-control" formControlName="region2"
-                                        [ngClass]="{ 'is-invalid': submitted && f2.region2.errors }">
+                                        [ngClass]="{ 'is-invalid': submitted && f2.region2.errors }"
+                                        (change)="loadregionIns($event.target.value)">
                                         <option>Choose your region</option>
-                                        <option *ngFor="let region of regions?.response" [value]="region._id">{{region.region}}</option>
+                                        <option *ngFor="let region of statebyins?.response" [value]="region._id">{{region.region}}</option>
                                     </select>
                                     <div *ngIf="submitted && f2.region2.errors" class="invalid-feedback">
                                         <div *ngIf="f2.region2.errors.required">region is required</div>
                                     </div>
                                 </div>
 
+                                <div class="form-group">
+                                    <label>District</label>
+                                    <select id="select" class="browser-default form-control" formControlName="district2"
+                                        [ngClass]="{ 'is-invalid': submitted && f2.district2.errors }">
+                                        <option default value>Choose your district</option>
+                                        <option *ngFor="let district of regionbyins?.response" [value]="district._id">{{district.district}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f2.district2.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.district2.errors.required">District is required</div>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label>CityName</label>
                                     <input type="text" formControlName="CityName2" class="form-control" placeholder="Enter CityName"

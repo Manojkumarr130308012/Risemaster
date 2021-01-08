@@ -1,0 +1,358 @@
+<section class="content">
+    <div class="container-fluid">
+        <!-- Table Start-->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            <strong>Speaker</strong>
+                        </h2>
+                        <div class="header-dropdown m-r--5">
+                            <!-- Add button -->
+                                <div class="btn-group m-l-15">
+                                        <button id="addRow" class="btn btn-info" data-toggle="modal"
+                                        data-target="#addModal">
+                                            Add New
+                                            <i class="fa fa-plus" style="color: white"></i>
+                                        </button>
+                                </div>
+                             <!-- Add button -->
+                        </div>
+                    </div>
+                   <div class="body">
+                            <div class="table-responsive">
+                                 <table id="tableExport"
+                                 class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Name</th>
+                                            <th>Designation</th>
+                                            <th>CompanyName</th>
+                                            <th>Location</th>
+                                            <th>Website</th>
+                                            <th>linkedin</th>
+                                            <th >Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let Speaker of Speakers?.response; let i=index">
+                                            <td>{{i +1 }}</td>
+                                            <td>{{Speaker?.name}}</td>
+                                            <td>{{Speaker?.designation}}</td>
+                                            <td>{{Speaker?.companyname}}</td>
+                                            <td>{{Speaker?.location}}</td>
+                                            <td>{{Speaker?.website}}</td>
+                                            <td>{{Speaker?.linkedin}}</td>
+                                            <td>
+                                                <div class="btn btn-tbl-edit" data-toggle="modal"
+                                                data-target="#editModal">
+                                                        <i class="material-icons"
+                                                        (click)="onEdit(Speaker) ">create</i>
+                                                </div>
+                                                    <div class="btn btn-tbl-delete">
+                                                        <i class="material-icons"
+                                                        (click) = "deleteBloodgroup(Speaker?._id)" >delete</i>
+                                                    </div>
+
+                                                    
+                                                </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Table End -->
+    </div>
+</section>
+ <!-- Add form -->
+ <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
+ aria-labelledby="formModal" aria-hidden="true">
+ <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h5 class="modal-title" id="formModal">Add Details</h5>
+             <button type="button" class="close" data-dismiss="modal"
+                 aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+         </div>
+         <div class="modal-body">
+                <form [formGroup]="registerForm" (ngSubmit)="onAddSubmit()">
+                    <div class="form-group">
+                            <label>Name</label>
+                            <input type="text"  formControlName="name" class="form-control" placeholder="Enter name"
+                                [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                <div *ngIf="f.name.errors.required">name is required</div>
+                            </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>designation</label>
+                        <input type="text"  formControlName="designation" class="form-control" placeholder="Enter designation"
+                            [ngClass]="{ 'is-invalid': submitted && f.designation.errors }" />
+                        <div *ngIf="submitted && f.designation.errors" class="invalid-feedback">
+                            <div *ngIf="f.designation.errors.required">designation is required</div>
+                        </div>
+                   </div>
+
+
+                        <div class="form-group">
+                            <label>companyname</label>
+                            <input type="text"  formControlName="companyname" class="form-control" placeholder="Enter companyname"
+                                [ngClass]="{ 'is-invalid': submitted && f.companyname.errors }" />
+                            <div *ngIf="submitted && f.companyname.errors" class="invalid-feedback">
+                                <div *ngIf="f.companyname.errors.required">companyname is required</div>
+                            </div>
+                       </div>
+
+                       <div class="form-group">
+                        <label>location</label>
+                        <input type="text"  formControlName="location" class="form-control" placeholder="Enter location"
+                            [ngClass]="{ 'is-invalid': submitted && f.location.errors }" />
+                        <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+                            <div *ngIf="f.location.errors.required">location is required</div>
+                        </div>
+                   </div>
+
+
+                   <div class="form-group">
+                    <label>bio</label>
+                    <input type="text"  formControlName="bio" class="form-control" placeholder="Enter bio"
+                        [ngClass]="{ 'is-invalid': submitted && f.bio.errors }" />
+                    <div *ngIf="submitted && f.bio.errors" class="invalid-feedback">
+                        <div *ngIf="f.bio.errors.required">bio is required</div>
+                    </div>
+               </div>
+
+               <div class="form-group">
+                <label>email</label>
+                <input type="text"  formControlName="email" class="form-control" placeholder="Enter email"
+                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">email is required</div>
+                </div>
+           </div>
+
+
+           <div class="form-group">
+            <label>mobile</label>
+            <input type="text"  formControlName="mobile" class="form-control" placeholder="Enter mobile"
+                [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" />
+            <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                <div *ngIf="f.mobile.errors.required">mobile is required</div>
+            </div>
+       </div>
+
+       <div class="form-group">
+        <label>address</label>
+        <input type="text"  formControlName="address" class="form-control" placeholder="Enter address"
+            [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
+        <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+            <div *ngIf="f.address.errors.required">address is required</div>
+        </div>
+   </div>
+
+   <div class="form-group">
+    <label>website</label>
+    <input type="text"  formControlName="website" class="form-control" placeholder="Enter website"
+        [ngClass]="{ 'is-invalid': submitted && f.website.errors }" />
+    <div *ngIf="submitted && f.website.errors" class="invalid-feedback">
+        <div *ngIf="f.website.errors.required">website is required</div>
+    </div>
+</div>
+<div class="form-group">
+    <label>linkedin</label>
+    <input type="text"  formControlName="linkedin" class="form-control" placeholder="Enter linkedin"
+        [ngClass]="{ 'is-invalid': submitted && f.linkedin.errors }" />
+    <div *ngIf="submitted && f.linkedin.errors" class="invalid-feedback">
+        <div *ngIf="f.linkedin.errors.required">linkedin is required</div>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <label>Event Photo</label>
+  
+        <img style="margin:0 auto" src="{{url}}" width="100px">
+  
+       <div *ngIf="currentFileUpload" class="progress">
+        <div class="progress-bar progress-bar-info progress-bar-striped"
+          role="progressbar" attr.aria-valuenow="{{percentage}}"
+          aria-valuemin="0" aria-valuemax="100"
+          [ngStyle]="{width:percentage+'%'}">
+          {{percentage}}%</div>
+      </div>
+       
+      <label class="btn btn-default"> <input style="width: 100%;" type="file"
+        (change)="selectFile($event)">
+      </label>
+       
+      <button class="btn btn-success" [disabled]="!selectedFiles"
+        (click)="upload()">Upload</button>
+    </div>
+
+
+
+
+         <div class="modal-footer">
+                <button type="submit" class="btn btn-default">Add</button >
+             <button type="button" class="btn btn-danger waves-effect"
+                 data-dismiss="modal">Cancel</button>
+         </div>
+
+
+
+
+
+
+        </form>
+     </div>
+ </div>
+</div>
+</div>
+<!-- Edit Form -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+ aria-labelledby="formModal" aria-hidden="true">
+ <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h5 class="modal-title" id="formModal">Edit Details</h5>
+             <button type="button" class="close" data-dismiss="modal"
+                 aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+         </div>
+         <div class="modal-body">
+                <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text"  formControlName="name2" class="form-control" placeholder="Enter name"
+                            [ngClass]="{ 'is-invalid': submitted && f2.name2.errors }" />
+                        <div *ngIf="submitted && f2.name2.errors" class="invalid-feedback">
+                            <div *ngIf="f2.name2.errors.required">name is required</div>
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label>designation</label>
+                    <input type="text"  formControlName="designation2" class="form-control" placeholder="Enter designation"
+                        [ngClass]="{ 'is-invalid': submitted && f2.designation2.errors }" />
+                    <div *ngIf="submitted && f2.designation2.errors" class="invalid-feedback">
+                        <div *ngIf="f2.designation2.errors.required">designation is required</div>
+                    </div>
+               </div>
+
+
+                    <div class="form-group">
+                        <label>companyname</label>
+                        <input type="text"  formControlName="companyname2" class="form-control" placeholder="Enter companyname"
+                            [ngClass]="{ 'is-invalid': submitted && f2.companyname2.errors }" />
+                        <div *ngIf="submitted && f2.companyname2.errors" class="invalid-feedback">
+                            <div *ngIf="f2.companyname2.errors.required">companyname is required</div>
+                        </div>
+                   </div>
+
+                   <div class="form-group">
+                    <label>location</label>
+                    <input type="text"  formControlName="location2" class="form-control" placeholder="Enter location"
+                        [ngClass]="{ 'is-invalid': submitted && f2.location2.errors }" />
+                    <div *ngIf="submitted && f2.location2.errors" class="invalid-feedback">
+                        <div *ngIf="f2.location2.errors.required">location is required</div>
+                    </div>
+               </div>
+
+
+               <div class="form-group">
+                <label>bio</label>
+                <input type="text"  formControlName="bio2" class="form-control" placeholder="Enter bio"
+                    [ngClass]="{ 'is-invalid': submitted && f2.bio2.errors }" />
+                <div *ngIf="submitted && f2.bio2.errors" class="invalid-feedback">
+                    <div *ngIf="f2.bio2.errors.required">bio is required</div>
+                </div>
+           </div>
+
+           <div class="form-group">
+            <label>email</label>
+            <input type="text"  formControlName="email2" class="form-control" placeholder="Enter email"
+                [ngClass]="{ 'is-invalid': submitted && f2.email2.errors }" />
+            <div *ngIf="submitted && f2.email2.errors" class="invalid-feedback">
+                <div *ngIf="f2.email2.errors.required">email is required</div>
+            </div>
+       </div>
+
+
+       <div class="form-group">
+        <label>mobile</label>
+        <input type="text"  formControlName="mobile2" class="form-control" placeholder="Enter mobile"
+            [ngClass]="{ 'is-invalid': submitted && f2.mobile2.errors }" />
+        <div *ngIf="submitted && f2.mobile2.errors" class="invalid-feedback">
+            <div *ngIf="f2.mobile2.errors.required">mobile is required</div>
+        </div>
+   </div>
+
+   <div class="form-group">
+    <label>address</label>
+    <input type="text"  formControlName="address2" class="form-control" placeholder="Enter address"
+        [ngClass]="{ 'is-invalid': submitted && f2.address2.errors }" />
+    <div *ngIf="submitted && f2.address2.errors" class="invalid-feedback">
+        <div *ngIf="f2.address2.errors.required">address is required</div>
+    </div>
+</div>
+
+<div class="form-group">
+<label>website</label>
+<input type="text"  formControlName="website2" class="form-control" placeholder="Enter website"
+    [ngClass]="{ 'is-invalid': submitted && f2.website2.errors }" />
+<div *ngIf="submitted && f2.website2.errors" class="invalid-feedback">
+    <div *ngIf="f2.website2.errors.required">website is required</div>
+</div>
+</div>
+<div class="form-group">
+<label>linkedin</label>
+<input type="text"  formControlName="linkedin2" class="form-control" placeholder="Enter linkedin"
+    [ngClass]="{ 'is-invalid': submitted && f2.linkedin2.errors }" />
+<div *ngIf="submitted && f2.linkedin2.errors" class="invalid-feedback">
+    <div *ngIf="f2.linkedin2.errors.required">linkedin is required</div>
+</div>
+</div>
+
+<div class="form-group">
+    <label>Event Photo</label>
+  
+        <img style="margin:0 auto" src="{{url}}" width="100px">
+  
+       <div *ngIf="currentFileUpload" class="progress">
+        <div class="progress-bar progress-bar-info progress-bar-striped"
+          role="progressbar" attr.aria-valuenow="{{percentage}}"
+          aria-valuemin="0" aria-valuemax="100"
+          [ngStyle]="{width:percentage+'%'}">
+          {{percentage}}%</div>
+      </div>
+       
+      <label class="btn btn-default"> <input style="width: 100%;" type="file"
+        (change)="selectFile($event)">
+      </label>
+       
+      <button class="btn btn-success" [disabled]="!selectedFiles"
+        (click)="upload()">Upload</button>
+    </div>
+
+    
+         <div class="modal-footer">
+                <button type="submit" class="btn btn-default">Update</button >
+             <button type="button" class="btn btn-danger waves-effect"
+                 data-dismiss="modal">Cancel</button>
+         </div>
+        </form>
+     </div>
+ </div>
+</div>
+</div>

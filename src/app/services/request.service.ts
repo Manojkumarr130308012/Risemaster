@@ -31,7 +31,7 @@ public getcountry() {
   return this.http.get(this.url);
 }
 
-public addcountry(newexam: { CountryName: any; }) {
+public addcountry(newexam: { CountryName: any; Countrycode: any;}) {
   this.url = `${this.endPoint}/country/add`;
   return this.http.post(this.url, newexam);
 }
@@ -54,6 +54,70 @@ fetchcountryById(id) {
   this.url = `${this.endPoint}/country/fetchdata?id=` + id;
   return this.http.get(this.url);
 }
+
+
+//speaker
+public getspeaker() {
+  this.url = `${this.endPoint}/speaker/`;
+  return this.http.get(this.url);
+}
+
+public addspeaker(newexam: { name: any; designation: any;companyname: any;location: any;bio: any;email: any;mobile: any;address: any;website: any;linkedin: any;profile: any;}) {
+  this.url = `${this.endPoint}/speaker/add`;
+  return this.http.post(this.url, newexam);
+}
+
+public deletespeaker(id) {
+  this.url = `${this.endPoint}/speaker/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+
+updatespeaker(id, body) {
+  this.url = `${this.endPoint}/speaker/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetchspeaker() {
+  this.url = `${this.endPoint}/speaker/`;
+  return this.http.get(this.url);
+}
+fetchspeakerById(id) {
+  this.url = `${this.endPoint}/speaker/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+
+
+//sponsor
+public getsponsor() {
+  this.url = `${this.endPoint}/sponsor/`;
+  return this.http.get(this.url);
+}
+
+public addsponsor(newexam: { name: any; description: any;address: any;email: any;phone: any;website: any;products: any;profile: any;}) {
+  this.url = `${this.endPoint}/sponsor/add`;
+  return this.http.post(this.url, newexam);
+}
+
+public deletesponsor(id) {
+  this.url = `${this.endPoint}/sponsor/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+
+updatesponsor(id, body) {
+  this.url = `${this.endPoint}/sponsor/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetchsponsor(id) {
+  this.url = `${this.endPoint}/sponsor/fetchByevenid?Event=` + id;
+  return this.http.get(this.url);
+}
+fetchsponsorById(id) {
+  this.url = `${this.endPoint}/sponsor/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+
+
 
 
 //state
@@ -103,7 +167,7 @@ public getcity() {
   return this.http.get(this.url);
 }
 
-public addcity(newexam: { Country:any;State:any;region:any;CityName:any; }) {
+public addcity(newexam: { Country:any;State:any;region:any;district:any;CityName:any; }) {
   this.url = `${this.endPoint}/city/add`;
   return this.http.post(this.url, newexam);
 }
@@ -133,7 +197,7 @@ public getaggcity() {
 
 }
 public loadcitybyins(id) {
-  this.url = `${this.endPoint}/city/fetchBycity?region=`+id;
+  this.url = `${this.endPoint}/city/fetchBycity?district=`+id;
   return this.http.get(this.url);
 
 }
@@ -263,7 +327,41 @@ public getmembershipcostaggregion() {
 }
 
 
+//agendas
+public getagendas() {
+  this.url = `${this.endPoint}/agenda/`;
+  return this.http.get(this.url);
+}
 
+public addagendas(newexam: { event:any;track:any;speaker1:any;speaker2:any;date:any;time:any;venue:any;agenda:any; }) {
+  this.url = `${this.endPoint}/agenda/add`;
+  return this.http.post(this.url, newexam);
+}
+
+public deleteagendas(id) {
+  this.url = `${this.endPoint}/agenda/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+
+updateagendas(id, body) {
+  this.url = `${this.endPoint}/agenda/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetchagendas() {
+  this.url = `${this.endPoint}/agenda/`;
+  return this.http.get(this.url);
+}
+fetchagendasById(id) {
+  this.url = `${this.endPoint}/agenda/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+
+public getagendasaggregion(eventid,trackid) {
+  this.url = `${this.endPoint}/agenda/fetchByevenidtrackid?event=`+eventid+'&track='+trackid;
+  return this.http.get(this.url);
+
+}
 
 //gender
 public getgender() {
@@ -295,6 +393,149 @@ fetchgenderById(id) {
   return this.http.get(this.url);
 }
 
+//tracker
+public gettracker() {
+  this.url = `${this.endPoint}/tracker/`;
+  return this.http.get(this.url);
+}
+
+public addtracker(newexam: { Event: any;TrackName: any; }) {
+  this.url = `${this.endPoint}/tracker/add`;
+  return this.http.post(this.url, newexam);
+}
+
+public deletetracker(id) {
+  this.url = `${this.endPoint}/tracker/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+
+updatetracker(id, body) {
+  this.url = `${this.endPoint}/tracker/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetchtracker() {
+  this.url = `${this.endPoint}/tracker/`;
+  return this.http.get(this.url);
+}
+fetchtrackerById(id) {
+  this.url = `${this.endPoint}/tracker/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+
+public getaggtracker(id) {
+  this.url = `${this.endPoint}/tracker/fetchByevenid?Event=` + id;
+  return this.http.get(this.url);
+
+}
+
+//eventlink
+public geteventlink() {
+  this.url = `${this.endPoint}/eventlink/`;
+  return this.http.get(this.url);
+}
+
+public addeventlink(newexam: { Event: any;Eventlink: any; }) {
+  this.url = `${this.endPoint}/eventlink/add`;
+  return this.http.post(this.url, newexam);
+}
+
+public deleteeventlink(id) {
+  this.url = `${this.endPoint}/eventlink/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+
+updateeventlink(id, body) {
+  this.url = `${this.endPoint}/eventlink/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetcheventlink() {
+  this.url = `${this.endPoint}/eventlink/`;
+  return this.http.get(this.url);
+}
+fetcheventlinkById(id) {
+  this.url = `${this.endPoint}/eventlink/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+
+public getaggeventlink(id) {
+  this.url = `${this.endPoint}/eventlink/fetchByevenid?Event=` + id;
+  return this.http.get(this.url);
+
+}
+
+//eventimage
+public geteventimage() {
+  this.url = `${this.endPoint}/eventimage/`;
+  return this.http.get(this.url);
+}
+
+public addeventimage(newexam: { Event: any;eventimage: any; }) {
+  this.url = `${this.endPoint}/eventimage/add`;
+  return this.http.post(this.url, newexam);
+}
+
+public deleteeventimage(id) {
+  this.url = `${this.endPoint}/eventimage/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+
+updateeventimage(id, body) {
+  this.url = `${this.endPoint}/eventimage/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetcheventimage() {
+  this.url = `${this.endPoint}/eventimage/`;
+  return this.http.get(this.url);
+}
+fetcheventimageById(id) {
+  this.url = `${this.endPoint}/eventimage/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+
+public getaggeventimage(id) {
+  this.url = `${this.endPoint}/eventimage/fetchByevenid?Event=` + id;
+  return this.http.get(this.url);
+
+}
+
+//banner
+public getbannerimage() {
+  this.url = `${this.endPoint}/banner/`;
+  return this.http.get(this.url);
+}
+
+public addbannerimage(newexam: { banner: any; }) {
+  this.url = `${this.endPoint}/banner/add`;
+  return this.http.post(this.url, newexam);
+}
+
+public deletebannerimage(id) {
+  this.url = `${this.endPoint}/banner/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+
+updatebannerimage(id, body) {
+  this.url = `${this.endPoint}/banner/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetchebannerimage() {
+  this.url = `${this.endPoint}/banner/`;
+  return this.http.get(this.url);
+}
+fetchbannerimageById(id) {
+  this.url = `${this.endPoint}/banner/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+
+public getaggbannerimage(id) {
+  this.url = `${this.endPoint}/banner/fetchByevenid?Event=` + id;
+  return this.http.get(this.url);
+
+}
 
 
 //Interests
@@ -424,6 +665,185 @@ fetchmembershipclassificationById(id) {
 
 
 
+
+
+//chapter
+public getchapter() {
+  this.url = `${this.endPoint}/chapter/`;
+  return this.http.get(this.url);
+}
+
+public addchapter(newexam: { Country:any;State:any;region:any;district:any;ChapterName:any; Address:any;Email:any;Mobile:any;ContactPerson:any;CreatedOn:any;UpdatedOn:any;status:any;}) {
+  this.url = `${this.endPoint}/chapter/add`;
+  return this.http.post(this.url, newexam);
+}
+
+public deletechapter(id) {
+  this.url = `${this.endPoint}/chapter/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+
+updatechapter(id, body) {
+  this.url = `${this.endPoint}/chapter/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetchchapter() {
+  this.url = `${this.endPoint}/chapter/`;
+  return this.http.get(this.url);
+}
+fetchchapterById(id) {
+  this.url = `${this.endPoint}/chapter/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+
+public getaggchapter() {
+  this.url = `${this.endPoint}/chapter/aggregation`;
+  return this.http.get(this.url);
+
+}
+public loadchapterbyins(id) {
+  this.url = `${this.endPoint}/chapter/fetchBycity?district=`+id;
+  return this.http.get(this.url);
+
+}
+
+
+
+
+//memeber
+public getmemeber(){
+  this.url = `${this.endPoint}/member/`;
+  return this.http.get(this.url);
+}
+
+public addmemeber(newexam: { Country:any;State:any;region:any;district:any;CityName:any;Name:any;Gender:any; Chapter:any;Category:any;MembershipType:any;Address:any;Email:any;Mobile:any;bussinessname:any;DOB:any;pincode:any;Products:any;Keywords:any;Website:any;Interests:any;SocialMediaLinks:any;ValidUpto:any;CreatedOn:any;UpdatedOn:any;image:any;bussinesslogo:any;status:any;}) {
+  this.url = `${this.endPoint}/member/add`;
+  return this.http.post(this.url, newexam);
+}
+
+public deletememeber(id) {
+  this.url = `${this.endPoint}/member/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+
+updatememeber(id, body) {
+  this.url = `${this.endPoint}/member/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetchmemeber() {
+  this.url = `${this.endPoint}/member/`;
+  return this.http.get(this.url);
+}
+fetchmemeberById(id) {
+  this.url = `${this.endPoint}/member/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+
+public getaggmemeber() {
+  this.url = `${this.endPoint}/member/aggregation`;
+  return this.http.get(this.url);
+
+}
+public loadmemeberbyins(id) {
+  this.url = `${this.endPoint}/member/fetchBycity?district=`+id;
+  return this.http.get(this.url);
+
+}
+
+
+
+
+
+
+//events
+public getevents(){
+  this.url = `${this.endPoint}/events/`;
+  return this.http.get(this.url);
+}
+
+public addevents(newexam: { Country:any;State:any;region:any;district:any;CityName:any;Chapter:any;FromDate:any;ToDate:any;Title:any;Description:any;ExternalLinks:any;Venue:any;Cost:any;CreatedOn:any;UpdatedOn:any;status:any;}) {
+  this.url = `${this.endPoint}/events/add`;
+  return this.http.post(this.url, newexam);
+}
+
+public deleteevents(id) {
+  this.url = `${this.endPoint}/events/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+
+updateevents(id, body) {
+  this.url = `${this.endPoint}/events/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetchevents() {
+  this.url = `${this.endPoint}/events/`;
+  return this.http.get(this.url);
+}
+fetcheventsById(id) {
+  this.url = `${this.endPoint}/events/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+
+public getaggevents() {
+  this.url = `${this.endPoint}/events/aggregation`;
+  return this.http.get(this.url);
+
+}
+public loadeventsbyins(id) {
+  this.url = `${this.endPoint}/events/fetchBycity?district=`+id;
+  return this.http.get(this.url);
+
+}
+
+
+
+
+
+
+
+//news
+public getnews(){
+  this.url = `${this.endPoint}/news/`;
+  return this.http.get(this.url);
+}
+
+public addnews(newexam: { Country:any;State:any;region:any;district:any;CityName:any;Chapter:any;FromDate:any;Title:any;Description:any;ExternalLinks:any;CreatedOn:any;UpdatedOn:any;status:any;}) {
+  this.url = `${this.endPoint}/news/add`;
+  return this.http.post(this.url, newexam);
+}
+
+public deletenews(id) {
+  this.url = `${this.endPoint}/news/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+
+updatenews(id, body) {
+  this.url = `${this.endPoint}/news/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetchnews() {
+  this.url = `${this.endPoint}/news/`;
+  return this.http.get(this.url);
+}
+fetchnewsById(id) {
+  this.url = `${this.endPoint}/news/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+
+public getaggnews() {
+  this.url = `${this.endPoint}/news/aggregation`;
+  return this.http.get(this.url);
+
+}
+public loadnewsbyins(id) {
+  this.url = `${this.endPoint}/news/fetchBycity?district=`+id;
+  return this.http.get(this.url);
+
+}
 
 
 

@@ -1,0 +1,249 @@
+<section class="content">
+    <div class="container-fluid">
+        <!-- Table Start-->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            <strong>Agenda</strong>
+                        </h2>
+                        <div class="header-dropdown m-r--5">
+                            <!-- Add button -->
+                                <div class="btn-group m-l-15">
+                                        <button id="addRow" class="btn btn-info" data-toggle="modal"
+                                        data-target="#addModal">
+                                            Add New
+                                            <i class="fa fa-plus" style="color: white"></i>
+                                        </button>
+                                </div>
+                             <!-- Add button -->
+                        </div>
+                    </div>
+                   <div class="body">
+                            <div class="table-responsive">
+                                 <table id="tableExport"
+                                 class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Date</th>
+                                            <th>Time</th>
+                                            <th>Agenda</th>
+                                            <th>Venue</th>
+                                         <th >Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let agenda of agendas?.response; let i=index">
+                                            <td>{{i +1 }}</td>
+                                            <td>{{agenda?.date}}</td>
+                                            <td>{{agenda?.time}}</td>
+                                            <td>{{agenda?.agenda}}</td>
+                                            <td>{{agenda?.venue}}</td>
+                                            <td>
+                                                <div class="btn btn-tbl-edit" data-toggle="modal"
+                                                data-target="#editModal">
+                                                        <i class="material-icons"
+                                                        (click)="onEdit(agenda) ">create</i>
+                                                </div>
+                                                    <div class="btn btn-tbl-delete">
+                                                        <i class="material-icons"
+                                                        (click) = "deleteBatch(agenda?._id)" >delete</i>
+                                                    </div>
+                                                </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Table End -->
+    </div>
+</section>
+ <!-- Add form -->
+ <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
+ aria-labelledby="formModal" aria-hidden="true">
+ <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h5 class="modal-title" id="formModal">Add Details</h5>
+             <button type="button" class="close" data-dismiss="modal"
+                 aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+         </div>
+         <div class="modal-body">
+                <form [formGroup]="addBatchForm" (ngSubmit)="onAddSubmit()">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Speaker1</label>
+                                    <select class="browser-default form-control" formControlName="speaker1"
+                                        [ngClass]="{ 'is-invalid': submitted && f.speaker1.errors }">
+                                        <option disabled selected>Choose your speaker1</option>
+                                        <option *ngFor="let speaker1 of speaker1s?.response" [value]="speaker1._id">
+                                            {{speaker1.name}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f.speaker1.errors" class="invalid-feedback">
+                                        <div *ngIf="f.speaker1.errors.required">speaker1 is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Speaker2</label>
+                                    <select id="select" class="browser-default form-control" formControlName="speaker2"
+                                        [ngClass]="{ 'is-invalid': submitted && f.speaker2.errors }">
+                                        <option default value>Choose your speaker2</option>
+                                        <option *ngFor="let speaker2 of speaker1s?.response" [value]="speaker2._id">{{speaker2.name}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f.speaker2.errors" class="invalid-feedback">
+                                        <div *ngIf="f.speaker2.errors.required">speaker2 is required</div>
+                                    </div>
+                                </div>
+                            <div class="form-group">
+                                <label>Agenda</label>
+                                <input type="text" formControlName="agenda" class="form-control" placeholder="Enter agenda"
+                                    [ngClass]="{ 'is-invalid': submitted && f.agenda.errors }" />
+                                <div *ngIf="submitted && f.agenda.errors" class="invalid-feedback">
+                                    <div *ngIf="f.agenda.errors.required">agenda is required</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>venue</label>
+                                <input type="text" formControlName="venue" class="form-control" placeholder="Enter venue"
+                                    [ngClass]="{ 'is-invalid': submitted && f.venue.errors }" />
+                                <div *ngIf="submitted && f.venue.errors" class="invalid-feedback">
+                                    <div *ngIf="f.venue.errors.required">venue is required</div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>date</label>
+                                <input type="date" formControlName="date" class="form-control" placeholder="Enter date"
+                                    [ngClass]="{ 'is-invalid': submitted && f.date.errors }" />
+                                <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                                    <div *ngIf="f.date.errors.required">date is required</div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>time</label>
+                                <input type="time" formControlName="time" class="form-control" placeholder="Enter time"
+                                    [ngClass]="{ 'is-invalid': submitted && f.time.errors }" />
+                                <div *ngIf="submitted && f.time.errors" class="invalid-feedback">
+                                    <div *ngIf="f.time.errors.required">time is required</div>
+                                </div>
+                            </div>
+
+
+
+                            </div>
+                        </div>
+         <div class="modal-footer">
+                <button type="submit"  class="btn btn-default" >Add</button >
+             <button type="button" class="btn btn-danger waves-effect"
+                 data-dismiss="modal">Cancel</button>
+         </div>
+        </form>
+     </div>
+ </div>
+</div>
+</div>
+<!-- Edit Form -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+ aria-labelledby="formModal" aria-hidden="true">
+ <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h5 class="modal-title" id="formModal">Edit Details</h5>
+             <button type="button" class="close" data-dismiss="modal"
+                 aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+         </div>
+         <div class="modal-body">
+                <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
+                        <div class="row clearfix">
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+                                    <label>Speaker1</label>
+                                    <select class="browser-default form-control" formControlName="speaker12"
+                                        [ngClass]="{ 'is-invalid': submitted && f2.speaker12.errors }">
+                                        <option disabled selected>Choose your speaker1</option>
+                                        <option *ngFor="let speaker1 of speaker1s?.response" [value]="speaker1._id">
+                                            {{speaker1.name}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f2.speaker12.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.speaker12.errors.required">speaker1 is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Speaker2</label>
+                                    <select id="select" class="browser-default form-control" formControlName="speaker22"
+                                        [ngClass]="{ 'is-invalid': submitted && f2.speaker22.errors }">
+                                        <option default value>Choose your speaker2</option>
+                                        <option *ngFor="let speaker2 of speaker1s?.response" [value]="speaker2._id">{{speaker2.name}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f2.speaker22.errors" class="invalid-feedback">
+                                        <div *ngIf="f2.speaker22.errors.required">speaker2 is required</div>
+                                    </div>
+                                </div>
+                            <div class="form-group">
+                                <label>Agenda</label>
+                                <input type="text" formControlName="agenda2" class="form-control" placeholder="Enter agenda"
+                                    [ngClass]="{ 'is-invalid': submitted && f2.agenda2.errors }" />
+                                <div *ngIf="submitted && f2.agenda2.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.agenda2.errors.required">agenda is required</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>venue</label>
+                                <input type="text" formControlName="venue2" class="form-control" placeholder="Enter venue"
+                                    [ngClass]="{ 'is-invalid': submitted && f2.venue2.errors }" />
+                                <div *ngIf="submitted && f2.venue2.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.venue2.errors.required">venue is required</div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>date</label>
+                                <input type="date" formControlName="date2" class="form-control" placeholder="Enter date"
+                                    [ngClass]="{ 'is-invalid': submitted && f2.date2.errors }" />
+                                <div *ngIf="submitted && f2.date2.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.date2.errors.required">date is required</div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>time</label>
+                                <input type="time" formControlName="time2" class="form-control" placeholder="Enter time"
+                                    [ngClass]="{ 'is-invalid': submitted && f2.time2.errors }" />
+                                <div *ngIf="submitted && f2.time2.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.time2.errors.required">time is required</div>
+                                </div>
+                            </div>
+
+
+
+                            </div>
+                        </div>
+         <div class="modal-footer">
+                <button type="submit" class="btn btn-default"  >Update</button >
+             <button type="button" class="btn btn-danger waves-effect"
+                 data-dismiss="modal">Cancel</button>
+         </div>
+        </form>
+     </div>
+ </div>
+</div>
+</div>

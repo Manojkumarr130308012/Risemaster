@@ -53,6 +53,12 @@ import { EventsComponent } from './Master/events/events.component';
 import { SpeakerComponent } from './Master/speaker/speaker.component';
 import { TrackerComponent } from './Master/tracker/tracker.component';
 import { AgendaComponent } from './Master/agenda/agenda.component';
+import { EventimagesComponent } from './Master/eventimages/eventimages.component';
+import { UploadTaskComponent } from './Master/upload-task/upload-task.component';
+import { EventlinkComponent } from './Master/eventlink/eventlink.component';
+import { SponsorComponent } from './Master/sponsor/sponsor.component';
+import { BannerComponent } from './Master/banner/banner.component';
+import { NewsComponent } from './Master/news/news.component';
 
 // import { MembershipclassificationComponent } from './Master/membershipclassification/membershipclassification.component';
 
@@ -83,7 +89,12 @@ import { AgendaComponent } from './Master/agenda/agenda.component';
     EventsComponent,
     SpeakerComponent,
     TrackerComponent,
-    AgendaComponent
+    AgendaComponent,
+    EventimagesComponent,
+    UploadTaskComponent,
+    EventlinkComponent,
+    SponsorComponent,
+    BannerComponent,NewsComponent,
   ],
   imports: [
     BrowserModule,

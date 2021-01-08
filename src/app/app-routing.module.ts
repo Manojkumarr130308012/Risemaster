@@ -15,6 +15,16 @@ import { CountrymasComponent } from './Master/countrymas/countrymas.component';
 import { ChapterComponent } from './Master/chapter/chapter.component';
 import { CityComponent } from './Master/city/city.component';
 import { DistrictComponent } from './Master/district/district.component';
+import { MemberComponent } from './Master/member/member.component';
+import { EventsComponent } from './Master/events/events.component';
+import { SpeakerComponent } from './Master/speaker/speaker.component';
+import { TrackerComponent } from './Master/tracker/tracker.component';
+import { AgendaComponent } from './Master/agenda/agenda.component';
+import { EventimagesComponent } from './Master/eventimages/eventimages.component';
+import { EventlinkComponent } from './Master/eventlink/eventlink.component';
+import { SponsorComponent } from './Master/sponsor/sponsor.component';
+import { BannerComponent } from './Master/banner/banner.component';
+import { NewsComponent } from './Master/news/news.component';
 // import { MembershipclassificationComponent } from './Master/membershipclassification/membershipclassification.component';
 
 // Student Master
@@ -108,7 +118,48 @@ const routes: Routes = [
   {
     path: 'district',
     component: DistrictComponent
+  },
+  {
+    path: 'member',
+    component: MemberComponent
+  },
+  {
+    path: 'events',
+    component: EventsComponent
+  },
+  {
+    path: 'speaker',
+    component: SpeakerComponent
+  },
+  {
+    path: 'tracker',
+    component: TrackerComponent
+  },
+  {
+    path: 'agenda',
+    component: AgendaComponent
+  },
+  {
+    path: 'eventimage',
+    component: EventimagesComponent
+  },
+  {
+    path: 'eventlink',
+    component: EventlinkComponent
+  },
+  {
+    path: 'sponsor',
+    component: SponsorComponent
+  },
+  {
+    path: 'banner',
+    component: BannerComponent
+  },
+  {
+    path: 'news',
+    component: NewsComponent
   }
+
 
 
 ];
