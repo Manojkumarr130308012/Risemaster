@@ -16,7 +16,7 @@ import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 declare const $: any;
 declare const M: any;
-declare const swal: any;
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 @Component({
   selector: 'app-chapter',
   templateUrl: './chapter.component.html',
@@ -89,6 +89,7 @@ export class ChapterComponent implements OnInit {
   selectedFiles: FileList;
   currentFileUpload: FileUpload;
   percentage: number;
+  chapterid: any;
   constructor(
     private formBuilder: FormBuilder,
     private dynamicScriptLoader: DynamicScriptLoaderService,
@@ -168,15 +169,16 @@ export class ChapterComponent implements OnInit {
       this.request.addchapter(edata).subscribe(
         (res: any) => {
           if (res.status == "success") {
-            swal("Added Sucessfully");
+            Swal.fire("Added Sucessfully");
             this.loadModal();
             this.viewData();
+            this.url="";
           } else if (res.status == "error") {
-            swal(res.error);
+            Swal.fire(res.error);
           }
         },
         error => {
-          swal(error);
+          Swal.fire(error);
         }
       );
       console.log(this.addBatchForm.value);
@@ -196,11 +198,34 @@ export class ChapterComponent implements OnInit {
 
     // To delete course category
     deleteBatch(id: any) {
-      this.request.deletechapter(id).subscribe(res => {
-        console.log(id);
-        this.viewData();
-        console.log("Deleted");
-      });
+      Swal.fire({  
+        title: 'Are you sure want to Delete?',  
+        text: 'You will not be able to recover this Data',  
+        icon: 'warning',  
+        showCancelButton: true,  
+        confirmButtonText: 'Delete',  
+        cancelButtonText: 'Cancel'  
+      }).then((result) => {  
+        if (result.value) {   
+          this.request.deletechapter(id).subscribe(res => {
+            console.log(id);
+            this.viewData();
+            console.log("Deleted");
+          });
+          Swal.fire(  
+            'Deleted! Sucessfully',  
+          )  
+        } else if (result.dismiss === Swal.DismissReason.cancel) {  
+          Swal.fire(  
+            'Cancelled',   
+          )  
+        }  
+      }) 
+
+
+
+
+     
     }
 
     // To edit course category
@@ -249,6 +274,8 @@ export class ChapterComponent implements OnInit {
         console.log(this.editForm.value);
       });
     }
+
+
     onEditSubmit() {
       this.submitted = true;
       console.log(this.editForm.value);
@@ -276,16 +303,17 @@ export class ChapterComponent implements OnInit {
       this.request.updatechapter(this.IdValue, edata1).subscribe(
         (res: any) => {
           if (res.status == "success") {
-            swal("Updated Sucessfully");
+            Swal.fire("Updated Sucessfully");
             this.loadModal();
             this.viewData();
+            this.url="";
           } else if (res.status == "error") {
-            swal(res.error);
+            Swal.fire(res.error);
           }
         },
         error => {
           console.log(error);
-          swal(error);
+          Swal.fire(error);
         }
       );
     }
@@ -442,7 +470,7 @@ private saveFileData(fileUpload: FileUpload) {
     private loadData() {
       $("#tableExport").DataTable({
         dom: "Bfrtip",
-        buttons: ["copy", "csv", "excel", "pdf", "print"]
+        buttons: ["excel", "pdf"]
       });
     }
 

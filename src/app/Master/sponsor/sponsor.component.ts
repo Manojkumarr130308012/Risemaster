@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 declare const $: any;
 declare const M: any;
-declare const swal: any;
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 @Component({
   selector: 'app-sponsor',
   templateUrl: './sponsor.component.html',
@@ -134,9 +134,16 @@ export class SponsorComponent implements OnInit {
         console.log("ddddddd",edata);
     this.request.addsponsor(edata).subscribe((res: any) => {
       if (res.status == 'success') {
-        swal("Added Sucessfully");
+        Swal.fire("Added Sucessfully");
       this.loadModal();
       this.viewData();
+      this.url="";
+      this.sponsorbanner="";
+      this.image1="";
+      this.image2="";
+      this.image3="";
+      this.image4="";
+      this.image5="";
       }
       else if (res.status == 'error') {
         this.setMessage(res.error);
@@ -159,12 +166,34 @@ export class SponsorComponent implements OnInit {
 
   // To delete bloodgroup
   deleteBloodgroup(id: any) {
-    this.request.deletesponsor(id).subscribe(res => {
-      console.log(id);
-      this.viewData();
-    console.log('Deleted');
-    this.router.navigate(['sponsor']);
-    });
+
+
+
+    Swal.fire({  
+      title: 'Are you sure want to Delete?',  
+      text: 'You will not be able to recover this Data',  
+      icon: 'warning',  
+      showCancelButton: true,  
+      confirmButtonText: 'Delete',  
+      cancelButtonText: 'Cancel'  
+    }).then((result) => {  
+      if (result.value) {   
+        this.request.deletesponsor(id).subscribe(res => {
+          console.log(id);
+          this.viewData();
+        console.log('Deleted');
+        });
+        Swal.fire(  
+          'Deleted! Sucessfully',  
+        )  
+      } else if (result.dismiss === Swal.DismissReason.cancel) {  
+        Swal.fire(  
+          'Cancelled',   
+        )  
+      }  
+    }) 
+
+    
   }
 
   // To edit bloodgroup
@@ -227,9 +256,16 @@ export class SponsorComponent implements OnInit {
     }
   this.request.updatesponsor(this.IdValue,edata).subscribe((res : any) => {
     if (res.status == 'success') {
-      swal("Updated Sucessfully");
+      Swal.fire("Updated Sucessfully");
       this.loadModal();
       this.viewData();
+      this.url="";
+      this.sponsorbanner="";
+      this.image1="";
+      this.image2="";
+      this.image3="";
+      this.image4="";
+      this.image5="";
     }
     else if (res.status == 'error') {
       this.setMessage(res.error);
@@ -255,7 +291,7 @@ get f2() { return this.editForm.controls; }
     $('#tableExport').DataTable({
       dom: 'Bfrtip',
       buttons: [
-        'copy', 'csv', 'excel', 'pdf', 'print'
+       'excel', 'pdf'
       ]
     });
   }

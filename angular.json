@@ -40,7 +40,6 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.js",
               "src/assets/js/app.min.js",
               "src/assets/js/admin.js",
               "src/assets/js/table.min.js",

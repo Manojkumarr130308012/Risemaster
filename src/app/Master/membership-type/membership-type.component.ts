@@ -6,7 +6,7 @@ import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms'
 import { AuthService } from "../../services/auth.service";
 declare const M: any;
 declare const $: any;
-declare const swal: any;
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 @Component({
   selector: 'app-membership-type',
   templateUrl: './membership-type.component.html',
@@ -74,7 +74,7 @@ this.request.addmembershiptype(this.registerForm.value).subscribe((res: any) => 
         this.setMessage(res.error);
     }
     else if (res.status == 'success') {
-        swal("Added Sucessfully");
+        Swal.fire("Added Sucessfully");
        // this.onAddReset();
         this.viewData();
         this.loadModal();
@@ -88,10 +88,33 @@ console.log(this.registerForm.value);
 
 //To delete the data
 deleteparty(id: any) {
-this.request.deletemembershiptype(id).subscribe(res => {
-    swal(" Deleted Successfully ");
-    this.viewData();
-});
+
+
+
+    Swal.fire({  
+        title: 'Are you sure want to Delete?',  
+        text: 'You will not be able to recover this Data',  
+        icon: 'warning',  
+        showCancelButton: true,  
+        confirmButtonText: 'Delete',  
+        cancelButtonText: 'Cancel'  
+      }).then((result) => {  
+        if (result.value) {   
+            this.request.deletemembershiptype(id).subscribe(res => {
+                Swal.fire(" Deleted Successfully ");
+                this.viewData();
+            });
+          Swal.fire(  
+            'Deleted! Sucessfully',  
+          )  
+        } else if (result.dismiss === Swal.DismissReason.cancel) {  
+          Swal.fire(  
+            'Cancelled',   
+          )  
+        }  
+      }) 
+  
+
 }
 
 //Edit Function
@@ -134,7 +157,7 @@ const edata = {
 
 this.request.updatemembershiptype(this.IdValue, edata).subscribe((response: any) => {
     if (response.status == 'success') {
-        swal("Updated Sucessfully");
+        Swal.fire("Updated Sucessfully");
         //  console.log('cat res', response);
       //  this.onEditReset();
         this.viewData();
@@ -172,7 +195,7 @@ private loadData() {
 $('#tableExport').DataTable({
     dom: 'Bfrtip',
     buttons: [
-        'copy', 'csv', 'excel', 'pdf', 'print'
+       'excel', 'pdf'
     ]
 });
 };

@@ -59,6 +59,7 @@ import { EventlinkComponent } from './Master/eventlink/eventlink.component';
 import { SponsorComponent } from './Master/sponsor/sponsor.component';
 import { BannerComponent } from './Master/banner/banner.component';
 import { NewsComponent } from './Master/news/news.component';
+import { BrandComponent } from './Master/brand/brand.component';
 
 // import { MembershipclassificationComponent } from './Master/membershipclassification/membershipclassification.component';
 
@@ -94,7 +95,7 @@ import { NewsComponent } from './Master/news/news.component';
     UploadTaskComponent,
     EventlinkComponent,
     SponsorComponent,
-    BannerComponent,NewsComponent,
+    BannerComponent,NewsComponent, BrandComponent,
   ],
   imports: [
     BrowserModule,
@@ -111,7 +112,8 @@ import { NewsComponent } from './Master/news/news.component';
     ArchwizardModule,
     MatSnackBarModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule, // for database
+    AngularFireDatabaseModule
+  // for database
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},

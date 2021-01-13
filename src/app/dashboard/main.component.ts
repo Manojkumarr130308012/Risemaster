@@ -14,6 +14,7 @@ declare var ApexCharts: any;
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+	membercount: any;
 
 	constructor(private dynamicScriptLoader: DynamicScriptLoaderService, private auth: AuthService,  private request: RequestService,) { }
 
@@ -176,71 +177,71 @@ export class MainComponent implements OnInit {
 		});
 this. loadpartycount();
 
-this.loadstucountchart();
+// this.loadstucountchart();
 
-this.loadcalender();
+// this.loadcalender();
 
-		this.chart1();
-		this.chart2();
+		// this.chart1();
+		// this.chart2();
 
 	}
 
   loadpartycount()  {
-    this.request.getcountry().subscribe((response : any) => {
+    this.request.getmemeber().subscribe((response : any) => {
       console.log(response);
-	this.partycount =response.count;
-	console.log('partycount',this.partycount);
+	this.membercount =response.count;
+	console.log('membercount',this.membercount);
     }, (error) => {
       console.log(error);
     });
   }
 
-  loadcalender()  {
-    this.request.fetchcalender().subscribe((response : any) => {
-      console.log('hfjdhfjdhjhsjkdfjkdkj',response);
-         this.stucalenderchart=response.response;
-         console.log('hfjdhfjdhjhsjkdfjkdkj', this.stucalenderchart);
-  const events = this.stucalenderchart.map(o => {
-          return {
-            title: o.eventname,
-            start: o.Date,
-            backgroundColor:"#00bcd4",
-          }
-        });
+//   loadcalender()  {
+//     this.request.fetchcalender().subscribe((response : any) => {
+//       console.log('hfjdhfjdhjhsjkdfjkdkj',response);
+//          this.stucalenderchart=response.response;
+//          console.log('hfjdhfjdhjhsjkdfjkdkj', this.stucalenderchart);
+//   const events = this.stucalenderchart.map(o => {
+//           return {
+//             title: o.eventname,
+//             start: o.Date,
+//             backgroundColor:"#00bcd4",
+//           }
+//         });
 
 
 
-        console.log("dgfjhdfjhsjhsh",events);
+//         console.log("dgfjhdfjhsjhsh",events);
 
-    this.desktopCalendar(events);
-    }, (error) => {
-      console.log(error);
-    });
-  }
+//     this.desktopCalendar(events);
+//     }, (error) => {
+//       console.log(error);
+//     });
+//   }
 
-  loadstucountchart()  {
-    this.request.getstudentcountchart().subscribe((response : any) => {
-      console.log(response);
-    this.stucountchart =response.result;
-	console.log('chartdata',this.stucountchart);
-	this.stucountchart.map((item, i) =>
-	this.array[i]=item.numOfStudent
-	);
-	this.stucountchart.map((item, i) =>
-	this.array1[i]=item._id
-	);
-	console.log('chartdadfdfdfta',this.array);
-	console.log('chartdadfdfdfta',this.array1);
+//   loadstucountchart()  {
+//     this.request.getstudentcountchart().subscribe((response : any) => {
+//       console.log(response);
+//     this.stucountchart =response.result;
+// 	console.log('chartdata',this.stucountchart);
+// 	this.stucountchart.map((item, i) =>
+// 	this.array[i]=item.numOfStudent
+// 	);
+// 	this.stucountchart.map((item, i) =>
+// 	this.array1[i]=item._id
+// 	);
+// 	console.log('chartdadfdfdfta',this.array);
+// 	console.log('chartdadfdfdfta',this.array1);
 
-    // var objCount = response.result.length;
-    // for ( var x=0; x < objCount ; x++ ) {
-    //     var curitem = response.result.[x];
-    // }
-    // console.log('chartdddddata',curitem);
-    }, (error) => {
-      console.log(error);
-    });
-  }
+//     // var objCount = response.result.length;
+//     // for ( var x=0; x < objCount ; x++ ) {
+//     //     var curitem = response.result.[x];
+//     // }
+//     // console.log('chartdddddata',curitem);
+//     }, (error) => {
+//       console.log(error);
+//     });
+//   }
 
 
 

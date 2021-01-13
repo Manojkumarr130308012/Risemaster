@@ -325,7 +325,41 @@ public getmembershipcostaggregion() {
   return this.http.get(this.url);
 
 }
+//board
+public getdBoard() {
+  this.url = `${this.endPoint}/Board/`;
+  return this.http.get(this.url);
+}
 
+public adddBoard(newexam: { designation:any;order:any; }) {
+  this.url = `${this.endPoint}/Board/add`;
+  return this.http.post(this.url, newexam);
+}
+
+public deletedBoard(id) {
+  this.url = `${this.endPoint}/Board/delete?id=` + id;
+  return this.http.delete(this.url);
+}
+
+updatedBoard(id, body) {
+  this.url = `${this.endPoint}/Board/update?id=${id}`;
+  return this.http.put(this.url, body);
+}
+
+fetchsBoard() {
+  this.url = `${this.endPoint}/Board/`;
+  return this.http.get(this.url);
+}
+fetchsBoardById(id) {
+  this.url = `${this.endPoint}/Board/fetchdata?id=` + id;
+  return this.http.get(this.url);
+}
+
+public getsBoardaggregion(chapterid) {
+  this.url = `${this.endPoint}/Board/fetchBychapteridtrackid?chapter=`+chapterid;
+  return this.http.get(this.url);
+
+}
 
 //agendas
 public getagendas() {
@@ -717,7 +751,7 @@ public getmemeber(){
   return this.http.get(this.url);
 }
 
-public addmemeber(newexam: { Country:any;State:any;region:any;district:any;CityName:any;Name:any;Gender:any; Chapter:any;Category:any;MembershipType:any;Address:any;Email:any;Mobile:any;bussinessname:any;DOB:any;pincode:any;Products:any;Keywords:any;Website:any;Interests:any;SocialMediaLinks:any;ValidUpto:any;CreatedOn:any;UpdatedOn:any;image:any;bussinesslogo:any;status:any;}) {
+public addmemeber(newexam: { Country:any;State:any;region:any;district:any;CityName:any;Name:any;board:any;Gender:any; Chapter:any;Category:any;MembershipType:any;Address:any;Email:any;Mobile:any;bussinessname:any;DOB:any;pincode:any;Products:any;Keywords:any;Website:any;Interests:any;SocialMediaLinks:any;ValidUpto:any;CreatedOn:any;UpdatedOn:any;image:any;bussinesslogo:any;status:any;}) {
   this.url = `${this.endPoint}/member/add`;
   return this.http.post(this.url, newexam);
 }

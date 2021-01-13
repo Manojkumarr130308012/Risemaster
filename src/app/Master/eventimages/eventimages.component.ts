@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 declare const $: any;
 declare const M: any;
-declare const swal: any;
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-eventimages',
@@ -81,9 +81,10 @@ export class EventimagesComponent implements OnInit {
         };
     this.request.addeventimage(edata).subscribe((res: any) => {
       if (res.status == 'success') {
-        swal("Added Sucessfully");
+        Swal.fire("Added Sucessfully");
       this.loadModal();
       this.viewData();
+      this.url="";
       }
       else if (res.status == 'error') {
         this.setMessage(res.error);
@@ -154,12 +155,32 @@ private saveFileData(fileUpload: FileUpload) {
 
   // To delete bloodgroup
   deleteBloodgroup(id: any) {
-    this.request.deleteeventimage(id).subscribe(res => {
-      console.log(id);
-      this.viewData();
-    console.log('Deleted');
-    this.router.navigate(['eventimage']);
-    });
+
+
+    Swal.fire({  
+      title: 'Are you sure want to Delete?',  
+      text: 'You will not be able to recover this Data',  
+      icon: 'warning',  
+      showCancelButton: true,  
+      confirmButtonText: 'Delete',  
+      cancelButtonText: 'Cancel'  
+    }).then((result) => {  
+      if (result.value) {   
+        this.request.deleteeventimage(id).subscribe(res => {
+          console.log(id);
+          this.viewData();
+        console.log('Deleted');
+        });
+        Swal.fire(  
+          'Deleted! Sucessfully',  
+        )  
+      } else if (result.dismiss === Swal.DismissReason.cancel) {  
+        Swal.fire(  
+          'Cancelled',   
+        )  
+      }  
+    }) 
+   
   }
   
   // To edit bloodgroup
@@ -191,9 +212,10 @@ private saveFileData(fileUpload: FileUpload) {
     }
   this.request.updatetracker(this.IdValue,edata1).subscribe((res : any) => {
     if (res.status == 'success') {
-      swal("Updated Sucessfully");
+      Swal.fire("Updated Sucessfully");
       this.loadModal();
       this.viewData();
+      this.url="";
     }
     else if (res.status == 'error') {
       this.setMessage(res.error);
@@ -219,7 +241,7 @@ get f2() { return this.editForm.controls; }
     $('#tableExport').DataTable({
       dom: 'Bfrtip',
       buttons: [
-        'copy', 'csv', 'excel', 'pdf', 'print'
+       'excel', 'pdf'
       ]
     });
   }

@@ -27,19 +27,19 @@
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
-                                            <th>FromDate</th>
-                                            <th>ToDate</th>
                                             <th>Title</th>
                                             <th>ChapterName</th>
                                             <th>Venue</th>
                                             <th >Action</th>
+                                            <th >Track</th>
+                                            <th >Images</th>
+                                            <th >Videos</th>
+                                            <th >sponsor</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let event of events; let i=index">
                                             <td>{{i +1 }}</td>
-                                            <td>{{event?.FromDate}}</td>
-                                            <td>{{event?.ToDate}}</td>
                                             <td>{{event?.Title}}</td>
                                             <td>{{event?.ChapterNameDetails[0].ChapterName}}</td>
                                             <td>{{event?.Venue}}</td>
@@ -53,28 +53,33 @@
                                                         <i class="material-icons"
                                                         (click) = "deleteBatch(event?._id)" >delete</i>
                                                     </div>
+
+                                                </td>
+
+                                            <td>
                                                     <div class="btn btn-tbl-edit">
                                                         <i class="material-icons"
                                                         (click) = "open(event)">visibility</i>
                                                     </div>
-
+                                                </td>
+                                            <td>
                                                     <div class="btn btn-tbl-delete">
                                                         <i class="material-icons"
                                                         (click) = "imaeges(event)">camera_alt</i>
                                                     </div>
-
-
+                                                </td>
+                                            <td>
                                                     <div class="btn btn-tbl-edit">
                                                         <i class="material-icons"
                                                         (click) = "youtube(event)">videocam</i>
                                                     </div>
-
-
+                                                </td>
+                                            <td>
                                                     <div class="btn btn-tbl-edit">
                                                         <i class="material-icons"
                                                         (click) = "sponsor(event)">person</i>
                                                     </div>
-                                                </td>
+                                                </td>   
                                         </tr>
                                     </tbody>
                                 </table>

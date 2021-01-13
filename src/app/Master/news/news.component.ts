@@ -17,7 +17,7 @@ import { finalize } from 'rxjs/operators';
 
 declare const $: any;
 declare const M: any;
-declare const swal: any;
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
@@ -239,6 +239,7 @@ export class NewsComponent implements OnInit {
         CreatedOn: ""+currentTimeInSeconds,
         UpdatedOn:"",
         Image:""+this.url,
+        postedby:"Admin",
         Attachments:""+this.bussnesurl,
         banner:""+this.banner,
         status: this.addBatchForm.get("status").value
@@ -249,15 +250,15 @@ export class NewsComponent implements OnInit {
       this.request.addnews(edata).subscribe(
         (res: any) => {
           if (res.status == "success") {
-            swal("Added Sucessfully");
+            Swal.fire("Added Sucessfully");
             this.loadModal();
             this.viewData();
           } else if (res.status == "error") {
-            swal(res.error);
+            Swal.fire(res.error);
           }
         },
         error => {
-          swal(error);
+          Swal.fire(error);
         }
       );
       console.log(this.addBatchForm.value);
@@ -277,11 +278,33 @@ export class NewsComponent implements OnInit {
 
     // To delete course category
     deleteBatch(id: any) {
-      this.request.deletenews(id).subscribe(res => {
-        console.log(id);
-        this.viewData();
-        console.log("Deleted");
-      });
+
+
+      Swal.fire({  
+        title: 'Are you sure want to Delete?',  
+        text: 'You will not be able to recover this Data',  
+        icon: 'warning',  
+        showCancelButton: true,  
+        confirmButtonText: 'Delete',  
+        cancelButtonText: 'Cancel'  
+      }).then((result) => {  
+        if (result.value) {   
+          this.request.deletenews(id).subscribe(res => {
+            console.log(id);
+            this.viewData();
+            console.log("Deleted");
+          });
+          Swal.fire(  
+            'Deleted! Sucessfully',  
+          )  
+        } else if (result.dismiss === Swal.DismissReason.cancel) {  
+          Swal.fire(  
+            'Cancelled',   
+          )  
+        }  
+      }) 
+
+    
     }
 
     // To edit course category
@@ -353,6 +376,7 @@ export class NewsComponent implements OnInit {
         CreatedOn:this.CreatedOnvalue,
         UpdatedOn:""+currentTimeInSeconds,
         Image:""+this.url,
+        postedby:"Admin",
         Attachments:""+this.bussnesurl,
         banner:""+this.banner,
         status: this.editForm.get("status2").value
@@ -361,16 +385,16 @@ export class NewsComponent implements OnInit {
       this.request.updatenews(this.IdValue, edata1).subscribe(
         (res: any) => {
           if (res.status == "success") {
-            swal("Updated Sucessfully");
+            Swal.fire("Updated Sucessfully");
             this.loadModal();
             this.viewData();
           } else if (res.status == "error") {
-            swal(res.error);
+            Swal.fire(res.error);
           }
         },
         error => {
           console.log(error);
-          swal(error);
+          Swal.fire(error);
         }
       );
     }
@@ -556,7 +580,7 @@ sponsor(event) {
     private loadData() {
       $("#tableExport").DataTable({
         dom: "Bfrtip",
-        buttons: ["copy", "csv", "excel", "pdf", "print"]
+        buttons: ["excel", "pdf"]
       });
     }
 

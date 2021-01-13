@@ -230,7 +230,7 @@
                                             </div>
             
             
-
+                               
                                           
                
                             </div>
@@ -261,8 +261,8 @@
                                                  <select class="browser-default" id="select" 
                                                    formControlName="Chapter"  class="form-control"
                                                    placeholder="Enter Chapter"
-                                                   [ngClass]="{ 'is-invalid': submitted && f.Chapter.errors }">
-                
+                                                   [ngClass]="{ 'is-invalid': submitted && f.Chapter.errors }"
+                                                   (change)="loadchapterIns($event.target.value)">          
                                                    <option  disabled selected>Choose your
                                                      Chapter</option>
                                                      <option *ngFor="let chapter of chapters?.response" [value]="chapter._id">
@@ -275,6 +275,29 @@
                                              </div>
                 
                 
+
+
+                                             <div class="form-group">
+                                                <label>Board</label>
+                                                <select class="browser-default" id="select"
+                                                  formControlName="Board"  class="form-control"
+                                                  placeholder="Enter Board"
+                                                  [ngClass]="{ 'is-invalid': submitted && f.Board.errors }">
+                
+                                                  <option  disabled selected>Choose your
+                                                    Board</option>
+                                                  <option *ngFor="let board of boardbyins?.response" [value]="board._id">
+                                                    {{board?.designation}}</option>
+                                                </select>
+                                                <div *ngIf="submitted && f.Board.errors" class="invalid-feedback">
+                                                  <div *ngIf="f.Board.errors.required">
+                                                    Board is required</div>
+                                                </div>
+                                            </div>
+
+                                    
+
+
                 
                                              <div class="form-group">
                                                  <label>Category</label>
@@ -397,9 +420,10 @@
                         </div>
 
                         <div class="col-md-12">
-                            <label>Member Photo</label>
+
+                            <label>Business</label>
                           
-                                <img style="margin:0 auto" src="{{url}}" width="100px">
+                                <img style="margin:0 auto" src="{{bussnesurl}}" width="100px">
                           
                                <div *ngIf="currentFileUpload" class="progress">
                                 <div class="progress-bar progress-bar-info progress-bar-striped"
@@ -409,20 +433,21 @@
                                   {{percentage}}%</div>
                               </div>
                                
-                              <label class="btn btn-default"> <input style="width: 100%;" type="file"
-                                (change)="selectFile($event)">
+                              <label class="btn btn-default"> <input  style="width: 100%;" type="file"
+                                (change)="selectFile1($event)">
                               </label>
                                
                               <button class="btn btn-success" [disabled]="!selectedFiles"
-                                (click)="upload()">Upload</button>
+                                (click)="upload1()">Upload</button>
                             </div>
 
 
                             <div class="col-md-12">
-                                <label>Business logo</label>
-                              
-                                    <img style="margin:0 auto" src="{{bussnesurl}}" width="100px">
-                              
+                                <label>Member</label>
+                             
+                                    <img style="margin:0 auto" src="{{url}}" width="100px">
+                               
+
                                    <div *ngIf="currentFileUpload" class="progress">
                                     <div class="progress-bar progress-bar-info progress-bar-striped"
                                       role="progressbar" attr.aria-valuenow="{{percentage}}"
@@ -432,11 +457,11 @@
                                   </div>
                                    
                                   <label class="btn btn-default"> <input style="width: 100%;" type="file"
-                                    (change)="selectFile1($event)">
+                                    (change)="selectFile($event)">
                                   </label>
                                    
                                   <button class="btn btn-success" [disabled]="!selectedFiles"
-                                    (click)="upload1()">Upload</button>
+                                    (click)="upload()">Upload</button>
                                 </div>
 
 
@@ -613,7 +638,7 @@
                                         </div>
         
 
-
+                                     
 
 
 
@@ -630,7 +655,8 @@
                                        <select class="browser-default" id="select"
                                          formControlName="Chapter2"  class="form-control"
                                          placeholder="Enter Chapter"
-                                         [ngClass]="{ 'is-invalid': submitted && f2.Chapter2.errors }">
+                                         [ngClass]="{ 'is-invalid': submitted && f2.Chapter2.errors }"
+                                         (change)="loadchapterIns($event.target.value)">
        
                                          <option  disabled selected>Choose your
                                            Chapter</option>
@@ -643,7 +669,24 @@
                                        </div>
                                    </div>
        
-
+                                   <div class="form-group">
+                                    <label>Board</label>
+                                    <select class="browser-default" id="select"
+                                      formControlName="Board2"  class="form-control"
+                                      placeholder="Enter Board"
+                                      [ngClass]="{ 'is-invalid': submitted && f2.Board2.errors }">
+    
+                                      <option  disabled selected>Choose your
+                                        Board</option>
+                                      <option *ngFor="let board of boardbyins?.response" [value]="board._id">
+                                        {{board?.designation}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f2.Board2.errors" class="invalid-feedback">
+                                      <div *ngIf="f2.Board2.errors.required">
+                                        Board is required</div>
+                                    </div>
+                                </div>
+    
 
                                      <div class="form-group">
                                          <label>Category</label>

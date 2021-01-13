@@ -6,7 +6,7 @@ import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader
 import { AuthService } from "../../services/auth.service";
 declare const $: any;
 declare const M: any;
-declare const swal: any;
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 @Component({
   selector: 'app-tracker',
   templateUrl: './tracker.component.html',
@@ -64,7 +64,7 @@ export class TrackerComponent implements OnInit {
         };
     this.request.addtracker(edata).subscribe((res: any) => {
       if (res.status == 'success') {
-        swal("Added Sucessfully");
+        Swal.fire("Added Sucessfully");
       this.loadModal();
       this.viewData();
       }
@@ -135,7 +135,7 @@ export class TrackerComponent implements OnInit {
     }
   this.request.updatetracker(this.IdValue,edata).subscribe((res : any) => {
     if (res.status == 'success') {
-      swal("Updated Sucessfully");
+      Swal.fire("Updated Sucessfully");
       this.loadModal();
       this.viewData();
     }
@@ -163,7 +163,7 @@ get f2() { return this.editForm.controls; }
     $('#tableExport').DataTable({
       dom: 'Bfrtip',
       buttons: [
-        'copy', 'csv', 'excel', 'pdf', 'print'
+      'excel', 'pdf'
       ]
     });
   }

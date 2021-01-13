@@ -10,7 +10,9 @@ import { DynamicScriptLoaderService } from "../../services/dynamic-script-loader
 import { AuthService } from "../../services/auth.service";
 declare const $: any;
 declare const M: any;
-declare const swal: any;
+import swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss'
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 @Component({
   selector: 'app-city',
   templateUrl: './city.component.html',
@@ -102,15 +104,15 @@ export class CityComponent implements OnInit {
       this.request.addcity(this.addBatchForm.value).subscribe(
         (res: any) => {
           if (res.status == "success") {
-            swal("Added Sucessfully");
+            Swal.fire("Added Sucessfully");
             this.loadModal();
             this.viewData();
           } else if (res.status == "error") {
-            swal(res.error);
+            Swal.fire(res.error);
           }
         },
         error => {
-          swal(error);
+          Swal.fire(error);
         }
       );
       console.log(this.addBatchForm.value);
@@ -130,11 +132,33 @@ export class CityComponent implements OnInit {
 
     // To delete course category
     deleteBatch(id: any) {
-      this.request.deletecity(id).subscribe(res => {
-        console.log(id);
-        this.viewData();
-        console.log("Deleted");
-      });
+
+      Swal.fire({  
+        title: 'Are you sure want to Delete?',  
+        text: 'You will not be able to recover this Data',  
+        icon: 'warning',  
+        showCancelButton: true,  
+        confirmButtonText: 'Delete',  
+        cancelButtonText: 'Cancel'  
+      }).then((result) => {  
+        if (result.value) {   
+          this.request.deletecity(id).subscribe(res => {
+            console.log(id);
+            this.viewData();
+            console.log("Deleted");
+          });
+          Swal.fire(  
+            'Deleted! Sucessfully',  
+          )  
+        } else if (result.dismiss === Swal.DismissReason.cancel) {  
+          Swal.fire(  
+            'Cancelled',   
+          )  
+        }  
+      }) 
+
+
+     
     }
 
     // To edit course category
@@ -184,16 +208,16 @@ export class CityComponent implements OnInit {
       this.request.updatecity(this.IdValue, edata).subscribe(
         (res: any) => {
           if (res.status == "success") {
-            swal("Updated Sucessfully");
+            Swal.fire("Updated Sucessfully");
             this.loadModal();
             this.viewData();
           } else if (res.status == "error") {
-            swal(res.error);
+            Swal.fire(res.error);
           }
         },
         error => {
           console.log(error);
-          swal(error);
+          Swal.fire(error);
         }
       );
     }
@@ -290,7 +314,7 @@ export class CityComponent implements OnInit {
     private loadData() {
       $("#tableExport").DataTable({
         dom: "Bfrtip",
-        buttons: ["copy", "csv", "excel", "pdf", "print"]
+        buttons: ["excel", "pdf"]
       });
     }
 

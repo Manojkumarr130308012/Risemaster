@@ -11,6 +11,7 @@ import { AuthService } from "../../services/auth.service";
 declare const $: any;
 declare const M: any;
 declare const swal: any;
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 @Component({
   selector: 'app-membershipcost',
   templateUrl: './membershipcost.component.html',
@@ -92,15 +93,15 @@ export class MembershipcostComponent implements OnInit {
       this.request.addmembershipcost(this.addBatchForm.value).subscribe(
         (res: any) => {
           if (res.status == "success") {
-            swal("Added Sucessfully");
+            Swal.fire("Added Sucessfully");
             this.loadModal();
             this.viewData();
           } else if (res.status == "error") {
-            swal(res.error);
+            Swal.fire(res.error);
           }
         },
         error => {
-          swal(error);
+          Swal.fire(error);
         }
       );
       console.log(this.addBatchForm.value);
@@ -121,11 +122,32 @@ export class MembershipcostComponent implements OnInit {
 
     // To delete course category
     deleteBatch(id: any) {
-      this.request.deletemembershipcost(id).subscribe(res => {
-        console.log(id);
-        this.viewData();
-        console.log("Deleted");
-      });
+
+      Swal.fire({  
+        title: 'Are you sure want to Delete?',  
+        text: 'You will not be able to recover this Data',  
+        icon: 'warning',  
+        showCancelButton: true,  
+        confirmButtonText: 'Delete',  
+        cancelButtonText: 'Cancel'  
+      }).then((result) => {  
+        if (result.value) {   
+          this.request.deletemembershipcost(id).subscribe(res => {
+            console.log(id);
+            this.viewData();
+            console.log("Deleted");
+          });
+          Swal.fire(  
+            'Deleted! Sucessfully',  
+          )  
+        } else if (result.dismiss === Swal.DismissReason.cancel) {  
+          Swal.fire(  
+            'Cancelled',   
+          )  
+        }  
+      }) 
+
+    
     }
 
     // To edit course category
@@ -168,16 +190,16 @@ export class MembershipcostComponent implements OnInit {
       this.request.updatemembershipcost(this.IdValue, edata).subscribe(
         (res: any) => {
           if (res.status == "success") {
-            swal("Updated Sucessfully");
+            Swal.fire("Updated Sucessfully");
             this.loadModal();
             this.viewData();
           } else if (res.status == "error") {
-            swal(res.error);
+            Swal.fire(res.error);
           }
         },
         error => {
           console.log(error);
-          swal(error);
+          Swal.fire(error);
         }
       );
     }
@@ -243,7 +265,7 @@ export class MembershipcostComponent implements OnInit {
     private loadData() {
       $("#tableExport").DataTable({
         dom: "Bfrtip",
-        buttons: ["copy", "csv", "excel", "pdf", "print"]
+        buttons: ["excel", "pdf"]
       });
     }
 

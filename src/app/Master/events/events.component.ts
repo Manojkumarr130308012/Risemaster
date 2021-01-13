@@ -230,6 +230,8 @@ export class EventsComponent implements OnInit {
       if (this.addBatchForm.invalid) {
         return;
       }
+      const timeZoneOffset = new Date().getTimezoneOffset();
+      console.log("dddd",""+timeZoneOffset);
       var currentTimeInSeconds=Math.floor(Date.now()/1000);
      const edata = {
       Country:  this.addBatchForm.get("Country").value,
@@ -261,6 +263,9 @@ export class EventsComponent implements OnInit {
             swal("Added Sucessfully");
             this.loadModal();
             this.viewData();
+            this.url="";
+            this.bussnesurl="";
+            this.banner="";
           } else if (res.status == "error") {
             swal(res.error);
           }
@@ -382,6 +387,9 @@ export class EventsComponent implements OnInit {
             swal("Updated Sucessfully");
             this.loadModal();
             this.viewData();
+            this.url="";
+            this.bussnesurl="";
+            this.banner="";
           } else if (res.status == "error") {
             swal(res.error);
           }
@@ -574,7 +582,7 @@ sponsor(event) {
     private loadData() {
       $("#tableExport").DataTable({
         dom: "Bfrtip",
-        buttons: ["copy", "csv", "excel", "pdf", "print"]
+        buttons: ["excel", "pdf"]
       });
     }
 

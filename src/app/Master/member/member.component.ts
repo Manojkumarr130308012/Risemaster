@@ -16,7 +16,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 declare const $: any;
 declare const M: any;
-declare const swal: any;
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 @Component({
   selector: 'app-member',
   templateUrl: './member.component.html',
@@ -117,6 +117,8 @@ export class MemberComponent implements OnInit {
   Website2:any;
   Interests:any;
   Interests2:any;
+  Board:any;
+  Board2:any;
   SocialMediaLinks:any;
   SocialMediaLinks2:any;
   ValidUpto:any;
@@ -139,6 +141,12 @@ export class MemberComponent implements OnInit {
   url:any;
   private basePath = '/uploads';
   bussnesurl: any;
+  boardbyins: any;
+  chapterid: any;
+  boardvalue: any;
+  user = {};
+  placeholderString = 'Select timezone';
+  timezone1: any;
   constructor(
     private formBuilder: FormBuilder,
     private dynamicScriptLoader: DynamicScriptLoaderService,
@@ -166,6 +174,7 @@ export class MemberComponent implements OnInit {
       Mobile: ["", Validators.required],
       bussinessname: ["", Validators.required],
       DOB: ["", Validators.required],
+      Board: ["", Validators.required],
       pincode: ["", Validators.required],
       Products: ["", Validators.required],
       Keywords: ["", Validators.required],
@@ -192,6 +201,7 @@ export class MemberComponent implements OnInit {
       Mobile2: ["", Validators.required],
       bussinessname2: ["", Validators.required],
       DOB2: ["", Validators.required],
+      Board2: ["", Validators.required],
       pincode2: ["", Validators.required],
       Products2: ["", Validators.required],
       Keywords2: ["", Validators.required],
@@ -216,8 +226,9 @@ export class MemberComponent implements OnInit {
       });
     }
 
+ 
 
-
+  
 
 //addmemeber image
     selectFile(event) {
@@ -332,6 +343,7 @@ export class MemberComponent implements OnInit {
       district:  this.addBatchForm.get("district").value,
       CityName:  this.addBatchForm.get("CityName").value,
       Name:  this.addBatchForm.get("Name").value,
+      board:  this.addBatchForm.get("Board").value,
       Gender: this.addBatchForm.get("Gender").value,
       Chapter: this.addBatchForm.get("Chapter").value,
       Category: this.addBatchForm.get("Category").value,
@@ -362,15 +374,17 @@ export class MemberComponent implements OnInit {
       this.request.addmemeber(edata).subscribe(
         (res: any) => {
           if (res.status == "success") {
-            swal("Added Sucessfully");
+            Swal.fire("Added Sucessfully");
             this.loadModal();
             this.viewData();
+            this.url="";
+            this.bussnesurl="";
           } else if (res.status == "error") {
-            swal(res.error);
+            Swal.fire(res.error);
           }
         },
         error => {
-          swal(error);
+          Swal.fire(error);
         }
       );
       console.log(this.addBatchForm.value);
@@ -390,11 +404,31 @@ export class MemberComponent implements OnInit {
 
     // To delete course category
     deleteBatch(id: any) {
-      this.request.deletememeber(id).subscribe(res => {
-        console.log(id);
-        this.viewData();
-        console.log("Deleted");
-      });
+      
+    Swal.fire({  
+      title: 'Are you sure want to Delete?',  
+      text: 'You will not be able to recover this Data',  
+      icon: 'warning',  
+      showCancelButton: true,  
+      confirmButtonText: 'Delete',  
+      cancelButtonText: 'Cancel'  
+    }).then((result) => {  
+      if (result.value) {   
+        this.request.deletememeber(id).subscribe(res => {
+          console.log(id);
+          this.viewData();
+          console.log("Deleted");
+        });
+        Swal.fire(  
+          'Deleted! Sucessfully',  
+        )  
+      } else if (result.dismiss === Swal.DismissReason.cancel) {  
+        Swal.fire(  
+          'Cancelled',   
+        )  
+      }  
+    }) 
+     
     }
 
     // To edit course category
@@ -404,10 +438,12 @@ export class MemberComponent implements OnInit {
       this.stateid = city.StateDetails[0]._id;
       this.regionid = city.regionsDetails[0]._id;
       this.districtid = city.districtsDetails[0]._id;
+      this.chapterid = city.ChapterNameDetails[0]._id;
       this.loadcountryIns(this.countryId);
       this.loadstateIns(this.stateid);
       this.loadregionIns(this.regionid);
       this.loaddistrictIns(this.districtid);
+      this.loadchapterIns(this.chapterid);
       this.request.fetchmemeberById(this.Id).subscribe(response => {
         this.editBatch = response[0];
         console.log(response);
@@ -424,6 +460,7 @@ export class MemberComponent implements OnInit {
         this.Addressvalue = this.editBatch.Address;
         this.Emailvalue = this.editBatch.Email;
         this.Mobilevalue = this.editBatch.Mobile;
+        this.boardvalue=this.editBatch.board;
         this.bussinessnamevalue = this.editBatch.bussinessname;
         this.DOBvalue= this.editBatch.DOB;
         this.pincodevalue=this.editBatch.pincode;
@@ -449,6 +486,7 @@ export class MemberComponent implements OnInit {
           district2: [this.districtValue, Validators.required],
           CityName2: [this.CityNameValue, Validators.required],
          Name2: [this.Namevalue, Validators.required],
+         Board2: [this.boardvalue, Validators.required],
          Gender2: [this.gendervalue, Validators.required],
          MembershipType2: [this.membershiptypevalue, Validators.required],
          Category2: [this.membershipclassivalue, Validators.required],
@@ -491,6 +529,7 @@ export class MemberComponent implements OnInit {
         Address: this.editForm.get("Address2").value,
         Email: this.editForm.get("Email2").value,
         Mobile: this.editForm.get("Mobile2").value,
+        board: this.editForm.get("Board2").value,
         bussinessname: this.editForm.get("bussinessname2").value,
         DOB:  this.editForm.get("DOB2").value,
         pincode:  this.editForm.get("pincode2").value,
@@ -509,19 +548,22 @@ export class MemberComponent implements OnInit {
         status: this.editForm.get("status2").value
       };
 
+      console.log("board",""+edata1.board);
       this.request.updatememeber(this.IdValue, edata1).subscribe(
         (res: any) => {
           if (res.status == "success") {
-            swal("Updated Sucessfully");
+            Swal.fire("Updated Sucessfully");
             this.loadModal();
             this.viewData();
+            this.url="";
+            this.bussnesurl="";
           } else if (res.status == "error") {
-            swal(res.error);
+            Swal.fire(res.error);
           }
         },
         error => {
           console.log(error);
-          swal(error);
+          Swal.fire(error);
         }
       );
     }
@@ -590,6 +632,14 @@ loadcategory() {
       this.request.loadcitybyins(district).subscribe((response: any) => {
         this.districtbyins = response;
         console.log('districtbyins', this.districtbyins);
+      }, (error) => {
+        console.log(error);
+      });
+    }
+    loadchapterIns(chapter) {
+      this.request.getdBoard().subscribe((response: any) => {
+        this.boardbyins = response;
+        console.log('boardbyins', this.boardbyins);
       }, (error) => {
         console.log(error);
       });
@@ -663,7 +713,7 @@ loadcategory() {
     private loadData() {
       $("#tableExport").DataTable({
         dom: "Bfrtip",
-        buttons: ["copy", "csv", "excel", "pdf", "print"]
+        buttons: ["excel", "pdf"]
       });
     }
 

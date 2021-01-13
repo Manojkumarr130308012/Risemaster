@@ -11,6 +11,7 @@ import { AuthService } from "../../services/auth.service";
 declare const $: any;
 declare const M: any;
 declare const swal: any;
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 @Component({
   selector: 'app-agenda',
   templateUrl: './agenda.component.html',
@@ -67,7 +68,7 @@ agendas:any;
     private auth: AuthService) {
 
       this.route.queryParams.subscribe((params: any) => {
-        this.trackid = params.trackid;
+
         this.eventid = params.eventid;
       })
       // Add Form
@@ -152,11 +153,32 @@ agendas:any;
 
     // To delete course category
     deleteBatch(id: any) {
-      this.request.deleteagendas(id).subscribe(res => {
-        console.log(id);
-        this.viewData();
-        console.log("Deleted");
-      });
+
+      Swal.fire({  
+        title: 'Are you sure want to Delete?',  
+        text: 'You will not be able to recover this Data',  
+        icon: 'warning',  
+        showCancelButton: true,  
+        confirmButtonText: 'Delete',  
+        cancelButtonText: 'Cancel'  
+      }).then((result) => {  
+        if (result.value) {   
+          this.request.deleteagendas(id).subscribe(res => {
+            console.log(id);
+            this.viewData();
+            console.log("Deleted");
+          });
+          Swal.fire(  
+            'Deleted! Sucessfully',  
+          )  
+        } else if (result.dismiss === Swal.DismissReason.cancel) {  
+          Swal.fire(  
+            'Cancelled',   
+          )  
+        }  
+      }) 
+
+     
     }
 
     // To edit course category
@@ -282,7 +304,7 @@ agendas:any;
     private loadData() {
       $("#tableExport").DataTable({
         dom: "Bfrtip",
-        buttons: ["copy", "csv", "excel", "pdf", "print"]
+        buttons: ["excel", "pdf"]
       });
     }
 

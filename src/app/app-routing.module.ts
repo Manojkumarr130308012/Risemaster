@@ -25,6 +25,7 @@ import { EventlinkComponent } from './Master/eventlink/eventlink.component';
 import { SponsorComponent } from './Master/sponsor/sponsor.component';
 import { BannerComponent } from './Master/banner/banner.component';
 import { NewsComponent } from './Master/news/news.component';
+import { BrandComponent } from './Master/brand/brand.component';
 // import { MembershipclassificationComponent } from './Master/membershipclassification/membershipclassification.component';
 
 // Student Master
@@ -158,7 +159,12 @@ const routes: Routes = [
   {
     path: 'news',
     component: NewsComponent
+  },
+  {
+    path: 'board',
+    component: BrandComponent
   }
+
 
 
 

@@ -6,7 +6,11 @@ import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms'
 import { AuthService } from "../../services/auth.service";
 declare const M: any;
 declare const $: any;
-declare const swal: any;
+
+
+import swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss'
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 @Component({
   selector: 'app-state',
   templateUrl: './state.component.html',
@@ -74,7 +78,7 @@ export class StateComponent implements OnInit {
               this.setMessage(res.error);
           }
           else if (res.status == 'success') {
-              swal("Added Sucessfully");
+            Swal.fire('Added Sucessfully');  
              // this.onAddReset();
               this.viewData();
               this.loadModal();
@@ -88,10 +92,32 @@ export class StateComponent implements OnInit {
 
   //To delete the data
   deleteAdmissionCategory(id: any) {
-      this.request.deletestate(id).subscribe(res => {
-          swal(" Deleted Successfully ");
-          this.viewData();
-      });
+
+    Swal.fire({  
+        title: 'Are you sure want to Delete?',  
+        text: 'You will not be able to recover this Data',  
+        icon: 'warning',  
+        showCancelButton: true,  
+        confirmButtonText: 'Delete',  
+        cancelButtonText: 'Cancel'  
+      }).then((result) => {  
+        if (result.value) {   
+            this.request.deletestate(id).subscribe(res => {
+                  this.viewData();
+              });
+          Swal.fire(  
+            'Deleted! Sucessfully',  
+          )  
+        } else if (result.dismiss === Swal.DismissReason.cancel) {  
+          Swal.fire(  
+            'Cancelled',   
+          )  
+        }  
+      }) 
+
+
+
+     
   }
 
   //Edit Function
@@ -135,7 +161,7 @@ export class StateComponent implements OnInit {
 
       this.request.updatestate(this.IdValue, edata).subscribe((response: any) => {
           if (response.status == 'success') {
-              swal("Updated Sucessfully");
+            Swal.fire("Updated Sucessfully");
               //  console.log('cat res', response);
             //  this.onEditReset();
               this.viewData();
@@ -173,7 +199,7 @@ export class StateComponent implements OnInit {
       $('#tableExport').DataTable({
           dom: 'Bfrtip',
           buttons: [
-              'copy', 'csv', 'excel', 'pdf', 'print'
+             'excel', 'pdf'
           ]
       });
   };

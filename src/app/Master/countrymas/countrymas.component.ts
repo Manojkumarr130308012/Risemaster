@@ -4,9 +4,12 @@ import { Router,  ActivatedRoute  } from '@angular/router';
 import { RequestService } from '../../services/request.service';
 import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
 import { AuthService } from "../../services/auth.service";
+import swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss'
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 declare const $: any;
 declare const M: any;
-declare const swal: any;
+
 @Component({
   selector: 'app-countrymas',
   templateUrl: './countrymas.component.html',
@@ -44,6 +47,7 @@ export class CountrymasComponent implements OnInit {
         CountryName2:['', Validators.required],
         Countrycode2:['', Validators.required]
     });
+    
      }
 
      public setMessage(message) {
@@ -59,10 +63,10 @@ export class CountrymasComponent implements OnInit {
       this.registerForm.value;
     this.request.addcountry(this.registerForm.value).subscribe((res: any) => {
       if (res.status == 'success') {
-      
+        Swal.fire('Added Sucessfully');  
       this.loadModal();
       this.viewData();
-      swal("Added Sucessfully");
+      
       }
       else if (res.status == 'error') {
         this.setMessage(res.error);
@@ -85,13 +89,31 @@ export class CountrymasComponent implements OnInit {
 
   // To delete bloodgroup
   deleteBloodgroup(id: any) {
-    this.request.deletecountry(id).subscribe(res => {
-      console.log(id);
-      this.viewData();
-    console.log('Deleted');
-    alert("Deleted Sucessfully");
-    this.router.navigate(['country']);
-    });
+
+    Swal.fire({  
+      title: 'Are you sure want to Delete?',  
+      text: 'You will not be able to recover this Data',  
+      icon: 'warning',  
+      showCancelButton: true,  
+      confirmButtonText: 'Delete',  
+      cancelButtonText: 'Cancel'  
+    }).then((result) => {  
+      if (result.value) {   
+        this.request.deletecountry(id).subscribe(res => {
+          console.log(id);
+          this.viewData();     
+        // this.router.navigate(['country']); 
+        });
+        Swal.fire(  
+          'Deleted! Sucessfully',  
+        )  
+      } else if (result.dismiss === Swal.DismissReason.cancel) {  
+        Swal.fire(  
+          'Cancelled',   
+        )  
+      }  
+    }) 
+
   }
 
   // To edit bloodgroup
@@ -127,7 +149,7 @@ export class CountrymasComponent implements OnInit {
      
       this.loadModal();
       this.viewData();
-      swal("Updated Sucessfully");
+      Swal.fire('Updated Sucessfully'); 
     }
     else if (res.status == 'error') {
       this.setMessage(res.error);

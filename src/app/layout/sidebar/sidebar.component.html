@@ -6,15 +6,23 @@
     <div class="menu">
       <ul class="list">
 
+        
+        <li routerLinkActive="active">
+          <a routerLink="dashboard/main" onClick="return true;">
+            <i class="fa fa-home"></i>
+            <span>Dashboard</span>
+          </a>
+          <ul class="ml-menu">
+            </ul>
+          </li>
+
+
         <li routerLinkActive="active">
           <a href="" onClick="return false;" class="menu-toggle">
-            <i class="menu-icon ti-home"></i>
+            <i class="fa fa-suitcase"></i>
             <span>Master</span>
           </a>
           <ul class="ml-menu">
-            <li routerLinkActive="active">
-              <a routerLink="dashboard/main">Dashboard</a>
-            </li>
 
             <li routerLinkActive="active">
               <a routerLink="countrymas">country</a>
@@ -34,9 +42,16 @@
             <li routerLinkActive="active">
               <a routerLink="gender">Gender</a>
             </li>
-            <li routerLinkActive="active">
-              <a routerLink="interest">Interests</a>
-            </li>
+          
+          </ul>
+        </li>
+
+        <li routerLinkActive="active">
+          <a href="" onClick="return false;" class="menu-toggle">
+            <i class="fa fa-user"></i>
+            <span>Membership</span>
+          </a>
+          <ul class="ml-menu">
             <li routerLinkActive="active">
               <a routerLink="membershipcategory">Membershipcategory</a>
             </li>
@@ -50,25 +65,33 @@
               <a routerLink="membershipcost">Membershipcost</a>
             </li>
             <li routerLinkActive="active">
-              <a routerLink="chapter">Chapter</a>
-            </li>
-            <li routerLinkActive="active">
               <a routerLink="member">Member</a>
             </li>
             <li routerLinkActive="active">
+              <a routerLink="chapter">Chapter</a>
+            </li>
+            <li routerLinkActive="active">
+              <a routerLink="board">Board</a>
+            </li>
+          </ul>
+        </li>
+        <li routerLinkActive="active">
+          <a href="" onClick="return false;" class="menu-toggle">
+            <i class="fa fa-calendar"></i>
+            <span>Events</span>
+          </a>
+          <ul class="ml-menu">
+            <li routerLinkActive="active">
               <a routerLink="events">Events</a>
-            </li>
-            <li routerLinkActive="active">
-              <a routerLink="speaker">Speaker</a>
-            </li>
-            <li routerLinkActive="active">
-              <a routerLink="sponsor">Sponsor</a>
             </li>
             <li routerLinkActive="active">
               <a routerLink="news">News</a>
             </li>
           </ul>
         </li>
+
+
+
       </ul>
     </div>
     <!-- #Menu -->
